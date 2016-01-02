@@ -13,5 +13,18 @@ RedPanther.config(function($stateProvider,$urlRouterProvider){
         controller:'homeController'
       }
     }
-  });
+  })
+  .state('projects',{
+    url:'/projects',
+    views:{
+      "header":{
+        templateUrl:"javascripts/template/header/header.html",
+        controller: "headerController"
+      },
+      "page":{
+        templateUrl:"javascripts/template/home/categories.html",
+        controller:'categoryController'
+      }
+    }
+  })
 });

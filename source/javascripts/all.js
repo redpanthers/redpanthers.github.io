@@ -6,4 +6,5 @@
 //= require service/openSourceService
 //= require controller/homeController
 //= require controller/headerController
+//= require controller/categoryController
 //= require directive/commonBootstrapDirectives 
