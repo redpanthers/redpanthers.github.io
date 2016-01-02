@@ -85,6 +85,18 @@
     }
   }
   .project-box-right{
-    display: block;    
+    display: block;   
+    .social-media-accounts{
+      width: auto;
+      li{
+        width: 20px;
+        height: 20px;
+        display: block;
+        float: left;
+        .label:empty{
+          display: inline-block;
+        }
+      }
+    } 
   }
 }

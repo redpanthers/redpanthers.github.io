@@ -32,10 +32,24 @@
                       {{project.projectDescription}}
                     </div>
                     <div class="panel-footer">
-                      <h5>Authors</h5>
+                      <h5>Contributers</h5>
                       <ul class="list-group">
-                        <li class="list-group-item" ng-repeat="author in project.projectContributers">
+                        <li class="list-group-item" ng-repeat="author in project.projectContributers">                          
+                          <img ng-src="{{author.authorImage}}" alt="" class="responsive-img author-image" width="32px" height="32px">
+                          &nbsp;
                           {{author.authorName}}
+                          <ul class="social-media-accounts pull-right">
+                            <li>
+                              <a href="" class="label label-default fa fa-facebook">                                
+                              </a>
+                            </li>
+                            <li>
+                              <a href="" class="label label-default fa fa-twitter"></a>
+                            </li>
+                            <li>
+                              <a href="" class="label label-default fa fa-github"></a>
+                            </li>
+                          </ul>
                         </li>
                       </ul>
                     </div>
