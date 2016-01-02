@@ -1,0 +1,51 @@
+@import 'device';
+@import 'mixins';
+@import 'variables';
+body{
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 14px;
+  background: #e3e3e3;
+  margin:0;
+  padding:0;
+}
+nav.navbar{
+  @include c-border-radius(0,0,0,0);
+  margin-bottom:0;
+  background: #d30000;
+  border-color:#d30000;
+  min-height: 80px;
+  color: #fff;
+  .navbar-brand{
+    height: 80px;
+    padding-top: 28px;
+    padding-bottom: 28px;
+    font-size: 28px;
+    color: #fff;
+    text-transform: uppercase;
+    &:hover,&:active,&:focus{
+      color: #fff;
+    }
+  }
+  .navbar-collapse{
+    > .navbar-nav{
+      > li{
+        max-height: 80px;
+        padding-top: 25px;
+        padding-bottom: 25px;
+        margin-right: 10px;
+        &:last-child{
+          margin-right: 0;
+        }
+        > a{
+          padding: 5px 10px;
+          color: #fff;
+          font-size: 16px;
+          // border: 2px solid #fff;
+          // @include c-border-radius(6px,6px,6px,6px); 
+          display: block;
+        }
+      }
+    }
+  }
+}
+

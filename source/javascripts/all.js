@@ -1,0 +1,9 @@
+//= require jquery-1.11.3.min
+//= require angular.min
+//= require angular-ui-router.min
+//= require angular-isotope.min
+//= require angular-site
+//= require service/openSourceService
+//= require controller/homeController
+//= require controller/headerController
+//= require directive/commonBootstrapDirectives 

@@ -1,0 +1,53 @@
+<div class="container"> 
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="open-souce">
+        <div class="open-source-category">
+          <ul>
+            <li ng-repeat="category in getCategoryList">
+              <a href="">
+                {{category.categoryName}}
+              </a>
+            </li>            
+          </ul>
+        </div>
+        <div class="open-source-projects">
+          <ul>
+            <li ng-repeat="project in projects">
+              <div class="project-box">
+                <div class="project-box-left">
+                  <h1 class="title">{{project.projectName}}</h1>
+                  <h5 class="category">{{project.projectCategory}}</h5>
+                  <ul class="languages">
+                    <li ng-repeat="language in project.projectLanguages">
+                      <label class="label label-primary">
+                        {{language}}
+                      </label>
+                    </li>
+                  </ul>
+                </div>
+                <div class="project-box-right">
+                  <div class="panel panel-default">
+                    <div class="panel-body">
+                      {{project.projectDescription}}
+                    </div>
+                    <div class="panel-footer">
+                      <h5>Authors</h5>
+                      <ul class="list-group">
+                        <li class="list-group-item" ng-repeat="author in project.projectContributers">
+                          {{author.authorName}}
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>  
+
+           
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
