@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      {{category.categoryName}}
+      <ul class="list-group">
+        <li class="list-group-item" ng-repeat="project in projectByCategory"> 
+          {{project.projectName}}
+        </li>
+      </ul>
+    </div>
+    
+  </div>
+</div> 

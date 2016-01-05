@@ -27,4 +27,18 @@ RedPanther.config(function($stateProvider,$urlRouterProvider){
       }
     }
   })
+  .state('categoryPage',{
+    url:'/projects/:categorySlug',
+    views:{
+      "header":{
+        templateUrl:"javascripts/template/header/header.html",
+        controller: "headerController"
+      },
+      "page":{
+        templateUrl: "javascripts/template/home/category.html",
+        controller:'categoryController'
+      }
+    }
+  })  
 });
+

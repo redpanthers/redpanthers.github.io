@@ -2,12 +2,12 @@ var RedPanther = RedPanther || {}
 RedPanther.factory('openSouceProjects',['$http',function($http){
   getProjectCategories = function(){
     var categories = [
-      {categoryName:"Javascript",categoryId:1},
-      {categoryName:"Rails",categoryId:5},
-      {categoryName:"Ionic",categoryId:3},
-      {categoryName:"Angular",categoryId:8},
-      // {categoryName:"React JS",categoryId:12},
-      {categoryName:"Dart",categoryId:18}
+      {categoryName:"Javascript",categoryId:1,categoryProjects:12,categoryImage:"js.png",categorySlug:"javascript"},
+      {categoryName:"Rails",categoryId:5,categoryProjects:21,categoryImage:"rails.png",categorySlug:"rails"},
+      {categoryName:"Ionic",categoryId:3,categoryProjects:31,categoryImage:"ionic.png",categorySlug:"ionic"},
+      {categoryName:"Angular",categoryId:8,categoryProjects:8,categoryImage:"angular.png",categorySlug:"angular"},
+      // {categoryName:"React JS",categoryId:12,categoryProjects: 4},
+      {categoryName:"Dart",categoryId:18,categoryProjects:2,categoryImage:"dart.png",categorySlug:"dart"}
     ];
     return categories;
   }
@@ -90,11 +90,40 @@ RedPanther.factory('openSouceProjects',['$http',function($http){
         }
       })
     }
-    return tenCategory
+    return tenCategory    
+  }
+  getCategoryDetailBySlug = function(slug){
+    var categories = getProjectCategories();
+    var category = null 
+    $.each(categories,function(index,value){     
+      if(value.categorySlug == slug){
+        category = value 
+      }
+    })
+    return category;
+  }
+  getProjectsByCategorySlug = function(slug){
+    var category  = getCategoryDetailBySlug(slug)
+    var projects  = getAllProjects()
+    var categoryProjects = []
+    if(category!=null){
+    $.each(projects,function(index,value){
+      if(value.projectCategory == category.categoryName){
     
+        categoryProjects.push(value)
+      }
+    })
+    }else{
+      categoryProjects = [] 
+    }
+      
+      return categoryProjects
+        
   }
   return{
     getProjectCategories: getProjectCategories,
-    getTenProjectsByCategory: getTenProjectsByCategory
+    getTenProjectsByCategory: getTenProjectsByCategory,
+    getProjectsByCategorySlug: getProjectsByCategorySlug,
+    getCategoryDetailBySlug: getCategoryDetailBySlug
   }
 }]) 
