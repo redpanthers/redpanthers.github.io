@@ -45,7 +45,27 @@ nav.navbar{
           display: block;
         }
       }
+      li.dropdown{
+        &.open{
+          a{
+            &:hover,&:focus,&:active{
+              background: #b70303;
+              color: #fff;
+              border-color:  #b70303;
+            }
+          }
+        } 
+      }
     }
+  }
+}
+.footer-social-link{
+  a{
+    color: #777;
+    font-size: 21px;
+  }
+  b{
+    vertical-align: middle
   }
 }
 
