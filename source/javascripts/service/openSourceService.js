@@ -76,7 +76,6 @@ RedPanther.factory('openSouceProjects',['$http',function($http){
         if(index<10){ 
           $.each(value.projectContributers,function(index,value2){            
            if(typeof(value2.authorImage)=="undefined"){ // if image is not available we use default image 
-             console.log(typeof (value2.authorImage))
              value.projectContributers[index].authorImage  = "https://www.drupal.org/files/profile_default.jpg"
            }
           })

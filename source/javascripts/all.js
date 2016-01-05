@@ -3,6 +3,7 @@
 //= require angular.min
 //= require angular-ui-router.min
 //= require angular-isotope.min
+//= require angular-smooth-scroll.min 
 //= require angular-site
 //= require service/openSourceService
 //= require controller/homeController

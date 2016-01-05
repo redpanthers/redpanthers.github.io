@@ -11,6 +11,10 @@ RedPanther.config(function($stateProvider,$urlRouterProvider){
       "page":{
         templateUrl:'javascripts/template/home/index.html',
         controller:'homeController'
+      },
+      "join":{
+        templateUrl:"javascripts/template/join/join.html",
+        controller: "headerController"
       }
     }
   })
@@ -24,6 +28,10 @@ RedPanther.config(function($stateProvider,$urlRouterProvider){
       "page":{
         templateUrl:"javascripts/template/home/categories.html",
         controller:'categoryController'
+      },
+      "join":{
+        templateUrl:"javascripts/template/join/join.html",
+        controller: "headerController"
       }
     }
   })
@@ -37,6 +45,10 @@ RedPanther.config(function($stateProvider,$urlRouterProvider){
       "page":{
         templateUrl: "javascripts/template/home/category.html",
         controller:'categoryController'
+      },
+      "join":{
+        templateUrl:"javascripts/template/join/join.html",
+        controller: "headerController"
       }
     }
   })  
