@@ -19,3 +19,14 @@ RedPanther.directive('dropdown',function(){
     link: link
   }
 });
+RedPanther.directive('tooltip',function(){
+  var link = function(scope, element, attr){
+    element.tooltip({
+      title: attr.atitle 
+    })
+  }
+  return{
+    restrict: 'A',
+    link: link 
+  }
+});

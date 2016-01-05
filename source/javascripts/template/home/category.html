@@ -1,12 +1,57 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
-      {{category.categoryName}}
-      <ul class="list-group">
-        <li class="list-group-item" ng-repeat="project in projectByCategory"> 
-          {{project.projectName}}
-        </li>
-      </ul>
+      <h1 class="title">
+        {{category.categoryName}}
+      </h1>
+      <div class="project-wrapper">
+        <div class="panel panel-default" ng-repeat="project in projectByCategory"> 
+          <div class="panel-heading">
+            <h3 class="title">
+              {{project.projectName}}
+              <small>
+                <span class="label label-primary pull-right">
+                {{project.projectCategory}}
+              </span>
+              </small>
+            </h3>
+          </div>
+          <div class="panel-body">
+            <div class="well">
+              {{project.projectDescription}}
+            </div>
+            <div class="row">
+              <div class="col-xs-12 col-sm-5 col-md-4">
+                <ul class="pull-left project-footer-ul">
+                  <li>
+                    <span class="label label-info">Project Owner :</span>
+                    <b>{{project.projectOwner}}</b>
+                    
+                  </li>
+                </ul>
+              </div>
+              <div class="col-xs-12 col-sm-7 col-md-8">
+                <ul class="pull-right project-footer-ul">
+                  <li>
+                    <span class="label label-success">Contributers</span>
+                    
+                    <a href="" data-ng-repeat="contrib in project.projectContributers" class="project-contrib" data-toggle="tooltip" data-placement="top" atitle="{{contrib.authorName}}" tooltip>
+                      <img ng-src="{{contrib.authorImage}}" alt="{{contrib.authorName}}" class="img-responsive">
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="panel-footer clearfix">
+            <ul class="clearfix pull-right btn-group">
+              <li ng-repeat="language in project.projectLanguages" class="btn btn-default btn-sm">
+                {{language}}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
     
   </div>

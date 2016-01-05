@@ -111,3 +111,22 @@
     width: 100%; 
   }
 }
+.project-contrib{
+  width: 32px;
+  height: 32px;
+  display: inline-block;
+  vertical-align: middle;
+  img{
+    max-width: 100%;
+    @include c-border-radius(50%,50%,50%,50%)
+  }
+}
+
+.project-footer-ul{
+  margin: 0;
+  padding: 0;
+  li{
+    list-style: none;
+    
+  }  
+}

@@ -1,4 +1,5 @@
 //= require jquery-1.11.3.min
+//= require bootstrap.min 
 //= require angular.min
 //= require angular-ui-router.min
 //= require angular-isotope.min
