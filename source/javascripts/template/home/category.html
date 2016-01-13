@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <h1 class="title">
+        {{category.categoryName}}
+      </h1>
+      <ul class="project-wrapper">
+        <li ng-repeat="project in projectByCategory">
+        <div class="panel panel-default" >
+          <div class="panel-heading">
+            <h4 class="title">
+              {{project.projectName}}
+              <small>
+                <span class="label label-primary pull-right">
+                {{project.projectCategory}}
+              </span>
+              </small>
+            </h4>
+          </div>
+          <div class="panel-body">
+            <div class="well">
+              {{project.projectDescription}}
+            </div>
+            <div class="row">
+              <div class="col-xs-12">
+                <ul class="pull-left project-footer-ul">
+                  <li>
+                    <span class="label label-info">Project Owner :</span>
+                    <b>{{project.projectOwner}}</b>
+                    
+                  </li>
+                </ul>
+              </div>
+              <div class="col-xs-12 col-sm-6 col-md-7">
+              </div>
+            </div>
+          </div>
+          <div class="panel-footer clearfix">
+            <ul class="clearfix pull-right btn-group">
+              <li  class="btn btn-default btn-sm">
+                <span class="fa fa-star"></span>
+                Star
+                <b>12K</b>
+              </li>
+              <li class="btn btn-default btn-sm">
+                <span class="fa fa-code-fork"></span>
+                Fork
+                <b>5K</b>
+              </li>
+            </ul>
+          </div>
+        </div>
+        </li>
+      </ul>
+    </div>
+    
+  </div>
+</div> 
