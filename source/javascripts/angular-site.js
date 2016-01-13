@@ -1,5 +1,11 @@
-var RedPanther = angular.module('redpanther',['ui.router']);
-RedPanther.config(function($stateProvider,$urlRouterProvider){
+/**
+ * Define angular module redpanther
+ *
+ * Angular UI Router
+ *
+ */
+window.RedPanther = angular.module('redpanther',['ui.router','angular-loading-bar','ngAnimate','iso.directives']);
+window.RedPanther.config(function($stateProvider,$urlRouterProvider){
   $urlRouterProvider.otherwise('/');
   $stateProvider.state('home',{
     url:'/',

@@ -14,3 +14,9 @@
   border-bottom-left-radius: $bottom-left;
   border-top-left-radius: $top-left;
 }
+
+@mixin c-transition($properties, $duration, $function, $delay){
+  -webkit-transition: $properties $duration $function $delay;
+  -moz-transition: $properties $duration $function $delay;
+  transition: $properties $duration $function $delay;
+}

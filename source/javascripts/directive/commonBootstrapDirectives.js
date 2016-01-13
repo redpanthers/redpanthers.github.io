@@ -1,4 +1,4 @@
-var RedPanther = RedPanther || {}
+var RedPanther = window.RedPanther || angular.module('redpanther',[])
 RedPanther.directive('dropdownA',function(){
   var link = function(scope, element, attr){
     element.on('click',function(e){
