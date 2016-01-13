@@ -19,3 +19,8 @@
 
 # Ignore gems installed in local directory
 /vendor/bundle/
+
+
+# Ignore IDE filed
+/.idea
+.idea

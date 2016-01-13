@@ -63,6 +63,11 @@ nav.navbar{
   a{
     color: #777;
     font-size: 21px;
+    text-decoration: none;
+    &:hover{
+      color: #333;
+      text-decoration: none;
+    }
   }
   b{
     vertical-align: middle

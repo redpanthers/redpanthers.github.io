@@ -7,7 +7,7 @@
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 
     <!-- Use title if it's in the page YAML frontmatter -->
-    <title><%= current_page.data.title || "The Middleman" %></title>
+    <title><%= current_page.data.title || "RedPanther | Ruby Developers @ Kochi" %></title>
 
     <%= stylesheet_link_tag "normalize", "all" %>
     <%= javascript_include_tag  "all" %>
@@ -18,7 +18,7 @@
       <div class="" ui-view="header">
 
       </div>
-      <div class="" ui-view="page">
+      <div class="" ui-view="page" cg-busy="myPromise">
 
       </div>
       <div class="" ui-view="join">

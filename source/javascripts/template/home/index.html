@@ -3,17 +3,17 @@
     <div class="col-xs-12">
       <div class="open-souce">
         <div class="open-source-category">
-          <ul>
+          <ul opt-kind ok-key="filter">
             <li ng-repeat="category in getCategoryList">
-              <a href="">
+              <a href="" ok-sel=".{{category.categorySlug}}">
                 {{category.categoryName}}
               </a>
             </li>            
           </ul>
         </div>
         <div class="open-source-projects">
-          <ul>
-            <li ng-repeat="project in projects">
+          <ul isotope-container="isotope-container" ng-cloak="">
+            <li ng-repeat="project in projects" isotope-item="" class="{{project.projectCategorySlug}}">
               <div class="project-box">
                 <div class="project-box-left">
                   <h1 class="title">{{project.projectName}}</h1>
@@ -30,28 +30,6 @@
                   <div class="panel panel-default">
                     <div class="panel-body">
                       {{project.projectDescription}}
-                    </div>
-                    <div class="panel-footer">
-                      <h5>Contributers</h5>
-                      <ul class="list-group">
-                        <li class="list-group-item" ng-repeat="author in project.projectContributers">                          
-                          <img ng-src="{{author.authorImage}}" alt="" class="responsive-img author-image" width="32px" height="32px">
-                          &nbsp;
-                          {{author.authorName}}
-                          <ul class="social-media-accounts pull-right">
-                            <li>
-                              <a href="" class="label label-default fa fa-facebook">                                
-                              </a>
-                            </li>
-                            <li>
-                              <a href="" class="label label-default fa fa-twitter"></a>
-                            </li>
-                            <li>
-                              <a href="" class="label label-default fa fa-github"></a>
-                            </li>
-                          </ul>
-                        </li>
-                      </ul>
                     </div>
                   </div>
                 </div>
