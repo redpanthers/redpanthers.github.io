@@ -4,8 +4,16 @@
  * Angular UI Router
  *
  */
-window.RedPanther = angular.module('redpanther',['ui.router','angular-loading-bar','ngAnimate','iso.directives']);
-window.RedPanther.config(function($stateProvider,$urlRouterProvider){
+window.RedPanther = angular.module('redpanther',['ui.router','angular-loading-bar','ngAnimate','iso.directives','ui.bootstrap']);
+window.RedPanther.config(function($stateProvider,$urlRouterProvider,$uibTooltipProvider){
+  $uibTooltipProvider.setTriggers(
+    {
+      'mouseenter': 'mouseleave',
+      'click': 'click',
+      'focus': 'blur',
+      'never': 'mouseleave'
+    }
+  );
   $urlRouterProvider.otherwise('/');
   $stateProvider.state('home',{
     url:'/',
@@ -57,6 +65,23 @@ window.RedPanther.config(function($stateProvider,$urlRouterProvider){
         controller: "headerController"
       }
     }
-  })  
+  })
+  .state('team',{
+      url:'/team',
+      views:{
+        "header":{
+          templateUrl: "javascripts/template/header/header.html",
+          controller: "headerController"
+        },
+        "page":{
+          templateUrl: "javascripts/template/home/team.html",
+          controller: 'teamController'
+        },
+        "join":{
+          templateUrl:"javascripts/template/join/join.html",
+          controller: "headerController"
+        }
+      }
+    })
 });
 
