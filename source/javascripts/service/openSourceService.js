@@ -119,10 +119,27 @@ RedPanther.factory('openSouceProjects',['$http',function($http){
       return categoryProjects
         
   }
+  getTeamDetails=  function(){
+    return[
+      {user_id:2,user_name:"John Doe",user_email:"john_doe@redpanthers.io",user_github:"john_doe",user_role:"Ruby Developer"},
+      {user_id:5,user_name:"Mathew Halt",user_email:"mathew@redpanthers.io",user_github:"mathew_halt",user_role:"Angular Developer"},
+      {user_id:7,user_name:"Rohan Alort",user_email:"rohan_alort@redpanthers.io",user_github:"rohan_alort",user_role:"React Developer"},
+      {user_id:9,user_name:"Selin Paul",user_email:"selin_paul@redpanthers.io",user_github:"selin_paul",user_role:"Polymer Expert"},
+      {user_id:2,user_name:"John Doe",user_email:"john_doe@redpanthers.io",user_github:"john_doe",user_role:"Ruby Developer"},
+      {user_id:5,user_name:"Mathew Halt",user_email:"mathew@redpanthers.io",user_github:"mathew_halt",user_role:"Angular Developer"},
+      {user_id:7,user_name:"Rohan Alort",user_email:"rohan_alort@redpanthers.io",user_github:"rohan_alort",user_role:"React Developer"},
+      {user_id:9,user_name:"Selin Paul",user_email:"selin_paul@redpanthers.io",user_github:"selin_paul",user_role:"Polymer Expert"},
+      {user_id:2,user_name:"John Doe",user_email:"john_doe@redpanthers.io",user_github:"john_doe",user_role:"Ruby Developer"},
+      {user_id:5,user_name:"Mathew Halt",user_email:"mathew@redpanthers.io",user_github:"mathew_halt",user_role:"Angular Developer"},
+      {user_id:7,user_name:"Rohan Alort",user_email:"rohan_alort@redpanthers.io",user_github:"rohan_alort",user_role:"React Developer"},
+      {user_id:9,user_name:"Selin Paul",user_email:"selin_paul@redpanthers.io",user_github:"selin_paul",user_role:"Polymer Expert"},
+    ]
+  }
   return{
     getProjectCategories: getProjectCategories,
     getTenProjectsByCategory: getTenProjectsByCategory,
     getProjectsByCategorySlug: getProjectsByCategorySlug,
-    getCategoryDetailBySlug: getCategoryDetailBySlug
+    getCategoryDetailBySlug: getCategoryDetailBySlug,
+    getTeamDetails:getTeamDetails
   }
 }]) 
