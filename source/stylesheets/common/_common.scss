@@ -4,73 +4,186 @@
 body{
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 14px;
-  background: #e3e3e3;
+  background: #f1f1f1;
   margin:0;
   padding:0;
 }
-nav.navbar{
-  @include c-border-radius(0,0,0,0);
-  margin-bottom:0;
-  background: #d30000;
-  border-color:#d30000;
-  min-height: 80px;
-  color: #fff;
-  .navbar-brand{
-    height: 80px;
-    padding-top: 28px;
-    padding-bottom: 28px;
-    font-size: 28px;
-    color: #fff;
-    text-transform: uppercase;
-    &:hover,&:active,&:focus{
-      color: #fff;
-    }
-  }
-  .navbar-collapse{
-    > .navbar-nav{
-      > li{
-        max-height: 80px;
-        padding-top: 25px;
-        padding-bottom: 25px;
-        margin-right: 10px;
-        &:last-child{
-          margin-right: 0;
-        }
-        > a{
-          padding: 5px 10px;
-          color: #fff;
-          font-size: 16px;
-          // border: 2px solid #fff;
-          // @include c-border-radius(6px,6px,6px,6px); 
-          display: block;
-        }
-      }
-      li.dropdown{
-        &.open{
-          a{
-            &:hover,&:focus,&:active{
-              background: #b70303;
-              color: #fff;
-              border-color:  #b70303;
-            }
-          }
-        } 
-      }
-    }
+.body-wrapper{
+  display: block;
+  padding-left: 260px;
+  .sidebar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 260px;
+    height: 100vh;
+    background: #444;
   }
 }
-.footer-social-link{
-  a{
-    color: #777;
-    font-size: 21px;
-    text-decoration: none;
-    &:hover{
-      color: #333;
-      text-decoration: none;
+.header-section{
+  background: url('/images/open-source-background.jpg');
+  height: 280px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-color: #e91f1c;
+}
+
+.redpanther-navbar{
+  @include c-border-radius(0,0,0,0);
+  margin-bottom: 0;
+  border: none;
+  background: #fff;
+}
+/** Category Items **/
+.redpanther-navbar .category-items{
+  display: block;
+  li{
+    padding: 6px 3px;
+    a{
+      display: block;
+      padding: 5px 10px;
+      @include c-border-radius(2px,2px,2px,2px);
+      &:hover,&:active,&:focus{
+        background: #eee;
+      }
+      .first-letter{
+        display: block;
+        border: 2px solid #fff;
+        background: #ea1f1b;
+        color: #fff;
+        font-weight: bold;
+        display: inline-block;
+        padding: 2px 4px;
+        vertical-align: middle;
+      }
+      .letter{
+        display: inline-block;
+        color: #ea1f1b;
+        font-weight: lighter;
+      }
     }
-  }
-  b{
-    vertical-align: middle
   }
 }
 
+.project-wrapper{
+  display: block;
+  padding: 40px 0 60px;
+  .project{
+    min-height: 240px;
+    background: #fff;
+    border: 1px solid #eee;
+    @include c-box-shadow-outer(-1px,-1px, 0px, 0, #e7e7e7);
+    margin-bottom: 30px;
+    padding: 15px;
+    .title{
+      color: #555;
+      display: block;
+      text-decoration: none;
+      padding: 0px 0  10px;
+      height: 50px;
+      overflow: hidden;
+      cursor: pointer;
+      &:hover{
+        color: #333;
+      }
+      h4{
+        margin: 0;
+      }
+    }
+    .title-info{
+      display: block;
+      padding: 10px 0;
+      a{
+        color: #888;
+      }
+      .owner{
+        color: #888;
+      }
+      .status{
+        padding: 0;
+        margin: 0;
+        li{
+          list-style: none;
+          display: inline-block;
+          a{
+            color: #888;
+            span{
+              color: #777;
+            }
+          }
+        }
+      }
+    }
+    .title-letter{
+      margin: 0 -15px;
+      background: darken(#e91f1c,10%);
+      color: #fff;
+      font-weight: bold;
+      font-size: 72px;
+      text-shadow: 2px 2px 0 #222;
+      text-align: center;
+      padding: 30px 0;
+    }
+    .description{
+      padding: 10px 0;
+      color: #888;
+      font-size: 16px;
+      font-weight: normal;
+      height: 80px;
+      overflow: hidden;
+    }
+  }
+}
+.sidebar{
+  .bottom-brand{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    .brand-logo{
+      display: block;
+      margin-bottom: 10px;
+      padding: 0 40px;
+      img{
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+        display: table;
+      }
+    }
+    .brand-social{
+      margin: 0 auto;
+      display: block;
+      padding: 0 0 10px;
+      .social{
+        margin: 0 auto;
+        display: table;
+        padding: 0;
+        li{
+          display: block;
+          width: 26px;
+          height: 26px;
+          list-style: none;
+          float: left;
+          margin: 0 10px 10px 0;
+          &:last-child{
+            margin-right: 0;
+          }
+          a{
+            display: block;
+            @include c-border-radius(4px,4px,4px,4px);
+            font-size: 15px;
+            padding: 4px;
+            text-align: center;
+            color: #fff;
+            line-height: normal;
+            &:hover,&:active,&:focus{
+              background: #303030;
+            }
+          }
+        }
+      }
+    }
+  }
+}

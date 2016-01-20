@@ -9,6 +9,7 @@
 //= require angular-smooth-scroll.min
 //= require angular-loading-bar.min
 //= require angular-site
+//= require filter/string-filter
 //= require service/openSourceService
 //= require controller/homeController
 //= require controller/headerController
