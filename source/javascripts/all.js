@@ -1,6 +1,6 @@
 //= require jquery-1.11.3.min
 //= require bootstrap.min
-//= require isotope.pkgd.min
+//= require github
 //= require angular.min
 //= require angular-animate.min
 //= require angular-ui-router.min
