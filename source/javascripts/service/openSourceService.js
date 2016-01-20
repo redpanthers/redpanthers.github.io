@@ -135,11 +135,14 @@ RedPanther.factory('openSouceProjects',['$http',function($http){
       {user_id:9,user_name:"Selin Paul",user_email:"selin_paul@redpanthers.io",user_github:"selin_paul",user_role:"Polymer Expert"},
     ]
   }
+
   return{
     getProjectCategories: getProjectCategories,
     getTenProjectsByCategory: getTenProjectsByCategory,
     getProjectsByCategorySlug: getProjectsByCategorySlug,
     getCategoryDetailBySlug: getCategoryDetailBySlug,
     getTeamDetails:getTeamDetails
+    getCategoryDetailBySlug: getCategoryDetailBySlug
+
   }
 }]) 

@@ -4,16 +4,10 @@
  * Angular UI Router
  *
  */
+
 window.RedPanther = angular.module('redpanther',['ui.router','angular-loading-bar','ngAnimate','iso.directives','ui.bootstrap']);
-window.RedPanther.config(function($stateProvider,$urlRouterProvider,$uibTooltipProvider){
-  $uibTooltipProvider.setTriggers(
-    {
-      'mouseenter': 'mouseleave',
-      'click': 'click',
-      'focus': 'blur',
-      'never': 'mouseleave'
-    }
-  );
+window.RedPanther.config(function($stateProvider,$urlRouterProvider){
+
   $urlRouterProvider.otherwise('/');
   $stateProvider.state('home',{
     url:'/',
@@ -83,5 +77,7 @@ window.RedPanther.config(function($stateProvider,$urlRouterProvider,$uibTooltipP
         }
       }
     })
+  })  
+
 });
 

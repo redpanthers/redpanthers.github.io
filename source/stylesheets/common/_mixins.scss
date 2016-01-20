@@ -20,8 +20,10 @@
   -moz-transition: $properties $duration $function $delay;
   transition: $properties $duration $function $delay;
 }
+
 @mixin c-box-shadow-outer($left,$top,$blur,$spread,$color){
   -webkit-box-shadow: $left $top $blur $spread $color;
   -moz-box-shadow: $left $top $blur $spread $color;
   box-shadow: $left $top $blur $spread $color; 
 }
+
