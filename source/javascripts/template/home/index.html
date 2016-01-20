@@ -1,45 +1,81 @@
-<div class="container"> 
+<nav class="redpanther-navbar navbar navbar-default">
+  <div class="container-fluid">
   <div class="row">
-    <div class="col-xs-12">
-      <div class="open-souce">
-        <div class="open-source-category">
-          <ul opt-kind ok-key="filter">
-            <li ng-repeat="category in getCategoryList">
-              <a href="" ok-sel=".{{category.categorySlug}}">
-                {{category.categoryName}}
-              </a>
-            </li>            
-          </ul>
-        </div>
-        <div class="open-source-projects">
-          <ul isotope-container="isotope-container" ng-cloak="">
-            <li ng-repeat="project in projects" isotope-item="" class="{{project.projectCategorySlug}}">
-              <div class="project-box">
-                <div class="project-box-left">
-                  <h1 class="title">{{project.projectName}}</h1>
-                  <h5 class="category">{{project.projectCategory}}</h5>
-                  <ul class="languages">
-                    <li ng-repeat="language in project.projectLanguages">
-                      <label class="label label-primary">
-                        {{language}}
-                      </label>
-                    </li>
-                  </ul>
-                </div>
-                <div class="project-box-right">
-                  <div class="panel panel-default">
-                    <div class="panel-body">
-                      {{project.projectDescription}}
-                    </div>
-                  </div>
-                </div>
-              </div>  
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav category-items">
+        <li ng-repeat="category in getCategoryList">
+          <a href="" ui-sref="">
+            <div class="first-letter">
+              {{category.categoryName | returnFirstLetter }}
+            </div>
+            <div class="letter">
+              {{category.categoryName}}  
+            </div>            
+          </a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav pull-right">
+        <li>
+          <a href="">
+            <span class="fa fa-search"></span>
+          </a>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+    </div>
+  </div><!-- /.container-fluid -->
+</nav>
+<!-- Category List section -->
+<div class="project-wrapper">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12 col-sm-4 col-md-3" ng-repeat="project in projects">
+        <div class="project">
+          <a class="title clearfix">
+            <h4>
+              {{project.projectName}}
+            </h4>
+          </a>      
+          
 
-           
-            </li>
-          </ul>
+          <div class="title-letter">
+            {{project.projectName | returnFirstLetter }}
+          </div>
+          <div class="title-info clearfix">
+            <a href="" class="pull-left owner">
+              {{project.projectOwner}}
+            </a>
+            <ul class="pull-right status">
+              <li>
+                <a href="">
+                  <span class="fa fa-star"></span>
+                  20
+                </a>
+              </li>
+              <li>
+                <a href="">
+                  <span class="fa fa-code"></span>
+                  Ruby
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="description">
+            {{project.projectDescription}}
+          </div>        
         </div>
       </div>
     </div>
   </div>
-</div>
+</div>   
+
+<!-- eof category list section -->
