@@ -6,7 +6,7 @@ RedPanther.service('githubApis',['$http','$q', function($http,$q){
 	getUser= function(){
 		var github = new Github({
   		username: "sibinx7",
-  		password: "hitman-game-47",
+  		password: "hitman-47",
   		auth: "basic"
 		});
 		var user = github.getUser();
