@@ -5,8 +5,8 @@ RedPanther.service('githubApis',['$http','$q', function($http,$q){
 	var userLanguages = [];
 	getUser= function(){
 		var github = new Github({
-  		username: "sibinx7",
-  		password: "hitman-47",
+  		username: githubUserDetails.username,
+  		password: githubUserDetails.password,
   		auth: "basic"
 		});
 		var user = github.getUser();
@@ -19,9 +19,9 @@ RedPanther.service('githubApis',['$http','$q', function($http,$q){
 				}
 			})
 		})
-		
 
-		
+
+
 	}
 	getAllRepository= function(){
 		return $q(function(resolve,reject){
@@ -50,8 +50,8 @@ RedPanther.service('githubApis',['$http','$q', function($http,$q){
 	 			}
 	 		})
 	 	})
-		
-		
+
+
 	}
 	return{
 		getAllLanguages: getAllLanguages,
