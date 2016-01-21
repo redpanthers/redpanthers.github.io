@@ -179,20 +179,4 @@
   }
 }
 
-/** Category page with projects **/
-.project-wrapper{
-  margin: 0 -5px;
-  padding: 0;
-  >li{
-    display: block;
-    width: (100%/3);
-    float: left;
-    padding: 5px;
-    > .panel{
-      @include c-border-radius(0,0,0,0);
-      .panel-body{
-      }
-    }
-  }
-}
 

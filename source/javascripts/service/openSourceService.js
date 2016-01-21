@@ -141,7 +141,7 @@ RedPanther.factory('openSouceProjects',['$http',function($http){
     getTenProjectsByCategory: getTenProjectsByCategory,
     getProjectsByCategorySlug: getProjectsByCategorySlug,
     getCategoryDetailBySlug: getCategoryDetailBySlug,
-    getTeamDetails:getTeamDetails
+    getTeamDetails:getTeamDetails,
     getCategoryDetailBySlug: getCategoryDetailBySlug
 
   }
