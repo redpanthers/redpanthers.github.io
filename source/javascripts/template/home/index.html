@@ -11,14 +11,14 @@
       </button>
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav category-items">
-        <li ng-repeat="category in getCategoryList">
-          <a href="" ui-sref="">
+      <ul class="nav navbar-nav category-items"  opt-kind=""  ok-key="filter">
+        <li ng-repeat="category in getCategoryList track by $index" >
+          <a href="#" ok-sel="[lang='{{category | lowercase}}']">
             <div class="first-letter">
-              {{category.categoryName | returnFirstLetter }}
+              {{category | returnFirstLetter }}
             </div>
             <div class="letter">
-              {{category.categoryName}}  
+              {{category}}  
             </div>            
           </a>
         </li>
@@ -37,18 +37,18 @@
 <!-- Category List section -->
 <div class="project-wrapper">
   <div class="container-fluid">
-    <div class="row">
-      <div class="col-xs-12 col-sm-4 col-md-3" ng-repeat="project in projects">
+    <div class="row " isotope-container="isotope-container" ng-cloak="">
+      <div class="col-xs-12 col-sm-4 col-md-3 " lang="{{project.language | lowercase}}" ng-repeat="project in getProjects" isotope-item="">
         <div class="project">
           <a class="title clearfix">
             <h4>
-              {{project.projectName}}
+              {{project.name}}
             </h4>
           </a>      
           
 
           <div class="title-letter">
-            {{project.projectName | returnFirstLetter }}
+            {{project.name | returnFirstLetter }}
           </div>
           <div class="title-info clearfix">
             <a href="" class="pull-left owner">
@@ -58,19 +58,25 @@
               <li>
                 <a href="">
                   <span class="fa fa-star"></span>
-                  20
+                  {{project.stargazers_count}}
+                </a>
+              </li>
+              <li>
+                <a href="">
+                  <span class="fa fa-code-fork"></span>
+                  {{project.forks}}
                 </a>
               </li>
               <li>
                 <a href="">
                   <span class="fa fa-code"></span>
-                  Ruby
+                  {{project.language}}
                 </a>
               </li>
             </ul>
           </div>
           <div class="description">
-            {{project.projectDescription}}
+            {{project.description}}
           </div>        
         </div>
       </div>
