@@ -1,0 +1,45 @@
+<div class="container"> 
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="open-souce">
+        <div class="open-source-category">
+          <ul opt-kind ok-key="filter">
+            <li ng-repeat="category in getCategoryList">
+              <a href="" ok-sel=".{{category.categorySlug}}">
+                {{category.categoryName}}
+              </a>
+            </li>            
+          </ul>
+        </div>
+        <div class="open-source-projects">
+          <ul isotope-container="isotope-container" ng-cloak="">
+            <li ng-repeat="project in projects" isotope-item="" class="{{project.projectCategorySlug}}">
+              <div class="project-box">
+                <div class="project-box-left">
+                  <h1 class="title">{{project.projectName}}</h1>
+                  <h5 class="category">{{project.projectCategory}}</h5>
+                  <ul class="languages">
+                    <li ng-repeat="language in project.projectLanguages">
+                      <label class="label label-primary">
+                        {{language}}
+                      </label>
+                    </li>
+                  </ul>
+                </div>
+                <div class="project-box-right">
+                  <div class="panel panel-default">
+                    <div class="panel-body">
+                      {{project.projectDescription}}
+                    </div>
+                  </div>
+                </div>
+              </div>  
+
+           
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
