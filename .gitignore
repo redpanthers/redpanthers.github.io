@@ -24,3 +24,4 @@
 # Ignore IDE filed
 /.idea
 .idea
+/source/javascripts/config.js
