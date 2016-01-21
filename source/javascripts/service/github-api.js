@@ -5,8 +5,8 @@ RedPanther.service('githubApis',['$http','$q', function($http,$q){
 	var userLanguages = [];
 	getUser= function(){
 		var github = new Github({
-  		username: "",
-  		password: "",
+  		username: "sibinx7",
+  		password: "hitman-game-47",
   		auth: "basic"
 		});
 		var user = github.getUser();
