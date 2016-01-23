@@ -5,8 +5,8 @@
  *
  */
 
-window.RedPanther = angular.module('redpanther',['ui.router','angular-loading-bar','ngAnimate','iso.directives']);
-window.RedPanther.config(function($stateProvider,$urlRouterProvider){
+window.RedPanther = angular.module('redpanther',['ui.router','angular-loading-bar','ngAnimate','iso.directives','ngResource']);
+window.RedPanther.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRouterProvider){
   $urlRouterProvider.otherwise('/');
   $stateProvider
   .state('home',{
@@ -34,5 +34,16 @@ window.RedPanther.config(function($stateProvider,$urlRouterProvider){
         controller: "teamController"
       }
     }
-  });
-});
+  })
+  .state( 'member',{
+    url:'/team/:username',
+    views:{
+      "page":{
+        templateUrl: "javascripts/template/home/member.html",
+        controller: "teamController"
+      }
+    }
+  }
+    
+  );
+}]);

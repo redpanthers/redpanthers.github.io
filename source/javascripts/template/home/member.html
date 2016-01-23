@@ -1,0 +1,142 @@
+<nav class="redpanther-navbar navbar navbar-default">
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav category-items" opt-kind="" ok-key="filter">
+          <li>
+            <a href="#">
+              Username: {{currentUser.login}}
+            </a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav pull-right">
+          <li>
+            <a href="">
+              <span class="fa fa-search"></span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+  </div>
+  <!-- /.container-fluid -->
+</nav>
+<div class="project-wrapper">
+  <div class="container-fluid">
+    <div class="project-inner">
+      <div class="row ">
+        <div class="col-xs-12">
+          <div class="team-wrapper">
+            <div class="row">
+              <div class="col-xs-12">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h3>{{currentUser.name?currentUser.name:"Name not available"}}
+                      
+                     <a href="" class="btn btn-primary btn-sm pull-right" ng-show="currentUser.hireable">
+                       <span class="fa fa-suitcase"></span>
+                      Hire Me
+                    </a> 
+                    </h3>
+                    
+                  </div>
+                  <div class="panel-body">
+                    <table class="table table-bordered">
+                      <tbody>
+                        <tr>
+                          <td rowspan="1" width="260px">
+                            <table>
+                              <tbody>
+                                <tr>
+                                  <td>
+                                    <img ng-src="{{currentUser.avatar_url}}" alt="" class="img-responsive" width="320px">
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                          <td colspan="4">
+                            <table class="table table-bordered">
+                              <tbody>
+                                <tr>
+                                  <td>Name</td>
+                                  <td>{{!!currentUser.name? currentUser.name:"Not available"}}</td>
+                                </tr>
+                                <tr>
+                                  <td>Email</td>
+                                  <td>{{!!currentUser.email? currentUser.email: "Not available"}}</td>
+                                </tr>
+                                <tr ng-show="!!currentUser.company">
+                                  <td>
+                                    Company
+                                  </td>
+                                  <td>
+                                    {{currentUser.company}}
+                                  </td>
+                                </tr>
+                                <tr ng-show="!!currentUser.location">
+                                  <td>
+                                    Location
+                                  </td>
+                                  <td>
+                                    {{currentUser.location}}
+                                  </td>
+                                </tr>
+                                
+                              </tbody>
+                            </table>
+                            <hr>
+                            <h4>
+                              Github Status
+                            </h4>
+                            <table class="table table-bordered">
+                              <tbody>
+                                <tr>
+                                  <td>Followers</td>
+                                  <td>{{currentUser.followers}}</td>
+                                </tr>
+                                <tr>
+                                  <td>Following</td>
+                                  <td>
+                                    {{currentUser.following}}
+                                  </td>
+                                </tr>
+                                
+                                <tr>
+                                  <td>Repositories</td>
+                                  <td>{{currentUser.public_repos}}</td>
+                                </tr>
+                                <tr ng-show="currentUser.public_gists > 0">
+                                  <td>Gists</td>
+                                  <td>
+                                    {{currentUser.public_gists}}
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                        <tr>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
