@@ -1,26 +1,27 @@
 var Redpanther = window.RedPanther || angular.module('redpanther',[]);
-Redpanther.controller('teamController',['$scope','githubApis',function($scope,githubApis){
-  $scope.teams = githubApis.getRedpanthersMembers();
-  console.log($scope.teams)
-}]);
-
-Redpanther.directive('hoverPopover',function($timeout, $rootScope,$templateCache){
-  var directive = {};
-  directive:restrict= 'A';
-  directive.link= function(scope,element,attr){
-    var templateName  = ($(element).attr('uib-popover-template')).replace("'","").replace("'","")
-    $(element).popover({
-      content: $templateCache.get(templateName),
-      html: true,
-      placement: $(element).attr('popover-placement')||'top',
-      title: $(element).attr('popover-title')
-    })
-    $(element).on('mouseover',function(){
-      $(element).popover('show')
-    })
-    $(element).parent().on('mouseleave',function(){
-      $(element).popover('hide')
+Redpanther.controller('teamController',['$scope','$stateParams','githubApis',function($scope,$stateParams,githubApis){
+  $scope.teams = []
+  $scope.currentUser = []
+  $scope.compnay = {}
+  /**
+   * Get Team members details
+   * 
+   */
+  if(typeof($stateParams.username)=="undefined"){
+    githubApis.getRedpanthersMembers().then(function(members){
+      $scope.teams = members    
+    });
+    githubApis.getRedpantherCompanyInfo().get(function(result){
+      $scope.company = result;
     })
   }
-  return directive;
-})
+  if(typeof($stateParams.username)!="undefined"){
+    githubApis.getUserInformation().getUser({username:$stateParams.username},function(result){
+      $scope.currentUser = result
+
+    })  
+  }
+  
+  
+}]);
+
