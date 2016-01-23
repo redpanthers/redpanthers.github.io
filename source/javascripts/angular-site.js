@@ -8,7 +8,8 @@
 window.RedPanther = angular.module('redpanther',['ui.router','angular-loading-bar','ngAnimate','iso.directives']);
 window.RedPanther.config(function($stateProvider,$urlRouterProvider){
   $urlRouterProvider.otherwise('/');
-  $stateProvider.state('home',{
+  $stateProvider
+  .state('home',{
     url:'/',
     views:{
       "header":{
@@ -25,39 +26,13 @@ window.RedPanther.config(function($stateProvider,$urlRouterProvider){
       }
     }
   })
-  .state('projects',{
-    url:'/projects',
+  .state('team',{
+    url:'/team',
     views:{
-      "header":{
-        templateUrl:"javascripts/template/header/header.html",
-        controller: "headerController"
-      },
       "page":{
-        templateUrl:"javascripts/template/home/categories.html",
-        controller:'categoryController'
-      },
-      "join":{
-        templateUrl:"javascripts/template/join/join.html",
-        controller: "headerController"
+        templateUrl: "javascripts/template/home/team.html",
+        controller: "teamController"
       }
     }
-  })
-  .state('categoryPage',{
-    url:'/projects/:categorySlug',
-    views:{
-      "header":{
-        templateUrl:"javascripts/template/header/header.html",
-        controller: "headerController"
-      },
-      "page":{
-        templateUrl: "javascripts/template/home/category.html",
-        controller:'categoryController'
-      },
-      "join":{
-        templateUrl:"javascripts/template/join/join.html",
-        controller: "headerController"
-      }
-    }
-  })  
+  });
 });
-

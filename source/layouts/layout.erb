@@ -15,24 +15,58 @@
   <body class="<%= page_classes %>" ng-app="redpanther">
     <div class="body-wrapper">
       <div class="sidebar">
+        <div class="top-brand">
+          <ul class="top-sidebar-menus">
+            <li>
+              <a href="#">
+                <span class="fa fa-home"></span>
+                Home
+              </a>
+            </li>
+            <li>
+            <a href="#">
+              <span class="fa fa-code"></span>
+              Opensource
+            </a>
+            </li>
+            <li>
+            <a href="#/team">
+              <span class="fa fa-users"></span>
+              Team
+            </a>
+            </li>
+            <li>
+            <a href="#">
+              <span class="fa fa-user-plus"></span>
+              Join
+            </a>
+            </li>
+            <li>
+            <a href="#">
+              <span class="fa fa-bullhorn"></span>
+              About
+            </a>
+            </li>
+          </ul>
+        </div>
         <div class="bottom-brand">
           <div class="brand-logo">
             <%= image_tag('logo.png')%>
           </div>
           <div class="brand-social">
             <ul class="social">
-              <li><a href="" target="_blank"><span class="fa fa-facebook"></span></a></li>              
+              <li><a href="" target="_blank"><span class="fa fa-facebook"></span></a></li>
               <li><a href="" target="_blank"><span class="fa fa-twitter"></span></a></li>
               <li><a href="" target="_blank"><span class="fa fa-linkedin"></span></a></li>
               <li><a href="" target="_blank"><span class="fa fa-youtube"></span></a></li>
-              <li><a href="" target="_blank"><span class="fa fa-google-plus"></span></a></li>              
+              <li><a href="" target="_blank"><span class="fa fa-google-plus"></span></a></li>
             </ul>
           </div>
         </div>
       </div>
       <div class="content">
         <div class="header-section">
-          
+
         </div>
         <div class="body-section">
           <div ui-view="page"></div>
@@ -40,4 +74,21 @@
       </div>
     </div>
   </body>
+  <!-- Start of StatCounter Code for Default Guide -->
+  <script type="text/javascript">
+  var sc_project=10791313;
+  var sc_invisible=1;
+  var sc_security="d4a8f0dd";
+  var scJsHost = (("https:" == document.location.protocol) ?
+  "https://secure." : "http://www.");
+  document.write("<sc"+"ript type='text/javascript' src='" +
+  scJsHost+
+  "statcounter.com/counter/counter.js'></"+"script>");
+  </script>
+  <noscript><div class="statcounter"><a title="shopify stats"
+  href="http://statcounter.com/shopify/" target="_blank"><img
+  class="statcounter"
+  src="http://c.statcounter.com/10791313/0/d4a8f0dd/1/"
+  alt="shopify stats"></a></div></noscript>
+<!-- End of StatCounter Code for Default Guide -->
 </html>
