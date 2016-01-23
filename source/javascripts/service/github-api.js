@@ -11,7 +11,7 @@ RedPanther.service('githubApis',['$http','$q', function($http,$q){
 		});
 		var user = github.getUser();
 		return $q(function(resolve,reject){
-			user.repos(function(err,repos){
+			user.orgRepos('redpanthers',function(err,repos){
 				if(repos.length > 0){
 					resolve(repos)
 				}else{
@@ -19,9 +19,6 @@ RedPanther.service('githubApis',['$http','$q', function($http,$q){
 				}
 			})
 		})
-
-
-
 	}
 	getAllRepository= function(){
 		return $q(function(resolve,reject){
@@ -34,27 +31,16 @@ RedPanther.service('githubApis',['$http','$q', function($http,$q){
 			})
 		})
 	}
-	getAllLanguages= function(){
-		var languages = []
-	 	return $q(function(resolve,reject){
-	 		getUser().then(function(values){
-	 			if(values.length > 0){
-	 				$.each(values,function(index,value){
-	 					if(value.language != null && languages.indexOf(value.language) == - 1){
-	 						languages.push(value.language)
-	 					}
-	 				})
-	 				resolve(languages)
-	 			}else{
-	 				reject(languages)
-	 			}
-	 		})
-	 	})
-
-
+	getRedpanthersMembers= function(){
+		return $q(function(resolve, reject){
+				$.getJSON('https://api.github.com/orgs/redpanthers/members',function(result){
+					console.log(result)
+				})
+		})
 	}
 	return{
-		getAllLanguages: getAllLanguages,
-		getAllRepository: getAllRepository
+		//getAllLanguages: getAllLanguages,
+		getAllRepository: getAllRepository,
+		getRedpanthersMembers:getRedpanthersMembers
 	}
 }])
