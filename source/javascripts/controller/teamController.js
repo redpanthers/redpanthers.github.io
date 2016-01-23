@@ -1,7 +1,7 @@
 var Redpanther = window.RedPanther || angular.module('redpanther',[]);
-Redpanther.controller('teamController',['$scope','openSouceProjects',function($scope,openSouceProjects){
-  $scope.teams = openSouceProjects.getTeamDetails();
-
+Redpanther.controller('teamController',['$scope','githubApis',function($scope,githubApis){
+  $scope.teams = githubApis.getRedpanthersMembers();
+  console.log($scope.teams)
 }]);
 
 Redpanther.directive('hoverPopover',function($timeout, $rootScope,$templateCache){

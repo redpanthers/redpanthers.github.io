@@ -1,8 +1,54 @@
 @charset "utf-8";
-@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600);
+
 @import 'bootstrap';
+
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600);
+
+
+
 @import 'font-awesome.min';
 @import 'common/common';
+
+.top-sidebar-menus{
+  a{
+    font-weight: 400;
+    font-size: 14px;
+    font-family: 'Source Sans Pro', sans-serif;;
+  }
+  margin: 0px;
+  padding: 20px 15px 30px 15px;
+  list-style: none;
+  li{
+    list-style: none;
+    display: block;
+    position: relative;
+    &:after{
+      // content:'';
+      // position: absolute;
+      // width: 10px;
+      // height: 10px;
+      // // background: #575757;
+      // @include c-border-radius(50%,50%,50%,50%);
+      // top: 50%;
+      // margin-top: -5px;
+      // left: -5px;
+    }
+    a{
+      display: block;
+      // background: #333;
+      color: #777;
+      margin: 0 0 5px;
+      padding: 10px 15px;
+      text-transform: uppercase;
+      text-shadow: -1px -1px 0 #595959;
+      text-decoration: none;
+      &:hover{
+        text-decoration: none;
+        background: #222;
+      }
+    }
+  }
+}
 
 .open-source-category{
   padding: 20px 0;
@@ -52,7 +98,7 @@
       display: block;
       width: 100%;
       list-style: none;
-      
+
     }
   }
 }
@@ -102,7 +148,7 @@
     }
   }
   .project-box-right{
-    display: block;   
+    display: block;
     .social-media-accounts{
       width: auto;
       li{
@@ -110,15 +156,15 @@
         height: 20px;
         display: table;
         float: left;
-        margin: 0 -2px; 
+        margin: 0 -2px;
         .label{
-          
+
         }
         .label:empty{
           display: inline-block;
         }
       }
-    } 
+    }
   }
 }
 .category-image{
@@ -126,7 +172,7 @@
   height: 64px;
   display: block;
   img{
-    width: 100%; 
+    width: 100%;
   }
 }
 .project-contrib{
@@ -148,7 +194,7 @@
     b{
       vertical-align: middle;
     }
-  }  
+  }
 }
 
 .section-join{
@@ -156,7 +202,7 @@
   background: #e3e3e3;
   .inner-join{
     position: relative;
-    padding-top: 10px; 
+    padding-top: 10px;
     &:before{
       content: "";
       width: 100%;
@@ -175,8 +221,37 @@
       top: 8px;
       left: 0;
     }
-    
+
   }
 }
 
+/** Project list section **/
+$project-list-width: 100%/4;
+$project-list-width-md: 100%/3;
+$project-list-width-sm: 100%/2;
+$project-list-width-xs: 100%;
 
+.project-list-wrapper{
+  display: block;
+  &:after{
+    content:'';
+    width: 100%;
+    display: table;
+    clear: both;
+  }
+  .project-list{
+    display: block;
+    width: $project-list-width;
+    float: left;
+    padding-right: 25px;
+    @media all and (max-width: $screen-xs - 1){
+      width: $project-list-width-xs;
+    }
+    @media all and (min-width: $screen-xs) and (max-width: $screen-sm - 1){
+      width:$project-list-width-sm;
+    }
+    @media all and (min-width: $screen-sm) and (max-width: $screen-md - 1){
+      width: $project-list-width-md;
+    }
+  }
+}
