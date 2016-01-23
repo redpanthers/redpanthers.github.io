@@ -43,7 +43,21 @@ window.RedPanther.config(['$stateProvider','$urlRouterProvider',function($stateP
         controller: "teamController"
       }
     }
-  }
-    
-  );
+  })
+  .state('about',{
+    url:'/about',
+    views:{
+      "page": {
+        templateUrl: "javascripts/template/home/about.html",
+      }
+    }
+  })
+  .state('join',{
+    url:'/join',
+    views:{
+      "page":{
+        templateUrl: "javascripts/template/join/join.html",        
+      }
+    }
+  });
 }]);
