@@ -2,6 +2,9 @@
 //= require libs/bootstrap.min
 //= require libs/github
 //= require libs/isotope.pkgd.min
+
+//= require main
+
 //= require angular-libs/angular.min
 //= require angular-libs/angular-animate.min
 //= require angular-libs/angular-resource.min
@@ -19,3 +22,5 @@
 //= require controller/categoryController
 //= require controller/teamController
 //= require directive/commonBootstrapDirectives
+
+

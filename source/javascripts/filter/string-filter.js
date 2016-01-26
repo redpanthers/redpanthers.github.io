@@ -1,5 +1,5 @@
-var RedPanther = window.RedPanther || angular.module('redpanther',[])
-RedPanther.filter('returnFirstLetter',function(){
+var RedPanthers = window.RedPanther || angular.module('redpanthers',[])
+RedPanthers.filter('returnFirstLetter',function(){
 	return function(input){
 		if(typeof input == "undefined"){
 			return "";

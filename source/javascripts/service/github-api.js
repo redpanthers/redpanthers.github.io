@@ -1,6 +1,6 @@
-var RedPanther = window.RedPanther || angular.module('redpanther',[]);
+var RedPanthers = window.RedPanthers || angular.module('redpanthers',[]);
 
-RedPanther.service('githubApis',['$http','$q','$resource',function($http,$q, $resource){
+RedPanthers.service('githubApis',['$http','$q','$resource',function($http,$q, $resource){
   var userRepository = [];
   var userLanguages = [];
   getUser= function(){

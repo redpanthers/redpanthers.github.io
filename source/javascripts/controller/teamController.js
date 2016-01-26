@@ -1,5 +1,5 @@
-var Redpanther = window.RedPanther || angular.module('redpanther',[]);
-Redpanther.controller('teamController',['$scope','$stateParams','githubApis',function($scope,$stateParams,githubApis){
+var Redpanthers = window.RedPanthers || angular.module('redpanthers',[]);
+Redpanthers.controller('teamController',['$scope','$stateParams','githubApis',function($scope,$stateParams,githubApis){
   $scope.teams = []
   $scope.currentUser = []
   $scope.compnay = {}

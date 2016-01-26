@@ -7,12 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="description" content="Redpanthers Open source and  Talks"/>
     <!-- Use title if it's in the page YAML frontmatter -->
+    <link rel="icon" type="image/png" href="<%= image_path "favicon.ico" %>">
     <title><%= current_page.data.title || "RedPanther | Ruby Developers @ Kochi" %></title>
     <%= stylesheet_link_tag "normalize", "all" %>
     <%= javascript_include_tag  "all" %>
   </head>
 
-  <body class="<%= page_classes %>" ng-app="redpanther">
+  <body class="<%= page_classes %> white-space" ng-app="redpanther">
     <div class="body-wrapper">
       <div class="sidebar">
         <div class="top-brand">
@@ -76,19 +77,19 @@
   </body>
   <!-- Start of StatCounter Code for Default Guide -->
   <script type="text/javascript">
-  var sc_project=10791313;
-  var sc_invisible=1;
-  var sc_security="d4a8f0dd";
-  var scJsHost = (("https:" == document.location.protocol) ?
-  "https://secure." : "http://www.");
-  document.write("<sc"+"ript type='text/javascript' src='" +
-  scJsHost+
-  "statcounter.com/counter/counter.js'></"+"script>");
+  // var sc_project=10791313;
+  // var sc_invisible=1;
+  // var sc_security="d4a8f0dd";
+  // var scJsHost = (("https:" == document.location.protocol) ?
+  // "https://secure." : "http://www.");
+  // document.write("<sc"+"ript type='text/javascript' src='" +
+  // scJsHost+
+  // "statcounter.com/counter/counter.js'></"+"script>");
   </script>
-  <noscript><div class="statcounter"><a title="shopify stats"
+  <noscript><!-- <div class="statcounter"><a title="shopify stats"
   href="http://statcounter.com/shopify/" target="_blank"><img
   class="statcounter"
   src="http://c.statcounter.com/10791313/0/d4a8f0dd/1/"
-  alt="shopify stats"></a></div></noscript>
+  alt="shopify stats"></a></div> --></noscript>
 <!-- End of StatCounter Code for Default Guide -->
 </html>

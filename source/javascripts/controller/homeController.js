@@ -1,5 +1,5 @@
-var RedPanther = window.RedPanther || angular.module('redpanther',[]);
-RedPanther.controller('homeController',['$scope','githubApis',function($scope,githubApis){
+var RedPanthers = window.RedPanthers || angular.module('redpanthers',[]);
+RedPanthers.controller('homeController',['$scope','githubApis',function($scope,githubApis){
   $scope.title = "Redpanther IO";
   $scope.getCategoryList = []
 
