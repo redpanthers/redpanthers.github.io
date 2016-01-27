@@ -15,7 +15,6 @@
 
 //= require angular-site
 //= require filter/string-filter
-//= require config
 //= require service/github-api.js
 //= require controller/homeController
 //= require controller/headerController

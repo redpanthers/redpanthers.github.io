@@ -4,11 +4,11 @@ RedPanthers.controller('homeController',['$scope','githubApis',function($scope,g
   $scope.getCategoryList = []
 
 	$scope.getProjects = []
-	githubApis.getAllRepository().then(function(values){
-		$scope.getProjects = values
+	githubApis.getAllRepository().query(function(values){
+    $scope.getProjects = values
     $scope.getProjects.map(function(values,index){
       if(values.language != null && $scope.getCategoryList.indexOf(values.language) == - 1){
-					$scope.getCategoryList.push(values.language)
+          $scope.getCategoryList.push(values.language)
       }
     })
 	})

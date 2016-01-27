@@ -5,11 +5,11 @@ Redpanthers.controller('teamController',['$scope','$stateParams','githubApis',fu
   $scope.compnay = {}
   /**
    * Get Team members details
-   * 
+   *
    */
   if(typeof($stateParams.username)=="undefined"){
-    githubApis.getRedpanthersMembers().then(function(members){
-      $scope.teams = members    
+    githubApis.getRedpanthersMembers().query(function(members){
+      $scope.teams = members
     });
     githubApis.getRedpantherCompanyInfo().get(function(result){
       $scope.company = result;
@@ -19,9 +19,8 @@ Redpanthers.controller('teamController',['$scope','$stateParams','githubApis',fu
     githubApis.getUserInformation().getUser({username:$stateParams.username},function(result){
       $scope.currentUser = result
 
-    })  
+    })
   }
-  
-  
-}]);
 
+
+}]);
