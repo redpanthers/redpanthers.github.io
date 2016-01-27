@@ -25,7 +25,7 @@
 /.idea
 .idea
 /source/javascripts/config.js
-
+source/javascripts/config.js 
 /.vagrant
 Vagrantfile
 
