@@ -15,12 +15,9 @@
 
 //= require angular-site
 //= require filter/string-filter
-//= require config 
+//= require config
 //= require service/github-api.js
 //= require controller/homeController
 //= require controller/headerController
-//= require controller/categoryController
 //= require controller/teamController
 //= require directive/commonBootstrapDirectives
-
-

@@ -12,17 +12,9 @@ window.RedPanther.config(['$stateProvider','$urlRouterProvider',function($stateP
   .state('home',{
     url:'/',
     views:{
-      "header":{
-        templateUrl:"javascripts/template/header/header.html",
-        controller: "headerController"
-      },
       "page":{
         templateUrl:'javascripts/template/home/index.html',
         controller:'homeController'
-      },
-      "join":{
-        templateUrl:"javascripts/template/join/join.html",
-        controller: "headerController"
       }
     }
   })
