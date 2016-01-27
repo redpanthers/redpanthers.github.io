@@ -5,7 +5,7 @@
  *
  */
 
-window.RedPanther = angular.module('redpanther',['ui.router','angular-loading-bar','ngAnimate','iso.directives','ngResource']);
+window.RedPanther = angular.module('redpanthers',['ui.router','angular-loading-bar','ngAnimate','iso.directives','ngResource']);
 window.RedPanther.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRouterProvider){
   $urlRouterProvider.otherwise('/');
   $stateProvider
@@ -56,7 +56,7 @@ window.RedPanther.config(['$stateProvider','$urlRouterProvider',function($stateP
     url:'/join',
     views:{
       "page":{
-        templateUrl: "javascripts/template/join/join.html",        
+        templateUrl: "javascripts/template/join/join.html",
       }
     }
   });
