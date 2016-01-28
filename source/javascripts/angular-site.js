@@ -44,6 +44,15 @@ window.RedPanther.config(['$stateProvider','$urlRouterProvider',function($stateP
       }
     }
   })
+  .state('contributions',{
+    url:'/contributions',
+    views:{
+      "page":{
+        templateUrl:"javascripts/template/home/contributions.html",
+        controller: "contributionController"
+      }
+    }
+  })
   .state('join',{
     url:'/join',
     views:{

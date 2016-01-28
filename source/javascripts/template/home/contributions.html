@@ -1,0 +1,75 @@
+<nav class="redpanther-navbar navbar navbar-default">
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav category-items" opt-kind="" ok-key="filter">
+          <li>
+            <a href="#">
+              Contributions 
+            </a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav pull-right">
+          <li>
+            <a href="">
+              <span class="fa fa-search"></span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+  </div>
+  <!-- /.container-fluid -->
+</nav>
+<div class="project-wrapper">
+  <div class="container-fluid">
+    <div class="project-inner">
+      <div class="row ">
+        <div class="col-xs-12">
+          <div class="team-wrapper">
+            <div class="row">
+              <div class="col-xs-12">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h3>Gems</h3>
+                  </div>
+                  <div class="panel-body">
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Gem</th>
+                          <th>Downloads</th>
+                          <th>Authors</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr ng-repeat="gem in rubyGemArray track by $index">
+                          <td>{{$index + 1}}</td>
+                          <td>{{gem.name}}</td>
+                          <td>{{gem.downloads}}</td>
+                          <td>{{gem.authors}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
