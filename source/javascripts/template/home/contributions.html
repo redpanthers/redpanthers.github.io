@@ -56,9 +56,19 @@
                       <tbody>
                         <tr ng-repeat="gem in rubyGemArray track by $index">
                           <td>{{$index + 1}}</td>
-                          <td>{{gem.name}}</td>
-                          <td>{{gem.downloads}}</td>
-                          <td>{{gem.authors}}</td>
+                          <td>
+                            <a href="{{gem.project_uri}}" target="_blank">
+                              {{gem.name}}
+                            </a>
+                          </td>
+                          <td>
+                            <span class="fa fa-cloud-download"></span>
+                            {{gem.downloads}}
+                            </td>
+                          <td>
+                            <span class="fa fa-user"></span>
+                            {{gem.authors}}
+                            </td>
                         </tr>
                       </tbody>
                     </table>
