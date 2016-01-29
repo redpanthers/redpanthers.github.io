@@ -1,5 +1,5 @@
 var Redpanthers = window.RedPanthers || angular.module('redpanthers',[]);
-Redpanthers.controller('teamController',['$scope','$stateParams','githubApis',function($scope,$stateParams,githubApis){
+Redpanthers.controller('teamController',['$scope','$rootScope','$stateParams','githubApis',function($scope,$rootScope,$stateParams,githubApis){
   $scope.teams = []
   $scope.currentUser = []
   $scope.compnay = {}
@@ -21,6 +21,11 @@ Redpanthers.controller('teamController',['$scope','$stateParams','githubApis',fu
 
     })
   }
-
+ $rootScope.$on('cfpLoadingBar:completed',function(result){
+   $('body').removeClass("white-class")
+  })
+  $rootScope.$on('cfpLoadingBar:started',function(){
+    $('body').addClass("white-class")
+  })
 
 }]);
