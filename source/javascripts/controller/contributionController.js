@@ -1,5 +1,6 @@
 var RedPanthers = window.RedPanthers || angular.module('redpanthers', {});
-RedPanthers.controller('contributionController', ['$scope', '$resource','githubApis', 'rubygemApi', function($scope, $resource, githubApis,rubygemApi) {
+RedPanthers.controller('contributionController', ['$scope','$rootScope','$resource','githubApis', 'rubygemApi','cfpLoadingBar', function($scope,$rootScope, $resource, githubApis,rubygemApi,cfpLoadingBar) {
+  
   var contributors = ["coderhs", 'manusajith']
   var rubyGemArray = [];
   $scope.rubyGemArray = []
@@ -15,4 +16,10 @@ RedPanthers.controller('contributionController', ['$scope', '$resource','githubA
     $scope.getProjects = values
   })
 
+  $rootScope.$on('cfpLoadingBar:completed',function(result){
+   $('body').removeClass("white-class")
+  })
+  $rootScope.$on('cfpLoadingBar:started',function(){
+    $('body').addClass("white-class")
+  })
 }])

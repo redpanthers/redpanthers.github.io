@@ -1,5 +1,5 @@
 var RedPanthers = window.RedPanthers || angular.module('redpanthers',[]);
-RedPanthers.controller('homeController',['$scope','githubApis',function($scope,githubApis){
+RedPanthers.controller('homeController',['$scope','$rootScope','githubApis','cfpLoadingBar',function($scope,$rootScope,githubApis,cfpLoadingBar){
   $scope.title = "Redpanther IO";
   $scope.getCategoryList = []
 
@@ -12,6 +12,10 @@ RedPanthers.controller('homeController',['$scope','githubApis',function($scope,g
       }
     })
 	})
-
-
+  $rootScope.$on('cfpLoadingBar:completed',function(result){
+   $('body').removeClass("white-class")
+  })
+  $rootScope.$on('cfpLoadingBar:started',function(){
+    $('body').addClass("white-class")
+  })
 }])
