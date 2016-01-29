@@ -255,3 +255,48 @@ $project-list-width-xs: 100%;
     }
   }
 }
+$team-member-width: 100%;
+.company-info{
+  h2{
+    margin-bottom: 30px;
+  }
+  .well.description{
+    background: #fff;
+    border: 1px solid #ddd;
+    display: table;
+    margin: 10px auto;
+    font-size: 20px;
+    margin-bottom: 30px;
+  }
+}
+.team-members{
+  display: block;
+  padding: 40px 60px;
+  h2{
+    margin-bottom: 30px;
+  }
+  .each-team-member{
+    display: block;
+    width: $team-member-width/4;
+    float: left;
+    padding: 0 30px;
+    margin-bottom: 30px;
+    .profile-image{
+      display: block;
+      width: 100%;
+      img{
+        width: 100%;
+        border-radius: 50%;
+        border: 1px solid #ddd;
+        padding: 10px;
+        background: #fff;
+        @include c-box-shadow-outer(2px,2px,1px,0,#ccc);
+      }
+    }
+    .profile-name{
+      a{
+        color: #333;
+      }
+    }
+  }
+}

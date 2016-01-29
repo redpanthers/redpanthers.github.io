@@ -13,8 +13,33 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav category-items" opt-kind="" ok-key="filter">
           <li>
-            <a href="#">
-              Contributions 
+            <a href="#" ok-sel=".project-list">
+              <div class="first-letter">
+                <span class="fa fa-star"></span>
+              </div>
+              <div class="letter">
+                All
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="#" ok-sel=".github">
+              <div class="first-letter">
+                <span class="fa fa-github"></span>
+              </div>
+              <div class="letter">
+                GitHub
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="#" ok-sel=".ruby">
+              <div class="first-letter">
+                <span class="fa fa-diamond"></span>
+              </div>
+              <div class="letter">
+                Ruby Gem
+              </div>
             </a>
           </li>
         </ul>
@@ -39,42 +64,81 @@
           <div class="team-wrapper">
             <div class="row">
               <div class="col-xs-12">
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <h3>Gems</h3>
-                  </div>
-                  <div class="panel-body">
-                    <table class="table table-bordered">
-                      <thead>
-                        <tr>
-                          <th>#</th>
-                          <th>Gem</th>
-                          <th>Downloads</th>
-                          <th>Authors</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr ng-repeat="gem in rubyGemArray track by $index">
-                          <td>{{$index + 1}}</td>
-                          <td>
-                            <a href="{{gem.project_uri}}" target="_blank">
-                              {{gem.name}}
+                <div class="project-list-wrapper" isotope-container="isotope-container" ng-cloak="">
+                  <div class="project-list github" ng-repeat="project in getProjects" isotope-item="">
+                    <div class="project">
+                      <a class="title clearfix" href="{{project.html_url}}" target="_blank">
+                        <h4>
+                      {{project.name}}
+                    </h4>
+                      </a>
+                      <div class="title-letter">
+                        {{project.name | returnFirstLetter }}
+                      </div>
+                      <div class="title-info clearfix">
+                        <a href="" class="pull-left owner">
+                    {{project.projectOwner}}
+                  </a>
+                        <ul class="pull-right status">
+                          <li>
+                            <a href="">
+                              <span class="fa fa-star"></span> {{project.stargazers_count}}
                             </a>
-                          </td>
-                          <td>
-                            <span class="fa fa-cloud-download"></span>
-                            {{gem.downloads}}
-                            </td>
-                          <td>
-                            <span class="fa fa-user"></span>
-                            {{gem.authors}}
-                            </td>
-                        </tr>
-                      </tbody>
-                    </table>
+                          </li>
+                          <li>
+                            <a href="">
+                              <span class="fa fa-code-fork"></span> {{project.forks}}
+                            </a>
+                          </li>
+                          <li>
+                            <a href="">
+                              <span class="fa fa-code"></span> {{project.language}}
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="description">
+                        {{project.description}}
+                      </div>
+                    </div>
                   </div>
+                           <div class="project-list ruby" ng-repeat="project in rubyGemArray" isotope-item="">
+                    <div class="project">
+                      <a class="title clearfix" href="{{project.gem_uri}}" target="_blank">
+                        <h4>
+                      {{project.name}}
+                    </h4>
+                      </a>
+                      <div class="title-letter">
+                        {{project.name | returnFirstLetter }}
+                      </div>
+                      <div class="title-info clearfix">
+                        <a href="" class="pull-left owner">
+                    {{project.projectOwner}}
+                  </a>
+                        <ul class="pull-right status">
+    
+                          <li>
+                            <a href="">
+                              <span class="fa fa-cloud-download"></span> {{project.downloads}}
+                            </a>
+                          </li>
+                          <li>
+                            <a href="">
+                              <span class="fa fa-code"></span> {{project.platform}}
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="description">
+                        
+                      </div>
+                    </div>
+                  </div>
+         
+                
+                
                 </div>
-
               </div>
             </div>
           </div>
