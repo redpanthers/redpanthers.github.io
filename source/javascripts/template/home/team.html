@@ -81,7 +81,7 @@
                 </h2>
                 <div class="clearfix"></div>
                 <div class="each-team-member" ng-repeat="team in teams track by $index">
-                  <div class="profile-image">
+                  <div class="profile-image hidden" image-on-load>
                     <img ng-src="{{team.avatar_url}}" alt="">
                   </div>
                   <h3 class="text-center profile-name">
