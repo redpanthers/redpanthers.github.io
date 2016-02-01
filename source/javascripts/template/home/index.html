@@ -1,88 +1,117 @@
-<nav class="redpanther-navbar navbar navbar-default">
-  <div class="container-fluid">
-    <div class="row">
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6">
+      <div class="row">
+        <div class="home-fixed-wrapper">
+          <div class="home-about-section" fixed-home-section>
+            <div class="inner-home-about">
+              <h3 class="text-center">
+              Who We Are
+            </h3>
+              <p class="text-center">
+                <img src="images/logo_21.png" class="" alt="">
+              </p>
+              <p>
+                <h2 class="text-center">RedPanthers</h2>
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav category-items" opt-kind="" ok-key="filter">
-          <li ng-show="getCategoryList.length> 0? true : false">
-            <a href="#" ok-sel=".project-list">
-              <div class="first-letter">A</div>
-              <div class="letter">All</div>
-            </a>
-          </li>
-          <li ng-repeat="category in getCategoryList track by $index">
-            <a href="#" ok-sel="[lang='{{category | lowercase}}']">
-              <div class="first-letter">
-                {{category | returnFirstLetter }}
-              </div>
-              <div class="letter">
-                {{category}}
-              </div>
-            </a>
-          </li>
-        </ul>
-        <ul class="nav navbar-nav pull-right">
-          <li>
-            <a href="">
-              <span class="fa fa-search"></span>
-            </a>
-          </li>
-        </ul>
-      </div>
-      <!-- /.navbar-collapse -->
     </div>
-  </div>
-  <!-- /.container-fluid -->
-</nav>
-<!-- Category List section -->
-<div class="project-wrapper">
-  <div class="container-fluid">
-    <div class="project-inner">
-      <div class="row ">
-        <div class="col-xs-12">
-          <div class="project-list-wrapper" isotope-container="isotope-container" ng-cloak="">
-            <div class="project-list" lang="{{project.language | lowercase}}" ng-repeat="project in getProjects" isotope-item="" ng-hide="project.fork">
-              <div class="project">
-                <a class="title clearfix" href="{{project.html_url}}" target="_blank">
-                  <h4>
-                      {{project.name}}
-                    </h4>
-                </a>
-                <div class="title-letter">
-                  {{project.name | returnFirstLetter }}
+    <div class="col-xs-12 col-sm-6">
+      <div class="row">
+        <div class="project-list-nav">
+          <nav class="redpanther-navbar navbar navbar-default">
+            <div class="container-fluid">
+              <div class="row">
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
                 </div>
-                <div class="title-info clearfix">
-                  <a href="" class="pull-left owner">
-                    {{project.projectOwner}}
-                  </a>
-                  <ul class="pull-right status">
-                    <li>
-                      <a href="">
-                        <span class="fa fa-star"></span> {{project.stargazers_count}}
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <ul class="nav navbar-nav category-items" opt-kind="" ok-key="filter">
+                    <li ng-show="getCategoryList.length> 0? true : false">
+                      <a href="#" ok-sel=".project-list">
+                        <div class="first-letter">A</div>
+                        <div class="letter">All</div>
                       </a>
                     </li>
-                    <li>
-                      <a href="">
-                        <span class="fa fa-code-fork"></span> {{project.forks}}
+                    <li ng-repeat="category in getCategoryList track by $index">
+                      <a href="#" ok-sel="[lang='{{category | lowercase}}']">
+                        <div class="first-letter">
+                          {{category | returnFirstLetter }}
+                        </div>
+                        <div class="letter">
+                          {{category}}
+                        </div>
                       </a>
                     </li>
+                  </ul>
+                  <ul class="nav navbar-nav pull-right">
                     <li>
                       <a href="">
-                        <span class="fa fa-code"></span> {{project.language}}
+                        <span class="fa fa-search"></span>
                       </a>
                     </li>
                   </ul>
                 </div>
-                <div class="description">
-                  {{project.description}}
+                <!-- /.navbar-collapse -->
+              </div>
+            </div>
+            <!-- /.container-fluid -->
+          </nav>
+          <!-- Category List section -->
+          <div class="project-wrapper">
+            <div class="container-fluid">
+              <div class="project-inner">
+                <div class="row ">
+                  <div class="col-xs-12">
+                    <div class="project-list-wrapper" isotope-container="isotope-container" ng-cloak="">
+                      <div class="home project-list" lang="{{project.language | lowercase}}" ng-repeat="project in getProjects" isotope-item="" ng-hide="project.fork">
+                        <div class="project">
+                          <a class="title clearfix" href="{{project.html_url}}" target="_blank">
+                            <h4>
+                      {{project.name}}
+                    </h4>
+                          </a>
+                          <div class="title-letter">
+                            {{project.name | returnFirstLetter }}
+                          </div>
+                          <div class="title-info clearfix">
+                            <a href="" class="pull-left owner">
+                    {{project.projectOwner}}
+                  </a>
+                            <ul class="pull-right status">
+                              <li>
+                                <a href="">
+                                  <span class="fa fa-star"></span> {{project.stargazers_count}}
+                                </a>
+                              </li>
+                              <li>
+                                <a href="">
+                                  <span class="fa fa-code-fork"></span> {{project.forks}}
+                                </a>
+                              </li>
+                              <li>
+                                <a href="">
+                                  <span class="fa fa-code"></span> {{project.language}}
+                                </a>
+                              </li>
+                            </ul>
+                          </div>
+                          <div class="description">
+                            {{project.description}}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
