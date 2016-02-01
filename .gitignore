@@ -30,3 +30,6 @@ source/javascripts/config.js
 Vagrantfile
 
 .jsbeautifyrc
+
+./source/stylesheets/.sass-cache/* 
+/source/stylesheets/.sass-cache/*
