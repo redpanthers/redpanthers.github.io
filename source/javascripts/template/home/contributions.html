@@ -11,9 +11,9 @@
         </button>
       </div>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav category-items" opt-kind="" ok-key="filter">
+        <ul class="nav navbar-nav category-items">
           <li>
-            <a href="#" ok-sel=".project-list">
+            <a href="#">
               <div class="first-letter">
                 <span class="fa fa-star"></span>
               </div>
@@ -23,7 +23,7 @@
             </a>
           </li>
           <li>
-            <a href="#" ok-sel=".github">
+            <a ui-sref="source-contributions({source:'github'})">
               <div class="first-letter">
                 <span class="fa fa-github"></span>
               </div>
@@ -33,12 +33,12 @@
             </a>
           </li>
           <li>
-            <a href="#" ok-sel=".ruby">
+            <a ui-sref="source-contributions({source:'ruby'})">
               <div class="first-letter">
                 <span class="fa fa-diamond"></span>
               </div>
               <div class="letter">
-                Ruby Gem
+                Ruby Gems
               </div>
             </a>
           </li>
@@ -64,8 +64,8 @@
           <div class="team-wrapper">
             <div class="row">
               <div class="col-xs-12">
-                <div class="project-list-wrapper" isotope-container="isotope-container" ng-cloak="">
-                  <div class="project-list github" ng-repeat="project in getProjects" isotope-item="" ng-hide="project.fork">
+                <div class="project-list-wrapper" >
+                  <div class="project-list github" ng-repeat="project in getProjects"  ng-hide="project.fork">
                     <div class="project">
                       <a class="title clearfix" href="{{project.html_url}}" target="_blank">
                         <h4>
@@ -102,7 +102,7 @@
                       </div>
                     </div>
                   </div>
-                           <div class="project-list ruby" ng-repeat="project in rubyGemArray" isotope-item="">
+                           <div class="project-list ruby" ng-repeat="project in rubyGemArray">
                     <div class="project">
                       <a class="title clearfix" href="{{project.gem_uri}}" target="_blank">
                         <h4>
@@ -117,7 +117,7 @@
                     {{project.projectOwner}}
                   </a>
                         <ul class="pull-right status">
-    
+
                           <li>
                             <a href="">
                               <span class="fa fa-cloud-download"></span> {{project.downloads}}
@@ -131,13 +131,13 @@
                         </ul>
                       </div>
                       <div class="description">
-                        
+
                       </div>
                     </div>
                   </div>
-         
-                
-                
+
+
+
                 </div>
               </div>
             </div>

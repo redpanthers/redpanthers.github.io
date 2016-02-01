@@ -12,6 +12,9 @@ window.RedPanther.config(['$stateProvider','$urlRouterProvider',function($stateP
   .state('home',{
     url:'/',
     views:{
+      "sidebar":{
+        templateUrl: 'javascripts/template/sidebar/sidebar.html'
+      },
       "page":{
         templateUrl:'javascripts/template/home/index.html',
         controller:'homeController'
@@ -47,8 +50,23 @@ window.RedPanther.config(['$stateProvider','$urlRouterProvider',function($stateP
   .state('contributions',{
     url:'/contributions',
     views:{
+      "sidebar":{
+        templateUrl: 'javascripts/template/sidebar/sidebar.html'
+      },
       "page":{
         templateUrl:"javascripts/template/home/contributions.html",
+        controller: "contributionController"
+      }
+    }
+  })
+  .state('source-contributions',{
+    url:'/contributions/:source',
+    views:{
+      "sidebar":{
+        templateUrl: 'javascripts/template/sidebar/sidebar.html'
+      },
+      "page":{
+        templateUrl:"javascripts/template/home/source.html",
         controller: "contributionController"
       }
     }

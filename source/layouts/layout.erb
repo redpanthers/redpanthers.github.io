@@ -8,63 +8,14 @@
     <meta name="description" content="Redpanthers Open source and  Talks"/>
     <!-- Use title if it's in the page YAML frontmatter -->
     <link rel="icon" type="image/png" href="<%= image_path "favicon.ico" %>">
-    <title><%= current_page.data.title || "RedPanther | Ruby Developers @ Kochi" %></title>
+    <title><%= current_page.data.title || "RedPanthers | Ruby Developers @ Kochi" %></title>
     <%= stylesheet_link_tag "normalize", "all" %>
     <%= javascript_include_tag  "all" %>
   </head>
 
   <body class="<%= page_classes %> white-class" ng-app="redpanthers">
     <div class="body-wrapper">
-      <div class="sidebar">
-        <div class="top-brand">
-          <ul class="top-sidebar-menus">
-            <li>
-              <a href="#">
-                <span class="fa fa-home"></span>
-                Home
-              </a>
-            </li>
-            <li>
-            <a ui-sref="contributions">
-              <span class="fa fa-code"></span>
-              Contributions
-            </a>
-            </li>
-            <li>
-            <a href="#/team">
-              <span class="fa fa-users"></span>
-              Team
-            </a>
-            </li>
-            <li>
-            <a ui-sref="join">
-              <span class="fa fa-user-plus"></span>
-              Join
-            </a>
-            </li>
-            <li>
-            <a ui-sref="about">
-              <span class="fa fa-bullhorn"></span>
-              About
-            </a>
-            </li>
-          </ul>
-        </div>
-        <div class="bottom-brand">
-          <div class="brand-logo">
-            <%= image_tag('logo.png')%>
-          </div>
-          <div class="brand-social">
-            <ul class="social">
-              <li><a href="" target="_blank"><span class="fa fa-facebook"></span></a></li>
-              <li><a href="" target="_blank"><span class="fa fa-twitter"></span></a></li>
-              <li><a href="" target="_blank"><span class="fa fa-linkedin"></span></a></li>
-              <li><a href="" target="_blank"><span class="fa fa-youtube"></span></a></li>
-              <li><a href="" target="_blank"><span class="fa fa-google-plus"></span></a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
+      <div ui-view="sidebar"></div>
       <div class="content">
         <div class="header-section">
 
