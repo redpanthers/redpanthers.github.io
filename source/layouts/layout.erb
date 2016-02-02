@@ -15,15 +15,9 @@
 
   <body class="<%= page_classes %> white-class" ng-app="redpanthers">
     <div class="body-wrapper">
+      <div ui-view="landing"></div>
       <div ui-view="sidebar"></div>
-      <div class="content">
-        <div class="header-section">
-
-        </div>
-        <div class="body-section">
-          <div ui-view="page" class=""></div>
-        </div>
-      </div>
+      <div ui-view="page" class=""></div>
     </div>
   </body>
   <!-- Start of StatCounter Code for Default Guide -->
