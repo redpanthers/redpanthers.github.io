@@ -1,0 +1,143 @@
+ <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>manu &#8211; Red Panthers</title>
+	<atom:link href="/author/manu/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description>Experts in Ruby on Rails Development</description>
+	<lastBuildDate>Sun, 17 Mar 2013 13:06:41 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.7</generator>
+
+<image>
+	<url>/wp-content/uploads/2017/12/rp-logo.png</url>
+	<title>manu &#8211; Red Panthers</title>
+	<link>/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>PDF generation in rails with wicked_pdf</title>
+		<link>/pdf-generation-in-rails-with-wicked_pdf-2/</link>
+				<comments>/pdf-generation-in-rails-with-wicked_pdf-2/#respond</comments>
+				<pubDate>Sun, 17 Mar 2013 13:06:41 +0000</pubDate>
+		<dc:creator><![CDATA[manu]]></dc:creator>
+				<category><![CDATA[Rails]]></category>
+		<category><![CDATA[Ruby]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=1341</guid>
+				<description><![CDATA[<p>Recently my friend was working on a project that had a requirement to export the html page to PDF. He had some issues setting this up. So I thought I would write this article, so that it will be helpful for anyone who faces the same issue. It’s easy getting your pdf in rails as&#8230;</p>
+<p>The post <a rel="nofollow" href="/pdf-generation-in-rails-with-wicked_pdf-2/">PDF generation in rails with wicked_pdf</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p>Recently my friend was working on a project that had a requirement to export the html page to PDF. He had some issues setting this up. So I thought I would write this article, so that it will be helpful for anyone who faces the same issue. It’s easy getting your pdf in rails as long as you follow the right steps <img src="https://s.w.org/images/core/emoji/12.0.0-1/72x72/1f609.png" alt="😉" class="wp-smiley" style="height: 1em; max-height: 1em;" /> (But unfortunately my good friend doesnt always do that for some reason of his own &#8211; No offense intended <img src="https://s.w.org/images/core/emoji/12.0.0-1/72x72/1f609.png" alt="😉" class="wp-smiley" style="height: 1em; max-height: 1em;" /> )</p>
+<p>If you are using Rails, then you have this wonderful <a href="http://rubygems.org/" rel="nofollow noreferrer">rubygems</a> where you can find a number of gems for pdf generation. The suggested ones are prawn and wicked_pdf.</p>
+<h2><a id="which-one-to-chose-" class="anchor" href="http://code.redpanthers.co/manusajith/rubykitkchen/blob/master/_posts/2013-03-17-pdf-generation-with-rails.markdown#which-one-to-chose-"></a>Which one to chose ?</h2>
+<p>For me wicked_pdf is very simple to understand and it gets your job done very quickly if you follow all the right steps, while Prawn restricts you to the old table, grids layout. But ultimately its you who will have to decide which to use depending upon your specific requirements.</p>
+<p>I will be using wicked_pdf and ubuntu.</p>
+<h2><a id="wicked_pdf" class="anchor" href="http://code.redpanthers.co/manusajith/rubykitkchen/blob/master/_posts/2013-03-17-pdf-generation-with-rails.markdown#wicked_pdf"></a>Wicked_pdf</h2>
+<p>Wicked_pdf uses a shell utility <a href="http://code.google.com/p/wkhtmltopdf/" rel="nofollow noreferrer">Wkhtmltopdf</a> to serve a PDF file to a user from a HTML page. In other words, rather than dealing with a PDF generation DSL of some sort, you simply write an HTML view as you would normally, then let Wicked take care of the hard stuff</p>
+<h2><a id="now-what-is-wkhtmltopdf-" class="anchor" href="http://code.redpanthers.co/manusajith/rubykitkchen/blob/master/_posts/2013-03-17-pdf-generation-with-rails.markdown#now-what-is-wkhtmltopdf-"></a>Now what is wkhtmltopdf ?</h2>
+<p><a href="http://code.google.com/p/wkhtmltopdf" rel="nofollow noreferrer">Wkhtmltopdf</a> is an c++ executable that <a href="https://github.com/mileszs/wicked_pdf" rel="nofollow noreferrer">wicked_pdf</a> gem essentialy wraps. It works great for pdf generation of tables reports etc. The WK in wkhtmltopdf stands for webkit which is the browser engine that is used to render HTML and java-script Chrome uses this same engine.</p>
+<h2><a id="installation" class="anchor" href="http://code.redpanthers.co/manusajith/rubykitkchen/blob/master/_posts/2013-03-17-pdf-generation-with-rails.markdown#installation"></a>Installation</h2>
+<p>Since we use Ubuntu for development I will be covering steps for installations for ubuntu machines. It wont be hard for you to change the commands a little bit according to your OS.</p>
+<p>Installing it simply via</p>
+<p>emphasis sudo apt-get install wkhtmltopdf on Ubuntu will install a reduced functionality version which is probably not what you want. According to the manual the reduced functionality version does not include the following features.</p>
+<p>Printing more then one HTML document into a PDF file. Running without an X11 server. Adding a document outline to the PDF file. Adding headers and footers to the PDF file. Generating a table of contents. Adding links in the generated PDF file. Printing using the screen media-type. Disabling the smart shrink feature of webkit.</p>
+<p>If you need any of these, then you need to setup the static version of wkhtmltopdf.</p>
+<p>First check OS is 32 bit or 64 bit by using following command</p><pre class="crayon-plain-tag">Try uname -m</pre><p>Run following command for installing dependencies.</p><pre class="crayon-plain-tag">sudo apt-get install openssl build-essential xorg libssl-dev libxrender-dev</pre><p>Based on OS download wkhtmltopdf package from following site <a href="http://code.google.com/p/wkhtmltopdf/downloads/list" rel="nofollow noreferrer">http://code.google.com/p/wkhtmltopdf/downloads/list</a></p>
+<p>Then extract using command</p><pre class="crayon-plain-tag">tar xvjf wkhtmltopdf-0.11.0_rc1-static-amd64.tar.bz2</pre><p>Then move extracted DIR to usr/local/bin folder</p><pre class="crayon-plain-tag">sudo mv wkhtmltopdf-0.11.0_rc1-static-amd64 /usr/local/bin/wkhtmltopdf</pre><p>Check wkhtmltopdf is installed or not using following command</p>
+<p>which wkhtmltopdf</p>
+<p>Using wicked_pdf in your Rails app Add this to your Gemfile:</p><pre class="crayon-plain-tag">gem 'wicked_pdf'</pre><p>You may also need to add the following to your config/initializers/mime_types.rb</p>
+<p>Mime::Type.register &#8220;application/pdf&#8221;, :pdf</p>
+<p>Basic Usage:</p><pre class="crayon-plain-tag">class Invoice &amp;lt; ApplicationController
+
+  def show
+
+   respond_to do |format|
+
+         format.html
+
+         format.pd[id]f do
+
+          render :pdf =&amp;gt; &quot;invoice&quot;
+
+       end
+
+    end
+
+   end
+
+end</pre><p>If you need to include stylesheets and javascript inside the generated document, the wicked_pdf gem has helpers for that</p>
+<p>&lt;%= wicked_pdf_stylesheet_link_tag &#8220;pdf_stylesheet&#8221; -%&gt;</p>
+<p>&lt;%= wicked_pdf_javascript_include_tag &#8220;pdf_javascript&#8221; %&gt;</p>
+<p>Some tweaks and tips</p>
+<p>If you need to hide some links in your generated PDF document then you can use a custom stylesheet which defines the properties for print media and can include the same using the above helper method.</p>
+<p>Eg: You have a button on your html page and you dont want that to be displayed when you generate the PDF.</p>
+<p>If you have the following link with css selector &#8220;print_friendly&#8221;</p>
+<p>&lt;%= link_to &#8220;Print&#8221; , &#8220;<a href="http://example.com/download" rel="nofollow noreferrer">http://example.com/download</a>&#8220;, :id=&gt;&#8221;print_friendly&#8221; %&gt;</p>
+<p>and have a stylesheet with the css properties for print media as</p><pre class="crayon-plain-tag">@media print {
+
+  #print_friendly{
+
+     display:hidden;
+
+  }
+
+}</pre><p>then the link wont be visible inside the generated PDF document.</p>
+<p>If your page has a lot of javascript and needs longer time for rendering then you can add the following the wicked_pdf</p>
+<p>wkhtmltopdf.exe &#8211;javascript-delay 15000 <a href="http://example.com/downloads" rel="nofollow noreferrer">http://example.com/downloads</a></p>
+<h2><a id="some-common-issues" class="anchor" href="http://code.redpanthers.co/manusajith/rubykitkchen/blob/master/_posts/2013-03-17-pdf-generation-with-rails.markdown#some-common-issues"></a>Some common Issues</h2>
+<h2><a id="1-runtime-error" class="anchor" href="http://code.redpanthers.co/manusajith/rubykitkchen/blob/master/_posts/2013-03-17-pdf-generation-with-rails.markdown#1-runtime-error"></a>1. Runtime Error</h2>
+<p>RuntimeError in XxxxController#show</p>
+<p>Failed to execute: /usr/bin/wkhtmltopdf &#8211;print-media-type -q &#8211; &#8211; Error: PDF could not be generated!</p>
+<p>Rails.root: /apps/rails/show</p>
+<p>Check the location of your wkhtmltopdf using which wkhtmltopdf and also run a bundle update command as sometimes your gem in gemfile would be configured with the wrong path.</p>
+<h2><a id="2-is-wkhtmltopdf-binary-necessary-to-generated-pdf-files-" class="anchor" href="http://code.redpanthers.co/manusajith/rubykitkchen/blob/master/_posts/2013-03-17-pdf-generation-with-rails.markdown#2-is-wkhtmltopdf-binary-necessary-to-generated-pdf-files-"></a>2. Is wkhtmltopdf-binary necessary to generated PDF files ?</h2>
+<p>No</p>
+<p>If you have installed the system libraries and have configured the path correctly in your app correctly, you dont need to install he wkhtmltopdf-binary gem seperately.</p>
+<h2><a id="3-wicked_pdf-not-rendering-graphs-with-highcharts" class="anchor" href="http://code.redpanthers.co/manusajith/rubykitkchen/blob/master/_posts/2013-03-17-pdf-generation-with-rails.markdown#3-wicked_pdf-not-rendering-graphs-with-highcharts"></a>3. Wicked_pdf not rendering graphs with HighCharts</h2>
+<p>Wkhtmltopdf doesn&#8217;t handle transparency/shadows properly and can result in unpredictable results. So the workaround is to add the following options to yo2ur highcharts</p>
+<p><code>f.options[:plotOptions][:line] = { :animation =&gt; false, :shadow =&gt; false, :enableMouseTracking =&gt; false }</code></p>
+<h2><a id="as-i-said-earlier-its-easy-getting-your-pdf-in-rails-as-long-as-you-follow-the-right-steps-" class="anchor" href="http://code.redpanthers.co/manusajith/rubykitkchen/blob/master/_posts/2013-03-17-pdf-generation-with-rails.markdown#as-i-said-earlier-its-easy-getting-your-pdf-in-rails-as-long-as-you-follow-the-right-steps-"></a>As I said earlier it’s easy getting your pdf in rails as long as you follow the right steps ;)##</h2>
+<p>&#8212;</p>
+<p>The post <a rel="nofollow" href="/pdf-generation-in-rails-with-wicked_pdf-2/">PDF generation in rails with wicked_pdf</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/pdf-generation-in-rails-with-wicked_pdf-2/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+							</item>
+		<item>
+		<title>JTK How to kill a rails server, who is working as a deamon?</title>
+		<link>/jtk-how-to-kill-a-rails-server-who-is-working-as-a-deamon/</link>
+				<comments>/jtk-how-to-kill-a-rails-server-who-is-working-as-a-deamon/#comments</comments>
+				<pubDate>Mon, 25 Feb 2013 13:05:04 +0000</pubDate>
+		<dc:creator><![CDATA[manu]]></dc:creator>
+				<category><![CDATA[Rails]]></category>
+		<category><![CDATA[Ruby]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=1339</guid>
+				<description><![CDATA[<p>$rails s , command has a -d (detach) option to let run your application run as a daemon and to stop this process you need to kill the process. Given below is a small shell command that will find the process id of our rails application and kill it for us. [crayon-5f53f0abbd243793191235/] The meaning of&#8230;</p>
+<p>The post <a rel="nofollow" href="/jtk-how-to-kill-a-rails-server-who-is-working-as-a-deamon/">JTK How to kill a rails server, who is working as a deamon?</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p>$rails s , command has a -d (detach) option to let run your application run as a daemon and to stop this process you need to kill the process. Given below is a small shell command that will find the process id of our rails application and kill it for us.</p><pre class="crayon-plain-tag">kill $(lsof -i :3000 -t)</pre><p><code>The meaning of the above command is to find the process id of the process which is running in port</code>number 3000 and send to it the KILL signal.</p>
+<p>A handy little command, which has not technical importance, but nice to know.</p>
+<p>—</p>
+<p>Issued in the interest of new and novice programmers.. <img src="https://s.w.org/images/core/emoji/12.0.0-1/72x72/1f642.png" alt="🙂" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p>&#8211;</p>
+<p>The post <a rel="nofollow" href="/jtk-how-to-kill-a-rails-server-who-is-working-as-a-deamon/">JTK How to kill a rails server, who is working as a deamon?</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/jtk-how-to-kill-a-rails-server-who-is-working-as-a-deamon/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+							</item>
+	</channel>
+</rss>

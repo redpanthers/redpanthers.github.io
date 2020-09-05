@@ -1,0 +1,1514 @@
+ <!DOCTYPE html>
+<!--[if !(IE 6) | !(IE 7) | !(IE 8)  ]><!-->
+<html lang="en-US" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+<meta name="theme-color" content="#e1474d" /> <link rel="profile" href="https://gmpg.org/xfn/11" />
+<script type="text/javascript">
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                var originalAddEventListener = EventTarget.prototype.addEventListener,
+                    oldWidth = window.innerWidth;
+
+                EventTarget.prototype.addEventListener = function (eventName, eventHandler, useCapture) {
+                    if (eventName === "resize") {
+                        originalAddEventListener.call(this, eventName, function (event) {
+                            if (oldWidth === window.innerWidth) {
+                                return;
+                            }
+                            else if (oldWidth !== window.innerWidth) {
+                                oldWidth = window.innerWidth;
+                            }
+                            if (eventHandler.handleEvent) {
+                                eventHandler.handleEvent.call(this, event);
+                            }
+                            else {
+                                eventHandler.call(this, event);
+                            };
+                        }, useCapture);
+                    }
+                    else {
+                        originalAddEventListener.call(this, eventName, eventHandler, useCapture);
+                    };
+                };
+            };
+        </script>
+<title>Deploying Rails application on AWS, using Nginx, Puma and Mina | Red Panthers</title>
+
+<meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+<link rel="canonical" href="/deploying-rails-application-aws-using-nginx-puma-mina/" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Deploying Rails application on AWS, using Nginx, Puma and Mina | Red Panthers" />
+<meta property="og:description" content="In this tutorial we are going to setup an AWS EC2 instance for deployment of rails application. Server Setup Following is the setup instruction for ubuntu 16.04 using ruby 2.4, Postgres 9.6 and rails 5. Installing Ruby Setting up dependencies for ruby. [crayon-5f53eea23f8e5432947010/] Next step is to install ruby using RVM. [crayon-5f53eea23f8ef764455768/] Last step is&hellip;" />
+<meta property="og:url" content="http://redpanthers.co/deploying-rails-application-aws-using-nginx-puma-mina/" />
+<meta property="og:site_name" content="Red Panthers" />
+<meta property="article:publisher" content="https://www.facebook.com/redpanthers.co" />
+<meta property="article:section" content="DevOps" />
+<meta property="article:published_time" content="2017-05-24T07:44:18+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:description" content="In this tutorial we are going to setup an AWS EC2 instance for deployment of rails application. Server Setup Following is the setup instruction for ubuntu 16.04 using ruby 2.4, Postgres 9.6 and rails 5. Installing Ruby Setting up dependencies for ruby. [crayon-5f53eea23f8e5432947010/] Next step is to install ruby using RVM. [crayon-5f53eea23f8ef764455768/] Last step is&hellip;" />
+<meta name="twitter:title" content="Deploying Rails application on AWS, using Nginx, Puma and Mina | Red Panthers" />
+<meta name="twitter:site" content="@redpanthershq" />
+<meta name="twitter:creator" content="@redpanthershq" />
+<script type='application/ld+json' class='yoast-schema-graph yoast-schema-graph--main'>{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"http://redpanthers.co/#website","url":"http://redpanthers.co/","name":"Red Panthers","potentialAction":{"@type":"SearchAction","target":"http://redpanthers.co/?s={search_term_string}","query-input":"required name=search_term_string"}},{"@type":"WebPage","@id":"http://redpanthers.co/deploying-rails-application-aws-using-nginx-puma-mina/#webpage","url":"http://redpanthers.co/deploying-rails-application-aws-using-nginx-puma-mina/","inLanguage":"en-US","name":"Deploying Rails application on AWS, using Nginx, Puma and Mina | Red Panthers","isPartOf":{"@id":"http://redpanthers.co/#website"},"datePublished":"2017-05-24T07:44:18+00:00","dateModified":"2017-05-24T07:44:18+00:00","author":{"@id":"http://redpanthers.co/#/schema/person/987e84377713a5262b1b4daaac17b575"}},{"@type":["Person"],"@id":"http://redpanthers.co/#/schema/person/987e84377713a5262b1b4daaac17b575","name":"pankaj","image":{"@type":"ImageObject","@id":"http://redpanthers.co/#authorlogo","url":"https://secure.gravatar.com/avatar/?s=96&r=g","caption":"pankaj"},"sameAs":[]}]}</script>
+
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="Red Panthers &raquo; Feed" href="/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Red Panthers &raquo; Comments Feed" href="/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Red Panthers &raquo; Deploying Rails application on AWS, using Nginx, Puma and Mina Comments Feed" href="/deploying-rails-application-aws-using-nginx-puma-mina/feed/" />
+<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/redpanthers.co\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.2.7"}};
+			!function(a,b,c){function d(a,b){var c=String.fromCharCode;l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,a),0,0);var d=k.toDataURL();l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,b),0,0);var e=k.toDataURL();return d===e}function e(a){var b;if(!l||!l.fillText)return!1;switch(l.textBaseline="top",l.font="600 32px Arial",a){case"flag":return!(b=d([55356,56826,55356,56819],[55356,56826,8203,55356,56819]))&&(b=d([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]),!b);case"emoji":return b=d([55357,56424,55356,57342,8205,55358,56605,8205,55357,56424,55356,57340],[55357,56424,55356,57342,8203,55358,56605,8203,55357,56424,55356,57340]),!b}return!1}function f(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var g,h,i,j,k=b.createElement("canvas"),l=k.getContext&&k.getContext("2d");for(j=Array("flag","emoji"),c.supports={everything:!0,everythingExceptFlag:!0},i=0;i<j.length;i++)c.supports[j[i]]=e(j[i]),c.supports.everything=c.supports.everything&&c.supports[j[i]],"flag"!==j[i]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[j[i]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(h=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",h,!1),a.addEventListener("load",h,!1)):(a.attachEvent("onload",h),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),g=c.source||{},g.concatemoji?f(g.concatemoji):g.wpemoji&&g.twemoji&&(f(g.twemoji),f(g.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='crayon-css' href='/wp-content/plugins/crayon-syntax-highlighter/css/min/crayon.min.css?ver=_2.7.2_beta' type='text/css' media='all' />
+<link rel='stylesheet' id='crayon-theme-classic-css' href='/wp-content/plugins/crayon-syntax-highlighter/themes/classic/classic.css?ver=_2.7.2_beta' type='text/css' media='all' />
+<link rel='stylesheet' id='crayon-font-monaco-css' href='/wp-content/plugins/crayon-syntax-highlighter/fonts/monaco.css?ver=_2.7.2_beta' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-block-library-css' href='/wp-includes/css/dist/block-library/style.min.css?ver=5.2.7' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-block-library-theme-css' href='/wp-includes/css/dist/block-library/theme.min.css?ver=5.2.7' type='text/css' media='all' />
+<link rel='stylesheet' id='contact-form-7-css' href='/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=5.1.4' type='text/css' media='all' />
+<link rel='stylesheet' id='rs-plugin-settings-css' href='/wp-content/plugins/revslider/public/assets/css/settings.css?ver=5.4.8.3' type='text/css' media='all' />
+<style id='rs-plugin-settings-inline-css' type='text/css'>
+#rs-demo-id {}
+</style>
+<link rel='stylesheet' id='the7-Defaults-css' href='/wp-content/uploads/smile_fonts/Defaults/Defaults.css?ver=5.2.7' type='text/css' media='all' />
+<link rel='stylesheet' id='dt-web-fonts-css' href='//fonts.googleapis.com/css?family=Roboto%3A400%2C500%2C600%2C700%7CRoboto+Condensed%3A400%2C600%2C700&#038;ver=7.5.0.2' type='text/css' media='all' />
+<link rel='stylesheet' id='dt-main-css' href='/wp-content/themes/dt-the7/css/main.min.css?ver=7.5.0.2' type='text/css' media='all' />
+<link rel='stylesheet' id='dt-awsome-fonts-back-css' href='/wp-content/themes/dt-the7/fonts/FontAwesome/back-compat.min.css?ver=7.5.0.2' type='text/css' media='all' />
+<link rel='stylesheet' id='dt-awsome-fonts-css' href='/wp-content/themes/dt-the7/fonts/FontAwesome/css/all.min.css?ver=7.5.0.2' type='text/css' media='all' />
+<link rel='stylesheet' id='dt-fontello-css' href='/wp-content/themes/dt-the7/fonts/fontello/css/fontello.min.css?ver=7.5.0.2' type='text/css' media='all' />
+<link rel='stylesheet' id='the7pt-static-css' href='/wp-content/themes/dt-the7/css/post-type.css?ver=7.5.0.2' type='text/css' media='all' />
+<link rel='stylesheet' id='dt-custom-css' href='/wp-content/uploads/the7-css/custom.css?ver=cea948eda11c' type='text/css' media='all' />
+<link rel='stylesheet' id='dt-media-css' href='/wp-content/uploads/the7-css/media.css?ver=cea948eda11c' type='text/css' media='all' />
+<link rel='stylesheet' id='the7pt.less-css' href='/wp-content/uploads/the7-css/post-type-dynamic.css?ver=cea948eda11c' type='text/css' media='all' />
+<link rel='stylesheet' id='style-css' href='/wp-content/themes/dt-the7/style.css?ver=7.5.0.2' type='text/css' media='all' />
+<script type='text/javascript' src='/wp-includes/js/jquery/jquery.js?ver=1.12.4-wp'></script>
+<script type='text/javascript' src='/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var CrayonSyntaxSettings = {"version":"_2.7.2_beta","is_admin":"0","ajaxurl":"https:\/\/redpanthers.co\/wp-admin\/admin-ajax.php","prefix":"crayon-","setting":"crayon-setting","selected":"crayon-setting-selected","changed":"crayon-setting-changed","special":"crayon-setting-special","orig_value":"data-orig-value","debug":""};
+var CrayonSyntaxStrings = {"copy":"Press %s to Copy, %s to Paste","minimize":"Click To Expand Code"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='/wp-content/plugins/crayon-syntax-highlighter/js/min/crayon.min.js?ver=_2.7.2_beta'></script>
+<script type='text/javascript' src='/wp-content/plugins/revslider/public/assets/js/jquery.themepunch.tools.min.js?ver=5.4.8.3'></script>
+<script type='text/javascript' src='/wp-content/plugins/revslider/public/assets/js/jquery.themepunch.revolution.min.js?ver=5.4.8.3'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var dtLocal = {"themeUrl":"https:\/\/redpanthers.co\/wp-content\/themes\/dt-the7","passText":"To view this protected post, enter the password below:","moreButtonText":{"loading":"Loading...","loadMore":"Load more"},"postID":"2150","ajaxurl":"https:\/\/redpanthers.co\/wp-admin\/admin-ajax.php","contactMessages":{"required":"One or more fields have an error. Please check and try again.","terms":"Please accept the privacy policy."},"ajaxNonce":"33fe5cbdb7","pageData":"","themeSettings":{"smoothScroll":"off","lazyLoading":false,"accentColor":{"mode":"solid","color":"#e1474d"},"desktopHeader":{"height":110},"floatingHeader":{"showAfter":160,"showMenu":true,"height":68,"logo":{"showLogo":true,"html":"<img class=\" preload-me\" src=\"https:\/\/redpanthers.co\/wp-content\/uploads\/2017\/12\/logo-1.png\" srcset=\"https:\/\/redpanthers.co\/wp-content\/uploads\/2017\/12\/logo-1.png 170w, https:\/\/redpanthers.co\/wp-content\/uploads\/2017\/12\/logo-1.png 170w\" width=\"170\" height=\"64\"   sizes=\"170px\" alt=\"Red Panthers\" \/>","url":"https:\/\/redpanthers.co\/"}},"mobileHeader":{"firstSwitchPoint":1100,"secondSwitchPoint":990,"firstSwitchPointHeight":68,"secondSwitchPointHeight":68},"stickyMobileHeaderFirstSwitch":{"logo":{"html":"<img class=\" preload-me\" src=\"https:\/\/redpanthers.co\/wp-content\/uploads\/2017\/12\/logo-1.png\" srcset=\"https:\/\/redpanthers.co\/wp-content\/uploads\/2017\/12\/logo-1.png 170w, https:\/\/redpanthers.co\/wp-content\/uploads\/2017\/12\/logo-1.png 170w\" width=\"170\" height=\"64\"   sizes=\"170px\" alt=\"Red Panthers\" \/>"}},"stickyMobileHeaderSecondSwitch":{"logo":{"html":"<img class=\" preload-me\" src=\"https:\/\/redpanthers.co\/wp-content\/uploads\/2017\/12\/logo-1.png\" srcset=\"https:\/\/redpanthers.co\/wp-content\/uploads\/2017\/12\/logo-1.png 170w, https:\/\/redpanthers.co\/wp-content\/uploads\/2017\/12\/logo-1.png 170w\" width=\"170\" height=\"64\"   sizes=\"170px\" alt=\"Red Panthers\" \/>"}},"content":{"textColor":"#85868c","headerColor":"#333333"},"sidebar":{"switchPoint":990},"boxedWidth":"1340px","stripes":{"stripe1":{"textColor":"#72777d","headerColor":"#3c3e45"},"stripe2":{"textColor":"#f4f4f5","headerColor":"#f4f4f5"},"stripe3":{"textColor":"#ffffff","headerColor":"#ffffff"}}},"VCMobileScreenWidth":"768"};
+var dtShare = {"shareButtonText":{"facebook":"Share on Facebook","twitter":"Tweet","pinterest":"Pin it","linkedin":"Share on Linkedin","whatsapp":"Share on Whatsapp","google":"Share on Google Plus"},"overlayOpacity":"85"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='/wp-content/themes/dt-the7/js/above-the-fold.min.js?ver=7.5.0.2'></script>
+<link rel='https://api.w.org/' href='/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="/wp-includes/wlwmanifest.xml" />
+<meta name="generator" content="WordPress 5.2.7" />
+<link rel='shortlink' href='/?p=2150' />
+<link rel="alternate" type="application/json+oembed" href="/wp-json/oembed/1.0/embed?url=https%3A%2F%2F%2Fdeploying-rails-application-aws-using-nginx-puma-mina%2F" />
+<link rel="alternate" type="text/xml+oembed" href="/wp-json/oembed/1.0/embed?url=https%3A%2F%2F%2Fdeploying-rails-application-aws-using-nginx-puma-mina%2F&#038;format=xml" />
+<link rel="pingback" href="/xmlrpc.php">
+<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+<meta name="generator" content="Powered by WPBakery Page Builder - drag and drop page builder for WordPress." />
+<!--[if lte IE 9]><link rel="stylesheet" type="text/css" href="http://redpanthers.co/wp-content/plugins/js_composer/assets/css/vc_lte_ie9.min.css" media="screen"><![endif]--><style type="text/css">.broken_link, a.broken_link {
+	text-decoration: line-through;
+}</style><meta name="generator" content="Powered by Slider Revolution 5.4.8.3 - responsive, Mobile-Friendly Slider Plugin for WordPress with comfortable drag and drop interface." />
+<link rel="icon" href="/wp-content/uploads/2017/12/rp-logo.png" sizes="32x32" />
+<link rel="icon" href="/wp-content/uploads/2017/12/rp-logo.png" sizes="192x192" />
+<link rel="apple-touch-icon-precomposed" href="/wp-content/uploads/2017/12/rp-logo.png" />
+<meta name="msapplication-TileImage" content="http://redpanthers.co/wp-content/uploads/2017/12/rp-logo.png" />
+<script type="text/javascript">function setREVStartSize(e){									
+						try{ e.c=jQuery(e.c);var i=jQuery(window).width(),t=9999,r=0,n=0,l=0,f=0,s=0,h=0;
+							if(e.responsiveLevels&&(jQuery.each(e.responsiveLevels,function(e,f){f>i&&(t=r=f,l=e),i>f&&f>r&&(r=f,n=e)}),t>r&&(l=n)),f=e.gridheight[l]||e.gridheight[0]||e.gridheight,s=e.gridwidth[l]||e.gridwidth[0]||e.gridwidth,h=i/s,h=h>1?1:h,f=Math.round(h*f),"fullscreen"==e.sliderLayout){var u=(e.c.width(),jQuery(window).height());if(void 0!=e.fullScreenOffsetContainer){var c=e.fullScreenOffsetContainer.split(",");if (c) jQuery.each(c,function(e,i){u=jQuery(i).length>0?u-jQuery(i).outerHeight(!0):u}),e.fullScreenOffset.split("%").length>1&&void 0!=e.fullScreenOffset&&e.fullScreenOffset.length>0?u-=jQuery(window).height()*parseInt(e.fullScreenOffset,0)/100:void 0!=e.fullScreenOffset&&e.fullScreenOffset.length>0&&(u-=parseInt(e.fullScreenOffset,0))}f=u}else void 0!=e.minHeight&&f<e.minHeight&&(f=e.minHeight);e.c.closest(".rev_slider_wrapper").css({height:f})					
+						}catch(d){console.log("Failure at Presize of Slider:"+d)}						
+					};</script>
+<style type="text/css" id="wp-custom-css">
+			.padding{
+padding-top: 50px;
+}
+p.normal{
+	font-weight: normal;
+}
+p.bold{
+	font-weight: bold;
+}		</style>
+<noscript><style type="text/css"> .wpb_animate_when_almost_visible { opacity: 1; }</style></noscript>
+<script type="text/javascript">
+var sc_project=10785868; 
+var sc_invisible=1; 
+var sc_security="4809ed3f"; 
+</script>
+<script type="text/javascript" src="https://www.statcounter.com/counter/counter.js" async></script>
+<noscript><div class="statcounter"><a title="Web AnalyticsMade Easy - StatCounter" href="http://statcounter.com/"
+target="_blank"><img class="statcounter"
+src="//c.statcounter.com/10785868/0/4809ed3f/1/" alt="WebAnalytics Made Easy - StatCounter"></a></div></noscript>
+
+
+<script type="text/javascript" src="https://static1.clutch.co/sites/all/modules/custom/clutch_widget/js/widget.js"></script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-66116295-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-66116295-1');
+</script><style id='the7-custom-inline-css' type='text/css'>
+.inner-footer {
+  text-align: left;
+  margin-left: 0;
+}
+.heading{
+        font: normal bold 20px / 30px "Roboto Condensed", Helvetica, Arial, Verdana, sans-serif;
+color: white;
+margin-bottom: 10px;
+}
+.footer .textwidget a {
+       color: #85868c !important;
+}
+
+p{
+font-size: 18px !important;
+line-height: 1.8;
+}
+.hr_color .hr-thin{
+border-color: white !important;
+}
+.box_padding .aio-icon-header{
+padding-top:10px !important;
+}
+.img_padding img{
+padding-top: 55px;
+}
+#main{
+padding-top: 0px !important;
+padding-bottom: 0px !important;
+}
+.process_team h1{
+color: white !important;
+}
+
+.process_carousel h3,li{
+/* color: white !important; */
+}
+.opening_offer_heading h1{
+color: white !important;
+}
+
+.offer_left_box p{
+color: white !important;
+}
+.offer_left_box h4{
+color: white !important;
+}
+.offer_right_box p{
+color: black !important;
+}
+.ruby_on_rails_support_offer li{
+color: #85868c !important;
+}
+   .phoenix_text li{
+ color: #85868c !important;
+}
+.form_project li label{
+color:#85868c !important;
+}
+.form_project .wpforms-submit {
+    border-radius: 6px !important;
+    background-color: #e1474d !important;
+    color: white !important;
+border: none !important;
+}
+.form_project input[type=checkbox] {
+  position: absolute;
+  opacity: 0;
+}
+.form_project input[type=checkbox] + label {
+  position: relative;
+  cursor: pointer;
+  padding: 0;
+}
+.form_project input[type=checkbox] + label:before {
+  content: '';
+  margin-right: 10px;
+  display: inline-block;
+  vertical-align: text-top;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #ddd !important;
+}
+.form_project input[type=checkbox]:hover + label:before {
+  background: #e1474d !important;
+}
+.form_project input[type=checkbox]:focus + label:before {
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.12);
+}
+.form_project input[type=checkbox]:checked + label:before {
+  background: #e1474d !important;
+}
+.form_project input[type=checkbox]:disabled + label {
+  color: #b8b8b8;
+  cursor: auto;
+}
+.form_project input[type=checkbox]:disabled + label:before {
+  box-shadow: none;
+  background: #ddd;
+}
+.form_project input[type=checkbox]:checked + label:after {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 9px;
+  background: white;
+  width: 2px;
+  height: 2px;
+  box-shadow: 2px 0 0 white, 4px 0 0 white, 4px -2px 0 white, 4px -4px 0 white, 4px -6px 0 white, 4px -8px 0 white;
+  transform: rotate(45deg);
+}
+.form_project input[type="radio"]:checked,
+.form_project input[type="radio"]:not(:checked) {
+    position: absolute;
+    left: -9999px;
+}
+.form_project input[type="radio"]:checked + label,
+.form_project input[type="radio"]:not(:checked) + label
+{
+    position: relative;
+    padding-left: 28px;
+    cursor: pointer;
+    line-height: 20px;
+    display: inline-block;
+    color: #666;
+}
+.form_project input[type="radio"]:checked + label:before,
+.form_project input[type="radio"]:not(:checked) + label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #ddd;
+    border-radius: 100%;
+    background: #fff;
+}
+.form_project input[type="radio"]:checked + label:after,
+.form_project input[type="radio"]:not(:checked) + label:after {
+    content: '';
+    width: 12px;
+    height: 12px;
+    background: #e1474d ;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    border-radius: 100%;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+.form_project input[type="radio"]:not(:checked) + label:after {
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+}
+.form_project input[type="radio"]:checked + label:after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+
+.mvp_list_color li{
+color: #85868c !important;
+font-size: 18px !important;
+}
+@media screen and (min-width: 779px) {
+  .pull_right_till_778 {
+    float: right;
+  }
+.padd_none{
+padding: 100px !important
+}
+.padd_none .ruby_on_rails_support_offer{
+padding-left: 50px !important;
+padding-right: 50px !important;
+}
+.padding_left_right_100{
+padding-left: 100px !important;
+padding-right: 100px !important;
+}
+}
+div.wpforms-container-full .wpforms-form input.wpforms-field-medium, div.wpforms-container-full .wpforms-form select.wpforms-field-medium, div.wpforms-container-full .wpforms-form .wpforms-field-row.wpforms-field-medium {
+    max-width: 100% !important;
+}
+.social-media ul li a:hover{
+    background: #e1474d;
+    color: #fff !important;
+} .social-media ul li a:active{
+    background: #e1474d;
+    color: #fff !important;
+}
+ .social-media ul li a:focus {
+    background: #e1474d;
+    color: #fff !important;
+}
+.social-media ul li {
+    display: block;
+    width: 28px;
+    height: 28px;
+    margin-right: 15px;
+    float: left;
+}
+.social-media ul li:last-child {
+    margin-right: 0;
+}
+social-media ul {
+    display: table;
+    margin-top: 20px;
+    margin-left: 0;
+    padding: 0;
+}
+.social-media ul li a {
+    width: 28px;
+    display: block;
+    height: 28px;
+    border-radius: 4px;
+    color: #fff !important;
+    background: #3e3e3e;
+    transition: all 0.3s linear 0.05s;
+    text-align: center;
+    padding-top: 4px;
+}
+.newsletter_submit{
+background: #e1474d !important;
+    border: none !important;
+    color: white !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    border-radius: 4px !important;
+}
+.newsletter .wpforms-title{
+    font: normal bold 20px / 30px "Roboto Condensed", Helvetica, Arial, Verdana, sans-serif !important;
+    color: white !important;
+    margin-bottom: 10px !important;
+}
+.newsletter_email input{
+width:75% !important;
+}
+.newsletter_email .wpforms-required-label, .newsletter_email .wpforms-error{
+    color: #85868c !important;
+}
+.accent-icon-color .aio-icon-description{
+    margin-left: 40px;
+}
+.accent-icon-color a{
+   color: #85868c !important;
+   text-decoration: none !important
+}
+.display_flex ul{
+display: flex;
+}
+@media screen and (max-width: 778px){
+.text_align_left_mobile p{
+text-align: left !important;
+}
+.text_align_left_mobile h1{
+text-align: left !important;
+}
+.text_align_left_mobile h2{
+text-align: left !important;
+}
+.text_align_left_mobile h3{
+text-align: left !important;
+}
+.text_align_left_mobile h4{
+text-align: left !important;
+}
+.text_align_left_mobile h5{
+text-align: left !important;
+}
+.text_align_left_mobile h6{
+text-align: left !important;
+}
+}
+@media screen and (max-width: 989px){
+.mobile-branding a img {
+    max-width: 80% !important;
+    height: auto;
+}
+mobile-branding img {
+    max-width: 78% !important;
+}
+}
+.menu-text .fa{
+font-size:17px !important;
+}
+.wpforms-confirmation-container-full {
+    color: #fff !important;
+    background: #e1474d !important;
+    border: 1px solid #e1474d !important;
+}
+.mail-us a{
+    font-size: 18px !important;
+    line-height: 1.8;
+}
+.margin_top_0px .vc_column-inner{
+padding-top: 0px !important;
+}
+.landing_page_form form{
+display: flex;
+max-width: fit-content;
+margin: 0 auto !important;
+}
+.landing_page_form .wpforms-field-container{
+display: flex;
+}
+.landing_page_form .wpforms-field-email{
+    margin-left: 20px !important ;
+}
+.landing_page_form .wpforms-submit {
+    margin: 24px !important;
+    background: #e1474d !important;
+    border: none !important;
+    color: white !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    border-radius: 4px !important;
+    padding: 19px 12px !important;
+}
+.landing_page_form .wpforms-field-label{
+text-align: left !important;
+}
+.landing_page_form .wpforms-field-medium{
+text-align: left !important;
+}
+.service_fontcolor{
+     color: white !important
+}
+@media screen and (min-width: 779px){
+.pull_left{
+float: left !important;
+}
+}
+
+</style>
+</head>
+<body class="post-template-default single single-post postid-2150 single-format-standard wp-embed-responsive dt-responsive-on srcset-enabled btn-flat custom-btn-color custom-btn-hover-color phantom-sticky phantom-shadow-decoration phantom-main-logo-on floating-mobile-menu-icon top-header first-switch-logo-left first-switch-menu-right second-switch-logo-left second-switch-menu-right right-mobile-menu layzr-loading-on popup-message-style dt-fa-compatibility the7-ver-7.5.0.2 wpb-js-composer js-comp-ver-5.4.5 vc_responsive">
+
+<div id="page">
+<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+<div class="masthead inline-header right shadow-decoration small-mobile-menu-icon" role="banner">
+<div class="top-bar top-bar-empty top-bar-line-hide">
+<div class="top-bar-bg"></div>
+<div class="mini-widgets left-widgets"></div><div class="mini-widgets right-widgets"></div></div>
+<header class="header-bar">
+<div class="branding">
+<div id="site-title" class="assistive-text">Red Panthers</div>
+<div id="site-description" class="assistive-text">Experts in Ruby on Rails Development</div>
+<a class="same-logo" href="/"><img class="preload-me" src="/wp-content/uploads/2017/12/logo-1.png" srcset="/wp-content/uploads/2017/12/logo-1.png 170w, /wp-content/uploads/2017/12/logo-1.png 170w" width="170" height="64" sizes="170px" alt="Red Panthers" /></a></div>
+<ul id="primary-menu" class="main-nav underline-decoration from-centre-line" role="menu"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-14973 first"><a href='/about/' data-level='1'><span class="menu-item-text"><span class="menu-text">About</span></span></a></li> <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-14969"><a href='/processes/' data-level='1'><span class="menu-item-text"><span class="menu-text">Process</span></span></a></li> <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-15036 has-children dt-mega-menu mega-auto-width mega-column-3"><a href='/services/' class='not-clickable-item' data-level='1'><span class="menu-item-text"><span class="menu-text">Services</span></span></a><div class="dt-mega-menu-wrap"><ul class="sub-nav level-arrows-on"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-15656 first has-children hide-mega-title no-link dt-mega-parent wf-1-3"><a href='#' class='not-clickable-item' data-level='2'><span class="menu-item-text"><span class="menu-text">Service</span></span></a><ul class="sub-nav level-arrows-on"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15001 first"><a href='/services/ruby_on_rails_development_team/' data-level='3'><span class="menu-item-text"><span class="menu-text">Ruby on Rails Development Team</span></span></a></li> <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15020"><a href='/services/ruby_on_rails_developer_support/' data-level='3'><span class="menu-item-text"><span class="menu-text">Ruby on Rails Developer Support</span></span></a></li> <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15022"><a href='/services/ruby_on_rails_web_application_development/' data-level='3'><span class="menu-item-text"><span class="menu-text">Ruby on Rails Web Application Development</span></span></a></li> </ul></li> <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-15657 has-children hide-mega-title no-link dt-mega-parent wf-1-3"><a href='#' class='not-clickable-item' data-level='2'><span class="menu-item-text"><span class="menu-text">Service</span></span></a><ul class="sub-nav level-arrows-on"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15021 first"><a href='/services/ruby_on_rails_training/' data-level='3'><span class="menu-item-text"><span class="menu-text">Ruby on Rails Training</span></span></a></li> <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15023"><a href='/services/react_web_development/' data-level='3'><span class="menu-item-text"><span class="menu-text">React Web Development</span></span></a></li> <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15024"><a href='/services/react_native_mobile_app_development/' data-level='3'><span class="menu-item-text"><span class="menu-text">React Native Mobile App Development</span></span></a></li> </ul></li> <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-15658 has-children hide-mega-title no-link dt-mega-parent wf-1-3"><a href='#' class='not-clickable-item' data-level='2'><span class="menu-item-text"><span class="menu-text">Service</span></span></a><ul class="sub-nav level-arrows-on"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15025 first"><a href='/about/angular_js_web_development/' data-level='3'><span class="menu-item-text"><span class="menu-text">Angular JS Web Development</span></span></a></li> <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15026"><a href='/services/angular_js_ionic_mobile_app_development/' data-level='3'><span class="menu-item-text"><span class="menu-text">Angular JS Ionic Mobile App Development</span></span></a></li> <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15027"><a href='/services/elixir_phoenix_high_concurrent_web_application_development/' data-level='3'><span class="menu-item-text"><span class="menu-text">Elixir Phoenix High Concurrent Web Application Development</span></span></a></li> </ul></li> </ul></div></li> <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15738"><a href='/videos/' data-level='1'><span class="menu-item-text"><span class="menu-text">Videos</span></span></a></li> <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15579"><a href='/blog/' data-level='1'><span class="menu-item-text"><span class="menu-text">Blog</span></span></a></li> <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15234"><a href='/openings/' data-level='1'><span class="menu-item-text"><span class="menu-text">Careers</span></span></a></li> <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-16272"><a href='/newsroom/' data-level='1'><span class="menu-item-text"><span class="menu-text">Newsroom</span></span></a></li> <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-16123"><a href='/contact/' data-level='1'><span class="menu-item-text"><span class="menu-text">Contact</span></span></a></li> <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-15485"><a href='#' data-level='1'><span class="menu-item-text"><span class="menu-text"><i class="fa fa-phone" aria-hidden="true"></i>+1-860-514-8237</span></span></a></li> </ul>
+</header>
+</div>
+<div class='dt-close-mobile-menu-icon'><span></span></div>
+<div class='dt-mobile-header'>
+<ul id="mobile-menu" class="mobile-main-nav" role="menu">
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-14973 first"><a href='/about/' data-level='1'><span class="menu-item-text"><span class="menu-text">About</span></span></a></li> <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-14969"><a href='/processes/' data-level='1'><span class="menu-item-text"><span class="menu-text">Process</span></span></a></li> <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-15036 has-children dt-mega-menu mega-auto-width mega-column-3"><a href='/services/' class='not-clickable-item' data-level='1'><span class="menu-item-text"><span class="menu-text">Services</span></span></a><div class="dt-mega-menu-wrap"><ul class="sub-nav level-arrows-on"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-15656 first has-children hide-mega-title no-link dt-mega-parent wf-1-3"><a href='#' class='not-clickable-item' data-level='2'><span class="menu-item-text"><span class="menu-text">Service</span></span></a><ul class="sub-nav level-arrows-on"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15001 first"><a href='/services/ruby_on_rails_development_team/' data-level='3'><span class="menu-item-text"><span class="menu-text">Ruby on Rails Development Team</span></span></a></li> <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15020"><a href='/services/ruby_on_rails_developer_support/' data-level='3'><span class="menu-item-text"><span class="menu-text">Ruby on Rails Developer Support</span></span></a></li> <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15022"><a href='/services/ruby_on_rails_web_application_development/' data-level='3'><span class="menu-item-text"><span class="menu-text">Ruby on Rails Web Application Development</span></span></a></li> </ul></li> <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-15657 has-children hide-mega-title no-link dt-mega-parent wf-1-3"><a href='#' class='not-clickable-item' data-level='2'><span class="menu-item-text"><span class="menu-text">Service</span></span></a><ul class="sub-nav level-arrows-on"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15021 first"><a href='/services/ruby_on_rails_training/' data-level='3'><span class="menu-item-text"><span class="menu-text">Ruby on Rails Training</span></span></a></li> <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15023"><a href='/services/react_web_development/' data-level='3'><span class="menu-item-text"><span class="menu-text">React Web Development</span></span></a></li> <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15024"><a href='/services/react_native_mobile_app_development/' data-level='3'><span class="menu-item-text"><span class="menu-text">React Native Mobile App Development</span></span></a></li> </ul></li> <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-15658 has-children hide-mega-title no-link dt-mega-parent wf-1-3"><a href='#' class='not-clickable-item' data-level='2'><span class="menu-item-text"><span class="menu-text">Service</span></span></a><ul class="sub-nav level-arrows-on"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15025 first"><a href='/about/angular_js_web_development/' data-level='3'><span class="menu-item-text"><span class="menu-text">Angular JS Web Development</span></span></a></li> <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15026"><a href='/services/angular_js_ionic_mobile_app_development/' data-level='3'><span class="menu-item-text"><span class="menu-text">Angular JS Ionic Mobile App Development</span></span></a></li> <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15027"><a href='/services/elixir_phoenix_high_concurrent_web_application_development/' data-level='3'><span class="menu-item-text"><span class="menu-text">Elixir Phoenix High Concurrent Web Application Development</span></span></a></li> </ul></li> </ul></div></li> <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15738"><a href='/videos/' data-level='1'><span class="menu-item-text"><span class="menu-text">Videos</span></span></a></li> <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15579"><a href='/blog/' data-level='1'><span class="menu-item-text"><span class="menu-text">Blog</span></span></a></li> <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15234"><a href='/openings/' data-level='1'><span class="menu-item-text"><span class="menu-text">Careers</span></span></a></li> <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-16272"><a href='/newsroom/' data-level='1'><span class="menu-item-text"><span class="menu-text">Newsroom</span></span></a></li> <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-16123"><a href='/contact/' data-level='1'><span class="menu-item-text"><span class="menu-text">Contact</span></span></a></li> <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-15485"><a href='#' data-level='1'><span class="menu-item-text"><span class="menu-text"><i class="fa fa-phone" aria-hidden="true"></i>+1-860-514-8237</span></span></a></li> </ul>
+<div class='mobile-mini-widgets-in-menu'></div>
+</div>
+<div class="page-title title-left solid-bg breadcrumbs-mobile-off page-title-responsive-enabled">
+<div class="wf-wrap">
+<div class="page-title-head hgroup"><h1 class="entry-title">Deploying Rails application on AWS, using Nginx, Puma and Mina</h1></div><div class="page-title-breadcrumbs"><div class="assistive-text">You are here:</div><ol class="breadcrumbs text-small" xmlns:v="http://rdf.data-vocabulary.org/#"><li typeof="v:Breadcrumb"><a rel="v:url" property="v:title" href="/" title="">Home</a></li><li typeof="v:Breadcrumb"><a rel="v:url" property="v:title" href="/category/devops/">DevOps</a></li><li class="current">Deploying Rails application on AWS,&hellip;</li></ol></div> </div>
+</div>
+<div id="main" class="sidebar-right sidebar-divider-off">
+<div class="main-gradient"></div>
+<div class="wf-wrap">
+<div class="wf-container-main">
+<div id="content" class="content" role="main">
+<article id="post-2150" class="circle-fancy-style post-2150 post type-post status-publish format-standard category-devops category-113 description-off">
+<div class="entry-content"><p>In this tutorial we are going to setup an AWS EC2 instance for deployment of rails application.</p>
+<h2>Server Setup</h2>
+<p>Following is the setup instruction for ubuntu 16.04 using ruby 2.4, Postgres 9.6 and rails 5.</p>
+<h3>Installing Ruby</h3>
+<p>Setting up dependencies for ruby.</p>
+<div id="crayon-5f53eea23f8e5432947010" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover wrap" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div></div></div>
+<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+<div class="crayon-plain-wrap"><textarea class="crayon-plain print-no" data-settings="dblclick" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+sudo apt-get update
+sudo apt-get install git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties libffi-dev nodejs</textarea></div>
+<div class="crayon-main" style="">
+<table class="crayon-table">
+<tr class="crayon-row">
+<td class="crayon-nums" data-settings="show">
+<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5f53eea23f8e5432947010-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f8e5432947010-2">2</div></div>
+</td>
+<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5f53eea23f8e5432947010-1"><span class="crayon-e">sudo </span><span class="crayon-v">apt</span><span class="crayon-o">-</span><span class="crayon-e">get </span><span class="crayon-e">update</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f8e5432947010-2"><span class="crayon-e">sudo </span><span class="crayon-v">apt</span><span class="crayon-o">-</span><span class="crayon-e">get </span><span class="crayon-e">install </span><span class="crayon-v">git</span><span class="crayon-o">-</span><span class="crayon-e">core </span><span class="crayon-e">curl </span><span class="crayon-v">zlib1g</span><span class="crayon-o">-</span><span class="crayon-e">dev </span><span class="crayon-v">build</span><span class="crayon-o">-</span><span class="crayon-e">essential </span><span class="crayon-v">libssl</span><span class="crayon-o">-</span><span class="crayon-e">dev </span><span class="crayon-v">libreadline</span><span class="crayon-o">-</span><span class="crayon-e">dev </span><span class="crayon-v">libyaml</span><span class="crayon-o">-</span><span class="crayon-e">dev </span><span class="crayon-v">libsqlite3</span><span class="crayon-o">-</span><span class="crayon-e">dev </span><span class="crayon-e">sqlite3 </span><span class="crayon-v">libxml2</span><span class="crayon-o">-</span><span class="crayon-e">dev </span><span class="crayon-v">libxslt1</span><span class="crayon-o">-</span><span class="crayon-e">dev </span><span class="crayon-v">libcurl4</span><span class="crayon-o">-</span><span class="crayon-v">openssl</span><span class="crayon-o">-</span><span class="crayon-e">dev </span><span class="crayon-v">python</span><span class="crayon-o">-</span><span class="crayon-v">software</span><span class="crayon-o">-</span><span class="crayon-e">properties </span><span class="crayon-v">libffi</span><span class="crayon-o">-</span><span class="crayon-e">dev </span><span class="crayon-v">nodejs</span></div></div></td>
+</tr>
+</table>
+</div>
+</div>
+
+<p>Next step is to install ruby using RVM.</p>
+<div id="crayon-5f53eea23f8ef764455768" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div></div></div>
+<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+sudo apt-get install libgdbm-dev libncurses5-dev automake libtool bison libffi-dev
+gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+curl -sSL https://get.rvm.io | bash -s stable
+source ~/.rvm/scripts/rvm
+rvm install 2.4.0
+rvm use 2.4.0 --default</textarea></div>
+<div class="crayon-main" style="">
+<table class="crayon-table">
+<tr class="crayon-row">
+<td class="crayon-nums" data-settings="show">
+<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5f53eea23f8ef764455768-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f8ef764455768-2">2</div><div class="crayon-num" data-line="crayon-5f53eea23f8ef764455768-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f8ef764455768-4">4</div><div class="crayon-num" data-line="crayon-5f53eea23f8ef764455768-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f8ef764455768-6">6</div></div>
+</td>
+<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5f53eea23f8ef764455768-1"><span class="crayon-e">sudo </span><span class="crayon-v">apt</span><span class="crayon-o">-</span><span class="crayon-e">get </span><span class="crayon-e">install </span><span class="crayon-v">libgdbm</span><span class="crayon-o">-</span><span class="crayon-e">dev </span><span class="crayon-v">libncurses5</span><span class="crayon-o">-</span><span class="crayon-e">dev </span><span class="crayon-e">automake </span><span class="crayon-e">libtool </span><span class="crayon-e">bison </span><span class="crayon-v">libffi</span><span class="crayon-o">-</span><span class="crayon-e">dev</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f8ef764455768-2"><span class="crayon-v">gpg</span><span class="crayon-h"> </span><span class="crayon-o">--</span><span class="crayon-e">keyserver </span><span class="crayon-v">hkp</span><span class="crayon-o">:</span><span class="crayon-c">//keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3</span></div><div class="crayon-line" id="crayon-5f53eea23f8ef764455768-3"><span class="crayon-v">curl</span><span class="crayon-h"> </span><span class="crayon-o">-</span><span class="crayon-e">sSL </span><span class="crayon-v">https</span><span class="crayon-o">:</span><span class="crayon-c">//get.rvm.io | bash -s stable</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f8ef764455768-4"><span class="crayon-v">source</span><span class="crayon-h"> </span><span class="crayon-o">~</span><span class="crayon-o">/</span><span class="crayon-sy">.</span><span class="crayon-v">rvm</span><span class="crayon-o">/</span><span class="crayon-v">scripts</span><span class="crayon-o">/</span><span class="crayon-e">rvm</span></div><div class="crayon-line" id="crayon-5f53eea23f8ef764455768-5"><span class="crayon-e">rvm </span><span class="crayon-i">install</span><span class="crayon-h"> </span><span class="crayon-cn">2.4.0</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f8ef764455768-6"><span class="crayon-e">rvm </span><span class="crayon-st">use</span><span class="crayon-h"> </span><span class="crayon-cn">2.4.0</span><span class="crayon-h"> </span><span class="crayon-o">--</span><span class="crayon-st">default</span></div></div></td>
+</tr>
+</table>
+</div>
+</div>
+
+<p>Last step is to install bundler.</p>
+<div id="crayon-5f53eea23f8f1350106436" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div></div></div>
+<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+gem install bundler</textarea></div>
+<div class="crayon-main" style="">
+<table class="crayon-table">
+<tr class="crayon-row">
+<td class="crayon-nums" data-settings="show">
+<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5f53eea23f8f1350106436-1">1</div></div>
+</td>
+<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5f53eea23f8f1350106436-1"><span class="crayon-e">gem </span><span class="crayon-e">install </span><span class="crayon-v">bundler</span></div></div></td>
+</tr>
+</table>
+</div>
+</div>
+
+<p></p>
+<h3>Installing Rails</h3>
+<p>Installing NodeJS, this lets you use Coffee script and the <a href="http://guides.rubyonrails.org/asset_pipeline.html">Asset Pipeline</a> in Rails which combines and minifies your javascript to provide a faster production environment.</p>
+<div id="crayon-5f53eea23f8f3389593443" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div></div></div>
+<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+sudo apt-get install -y nodejs</textarea></div>
+<div class="crayon-main" style="">
+<table class="crayon-table">
+<tr class="crayon-row">
+<td class="crayon-nums" data-settings="show">
+<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5f53eea23f8f3389593443-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f8f3389593443-2">2</div></div>
+</td>
+<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5f53eea23f8f3389593443-1"><span class="crayon-v">curl</span><span class="crayon-h"> </span><span class="crayon-o">-</span><span class="crayon-e">sL </span><span class="crayon-v">https</span><span class="crayon-o">:</span><span class="crayon-c">//deb.nodesource.com/setup_4.x | sudo -E bash -</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f8f3389593443-2"><span class="crayon-e">sudo </span><span class="crayon-v">apt</span><span class="crayon-o">-</span><span class="crayon-e">get </span><span class="crayon-v">install</span><span class="crayon-h"> </span><span class="crayon-o">-</span><span class="crayon-i">y</span><span class="crayon-h"> </span><span class="crayon-v">nodejs</span></div></div></td>
+</tr>
+</table>
+</div>
+</div>
+
+<p>Next is to install rails.</p>
+<div id="crayon-5f53eea23f8f5151668695" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div></div></div>
+<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+gem install rails -v 5.0.1</textarea></div>
+<div class="crayon-main" style="">
+<table class="crayon-table">
+<tr class="crayon-row">
+<td class="crayon-nums" data-settings="show">
+<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5f53eea23f8f5151668695-1">1</div></div>
+</td>
+<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5f53eea23f8f5151668695-1"><span class="crayon-e">gem </span><span class="crayon-e">install </span><span class="crayon-v">rails</span><span class="crayon-h"> </span><span class="crayon-o">-</span><span class="crayon-i">v</span><span class="crayon-h"> </span><span class="crayon-cn">5.0.1</span></div></div></td>
+</tr>
+</table>
+</div>
+</div>
+
+<p>You can verify the installation of rails version.</p>
+<div id="crayon-5f53eea23f8f6697090825" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div></div></div>
+<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+rails -v
+# Rails 5.0.1</textarea></div>
+<div class="crayon-main" style="">
+<table class="crayon-table">
+<tr class="crayon-row">
+<td class="crayon-nums" data-settings="show">
+<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5f53eea23f8f6697090825-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f8f6697090825-2">2</div></div>
+</td>
+<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5f53eea23f8f6697090825-1"><span class="crayon-v">rails</span><span class="crayon-h"> </span><span class="crayon-o">-</span><span class="crayon-v">v</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f8f6697090825-2"><span class="crayon-p"># Rails 5.0.1</span></div></div></td>
+</tr>
+</table>
+</div>
+</div>
+
+<p></p>
+<h3>Installing PostgreSQL</h3>
+<p></p>
+<div id="crayon-5f53eea23f8f8533669558" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div></div></div>
+<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+sudo sh -c "echo 'deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main' &gt; /etc/apt/sources.list.d/pgdg.list"
+wget --quiet -O - http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | sudo apt-key add -
+sudo apt-get update
+sudo apt-get install postgresql-common
+sudo apt-get install postgresql-9.5 libpq-dev</textarea></div>
+<div class="crayon-main" style="">
+<table class="crayon-table">
+<tr class="crayon-row">
+<td class="crayon-nums" data-settings="show">
+<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5f53eea23f8f8533669558-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f8f8533669558-2">2</div><div class="crayon-num" data-line="crayon-5f53eea23f8f8533669558-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f8f8533669558-4">4</div><div class="crayon-num" data-line="crayon-5f53eea23f8f8533669558-5">5</div></div>
+</td>
+<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5f53eea23f8f8533669558-1"><span class="crayon-e">sudo </span><span class="crayon-v">sh</span><span class="crayon-h"> </span><span class="crayon-o">-</span><span class="crayon-i">c</span><span class="crayon-h"> </span><span class="crayon-s">"echo 'deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main' &gt; /etc/apt/sources.list.d/pgdg.list"</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f8f8533669558-2"><span class="crayon-v">wget</span><span class="crayon-h"> </span><span class="crayon-o">--</span><span class="crayon-v">quiet</span><span class="crayon-h"> </span><span class="crayon-o">-</span><span class="crayon-v">O</span><span class="crayon-h"> </span><span class="crayon-o">-</span><span class="crayon-h"> </span><span class="crayon-v">http</span><span class="crayon-o">:</span><span class="crayon-c">//apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | sudo apt-key add -</span></div><div class="crayon-line" id="crayon-5f53eea23f8f8533669558-3"><span class="crayon-e">sudo </span><span class="crayon-v">apt</span><span class="crayon-o">-</span><span class="crayon-e">get </span><span class="crayon-e">update</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f8f8533669558-4"><span class="crayon-e">sudo </span><span class="crayon-v">apt</span><span class="crayon-o">-</span><span class="crayon-e">get </span><span class="crayon-e">install </span><span class="crayon-v">postgresql</span><span class="crayon-o">-</span><span class="crayon-e">common</span></div><div class="crayon-line" id="crayon-5f53eea23f8f8533669558-5"><span class="crayon-e">sudo </span><span class="crayon-v">apt</span><span class="crayon-o">-</span><span class="crayon-e">get </span><span class="crayon-e">install </span><span class="crayon-v">postgresql</span><span class="crayon-o">-</span><span class="crayon-cn">9.5</span><span class="crayon-h"> </span><span class="crayon-v">libpq</span><span class="crayon-o">-</span><span class="crayon-v">dev</span></div></div></td>
+</tr>
+</table>
+</div>
+</div>
+
+<p>The postgres installation doesn&#8217;t setup a user for you, so you&#8217;ll need to follow these steps to create a user with permission to create databases.</p>
+<div id="crayon-5f53eea23f8f9496262446" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div></div></div>
+<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+sudo -u postgres createuser pankaj -s</textarea></div>
+<div class="crayon-main" style="">
+<table class="crayon-table">
+<tr class="crayon-row">
+<td class="crayon-nums" data-settings="show">
+<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5f53eea23f8f9496262446-1">1</div></div>
+</td>
+<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5f53eea23f8f9496262446-1"><span class="crayon-v">sudo</span><span class="crayon-h"> </span><span class="crayon-o">-</span><span class="crayon-i">u</span><span class="crayon-h"> </span><span class="crayon-e">postgres </span><span class="crayon-e">createuser </span><span class="crayon-v">pankaj</span><span class="crayon-h"> </span><span class="crayon-o">-</span><span class="crayon-v">s</span></div></div></td>
+</tr>
+</table>
+</div>
+</div>
+
+<p></p>
+<h3>Install Nginx</h3>
+<p></p>
+<div id="crayon-5f53eea23f8fc147487414" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div></div></div>
+<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+sudo apt-get update
+sudo apt-get install nginx</textarea></div>
+<div class="crayon-main" style="">
+<table class="crayon-table">
+<tr class="crayon-row">
+<td class="crayon-nums" data-settings="show">
+<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5f53eea23f8fc147487414-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f8fc147487414-2">2</div></div>
+</td>
+<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5f53eea23f8fc147487414-1"><span class="crayon-e">sudo </span><span class="crayon-v">apt</span><span class="crayon-o">-</span><span class="crayon-e">get </span><span class="crayon-e">update</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f8fc147487414-2"><span class="crayon-e">sudo </span><span class="crayon-v">apt</span><span class="crayon-o">-</span><span class="crayon-e">get </span><span class="crayon-e">install </span><span class="crayon-v">nginx</span></div></div></td>
+</tr>
+</table>
+</div>
+</div>
+
+<p>Following are some basic commands to manage Nginx:</p>
+<div id="crayon-5f53eea23f8fd261375290" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div></div></div>
+<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+#Stop Nginx
+sudo systemctl stop nginx
+
+#Start Nginx
+sudo systemctl start nginx
+
+#Restart Nginx
+sudo systemctl restart nginx</textarea></div>
+<div class="crayon-main" style="">
+<table class="crayon-table">
+<tr class="crayon-row">
+<td class="crayon-nums" data-settings="show">
+<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5f53eea23f8fd261375290-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f8fd261375290-2">2</div><div class="crayon-num" data-line="crayon-5f53eea23f8fd261375290-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f8fd261375290-4">4</div><div class="crayon-num" data-line="crayon-5f53eea23f8fd261375290-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f8fd261375290-6">6</div><div class="crayon-num" data-line="crayon-5f53eea23f8fd261375290-7">7</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f8fd261375290-8">8</div></div>
+</td>
+<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5f53eea23f8fd261375290-1"><span class="crayon-p">#Stop Nginx</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f8fd261375290-2"><span class="crayon-e">sudo </span><span class="crayon-e">systemctl </span><span class="crayon-e">stop </span><span class="crayon-v">nginx</span></div><div class="crayon-line" id="crayon-5f53eea23f8fd261375290-3">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f8fd261375290-4"><span class="crayon-p">#Start Nginx</span></div><div class="crayon-line" id="crayon-5f53eea23f8fd261375290-5"><span class="crayon-e">sudo </span><span class="crayon-e">systemctl </span><span class="crayon-e">start </span><span class="crayon-v">nginx</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f8fd261375290-6">&nbsp;</div><div class="crayon-line" id="crayon-5f53eea23f8fd261375290-7"><span class="crayon-p">#Restart Nginx</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f8fd261375290-8"><span class="crayon-e">sudo </span><span class="crayon-e">systemctl </span><span class="crayon-e">restart </span><span class="crayon-v">nginx</span></div></div></td>
+</tr>
+</table>
+</div>
+</div>
+
+<p></p>
+<h2>Nginx Configuration</h2>
+<p>First disable default site by removing the symlink.</p>
+<div id="crayon-5f53eea23f8ff945751167" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div></div></div>
+<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+sudo rm /etc/nginx/sites-enabled/default</textarea></div>
+<div class="crayon-main" style="">
+<table class="crayon-table">
+<tr class="crayon-row">
+<td class="crayon-nums" data-settings="show">
+<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5f53eea23f8ff945751167-1">1</div></div>
+</td>
+<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5f53eea23f8ff945751167-1"><span class="crayon-e">sudo </span><span class="crayon-v">rm</span><span class="crayon-h"> </span><span class="crayon-o">/</span><span class="crayon-v">etc</span><span class="crayon-o">/</span><span class="crayon-v">nginx</span><span class="crayon-o">/</span><span class="crayon-v">sites</span><span class="crayon-o">-</span><span class="crayon-v">enabled</span><span class="crayon-o">/</span><span class="crayon-st">default</span></div></div></td>
+</tr>
+</table>
+</div>
+</div>
+
+<p>Now create a new virtual host config file.</p>
+<div id="crayon-5f53eea23f901525846949" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div></div></div>
+<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+cd /etc/nginx/sites-available/
+touch my_app.conf</textarea></div>
+<div class="crayon-main" style="">
+<table class="crayon-table">
+<tr class="crayon-row">
+<td class="crayon-nums" data-settings="show">
+<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5f53eea23f901525846949-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f901525846949-2">2</div></div>
+</td>
+<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5f53eea23f901525846949-1"><span class="crayon-v">cd</span><span class="crayon-h"> </span><span class="crayon-o">/</span><span class="crayon-v">etc</span><span class="crayon-o">/</span><span class="crayon-v">nginx</span><span class="crayon-o">/</span><span class="crayon-v">sites</span><span class="crayon-o">-</span><span class="crayon-v">available</span><span class="crayon-o">/</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f901525846949-2"><span class="crayon-e">touch </span><span class="crayon-v">my_app</span><span class="crayon-sy">.</span><span class="crayon-v">conf</span></div></div></td>
+</tr>
+</table>
+</div>
+</div>
+
+<p>edit the <em>my_app.conf</em> file:</p>
+<div id="crayon-5f53eea23f902925091366" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div></div></div>
+<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+upstream my_app {
+  server unix:///var/run/my_app.sock; #path to puma socket file
+}
+
+server {
+  listen 80;
+  server_name my_app_url.com; # change to match your URL
+  root /var/www/my_app/public; # I assume your app is located at that location
+
+  location / {
+    proxy_pass http://my_app; # match the name of upstream directive which is defined above
+    proxy_set_header Host $host;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+  }
+
+  location ~* ^/assets/ {
+    # Per RFC2616 - 1 year maximum expiry
+    expires 1y;
+    add_header Cache-Control public;
+
+    # Some browsers still send conditional-GET requests if there's a
+    # Last-Modified header or an ETag header even if they haven't
+    # reached the expiry date sent in the Expires header.
+    add_header Last-Modified "";
+    add_header ETag "";
+    break;
+  }
+}</textarea></div>
+<div class="crayon-main" style="">
+<table class="crayon-table">
+<tr class="crayon-row">
+<td class="crayon-nums" data-settings="show">
+<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5f53eea23f902925091366-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f902925091366-2">2</div><div class="crayon-num" data-line="crayon-5f53eea23f902925091366-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f902925091366-4">4</div><div class="crayon-num" data-line="crayon-5f53eea23f902925091366-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f902925091366-6">6</div><div class="crayon-num" data-line="crayon-5f53eea23f902925091366-7">7</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f902925091366-8">8</div><div class="crayon-num" data-line="crayon-5f53eea23f902925091366-9">9</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f902925091366-10">10</div><div class="crayon-num" data-line="crayon-5f53eea23f902925091366-11">11</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f902925091366-12">12</div><div class="crayon-num" data-line="crayon-5f53eea23f902925091366-13">13</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f902925091366-14">14</div><div class="crayon-num" data-line="crayon-5f53eea23f902925091366-15">15</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f902925091366-16">16</div><div class="crayon-num" data-line="crayon-5f53eea23f902925091366-17">17</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f902925091366-18">18</div><div class="crayon-num" data-line="crayon-5f53eea23f902925091366-19">19</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f902925091366-20">20</div><div class="crayon-num" data-line="crayon-5f53eea23f902925091366-21">21</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f902925091366-22">22</div><div class="crayon-num" data-line="crayon-5f53eea23f902925091366-23">23</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f902925091366-24">24</div><div class="crayon-num" data-line="crayon-5f53eea23f902925091366-25">25</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f902925091366-26">26</div><div class="crayon-num" data-line="crayon-5f53eea23f902925091366-27">27</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f902925091366-28">28</div></div>
+</td>
+<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5f53eea23f902925091366-1"><span class="crayon-e">upstream</span><span class="crayon-h"> </span><span class="crayon-e">my_app</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f902925091366-2"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-e">server </span><span class="crayon-v">unix</span><span class="crayon-o">:</span><span class="crayon-c">///var/run/my_app.sock; #path to puma socket file</span></div><div class="crayon-line" id="crayon-5f53eea23f902925091366-3"><span class="crayon-sy">}</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f902925091366-4">&nbsp;</div><div class="crayon-line" id="crayon-5f53eea23f902925091366-5"><span class="crayon-e">server</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f902925091366-6"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-i">listen</span><span class="crayon-h"> </span><span class="crayon-cn">80</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5f53eea23f902925091366-7"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-e">server_name </span><span class="crayon-v">my_app_url</span><span class="crayon-sy">.</span><span class="crayon-v">com</span><span class="crayon-sy">;</span><span class="crayon-h"> </span><span class="crayon-p"># change to match your URL</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f902925091366-8"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-v">root</span><span class="crayon-h"> </span><span class="crayon-o">/</span><span class="crayon-t">var</span><span class="crayon-o">/</span><span class="crayon-v">www</span><span class="crayon-o">/</span><span class="crayon-v">my_app</span><span class="crayon-o">/</span><span class="crayon-m">public</span><span class="crayon-sy">;</span><span class="crayon-h"> </span><span class="crayon-p"># I assume your app is located at that location</span></div><div class="crayon-line" id="crayon-5f53eea23f902925091366-9">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f902925091366-10"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-e">location</span><span class="crayon-h"> </span><span class="crayon-o">/</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line" id="crayon-5f53eea23f902925091366-11"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e">proxy_pass </span><span class="crayon-v">http</span><span class="crayon-o">:</span><span class="crayon-c">//my_app; # match the name of upstream directive which is defined above</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f902925091366-12"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e">proxy_set_header </span><span class="crayon-i">Host</span><span class="crayon-h"> </span><span class="crayon-sy">$</span><span class="crayon-v">host</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5f53eea23f902925091366-13"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">proxy_set</span><span class="crayon-sy">_</span>header<span class="crayon-h"> </span><span class="crayon-v">X</span><span class="crayon-o">-</span><span class="crayon-v">Forwarded</span><span class="crayon-o">-</span><span class="crayon-st">For</span><span class="crayon-h"> </span><span class="crayon-sy">$</span><span class="crayon-v">proxy_add_x_forwarded_for</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f902925091366-14"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-sy">}</span></div><div class="crayon-line" id="crayon-5f53eea23f902925091366-15">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f902925091366-16"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-e">location</span><span class="crayon-h"> </span><span class="crayon-o">~</span><span class="crayon-o">*</span><span class="crayon-h"> </span><span class="crayon-o">^</span><span class="crayon-o">/</span><span class="crayon-e">assets</span><span class="crayon-o">/</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line" id="crayon-5f53eea23f902925091366-17"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-p"># Per RFC2616 - 1 year maximum expiry</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f902925091366-18"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-i">expires</span><span class="crayon-h"> </span><span class="crayon-cn">1y</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5f53eea23f902925091366-19"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e">add_header </span><span class="crayon-v">Cache</span><span class="crayon-o">-</span><span class="crayon-e">Control </span><span class="crayon-m">public</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f902925091366-20">&nbsp;</div><div class="crayon-line" id="crayon-5f53eea23f902925091366-21"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-p"># Some browsers still send conditional-GET requests if there's a</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f902925091366-22"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-p"># Last-Modified header or an ETag header even if they haven't</span></div><div class="crayon-line" id="crayon-5f53eea23f902925091366-23"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-p"># reached the expiry date sent in the Expires header.</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f902925091366-24"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e">add_header </span><span class="crayon-v">Last</span><span class="crayon-o">-</span><span class="crayon-i">Modified</span><span class="crayon-h"> </span><span class="crayon-s">""</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5f53eea23f902925091366-25"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e">add_header </span><span class="crayon-i">ETag</span><span class="crayon-h"> </span><span class="crayon-s">""</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f902925091366-26"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">break</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5f53eea23f902925091366-27"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-sy">}</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f902925091366-28"><span class="crayon-sy">}</span></div></div></td>
+</tr>
+</table>
+</div>
+</div>
+
+<p></p>
+<h2>Puma Configuration</h2>
+<p>Change <em>config/puma.config</em> file according to following example:</p>
+<div id="crayon-5f53eea23f904731129487" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div></div></div>
+<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+# Change to match your CPU core count
+workers 2
+
+# Min and Max threads per worker
+threads 1, 6
+
+app_dir = File.expand_path("../..", __FILE__)
+shared_dir = "#{app_dir}/shared"
+
+# Default to production
+rails_env = ENV['RAILS_ENV'] || "production"
+environment rails_env
+
+# Set up socket location
+bind "unix://#{shared_dir}/sockets/puma.sock"
+
+# Logging
+stdout_redirect "#{shared_dir}/log/puma.stdout.log", "#{shared_dir}/log/puma.stderr.log", true
+
+# Set master PID and state locations
+pidfile "#{shared_dir}/pids/puma.pid"
+state_path "#{shared_dir}/pids/puma.state"
+activate_control_app
+
+on_worker_boot do
+  require "active_record"
+  ActiveRecord::Base.connection.disconnect! rescue ActiveRecord::ConnectionNotEstablished
+  ActiveRecord::Base.establish_connection(YAML.load_file("#{app_dir}/config/database.yml")[rails_env])
+end</textarea></div>
+<div class="crayon-main" style="">
+<table class="crayon-table">
+<tr class="crayon-row">
+<td class="crayon-nums" data-settings="show">
+<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5f53eea23f904731129487-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f904731129487-2">2</div><div class="crayon-num" data-line="crayon-5f53eea23f904731129487-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f904731129487-4">4</div><div class="crayon-num" data-line="crayon-5f53eea23f904731129487-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f904731129487-6">6</div><div class="crayon-num" data-line="crayon-5f53eea23f904731129487-7">7</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f904731129487-8">8</div><div class="crayon-num" data-line="crayon-5f53eea23f904731129487-9">9</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f904731129487-10">10</div><div class="crayon-num" data-line="crayon-5f53eea23f904731129487-11">11</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f904731129487-12">12</div><div class="crayon-num" data-line="crayon-5f53eea23f904731129487-13">13</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f904731129487-14">14</div><div class="crayon-num" data-line="crayon-5f53eea23f904731129487-15">15</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f904731129487-16">16</div><div class="crayon-num" data-line="crayon-5f53eea23f904731129487-17">17</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f904731129487-18">18</div><div class="crayon-num" data-line="crayon-5f53eea23f904731129487-19">19</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f904731129487-20">20</div><div class="crayon-num" data-line="crayon-5f53eea23f904731129487-21">21</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f904731129487-22">22</div><div class="crayon-num" data-line="crayon-5f53eea23f904731129487-23">23</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f904731129487-24">24</div><div class="crayon-num" data-line="crayon-5f53eea23f904731129487-25">25</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f904731129487-26">26</div><div class="crayon-num" data-line="crayon-5f53eea23f904731129487-27">27</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f904731129487-28">28</div><div class="crayon-num" data-line="crayon-5f53eea23f904731129487-29">29</div></div>
+</td>
+<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5f53eea23f904731129487-1"><span class="crayon-p"># Change to match your CPU core count</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f904731129487-2"><span class="crayon-i">workers</span><span class="crayon-h"> </span><span class="crayon-cn">2</span></div><div class="crayon-line" id="crayon-5f53eea23f904731129487-3">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f904731129487-4"><span class="crayon-p"># Min and Max threads per worker</span></div><div class="crayon-line" id="crayon-5f53eea23f904731129487-5"><span class="crayon-i">threads</span><span class="crayon-h"> </span><span class="crayon-cn">1</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-cn">6</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f904731129487-6">&nbsp;</div><div class="crayon-line" id="crayon-5f53eea23f904731129487-7"><span class="crayon-v">app_dir</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">File</span><span class="crayon-sy">.</span><span class="crayon-e">expand_path</span><span class="crayon-sy">(</span><span class="crayon-s">"../.."</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">__FILE__</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f904731129487-8"><span class="crayon-v">shared_dir</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-s">"#{app_dir}/shared"</span></div><div class="crayon-line" id="crayon-5f53eea23f904731129487-9">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f904731129487-10"><span class="crayon-p"># Default to production</span></div><div class="crayon-line" id="crayon-5f53eea23f904731129487-11"><span class="crayon-v">rails_env</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">ENV</span><span class="crayon-sy">[</span><span class="crayon-s">'RAILS_ENV'</span><span class="crayon-sy">]</span><span class="crayon-h"> </span><span class="crayon-o">||</span><span class="crayon-h"> </span><span class="crayon-s">"production"</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f904731129487-12"><span class="crayon-e">environment </span><span class="crayon-v">rails_env</span></div><div class="crayon-line" id="crayon-5f53eea23f904731129487-13">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f904731129487-14"><span class="crayon-p"># Set up socket location</span></div><div class="crayon-line" id="crayon-5f53eea23f904731129487-15"><span class="crayon-i">bind</span><span class="crayon-h"> </span><span class="crayon-s">"unix://#{shared_dir}/sockets/puma.sock"</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f904731129487-16">&nbsp;</div><div class="crayon-line" id="crayon-5f53eea23f904731129487-17"><span class="crayon-p"># Logging</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f904731129487-18"><span class="crayon-v">stdout</span><span class="crayon-sy">_</span>redirect<span class="crayon-h"> </span><span class="crayon-s">"#{shared_dir}/log/puma.stdout.log"</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-s">"#{shared_dir}/log/puma.stderr.log"</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-t">true</span></div><div class="crayon-line" id="crayon-5f53eea23f904731129487-19">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f904731129487-20"><span class="crayon-p"># Set master PID and state locations</span></div><div class="crayon-line" id="crayon-5f53eea23f904731129487-21"><span class="crayon-i">pidfile</span><span class="crayon-h"> </span><span class="crayon-s">"#{shared_dir}/pids/puma.pid"</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f904731129487-22"><span class="crayon-v">state</span><span class="crayon-sy">_</span>path<span class="crayon-h"> </span><span class="crayon-s">"#{shared_dir}/pids/puma.state"</span></div><div class="crayon-line" id="crayon-5f53eea23f904731129487-23"><span class="crayon-e">activate_control_app</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f904731129487-24">&nbsp;</div><div class="crayon-line" id="crayon-5f53eea23f904731129487-25"><span class="crayon-e">on_worker_boot </span><span class="crayon-st">do</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f904731129487-26"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-i">require</span><span class="crayon-h"> </span><span class="crayon-s">"active_record"</span></div><div class="crayon-line" id="crayon-5f53eea23f904731129487-27"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-v">ActiveRecord</span><span class="crayon-o">::</span><span class="crayon-v">Base</span><span class="crayon-sy">.</span><span class="crayon-v">connection</span><span class="crayon-sy">.</span><span class="crayon-v">disconnect</span><span class="crayon-o">!</span><span class="crayon-h"> </span><span class="crayon-e">rescue </span><span class="crayon-v">ActiveRecord</span><span class="crayon-o">::</span><span class="crayon-e">ConnectionNotEstablished</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f904731129487-28"><span class="crayon-e">&nbsp;&nbsp;</span><span class="crayon-v">ActiveRecord</span><span class="crayon-o">::</span><span class="crayon-v">Base</span><span class="crayon-sy">.</span><span class="crayon-e">establish_connection</span><span class="crayon-sy">(</span><span class="crayon-v">YAML</span><span class="crayon-sy">.</span><span class="crayon-e">load_file</span><span class="crayon-sy">(</span><span class="crayon-s">"#{app_dir}/config/database.yml"</span><span class="crayon-sy">)</span><span class="crayon-sy">[</span><span class="crayon-v">rails_env</span><span class="crayon-sy">]</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5f53eea23f904731129487-29"><span class="crayon-st">end</span></div></div></td>
+</tr>
+</table>
+</div>
+</div>
+
+<p></p>
+<h3>Create puma upstart script</h3>
+<p>Let&#8217;s create an Upstart init script so we can easily start and stop Puma.</p>
+<div id="crayon-5f53eea23f906129902812" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div></div></div>
+<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+cd ~
+wget https://raw.githubusercontent.com/puma/puma/master/tools/jungle/upstart/puma-manager.conf
+wget https://raw.githubusercontent.com/puma/puma/master/tools/jungle/upstart/puma.conf</textarea></div>
+<div class="crayon-main" style="">
+<table class="crayon-table">
+<tr class="crayon-row">
+<td class="crayon-nums" data-settings="show">
+<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5f53eea23f906129902812-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f906129902812-2">2</div><div class="crayon-num" data-line="crayon-5f53eea23f906129902812-3">3</div></div>
+</td>
+<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5f53eea23f906129902812-1"><span class="crayon-v">cd</span><span class="crayon-h"> </span><span class="crayon-o">~</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f906129902812-2"><span class="crayon-e">wget </span><span class="crayon-v">https</span><span class="crayon-o">:</span><span class="crayon-c">//raw.githubusercontent.com/puma/puma/master/tools/jungle/upstart/puma-manager.conf</span></div><div class="crayon-line" id="crayon-5f53eea23f906129902812-3"><span class="crayon-e">wget </span><span class="crayon-v">https</span><span class="crayon-o">:</span><span class="crayon-c">//raw.githubusercontent.com/puma/puma/master/tools/jungle/upstart/puma.conf</span></div></div></td>
+</tr>
+</table>
+</div>
+</div>
+
+<p>Now open the provided <code>puma.conf</code> file, so we can configure the Puma deployment user.</p>
+<div id="crayon-5f53eea23f908007510045" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div></div></div>
+<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+vi puma.conf</textarea></div>
+<div class="crayon-main" style="">
+<table class="crayon-table">
+<tr class="crayon-row">
+<td class="crayon-nums" data-settings="show">
+<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5f53eea23f908007510045-1">1</div></div>
+</td>
+<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5f53eea23f908007510045-1"><span class="crayon-e">vi </span><span class="crayon-v">puma</span><span class="crayon-sy">.</span><span class="crayon-v">conf</span></div></div></td>
+</tr>
+</table>
+</div>
+</div>
+
+<p>Look for the two lines that specify <code>setuid</code> and <code>setgid</code>, and replace &#8220;apps&#8221; with the name of your deployment user and group.</p>
+<div id="crayon-5f53eea23f90a554650216" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div></div></div>
+<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+setuid ubuntu
+setgid ubuntu</textarea></div>
+<div class="crayon-main" style="">
+<table class="crayon-table">
+<tr class="crayon-row">
+<td class="crayon-nums" data-settings="show">
+<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5f53eea23f90a554650216-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f90a554650216-2">2</div></div>
+</td>
+<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5f53eea23f90a554650216-1"><span class="crayon-e">setuid </span><span class="crayon-e">ubuntu</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f90a554650216-2"><span class="crayon-e">setgid </span><span class="crayon-v">ubuntu</span></div></div></td>
+</tr>
+</table>
+</div>
+</div>
+
+<p>Now copy the scripts to the Upstart services directory.</p>
+<div id="crayon-5f53eea23f90c436299041" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div></div></div>
+<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+sudo cp puma.conf puma-manager.conf /etc/init</textarea></div>
+<div class="crayon-main" style="">
+<table class="crayon-table">
+<tr class="crayon-row">
+<td class="crayon-nums" data-settings="show">
+<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5f53eea23f90c436299041-1">1</div></div>
+</td>
+<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5f53eea23f90c436299041-1"><span class="crayon-e">sudo </span><span class="crayon-e">cp </span><span class="crayon-v">puma</span><span class="crayon-sy">.</span><span class="crayon-e">conf </span><span class="crayon-v">puma</span><span class="crayon-o">-</span><span class="crayon-v">manager</span><span class="crayon-sy">.</span><span class="crayon-v">conf</span><span class="crayon-h"> </span><span class="crayon-o">/</span><span class="crayon-v">etc</span><span class="crayon-o">/</span><span class="crayon-v">init</span></div></div></td>
+</tr>
+</table>
+</div>
+</div>
+
+<p>The <code>puma-manager.conf</code> script references <code>/etc/puma.conf</code> for the applications that it should manage. Let&#8217;s create and edit that inventory file now.</p>
+<div id="crayon-5f53eea23f90d253464787" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div></div></div>
+<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+sudo vi /etc/puma.conf</textarea></div>
+<div class="crayon-main" style="">
+<table class="crayon-table">
+<tr class="crayon-row">
+<td class="crayon-nums" data-settings="show">
+<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5f53eea23f90d253464787-1">1</div></div>
+</td>
+<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5f53eea23f90d253464787-1"><span class="crayon-e">sudo </span><span class="crayon-v">vi</span><span class="crayon-h"> </span><span class="crayon-o">/</span><span class="crayon-v">etc</span><span class="crayon-o">/</span><span class="crayon-v">puma</span><span class="crayon-sy">.</span><span class="crayon-v">conf</span></div></div></td>
+</tr>
+</table>
+</div>
+</div>
+
+<p>Each line in this file should be the path to an application that you want <code>puma-manager</code> to manage. Add the path to your application now. For example.</p>
+<div id="crayon-5f53eea23f90f038228148" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div></div></div>
+<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+/path_to_application</textarea></div>
+<div class="crayon-main" style="">
+<table class="crayon-table">
+<tr class="crayon-row">
+<td class="crayon-nums" data-settings="show">
+<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5f53eea23f90f038228148-1">1</div></div>
+</td>
+<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5f53eea23f90f038228148-1"><span class="crayon-o">/</span><span class="crayon-v">path_to_application</span></div></div></td>
+</tr>
+</table>
+</div>
+</div>
+
+<p>Jungle upstart script provides following commands to manage puma app server:</p>
+<div id="crayon-5f53eea23f910998414432" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div></div></div>
+<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+#Start Puma
+sudo start puma-manager
+
+#Stop Puma
+sudo stop puma-manager
+
+#Restart Puma
+sudo restart puma-manager</textarea></div>
+<div class="crayon-main" style="">
+<table class="crayon-table">
+<tr class="crayon-row">
+<td class="crayon-nums" data-settings="show">
+<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5f53eea23f910998414432-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f910998414432-2">2</div><div class="crayon-num" data-line="crayon-5f53eea23f910998414432-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f910998414432-4">4</div><div class="crayon-num" data-line="crayon-5f53eea23f910998414432-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f910998414432-6">6</div><div class="crayon-num" data-line="crayon-5f53eea23f910998414432-7">7</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f910998414432-8">8</div></div>
+</td>
+<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5f53eea23f910998414432-1"><span class="crayon-p">#Start Puma</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f910998414432-2"><span class="crayon-e">sudo </span><span class="crayon-e">start </span><span class="crayon-v">puma</span><span class="crayon-o">-</span><span class="crayon-v">manager</span></div><div class="crayon-line" id="crayon-5f53eea23f910998414432-3">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f910998414432-4"><span class="crayon-p">#Stop Puma</span></div><div class="crayon-line" id="crayon-5f53eea23f910998414432-5"><span class="crayon-e">sudo </span><span class="crayon-e">stop </span><span class="crayon-v">puma</span><span class="crayon-o">-</span><span class="crayon-v">manager</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f910998414432-6">&nbsp;</div><div class="crayon-line" id="crayon-5f53eea23f910998414432-7"><span class="crayon-p">#Restart Puma</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f910998414432-8"><span class="crayon-e">sudo </span><span class="crayon-e">restart </span><span class="crayon-v">puma</span><span class="crayon-o">-</span><span class="crayon-v">manager</span></div></div></td>
+</tr>
+</table>
+</div>
+</div>
+
+<p></p>
+<h2>Install Mina</h2>
+<p>Add in your Gemfile.</p>
+<div id="crayon-5f53eea23f912498640506" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div></div></div>
+<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+gem 'mina'</textarea></div>
+<div class="crayon-main" style="">
+<table class="crayon-table">
+<tr class="crayon-row">
+<td class="crayon-nums" data-settings="show">
+<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5f53eea23f912498640506-1">1</div></div>
+</td>
+<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5f53eea23f912498640506-1"><span class="crayon-i">gem</span><span class="crayon-h"> </span><span class="crayon-s">'mina'</span></div></div></td>
+</tr>
+</table>
+</div>
+</div>
+
+<p>and run <em>bundle install</em> to install mina.</p>
+<h3>Create deployment script</h3>
+<p></p>
+<div id="crayon-5f53eea23f913655417809" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div></div></div>
+<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+mina init</textarea></div>
+<div class="crayon-main" style="">
+<table class="crayon-table">
+<tr class="crayon-row">
+<td class="crayon-nums" data-settings="show">
+<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5f53eea23f913655417809-1">1</div></div>
+</td>
+<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5f53eea23f913655417809-1"><span class="crayon-e">mina </span><span class="crayon-v">init</span></div></div></td>
+</tr>
+</table>
+</div>
+</div>
+
+<p>It will create <em>config/deploy.rb, </em>let&#8217;s edit it as following:</p>
+<div id="crayon-5f53eea23f915782786583" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div></div></div>
+<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+require 'mina/rails'
+require 'mina/git'
+require 'mina/rvm'
+
+set :user, 'ubuntu' #deploy user
+set :application_name, 'my app'
+set :domain, 'myapp.com'
+set :identity_file, 'myapp.pem' # ec2 instance key file
+set :deploy_to, '/var/www/my_app' #path to app
+set :app_path, lambda { "#{fetch(:deploy_to)}/#{fetch(:current_path)}" }
+set :repository, 'git@github.com:example/myapp.git' #Remote Repo Path
+set :branch, 'master'
+set :shared_paths, ['log', 'tmp']
+set :shared_dirs, fetch(:shared_dirs, []).push('tmp')
+
+task :environment do
+  invoke :'rvm:use', 'ruby-2.4.0@default'
+end
+
+
+task :setup do
+  #create the folder structure
+end
+
+
+desc "Deploys the current version to the server."
+task :deploy do
+  deploy do
+    invoke :'git:clone'
+    invoke :'deploy:link_shared_paths'
+    invoke :'bundle:install'
+    invoke :'rails:db_migrate'
+    invoke :'rails:assets_precompile'
+    invoke :'deploy:cleanup'
+
+    on :launch do
+      invoke :'puma:restart'
+    end
+  end
+end
+
+namespace :puma do
+  desc "Start the application"
+  task :start do
+    command 'echo "-----&gt; Start Puma"'
+    command "sudo start puma-manager", :pty =&gt; false
+  end
+
+  desc "Stop the application"
+  task :stop do
+    command 'echo "-----&gt; Stop Puma"'
+    command "sudo stop puma-manager"
+  end
+
+  desc "Restart the application"
+  task :restart do
+    command 'echo "-----&gt; Restart Puma"'
+    command "sudo restart puma-manager"
+  end
+end</textarea></div>
+<div class="crayon-main" style="">
+<table class="crayon-table">
+<tr class="crayon-row">
+<td class="crayon-nums" data-settings="show">
+<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5f53eea23f915782786583-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f915782786583-2">2</div><div class="crayon-num" data-line="crayon-5f53eea23f915782786583-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f915782786583-4">4</div><div class="crayon-num" data-line="crayon-5f53eea23f915782786583-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f915782786583-6">6</div><div class="crayon-num" data-line="crayon-5f53eea23f915782786583-7">7</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f915782786583-8">8</div><div class="crayon-num" data-line="crayon-5f53eea23f915782786583-9">9</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f915782786583-10">10</div><div class="crayon-num" data-line="crayon-5f53eea23f915782786583-11">11</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f915782786583-12">12</div><div class="crayon-num" data-line="crayon-5f53eea23f915782786583-13">13</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f915782786583-14">14</div><div class="crayon-num" data-line="crayon-5f53eea23f915782786583-15">15</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f915782786583-16">16</div><div class="crayon-num" data-line="crayon-5f53eea23f915782786583-17">17</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f915782786583-18">18</div><div class="crayon-num" data-line="crayon-5f53eea23f915782786583-19">19</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f915782786583-20">20</div><div class="crayon-num" data-line="crayon-5f53eea23f915782786583-21">21</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f915782786583-22">22</div><div class="crayon-num" data-line="crayon-5f53eea23f915782786583-23">23</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f915782786583-24">24</div><div class="crayon-num" data-line="crayon-5f53eea23f915782786583-25">25</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f915782786583-26">26</div><div class="crayon-num" data-line="crayon-5f53eea23f915782786583-27">27</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f915782786583-28">28</div><div class="crayon-num" data-line="crayon-5f53eea23f915782786583-29">29</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f915782786583-30">30</div><div class="crayon-num" data-line="crayon-5f53eea23f915782786583-31">31</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f915782786583-32">32</div><div class="crayon-num" data-line="crayon-5f53eea23f915782786583-33">33</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f915782786583-34">34</div><div class="crayon-num" data-line="crayon-5f53eea23f915782786583-35">35</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f915782786583-36">36</div><div class="crayon-num" data-line="crayon-5f53eea23f915782786583-37">37</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f915782786583-38">38</div><div class="crayon-num" data-line="crayon-5f53eea23f915782786583-39">39</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f915782786583-40">40</div><div class="crayon-num" data-line="crayon-5f53eea23f915782786583-41">41</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f915782786583-42">42</div><div class="crayon-num" data-line="crayon-5f53eea23f915782786583-43">43</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f915782786583-44">44</div><div class="crayon-num" data-line="crayon-5f53eea23f915782786583-45">45</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f915782786583-46">46</div><div class="crayon-num" data-line="crayon-5f53eea23f915782786583-47">47</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f915782786583-48">48</div><div class="crayon-num" data-line="crayon-5f53eea23f915782786583-49">49</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f915782786583-50">50</div><div class="crayon-num" data-line="crayon-5f53eea23f915782786583-51">51</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f915782786583-52">52</div><div class="crayon-num" data-line="crayon-5f53eea23f915782786583-53">53</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f915782786583-54">54</div><div class="crayon-num" data-line="crayon-5f53eea23f915782786583-55">55</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f915782786583-56">56</div><div class="crayon-num" data-line="crayon-5f53eea23f915782786583-57">57</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f915782786583-58">58</div><div class="crayon-num" data-line="crayon-5f53eea23f915782786583-59">59</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53eea23f915782786583-60">60</div></div>
+</td>
+<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5f53eea23f915782786583-1"><span class="crayon-i">require</span><span class="crayon-h"> </span><span class="crayon-s">'mina/rails'</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f915782786583-2"><span class="crayon-i">require</span><span class="crayon-h"> </span><span class="crayon-s">'mina/git'</span></div><div class="crayon-line" id="crayon-5f53eea23f915782786583-3"><span class="crayon-i">require</span><span class="crayon-h"> </span><span class="crayon-s">'mina/rvm'</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f915782786583-4">&nbsp;</div><div class="crayon-line" id="crayon-5f53eea23f915782786583-5"><span class="crayon-v">set</span><span class="crayon-h"> </span><span class="crayon-o">:</span><span class="crayon-v">user</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-s">'ubuntu'</span><span class="crayon-h"> </span><span class="crayon-p">#deploy user</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f915782786583-6"><span class="crayon-v">set</span><span class="crayon-h"> </span><span class="crayon-o">:</span><span class="crayon-v">application_name</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-s">'my app'</span></div><div class="crayon-line" id="crayon-5f53eea23f915782786583-7"><span class="crayon-v">set</span><span class="crayon-h"> </span><span class="crayon-o">:</span><span class="crayon-v">domain</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-s">'myapp.com'</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f915782786583-8"><span class="crayon-v">set</span><span class="crayon-h"> </span><span class="crayon-o">:</span><span class="crayon-v">identity_file</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-s">'myapp.pem'</span><span class="crayon-h"> </span><span class="crayon-p"># ec2 instance key file</span></div><div class="crayon-line" id="crayon-5f53eea23f915782786583-9"><span class="crayon-v">set</span><span class="crayon-h"> </span><span class="crayon-o">:</span><span class="crayon-v">deploy_to</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-s">'/var/www/my_app'</span><span class="crayon-h"> </span><span class="crayon-p">#path to app</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f915782786583-10"><span class="crayon-v">set</span><span class="crayon-h"> </span><span class="crayon-o">:</span><span class="crayon-v">app_path</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-e">lambda</span><span class="crayon-h"> </span><span class="crayon-sy">{</span><span class="crayon-h"> </span><span class="crayon-s">"#{fetch(:deploy_to)}/#{fetch(:current_path)}"</span><span class="crayon-h"> </span><span class="crayon-sy">}</span></div><div class="crayon-line" id="crayon-5f53eea23f915782786583-11"><span class="crayon-v">set</span><span class="crayon-h"> </span><span class="crayon-o">:</span><span class="crayon-v">repository</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-s">'<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="deb9b7aa9eb9b7aab6abbcf0bdb1b3">[email&#160;protected]</a>:example/myapp.git'</span><span class="crayon-h"> </span><span class="crayon-p">#Remote Repo Path</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f915782786583-12"><span class="crayon-v">set</span><span class="crayon-h"> </span><span class="crayon-o">:</span><span class="crayon-v">branch</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-s">'master'</span></div><div class="crayon-line" id="crayon-5f53eea23f915782786583-13"><span class="crayon-v">set</span><span class="crayon-h"> </span><span class="crayon-o">:</span><span class="crayon-v">shared_paths</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-sy">[</span><span class="crayon-s">'log'</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-s">'tmp'</span><span class="crayon-sy">]</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f915782786583-14"><span class="crayon-v">set</span><span class="crayon-h"> </span><span class="crayon-o">:</span><span class="crayon-v">shared_dirs</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-e">fetch</span><span class="crayon-sy">(</span><span class="crayon-o">:</span><span class="crayon-v">shared_dirs</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-sy">[</span><span class="crayon-sy">]</span><span class="crayon-sy">)</span><span class="crayon-sy">.</span><span class="crayon-e">push</span><span class="crayon-sy">(</span><span class="crayon-s">'tmp'</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5f53eea23f915782786583-15">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f915782786583-16"><span class="crayon-v">task</span><span class="crayon-h"> </span><span class="crayon-o">:</span><span class="crayon-e">environment </span><span class="crayon-st">do</span></div><div class="crayon-line" id="crayon-5f53eea23f915782786583-17"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-v">invoke</span><span class="crayon-h"> </span><span class="crayon-o">:</span><span class="crayon-s">'rvm:use'</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-s">'<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="225057405b0f100c160c126246474443574e56">[email&#160;protected]</a>'</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f915782786583-18"><span class="crayon-st">end</span></div><div class="crayon-line" id="crayon-5f53eea23f915782786583-19">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f915782786583-20">&nbsp;</div><div class="crayon-line" id="crayon-5f53eea23f915782786583-21"><span class="crayon-v">task</span><span class="crayon-h"> </span><span class="crayon-o">:</span><span class="crayon-e">setup </span><span class="crayon-st">do</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f915782786583-22"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-p">#create the folder structure</span></div><div class="crayon-line" id="crayon-5f53eea23f915782786583-23"><span class="crayon-st">end</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f915782786583-24">&nbsp;</div><div class="crayon-line" id="crayon-5f53eea23f915782786583-25">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f915782786583-26"><span class="crayon-i">desc</span><span class="crayon-h"> </span><span class="crayon-s">"Deploys the current version to the server."</span></div><div class="crayon-line" id="crayon-5f53eea23f915782786583-27"><span class="crayon-v">task</span><span class="crayon-h"> </span><span class="crayon-o">:</span><span class="crayon-e">deploy </span><span class="crayon-st">do</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f915782786583-28"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-e">deploy </span><span class="crayon-st">do</span></div><div class="crayon-line" id="crayon-5f53eea23f915782786583-29"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">invoke</span><span class="crayon-h"> </span><span class="crayon-o">:</span><span class="crayon-s">'git:clone'</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f915782786583-30"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">invoke</span><span class="crayon-h"> </span><span class="crayon-o">:</span><span class="crayon-s">'deploy:link_shared_paths'</span></div><div class="crayon-line" id="crayon-5f53eea23f915782786583-31"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">invoke</span><span class="crayon-h"> </span><span class="crayon-o">:</span><span class="crayon-s">'bundle:install'</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f915782786583-32"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">invoke</span><span class="crayon-h"> </span><span class="crayon-o">:</span><span class="crayon-s">'rails:db_migrate'</span></div><div class="crayon-line" id="crayon-5f53eea23f915782786583-33"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">invoke</span><span class="crayon-h"> </span><span class="crayon-o">:</span><span class="crayon-s">'rails:assets_precompile'</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f915782786583-34"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">invoke</span><span class="crayon-h"> </span><span class="crayon-o">:</span><span class="crayon-s">'deploy:cleanup'</span></div><div class="crayon-line" id="crayon-5f53eea23f915782786583-35">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f915782786583-36"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">on</span><span class="crayon-h"> </span><span class="crayon-o">:</span><span class="crayon-e">launch </span><span class="crayon-st">do</span></div><div class="crayon-line" id="crayon-5f53eea23f915782786583-37"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">invoke</span><span class="crayon-h"> </span><span class="crayon-o">:</span><span class="crayon-s">'puma:restart'</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f915782786583-38"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">end</span></div><div class="crayon-line" id="crayon-5f53eea23f915782786583-39"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-st">end</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f915782786583-40"><span class="crayon-st">end</span></div><div class="crayon-line" id="crayon-5f53eea23f915782786583-41">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f915782786583-42"><span class="crayon-t">namespace</span><span class="crayon-h"> </span><span class="crayon-o">:</span><span class="crayon-e">puma </span><span class="crayon-st">do</span></div><div class="crayon-line" id="crayon-5f53eea23f915782786583-43"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-i">desc</span><span class="crayon-h"> </span><span class="crayon-s">"Start the application"</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f915782786583-44"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-v">task</span><span class="crayon-h"> </span><span class="crayon-o">:</span><span class="crayon-e">start </span><span class="crayon-st">do</span></div><div class="crayon-line" id="crayon-5f53eea23f915782786583-45"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-i">command</span><span class="crayon-h"> </span><span class="crayon-s">'echo "-----&gt; Start Puma"'</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f915782786583-46"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-i">command</span><span class="crayon-h"> </span><span class="crayon-s">"sudo start puma-manager"</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-o">:</span><span class="crayon-v">pty</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-o">&gt;</span><span class="crayon-h"> </span><span class="crayon-t">false</span></div><div class="crayon-line" id="crayon-5f53eea23f915782786583-47"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-st">end</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f915782786583-48">&nbsp;</div><div class="crayon-line" id="crayon-5f53eea23f915782786583-49"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-i">desc</span><span class="crayon-h"> </span><span class="crayon-s">"Stop the application"</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f915782786583-50"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-v">task</span><span class="crayon-h"> </span><span class="crayon-o">:</span><span class="crayon-e">stop </span><span class="crayon-st">do</span></div><div class="crayon-line" id="crayon-5f53eea23f915782786583-51"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-i">command</span><span class="crayon-h"> </span><span class="crayon-s">'echo "-----&gt; Stop Puma"'</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f915782786583-52"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-i">command</span><span class="crayon-h"> </span><span class="crayon-s">"sudo stop puma-manager"</span></div><div class="crayon-line" id="crayon-5f53eea23f915782786583-53"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-st">end</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f915782786583-54">&nbsp;</div><div class="crayon-line" id="crayon-5f53eea23f915782786583-55"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-i">desc</span><span class="crayon-h"> </span><span class="crayon-s">"Restart the application"</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f915782786583-56"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-v">task</span><span class="crayon-h"> </span><span class="crayon-o">:</span><span class="crayon-e">restart </span><span class="crayon-st">do</span></div><div class="crayon-line" id="crayon-5f53eea23f915782786583-57"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-i">command</span><span class="crayon-h"> </span><span class="crayon-s">'echo "-----&gt; Restart Puma"'</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f915782786583-58"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-i">command</span><span class="crayon-h"> </span><span class="crayon-s">"sudo restart puma-manager"</span></div><div class="crayon-line" id="crayon-5f53eea23f915782786583-59"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-st">end</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53eea23f915782786583-60"><span class="crayon-st">end</span></div></div></td>
+</tr>
+</table>
+</div>
+</div>
+
+<p>Now to setup directory structure run:</p>
+<div id="crayon-5f53eea23f917880930846" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div></div></div>
+<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+mina setup --verbose</textarea></div>
+<div class="crayon-main" style="">
+<table class="crayon-table">
+<tr class="crayon-row">
+<td class="crayon-nums" data-settings="show">
+<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5f53eea23f917880930846-1">1</div></div>
+</td>
+<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5f53eea23f917880930846-1"><span class="crayon-e">mina </span><span class="crayon-v">setup</span><span class="crayon-h"> </span><span class="crayon-o">--</span><span class="crayon-v">verbose</span></div></div></td>
+</tr>
+</table>
+</div>
+</div>
+
+<p>To deploy the application run:</p>
+<div id="crayon-5f53eea23f919773416130" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div></div></div>
+<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+mina deploy --trace</textarea></div>
+<div class="crayon-main" style="">
+<table class="crayon-table">
+<tr class="crayon-row">
+<td class="crayon-nums" data-settings="show">
+<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5f53eea23f919773416130-1">1</div></div>
+</td>
+<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5f53eea23f919773416130-1"><span class="crayon-e">mina </span><span class="crayon-v">deploy</span><span class="crayon-h"> </span><span class="crayon-o">--</span><span class="crayon-v">trace</span></div></div></td>
+</tr>
+</table>
+</div>
+</div>
+
+<p>&nbsp;</p>
+<p>REFERENCES:</p>
+<p><a href="https://gorails.com/setup/ubuntu/16.04">https://gorails.com/setup/ubuntu/16.04</a></p>
+<p><a href="https://github.com/mina-deploy/mina">https://github.com/mina-deploy/mina</a></p>
+<p><a href="https://github.com/puma/puma">https://github.com/puma/puma</a></p>
+<p>&nbsp;</p>
+</div> <div class="author-info entry-author">
+<span class="author-avatar no-avatar"></span> <div class="author-description">
+<h4><span class="author-heading">Author:</span>&nbsp;pankaj</h4>
+<p class="author-bio"></p>
+</div>
+</div>
+<nav class="navigation post-navigation" role="navigation"><h2 class="screen-reader-text">Post navigation</h2><div class="nav-links"><a class="nav-previous" href="/tip-mina-find-last-git-commit-released/" rel="prev"><i class="fa fa-angle-left" aria-hidden="true"></i><span class="meta-nav" aria-hidden="true">Previous</span><span class="screen-reader-text">Previous post:</span><span class="post-title h4-size">[Tip] Mina: Find last git commit released</span></a><a class="nav-next" href="/authorization-with-pundit-gem/" rel="next"><i class="fa fa-angle-right" aria-hidden="true"></i><span class="meta-nav" aria-hidden="true">Next</span><span class="screen-reader-text">Next post:</span><span class="post-title h4-size">Authorization with Pundit gem</span></a></div></nav><div class="single-related-posts"><h3>Related posts</h3><section class="items-grid"><div class="related-item"><article class="post-format-standard"><div class="mini-post-img"><a class="alignleft post-rollover no-avatar" href="/background-workers-using-crontab/" style="width:110px; height: 80px;"></a></div><div class="post-content"><a href="/background-workers-using-crontab/">Background Workers using Crontab</a><br /><time class="text-secondary" datetime="2017-09-27T11:47:21+05:30">September 27, 2017</time></div></article></div><div class="related-item"><article class="post-format-standard"><div class="mini-post-img"><a class="alignleft post-rollover no-avatar" href="/using-mina-deploy-particular-commit/" style="width:110px; height: 80px;"></a></div><div class="post-content"><a href="/using-mina-deploy-particular-commit/">Using mina to deploy a particular commit</a><br /><time class="text-secondary" datetime="2017-09-10T11:54:45+05:30">September 10, 2017</time></div></article></div><div class="related-item"><article class="post-format-standard"><div class="mini-post-img"><a class="alignleft post-rollover no-avatar" href="/tip-mina-find-last-git-commit-released/" style="width:110px; height: 80px;"></a></div><div class="post-content"><a href="/tip-mina-find-last-git-commit-released/">[Tip] Mina: Find last git commit released</a><br /><time class="text-secondary" datetime="2017-05-24T13:13:31+05:30">May 24, 2017</time></div></article></div><div class="related-item"><article class="post-format-standard"><div class="mini-post-img"><a class="alignleft post-rollover no-avatar" href="/deploying-sidekiq-ubuntu-16-04/" style="width:110px; height: 80px;"></a></div><div class="post-content"><a href="/deploying-sidekiq-ubuntu-16-04/">Deploying Sidekiq to Ubuntu 16.04</a><br /><time class="text-secondary" datetime="2016-11-07T19:26:02+05:30">November 7, 2016</time></div></article></div><div class="related-item"><article class="post-format-standard"><div class="mini-post-img"><a class="alignleft post-rollover no-avatar" href="/mina-faster-deployment-remote-server-automation/" style="width:110px; height: 80px;"></a></div><div class="post-content"><a href="/mina-faster-deployment-remote-server-automation/">Mina: Faster deployment and remote server automation</a><br /><time class="text-secondary" datetime="2016-09-13T12:29:08+05:30">September 13, 2016</time></div></article></div><div class="related-item"><article class="post-format-standard"><div class="mini-post-img"><a class="alignleft post-rollover no-avatar" href="/enable-log-rotation-within-rails-application/" style="width:110px; height: 80px;"></a></div><div class="post-content"><a href="/enable-log-rotation-within-rails-application/">Enable log rotation within the rails application</a><br /><time class="text-secondary" datetime="2016-07-27T10:30:19+05:30">July 27, 2016</time></div></article></div></section></div>
+</article>
+<div id="disqus_thread"></div>
+</div>
+<aside id="sidebar" class="sidebar bg-under-widget">
+<div class="sidebar-content widget-divider-off">
+<section id="search-2" class="widget widget_search"> <form class="searchform" role="search" method="get" action="/">
+<label for="search" class="screen-reader-text">Search:</label>
+<input type="text" class="field searchform-s" name="s" value="" placeholder="Type and hit enter &hellip;" />
+<input type="submit" class="assistive-text searchsubmit" value="Go!" />
+<a href="#go" class="submit"></a>
+</form></section> <section id="recent-posts-2" class="widget widget_recent_entries"> <div class="widget-title">Recent Posts</div> <ul>
+<li>
+<a href="/clawing-our-way-to-the-top-of-clutchs-directory-of-ruby-on-rails-developers-in-india/">Clawing Our Way to the Top of Clutch’s Directory of Ruby on Rails Developers in India</a>
+</li>
+<li>
+<a href="/upgrading-to-rails-5-1x/">Upgrading to Rails 5.1x</a>
+</li>
+<li>
+<a href="/whats-new-ruby-2-5/">What&#8217;s new in Ruby 2.5</a>
+</li>
+<li>
+<a href="/tuples-immutable-data-crystal/">Crystal tuples: the immutable data structure of crystal</a>
+</li>
+<li>
+<a href="/getting-started-faraday-gem/">Getting started with Faraday gem</a>
+</li>
+</ul>
+</section><section id="recent-comments-2" class="widget widget_recent_comments"><div class="widget-title">Recent Comments</div><ul id="recentcomments"><li class="recentcomments"><span class="comment-author-link">Roger Deloy Pack</span> on <a href="/tuples-immutable-data-crystal/#comment-92">Crystal tuples: the immutable data structure of crystal</a></li><li class="recentcomments"><span class="comment-author-link">Lenka</span> on <a href="/write-beautiful-jasmine-tests-rails/#comment-91">Make unit tests great again &#8211; Integrate Jasmine into Rails</a></li><li class="recentcomments"><span class="comment-author-link">Andrade</span> on <a href="/observer-design-pattern-ruby/#comment-90">Observer Design Pattern in Ruby</a></li><li class="recentcomments"><span class="comment-author-link"><a href='http://freedompodcasting.com/' rel='external nofollow' class='url'>Ian @ FreedomPodcasting.com</a></span> on <a href="/jtk-how-to-kill-a-rails-server-who-is-working-as-a-deamon/#comment-88">JTK How to kill a rails server, who is working as a deamon?</a></li><li class="recentcomments"><span class="comment-author-link">Sleeba Paul</span> on <a href="/create-json-response-using-postgresql-instead-rails/#comment-87">Introduction to generating JSON using PostgreSQL</a></li></ul></section><section id="archives-2" class="widget widget_archive"><div class="widget-title">Archives</div> <ul>
+<li><a href='/2019/05/'>May 2019</a></li>
+<li><a href='/2018/03/'>March 2018</a></li>
+<li><a href='/2017/12/'>December 2017</a></li>
+<li><a href='/2017/11/'>November 2017</a></li>
+<li><a href='/2017/10/'>October 2017</a></li>
+<li><a href='/2017/09/'>September 2017</a></li>
+<li><a href='/2017/08/'>August 2017</a></li>
+<li><a href='/2017/06/'>June 2017</a></li>
+<li><a href='/2017/05/'>May 2017</a></li>
+<li><a href='/2017/04/'>April 2017</a></li>
+<li><a href='/2017/03/'>March 2017</a></li>
+<li><a href='/2017/02/'>February 2017</a></li>
+<li><a href='/2017/01/'>January 2017</a></li>
+<li><a href='/2016/12/'>December 2016</a></li>
+<li><a href='/2016/11/'>November 2016</a></li>
+<li><a href='/2016/09/'>September 2016</a></li>
+<li><a href='/2016/08/'>August 2016</a></li>
+<li><a href='/2016/07/'>July 2016</a></li>
+<li><a href='/2016/04/'>April 2016</a></li>
+<li><a href='/2016/02/'>February 2016</a></li>
+<li><a href='/2016/01/'>January 2016</a></li>
+<li><a href='/2015/12/'>December 2015</a></li>
+<li><a href='/2015/10/'>October 2015</a></li>
+<li><a href='/2015/08/'>August 2015</a></li>
+<li><a href='/2015/07/'>July 2015</a></li>
+<li><a href='/2013/04/'>April 2013</a></li>
+<li><a href='/2013/03/'>March 2013</a></li>
+<li><a href='/2013/02/'>February 2013</a></li>
+<li><a href='/2013/01/'>January 2013</a></li>
+<li><a href='/2012/12/'>December 2012</a></li>
+<li><a href='/2012/11/'>November 2012</a></li>
+</ul>
+</section><section id="categories-2" class="widget widget_categories"><div class="widget-title">Categories</div> <ul>
+<li class="cat-item cat-item-271"><a href="/category/angular4/">Angular4</a>
+</li>
+<li class="cat-item cat-item-272"><a href="/category/angularjs/">AngularJS</a>
+</li>
+<li class="cat-item cat-item-49"><a href="/category/beginners/">Beginners</a>
+</li>
+<li class="cat-item cat-item-67"><a href="/category/conferences/">Conferences</a>
+</li>
+<li class="cat-item cat-item-56"><a href="/category/crystal/">crystal</a>
+</li>
+<li class="cat-item cat-item-46"><a href="/category/database/">Database</a>
+</li>
+<li class="cat-item cat-item-113"><a href="/category/devops/">DevOps</a>
+</li>
+<li class="cat-item cat-item-222"><a href="/category/git/">git</a>
+</li>
+<li class="cat-item cat-item-266"><a href="/category/jasmine/">Jasmine</a>
+</li>
+<li class="cat-item cat-item-54"><a href="/category/javascript/">Javascript</a>
+</li>
+<li class="cat-item cat-item-5"><a href="/category/marketing/">Marketing</a>
+</li>
+<li class="cat-item cat-item-47"><a href="/category/postgresql/">PostgreSQL</a>
+</li>
+<li class="cat-item cat-item-42"><a href="/category/rails/">Rails</a>
+</li>
+<li class="cat-item cat-item-50"><a href="/category/rails-5/">Rails 5</a>
+</li>
+<li class="cat-item cat-item-64"><a href="/category/rails-5-1/">Rails 5.1</a>
+</li>
+<li class="cat-item cat-item-248"><a href="/category/react-js/">React.js</a>
+</li>
+<li class="cat-item cat-item-275"><a href="/category/reactjs/">ReactJS</a>
+</li>
+<li class="cat-item cat-item-261"><a href="/category/rspec/">RSpec</a>
+</li>
+<li class="cat-item cat-item-48"><a href="/category/ruby/">Ruby</a>
+</li>
+<li class="cat-item cat-item-204"><a href="/category/ruby-2-4/">Ruby 2.4</a>
+</li>
+<li class="cat-item cat-item-283"><a href="/category/ruby-2-5/">Ruby 2.5</a>
+</li>
+<li class="cat-item cat-item-274"><a href="/category/spree-commerce/">spree commerce</a>
+</li>
+<li class="cat-item cat-item-58"><a href="/category/testing/">testing</a>
+</li>
+<li class="cat-item cat-item-95"><a href="/category/training/">Training</a>
+</li>
+<li class="cat-item cat-item-241"><a href="/category/travel/">Travel</a>
+</li>
+<li class="cat-item cat-item-1"><a href="/category/uncategorized/">Uncategorized</a>
+</li>
+<li class="cat-item cat-item-59"><a href="/category/vuejs/">VueJS</a>
+</li>
+</ul>
+</section><section id="meta-2" class="widget widget_meta"><div class="widget-title">Meta</div> <ul>
+<li><a rel="nofollow" href="/wp-login.php">Log in</a></li>
+<li><a href="/feed/">Entries <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+<li><a href="/comments/feed/">Comments <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+<li><a href="https://wordpress.org/" title="Powered by WordPress, state-of-the-art semantic personal publishing platform.">WordPress.org</a></li> </ul>
+</section> </div>
+</aside>
+</div>
+</div>
+</div>
+
+<footer id="footer" class="footer solid-bg">
+<div class="wf-wrap">
+<div class="wf-container-footer">
+<div class="wf-container">
+<section id="custom_html-3" class="widget_text widget widget_custom_html wf-cell wf-1-3"><div class="textwidget custom-html-widget"><div class="inner-footer">
+<div class="location">
+<div class="location-address">
+<div class="address address-one">
+<div class="heading">
+<span class="fa fa-map-marker"></span>
+&nbspKochi, India
+</div>
+<p>
+Vijaya Complex
+</p>
+<p>
+Chembumukku, Kakkanad.
+</p>
+<p>
+Kochi, Kerala, India - 682030
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="inner-footer">
+<div class="location">
+<div class="location-address">
+<div class="address address-one">
+<div class="heading">
+<span class="fa fa-map-marker"></span>
+&nbsp Wyoming, USA
+</div>
+<p>
+412 N Main St Ste100
+</p>
+<p>
+Buffalo, WY, USA, 82834
+</p>
+</div>
+</div>
+</div>
+</div></div></section><section id="custom_html-5" class="widget_text widget widget_custom_html wf-cell wf-1-3"><div class="textwidget custom-html-widget"><h4>
+Engineering
+</h4>
+<p>
+<a href="/mvp/">MVP in 6-8 weeks</a>
+</p>
+<p>
+<a href="/design_complex_business_model/">Design Complex Business Models</a>
+</p>
+<p>
+<a href="/upgrade_legacy_code/">Upgrade Legacy Code</a>
+</p>
+<p>
+<a href="/support_agile_development/">Support in agile development</a>
+</p>
+<p>
+<a href="/code_review/">Code Reviews/Architecture Consultation</a>
+</p>
+<p>
+<a href="/ui_ux_consultation/">UI/UX consultation</a>
+</p>
+<p>
+<a href="/tdd_bdd/">Implement TDD/BDD</a>
+</p></div></section><section id="custom_html-8" class="widget_text widget widget_custom_html wf-cell wf-1-3"><div class="textwidget custom-html-widget"><div class="wpforms-container wpforms-container-full newsletter" id="wpforms-15455"><form method="post" enctype="multipart/form-data" id="wpforms-form-15455" action="/deploying-rails-application-aws-using-nginx-puma-mina/#wpforms-15455" class="wpforms-validate wpforms-form" data-formid="15455"><div class="wpforms-head-container"><div class="wpforms-title">Newsletter</div></div><div class="wpforms-field-container"><div id="wpforms-15455-field_1-container" class="wpforms-field wpforms-field-email newsletter_email" data-field-id="1"><label class="wpforms-field-label" for="wpforms-15455-field_1">Email <span class="wpforms-required-label">*</span></label><input type="email" id="wpforms-15455-field_1" class="wpforms-field-medium wpforms-field-required" name="wpforms[fields][1]" required></div></div><div class="wpforms-field wpforms-field-hp" id="wpform-field-hp"><label for="wpforms-field_hp" class="wpforms-field-label">Name</label><input type="text" name="wpforms[hp]" id="wpforms-field_hp" class="wpforms-field-medium"></div><div class="wpforms-submit-container"><input type="hidden" name="wpforms[id]" value="15455"><input type="hidden" name="wpforms[author]" value="10"><input type="hidden" name="wpforms[post_id]" value="2150"><button type="submit" name="wpforms[submit]" class="wpforms-submit newsletter_submit" id="wpforms-submit-15455" value="wpforms-submit" data-alt-text="Sending...">Subscribe</button></div></form></div>
+<div class="mail-us">
+<h4 class="text-capitalize">
+MAIL US
+</h4>
+<a href="/cdn-cgi/l/email-protection#01686f676e4173646571606f75696473722f626e"><span class="__cf_email__" data-cfemail="620b0c040d2210070612030c160a0710114c010d">[email&#160;protected]</span></a>
+</div>
+<div class="social-media">
+<ul>
+<li>
+<a href="https://www.facebook.com/redpanthers.co" target="_blank" rel="noopener noreferrer">
+<span class="fa fa-facebook"></span>
+</a>
+</li>
+<li>
+<a href="https://twitter.com/redpanthershq" target="_blank" rel="noopener noreferrer">
+<span class="fa fa-twitter"></span>
+</a>
+</li>
+<li>
+<a href="https://www.linkedin.com/company/red-panthers" target="_blank" rel="noopener noreferrer">
+<span class="fa fa-linkedin"></span>
+</a>
+</li>
+<li>
+<a href="https://github.com/redpanthers" target="_blank" rel="noopener noreferrer">
+<span class="fa fa-github"></span>
+</a>
+</li>
+<li>
+<a href="https://www.pinterest.com/redpanthers/">
+<span class="fa fa-pinterest-p"></span>
+</a>
+</li>
+</ul>
+</div></div></section> </div>
+</div>
+</div>
+</footer>
+<a href="#" class="scroll-top"><span class="screen-reader-text">Go to Top</span></a>
+</div>
+<link rel='stylesheet' id='wpforms-full-css' href='/wp-content/plugins/wpforms/assets/css/wpforms-full.css?ver=1.4.3' type='text/css' media='all' />
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type='text/javascript' src='/wp-content/themes/dt-the7/js/main.min.js?ver=7.5.0.2'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var wpcf7 = {"apiSettings":{"root":"https:\/\/redpanthers.co\/wp-json\/contact-form-7\/v1","namespace":"contact-form-7\/v1"}};
+/* ]]> */
+</script>
+<script type='text/javascript' src='/wp-content/plugins/contact-form-7/includes/js/scripts.js?ver=5.1.4'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var countVars = {"disqusShortname":"red-panthers"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='/wp-content/plugins/disqus-comment-system/public/js/comment_count.js?ver=3.0.17'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var embedVars = {"disqusConfig":{"integration":"wordpress 3.0.17"},"disqusIdentifier":"2150 http:\/\/blog.redpanthers.co\/?p=2150","disqusShortname":"red-panthers","disqusTitle":"Deploying Rails application on AWS, using Nginx, Puma and Mina","disqusUrl":"https:\/\/redpanthers.co\/deploying-rails-application-aws-using-nginx-puma-mina\/","postId":"2150"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='/wp-content/plugins/disqus-comment-system/public/js/comment_embed.js?ver=3.0.17'></script>
+<script type='text/javascript' src='/wp-includes/js/comment-reply.min.js?ver=5.2.7'></script>
+<script type='text/javascript' src='/wp-content/themes/dt-the7/js/post-type.js?ver=7.5.0.2'></script>
+<script type='text/javascript' src='/wp-includes/js/wp-embed.min.js?ver=5.2.7'></script>
+<script type='text/javascript' src='/wp-content/plugins/wpforms/assets/js/jquery.validate.min.js?ver=1.15.1'></script>
+<script type='text/javascript' src='/wp-content/plugins/wpforms/assets/js/wpforms.js?ver=1.4.3'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var wpforms_settings = {"val_required":"This field is required.","val_url":"Please enter a valid URL.","val_email":"Please enter a valid email address.","val_number":"Please enter a valid number.","val_confirm":"Field values do not match.","val_fileextension":"File type is not allowed.","val_filesize":"File exceeds max size allowed.","val_time12h":"Please enter time in 12-hour AM\/PM format (eg 8:45 AM).","val_time24h":"Please enter time in 24-hour format (eg 22:45).","val_requiredpayment":"Payment is required.","val_creditcard":"Please enter a valid credit card number.","currency_code":"USD","currency_thousands":",","currency_decimal":".","currency_symbol":"$","currency_symbol_pos":"left"}
+/* ]]> */
+</script>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="pswp__bg"></div>
+<div class="pswp__scroll-wrap">
+<div class="pswp__container">
+<div class="pswp__item"></div>
+<div class="pswp__item"></div>
+<div class="pswp__item"></div>
+</div>
+<div class="pswp__ui pswp__ui--hidden">
+<div class="pswp__top-bar">
+<div class="pswp__counter"></div>
+<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title="Share"></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+<div class="pswp__preloader">
+<div class="pswp__preloader__icn">
+<div class="pswp__preloader__cut">
+<div class="pswp__preloader__donut"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+<div class="pswp__share-tooltip"></div>
+</div>
+<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+</button>
+<div class="pswp__caption">
+<div class="pswp__caption__center"></div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

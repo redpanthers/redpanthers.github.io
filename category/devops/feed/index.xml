@@ -1,0 +1,459 @@
+ <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>DevOps &#8211; Red Panthers</title>
+	<atom:link href="/category/devops/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description>Experts in Ruby on Rails Development</description>
+	<lastBuildDate>Wed, 27 Sep 2017 06:17:21 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.7</generator>
+
+<image>
+	<url>/wp-content/uploads/2017/12/rp-logo.png</url>
+	<title>DevOps &#8211; Red Panthers</title>
+	<link>/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Background Workers using Crontab</title>
+		<link>/background-workers-using-crontab/</link>
+				<comments>/background-workers-using-crontab/#comments</comments>
+				<pubDate>Wed, 27 Sep 2017 06:17:21 +0000</pubDate>
+		<dc:creator><![CDATA[tony]]></dc:creator>
+				<category><![CDATA[DevOps]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3910</guid>
+				<description><![CDATA[<p>Scheduling background jobs is a common task in rails application development. Eventually what we want is a cron job which runs the schedule jobs. cron is the system process which will automatically perform tasks for you according to a set schedule. The schedule is called the crontab, which is also the name of the program&#8230;</p>
+<p>The post <a rel="nofollow" href="/background-workers-using-crontab/">Background Workers using Crontab</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p>Scheduling background jobs is a common task in rails application development. Eventually what we want is a cron job which runs the schedule jobs.</p>
+<p><b>cron</b> is the system process which will automatically perform tasks for you according to a set schedule. The schedule is called the <b>crontab</b>, which is also the name of the program used to edit that schedule.</p>
+<p>For example, let&#8217;s say you have a rake task which you want to run every hour.</p><pre class="crayon-plain-tag">namespace :send_update_mail do
+  desc "send_product_update_mails"
+  task :send_mail =&gt; :environment do
+    UserMailer.notify_product_updates
+  end
+end</pre><p>To edit the crontab, use this command:</p><pre class="crayon-plain-tag">crontab -e</pre><p>Now let&#8217;s add our job to the crontab. Each job you add should take up a single line.</p>
+<p>The format is very simple: six pieces of information, each separated by a space; the first five pieces of information tell <b>cron </b>when to run the job, and the last piece of information tells <b>cron</b> what the job is.</p><pre class="crayon-plain-tag">m h  dom mon dow   command</pre><p><i>m</i>, representing the minute of the hour, <i>h</i>, representing the hour of the day, <i>dom</i>, representing the day of the month, <i>mon</i>, representing the month of the year, <i>dow</i>, representing the day of the week and  <i>command</i>, which is the command to be run. For example in our case</p><pre class="crayon-plain-tag">0 * * * * /home/myname/myapp/lib/tasks/send_mail.rb</pre><p>The asterisks (&#8220;<b>*</b>&#8220;) will tell cron that for that unit of time, the job should run &#8216;every&#8217;. Save and close the file.</p>
+<p>And that&#8217;s it.</p>
+<p>But sometimes fiddling with crontab on the server can be very hectic and it would be much better if we can configure cron job in our rails application so we can keep the configuration in our source control.</p>
+<p>We have a gem called <a href="https://github.com/javan/whenever">whenever</a> that allows us to set up cron jobs from within our Rails apps using Ruby code. Let&#8217;s see how you can schedule our background jobs in Rails using Whenever to set up your schedule.</p>
+<p>Add in your Gemfile.</p><pre class="crayon-plain-tag">gem 'whenever', :require =&gt; false</pre><p>Run <span style="font-family: monospace;">bundle install</span> to install the gem.</p>
+<p>Run the <code>wheneverize</code> command in your app’s root folder to set up an initial configuration.</p><pre class="crayon-plain-tag">wheneverize .</pre><p>The <em>wheneverize</em> command will create an initial <code>config/schedule.rb</code> file.</p>
+<p>Now add following to <em>schedule.rb</em></p><pre class="crayon-plain-tag">every 1.hour do
+  rake 'send_update_mail:send_mail'
+end</pre><p></p>
+<h3>A whenever plugin for mina</h3>
+<p>The gem <code>mina-whenever</code>is a whenever plugin for <a href="https://github.com/mina-deploy/mina">mina</a>.</p>
+<p>Add this line to your application&#8217;s Gemfile and run <code>bundle install</code></p><pre class="crayon-plain-tag">gem 'mina-whenever'</pre><p>Modify your deploy.rb</p>
+<div class="highlight highlight-source-ruby">
+<pre class="crayon-plain-tag">require 'mina/whenever'
+
+desc "Deploys the current version to the server."
+task :deploy do
+  deploy do
+    .........
+
+    on :launch do
+      invoke :'sidekiq:restart'
+      .....
+    end
+  end
+end</pre></p>
+<h2>Drawback</h2>
+<p>This rake task-based approach can have a potential drawback of extra memory consumption. When crontab runs <code>rake</code> or <code>rails runner</code>, it is booting up a full instance of our rails application to access relevant models and associations. It is memory expensive especially when your code base is huge and using a considerable number of gems. In a nutshell, the entire app and dependencies are loaded for every task that runs.</p>
+<p>Imagine if you have scheduled <code>n</code> number of background workers to start at a given point of time in our main application server. This could end up being too resource expensive that our application might become unusable for the user.</p>
+<h2>How to fix?</h2>
+<p>1) Start another server to schedule jobs and another server to consume the jobs.</p>
+<p>2) Create another Ruby project that would add the messages to our Redis queue to schedule the tasks.</p>
+<p>3) Offload that to another language like Crystal, which is more efficient and schedule jobs independent of our Rails app.</p>
+<p>4)  Use a sidekiq or other background job to schedule which takes less RAM</p>
+<p>1st would be the easiest solution as it would keep our codebase same. (Heroku works like this)<br />
+2nd and 3rd are recommended if you are looking to keep it on a single server and keep the cost down until the business scale.</p>
+<p>&nbsp;</p>
+<h2>References</h2>
+<ul>
+<li><a href="http://ruthienachmany.github.io/blog/2013/08/10/sidekiq-redis-cron-jobs/">http://ruthienachmany.github.io/blog/2013/08/10/sidekiq-redis-cron-jobs/</a></li>
+<li><a href="https://github.com/javan/whenever">https://github.com/javan/whenever</a></li>
+</ul>
+</div>
+<p>The post <a rel="nofollow" href="/background-workers-using-crontab/">Background Workers using Crontab</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/background-workers-using-crontab/feed/</wfw:commentRss>
+		<slash:comments>4</slash:comments>
+							</item>
+		<item>
+		<title>Using mina to deploy a particular commit</title>
+		<link>/using-mina-deploy-particular-commit/</link>
+				<comments>/using-mina-deploy-particular-commit/#respond</comments>
+				<pubDate>Sun, 10 Sep 2017 06:24:45 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[DevOps]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3522</guid>
+				<description><![CDATA[<p>Mina is our tool of choice when it comes to automating our deployment. It might not be the best tool out there, but it is enough to get us started. Single server or multi server, we love Mina. In most of uses cases if something fail in production we just need to rollback to one&#8230;</p>
+<p>The post <a rel="nofollow" href="/using-mina-deploy-particular-commit/">Using mina to deploy a particular commit</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p>Mina is our tool of choice when it comes to automating our deployment. It might not be the best tool out there, but it is enough to get us started. Single server or multi server, we love Mina.</p>
+<p>In most of uses cases if something fail in production we just need to rollback to one or two version before to it. But recently we had a case in which we had to revert to version order than the previous 5 version (5 is default no of versions stored). The quick thing that we did at that point is copy of master called temp-master branch and changed master to the version that we wanted and had the new master deployed.</p>
+<p>We didn&#8217;t like that solution much, so we decided to look for a cleaner solution. Looking at the source code of the git task inside mina, we found that mina had an option to deploy a particular git commit. The config was <code>set :commit, HASH</code> (Thee cheers to the contributors to mina for having that).</p>
+<p>Now that made our life easier for the future. We just added the following line to our deploy.rb</p>
+<p><code>set :commit, ENV['COMMIT']</code></p>
+<p>so now we can deploy a particular hash by passing that hash as an environment variable.</p>
+<p><code>mina deploy COMMIT=thegitcommithash</code></p>
+<p>note: If no hash is passed (eg: <code>mina deploy</code>), it would just deploy the master.</p>
+<p>&nbsp;</p>
+<p>The post <a rel="nofollow" href="/using-mina-deploy-particular-commit/">Using mina to deploy a particular commit</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/using-mina-deploy-particular-commit/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+							</item>
+		<item>
+		<title>Deploying Rails application on AWS, using Nginx, Puma and Mina</title>
+		<link>/deploying-rails-application-aws-using-nginx-puma-mina/</link>
+				<comments>/deploying-rails-application-aws-using-nginx-puma-mina/#comments</comments>
+				<pubDate>Wed, 24 May 2017 07:44:18 +0000</pubDate>
+		<dc:creator><![CDATA[pankaj]]></dc:creator>
+				<category><![CDATA[DevOps]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=2150</guid>
+				<description><![CDATA[<p>In this tutorial we are going to setup an AWS EC2 instance for deployment of rails application. Server Setup Following is the setup instruction for ubuntu 16.04 using ruby 2.4, Postgres 9.6 and rails 5. Installing Ruby Setting up dependencies for ruby. [crayon-5f53f0095e11b403509599/] Next step is to install ruby using RVM. [crayon-5f53f0095e125121205507/] Last step is&#8230;</p>
+<p>The post <a rel="nofollow" href="/deploying-rails-application-aws-using-nginx-puma-mina/">Deploying Rails application on AWS, using Nginx, Puma and Mina</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p>In this tutorial we are going to setup an AWS EC2 instance for deployment of rails application.</p>
+<h2>Server Setup</h2>
+<p>Following is the setup instruction for ubuntu 16.04 using ruby 2.4, Postgres 9.6 and rails 5.</p>
+<h3>Installing Ruby</h3>
+<p>Setting up dependencies for ruby.</p><pre class="crayon-plain-tag">sudo apt-get update
+sudo apt-get install git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties libffi-dev nodejs</pre><p>Next step is to install ruby using RVM.</p><pre class="crayon-plain-tag">sudo apt-get install libgdbm-dev libncurses5-dev automake libtool bison libffi-dev
+gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+curl -sSL https://get.rvm.io/ | bash -s stable
+source ~/.rvm/scripts/rvm
+rvm install 2.4.0
+rvm use 2.4.0 --default</pre><p>Last step is to install bundler.</p><pre class="crayon-plain-tag">gem install bundler</pre><p></p>
+<h3>Installing Rails</h3>
+<p>Installing NodeJS, this lets you use Coffee script and the <a href="http://guides.rubyonrails.org/asset_pipeline.html">Asset Pipeline</a> in Rails which combines and minifies your javascript to provide a faster production environment.</p><pre class="crayon-plain-tag">curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+sudo apt-get install -y nodejs</pre><p>Next is to install rails.</p><pre class="crayon-plain-tag">gem install rails -v 5.0.1</pre><p>You can verify the installation of rails version.</p><pre class="crayon-plain-tag">rails -v
+# Rails 5.0.1</pre><p></p>
+<h3>Installing PostgreSQL</h3>
+<p></p><pre class="crayon-plain-tag">sudo sh -c "echo 'deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main' &gt; /etc/apt/sources.list.d/pgdg.list"
+wget --quiet -O - http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | sudo apt-key add -
+sudo apt-get update
+sudo apt-get install postgresql-common
+sudo apt-get install postgresql-9.5 libpq-dev</pre><p>The postgres installation doesn&#8217;t setup a user for you, so you&#8217;ll need to follow these steps to create a user with permission to create databases.</p><pre class="crayon-plain-tag">sudo -u postgres createuser pankaj -s</pre><p></p>
+<h3>Install Nginx</h3>
+<p></p><pre class="crayon-plain-tag">sudo apt-get update
+sudo apt-get install nginx</pre><p>Following are some basic commands to manage Nginx:</p><pre class="crayon-plain-tag">#Stop Nginx
+sudo systemctl stop nginx
+
+#Start Nginx
+sudo systemctl start nginx
+
+#Restart Nginx
+sudo systemctl restart nginx</pre><p></p>
+<h2>Nginx Configuration</h2>
+<p>First disable default site by removing the symlink.</p><pre class="crayon-plain-tag">sudo rm /etc/nginx/sites-enabled/default</pre><p>Now create a new virtual host config file.</p><pre class="crayon-plain-tag">cd /etc/nginx/sites-available/
+touch my_app.conf</pre><p>edit the <em>my_app.conf</em> file:</p><pre class="crayon-plain-tag">upstream my_app {
+  server unix:///var/run/my_app.sock; #path to puma socket file
+}
+
+server {
+  listen 80;
+  server_name my_app_url.com; # change to match your URL
+  root /var/www/my_app/public; # I assume your app is located at that location
+
+  location / {
+    proxy_pass http://my_app;/ # match the name of upstream directive which is defined above
+    proxy_set_header Host $host;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+  }
+
+  location ~* ^/assets/ {
+    # Per RFC2616 - 1 year maximum expiry
+    expires 1y;
+    add_header Cache-Control public;
+
+    # Some browsers still send conditional-GET requests if there's a
+    # Last-Modified header or an ETag header even if they haven't
+    # reached the expiry date sent in the Expires header.
+    add_header Last-Modified "";
+    add_header ETag "";
+    break;
+  }
+}</pre><p></p>
+<h2>Puma Configuration</h2>
+<p>Change <em>config/puma.config</em> file according to following example:</p><pre class="crayon-plain-tag"># Change to match your CPU core count
+workers 2
+
+# Min and Max threads per worker
+threads 1, 6
+
+app_dir = File.expand_path("../..", __FILE__)
+shared_dir = "#{app_dir}/shared"
+
+# Default to production
+rails_env = ENV['RAILS_ENV'] || "production"
+environment rails_env
+
+# Set up socket location
+bind "unix://#{shared_dir}/sockets/puma.sock"
+
+# Logging
+stdout_redirect "#{shared_dir}/log/puma.stdout.log", "#{shared_dir}/log/puma.stderr.log", true
+
+# Set master PID and state locations
+pidfile "#{shared_dir}/pids/puma.pid"
+state_path "#{shared_dir}/pids/puma.state"
+activate_control_app
+
+on_worker_boot do
+  require "active_record"
+  ActiveRecord::Base.connection.disconnect! rescue ActiveRecord::ConnectionNotEstablished
+  ActiveRecord::Base.establish_connection(YAML.load_file("#{app_dir}/config/database.yml")[rails_env])
+end</pre><p></p>
+<h3>Create puma upstart script</h3>
+<p>Let&#8217;s create an Upstart init script so we can easily start and stop Puma.</p><pre class="crayon-plain-tag">cd ~
+wget https://raw.githubusercontent.com/puma/puma/master/tools/jungle/upstart/puma-manager.conf
+wget https://raw.githubusercontent.com/puma/puma/master/tools/jungle/upstart/puma.conf</pre><p>Now open the provided <code>puma.conf</code> file, so we can configure the Puma deployment user.</p><pre class="crayon-plain-tag">vi puma.conf</pre><p>Look for the two lines that specify <code>setuid</code> and <code>setgid</code>, and replace &#8220;apps&#8221; with the name of your deployment user and group.</p><pre class="crayon-plain-tag">setuid ubuntu
+setgid ubuntu</pre><p>Now copy the scripts to the Upstart services directory.</p><pre class="crayon-plain-tag">sudo cp puma.conf puma-manager.conf /etc/init</pre><p>The <code>puma-manager.conf</code> script references <code>/etc/puma.conf</code> for the applications that it should manage. Let&#8217;s create and edit that inventory file now.</p><pre class="crayon-plain-tag">sudo vi /etc/puma.conf</pre><p>Each line in this file should be the path to an application that you want <code>puma-manager</code> to manage. Add the path to your application now. For example.</p><pre class="crayon-plain-tag">/path_to_application</pre><p>Jungle upstart script provides following commands to manage puma app server:</p><pre class="crayon-plain-tag">#Start Puma
+sudo start puma-manager
+
+#Stop Puma
+sudo stop puma-manager
+
+#Restart Puma
+sudo restart puma-manager</pre><p></p>
+<h2>Install Mina</h2>
+<p>Add in your Gemfile.</p><pre class="crayon-plain-tag">gem 'mina'</pre><p>and run <em>bundle install</em> to install mina.</p>
+<h3>Create deployment script</h3>
+<p></p><pre class="crayon-plain-tag">mina init</pre><p>It will create <em>config/deploy.rb, </em>let&#8217;s edit it as following:</p><pre class="crayon-plain-tag">require 'mina/rails'
+require 'mina/git'
+require 'mina/rvm'
+
+set :user, 'ubuntu' #deploy user
+set :application_name, 'my app'
+set :domain, 'myapp.com'
+set :identity_file, 'myapp.pem' # ec2 instance key file
+set :deploy_to, '/var/www/my_app' #path to app
+set :app_path, lambda { "#{fetch(:deploy_to)}/#{fetch(:current_path)}" }
+set :repository, 'git@github.com:example/myapp.git' #Remote Repo Path
+set :branch, 'master'
+set :shared_paths, ['log', 'tmp']
+set :shared_dirs, fetch(:shared_dirs, []).push('tmp')
+
+task :environment do
+  invoke :'rvm:use', 'ruby-2.4.0@default'
+end
+
+
+task :setup do
+  #create the folder structure
+end
+
+
+desc "Deploys the current version to the server."
+task :deploy do
+  deploy do
+    invoke :'git:clone'
+    invoke :'deploy:link_shared_paths'
+    invoke :'bundle:install'
+    invoke :'rails:db_migrate'
+    invoke :'rails:assets_precompile'
+    invoke :'deploy:cleanup'
+
+    on :launch do
+      invoke :'puma:restart'
+    end
+  end
+end
+
+namespace :puma do
+  desc "Start the application"
+  task :start do
+    command 'echo "-----&gt; Start Puma"'
+    command "sudo start puma-manager", :pty =&gt; false
+  end
+
+  desc "Stop the application"
+  task :stop do
+    command 'echo "-----&gt; Stop Puma"'
+    command "sudo stop puma-manager"
+  end
+
+  desc "Restart the application"
+  task :restart do
+    command 'echo "-----&gt; Restart Puma"'
+    command "sudo restart puma-manager"
+  end
+end</pre><p>Now to setup directory structure run:</p><pre class="crayon-plain-tag">mina setup --verbose</pre><p>To deploy the application run:</p><pre class="crayon-plain-tag">mina deploy --trace</pre><p>&nbsp;</p>
+<p>REFERENCES:</p>
+<p><a href="https://gorails.com/setup/ubuntu/16.04">https://gorails.com/setup/ubuntu/16.04</a></p>
+<p><a href="https://github.com/mina-deploy/mina">https://github.com/mina-deploy/mina</a></p>
+<p><a href="https://github.com/puma/puma">https://github.com/puma/puma</a></p>
+<p>&nbsp;</p>
+<p>The post <a rel="nofollow" href="/deploying-rails-application-aws-using-nginx-puma-mina/">Deploying Rails application on AWS, using Nginx, Puma and Mina</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/deploying-rails-application-aws-using-nginx-puma-mina/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+							</item>
+		<item>
+		<title>[Tip] Mina: Find last git commit released</title>
+		<link>/tip-mina-find-last-git-commit-released/</link>
+				<comments>/tip-mina-find-last-git-commit-released/#respond</comments>
+				<pubDate>Wed, 24 May 2017 07:43:31 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[DevOps]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=2499</guid>
+				<description><![CDATA[<p>A project that we were handling hadn&#8217;t had a deployment in some time. So we were confused on what all commits were going to go to production ( bad karma for us for not keeping a release or change log). We use mina for all our deployment as we found it to be faster that&#8230;</p>
+<p>The post <a rel="nofollow" href="/tip-mina-find-last-git-commit-released/">[Tip] Mina: Find last git commit released</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p>A project that we were handling hadn&#8217;t had a deployment in some time. So we were confused on what all commits were going to go to production ( bad karma for us for not keeping a release or change log). We use <a href="https://github.com/mina-deploy/mina">mina</a> for all our deployment as we found it to be faster that Capistrano. So we were sure that there would be something on our server to help us settle this dilemma. We finally solved this by going through the various folders and files.</p>
+<p>Edit the file inside the file with your branch name located at <strong>/path/to/project/</strong>scm<strong>/refs/heads</strong>. Like for example if you have your project in <strong>/var/www</strong> folder and you are deploying master then you should edit the file called master found at the following location.<code><strong>/var/www/project/</strong>scm<strong>/refs/heads/master</strong></code> that file would have only one line and that&#8217;s the last git commit released.</p>
+<p>&nbsp;</p>
+<p>The post <a rel="nofollow" href="/tip-mina-find-last-git-commit-released/">[Tip] Mina: Find last git commit released</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/tip-mina-find-last-git-commit-released/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+							</item>
+		<item>
+		<title>Deploying Sidekiq to Ubuntu 16.04</title>
+		<link>/deploying-sidekiq-ubuntu-16-04/</link>
+				<comments>/deploying-sidekiq-ubuntu-16-04/#respond</comments>
+				<pubDate>Mon, 07 Nov 2016 13:56:02 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[DevOps]]></category>
+		<category><![CDATA[Rails]]></category>
+		<category><![CDATA[deployment]]></category>
+		<category><![CDATA[linux]]></category>
+		<category><![CDATA[RVM]]></category>
+		<category><![CDATA[ubuntu]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=605</guid>
+				<description><![CDATA[<p>Sidekiq is a popular background processing tool available in Ruby. It&#8217;s fast, robust and reliable compared to other solutions out there. Sidekiq run as a process outside of rails (but including the rails environment), which means it doesn&#8217;t start when you start your rails application. During development, we start sidekiq in another terminal (or tab) using&#8230;</p>
+<p>The post <a rel="nofollow" href="/deploying-sidekiq-ubuntu-16-04/">Deploying Sidekiq to Ubuntu 16.04</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p>Sidekiq is a popular background processing tool available in Ruby. It&#8217;s fast, robust and reliable compared to other solutions out there. Sidekiq run as a process outside of rails (but including the rails environment), which means it doesn&#8217;t start when you start your rails application. During development, we start sidekiq in another terminal (or tab) using the command</p><pre class="crayon-plain-tag">bundle exec sidekiq</pre><p>to run it as a daemon we use the -d option</p><pre class="crayon-plain-tag">bundle exec sidekiq -d</pre><p>To kill a sidekiq daemon, you need to do  the PID of the sidekiq process. When a sidekiq process starts it enters its pid to file which can be found at</p><pre class="crayon-plain-tag">/path/to/rails/app/tmp/pid/sidekiq.pid</pre><p>So the command to stop it would be</p><pre class="crayon-plain-tag">pkill -F /path/to/rails/app/tmp/pid/sidekiq.pid</pre><p>But making it a daemon is not a good idea, as there is no code from sidekiq to restart the process when it fails or exits on its own. So in ubuntu, which is our favorite OS for the production server, we make sidekiq a <strong>systemd</strong> process.</p>
+<p>Before we make it into a service and if you are using rvm you need to create a wrapper for systemd so that ruby with all the gems are available for it.</p><pre class="crayon-plain-tag">rvm wrapper 2.3.1 systemd bundle</pre><p>Once that is done you need to create a <strong>sidekiq.service</strong> file under your &#8216;<strong>/etc/systemd/system/</strong>&#8216;. You can find the configuration file with default settings <a href="https://github.com/redpanthers/config-files/blob/master/sidekiq/sidekiq.service">here</a>.</p>
+<p>&nbsp;</p>
+<p>So that was a bit  from me on Sidekiq.Hope it helps you some way in further understanding sidekiq.</p>
+<p>The post <a rel="nofollow" href="/deploying-sidekiq-ubuntu-16-04/">Deploying Sidekiq to Ubuntu 16.04</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/deploying-sidekiq-ubuntu-16-04/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+							</item>
+		<item>
+		<title>Mina: Faster deployment and remote server automation</title>
+		<link>/mina-faster-deployment-remote-server-automation/</link>
+				<comments>/mina-faster-deployment-remote-server-automation/#respond</comments>
+				<pubDate>Tue, 13 Sep 2016 06:59:08 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Beginners]]></category>
+		<category><![CDATA[DevOps]]></category>
+		<category><![CDATA[Rails]]></category>
+		<category><![CDATA[aws]]></category>
+		<category><![CDATA[deployment]]></category>
+		<category><![CDATA[devops]]></category>
+		<category><![CDATA[digital ocean]]></category>
+		<category><![CDATA[linux]]></category>
+		<category><![CDATA[mina]]></category>
+		<category><![CDATA[rake]]></category>
+		<category><![CDATA[shell]]></category>
+		<category><![CDATA[ubuntu]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=495</guid>
+				<description><![CDATA[<p>Even though we use CodeShip/Circle CI/Jenkins for continuous integration, we still need to write scripts to automate our deployment. We also need to write small commands to clear cache, restart queues, etc. It&#8217;s always a good practice to not have to enter the server directly but to have it done through scripts. There are many tools&#8230;</p>
+<p>The post <a rel="nofollow" href="/mina-faster-deployment-remote-server-automation/">Mina: Faster deployment and remote server automation</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p>Even though we use CodeShip/Circle CI/Jenkins for continuous integration, we still need to write scripts to automate our deployment. We also need to write small commands to clear cache, restart queues, etc. It&#8217;s always a good practice to not have to enter the server directly but to have it done through scripts. There are many tools available for this purpose (in multiple languages) like Capistrano, Vlad, etc.</p>
+<p><a href="http://nadarei.co/mina/">Mina</a> is a similar tool, but faster. The reason why it runs faster is because it generates a bash script, uploads it to the server and run there, rather than creating a new ssh session and run every command one by one. <strong>Mina is one of our default tools at Red Panthers</strong>.</p>
+<p>To use mina in your project, add mina to your Gemfile.</p><pre class="crayon-plain-tag">gem 'mina'</pre><p>and to get started do</p><pre class="crayon-plain-tag">mina init</pre><p>&nbsp;</p>
+<p><a href="http://nadarei.co/mina/setting_up_a_project.html">http://nadarei.co/mina/setting_up_a_project.html</a><br />
+<a href="https://www.digitalocean.com/community/tutorials/how-to-deploy-with-mina-getting-started">https://www.digitalocean.com/community/tutorials/how-to-deploy-with-mina-getting-started</a></p>
+<p>&nbsp;</p>
+<p>Having a one step deployment is an important requirement for any project so have one ready using mina or capistrano.</p>
+<p>&nbsp;</p>
+<p>Note:</p>
+<p><strong>Assets pre-compile</strong></p><pre class="crayon-plain-tag">&lt;span class=&quot;pln&quot;&gt;invoke &lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;str&quot;&gt;'rails:assets_precompile'&lt;/span&gt;</pre><p>&nbsp;</p>
+<p><strong>Run another rake task</strong></p><pre class="crayon-plain-tag">invoke 'production_backup' if RAILS_ENV == 'production'</pre><p><strong>Run shell commands</strong></p><pre class="crayon-plain-tag">queue "sudo service myapp restart"</pre><p>The syntax queue is referring to the fact that, the commands are all made into a single shell script and then later executed together.</p>
+<p>&nbsp;</p>
+<p>The post <a rel="nofollow" href="/mina-faster-deployment-remote-server-automation/">Mina: Faster deployment and remote server automation</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/mina-faster-deployment-remote-server-automation/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+							</item>
+		<item>
+		<title>Enable log rotation within the rails application</title>
+		<link>/enable-log-rotation-within-rails-application/</link>
+				<comments>/enable-log-rotation-within-rails-application/#respond</comments>
+				<pubDate>Wed, 27 Jul 2016 05:00:19 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Beginners]]></category>
+		<category><![CDATA[DevOps]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[deployment]]></category>
+		<category><![CDATA[devops]]></category>
+		<category><![CDATA[linux]]></category>
+		<category><![CDATA[logging]]></category>
+		<category><![CDATA[Logs]]></category>
+		<category><![CDATA[management]]></category>
+		<category><![CDATA[Production]]></category>
+		<category><![CDATA[rails]]></category>
+		<category><![CDATA[rotate]]></category>
+		<category><![CDATA[scripting]]></category>
+		<category><![CDATA[shell]]></category>
+		<category><![CDATA[space]]></category>
+		<category><![CDATA[unix]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=359</guid>
+				<description><![CDATA[<p>Any person who has worked with a rails application for a good amount of time would have faced the issue of log files growing and consuming the entire space in the hard disk. Although this sounds funny, it does happen if you do not place a log management for your rails app (in production). You can manage your logs using&#8230;</p>
+<p>The post <a rel="nofollow" href="/enable-log-rotation-within-rails-application/">Enable log rotation within the rails application</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p>Any person who has worked with a rails application for a good amount of time would have faced the issue of log files growing and consuming the entire space in the hard disk. Although this sounds funny, it does happen if you do not place a log management for your rails app (in production). You can manage your logs using log rotation. Do note that log rotation is not required if you host your app in <a href="http://heroku.com/">heroku</a>, as heroku won&#8217;t let you store files for more than 15 minutes in their server. You also do not need it if you are using some third party services like <a href="https://www.loggly.com/docs/rails-logs/">loggly</a> or <a href="https://papertrailapp.com/">papertrail</a> to manage your logs .</p>
+<p>In the unix world, you can use log rotate service, which would be installed by default in all linux servers. But we at Red Panthers feel that everything that touches or involves our rails application should be placed along with our rails application as much as possible. If you feel the same way, it can be achieved by placing the code below in the production.rb file.</p><pre class="crayon-plain-tag">config.logger = Logger.new( Rails.root.join("log", Rails.env + ".log" ), 5 , 100 * 1024 * 1024 )</pre><p>The Logger.new accepts three parameters:</p>
+<ol>
+<li>The file name, which would be <em>production.log</em></li>
+<li>The number of files you want to keep</li>
+<li>The size of each file in bytes. (100 * 1024*1024 means 100 MB)</li>
+</ol>
+<p>So, when the time comes to add the 6th 100 MB log file, it will delete the oldest.</p>
+<p><strong>Unix Way</strong></p>
+<p>For those who still want to use the unix log rotate, they should create a new config file at <code>/etc/logrotate.d/myrailsapp-config</code> as shown below</p><pre class="crayon-plain-tag">$ cat /etc/logrotate.d/myrailsapp-config
+/var/www/myrailsapp/current/log/*.log {
+  compress
+  copytruncate
+  daily
+  dateext
+  delaycompress
+  missingok
+  rotate 90
+}</pre><p>In case you were wondering, here are what these options mean:</p>
+<ul>
+<li><b>compress</b> – Compress logs using gzip</li>
+<li><b>copytruncate</b> – Copy the log out of the way, and then truncate the existing logs</li>
+<li><b>daily</b> – Rotate daily</li>
+<li><b>dateext</b> – Add the date the logs were rotated as the extension instead of a number</li>
+<li><b>delaycompress</b> – Skip compressing the log until the following day</li>
+<li><b>missingok</b> – Do not raise an error when there is a missing log file</li>
+<li><b>rotate 90</b> – Keep up to 90 days worth of logs</li>
+</ul>
+<p>The post <a rel="nofollow" href="/enable-log-rotation-within-rails-application/">Enable log rotation within the rails application</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/enable-log-rotation-within-rails-application/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+							</item>
+	</channel>
+</rss>

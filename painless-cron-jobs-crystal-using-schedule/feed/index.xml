@@ -1,0 +1,88 @@
+ <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>
+	Comments on: Painless Cron jobs in Crystal using Schedule	</title>
+	<atom:link href="/painless-cron-jobs-crystal-using-schedule/feed/" rel="self" type="application/rss+xml" />
+	<link>/painless-cron-jobs-crystal-using-schedule/</link>
+	<description>Experts in Ruby on Rails Development</description>
+	<lastBuildDate>Fri, 08 Sep 2017 04:16:07 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.7</generator>
+			<item>
+				<title>
+				By: Tony Vincent T Y				</title>
+				<link>/painless-cron-jobs-crystal-using-schedule/#comment-62</link>
+		<dc:creator><![CDATA[Tony Vincent T Y]]></dc:creator>
+		<pubDate>Fri, 08 Sep 2017 04:16:07 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3461#comment-62</guid>
+					<description><![CDATA[Thank you, Faustino. Edited post]]></description>
+		<content:encoded><![CDATA[<p>Thank you, Faustino. Edited post</p>
+]]></content:encoded>
+						</item>
+						<item>
+				<title>
+				By: Faustino Aguilar				</title>
+				<link>/painless-cron-jobs-crystal-using-schedule/#comment-61</link>
+		<dc:creator><![CDATA[Faustino Aguilar]]></dc:creator>
+		<pubDate>Thu, 07 Sep 2017 16:21:00 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3461#comment-61</guid>
+					<description><![CDATA[Awesome post! I didn&#039;t know Schedule shard +1
+
+A suggestion on &lt;pre&gt;&lt;code&gt;require &#039;schedule&#039;&lt;/code&gt;&lt;/pre&gt; should be &lt;pre&gt;&lt;code&gt;require &quot;schedule&quot;&lt;/code&gt;&lt;/pre&gt;]]></description>
+		<content:encoded><![CDATA[<p>Awesome post! I didn&#8217;t know Schedule shard +1</p>
+<p>A suggestion on </p><!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+
+		<div id="crayon-5f53f0554b713297946400" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+require 'schedule'</textarea></div>
+			<div class="crayon-main" style="">
+				<table class="crayon-table">
+					<tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5f53f0554b713297946400-1">1</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5f53f0554b713297946400-1"><span class="crayon-i">require</span><span class="crayon-h"> </span><span class="crayon-s">'schedule'</span></div></div></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0001 seconds] -->
+<p> should be </p><!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+
+		<div id="crayon-5f53f0554b718499934133" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+require "schedule"</textarea></div>
+			<div class="crayon-main" style="">
+				<table class="crayon-table">
+					<tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5f53f0554b718499934133-1">1</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5f53f0554b718499934133-1"><span class="crayon-i">require</span><span class="crayon-h"> </span><span class="crayon-s">"schedule"</span></div></div></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0001 seconds] -->
+<p></p>
+]]></content:encoded>
+						</item>
+			</channel>
+</rss>

@@ -1,0 +1,969 @@
+ <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>anjana &#8211; Red Panthers</title>
+	<atom:link href="/author/anjana/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description>Experts in Ruby on Rails Development</description>
+	<lastBuildDate>Mon, 16 Oct 2017 10:24:44 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.7</generator>
+
+<image>
+	<url>/wp-content/uploads/2017/12/rp-logo.png</url>
+	<title>anjana &#8211; Red Panthers</title>
+	<link>/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Observer Design Pattern in Ruby</title>
+		<link>/observer-design-pattern-ruby/</link>
+				<comments>/observer-design-pattern-ruby/#comments</comments>
+				<pubDate>Mon, 16 Oct 2017 10:24:44 +0000</pubDate>
+		<dc:creator><![CDATA[anjana]]></dc:creator>
+				<category><![CDATA[Beginners]]></category>
+		<category><![CDATA[Ruby]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=1264</guid>
+				<description><![CDATA[<p>Observer design pattern (also known as Publish/Subscribe) is a software design pattern, used when we are building a system where the state of one object affects the state of other objects. It is a key part of model-view-controller architectural pattern. In a traditional MVC ( Model-View-Controller ) architecture, a model is a subject and a view is an observer.&#8230;</p>
+<p>The post <a rel="nofollow" href="/observer-design-pattern-ruby/">Observer Design Pattern in Ruby</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p>Observer design pattern (also known as Publish/Subscribe) is a software design pattern, used when we are building a system where the state of one object affects the state of other objects. It is a key part of <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">model-view-controller</a> architectural pattern.</p>
+<p>In a traditional MVC ( Model-View-Controller ) architecture, a model is a <em class="markup--em markup--p-em">subject</em> and a view is an <em class="markup--em markup--p-em">observer</em>. A view is notified when a model changes and responds accordingly. When the subject sends observers detailed information about what has changed, indiscriminately, this is known as the <em class="markup--em markup--p-em">push model </em>of the <strong class="markup--strong markup--p-strong">Observer </strong>pattern. When a subject sends only minimal information to its observers must ask for details explicitly, this is known as the <em class="markup--em markup--p-em">pull model</em> of the <strong class="markup--strong markup--p-strong">Observer</strong> pattern.</p>
+<p><a href="http://blog.redpanthers.co/wp-content/uploads/2017/01/observer-1.png"><img class="wp-image-1459 size-full aligncenter" src="http://blog.redpanthers.co/wp-content/uploads/2017/01/observer-1.png" alt="Observer Design Pattern" width="444" height="227" /></a></p>
+<p>Ruby provides a simple mechanism to implement this design pattern using the <code>Observable</code> module. In this mechanism, the Notifier class uses the <code>Observable</code> module, which provides the methods for managing the associated observer objects.</p>
+<p>The observable object must:</p>
+<ul>
+<li>assert that it has <code>#changed</code></li>
+<li>call <code>#notify_observers</code></li>
+</ul>
+<p>An observer subscribes to updates using <a href="https://ruby-doc.org/stdlib-2.3.2/libdoc/observer/rdoc/Observable.html#method-i-add_observer">#add_observer</a>, which also specifies the method called via <a href="https://ruby-doc.org/stdlib-2.3.2/libdoc/observer/rdoc/Observable.html#method-i-notify_observers">notify observers</a>. The default method for <a href="https://ruby-doc.org/stdlib-2.3.2/libdoc/observer/rdoc/Observable.html#method-i-notify_observers">notify observers</a> is update.</p>
+<h2 class="section-header">Public Instance Methods</h2>
+<p>Instance methods are methods that are called on an instance of a class. We can use the below methods while using Observer instances.</p>
+<ul>
+<li class="method-heading"><span class="method-name">add_observer</span><span class="method-args">(observer, func=:update)</span></li>
+</ul>
+<div>
+<p style="padding-left: 60px;">Adds <code>observer</code> as an observer on this object, so that it will receive notifications.</p>
+<ul>
+<li class="method-heading"><span class="method-name">changed</span><span class="method-args">(state=true)</span></li>
+</ul>
+<div>
+<p style="padding-left: 60px;">Set the changed state of this object. Notifications will be sent only if the changed <code>state</code> is <code>true</code>.</p>
+<ul>
+<li class="method-heading"><span class="method-name">changed?</span><span class="method-args">()</span></li>
+</ul>
+<div>
+<p style="padding-left: 60px;">Returns true if this object’s state has been changed since the last notify_observers call.</p>
+<ul>
+<li class="method-heading"><span class="method-name">count_observers</span><span class="method-args">()</span></li>
+</ul>
+<p style="padding-left: 60px;">Return the number of observers associated with this object.</p>
+<ul>
+<li class="method-heading"><span class="method-name">delete_observer</span><span class="method-args">(observer)</span></li>
+</ul>
+<p style="padding-left: 60px;">Remove <code>observer</code> as an observer on this object so that it will no longer receive notifications.</p>
+<ul>
+<li class="method-heading"><span class="method-args"><span class="method-name">delete_observers</span>()</span></li>
+</ul>
+<p style="padding-left: 60px;">Remove all observers associated with this object.</p>
+<ul>
+<li>notify_observers(*arg)</li>
+</ul>
+<div style="padding-left: 60px;">Notify observers of a change in state <strong>if</strong> this object’s changed state is <code>true.</code></div>
+</div>
+</div>
+</div>
+<h2>How it works</h2>
+<p>First, we have to create a basic structure of the Notifier class which will act as an Observer. The <em>update()</em> method is the callback that the <a href="http://ruby-doc.org/stdlib-1.9.3/libdoc/observer/rdoc/Observable.html">Observable</a> module will use when notifying changes to the observer, and the method name needs to be <em>update()</em>.</p>
+<p>Let’s take an example of an application which keeps track of the bike mileage and reminds us of when we need to take the vehicle in for a scheduled bike service.</p><pre class="crayon-plain-tag">require 'observer'
+
+class Bike
+  include Observable
+
+  attr_reader :mileage,:service
+
+  def initialize(mileage =0, service = 3000)
+    @mileage,@service = mileage, service
+    add_observer(Notifier.new)
+  end
+
+  def log(miles)
+    @mileage += miles
+    notify_observers(self, miles)
+  end
+end</pre><p>Next, write the update method in Notifier class</p><pre class="crayon-plain-tag">class Notifier
+  def update(bike, miles)
+    puts "The bike has logged #{miles} miles, totaling #{bike.mileage} miles traveled."
+    puts "The bike needs to be taken in for a service!" if bike.service &lt;= bike.mileage
+  end
+end</pre><p></p>
+<p class=" language-ruby">By running the code we can see</p>
+<p></p><pre class="crayon-plain-tag">bike = Bike.new(2300, 3000)
+bike.log(100)
+=&gt; "The bike has logged 100 miles, totaling 2400 miles traveled."
+bike.log(600)
+=&gt; "The bike has logged 300 miles, totaling 3000 miles traveled."
+=&gt; "The bike needs to be taken in for service!"</pre><p></p>
+<p class=" language-ruby">First, we create an instance of the <i>Bike</i> class with 2300 miles, and we set that it needs to be taken for service when it reaches 3000 miles.</p>
+<p class=" language-ruby">I hope this example helps you understand ruby observer design pattern better.</p>
+<p>Let me know in comments if you have any doubts or any implementation issues you have been facing recently. Thanks for reading!</p>
+<h2 class=" language-ruby">References</h2>
+<ul>
+<li><a href="https://ruby-doc.org/stdlib-2.3.2/libdoc/observer/rdoc/Observable.html#module-Observable-label-Mechanism">https://ruby-doc.org/stdlib-2.3.2/libdoc/observer/rdoc/Observable.html#module-Observable-label-Mechanism</a></li>
+<li><a href="https://cbabhusal.wordpress.com/2015/10/03/gang-of-four-observer-design-pattern-in-ruby/">https://cbabhusal.wordpress.com/2015/10/03/gang-of-four-observer-design-pattern-in-ruby/</a></li>
+</ul>
+<p>The post <a rel="nofollow" href="/observer-design-pattern-ruby/">Observer Design Pattern in Ruby</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/observer-design-pattern-ruby/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+							</item>
+		<item>
+		<title>Cheat sheet for managing files from Ruby</title>
+		<link>/cheat-sheet-for-managing-files-from-ruby/</link>
+				<comments>/cheat-sheet-for-managing-files-from-ruby/#comments</comments>
+				<pubDate>Fri, 22 Sep 2017 17:34:15 +0000</pubDate>
+		<dc:creator><![CDATA[anjana]]></dc:creator>
+				<category><![CDATA[Rails]]></category>
+		<category><![CDATA[Ruby]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=1596</guid>
+				<description><![CDATA[<p>In this Cheat sheet, you will learn managing files from Ruby. Files are used for storing the Data for a Long time Period. And the files can contain any type of information means they can Store the text, any Images or Pictures or any data in any Format. It is associated with class IO File&#8230;</p>
+<p>The post <a rel="nofollow" href="/cheat-sheet-for-managing-files-from-ruby/">Cheat sheet for managing files from Ruby</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p>In this Cheat sheet, you will learn managing files from Ruby.</p>
+<p>Files are used for storing the Data for a Long time Period. And the files can contain any type of information means they can Store the text, any Images or Pictures or any data in any Format. It is associated with class IO File includes.</p>
+<h2><span id="Creating_a_New_File_with_Ruby" class="mw-headline">Creating a New File</span></h2>
+<p>New files are created in Ruby using the <i>new</i> method of the <i>File</i> class. The <i>new</i> method accepts two arguments, the first being the name of the file to be created and the second being the mode in which the file is to open. Like,</p>
+<p>file = File.new(&#8220;filename&#8221;, &#8220;mode&#8221;)</p>
+<p>Eg:</p><pre class="crayon-plain-tag">file = File.new("file.txt", "w")</pre><p>Supported modes are:</p>
+<table style="height: 206px;" border="1" width="314" cellspacing="0">
+<tbody>
+<tr>
+<td>r</td>
+<td>Read only access.</td>
+</tr>
+<tr>
+<td>r+</td>
+<td>Read and write access.</td>
+</tr>
+<tr>
+<td>w</td>
+<td>Write only access.</td>
+</tr>
+<tr>
+<td>w+</td>
+<td>Read and write access.</td>
+</tr>
+<tr>
+<td>a</td>
+<td>Write only access.</td>
+</tr>
+<tr>
+<td>a+</td>
+<td>Read and write access.</td>
+</tr>
+</tbody>
+</table>
+<h2><span id="Opening_Existing_Files" class="mw-headline">Opening Existing Files</span></h2>
+<p>You can open the existing files using the open method.</p>
+<p>Eg:</p><pre class="crayon-plain-tag">file = File.open(&quot;temp.txt&quot;)</pre><p>If the file is already opened, we can close it by using the close method.</p>
+<p>Eg:</p><pre class="crayon-plain-tag">file.close</pre><p></p>
+<h2>Reading and Writing Files</h2>
+<p>Once we&#8217;ve opened an existing file or created a new file we need to be able to read from and write to that file. We can read/write using different methods.</p>
+<h3>sysread Method:</h3>
+<p>You can use the method <i>sysread</i> to read the contents of a file.</p>
+<p>Eg:</p><pre class="crayon-plain-tag">file = File.new(&quot;input.txt&quot;, &quot;r&quot;)
+if file
+   content = file.sysread(10)
+   puts content
+else
+  puts &quot;cannot open the file&quot;
+end</pre><p>This statement will output the first 10 characters of the file.</p>
+<h3>syswrite Method:</h3>
+<p>You can use the method syswrite to write the contents into a file.</p>
+<p>Eg:</p><pre class="crayon-plain-tag">file = File.new(&quot;input.txt&quot;, &quot;r+&quot;)
+if file
+   file.syswrite(&quot;Hello&quot;)
+else
+   puts &quot;Unable to open file!&quot;
+end</pre><p>It writes &#8216;Hello&#8217; into the file input.txt.</p>
+<h3>each_byte Method:</h3>
+<p>This method belongs to the class <i>File</i>. The method <i>each_byte</i> is always associated with a block.</p>
+<p>Eg:</p><pre class="crayon-plain-tag">file = File.new(&quot;input.txt&quot;, &quot;r+&quot;)
+if file
+   file.syswrite(&quot;ABCDEF&quot;)
+   file.each_byte {|ch| putc ch }
+else
+   puts &quot;Unable to open file!&quot;
+end</pre><p>Characters are passed one by one to the variable ch and then displayed on the screen.</p>
+<h3>IO.readlines Method:</h3>
+<p>The class <i>File</i> is a subclass of the class IO. This method returns the contents of the file line by line.</p>
+<p>Eg:</p><pre class="crayon-plain-tag">arr = IO.readlines(&quot;input.txt&quot;)
+puts arr[0]
+puts arr[1]</pre><p>Each line of the file <i>input.txt</i> will be an element in the array arr. Therefore, arr[0] will contain the first line, whereas arr[1] will contain the second line of the file.</p>
+<h3>IO.foreach Method:</h3>
+<p>This method also returns output line by line. The difference between the method <i>foreach</i> and the method <i>readlines</i> is that the method <i>foreach</i> is associated with a block.</p>
+<p>Eg:</p><pre class="crayon-plain-tag">IO.foreach(&quot;input.txt&quot;){|block| puts block}</pre><p>This code will pass the contents of the file <i>test</i> line by line to the variable block, and then the output will be displayed on the screen.</p>
+<h2><span id="Renaming_and_Deleting_Files_in_Ruby" class="mw-headline">Renaming and Deleting Files</span></h2>
+<p>Files are renamed and deleted in Ruby using the <i>rename</i> and <i>delete</i> methods respectively. For example, we can create a new file, rename it and then delete it:</p><pre class="crayon-plain-tag">File.new("tempfile.txt", "w")
+=&gt; #&lt;File:tempfile.txt&gt;
+
+File.rename("tempfile.txt", "newfile.txt")
+=&gt; 0
+
+File.delete("newfile.txt")
+=&gt; 1</pre><p></p>
+<h2>References</h2>
+<ul>
+<li><span style="color: #333399;"><a style="color: #333399;" href="https://www.tutorialspoint.com/ruby/ruby_input_output.html">https://www.tutorialspoint.com/ruby/ruby_input_output.html</a></span></li>
+<li><span style="color: #333399;"><a style="color: #333399;" href="http://www.techotopia.com/index.php/Working_with_Files_in_Ruby">http://www.techotopia.com/index.php/Working_with_Files_in_Ruby</a></span></li>
+<li><span style="color: #333399;"><a style="color: #333399;" href="https://ruby-doc.org/core-2.2.2/File.html">https://ruby-doc.org/core-2.2.2/File.html</a></span></li>
+</ul>
+<p>The post <a rel="nofollow" href="/cheat-sheet-for-managing-files-from-ruby/">Cheat sheet for managing files from Ruby</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/cheat-sheet-for-managing-files-from-ruby/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+							</item>
+		<item>
+		<title>Rails Generators</title>
+		<link>/rails-generators/</link>
+				<comments>/rails-generators/#respond</comments>
+				<pubDate>Mon, 18 Sep 2017 17:27:20 +0000</pubDate>
+		<dc:creator><![CDATA[anjana]]></dc:creator>
+				<category><![CDATA[Beginners]]></category>
+		<category><![CDATA[Rails]]></category>
+		<category><![CDATA[ruby on rails]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=1441</guid>
+				<description><![CDATA[<p>Rails generators are used to create many files for models, controllers, views, unit tests, migrations and more. It will do some of the manual work for us. So it saves time. They can also be used to set up some basic specs for the application test suite. Running rails generate(or rails g) by itself gives&#8230;</p>
+<p>The post <a rel="nofollow" href="/rails-generators/">Rails Generators</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p>Rails generators are used to create many files for models, controllers, views, unit tests, migrations and more. It will do some of the manual work for us. So it saves time. They can also be used to set up some basic specs for the application test suite.</p>
+<p>Running <tt>rails generate(or rails g)</tt> by itself gives a list of available generators:</p><pre class="crayon-plain-tag">$ rails generate
+Usage: rails generate GENERATOR [args] [options]
+...........
+Rails:
+assets
+channel
+controller
+generator
+helper
+integration_test
+jbuilder
+job
+mailer
+migration
+model
+resource
+responders_controller
+scaffold
+scaffold_controller
+task
+.............</pre><p>The main generators that rails offers are:</p>
+<ul>
+<li>controller: The Rails controller coordinates the interaction between the user, the views, and the model.</li>
+<li>helper: Code in helpers is included in the corresponding view. We can move big loops, method calls or other logic into a method in the helper.</li>
+<li>mailer: It allows for sending and receiving emails from and to your application.</li>
+<li>migration: Rails Migration allows you to use Ruby to define changes to your database schema.</li>
+<li>model: It is Ruby class that talk to the database, store and validate data, perform the business logic.</li>
+<li>scaffold: It refers to the auto-generation of a simple set of a model, views and controller usually for a single table.</li>
+</ul>
+<p>Following is the list of options, which can be used along with generators:</p>
+<p style="padding-left: 30px;">-h, [&#8211;help] # Print generator&#8217;s options and usage<br />
+-p, [&#8211;pretend] # Run but do not make any changes<br />
+-f, [&#8211;force] # Overwrite files that already exist<br />
+-s, [&#8211;skip] # Skip files that already exist<br />
+-q, [&#8211;quiet] # Suppress status output</p>
+<h2>Generators</h2>
+<p>You can create different generators by running <em>rails g</em> in the terminal. Let&#8217;s have a look at each of them.</p>
+<ul>
+<li>rails generate model ModellName</li>
+</ul>
+<p style="padding-left: 60px;">It generates the model and the associated database table. For example, we can add a new model to the app called User with fields name and age as,</p>
+<p style="padding-left: 60px;">Eg:  rails g model User name: string age: integer</p>
+<ul>
+<li>rails generate controller ListController show edit</li>
+</ul>
+<p style="padding-left: 60px;">It generates controller. It is used if you are creating static views or non-CRUD related features. Let&#8217;s create a user controller that will manage the data flow and view for each users.</p>
+<p style="padding-left: 60px;">Eg:  rails g controller users</p>
+<ul>
+<li>rails generate scaffold ModelName ControllerName</li>
+</ul>
+<p style="padding-left: 60px;">Generates Scaffold. Let&#8217;s create a scaffold User with edit and view actions.</p>
+<p style="padding-left: 60px;">Eg:  rails g scaffold User edit view</p>
+<ul>
+<li>rails generate migration AddNewTable</li>
+</ul>
+<p style="padding-left: 60px;">Generates Table to migrate. We can create migration for adding a table as</p>
+<p style="padding-left: 60px;">Eg:  rails g migration User</p>
+<ul>
+<li>rails generate plugin PluginName</li>
+</ul>
+<p style="padding-left: 60px;">Generates Plugin.</p>
+<p style="padding-left: 60px;">Eg:  rails g plugin rails_plugin</p>
+<ul>
+<li>rails generate integration_test TestName</li>
+</ul>
+<p style="padding-left: 60px;">Generates Integration Test.</p>
+<p style="padding-left: 60px;">Eg:  rails generate integration_test User</p>
+<ul>
+<li>rails generate session_migration</li>
+</ul>
+<p style="padding-left: 60px;">Generates Session Migration.</p>
+<h2 id="creating-generators-with-generators">Creating Generators with Generators</h2>
+<p>Generators themselves have a generator:</p><pre class="crayon-plain-tag">$ rails generate generator initializer
+ create lib/generators/initializer
+ create lib/generators/initializer/initializer_generator.rb
+ create lib/generators/initializer/USAGE
+ create lib/generators/initializer/templates</pre><p>This is the generator just created:</p><pre class="crayon-plain-tag">class InitializerGenerator &lt; Rails::Generators::NamedBase
+  source_root File.expand_path("../templates", __FILE__)
+end</pre><p></p>
+<p class="">First, notice that we are inheriting from <tt>Rails::Generators::NamedBase</tt> instead of <tt>Rails::Generators::Base</tt>. This means that our generator expects at least one argument, which will be the name of the initializer.</p>
+<h2>Customizing Rails generators</h2>
+<p>We can customize it in, <code>config/application.rb</code></p><pre class="crayon-plain-tag">config.generators do |g|
+  g.orm :active_record
+  g.template_engine :erb
+  g.test_framework :test_unit, fixture: false
+  g.stylesheets false
+  g.javascripts false
+end</pre><p>So by doing the above steps will stop generating stylesheet, JavaScript, and test fixture files. We can avoid generation of unwanted files from doing these steps.</p>
+<p>I hope this article help you in some way to know about rails generators.</p>
+<h2>References</h2>
+<ul>
+<li><a href="https://learn.co/lessons/rails-generators-readme">https://learn.co/lessons/rails-generators-readme</a></li>
+<li><a href="https://www.tutorialspoint.com/ruby-on-rails/rails-generators.htm">https://www.tutorialspoint.com/ruby-on-rails/rails-generators.htm</a></li>
+<li><a href="http://www.agmprojects.com/blog/building-a-rails-generator-and-packing-it-into-a-gem">http://www.agmprojects.com/blog/building-a-rails-generator-and-packing-it-into-a-gem</a></li>
+</ul>
+<p>The post <a rel="nofollow" href="/rails-generators/">Rails Generators</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/rails-generators/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+							</item>
+		<item>
+		<title>PostgreSQL 9.6 new features</title>
+		<link>/postgresql-9-6-new-features/</link>
+				<comments>/postgresql-9-6-new-features/#respond</comments>
+				<pubDate>Fri, 15 Sep 2017 13:06:51 +0000</pubDate>
+		<dc:creator><![CDATA[anjana]]></dc:creator>
+				<category><![CDATA[Database]]></category>
+		<category><![CDATA[PostgreSQL]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=1775</guid>
+				<description><![CDATA[<p>POSTGRESQL is an open-source object-relational database system. It is not controlled by any corporation or other private entity. The source code is available free of charge. PostgreSQL supports transactions, subselects, triggers, views, foreign key referential integrity, and sophisticated locking. New features in Postgres are: Parallel execution of sequential scans, joins and aggregates. Avoid scanning pages unnecessarily during&#8230;</p>
+<p>The post <a rel="nofollow" href="/postgresql-9-6-new-features/">PostgreSQL 9.6 new features</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p><a href="http://blog.redpanthers.co/wp-content/uploads/2017/02/postgres.png"><img class="aligncenter size-full wp-image-1781" src="http://blog.redpanthers.co/wp-content/uploads/2017/02/postgres.png" alt="" width="372" height="136" /></a></p>
+<p><strong>POSTGRESQL</strong> is an open-source object-relational database system. It is not controlled by any corporation or other private entity. The source code is available free of charge. PostgreSQL supports <a href="http://searchcio.techtarget.com/definition/transaction">transaction</a>s, subselects, <a href="http://searchsqlserver.techtarget.com/definition/trigger">trigger</a>s, views, <a href="http://searchoracle.techtarget.com/definition/foreign-key">foreign key</a> referential integrity, and sophisticated locking.</p>
+<p>New features in Postgres are:</p>
+<ul>
+<li>Parallel execution of sequential scans, joins and aggregates.</li>
+<li>Avoid scanning pages unnecessarily during vacuum freeze operations.</li>
+<li>Synchronous replication now allows multiple standby servers for increased reliability.</li>
+<li>Full-text search can now search for phrases (multiple adjacent words).</li>
+<li><tt class="FILENAME">postgres_fdw</tt> now supports remote joins, sorts, <tt class="COMMAND">UPDATE</tt>s, and <tt class="COMMAND">DELETE</tt>s.</li>
+<li>Substantial performance improvements, especially in the area of scalability on multi-<acronym class="ACRONYM">CPU</acronym>-socket servers.</li>
+</ul>
+<h3>Parallel execution of sequential scans, joins and aggregates</h3>
+<p><span class="PRODUCTNAME">PostgreSQL can devise query plans which can leverage multiple CPUs in order to answer queries faster. </span>This feature is known as the parallel query. Mostly, queries that touch a large amount of data but return only a few rows to the user will get benefit by using Parallel Query. It can now execute a full table scan in multiple parallel processes, up to the limits set by the user.</p>
+<h3><strong>Avoid scanning pages unnecessarily during vacuum freeze operations</strong></h3>
+<p>Freezing of table is sometime necessary to guarantee safe transaction id wraparound. Previously it scanned all heap pages but now it will scan the pages modified only from the last seen. It is very helpful in cases of rarely written tables.</p>
+<h3>Synchronous replication now allows multiple standby servers for increased reliability</h3>
+<p>Two new options have been added to PostgreSQL&#8217;s synchronous replication feature allows it to be used to maintain consistent reads across database clusters. First, it now allows configuring groups of synchronous replicas. Second, The &#8220;remote-apply&#8221; mode creates a more consistent view of data across multiple nodes. These features support using built-in replication to maintain a set of &#8220;identical&#8221; nodes for load-balancing read workloads.</p>
+<p>These settings control the behavior of the built-in streaming replication feature. Servers will be either a Master or a Standby server. Masters can send data, while Standby(s) are always receivers of replicated data. When cascading replication is used, Standby server(s) can also be senders, optimized as well as receivers. parameters are mainly for sending and Standby servers, though some parameters have to mean only on the Master server. Settings may vary across the cluster without problems if that is required.</p>
+<h3>Full-text search can now search for phrases (multiple adjacent words)</h3>
+<p>Full Text Searching (or just <i class="FIRSTTERM">text search</i>) provides the capability to identify natural-language <i class="FIRSTTERM">documents</i> that satisfy a <i class="FIRSTTERM">query</i>, and optionally to sort them by relevance to the query. Improve <a href="https://www.postgresql.org/docs/9.6/static/textsearch.html">full-text search</a> to support searching for phrases, that is, lexemes appearing adjacent to each other in a specific order, or with a specified distance between them. A phrase-search query can be specified in <tt class="TYPE">tsquery</tt> input using the new operators <tt class="LITERAL">&lt;-&gt;</tt> and <tt class="LITERAL">&lt;<tt class="REPLACEABLE c2">N</tt>&gt;</tt>. The former means that the lexemes before and after it must appear adjacent to each other in that order. The latter means they must be exactly <tt class="REPLACEABLE c2">N</tt> lexemes apart.</p>
+<h3><tt class="FILENAME">postgres_fdw</tt> now supports remote joins, sorts, <tt class="COMMAND">UPDATE</tt>s, and <tt class="COMMAND">DELETE</tt>s</h3>
+<p>The PostgreSQL-to-PostgreSQL data federation river, postgres_fdw, has new capabilities to execute work on remote servers. By &#8220;pushing down&#8221; sorts, joins, and batch data updates, users can distribute workload across multiple PostgreSQL servers.</p>
+<p>To prepare for remote access using <tt class="FILENAME">postgres_fdw</tt>:</p>
+<ol>
+<li>Install the <tt class="FILENAME">postgres_fdw</tt> extension using <a href="https://www.postgresql.org/docs/9.3/static/sql-createextension.html">CREATE EXTENSION</a>.</li>
+<li>Create a foreign server object, using <a href="https://www.postgresql.org/docs/9.3/static/sql-createserver.html">CREATE SERVER</a>, to represent each remote database you want to connect to. Specify connection information, except <tt class="LITERAL">user</tt> and <tt class="LITERAL">password</tt>, as options of the server object.</li>
+<li>Create a user mapping, using <a href="https://www.postgresql.org/docs/9.3/static/sql-createusermapping.html">CREATE USER MAPPING</a>, for each database user you want to allow to access each foreign server. Specify the remote username and password to use as <tt class="LITERAL">user</tt> and <tt class="LITERAL">password</tt> options of the user mapping.</li>
+<li>Create a foreign table, using <a href="https://www.postgresql.org/docs/9.3/static/sql-createforeigntable.html">CREATE FOREIGN TABLE</a>, for each remote table you want to access. The columns of the foreign table must match the referenced remote table. You can, however, use table and/or column names different from the remote table&#8217;s, if you specify the correct remote names as options of the foreign table object.</li>
+</ol>
+<h3> psql</h3>
+<p>It is a terminal-based front-end to PostgreSQL. It enables you to type in queries interactively, issue them to PostgreSQL, and see the query results. Alternatively, input can be from a file.You can activate it by:</p><pre class="crayon-plain-tag">psql mydb</pre><p>where mydb is the database name.</p>
+<h2><strong>Backups</strong></h2>
+<p>Prior to PostgreSQL 9.6, the only way to perform concurrent physical backups was through pg_basebackup, via the streaming replication protocol. Low-level file system copy was only available in an exclusive mode, by calling pg_start_backup(), initiating the copy of data files, then finally calling pg_stop_backup().</p>
+<h2>References</h2>
+<ul>
+<li><a href="https://www.postgresql.org/docs/9.6/static/release-9-6.html">https://www.postgresql.org/docs/9.6/static/release-9-6.html</a></li>
+<li><a href="http://www.craigkerstiens.com/2015/12/29/my-postgres-top-10-for-2016/">http://www.craigkerstiens.com/2015/12/29/my-postgres-top-10-for-2016/</a></li>
+<li><a href="https://wiki.postgresql.org/wiki/NewIn96">https://wiki.postgresql.org/wiki/NewIn96</a></li>
+<li><a href="https://momjian.us/main/writings/pgsql/features.pdf">https://momjian.us/main/writings/pgsql/features.pdf</a></li>
+</ul>
+<p>The post <a rel="nofollow" href="/postgresql-9-6-new-features/">PostgreSQL 9.6 new features</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/postgresql-9-6-new-features/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+							</item>
+		<item>
+		<title>Concurrent-Ruby</title>
+		<link>/concurrent-ruby/</link>
+				<comments>/concurrent-ruby/#comments</comments>
+				<pubDate>Thu, 31 Aug 2017 13:14:13 +0000</pubDate>
+		<dc:creator><![CDATA[anjana]]></dc:creator>
+				<category><![CDATA[Rails]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=1669</guid>
+				<description><![CDATA[<p>Concurrent-ruby is a gem that was brought my attention during Anil Wadghule&#8217;s talk in RubyConf India 2017. Concurrency is the ability of a program to make progress on a task that is spread out over different slices of time. It allows us to run multiple “threads” at the same time. As one thread may be sleeping or&#8230;</p>
+<p>The post <a rel="nofollow" href="/concurrent-ruby/">Concurrent-Ruby</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p><a href="http://blog.redpanthers.co/wp-content/uploads/2017/02/concurrent-ruby-logo-300x300.png"><img class="aligncenter wp-image-1674 size-full" title="Concurrent Ruby" src="http://blog.redpanthers.co/wp-content/uploads/2017/02/concurrent-ruby-logo-300x300.png" alt="Concurrent Ruby" width="300" height="300" /></a></p>
+<p>Concurrent-ruby is a gem that was brought my attention during Anil Wadghule&#8217;s <a href="https://www.youtube.com/watch?v=K8c-gfUcnZA">talk</a> in <a href="http://rubyconfindia.org/">RubyConf India 2017</a>.</p>
+<p>Concurrency is the ability of a program to make progress on a task that is spread out over different slices of time. It allows us to run multiple “threads” at the same time. As one thread may be sleeping or waiting on I/O, another thread may take priority and start working, thus making optimal use of available CPU time. When you think of concurrency, think of “threads”.</p>
+<p>Modern concurrency tools include agents, futures, promises, thread pools actors, supervisors etc.Concurrent Ruby makes the strongest thread safety guarantees of any Ruby concurrency library. Every abstraction in this library is thread safe. Similarly, all are deadlock free and many are fully lock free.</p>
+<h2>Concurrency Abstractions</h2>
+<ul>
+<li><strong>Async </strong>(<strong>Concurrent::Async</strong>): A mixin module that provides simple asynchronous behavior to a class, turning it into a simple actor.</li>
+<li><strong>Future</strong> (<strong>Concurrent::Future</strong>): An asynchronous operation that produces a value. It represents a promise to complete an action at some time in the future.
+<ul>
+<li><strong>Dataflow</strong>: Built on Futures, Dataflow allows you to create a task that will be scheduled when all of its data dependencies are available.</li>
+</ul>
+</li>
+<li><strong>Promise </strong>(<strong>Concurrent::Promise)</strong>: Similar to Futures, with more features. It represents the eventual value returned from the single completion of an operation.</li>
+<li><strong>ScheduledTask</strong> (<strong>Concurrent::ScheduledTask):</strong> Like a Future scheduled for a specific future time.</li>
+<li><strong><strong>TimerTask (</strong></strong><strong>Concurrent::TimerTask</strong><strong>)</strong>: A Thread that periodically wakes up to perform work at regular intervals.</li>
+</ul>
+<h2>Installation</h2>
+<div class="highlight highlight-source-shell">
+<pre class="crayon-plain-tag">gem install concurrent-ruby</pre>
+</div>
+<p>or add the following line to Gemfile:</p>
+<div class="highlight highlight-source-ruby">
+<pre class="crayon-plain-tag">gem 'concurrent-ruby', require: 'concurrent'</pre>
+</div>
+<p>and run <strong><em>bundle install</em></strong> from your shell.</p>
+<h2>Edge Gem Installation</h2>
+<p>It is a submodule for unstable, highly experimental features that are likely to change often and which may never become part of the core gem. Also for new, experimental version of abstractions already in the core gem.</p>
+<p>The Edge gem must be installed separately from the core gem:</p>
+<div class="highlight highlight-source-shell">
+<pre class="crayon-plain-tag">gem install concurrent-ruby-edge</pre>
+</div>
+<p>or add the following line to Gemfile:</p>
+<div class="highlight highlight-source-ruby">
+<pre class="crayon-plain-tag">gem 'concurrent-ruby-edge', require: 'concurrent-edge'</pre>
+</div>
+<p>and run <code>bundle install</code> from your shell.</p>
+<h2>Usage</h2>
+<p>Everything within this gem can be loaded simply by requiring it:</p>
+<div class="highlight highlight-source-ruby">
+<pre class="crayon-plain-tag">require 'concurrent'</pre>
+</div>
+<p>To use the tools in the Edge gem it must be required separately:</p>
+<div class="highlight highlight-source-ruby">
+<pre class="crayon-plain-tag">require 'concurrent-edge'</pre>
+</div>
+<p>Eg:</p><pre class="crayon-plain-tag">require 'concurrent-edge'
+
+class Hello
+  def greet
+    sleep 3
+    "Hello, #{Time.now}"
+  end
+end
+
+all_promises = Concurrent::Promises.zip(
+  Concurrent::Promises.future { Hello.new.greet },
+  Concurrent::Promises.future { Hello.new.greet }
+)
+
+all_promises.then { |*values| puts values.inspect }.value</pre><p>In the above code, it displays greetings. And all these runs concurrently. Here we are using <em>concurrent-edge.</em> It shows the answer as:</p><pre class="crayon-plain-tag">Hello, 2016-12-09 08:56:51 +0530
+Hello, 2016-12-09 08:56:54 +0530</pre><p>So generally, the gen concurrent-ruby guarantees thread safety and deadlock free. Also, we can manage CPU time using threads in concurrency.</p>
+<h2>References</h2>
+<ul>
+<li><a href="https://github.com/ruby-concurrency/concurrent-ruby">https://github.com/ruby-concurrency/concurrent-ruby</a></li>
+<li><a href="https://blog.engineyard.com/2013/ruby-concurrency">https://blog.engineyard.com/2013/ruby-concurrency</a></li>
+<li><a href="https://github.com/ruby-concurrency/concurrent-ruby/blob/master/doc/thread_pools.md">https://github.com/ruby-concurrency/concurrent-ruby/blob/master/doc/thread_pools.md</a></li>
+</ul>
+<p>The post <a rel="nofollow" href="/concurrent-ruby/">Concurrent-Ruby</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/concurrent-ruby/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+							</item>
+		<item>
+		<title>Custom Loggers</title>
+		<link>/custom-loggers/</link>
+				<comments>/custom-loggers/#respond</comments>
+				<pubDate>Thu, 24 Aug 2017 11:03:57 +0000</pubDate>
+		<dc:creator><![CDATA[anjana]]></dc:creator>
+				<category><![CDATA[Rails]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=1614</guid>
+				<description><![CDATA[<p>Custom loggers are useful if you wish to have a separate log file for different moving parts of your Rails application. This would make your logging more efficient and readable. (Eg: a file to record all the API request you received). Let&#8217;s have a look on them! Note: This could cause an issue of log files&#8230;</p>
+<p>The post <a rel="nofollow" href="/custom-loggers/">Custom Loggers</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p>Custom loggers are useful if you wish to have a separate log file for different moving parts of your Rails application. This would make your logging more efficient and readable. (Eg: a file to record all the API request you received). Let&#8217;s have a look on them!</p>
+<p>Note: This could cause an issue of log files growing and consuming the entire space in the hard disk can be managed by configuring Rails application. It is described in our previous article <em><strong><a href="http://blog.redpanthers.co/enable-log-rotation-within-rails-application/">Enable log rotation within the rails application</a>.</strong></em></p>
+<p>Rails make use of ActiveSupport::Logger class to write log information. It is used to output message and has associated levels. You can then give the <a href="https://ruby-doc.org/stdlib-2.1.0/libdoc/logger/rdoc/Logger.html">Logger</a> a level, and only messages at that level or higher will be printed. They are:</p>
+<table style="height: 180px;" width="617">
+<tbody>
+<tr>
+<td>UNKNOWN</td>
+<td>An unknown message that should always be logged.</td>
+</tr>
+<tr>
+<td>FATAL</td>
+<td>An un-handleable error that results in a program crash.</td>
+</tr>
+<tr>
+<td>ERROR</td>
+<td>A handleable error condition.</td>
+</tr>
+<tr>
+<td>WARN</td>
+<td>A warning.</td>
+</tr>
+<tr>
+<td>INFO</td>
+<td>Generic (useful) information about system operation.</td>
+</tr>
+<tr>
+<td>DEBUG</td>
+<td>Low-level information for developers.</td>
+</tr>
+</tbody>
+</table>
+<h2>CREATE YOUR CUSTOM LOGGER</h2>
+<p></p><pre class="crayon-plain-tag"># lib/custom_logger.rb
+class CustomLogger &lt; Logger
+  def format_message(severity, timestamp, progname, msg)
+    "#{msg}\n"
+  end
+end
+logfile = File.open(RAILS_ROOT + '/log/custom.log', 'a') #create log file
+logfile.sync = true #automatically flushes data to file
+CUSTOM_LOGGER = CustomLogger.new(logfile) #constant accessible anywhere</pre><p>It creates a custom_logger.rb file. Here defines the format for log messages. The arguments are:</p>
+<ul>
+<li>Severity of the log message</li>
+<li>Time instance representing when the message was logged</li>
+<li>progname configured or passed to the logger method</li>
+<li><em>Object</em> the user passed to the log message.</li>
+</ul>
+<h2>LOAD CUSTOMLOGGER FROM ENVIRONMENT</h2>
+<p>Then load that custom logger in development as:</p><pre class="crayon-plain-tag">#in any controller, view or model like,
+CUSTOM_LOGGER.info("info from custom logger")
+CUSTOM_LOGGER.add(Logger::FATAL) { 'Fatal error!' }
+CUSTOM_LOGGER.fatal("Some arguments are not given.")
+CUSTOM_LOGGER.error ("Argument #{@name} mismatch." )
+CUSTOM_LOGGER.debug("This is a " + potentially + " expensive operation")</pre><p>I hope this will help you to know about Custom Loggers.</p>
+<h2>References</h2>
+<ul>
+<li><a href="https://ruby-doc.org/stdlib-2.1.0/libdoc/logger/rdoc/Logger.html">https://ruby-doc.org/stdlib-2.1.0/libdoc/logger/rdoc/Logger.html</a></li>
+</ul>
+<p>The post <a rel="nofollow" href="/custom-loggers/">Custom Loggers</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/custom-loggers/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+							</item>
+		<item>
+		<title>Enumerator: When to Use and Why are they so special?</title>
+		<link>/enumerator/</link>
+				<comments>/enumerator/#respond</comments>
+				<pubDate>Thu, 30 Mar 2017 09:23:25 +0000</pubDate>
+		<dc:creator><![CDATA[anjana]]></dc:creator>
+				<category><![CDATA[Beginners]]></category>
+		<category><![CDATA[Ruby]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=1179</guid>
+				<description><![CDATA[<p>In this post, we’ll take a look at the basics of Enumerator, When to use it and Why they are so special. So let&#8217;s begin! As the name implies Enumerator is used for iterating over a collection of items. It allows both internal and external iteration. So how do we Create an Enumerator? There are 3&#8230;</p>
+<p>The post <a rel="nofollow" href="/enumerator/">Enumerator: When to Use and Why are they so special?</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p>In this post, we’ll take a look at the basics of Enumerator, When to use it and Why they are so special. So let&#8217;s begin!</p>
+<p>As the name implies <strong>Enumerator</strong> is used for iterating over a collection of items. It allows both internal and external iteration.</p>
+<h2>So how do we Create an Enumerator?</h2>
+<p>There are 3 different ways to create it. They are from,</p>
+<ul>
+<li>A Block,</li>
+<li>An Enumerable,</li>
+<li>A Blockless Enumerable Method Call.</li>
+</ul>
+<p>Let&#8217;s have a look on each of the method now.</p>
+<h3><strong>From a Block</strong></h3>
+<p>We can create an enum by passing a block to its constructor. A yielder object will be passed to this block. The yielder’s <code>#&lt;&lt;</code> method can be used to define the elements. <code>Enumerator#next</code> can then be used to provide iteration.</p>
+<p>Eg:</p><pre class="crayon-plain-tag">enum = Enumerator.new do |yielder|
+  yielder &lt;&lt; "Red"
+  yielder &lt;&lt; "Panthers"
+end
+
+enum.next # "Red"
+# StopIteration: when it reached an end</pre><p></p>
+<h3>From an Enumerable</h3>
+<p>The most common way to create an <code>Enumerator </code>is from an <code>Enumerable</code> object, specifically, an object that defines a <code>#each</code> method. <code>Object#to_enum </code>is implemented to return a new <code>Enumerator which</code> will enumerate by sending <code>#each</code> to its receiver.</p>
+<p>Eg:</p><pre class="crayon-plain-tag">array = [1, 2, 3]
+enum = array.to_enum
+enum.each {|n| n * 2} # 2 4 6</pre><p></p>
+<h3>From a Blockless Enumerable Method Call</h3>
+<p>There are several <code>Enumerable </code>methods that take a block and returns an <code>Enumerator</code> when called without a block. For instance, calling <code>Array#select</code> without a block will return an <code>Enumerator</code> with an <code>#each</code> method that will filter like <code>#select.</code>These blockless calls offer a concise alternative to <code>Object#to_enum</code>.</p>
+<p>Eg:</p><pre class="crayon-plain-tag">array = [1, 2, 3, 4]
+enum = array.select
+enum.each {|n| n % 2 == 0} # [2, 4]</pre><p></p>
+<h2><strong>When do we use an Enumerator?</strong></h2>
+<p>We can use this type instead of defining many constants for fields (such as a <code>status).</code>For example, status can have values <em>active and inactive</em> in different condition. So that, we can use this type as below:</p>
+<p>Eg:</p><pre class="crayon-plain-tag">status =%w(active inactive).each
+puts status.class # =&gt; Enumerator
+
+puts status.next # =&gt; active
+puts status.next # =&gt; inactive
+puts status.next # raises StopIteration</pre><p>So by using it, we can simplify our code as above.</p>
+<h2>Why are they so special?</h2>
+<div>Well,</div>
+<ul>
+<li>It provides enumeration functionality to objects without it.</li>
+<li>You can control the iteration process in an efficient way using different methods like .each, .select, .next, .peek etc.</li>
+<li>There is a feature called <a href="https://www.sitepoint.com/implementing-lazy-enumerables-in-ruby/">Lazy enumerator</a>, which will prevent iterate over an infinite collection.</li>
+<li>It saves a lot of typing(see above example), which makes the programmer more efficient.</li>
+</ul>
+<p>So that&#8217;s a bit of dive into the basics of Enumerator. Hope it proves useful to you! Let me know in the comment section if you do so.</p>
+<h2>References</h2>
+<ul>
+<li><a href="https://robots.thoughtbot.com/whats-new-in-edge-rails-active-record-enum">https://robots.thoughtbot.com/whats-new-in-edge-rails-active-record-enum</a></li>
+<li><a href="https://hackhands.com/ruby-on-enums-queries-and-rails-4-1/">https://hackhands.com/ruby-on-enums-queries-and-rails-4-1/</a></li>
+<li><a href="https://bendyworks.com/blog/rails-enum-sharp-knife">https://bendyworks.com/blog/rails-enum-sharp-knife</a></li>
+</ul>
+<p>The post <a rel="nofollow" href="/enumerator/">Enumerator: When to Use and Why are they so special?</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/enumerator/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+							</item>
+		<item>
+		<title>Spice  up  your  boring  IRB (Irbtools)</title>
+		<link>/ruby-irb-console-improvements-irbtools/</link>
+				<comments>/ruby-irb-console-improvements-irbtools/#respond</comments>
+				<pubDate>Wed, 08 Feb 2017 09:19:49 +0000</pubDate>
+		<dc:creator><![CDATA[anjana]]></dc:creator>
+				<category><![CDATA[Rails]]></category>
+		<category><![CDATA[Ruby]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=951</guid>
+				<description><![CDATA[<p>IRB stands for interactive ruby, it is a tool for interactively executing ruby expressions read from a standard input. To invoke it, type irb at the shell or command prompt, and begin entering Ruby statements and expressions. But it has some limitations. A solution to this is called &#8216;irbtools&#8216;, which make using irb easier and&#8230;</p>
+<p>The post <a rel="nofollow" href="/ruby-irb-console-improvements-irbtools/">Spice  up  your  boring  IRB (Irbtools)</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p>IRB stands for interactive ruby, it is a tool for interactively executing ruby expressions read from a standard input. To invoke it, type irb at the shell or command prompt, and begin entering Ruby statements and expressions. But it has some limitations. A solution to this is called &#8216;<strong><em>irbtools</em></strong>&#8216;, which make using irb easier and more fun. It improves Ruby&#8217;s irb console like colored output and lots of helpful methods.</p>
+<h3><strong>Setup</strong></h3>
+<p>Install the gem by using:</p><pre class="crayon-plain-tag">  gem install irbtools</pre><p>or</p>
+<p>Add it to your project&#8217;s Gemfile:</p><pre class="crayon-plain-tag">gem 'irbtools', require: 'irbtools/binding'</pre><p></p>
+<h3><strong>Usage</strong></h3>
+<p>IRB executes code in ~/.irbrc on start-up.To use <strong>irbtools</strong>, put the following code in <code>~/.irbrc</code> file:</p><pre class="crayon-plain-tag">require 'irbtools'</pre><p>We can start IRB directly from the code by calling,</p><pre class="crayon-plain-tag">binding.irb</pre><p>When installing <strong>irbtools</strong>, some gems will not be installed. For example, the bond gem for better auto-completion. These are packaged as irbtools-more (requires ruby version &gt;= 2.4). To use <code>irbtools-more</code>, change the <code>.irbrc</code> to:</p><pre class="crayon-plain-tag">require 'irbtools/more'</pre><p>and edit Gemfile as</p><pre class="crayon-plain-tag">gem 'irbtools-more', require: 'irbtools/binding'</pre><p>For example, the output looks like:</p>
+<p><a href="http://blog.redpanthers.co/wp-content/uploads/2016/12/irb.png"><img class="alignnone wp-image-1027 size-full" title="Irbtools" src="http://blog.redpanthers.co/wp-content/uploads/2016/12/irb.png" alt="Irbtools" width="733" height="170" /></a></p>
+<h3><strong>Features</strong></h3>
+<ol>
+<li>Colorized and output as comment by <a href="https://github.com/janlelis/wirb/">wirb</a> and <a href="https://github.com/janlelis/fancy_irb">fancy_irb</a></li>
+<li>Nice IRB prompt and IRB’s auto indention</li>
+<li>Includes stdlib’s FileUtils: ls, cd, pwd, ln_s, rm, mkdir, touch, cat</li>
+<li>Many debugging helpers:
+<ul>
+<li>ap – awesome_print</li>
+<li>q –like p, but on one line</li>
+<li>Object#m – ordered method list (takes integer parameter: level of nesting)</li>
+<li>Objedt#d – puts the object, returns self (using tap)</li>
+</ul>
+</li>
+<li>“Magical” information constants: <a href="https://github.com/janlelis/ruby_info">Info</a>, <a href="https://github.com/rdp/os">OS</a>, <a href="https://github.com/janlelis/ruby_version">RubyVersion</a>, <a href="https://github.com/janlelis/ruby_engine">RubyEngine</a>
+<ul>
+<li style="padding-left: 30px">OS.windows?</li>
+<li style="padding-left: 30px">RubyEngine.jruby?</li>
+<li style="padding-left: 30px">RubyVersion.is.at_least? 1.9</li>
+</ul>
+</li>
+<li>Clipboard features: copy and paste</li>
+<li>Call vim to edit a file, close it and it gets loaded into your current irb session, powered by interactive_editor</li>
+<li>Highlight a string with colorize(&#8216;string&#8217;) or a file with ray(&#8216;path&#8217;), powered by coderay</li>
+<li>Displays ActiveRecord database entries as tables with <a href="http://tagaholic.me/2009/03/13/hirb-irb-on-the-good-stuff.html">hirb</a></li>
+<li>Restart irb with reset! or change the Ruby version with the use method and rvm!</li>
+<li>Includes the current directory in the load path</li>
+<li>Shorter requiring like this: rq:mathn</li>
+<li>Access to a lot of more commands with boson – call commands to get started</li>
+</ol>
+<h3><strong>Irbtools Methods</strong></h3>
+<h4 id="From_every_day_irb">From every_day_irb</h4>
+<table border="1">
+<tbody>
+<tr>
+<td>ls</td>
+<td>Returns an array with the directory&#8217;s content</td>
+</tr>
+<tr>
+<td>cat</td>
+<td>Shortcut for <tt>File.read</tt></td>
+</tr>
+<tr>
+<td>rq</td>
+<td>Shortcut for <tt>require library.to_s</tt> (allows concise syntax like <tt>rq:mathn</tt>)</td>
+</tr>
+<tr>
+<td>ld</td>
+<td>Shortcut for <tt>load library.to_s + '.rb'</tt></td>
+</tr>
+<tr>
+<td>rrq/rerequire</td>
+<td>Little hack for rerequiring a library</td>
+</tr>
+<tr>
+<td>reset!</td>
+<td>Restarts IRB</td>
+</tr>
+<tr>
+<td>clear</td>
+<td>Clears the terminal (<tt>system "clear"</tt>)</td>
+</tr>
+<tr>
+<td>session_history</td>
+<td>Returns all issued commands as a string</td>
+</tr>
+</tbody>
+</table>
+<h4><strong>From irbtools in conjunction with the libraries</strong></h4>
+<table border="1">
+<tbody>
+<tr>
+<td>cd</td>
+<td>Improves the cd that is already provided by fileutils (try cd &#8216;-&#8216;)</td>
+</tr>
+<tr>
+<td>version</td>
+<td>Displays RubyVersion</td>
+</tr>
+<tr>
+<td>engine</td>
+<td>Displays RubyEngine</td>
+</tr>
+<tr>
+<td>os</td>
+<td>OS information</td>
+</tr>
+<tr>
+<td>info</td>
+<td>Aggregates information about your Ruby environment</td>
+</tr>
+<tr>
+<td>copy</td>
+<td>Shortcut for Clipboard.copy</td>
+</tr>
+<tr>
+<td>paste</td>
+<td>Shortcut for Clipboard.paste</td>
+</tr>
+<tr>
+<td>copy_input</td>
+<td>Copies the session_history to the clipboard</td>
+</tr>
+<tr>
+<td>copy_output</td>
+<td>Copies this session&#8217;s results to the clipboard</td>
+</tr>
+<tr>
+<td>mf</td>
+<td>Shortcut for using the methodfinder</td>
+</tr>
+<tr>
+<td>page</td>
+<td>Shortcut for using the pager from hirb</td>
+</tr>
+<tr>
+<td>colorize</td>
+<td>Syntax highlights a ruby string using coderay</td>
+</tr>
+<tr>
+<td>ray</td>
+<td>Syntax highlights a ruby file using coderay</td>
+</tr>
+</tbody>
+</table>
+<p>So next time when you think of improving Ruby&#8217;s irb console into a colored, fun and much easier output, don&#8217;t forget to remember your friend named <span style="background-color: #f5f6f5;font-size: 21px">&#8216;</span><span style="background-color: #f5f6f5;font-size: 21px;font-weight: bold"><em>irbtools</em></span><span style="background-color: #f5f6f5;font-size: 21px">&#8216;.</span></p>
+<h2><strong>References</strong></h2>
+<p><a href="http://irb.tools/">http://irb.tools/</a></p>
+<p><a href="http://tagaholic.me/2009/04/23/how-to-write-a-rubygem-command-plugin.html">http://tagaholic.me/2009/04/23/how-to-write-a-rubygem-command-plugin.html</a></p>
+<p><a href="http://stackoverflow.com/questions/3884715/what-alternatives-to-irb-are-there">http://stackoverflow.com/questions/3884715/what-alternatives-to-irb-are-there</a></p>
+<dl class="rdoc-list">
+<dd>
+<dl class="rdoc-list">
+<dd></dd>
+</dl>
+</dd>
+</dl>
+<p>The post <a rel="nofollow" href="/ruby-irb-console-improvements-irbtools/">Spice  up  your  boring  IRB (Irbtools)</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/ruby-irb-console-improvements-irbtools/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+							</item>
+		<item>
+		<title>PStore, a little known feature in the standard library</title>
+		<link>/pstore-ruby-standard-library/</link>
+				<comments>/pstore-ruby-standard-library/#comments</comments>
+				<pubDate>Mon, 06 Feb 2017 10:03:07 +0000</pubDate>
+		<dc:creator><![CDATA[anjana]]></dc:creator>
+				<category><![CDATA[Beginners]]></category>
+		<category><![CDATA[Ruby]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=1246</guid>
+				<description><![CDATA[<p>PStore(persistent store) implements a file based persistence mechanism based on a Hash. It writes Ruby objects to an external file so it can access easily if needed. If an I/O error occurs while PStore is writing to its file, then the file will become corrupted.You can prevent this by setting pstore.ultra_safe = true. Also, it&#8230;</p>
+<p>The post <a rel="nofollow" href="/pstore-ruby-standard-library/">PStore, a little known feature in the standard library</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p><strong>PStore</strong>(persistent store) implements a file based persistence mechanism based on a Hash. It writes Ruby objects to an external file so it can access easily if needed. If an I/O error occurs while PStore is writing to its file, then the file will become corrupted.You can prevent this by setting <em>pstore.ultra_safe = true</em>. Also, it supports <a href="http://ruby-doc.org/stdlib-1.9.2/libdoc/pstore/rdoc/PStore.html#new-method">thread-safe</a> and uses <a href="https://ruby-doc.org/core-2.2.2/Marshal.html">Marshal</a> internally.</p>
+<p>To use this library, you must require it and instantiate a new object.</p>
+<div class="language-ruby highlighter-rouge">
+<pre class="crayon-plain-tag">require 'pstore'
+store = PStore.new("filename.pstore")</pre>
+</div>
+<p>Which would create a file that stores the content to be written.</p>
+<p>To store or retrieve data from the data store, you must open a transaction. Here transaction is a protective wrapper around SQL statements to ensure changes to the database only occur when all actions succeed together. We can access the content of database only through this transaction.</p>
+<div class="language-ruby highlighter-rouge">
+<pre class="crayon-plain-tag">store.transaction do
+  #read and write transactions.
+end</pre><br />
+At the end of the transaction, all changes are committed.</p>
+<h2>Public Instance methods</h2>
+<p>Instance methods are methods that are called on an instance of a class. We can use the below methods while using PStore instances.</p>
+<ul>
+<li><code>p</code><code class="literal">[</code><code>name</code><code class="literal">]=</code><code>obj</code></li>
+</ul>
+<div id="sbo-rt-content">
+<div id="test-content-id">
+<div class="refentry" title="PStore">
+<div class="refsect1" title="Instance Methods">
+<div class="variablelist">
+<p style="padding-left: 60px">Stores <em class="replaceable"><code>obj</code></em> in the database under the key name. When the transaction is completed, all objects accessed reflexively by <em class="replaceable"><code>obj </code></em> are saved in a file.</p>
+<ul>
+<li><span class="term"><em class="replaceable"><code>p</code></em><code class="literal">.root?(</code><em class="replaceable"><code>name</code></em><code class="literal">)</code></span></li>
+</ul>
+<p style="padding-left: 60px">Returns <code class="literal">true</code> if the key name exists in the database.</p>
+<ul>
+<li><span class="term"><em class="replaceable"><code>p</code></em><code class="literal">.commit</code></span></li>
+</ul>
+<p style="padding-left: 60px">Complete the transaction. When this method is called, the block passed to the transaction method is executed, and changes to the database are written to the database file.</p>
+<ul>
+<li><span class="term"><em class="replaceable"><code>p</code></em><code class="literal">.abort</code></span></li>
+</ul>
+<p style="padding-left: 60px">Aborts the transaction. When this method is called, the execution of the block passed to the transaction method is terminated, and changes made to database objects during the transaction aren&#8217;t written to the database file.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Let&#8217;s walk through a simple example. Below shows storing employee data into a simple PStore database. The file looks like:</p>
+<p><em>employee.rb</em></p><pre class="crayon-plain-tag">require 'pstore'
+
+store = PStore.new("employee.pstore")
+store.transaction do
+  store["params"] = {"name" =&gt; "Abc", "age" =&gt; 22, "salary" =&gt; 20000 }
+  #commit all changes
+  store.commit
+
+  #retrieve data
+  emp = nil store.transaction { emp = store["params"] }
+
+  # Delete value
+  store.delete(:age)
+
+  # View all key names:
+  store.roots
+  # =&gt; :name, :salary
+
+  # abort()ing transactions will halt execution and revert all changes.
+  store.abort
+end</pre><p>In the above example, to use the library we require it at the beginning and then create a new instance for PStore called &#8216;store&#8217;. Next, we have to open a transaction to store and retrieve data. In that, we are storing name, age and salary of an employee into PStore by using the command,</p><pre class="crayon-plain-tag">store["params"] = {"name" =&gt; "Abc", "age" =&gt; 22, "salary" =&gt; 20000 }</pre><p>Also, you can commit all the changes that you have done using the commit() method. There are methods like delete(), roots and abort() to delete the value, view all key names and revert all changes respectively.</p>
+<h2>Features of PStore</h2>
+<ul>
+<li>It is stored in the persistent storage media(hard disk drives), not in volatile memory (RAM).</li>
+<li>The content of the data file is binary so that it can&#8217;t be edited directly with an editor.</li>
+<li>There exists a backup file so we can use that if the data file is corrupted.</li>
+<li>You can save anything you can do with <a href="https://ruby-doc.org/core-2.2.2/Marshal.html#module-Marshal-label-marshal_dump+and+marshal_load">Marshal.dump</a> and you can load whatever you can do with <a href="https://ruby-doc.org/core-2.2.2/Marshal.html#module-Marshal-label-marshal_dump+and+marshal_load">Marshal.load</a>.</li>
+<li>In PStore, all interactions happen within a transaction. So that two separate processes that are both accessing the same store will not have collisions with any modifications. Only a single transaction can be committed at any one time.</li>
+</ul>
+<p>The main advantage of PStore is that it is very fast and space-efficient because it uses marshelling. But the disadvantage is that the created file is not human-readable.This is where YAML::Store steps in!</p>
+<p>It provides the same functionality as PStore, except it uses YAML to dump objects instead of Marshal. This may not be as fast as Marshal, but the result is human-readable and human-writable.</p>
+<p>To use YAML::Store instead of PStore, simply replace the first lines of the code above with:</p><pre class="crayon-plain-tag">require 'yaml/store'
+store = YAML::Store.new('store.yml')</pre><p>After that, the YAML::Store works exactly like the PStore.</p>
+<p>You can use PStore if it&#8217;s more important to you that reading and writing the data happens as fast as possible or if you care about the size of the created file. Otherwise, you can choose YAML::Store that provides human readability.</p>
+<p>Also, there is another method for file storage that is <strong>SDBM</strong>. It can only store String keys and values.</p>
+<p>You can use SDBM as:</p><pre class="crayon-plain-tag">require 'sdbm'
+
+SDBM.open 'my_database' do |db|
+  db['foo'] = 'a string'
+
+  #Add / Update Many at Once
+  db.update({foo: 'something', bar: 1})
+
+  # Get all Values
+  db.each do |k,v|
+    puts "Key: #{k}, Value: #{v}"
+  end
+
+  # Retrieve Specific Value
+  puts db['foo']
+
+end</pre><p>So, using this we can perform the file storage which is basically Pstore without transaction feature.</p>
+<p>Happy Coding!</p>
+<h2><strong>References</strong></h2>
+<ul>
+<li><a href="http://tutorials.codebar.io/ruby/lesson3/tutorial.html">http://tutorials.codebar.io/ruby/lesson3/tutorial.html</a></li>
+<li><a href="http://magazine.rubyist.net/?0016-BundledLibraries">http://magazine.rubyist.net/?0016-BundledLibraries</a></li>
+<li><a href="https://blog.engineyard.com/2009/key-value-stores-in-ruby">https://blog.engineyard.com/2009/key-value-stores-in-ruby</a></li>
+<li><a href="http://datamelon.io/blog/2015/persistent-key-value-storage-via-ruby-standard-lib.html">http://datamelon.io/blog/2015/persistent-key-value-storage-via-ruby-standard-lib.html</a></li>
+</ul>
+</div>
+<p>The post <a rel="nofollow" href="/pstore-ruby-standard-library/">PStore, a little known feature in the standard library</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/pstore-ruby-standard-library/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+							</item>
+		<item>
+		<title>Disabling transaction block during migration</title>
+		<link>/disabling-transaction-block-during-migration/</link>
+				<comments>/disabling-transaction-block-during-migration/#comments</comments>
+				<pubDate>Thu, 02 Feb 2017 09:59:35 +0000</pubDate>
+		<dc:creator><![CDATA[anjana]]></dc:creator>
+				<category><![CDATA[Rails]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=1537</guid>
+				<description><![CDATA[<p>Migrations are used to modify your database. By default, all migrations run inside a transaction. You can disable the transaction during migration. Let&#8217;s have a look on how to disable transaction block! Migrations can manage the evolution of a schema used by several physical databases. It&#8217;s a solution to the common problem of adding a&#8230;</p>
+<p>The post <a rel="nofollow" href="/disabling-transaction-block-during-migration/">Disabling transaction block during migration</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p>Migrations are used to modify your database. By default, all migrations run inside a transaction. You can disable the transaction during migration. Let&#8217;s have a look on how to disable transaction block!</p>
+<p>Migrations can manage the evolution of a schema used by several physical databases. It&#8217;s a solution to the common problem of adding a field to make a new feature work in your local database, but being unsure of how to push that change to other developers and to the production server. With migrations, you can describe the transformations in self-contained classes that can be checked into version control systems and executed against another database that might be one, two, or five versions behind.</p>
+<p>In Rails, transactions are protective blocks around SQL statements that ensure changes to the database only occur when all actions succeed together. Transactions enforce the integrity of the database and guard the data against program errors or database break-downs. So basically you should use transaction block whenever you have a number of statements that must be executed together or not at all.</p>
+<p>Eg:</p><pre class="crayon-plain-tag">ActiveRecord::Base.transaction do
+  david.withdrawal(100)
+  mary.deposit(100)
+end</pre><p></p>
+<h2><b>disable_ddl_transaction!</b>()</h2>
+<p>DDL can&#8217;t run inside a transaction block. You can disable DDL transactions in Rails, using disable_ddl_transaction. It is used in AR(Active Record) migrations to prevent your migration from being wrapped in a transaction. The name is misleading because <em>your entire migration</em> will have transactions disabled, not just for DDL SQL statements.</p><pre class="crayon-plain-tag"># File activerecord/lib/active_record/migration.rb
+  def disable_ddl_transaction!
+    @disable_ddl_transaction = true
+  end</pre><p>Normally, Postgress locks writing while creating an index on it. It may take a longer time to complete. However, PostgreSQL supports adding/dropping indexes concurrently. When this option is used, <span class="PRODUCTNAME">PostgreSQL</span> must perform two scans of the table, and in addition, it must wait for all existing transactions that could potentially modify or use the index to terminate. So the migration must not be run inside a transaction. For that, use disable_ddl_tranaction! to run that on outside.</p>
+<p>Eg:</p><pre class="crayon-plain-tag">class AddIndexToUserActive &lt; ActiveRecord::Migration
+  disable_ddl_transaction!
+  def change
+    add_index :users, :active, algorithm: :concurrently
+  end
+end</pre><p>Postgres has a CONCURRENTLY option for <code>CREATE INDEX</code> that creates the index without preventing concurrent <code>INSERT</code>s, <code>UPDATE</code>s, or <code>DELETE</code>s on the table. To make this option easier to use in migrations, ActiveRecord 4 introduced an <code>algorithm: :concurrently</code> option for <code>add_index</code>.</p>
+<p>The <code>disable_ddl_transaction method</code> applies only to that migration file. Adjacent migrations still run in their own transactions and roll back automatically if they fail.</p>
+<p>So, if you want to disable transaction during migration use &#8216;disable_ddl_transaction!&#8217;. Let me know if you have any other alternatives as well.</p>
+<h2>References</h2>
+<ul>
+<li><a href="http://doc.bccnsoft.com/docs/rails_5_0_0_api/classes/ActiveRecord/Migration.html">http://doc.bccnsoft.com/docs/rails_5_0_0_api/classes/ActiveRecord/Migration.html</a></li>
+<li><a href="http://stackoverflow.com/questions/16325957/disabling-transaction-in-rails-migration-how-do-i-include-a-ruby-variable-in-a">http://stackoverflow.com/questions/16325957/disabling-transaction-in-rails-migration-how-do-i-include-a-ruby-variable-in-a</a></li>
+<li><a href="http://apidock.com/rails/ActiveRecord/Migration/disable_ddl_transaction!/class">http://apidock.com/rails/ActiveRecord/Migration/disable_ddl_transaction!/class</a></li>
+<li><a href="https://robots.thoughtbot.com/how-to-create-postgres-indexes-concurrently-in">https://robots.thoughtbot.com/how-to-create-postgres-indexes-concurrently-in</a></li>
+</ul>
+<p>The post <a rel="nofollow" href="/disabling-transaction-block-during-migration/">Disabling transaction block during migration</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/disabling-transaction-block-during-migration/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+							</item>
+	</channel>
+</rss>

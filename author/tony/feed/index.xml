@@ -1,0 +1,467 @@
+ <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>tony &#8211; Red Panthers</title>
+	<atom:link href="/author/tony/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description>Experts in Ruby on Rails Development</description>
+	<lastBuildDate>Wed, 21 Mar 2018 08:19:41 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.7</generator>
+
+<image>
+	<url>/wp-content/uploads/2017/12/rp-logo.png</url>
+	<title>tony &#8211; Red Panthers</title>
+	<link>/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Upgrading to Rails 5.1x</title>
+		<link>/upgrading-to-rails-5-1x/</link>
+				<comments>/upgrading-to-rails-5-1x/#respond</comments>
+				<pubDate>Wed, 21 Mar 2018 08:14:20 +0000</pubDate>
+		<dc:creator><![CDATA[tony]]></dc:creator>
+				<category><![CDATA[Rails 5.1]]></category>
+		<category><![CDATA[5.1.x]]></category>
+		<category><![CDATA[jquery]]></category>
+		<category><![CDATA[rails]]></category>
+		<category><![CDATA[ruby on rails]]></category>
+		<category><![CDATA[tony vincent]]></category>
+		<category><![CDATA[upgrade]]></category>
+
+		<guid isPermaLink="false">/?p=16171</guid>
+				<description><![CDATA[<p>Rails 5.1rolled out with some major changes and features including Yarn and webpack support Dropped JQuery as a default dependency Built-in support for writing system tests using Capybara Encrypted secrets and many more, you can find the detailed release notes here. Recently we upgraded one of our production apps to 5.1x and since we have good test&#8230;</p>
+<p>The post <a rel="nofollow" href="/upgrading-to-rails-5-1x/">Upgrading to Rails 5.1x</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p>Rails 5.1rolled out with some major changes and features including</p>
+<ul>
+<li>Yarn and webpack support</li>
+<li>Dropped JQuery as a default dependency</li>
+<li>Built-in support for writing system tests using Capybara</li>
+<li>Encrypted secrets</li>
+</ul>
+<p>and many more, you can find the detailed release notes <a href="http://edgeguides.rubyonrails.org/5_1_release_notes.html">here</a>. Recently we upgraded one of our production apps to 5.1x and since we have good test coverage, upgrading was mostly painless. We still had to make some minor changes down the road</p>
+<h3>1. No more <code>before_filter</code></h3>
+<p>One of our controllers still had the old-fashioned <code>before_filter</code> and we encountered the following error while booting up</p>
+<p class="p1"><code>undefined method 'before_filter' before_filter has been deprecated in Rails 5.0 and removed in 5.1.</code></p>
+<p>This is because <code>before_filter</code> and <code>after_filter</code> are <a href="https://github.com/rails/rails/blob/v5.0.0.beta2/actionpack/lib/abstract_controller/callbacks.rb#L190-L193">deprecated</a> from Rails 5.0.0 onwards. As you might have guessed, changing from <code>before_filter</code> to <code>before_action</code> is the solution here.</p>
+<p>&nbsp;</p>
+<h3>2. <code>halt_callback_chains_on_return_false</code> is deprecated</h3>
+<p>We saw the following deprecation warning in our logs after the update</p>
+<p class="p1"><code>ActiveSupport.halt_callback_chains_on_return_false= is deprecated and will be removed in Rails 5.2.</code></p>
+<p>From Rails 5.0x, the <a href="https://github.com/rails/rails/pull/17227">callback chain is <span class="x x-first x-last">not </span>halted when a before callback returns false</a>. We need to use <code class="highlighter-rouge">throw(:abort)</code> to explicitly halt callbacks</p>
+<p>Though we had no return false in our callbacks, we still had to remove the line,</p>
+<p><code>ActiveSupport.halt_callback_chains_on_return_false = false</code> from <code>config/initializers/new_framework_defaults.rb</code> to get rid of the warning.</p>
+<p>&nbsp;</p>
+<h3>3. Passing a class to the <code>class_name</code> is deprecated</h3>
+<p>One of the deprecation warnings after the update was,</p><pre class="crayon-plain-tag">Passing a class to the 'class_name' is deprecated and will raise an ArgumentError in Rails 5.2. 
+It eagerloads more classes than necessary and potentially creates circular dependencies. Please pass the class name as a string:</pre><p></p>
+<p class="p1">This warning message was due to passing a class to <code>class_name</code> option when specifying associations &#8211; this is <a href="https://github.com/rails/rails/commit/8312a0d22212798864f142b5a94805e0baa6c562">no longer recommended</a><span class="hljs-string">&#8216;</span></p>
+<p></p><pre class="crayon-plain-tag">- has_one :contact, class_name: UserContact
++ has_one :contact, class_name: 'UserContact</pre><p>passing class name as a string is a standard now</p>
+<p>Happy Hacking <img src="https://s.w.org/images/core/emoji/12.0.0-1/72x72/2764.png" alt="❤" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p>&nbsp;</p>
+<hr />
+<p>PS: If you need any help in upgrading your rails version drop an email to us at <strong>info@redpanthers.co </strong>or<strong> upgrade@redpanthers.co. </strong>We will be more than happy to go through your system and give a <strong>free upgrade action plan and estimation </strong>.</p>
+<p>The post <a rel="nofollow" href="/upgrading-to-rails-5-1x/">Upgrading to Rails 5.1x</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/upgrading-to-rails-5-1x/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+							</item>
+		<item>
+		<title>Background Workers using Crontab</title>
+		<link>/background-workers-using-crontab/</link>
+				<comments>/background-workers-using-crontab/#comments</comments>
+				<pubDate>Wed, 27 Sep 2017 06:17:21 +0000</pubDate>
+		<dc:creator><![CDATA[tony]]></dc:creator>
+				<category><![CDATA[DevOps]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3910</guid>
+				<description><![CDATA[<p>Scheduling background jobs is a common task in rails application development. Eventually what we want is a cron job which runs the schedule jobs. cron is the system process which will automatically perform tasks for you according to a set schedule. The schedule is called the crontab, which is also the name of the program&#8230;</p>
+<p>The post <a rel="nofollow" href="/background-workers-using-crontab/">Background Workers using Crontab</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p>Scheduling background jobs is a common task in rails application development. Eventually what we want is a cron job which runs the schedule jobs.</p>
+<p><b>cron</b> is the system process which will automatically perform tasks for you according to a set schedule. The schedule is called the <b>crontab</b>, which is also the name of the program used to edit that schedule.</p>
+<p>For example, let&#8217;s say you have a rake task which you want to run every hour.</p><pre class="crayon-plain-tag">namespace :send_update_mail do
+  desc "send_product_update_mails"
+  task :send_mail =&gt; :environment do
+    UserMailer.notify_product_updates
+  end
+end</pre><p>To edit the crontab, use this command:</p><pre class="crayon-plain-tag">crontab -e</pre><p>Now let&#8217;s add our job to the crontab. Each job you add should take up a single line.</p>
+<p>The format is very simple: six pieces of information, each separated by a space; the first five pieces of information tell <b>cron </b>when to run the job, and the last piece of information tells <b>cron</b> what the job is.</p><pre class="crayon-plain-tag">m h  dom mon dow   command</pre><p><i>m</i>, representing the minute of the hour, <i>h</i>, representing the hour of the day, <i>dom</i>, representing the day of the month, <i>mon</i>, representing the month of the year, <i>dow</i>, representing the day of the week and  <i>command</i>, which is the command to be run. For example in our case</p><pre class="crayon-plain-tag">0 * * * * /home/myname/myapp/lib/tasks/send_mail.rb</pre><p>The asterisks (&#8220;<b>*</b>&#8220;) will tell cron that for that unit of time, the job should run &#8216;every&#8217;. Save and close the file.</p>
+<p>And that&#8217;s it.</p>
+<p>But sometimes fiddling with crontab on the server can be very hectic and it would be much better if we can configure cron job in our rails application so we can keep the configuration in our source control.</p>
+<p>We have a gem called <a href="https://github.com/javan/whenever">whenever</a> that allows us to set up cron jobs from within our Rails apps using Ruby code. Let&#8217;s see how you can schedule our background jobs in Rails using Whenever to set up your schedule.</p>
+<p>Add in your Gemfile.</p><pre class="crayon-plain-tag">gem 'whenever', :require =&gt; false</pre><p>Run <span style="font-family: monospace;">bundle install</span> to install the gem.</p>
+<p>Run the <code>wheneverize</code> command in your app’s root folder to set up an initial configuration.</p><pre class="crayon-plain-tag">wheneverize .</pre><p>The <em>wheneverize</em> command will create an initial <code>config/schedule.rb</code> file.</p>
+<p>Now add following to <em>schedule.rb</em></p><pre class="crayon-plain-tag">every 1.hour do
+  rake 'send_update_mail:send_mail'
+end</pre><p></p>
+<h3>A whenever plugin for mina</h3>
+<p>The gem <code>mina-whenever</code>is a whenever plugin for <a href="https://github.com/mina-deploy/mina">mina</a>.</p>
+<p>Add this line to your application&#8217;s Gemfile and run <code>bundle install</code></p><pre class="crayon-plain-tag">gem 'mina-whenever'</pre><p>Modify your deploy.rb</p>
+<div class="highlight highlight-source-ruby">
+<pre class="crayon-plain-tag">require 'mina/whenever'
+
+desc "Deploys the current version to the server."
+task :deploy do
+  deploy do
+    .........
+
+    on :launch do
+      invoke :'sidekiq:restart'
+      .....
+    end
+  end
+end</pre></p>
+<h2>Drawback</h2>
+<p>This rake task-based approach can have a potential drawback of extra memory consumption. When crontab runs <code>rake</code> or <code>rails runner</code>, it is booting up a full instance of our rails application to access relevant models and associations. It is memory expensive especially when your code base is huge and using a considerable number of gems. In a nutshell, the entire app and dependencies are loaded for every task that runs.</p>
+<p>Imagine if you have scheduled <code>n</code> number of background workers to start at a given point of time in our main application server. This could end up being too resource expensive that our application might become unusable for the user.</p>
+<h2>How to fix?</h2>
+<p>1) Start another server to schedule jobs and another server to consume the jobs.</p>
+<p>2) Create another Ruby project that would add the messages to our Redis queue to schedule the tasks.</p>
+<p>3) Offload that to another language like Crystal, which is more efficient and schedule jobs independent of our Rails app.</p>
+<p>4)  Use a sidekiq or other background job to schedule which takes less RAM</p>
+<p>1st would be the easiest solution as it would keep our codebase same. (Heroku works like this)<br />
+2nd and 3rd are recommended if you are looking to keep it on a single server and keep the cost down until the business scale.</p>
+<p>&nbsp;</p>
+<h2>References</h2>
+<ul>
+<li><a href="http://ruthienachmany.github.io/blog/2013/08/10/sidekiq-redis-cron-jobs/">http://ruthienachmany.github.io/blog/2013/08/10/sidekiq-redis-cron-jobs/</a></li>
+<li><a href="https://github.com/javan/whenever">https://github.com/javan/whenever</a></li>
+</ul>
+</div>
+<p>The post <a rel="nofollow" href="/background-workers-using-crontab/">Background Workers using Crontab</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/background-workers-using-crontab/feed/</wfw:commentRss>
+		<slash:comments>4</slash:comments>
+							</item>
+		<item>
+		<title>Painless Cron jobs in Crystal using Schedule</title>
+		<link>/painless-cron-jobs-crystal-using-schedule/</link>
+				<comments>/painless-cron-jobs-crystal-using-schedule/#comments</comments>
+				<pubDate>Wed, 06 Sep 2017 03:15:23 +0000</pubDate>
+		<dc:creator><![CDATA[tony]]></dc:creator>
+				<category><![CDATA[crystal]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3461</guid>
+				<description><![CDATA[<p>Many Ruby developers use the awesome whenever gem for scheduling tasks in their projects, so do we and with &#8216;whenever&#8217;  scheduling tasks become so effortless that we absolutely loved it. Recently we have been deploying Crytal apps to production and Kemal is our framework of choice. During the process, we felt the urge to have something similar&#8230;</p>
+<p>The post <a rel="nofollow" href="/painless-cron-jobs-crystal-using-schedule/">Painless Cron jobs in Crystal using Schedule</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p>Many Ruby developers use the awesome <a href="https://github.com/javan/whenever">whenever</a> gem for scheduling tasks in their projects, so do we and with &#8216;whenever&#8217;  scheduling tasks become so effortless that we absolutely loved it. Recently we have been deploying <a href="https://crystal-lang.org/">Crytal</a> apps to production and <a href="http://kemalcr.com/">Kemal</a> is our framework of choice. During the process, we felt the urge to have something similar to <code>whenever</code> in Crystal for cron jobs and that&#8217;s when we discovered <a href="https://github.com/hugoabonizio/schedule.cr">Schedule</a> &#8211; a Crystal shard that provides a clear DSL to write periodic or scheduled tasks and there was no turning back.</p>
+<h3>Getting started</h3>
+<p>Add Schedule to your <code>shard.yml</code> file</p><pre class="crayon-plain-tag">dependencies:
+  schedule:
+    github: hugoabonizio/schedule.cr</pre><p>you are all set to schedule your tasks, all you gotta do is require the schedule module as <code>require "schedule"</code></p>
+<h3>Examples</h3>
+<p>Schedul&#8217;s API defines 2 important methods, <code>.every</code> and <code>.after</code> for periodic and scheduled execution of tasks respectively.</p>
+<h5>Periodic execution</h5>
+<p>For running a task periodically we have to pass in a valid interval as well as a block to the <code>.every</code> method. For example,</p><pre class="crayon-plain-tag">require "schedule"
+
+Schedule.every(3.seconds) do
+  puts "I run every 3 seconds"
+end</pre><p>will print the message on every 3 seconds.</p>
+<p>Similarly</p><pre class="crayon-plain-tag">require "schedule"
+
+Schedule.every(1.hour) do
+  ClassName.hourly_job
+end</pre><p>will call the class method <code>hourly_job</code> every 1 hour</p>
+<h5>Scheduled execution</h5>
+<p>For scheduling tasks to run sometime in the future we can make use of the <code>after</code> method.</p><pre class="crayon-plain-tag">require "schedule"
+
+# Execute a task after X interval
+Schedule.after(10.seconds) do
+  puts "I am going to run after 10 seconds"
+end</pre><p></p>
+<h5>Stop and Retry jobs</h5>
+<p>Call <code>Schedule.retry</code> to retry a task and <code>Schedule.stop</code> to stop the executing a task</p>
+<div class="highlight highlight-source-crystal">
+<pre class="crayon-plain-tag">MAX_COUNT = 3
+
+Schedule.every(10.seconds) do
+  count = get_count
+  Schedule.retry if count == 0
+  Schedule.stop if count &gt;= MAX_COUNT
+end</pre>
+</div>
+<h5> Exception handlers</h5>
+<p>We can use <code>Schedule.exception_handler</code> to set an exception handler in our tasks</p><pre class="crayon-plain-tag">require "schedule"
+
+Schedule.exception_handler do |ex|
+  puts "Exception recued! #{ex.message}"
+end
+
+Schedule.every(100.milliseconds) do
+  raise "I'm an Exception"
+end</pre><p>it is also possible to pass a proc to <code>Schedule.exception_handler</code> directly to set the exception handler</p>
+<div class="highlight highlight-source-crystal">
+<pre class="crayon-plain-tag">handler = -&gt;(ex : Exception) { puts "Exception recued! #{ex.message}" }
+Schedule.exception_handler = handler</pre>
+</div>
+<p>schedule.cr is still in the early stages of development and many options that we are familiar with using whenever &#8211; like running tasks on a specific day of the week are <a href="https://github.com/hugoabonizio/schedule.cr/issues/3">not available yet</a> but are coming soon.</p>
+<p><em> Happy Hacking </em>&lt;3</p>
+<p>The post <a rel="nofollow" href="/painless-cron-jobs-crystal-using-schedule/">Painless Cron jobs in Crystal using Schedule</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/painless-cron-jobs-crystal-using-schedule/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+							</item>
+		<item>
+		<title>Deploying Crystal app to production using Heroku</title>
+		<link>/deploying-crystal-app-production-using-heroku/</link>
+				<comments>/deploying-crystal-app-production-using-heroku/#comments</comments>
+				<pubDate>Tue, 05 Sep 2017 14:39:26 +0000</pubDate>
+		<dc:creator><![CDATA[tony]]></dc:creator>
+				<category><![CDATA[crystal]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3466</guid>
+				<description><![CDATA[<p>This article assumes that you have Crystal and Heroku CLI installed. Create a sample application Create a new application using [crayon-5f53f042eafeb483488637/] You should see the following on your terminal [crayon-5f53f042eafef555448752/] now cd to the root of the app, $ cd sample-app  and add Kemal to shrad.yml file [crayon-5f53f042eaff1834088100/] and run $ crystal deps for installing dependencies. Add&#8230;</p>
+<p>The post <a rel="nofollow" href="/deploying-crystal-app-production-using-heroku/">Deploying Crystal app to production using Heroku</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<blockquote><p>This article assumes that you have <a href="https://crystal-lang.org/">Crystal</a> and <a href="https://devcenter.heroku.com/articles/heroku-cli">Heroku CLI</a> installed.</p></blockquote>
+<h3>Create a sample application</h3>
+<p>Create a new application using</p><pre class="crayon-plain-tag">$ crystal init app sample-app</pre><p><span class="s1">You should see the following on your terminal<br />
+</span></p><pre class="crayon-plain-tag">$ crystal init app sample-app
+      create  sample-app/.gitignore
+      create  sample-app/.editorconfig
+      create  sample-app/LICENSE
+      create  sample-app/README.md
+      create  sample-app/.travis.yml
+      create  sample-app/shard.yml
+      create  sample-app/src/sample-app.cr
+      create  sample-app/src/sample-app/version.cr
+      create  sample-app/spec/spec_helper.cr
+      create  sample-app/spec/sample-app_spec.cr
+Initialized empty Git repository in /Users/yourname/Desktop/sample-app/.git/</pre><p>now cd to the root of the app, <code>$ cd sample-app</code>  and add <a href="https://github.com/kemalcr/kemal">Kemal</a> to <code>shrad.yml</code> file</p><pre class="crayon-plain-tag">name: sample-app
+version: 0.1.0
+
+authors:
+  - John Doe &lt;email@example.co&gt;
+
+dependencies:
+  kemal:
+    github: kemalcr/kemal
+    branch: master
+
+targets:
+  sample-app:
+    main: src/sample-app.cr
+
+crystal: 0.23.1
+
+license: MIT</pre><p>and run <code>$ crystal deps</code> <span class="s1">for installing dependencies.</span></p>
+<h3>Add a &#8220;/&#8221; route</h3>
+<p>Open <code>sample-app.cr</code> file and add replace the contents with the following code</p><pre class="crayon-plain-tag">require "kemal"
+
+get "/" do
+"Hello World"
+end
+
+Kemal.run</pre><p>now run <code>$ crystal src/kemal_sample.cr</code>  and go to <code>http://localhost:3000/</code>on your browser. You should see ur app running and the message &#8216;Hello World&#8217;.</p>
+<h3>Deploy to Heroku</h3>
+<p>So far so good <img src="https://s.w.org/images/core/emoji/12.0.0-1/72x72/1f642.png" alt="🙂" class="wp-smiley" style="height: 1em; max-height: 1em;" /> Now let us deploy our app to Heroku. Run</p>
+<p><pre class="crayon-plain-tag">$ heroku create your-custom-name --buildpack https://github.com/crystal-lang/heroku-buildpack-crystal.git</pre></p>
+<p>You should see something like the following on your terminal.</p><pre class="crayon-plain-tag">$ heroku create your-custom-name --buildpack https://github.com/crystal-lang/heroku-buildpack-crystal.git
+Creating ⬢ your-custom-name... done
+Setting buildpack to https://github.com/crystal-lang/heroku-buildpack-crystal.git... done
+https://your-custom-name.herokuapp.com/ | https://git.heroku.com/your-custom-name.git</pre><p>You are all set. Commit and push to heroku</p><pre class="crayon-plain-tag">$ git status
+$ git add -A
+$ git commit -m "commit message"
+$ git push heroku master</pre><p>To see your app running go to <code>https://your-custom-name.herokuapp.com/</code> . Congratulations you just deployed your crystal app to production</p>
+<p><em>Happy Coding</em></p>
+<p>The post <a rel="nofollow" href="/deploying-crystal-app-production-using-heroku/">Deploying Crystal app to production using Heroku</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/deploying-crystal-app-production-using-heroku/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+							</item>
+		<item>
+		<title>How we made our rspec test suite to run 2x faster</title>
+		<link>/made-rspec-test-suite-run-2x-faster/</link>
+				<comments>/made-rspec-test-suite-run-2x-faster/#comments</comments>
+				<pubDate>Fri, 01 Sep 2017 09:24:27 +0000</pubDate>
+		<dc:creator><![CDATA[tony]]></dc:creator>
+				<category><![CDATA[Rails]]></category>
+		<category><![CDATA[RSpec]]></category>
+		<category><![CDATA[Ruby]]></category>
+		<category><![CDATA[testing]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3040</guid>
+				<description><![CDATA[<p>&#160; &#8220;Why on earth is my test suite taking so long to run?&#8221; If you are a developer, you might have asked this question at least once to yourself. So did we, our rails project&#8217;s test suite was taking a good 1 hour 30 minutes to run and we wanted to improve that time so&#8230;</p>
+<p>The post <a rel="nofollow" href="/made-rspec-test-suite-run-2x-faster/">How we made our rspec test suite to run 2x faster</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p>&nbsp;</p>
+<p>&#8220;<i>Why on earth is my test suite taking so long to run?</i>&#8221;</p>
+<p>If you are a developer, you might have asked this question at least once to yourself. So did we, our rails project&#8217;s test suite was taking a good 1 hour 30 minutes to run and we wanted to improve that time so badly that we eventually did exactly that, reducing nearly 1 and half hours to just minutes, and this is how we did it.</p>
+<h2>1. Database independent tests</h2>
+<p>DB operations are often time-consuming and most of the time we can do away with saving objects to the database to run our tests.</p>
+<p>Use test doubles, stubs and mocks instead of creating the real instance of a class and invoking methods on the created instance.</p>
+<div>
+<pre class="crayon-plain-tag">class Student &lt; ActiveRecord::Base
+  .
+  .
+  def name
+    first_name +" "+ last_name
+  end
+end</pre><br />
+Our test case</p>
+</div>
+<div>
+<div>
+<pre class="crayon-plain-tag">describe Student do
+  let (:student) {create(:student, first_name: 'Red', last_name: 'Panther')}
+  it 'should return name' do
+    student.name.should == 'Red Panther'
+  end
+end</pre><br />
+This test can be made faster by replacing</p>
+</div>
+<div>
+<pre class="crayon-plain-tag">let(:student) {create(:student, first_name: 'Red', last_name: 'panther')}</pre><br />
+with</p>
+<div>
+<pre class="crayon-plain-tag">let(:student) {build_stubbed(:student, first_name: 'Red', last_name: 'Panther')</pre></p>
+<h2>2) Use gem group</h2>
+</div>
+<p>Rails preload your gems before running tests. Using gem groups allow rails to load only the environment specific dependencies.</p>
+<div><b>#Gemfile</b></div>
+<div>
+<pre class="crayon-plain-tag">group: production do
+  gem 'activemerchent'
+end
+
+group :test, : development do
+  gem 'capybara'
+  gem 'rspec-rails'
+  gem 'byebug'
+end</pre></p>
+<h2><b>3) Use <code>before(:each)</code> and <code>before(:all)</code> hooks carefully</b></h2>
+</div>
+<p>Since <code>before(:each)</code> runs for every test, be careful what we include inside <code>before(:each)</code> hook. If the code inside <code>before(:each)</code> is slow every single test in your file is going to be slow.</p>
+<p>A workaround would be to refactor the code to have fewer dependencies or move them to a <code>before(:all)</code> block which runs only once.</p>
+<p>Let&#8217;s say you have</p>
+<div>
+<pre class="crayon-plain-tag">before(:each) do
+  @article = create(:article)
+  @author = create(:author)
+end</pre><br />
+moving them to a <code>before(:all)</code> block</p>
+</div>
+<div>
+<pre class="crayon-plain-tag">before(:all) do
+  @article = create(:article)
+  @author = create(:author)
+end</pre><br />
+Should save you some time but with some drawbacks of its own, for example, the objects <code>@article</code> and <code>@author</code> are not recreated for each test as they in <code>before(:all)</code> block which means any test case that changes the attributes of these objects might affect the result of other following tests.</p>
+</div>
+<h2>4. Use <code>build_stubbed</code> Instead of <code>build</code></h2>
+<p>FactoryGirl.build is not suitable when we want our instance to behave as though it is persisted. In this scenario instead of creating a real class instance, we can use <code>build_stubbed</code> which makes the instance to behave as it is persisted by assigning an id.</p><pre class="crayon-plain-tag">FactoryGirl.build_stubbed(:student)</pre><p>Also note that when we build instance using <code> .build</code> it calls .create on the associated models, where as .build_stubbed calls nothing but .build_stubbed also on associated models as well.</p>
+<h2>5. Running tests parallelly</h2>
+<p><a href="https://github.com/grosser/parallel_tests">parallel_tests</a> is a gem that allows us to run tests across multiple CPU cores. A very important thing to take into account when running tests in parallel is to make sure that the tests are independent of each other. Even though parallel_tests uses one database per thread, if there are any shared state between tests that live outside the DB such as Elastic search or Apache solar those dependencies should be taken into account when writing tests.</p>
+<h2>6. Use continuous integration</h2>
+<p>As our test suite grew into 3k test cases, it was no longer viable to run the entire suite on our local machines. That&#8217;s when we felt the urgency to switch to a CI. We chose <a href="https://circleci.com/">Circle CI</a> which supports parallel builds. We split out tests into multiple virtual machines that run parallelly and it was a huge win for us in terms of test times. Our developers wrote the code and pushed to the repo and the CI took care of the rest. Few popular CI tools are</p>
+<p>1) <a href="https://travis-ci.org/">Trvis CI</a><br />
+2) <a href="https://jenkins.io/">Jenkins</a><br />
+3) <a href="https://circleci.com/">CircleCI</a><br />
+4) <a href="https://codeship.com/">Codeship</a></p>
+<p>Automated tests with continuous integration also enhance code quality.</p>
+<h2>7. Database cleaner</h2>
+<p>We observed an increase in speed after tweaking our database_cleaner strategies a little bit.</p>
+<p>To start with, include gem database_cleaner in gemfile.</p>
+<p>Inside a separate file <code>spec/support/database_cleaner.rb</code>,</p>
+</div>
+<div>
+<div id="crayon-597801c40a13b848772980-1" class="crayon-line">
+<pre class="crayon-plain-tag">RSpec.configure do |config|
+ 
+  config.before(:suite) do
+    DatabaseCleaner.clean_with(:truncation)
+  end
+ 
+  config.before(:each) do
+    DatabaseCleaner.strategy = :transaction
+  end
+ 
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+ 
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
+ 
+end</pre></p>
+<ul>
+<li> This will clear the test database out completely before the entire test suite runs.</li>
+<li> Sets the default database cleaning strategy to be transactions, which are very fast.</li>
+<li> <code>DatabaseCleaner.start</code> and <code>DatabaseCleaner.clean</code> hook up database_cleaner when each test begins and ends.</li>
+</ul>
+</div>
+</div>
+</div>
+<h2>References</h2>
+<ul>
+<li><a href="https://github.com/grosser/parallel_tests">https://github.com/grosser/parallel_tests</a></li>
+<li><a href="https://github.com/thoughtbot/factory_girl">https://github.com/thoughtbot/factory_girl</a></li>
+<li><a href="https://circleci.com/">https://circleci.com/</a></li>
+<li><a href="https://github.com/DatabaseCleaner/database_cleaner">https://github.com/DatabaseCleaner/database_cleaner</a></li>
+</ul>
+<div></div>
+<p>The post <a rel="nofollow" href="/made-rspec-test-suite-run-2x-faster/">How we made our rspec test suite to run 2x faster</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/made-rspec-test-suite-run-2x-faster/feed/</wfw:commentRss>
+		<slash:comments>9</slash:comments>
+							</item>
+		<item>
+		<title>The future of Spree OSS and whats new in Spree 3.3</title>
+		<link>/future-spree-oss-whats-new-spree-3-3/</link>
+				<comments>/future-spree-oss-whats-new-spree-3-3/#comments</comments>
+				<pubDate>Tue, 29 Aug 2017 05:36:14 +0000</pubDate>
+		<dc:creator><![CDATA[tony]]></dc:creator>
+				<category><![CDATA[spree commerce]]></category>
+		<category><![CDATA[E-Commerce]]></category>
+		<category><![CDATA[rails]]></category>
+		<category><![CDATA[spree]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3341</guid>
+				<description><![CDATA[<p>The story so far Ever since its advent in 2007, Spree &#8211; originally developed by Sean Schofield, is the most popular open source Ruby On Rails E-commerce Software spanning over 17,703 commits, 725 contributes and 208 releases. Spree was acquired by First Data in the late 2015 and since then, there has been fair amount&#8230;</p>
+<p>The post <a rel="nofollow" href="/future-spree-oss-whats-new-spree-3-3/">The future of Spree OSS and whats new in Spree 3.3</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<h3>The story so far</h3>
+<p>Ever since its advent in 2007, <a href="https://github.com/spree/spree">Spree</a> &#8211; originally developed by Sean Schofield, is the most popular open source Ruby On Rails E-commerce Software spanning over 17,703 commits, 725 contributes and 208 releases. Spree was acquired by <a href="https://spreecommerce.com/blog/spree-acquired-by-first-data">First Data</a> in the late 2015 and since then, there has been fair amount of speculation around Spree remaining as an opensource project and it&#8217;s long term future as outlined here in this <a href="https://spreecommerce.com/blog/future-of-spree-oss">blog post</a>.</p>
+<p>As it turned out Spree didn&#8217;t die off, but revived under a new <a href="https://github.com/spree/spree/wiki/Core-Team">core team</a>. After the acquisition announcement developers from <a href="https://sparksolutions.co/">Spark Solutions </a>and <a href="http://vinsol.com/">Vinsol</a> volunteered to keep spree alive and has been doing a fantastic job, putting shoulders to the wheel by taking Spree from version <code>3.0.4</code> to the current <code>Spree 3.3</code></p>
+<h3>Whats new in Spree 3.3</h3>
+<p>On August 22, 2017, Spree released version 3.3 and is packed with the following major features.</p>
+<h5>Rails 5.1 support</h5>
+<p><code>Spree 3.3</code> is <code>Rails 5.1</code>  compatible whereas <code>Spree 3.2</code>  runs on Rails version <code>5.0</code>. Which means managing JavaScript dependencies from NPM via <code>Yarn</code>, ability to use <a href="http://edgeguides.rubyonrails.org/5_1_release_notes.html#direct-resolved-routes">direct &amp; resolved routes</a>, <a href="http://edgeguides.rubyonrails.org/5_1_release_notes.html#parameterized-mailers">parameterized mailers</a> and many more goodies <code>Rails 5.1</code>  has to offer</p>
+<h5>Ruby 2.4 support</h5>
+<p>Spree now works with Ruby versions <code>2.2 (&gt;= 2.2.7)</code> , <code>2.2 (&gt;= 2.2.7)</code> , <code>2.2 (&gt;= 2.2.7)</code> ,  <code>2.3.x</code>  and the latest <code>2.4.x</code>. So <code>Ruby 2.4x</code> ?  Yay! that&#8217;s <a href="https://blog.redpanthers.co/behind-scenes-hash-table-performance-ruby-2-4/">Faster Hashes</a>, <a href="https://blog.heroku.com/ruby-2-4-features-hashes-integers-rounding">Unified Integers, and Better Rounding</a> for you right out of the box</p>
+<h5>Segment tracker integration</h5>
+<p><code>Spree 3.3</code> is bundled with <a href="https://segment.com/">segment.com</a> Tracker system which enables you to<br />
+connect your store with over 200 analytics engines, CRMs, live chats, remarketing platforms and much more without any additional development. If that&#8217;s not cool enough for you stay tuned for next releases for more third party tracker and analytics integrations.</p>
+<h5>Bug fixes and performance enhancements</h5>
+<p>&#8211; Unique indexes and uniqueness validation on number fields for important models<br />
+&#8211; Multiple regular &amp; unique indexes that were missing have been added to improve data consistency and performance<br />
+&#8211; Optimized Shipments and Inventory Units.<br />
+&#8211; Better Store Credits management in customer Frontend and Admin Panel</p>
+<h3>Whats next?</h3>
+<p>Spree development has been slowly gaining traction recently.</p>
+<p><a href="https://blog.redpanthers.co/wp-content/uploads/2017/08/Screen-Shot-2017-08-26-at-21.53.16.png"><img class="aligncenter size-full wp-image-3344" src="https://blog.redpanthers.co/wp-content/uploads/2017/08/Screen-Shot-2017-08-26-at-21.53.16.png" alt="" width="979" height="180" /></a><br />
+The future roadmap for spree development can be found <a href="https://github.com/spree/spree/milestones?direction=asc&amp;sort=due_date&amp;state=open">here</a>. But still, it is fair to say that more focus and a unified effort is necessary for the long term survival of Spree. Let&#8217;s join the folks at Spark solutions and Vinsol and start contributing to Spree OSS project</p>
+<p>The post <a rel="nofollow" href="/future-spree-oss-whats-new-spree-3-3/">The future of Spree OSS and whats new in Spree 3.3</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/future-spree-oss-whats-new-spree-3-3/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+							</item>
+	</channel>
+</rss>

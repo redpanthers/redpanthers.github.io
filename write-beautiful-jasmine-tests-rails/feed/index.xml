@@ -1,0 +1,34 @@
+ <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>
+	Comments on: Make unit tests great again &#8211; Integrate Jasmine into Rails	</title>
+	<atom:link href="/write-beautiful-jasmine-tests-rails/feed/" rel="self" type="application/rss+xml" />
+	<link>/write-beautiful-jasmine-tests-rails/</link>
+	<description>Experts in Ruby on Rails Development</description>
+	<lastBuildDate>Thu, 08 Aug 2019 10:05:45 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.7</generator>
+			<item>
+				<title>
+				By: Lenka				</title>
+				<link>/write-beautiful-jasmine-tests-rails/#comment-91</link>
+		<dc:creator><![CDATA[Lenka]]></dc:creator>
+		<pubDate>Thu, 08 Aug 2019 10:05:45 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3149#comment-91</guid>
+					<description><![CDATA[Hi Alan! What would you recommend to do if I have my *spec.ts files inside Angular components? How can I ask Jasmine in jasmine.yml to point and run these files as well. And can Jasmine even run Typescript files or do I need some gem/plugin to compile .ts to .js? 
+I&#039;m asking because I&#039;m using wild combination of Rails+Angular6 and I would love to do Unit Tests inside my Component files]]></description>
+		<content:encoded><![CDATA[<p>Hi Alan! What would you recommend to do if I have my *spec.ts files inside Angular components? How can I ask Jasmine in jasmine.yml to point and run these files as well. And can Jasmine even run Typescript files or do I need some gem/plugin to compile .ts to .js?<br />
+I&#8217;m asking because I&#8217;m using wild combination of Rails+Angular6 and I would love to do Unit Tests inside my Component files</p>
+]]></content:encoded>
+						</item>
+			</channel>
+</rss>

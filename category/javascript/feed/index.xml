@@ -1,0 +1,1077 @@
+ <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Javascript &#8211; Red Panthers</title>
+	<atom:link href="/category/javascript/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description>Experts in Ruby on Rails Development</description>
+	<lastBuildDate>Thu, 22 Feb 2018 13:33:53 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.7</generator>
+
+<image>
+	<url>/wp-content/uploads/2017/12/rp-logo.png</url>
+	<title>Javascript &#8211; Red Panthers</title>
+	<link>/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Getting start with React Native</title>
+		<link>/getting-start-with-react-native/</link>
+				<comments>/getting-start-with-react-native/#respond</comments>
+				<pubDate>Mon, 23 Oct 2017 04:33:07 +0000</pubDate>
+		<dc:creator><![CDATA[vishnu]]></dc:creator>
+				<category><![CDATA[Beginners]]></category>
+		<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[ReactJS]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3660</guid>
+				<description><![CDATA[<p>React Native lets you build mobile apps using only JavaScript. A React Native app is a real mobile app. It uses the same design as React, letting you compose a rich mobile UI from declarative components. Installation Using Create React Native App we can start building a new React Native application easily. It allows you to start a project without installing or&#8230;</p>
+<p>The post <a rel="nofollow" href="/getting-start-with-react-native/">Getting start with React Native</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p><strong>React Native</strong> lets you build mobile apps using only JavaScript. A React Native app is a real mobile app. It uses the same design as React, letting you compose a rich mobile UI from declarative components.</p>
+<h2>Installation</h2>
+<p>Using <a href="https://github.com/react-community/create-react-native-app" rel="noopener">Create React Native App</a> we can start building a new React Native application easily. It allows you to start a project without installing or configuring any tools to build native code &#8211; no Xcode or Android Studio installation required.</p>
+<p>Assuming that you have <a href="https://nodejs.org/en/download/" rel="noopener">Node</a> installed, you can use npm to install the <code>create-react-native-app</code> command-line utility:</p><pre class="crayon-plain-tag">$ npm install -g create-react-native-app</pre><p>Try creating a new project:-</p><pre class="crayon-plain-tag">$ npm i -g create-react-native-app
+$ create-react-native-app my-project
+$ cd my-project
+$ npm start</pre><p>This will start a development server for you, and print a QR code in your terminal.</p>
+<p>To run your app,</p>
+<p>Install the <a href="https://expo.io/" rel="noopener">Expo</a> client app on your iOS or Android phone and connect to the same wireless network as your computer. Using the Expo app, scan the QR code from your terminal to open your project.</p>
+<h2>Basic App</h2>
+<p>In the App.js file you can see:-</p><pre class="crayon-plain-tag">import React, { Component } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+
+export default class App extends Component {
+  render() {
+    return (
+      &lt;Text&gt;Hello world!&lt;/Text&gt;
+    );
+  }
+}</pre><p><code>import</code>, <code>from</code>, <code>class</code>, <code>extends</code>, and the <code>() =&gt;</code> syntax in the example above are all ES2015 (also known as ES6)  features. The unusual thing in this code example is.<code>&lt;Text&gt;Hello world!&lt;/Text&gt;</code> This is JSX &#8211; a syntax for embedding XML within JavaScript. <code>&lt;Text&gt;</code> is a built-in component that just displays some text. This code is defining, <code>App</code> a new <code>Component</code> . Anything you see on the screen is some sort of component. A component can be pretty simple &#8211; the only thing that&#8217;s required is a <code>render</code> function which returns some JSX to render.</p>
+<p>You can also write style in App.js file.</p><pre class="crayon-plain-tag">const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#4286f4',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});</pre><p>To modify your app, you can edit App.js file. The application should reload automatically once you save your changes.</p>
+<h2>Create React Native App</h2>
+<p>Create React Native App makes it really easy to run your React Native app on a physical device without setting up a development environment. If you want to run your app on the iOS Simulator or an Android Virtual Device, please refer to the instructions for building projects with native code to learn how to install Xcode and set up your Android development environment.</p>
+<p>Once you&#8217;ve set these up, you can launch your app on an Android Virtual Device by running, npm run android or on the iOS Simulator by running npm run ios (macOS only).</p>
+<h3>Pros</h3>
+<ul>
+<li>JavaScript − You can use the existing JavaScript knowledge to build native mobile apps.</li>
+<li>Community − The community around React and React Native is large, and you will be able to find any answer you need.</li>
+<li>Code sharing − You can share most of your code on different platforms.</li>
+</ul>
+<h3>Cons</h3>
+<ul>
+<li>Native Components − If you want to create a native functionality which is not created yet, you will need to write some platform specific code.</li>
+</ul>
+<p>React Native is focused solely on building a mobile UI. Compared with JavaScript frameworks like AngularJS or MeteorJS, React Native is UI-focused, making it more like a JavaScript library than a framework. The resulting UI is highly responsive and feels fluid thanks to asynchronou<span style="color: #000000;">s JavaScript interactions</span> with the native environment. This means the app will have quicker load times than a typical hybrid app, and a smoother feel.</p>
+<h2>Reference</h2>
+<p><a href="https://facebook.github.io/react-native/blog/2017/03/13/introducing-create-react-native-app.html">https://facebook.github.io/react-native/blog/2017/03/13/introducing-create-react-native-app.html</a></p>
+<p><a href="https://facebook.github.io/react-native/docs/tutorial.html#content">https://facebook.github.io/react-native/docs/tutorial.html#content</a></p>
+<p>The post <a rel="nofollow" href="/getting-start-with-react-native/">Getting start with React Native</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/getting-start-with-react-native/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+							</item>
+		<item>
+		<title>Gulp</title>
+		<link>/gulp/</link>
+				<comments>/gulp/#respond</comments>
+				<pubDate>Fri, 29 Sep 2017 09:36:51 +0000</pubDate>
+		<dc:creator><![CDATA[reshma]]></dc:creator>
+				<category><![CDATA[Javascript]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3697</guid>
+				<description><![CDATA[<p>Gulp is a toolkit for automating painful or time-consuming tasks in your development workflow, so you can stop messing around and build something. You can compile sass files, uglify and compress js files and much more. Installation Make sure that you&#8217;ve installed Node and npm before attempting to install gulp. Install the gulp command [crayon-5f53f00e09d66649696407/] Make sure that&#8230;</p>
+<p>The post <a rel="nofollow" href="/gulp/">Gulp</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p>Gulp is a toolkit for automating painful or time-consuming tasks in your development workflow, so you can stop messing around and build something. You can compile sass files, uglify and compress js files and much more.</p>
+<h2>Installation</h2>
+<p>Make sure that you&#8217;ve installed Node and npm before attempting to install gulp.</p>
+<p>Install the gulp command</p><pre class="crayon-plain-tag">npm install --global gulp-cli</pre><p>Make sure that you have your <code>package.json</code> created by manually creating it or typing <code>npm init</code>.</p>
+<p>Run this command in your project directory:</p><pre class="crayon-plain-tag">npm install --save-dev gulp</pre><p></p>
+<h4>Create a gulpfile</h4>
+<p>In your project directory, create a file named <code>gulpfile.js</code> in your project root with these contents:</p><pre class="crayon-plain-tag">var gulp = require('gulp');
+
+gulp.task('task-name', function() {
+  // place code for your default task here
+});</pre><p>The first step to using Gulp is to <code>require</code> it in the gulpfile. Then you can begin to write a gulp task with this <code>gulp</code> variable. <code>task-name</code> refers to the name of the task, which would be used whenever you want to run a task in Gulp. You can also run the same task in the command line by writing <code>gulp task-name</code>.</p>
+<p>Run the gulp command in your project directory:</p><pre class="crayon-plain-tag">gulp</pre><p>To run multiple tasks, you can use <code>gulp &lt;task&gt; &lt;othertask&gt;</code></p>
+<p>Gulp tasks are usually a bit more complex than this. It usually contains two additional Gulp methods, plus a variety of Gulp plugins.</p><pre class="crayon-plain-tag">gulp.task('task-name', function () {
+  return gulp.src('source-files') // Get source files with gulp.src
+  .pipe(aGulpPlugin()) // Sends it through a gulp plugin
+  .pipe(gulp.dest('destination')) // Outputs the file in the destination folder
+})</pre><p><code>gulp.src</code> tells the Gulp task what files to use for the task, while <code>gulp.dest</code>tells Gulp where to output the files once the task is completed.</p>
+<p>Now, let&#8217;s run a task to compile the Sass.</p>
+<p>In terminal</p><pre class="crayon-plain-tag">$ npm install gulp-sass --save-dev</pre><p>In Gulpfile.js, we’ll write:</p><pre class="crayon-plain-tag">var sass = require('gulp-sass');
+/**
+ * Compile Sass.
+ */
+gulp.task('sass', function() {
+    return gulp.src('./sass/*.scss') // Create a stream in the directory where our Sass files are located.
+    .pipe(sass())                    // Compile Sass into style.css.
+    .pipe(gulp.dest('./'));          // Write style.css to the project's root directory.
+});</pre><p>A simple task which can be used to compile Sass and create <em>style.css</em>!</p>
+<p>To execute [‘sass’], simply type the following command into your terminal:</p><pre class="crayon-plain-tag">gulp sass</pre><p>Gulp can automatically compile Sass each time we save a Sass file</p><pre class="crayon-plain-tag">/**
+ * Watch the Sass directory for changes.
+ */
+gulp.task('watch', function() {
+  gulp.watch('./sass/*.scss', ['sass']);  // If a file changes, re-run 'sass'
+});</pre><p>In your terminal, simply type</p><pre class="crayon-plain-tag">gulp watch</pre><p>Now, anytime you make changes and save any file with a .scss extension, it will trigger this [‘watch’]<strong> </strong>task which executes [‘sass’].</p>
+<p>Gulp is a task runner that uses Node.js as a platform. Gulp purely uses the JavaScript code and helps to run front-end tasks and large-scale web applications. It builds system automated tasks like CSS and HTML minification, concatenating library files, and compiling the SASS files. These tasks can be run using Shell or Bash scripts on the command line.</p>
+<h2></h2>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://teamtreehouse.com/library/gulp-basics">https://teamtreehouse.com/library/gulp-basics</a></li>
+<li><a href="https://gulpjs.com/">https://gulpjs.com/</a></li>
+</ul>
+<p>The post <a rel="nofollow" href="/gulp/">Gulp</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/gulp/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+							</item>
+		<item>
+		<title>Getting started with Angular 4</title>
+		<link>/getting-started-with-angular-4/</link>
+				<comments>/getting-started-with-angular-4/#respond</comments>
+				<pubDate>Tue, 19 Sep 2017 11:42:19 +0000</pubDate>
+		<dc:creator><![CDATA[reshma]]></dc:creator>
+				<category><![CDATA[Angular4]]></category>
+		<category><![CDATA[AngularJS]]></category>
+		<category><![CDATA[Beginners]]></category>
+		<category><![CDATA[Javascript]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3253</guid>
+				<description><![CDATA[<p>Angular is a most popular platform for building applications with the web. Angular empowers developers to build applications that live on the web, mobile, or the desktop. The AngularCLI is a command line interface tool that can create a project, add files, and perform a variety of ongoing development tasks such as testing, bundling, and deployment. As compared to the older&#8230;</p>
+<p>The post <a rel="nofollow" href="/getting-started-with-angular-4/">Getting started with Angular 4</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p><a href="https://blog.redpanthers.co/wp-content/uploads/2017/08/angular4.jpg"><img class="alignnone wp-image-3306" src="https://blog.redpanthers.co/wp-content/uploads/2017/08/angular4-300x150.jpg" alt="" width="1210" height="605" /></a></p>
+<p>Angular is a most popular platform for building applications with the web. Angular empowers developers to build applications that live on the web, mobile, or the desktop. The <a href="https://cli.angular.io/">AngularCLI</a> is a command line interface tool that can create a project, add files, and perform a variety of ongoing development tasks such as testing, bundling, and deployment.</p>
+<p>As compared to the older versions of Angular, there are many new things added to the list. Not only new features but also some twists are there that enhance old features. Forget Angular 3, Google jumps straight to Angular 4 after Angular 2. Angular4 applications are much faster and less space consuming.  Angular4 is compatible with TypeScript’s newer versions 2.1 and 2.2. Components are the basic building blocks of your application. Every component has an associated template, style sheet, and a class with logic.</p>
+<h2>Prerequisites</h2>
+<p><strong>1. NodeJS </strong>( 6.x.x or greater )</p>
+<p><strong>2. npm </strong>(3.x.x or greater )</p>
+<h2>Installation</h2>
+<p>1. You have to install AngularCLI globally.</p><pre class="crayon-plain-tag">npm install -g @angular/cli</pre><p>2. Create a new project.</p><pre class="crayon-plain-tag">ng new my-app</pre><p>3. To serve the application, get into the project repo and run :</p><pre class="crayon-plain-tag">cd my-app
+ng serve --open</pre><p>For launching our server and for rebuilding our app when there are any changes we are using &#8220;ng serve&#8221;.</p>
+<p>When using &#8220;&#8211;open&#8221; or &#8220;&#8211;o&#8221;, it will open in &#8220;http://localhost:4200/&#8221; automatically.</p>
+<h4>And that&#8217;s it!</h4>
+<p>Your basic app is ready!</p>
+<h2>What’s New In Angular 4</h2>
+<h3>Router ParamMap</h3>
+<p>In the previous versions, we were using a simple key-value object for storing route parameters. But in Angular4, it is possible to query a so-called ParamMap in the router, that is a request for the route- and query parameter assigned to a route.</p><pre class="crayon-plain-tag">class MyComponent {
+ sessionId: Observable&lt;string&gt;;
+
+ constructor(private route: ActivatedRoute) {}
+
+ ngOnInit() {
+   this.sessionId = this.route
+     .queryParams
+     .map(params =&gt; params['session_id'] || 'None');
+ }
+}</pre><p>Now, we can run them as simple method calls (parameterMap.get(‘parameter-name’)).</p><pre class="crayon-plain-tag">class MyComponent {
+ sessionId: Observable&lt;string&gt;;
+
+ constructor(private route: ActivatedRoute) {}
+
+ ngOnInit() {
+   this.sessionId = this.route
+     .queryParamMap
+     .map(paramMap =&gt; paramMap.get('session_id') || 'None');
+ }
+}</pre><p>The parameters are also available as a map. This brings advantage in terms of type security. The old key-value structure is unsafe since it can take all possible values. In the map, the parameter value is either string or array of strings depending upon the method used. Hence it is safe.</p>
+<h3>Animation Package</h3>
+<p>All the functions of animation were provided in @angular/core module. So it was always there with our application even if we didn&#8217;t use it and many unnecessary bundles were created. To avoid this, these functions have been put into its own packages.  So that this extra code will not end up in your production bundles if you didn&#8217;t use that. We can add animations ourselves in the main NgModule by importing BrowserAnimationsModule from @angular/platform-browser/animations.</p>
+<h3>Improved *ngIf and *ngFor</h3>
+<p>It’s now also possible to use an <code class="highlighter-rouge">else</code> syntax in your templates. In the else-case, a separately referenced template is used in place of the element marked with *ngIf.</p><pre class="crayon-plain-tag">&lt;div *ngIf="races.length &gt; 0; else empty"&gt;&lt;h2&gt;Races&lt;/h2&gt;&lt;/div&gt;
+&lt;ng-template #empty&gt;&lt;h2&gt;No races.&lt;/h2&gt;&lt;/ng-template&gt;</pre><p>Another addition to the template syntax is the <code class="highlighter-rouge">as</code> keyword, to simplify the <code class="highlighter-rouge">let</code> syntax. We can store the result in a variable of the template so that we can use it in the element.</p><pre class="crayon-plain-tag">&lt;div *ngFor="let pony of ponies | slice:0:2 as total; index as i"&gt;
+  {{i+1}}/{{total.length}}: {{pony.name}}
+&lt;/div&gt;</pre><p></p>
+<h3>TypeScript 2.1 &amp; 2.2 compatibility</h3>
+<p>Version 4 is compatible with these new versions of TypeScript. This will improve the speed of ngc and give better type checking in your application.</p>
+<h3>Universal</h3>
+<p>With Angular Universal, we can do the server side rendering. It was maintained by the community until now, but after this release, it’s now an official Angular project.</p>
+<h2 class="card-container">Conclusion</h2>
+<p>The new release brings some good features and a really great improvement of the generated code size, for the price of very few breaking changes that should not impact you a lot and also makes the migration quite smooth. So Angular 4 is here and it&#8217;s time to learn one of the most popular and powerful javascript frameworks.</p>
+<h2>References</h2>
+<p><a href="https://angular.io/">https://angular.io/</a></p>
+<p><a href="https://jaxenter.com/angular-4-top-features-133165.html">https://jaxenter.com/angular-4-top-features-133165.html</a></p>
+<p><a href="https://coursetro.com/courses/12/Learn-Angular-4-from-Scratch">https://coursetro.com/courses/12/Learn-Angular-4-from-Scratch</a></p>
+<p>Happy Coding!!</p>
+<p>The post <a rel="nofollow" href="/getting-started-with-angular-4/">Getting started with Angular 4</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/getting-started-with-angular-4/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+							</item>
+		<item>
+		<title>Event Listeners in VueJS</title>
+		<link>/event-listeners-in-vuejs/</link>
+				<comments>/event-listeners-in-vuejs/#respond</comments>
+				<pubDate>Wed, 13 Sep 2017 08:20:06 +0000</pubDate>
+		<dc:creator><![CDATA[reshma]]></dc:creator>
+				<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[VueJS]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3586</guid>
+				<description><![CDATA[<p>Vue.js is a Javascript framework for user interface. There are many directives in Vuejs. A directive’s job is to reactively apply special behavior to the DOM when the value of its expression changes. You can use the v-on directive to bind event listeners to DOM events. [crayon-5f53f00e0aca0795894544/] [crayon-5f53f00e0acaa802050018/] We are binding a click event listener to a&#8230;</p>
+<p>The post <a rel="nofollow" href="/event-listeners-in-vuejs/">Event Listeners in VueJS</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p>Vue.js is a Javascript framework for user interface. There are many directives in Vuejs. A directive’s job is to reactively apply special behavior to the DOM when the value of its expression changes. You can use the <code>v-on</code> directive to bind event listeners to DOM events.</p><pre class="crayon-plain-tag">&lt;div id="example"&gt;
+  &lt;button v-on:click="clickme"&gt;Add 1&lt;/button&gt;
+  &lt;p&gt;The button above has been clicked {{ counter }} times.&lt;/p&gt;
+&lt;/div&gt;</pre><p></p><pre class="crayon-plain-tag">var example1 = new Vue({
+  el: '#example',
+  data: {
+    counter: 0
+  },
+  methods : {
+    clickMe : function(){
+     this.counter += 1;
+    }
+  }
+})</pre><p>We are binding a click event listener to a method named <code>clickMe</code>. Here’s how to define that method in our Vue instance. Here we have a <em>counter</em> variable initialized to zero. Inside the method, we are incrementing the value of the counter. So for each click on the button, the method is invoked. You will get the <a href="https://jsfiddle.net/reshma_shenoy/61uprqpa/" target="_blank" rel="noopener">code here</a>.</p><pre class="crayon-plain-tag">&lt;div id="example2"&gt;
+  &lt;button v-on:click="countUp"&gt;Count Up&lt;/button&gt;
+  &lt;button v-on:click="countDown"&gt;Count Down&lt;/button&gt;
+  &lt;h1&gt;Count: {{ counter }}&lt;/h1&gt;
+&lt;/div&gt;</pre><p></p><pre class="crayon-plain-tag">var example2 = new Vue({
+  el: '#example2',
+  data: {
+    counter: 0
+  },
+  methods : {
+   countUp : function(){
+    this.counter += 1;
+   },
+   countDown : function(){
+    this.counter -= 1;
+   }
+  }
+})</pre><p>Here in this example, we are using two button and methods. One for incrementing the count and other for decrementing. You can see <a href="https://jsfiddle.net/reshma_shenoy/61uprqpa/1/">code here.</a></p>
+<p><strong>Note</strong> :-</p><pre class="crayon-plain-tag">Instead of using "v-on:click", we have a shortcut. We can use "@click".</pre><p>For example,</p><pre class="crayon-plain-tag">&lt;div id="example2"&gt;
+  &lt;button @click="countUp"&gt;Count Up&lt;/button&gt;
+  &lt;button @click="countDown"&gt;Count Down&lt;/button&gt;
+  &lt;h1&gt;Count: {{ counter }}&lt;/h1&gt;
+&lt;/div&gt;</pre><p>This will give same result as before.</p>
+<p>We can see another example. Here we have an input field where we type the url which is bound to the Js using <code>v-model</code>.  We have a button with click event listener which is bound to the method <code>humanizeUrl</code>. We have two urls, <em>url</em> and <em>cleanUrl. url  </em>is what we type in the input field and <em>cleanUrl</em>  is getting by replacing the <em>url</em> using regular expression. Regular expression is not a Vue.js thing. Its a universal programming format. We are saving the domain name of url in the cleanUrl. Thus we will get the value on cleanUrl in the view. You will get the <a href="https://jsfiddle.net/reshma_shenoy/61uprqpa/5/" target="_blank" rel="noopener">code here</a>.</p><pre class="crayon-plain-tag">&lt;div id="example"&gt;
+  Visit : &lt;a href="#"&gt;{{cleanUrl}}&lt;/a&gt;&lt;br&gt;&lt;br&gt;
+  &lt;input type="text" v-model="url" placeholder="Type your Url"&gt;
+  &lt;button @click="humanizeUrl"&gt;humanizeUrl&lt;/button&gt;
+&lt;/div&gt;</pre><p></p><pre class="crayon-plain-tag">var example1 = new Vue({
+  el: '#example',
+  data: {
+    url: "",
+    cleanUrl: ""
+  },
+  methods : {
+    humanizeUrl: function(){
+      this.cleanUrl = this.url.replace(/^https?:\/\//, '').replace(/\/$/, '')
+    }
+  }
+})</pre><p>But here you won&#8217;t redirect to the url when we click on it. That is we have to get the url. So we need to bind the <code>href</code>. You can use <code>v-bind</code> directive for this.</p><pre class="crayon-plain-tag">&lt;div id="example"&gt;
+  Visit : &lt;a v-bind:href="url"&gt;{{cleanUrl}}&lt;/a&gt;&lt;br&gt;&lt;br&gt;
+  &lt;input type="text" v-model="url" placeholder="Type your Url"&gt;
+  &lt;button @click="humanizeUrl"&gt;humanizeUrl&lt;/button&gt;
+&lt;/div&gt;</pre><p>Here is the <a href="https://jsfiddle.net/reshma_shenoy/wre27pre/1/" target="_blank" rel="noopener">Demo</a>. So the url will redirect to the correct page. You can try out these examples to get an idea about event listeners in Vue.js.</p>
+<h2>Reference</h2>
+<p><a href="https://vuejs.org/v2/guide/events.html">https://vuejs.org/v2/guide/events.html</a></p>
+<p><a href="https://www.youtube.com/watch?v=4PXXQzME5no">https://www.youtube.com/watch?v=4PXXQzME5no</a></p>
+<p>The post <a rel="nofollow" href="/event-listeners-in-vuejs/">Event Listeners in VueJS</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/event-listeners-in-vuejs/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+							</item>
+		<item>
+		<title>Two way binding in Vue.js</title>
+		<link>/two-way-binding-in-vue-js/</link>
+				<comments>/two-way-binding-in-vue-js/#comments</comments>
+				<pubDate>Fri, 08 Sep 2017 13:06:37 +0000</pubDate>
+		<dc:creator><![CDATA[reshma]]></dc:creator>
+				<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[VueJS]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3499</guid>
+				<description><![CDATA[<p>Vue.js is a JavaScript framework getting popular considering its simplicity praised a lot these days. There are a lot of JavaScript frameworks among which React and Angular are popular among web developers. Vue.js is much flexible and less opinionated framework than Angular. It&#8217;s similar to React but much simpler. Vue.js supports Two-way binding. That is it keeps your data&#8230;</p>
+<p>The post <a rel="nofollow" href="/two-way-binding-in-vue-js/">Two way binding in Vue.js</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p><strong>Vue.js</strong> is a JavaScript framework getting popular considering its simplicity praised a lot these days. There are a lot of JavaScript frameworks among which React and Angular are popular among web developers. Vue.js<em> </em>is much flexible and less opinionated framework than Angular. It&#8217;s similar to React but much simpler. Vue.js supports <strong>Two-way binding.</strong> That is it keeps your data in sync with your DOM without you having to do anything. Two-way binding in Vue.js is MVVM pattern. That is <strong>M</strong>odel <strong>V</strong>iew <strong>V</strong>iew <strong>M</strong>odel. Like MVC, Model is the data object and view is what is displayed up. The Model can tie to the View and the View can tie back to Model.</p>
+<p>In one way binding, JS variable is bound to the DOM.</p><pre class="crayon-plain-tag">&lt;div id="app"&gt;
+  &lt;span&gt;The message is: {{message}}&lt;/span&gt;
+&lt;/div&gt;</pre><p></p><pre class="crayon-plain-tag">new Vue({
+ el: '#app',
+ data: {
+   message: 'vue js one way binding'
+ }
+});</pre><p>Here when you change the data in JS, it will also update in the DOM. So you will get the updated message on the page. You can get the basic <a href="https://jsfiddle.net/Ldh3r8bx/1/" target="_blank" rel="noopener">code here</a>.</p>
+<p>But in two way binding, Js variable can be bound to the DOM and data is also bound from the DOM back to JS.</p><pre class="crayon-plain-tag">&lt;div id="app"&gt;
+  &lt;span&gt;{{message}}&lt;/span&gt;&lt;br&gt;
+  &lt;input v-model="message"&gt;
+&lt;/div&gt;</pre><p></p><pre class="crayon-plain-tag">new Vue({
+  el: '#app',
+  data: {
+    message: 'vue js two way binding'
+  }
+});</pre><p>Now, if you type anything into your <em class="markup--em markup--p-em">input,</em> your JS variable is updated with the change, which in turn updates your <em class="markup--em markup--p-em">span</em>. You can get the <a href="https://jsfiddle.net/Ldh3r8bx/2/" target="_blank" rel="noopener">code here</a>.</p>
+<h2>Directive</h2>
+<p>The attribute used with input <code>v-model</code>is a vue directive. We have to assign data model with the directive. A directive’s job is to reactively apply special behavior to the DOM when the value of its expression changes. In the case of v-model, it binds the element to one of the data properties that Vue is watching. Vue has many directives. Another one is <code>v-on</code> which binds an element to an event. For example, v-on<em>:</em> <em>click</em>  is to bind element when clicking on it.</p>
+<p>Working with html forms is a breeze in Vue. This is where two-way binding shines. It does not bring any issues  even in complex cases, though watchers may remind of Angular 1 at first glance. One-way flow with callback passing is always at your service when you do your components splitting.</p>
+<h2>Two way binding with JQuery</h2>
+<p>You can also do two-way binding in jquery or plain JS. But you have to use some event listeners when there occurs any change in the input. You have to make your own logic to update DOM when there are any changes in the elements. You can see the <a href="https://jsfiddle.net/Ldh3r8bx/3/" target="_blank" rel="noopener">example here</a>.</p>
+<p>You can achieve reactive data binding in jQuery, but it’s just a sideshow. In Vue, it’s the main event. Hope you will try it.</p>
+<p>Happy Coding!</p>
+<h2>Reference</h2>
+<p><a href="https://vuejs.org/">https://vuejs.org/</a></p>
+<p><a href="https://vuejs.org/v2/guide/forms.html">https://vuejs.org/v2/guide/forms.html</a></p>
+<p><a href="https://www.youtube.com/watch?v=nEdsu6heW9o">https://www.youtube.com/watch?v=nEdsu6heW9o</a></p>
+<p>The post <a rel="nofollow" href="/two-way-binding-in-vue-js/">Two way binding in Vue.js</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/two-way-binding-in-vue-js/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+							</item>
+		<item>
+		<title>Integrating Elm with Rails</title>
+		<link>/integrating-elm-rails/</link>
+				<comments>/integrating-elm-rails/#respond</comments>
+				<pubDate>Wed, 30 Aug 2017 12:51:56 +0000</pubDate>
+		<dc:creator><![CDATA[nimmy]]></dc:creator>
+				<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[elm]]></category>
+		<category><![CDATA[frontend]]></category>
+		<category><![CDATA[functional]]></category>
+		<category><![CDATA[language]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3091</guid>
+				<description><![CDATA[<p>&#160; Front-end languages and frameworks are changing significantly over years. The trend is towards light-weight, modular architecture. Functional programming has influenced JavaScript and its frameworks a lot. For beautiful single page web applications, Elm is a framework that can be chosen. It gets compiled to efficient JavaScript code. But when to use Elm instead of&#8230;</p>
+<p>The post <a rel="nofollow" href="/integrating-elm-rails/">Integrating Elm with Rails</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p>&nbsp;</p>
+<p>Front-end languages and frameworks are changing significantly over years. The trend is towards light-weight, modular architecture. Functional programming has influenced JavaScript and its frameworks a lot. For beautiful single page web applications, Elm is a framework that can be chosen. It gets compiled to efficient JavaScript code. But when to use Elm instead of JavaScript?  If you are building complicated single page applications Elm can do better.</p>
+<p>Elm is a functional programming language created by Evan Czaplicki in 2012 for building reliable Web Applications. Elm is simple to use and offers much quality. Its architecture is a simple pattern for building web apps, that help you to add features quickly. Also, we can use Elm in existing projects as it can be used along with already written JavaScript code.</p>
+<h2>Why Elm?</h2>
+<p>Switching to functional programming languages makes it a better environment for multi-threaded applications. For example, immutability is a powerful functional concept that JavaScript lacks. But in Elm, once created value cannot be changed, thus making a <strong>thread-safe environment</strong>. Each thread need not worry about other threads when they act on data since these data are represented by immutable objects in Elm.</p>
+<p>While in other languages it&#8217;s hard to catch production errors, Elm offers <strong>&#8216;no run time exceptions&#8217;</strong> guarantee.</p>
+<h3><strong>Friendly error messages</strong></h3>
+<p>Elm has a reputation for great error messages, being statically typed.</p>
+<p>Consider the following Elm code</p><pre class="crayon-plain-tag">import Html exposing(..)
+
+
+view orders =
+
+  div [] (List.mapp viewOrder orders)
+
+viewOrder order =
+
+  span [] (text order.name)</pre><p>Here&#8217;s an example for an error message after compiling the Elm code:</p>
+<p>This is what errors look like in the command line</p><pre class="crayon-plain-tag">--NAMING ERROR-----------------------------------------------------list-mapp.elm
+
+Cannot find variable 'List.mapp' .
+
+6| div [] (List.mapp viewOrder orders)
+
+List does not expose 'mapp' . May be you want one of the following?
+
+List.map
+
+List.any
+
+List.map2
+
+List.map3</pre><p></p>
+<ul>
+<li>shows the line number in the code which caused the error</li>
+<li>shows the actual line of code</li>
+<li>lists the maximum possibilities for correct code</li>
+</ul>
+<p>If you have a nice editor with Elm language integration, these error messages can be seen as a pop-up when hovering over the line of code which causes the error. This line of code can be identified easily as it will be red underlined.</p>
+<p>To start with Elm, we don&#8217;t have to worry about the huge libraries as in case of other frameworks. Just install Elm CLI and start coding. In a JavaScript application, we are probably putting together some collection of tools as below.</p>
+<ul>
+<li>React</li>
+<li>Redux</li>
+<li>npm/yarn</li>
+<li>Webpack</li>
+<li>Immutable.JS</li>
+</ul>
+<p>But Elm addresses these issue by providing all of them <strong>built in a single installer.</strong></p>
+<p>JavaScript languages and browser engines are subjected to constant changes always. It&#8217;s not feasible to refactor the application accordingly. Building our application in Elm enables to get more efficient JavaScript code when newer versions of the language are released with compiler updates.</p>
+<h2>Start with Elm</h2>
+<p>Elm is a delightful language meant for developer happiness. When you write an Elm app, you write a number of modules in separate files and feed those files to Elm compiler. It gets compiled to JavaScript that&#8217;s ready to run the program.</p>
+<h3>Architecture</h3>
+<p>Whenever we write an Elm app this architecture will be following. All Elm apps in practice are structured this way.</p>
+<p>So, we start by writing an init function, whose job is to generate the initial model for our app. This is the complete model for the current state of the front end as it&#8217;s running in the browser.</p>
+<p>The second function is the view that takes the model and generates the Html interface for your web app. In React like frameworks, it lets you generate a virtual DOM. So every time front end is rendered it will calculate the entire user interface and the framework takes responsibility for efficiently updating the changes in the actual browser. Elm also has its own virtual DOM implementation that is really faster compared to React, Angular etc.</p>
+<p>As part of our interface, we will declare the events we are interested in. If the user does something like click a button, Elm will send the program a message. So we need to write a third function to handle those messages and that&#8217;s the update function. This function will take that message and the program&#8217;s existing model and put them together in order to generate the new updated model for the program. Then it feeds to the view function to generate the updated interface. This is how Elm looks like.</p>
+<h2>Install on Rails</h2>
+<p>Elm is officially supported in Rails 5.1 via the webpacker gem.</p>
+<p>Be sure to <a href="https://yarnpkg.com/en/docs/install">install yarn</a> and <a href="https://nodejs.org/en/download/">Node.js</a> first. Node.js version should be &gt;6.4.0+</p>
+<p>Then, to use Webpacker with Elm,</p><pre class="crayon-plain-tag">rails new elm-on-rails --webpack=elm</pre><p>If Rails application is already setup with webpacker, run</p><pre class="crayon-plain-tag">./bin/rails webpacker:install:elm</pre><p>within the app.</p>
+<p>If it&#8217;s not setup with webpacker, add gem &#8216;webpacker&#8217; to your gemfile and then install Elm.</p>
+<p>Navigate to app/javascript/packs directory.  A file named Main.elm that displays &#8220;Hello Elm!&#8221; text is generated there, along with a companion file hello_elm.js</p><pre class="crayon-plain-tag">#hello_elm.js
+
+import Elm from './Main'
+
+document.addEventListener('DOMContentLoaded', () =&gt; {
+const target = document.createElement('div')
+
+document.body.appendChild(target)
+Elm.Main.embed(target)
+})</pre><p>Now, we need a page to display the Elm output.</p>
+<p>We&#8217;ll create a new file app/views/application/index.html.erb in order to render the layout:</p>
+<p>Use the javascript_pack_tag helper to import hello_elm.js file:</p><pre class="crayon-plain-tag">&lt;%= javascript_pack_tag "hello_elm" %&gt;</pre><p>Add this line in application.html.erb or index.html.erb since hello_elm.js file embeds the output in the current document.</p>
+<p>Then add a default route</p><pre class="crayon-plain-tag">#config/routes.rb
+
+get '/', to: 'application#index'</pre><p>Before firing up Rails server, do</p><pre class="crayon-plain-tag">bundle exec rails webpacker:compile</pre><p>Then run rails server and you will be seeing the &#8220;Hello Elm!&#8221; greeting.</p>
+<h2>Immutable Data and Pure Functions</h2>
+<p>Elm programs are made up of immutable data and pure functions. This contributes to the simplicity of the language.</p>
+<p>In Ruby, if I say,</p><pre class="crayon-plain-tag">user.update(params)</pre><p>Calling an update method will change that user object in place. The initial value in user object is gone now if we do not have a copy of it before method call.</p>
+<p>In the same controller,</p><pre class="crayon-plain-tag">new_hash = hash.merge(params)</pre><p>Calling hash.merge doesn&#8217;t modify the hash in place but returns a new_hash with updates applied to it.</p>
+<p>The above examples are two different APIs designed in different ways.</p>
+<p>This can be confusing to beginners if they find it difficult to understand why different functions work in different ways. But it&#8217;s not an issue in Elm as its values are immutable.</p>
+<p>In Elm,</p><pre class="crayon-plain-tag">newUser = update params user</pre><p>user object can be passed to update function but that can&#8217;t change its value; it&#8217;s immutable.</p>
+<p>What we can do is to create a new value with some changes applied to it. Thus, the update function will return the newly updated user. That&#8217;s just how all Elm functions work, so there&#8217;s little situation of confusion as explained first.</p>
+<p>The update function we explained in Ruby can have side effects. It brings changes to the database. If a function does nothing but provides the same return value based on its arguments, then only it can be called side-effect-free. The function should not make any impact on anything else; that&#8217;s pure function in terms of functional programming.</p>
+<p>Elm functions cannot have side effects because all Elm functions are pure functions &#8211; a strong reason why Elm defined as a functional programming language. The only thing the functions do in Elm is calculating its return value by the arguments that we passed to and constants. They cannot have side effects. The advantage is that we get more predictable programs.</p>
+<h2>Elm Platform</h2>
+<p>To develop our Elm applications, four tools will be essential.</p>
+<ul>
+<li>elm-repl</li>
+</ul>
+<p>To quickly execute a small piece of Elm code from the command line without having to create a file. To start using the REPL, execute elm-repl in the terminal.</p>
+<ul>
+<li>elm-reactor</li>
+</ul>
+<p>Creates a server that will compile your elm code and will be able to see the result directly on the browser. Also, we can set a different port and custom address.</p><pre class="crayon-plain-tag">elm-reactor -a 0.0.0.0 -p 3000</pre><p></p>
+<ul>
+<li>elm-make</li>
+</ul>
+<p>We can use elm-make to translate the Elm code to native files for the web(HTML, CSS, and JavaScript)</p>
+<ul>
+<li>elm-package</li>
+</ul>
+<p>Tool to install and publish Elm packages.<br />
+Type elm-package in your command line to make it available, and to install a package:</p><pre class="crayon-plain-tag">elm-package install &lt;package-name&gt;</pre><p>Elm having a solid architecture enables to build our projects with a guarantee that we have things under control even when application increases in complexity.</p>
+<p>&nbsp;</p>
+<h2>References</h2>
+<ul>
+<li><a href="https://github.com/rails/webpacker">https://github.com/rails/webpacker</a></li>
+<li><a href="https://guide.elm-lang.org/">https://guide.elm-lang.org/</a></li>
+<li><a href="https://www.elm-tutorial.org/en/">https://www.elm-tutorial.org/en/</a></li>
+<li><a href="https://github.com/fbonetti/elm-rails">https://github.com/fbonetti/elm-rails</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>The post <a rel="nofollow" href="/integrating-elm-rails/">Integrating Elm with Rails</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/integrating-elm-rails/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+							</item>
+		<item>
+		<title>Getting Started with Vue.js</title>
+		<link>/getting-started-vuejs/</link>
+				<comments>/getting-started-vuejs/#respond</comments>
+				<pubDate>Mon, 28 Aug 2017 12:54:43 +0000</pubDate>
+		<dc:creator><![CDATA[reshma]]></dc:creator>
+				<category><![CDATA[Beginners]]></category>
+		<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[VueJS]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=2011</guid>
+				<description><![CDATA[<p>&#160; What is Vue.js? Vue.js is yet another JavaScript framework getting popular considering its simplicity praised a lot these days. There are a lot of JavaScript frameworks among which React and Angular are popular among web developers. Vue.js pronounced as &#8220;view.js&#8221;  is a much flexible and less opinionated framework than Angular. It&#8217;s similar to React but&#8230;</p>
+<p>The post <a rel="nofollow" href="/getting-started-vuejs/">Getting Started with Vue.js</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p>&nbsp;</p>
+<h2><a href="https://blog.redpanthers.co/wp-content/uploads/2017/02/vue-2.jpg"><img class="aligncenter wp-image-3224 size-large" src="https://blog.redpanthers.co/wp-content/uploads/2017/02/vue-2-1024x512.jpg" alt="Vue.js" width="1024" height="512" /></a></h2>
+<h2>What is Vue.js?</h2>
+<p><strong>Vue.js</strong> is yet another JavaScript framework getting popular considering its simplicity praised a lot these days. There are a lot of JavaScript frameworks among which React and Angular are popular among web developers. Vue.js pronounced as <em>&#8220;view.js&#8221;  </em>is a much flexible and less opinionated framework than Angular. It&#8217;s similar to React but much simpler.</p>
+<p>Vue.js gives you more freedom in designing your app, unlike Angular. So that you are not forced to do everything in their way. It can be adapted very easily to your existing application. You don&#8217;t need to know <a href="https://jsx.github.io/">JSX</a>, unlike React. All you have to do is to drop the link into your HTML page header and you are up and ready.</p>
+<h2>Overview</h2>
+<p><a href="https://blog.redpanthers.co/wp-content/uploads/2017/02/Screen-Shot-2017-08-28-at-1.10.07-pm.png"><img class="alignnone wp-image-3352" src="https://blog.redpanthers.co/wp-content/uploads/2017/02/Screen-Shot-2017-08-28-at-1.10.07-pm-300x219.png" alt="" width="456" height="333" /></a></p>
+<p>This is the basic folder structure.</p>
+<h4>&#8211; index.html</h4>
+<p>This is the main HTML template for your application. You can link your static assets inside the <strong>head</strong> tag while your processed assets will be auto injected in the <strong>body</strong>.</p><pre class="crayon-plain-tag">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;link rel="shortcut icon" type="image/png" href="/assets/images/favicon.png"/&gt;
+  &lt;/head&gt;
+
+  &lt;body&gt;
+    &lt;div id="app"&gt;&lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre><p></p>
+<h4>&#8211; src/router/index.js</h4>
+<p>This is the file which initiates <a href="https://router.vuejs.org/en/">vue-router</a> with the given components.</p><pre class="crayon-plain-tag">import Vue from 'vue';
+import VueRouter from 'vue-router';
+import Hello from '@/components/Hello';
+
+Vue.use(VueRouter);
+
+const routes = [
+  { path: '/', name: 'Hello', component: Hello },
+];
+
+/* eslint-disable no-new */
+export default new VueRouter({
+  routes,
+  mode: 'history',
+});</pre><p></p>
+<h4>&#8211; src/App.vue</h4>
+<p>This is the application’s main <a href="https://vuejs.org/">Vue.js</a> component which is basically just a wrapper for <a href="https://router.vuejs.org/en/">vue-router</a>.</p><pre class="crayon-plain-tag">&lt;template&gt;
+  &lt;div id="app"&gt;
+    &lt;router-view&gt;&lt;/router-view&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {};
+&lt;/script&gt;</pre><p></p>
+<h4>&#8211; src/main.js</h4>
+<p>This is the application entry file where you initiate your <a href="https://vuejs.org/">Vue.js</a> application with a router, store and the main <strong>App.vue </strong>component.</p><pre class="crayon-plain-tag">import Vue from 'vue';
+import router from '@/router';
+import store from '@/store';
+import App from '@/App';
+
+/* eslint-disable no-new */
+new Vue({
+  el: '#app',
+  router,
+  store,
+  render: h =&gt; h(App),
+});</pre><p></p>
+<h4>&#8211; src/components/Hello.vue</h4>
+<p>This file represents a sample <a href="https://vuejs.org/">Vue.js</a> component which will be used by the <a href="https://router.vuejs.org/en/">vue-router</a>. Please note that Hello module’s state is being used in here.</p><pre class="crayon-plain-tag">&lt;template&gt;
+  &lt;div class="hello"&gt;
+    &lt;h1&gt;{{ message }}&lt;/h1&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import { mapState } from 'vuex';
+
+export default {
+  data() {
+    return {};
+  },
+  computed: mapState({
+    message: state =&gt; state.Hello.message,
+  }),
+};
+&lt;/script&gt;</pre><p></p>
+<h2>Getting Started</h2>
+<p>The simplest way is to include this in your file.</p><pre class="crayon-plain-tag">&lt;script src="https://unpkg.com/vue"&gt;&lt;/script&gt;</pre><p>You can also download the Vue file and add it in a script tag, or else install it with NPM. It also provides an official CLI called the Vue-cli. You can find more details in the Vue.js <a href="https://vuejs.org/v2/guide/installation.html">Installation Guide</a>.</p>
+<p>Let&#8217;s compare simple JavaScript with a VueJS instance.</p><pre class="crayon-plain-tag">function printText () {
+  return 'Hello World!'
+}
+
+// Set some text in jQuery
+$('.element').text(printText())</pre><p>This is what we do when we want to manipulate the text for some element. For the last couple of years, I was writing code like this for a living. But what if the <strong>&#8216;.element&#8217; </strong>get renamed. Your whole JS will break. The binding is broken. We can overcome this in Vue.</p><pre class="crayon-plain-tag">&lt;div class="app"&gt;
+  &lt;span class=".element"&gt;
+    {{ msg }}
+  &lt;/span&gt;
+&lt;/div&gt;</pre><p></p><pre class="crayon-plain-tag">new Vue({
+  el: '.app',
+
+  data: {
+    msg: 'Hello World!'
+  }
+})</pre><p>The Vue instance referenced to an element <strong>&#8216;.app&#8217;. </strong>This is the entry point. Even if the class of the span object is changed it won&#8217;t affect the message being displayed.Vue.js also supports <strong>Loops</strong>, <strong>Two-way binding</strong>, <strong>Components</strong>,  <strong>Event Listeners</strong> like React. If you want to learnVue.js there&#8217;s no better document than the Vue.js <a href="https://vuejs.org/v2/guide/"> Guide</a>.<strong> </strong>You can see a demo <a href="https://jsfiddle.net/50wL7mdz/55744/">Here.</a></p>
+<h2>Why Vue.js?</h2>
+<p>Let&#8217;s talk about why we can use Vue.js.  Both React and Vue.js use Virtual DOM and the use of components. But in React if a component&#8217;s state is changed. It re-renders the entire component sub-tree. In Vue.js, the component&#8217;s dependencies are automatically tracked during render, so the system knows which component needs to be changed when the state is changed. Unlike React you don&#8217;t need to write everything in JavaScript. Vue.js supports the use of both JSX and Template rendering. If the HTML is valid, then it is a valid Vue template. We can give access to CSS within a single-file-component by adding a &#8216;scoped&#8217; attribute to the style tag which scopes CSS only for that particular component.</p>
+<p>Comparing Vue with AngularJS, both have similar syntax. But Vue is much simpler in terms of API and design. There are many opinions to structure an Angular application but Vue is a more flexible, modular solution by setting up <a href="https://github.com/vuejs-templates/webpack">web pack template</a>. In Vue, we use one-way data-flow between components that make the flow of data easier but in angular, it&#8217;s two-way binding between scopes. There are a lot of confusions between directives and components in Angular but in Vue, components are self-contained units with own view and data logic and directives are used for DOM manipulations only. Vue doesn&#8217;t use dirty checking so it&#8217;s much easier to optimize and has better performance. Since there are a lot of watchers in Angular, when anything in scope changes, all the watchers should re-evaluate again. So Angular becomes slow.</p>
+<p>Vue.js performs better than EmberJs since it automatically batches updates but in Ember, we need to manually manage run loops. For computed properties in Ember, we have to declare it manually and need to wrap everything in Ember Objects. But in Vue, it&#8217;s in Javascript Objects and fully automatic.</p>
+<h2>Advantages</h2>
+<h3>1. Simplicity</h3>
+<p>Vue has a good combination of structure and simplicity. Adding Vue.js to your web project can be very simple. It needs external libraries, but tend to use it with or without jQuery.</p><pre class="crayon-plain-tag">&lt;div id="app"&gt;
+  {{ message }}
+&lt;/div&gt;
+&lt;script&gt;
+new Vue({
+  el: '#app',
+  data: {
+    message: 'Hello Vue!'
+  }
+});
+&lt;/script&gt;</pre><p>The code is easily understandable about the working of Vue code.</p>
+<h3>2. Reactivity</h3>
+<p>The variables in Vue.js are reactive. At each point, when the variables change, it will automatically inform their peers.</p><pre class="crayon-plain-tag">var app = new Vue({
+  el: '#app',
+  data: {
+    message: "&lt;h1&gt;Hello World&lt;/h1&gt;"
+  }
+});
+
+setTimeout(function() {
+  app.message = "&lt;small&gt;Goodbye World&lt;/small&gt;";
+}, 2000)</pre><p></p><pre class="crayon-plain-tag">&lt;div id="app"&gt;
+  &lt;!--Renders as "Hello World" with &lt;h1&gt; tag--&gt;
+  &lt;!--Then after 2 seconds re-renders as "Goodbye World" with &lt;small&gt; tag--&gt;
+  &lt;p v-html="message"&gt;{{ message }}&lt;p&gt;
+&lt;/div&gt;</pre><p>Data properties, like <code class="markup--code markup--p-code">message</code> in this example, are <em class="markup--em markup--p-em">reactive</em>, that is they will trigger a re-render if changed.  The <code>v-html</code> attribute will render HTML templates. You can see the demo<strong><a href="https://jsfiddle.net/reshma_shenoy/k67u1s1m/" target="_blank" rel="noopener"> here</a></strong>.</p>
+<h3>3. Focus</h3>
+<p>Vue.js is mainly used for building user interfaces and this is achieved by a library that does not have any influence from the frameworks out there already. Supporting libraries are integrated with Vue.</p>
+<h3>4. Flexibility</h3>
+<p>Vue.js comes with perfect balance to write quickly and run straight from the browser. With that said, it is extremely good if you would like to create any practical app using with ES6, separate component files, JSX, building, routing etc.</p>
+<p>For example, if you have a preferred method for writing your templates, Vue lets you do it in any of these ways:</p>
+<ul class="postList">
+<li id="7fe9" class="graf graf--li graf-after--p">Write your template in an HTML file</li>
+<li id="959b" class="graf graf--li graf-after--li">Write your template in a string in a Javascript file</li>
+<li id="cc25" class="graf graf--li graf-after--li">Use JSX in a Javascript file</li>
+<li class="graf graf--li graf-after--li">Make your template in pure Javascript using virtual nodes</li>
+</ul>
+<p>This flexibility makes it easy to switch to Vue.</p>
+<h3>5. Components</h3>
+<p>Actually, this is where Vue’s flexibility system is built, so that components can be small and are reusable parts of UI. This isn’t any special because the of JavaScript frameworks are built with this concept.</p><pre class="crayon-plain-tag">&lt;div id="example"&gt;
+  &lt;my-component&gt;&lt;/my-component&gt;
+&lt;/div&gt;</pre><p></p><pre class="crayon-plain-tag">// register
+Vue.component('my-component', {
+  template: '&lt;div&gt;A custom component!&lt;/div&gt;'
+})
+// create a root instance
+new Vue({
+  el: '#example'
+})</pre><p>Which will render,</p><pre class="crayon-plain-tag">&lt;div id="example"&gt;
+  &lt;div&gt;A custom component!&lt;/div&gt;
+&lt;/div&gt;</pre><p>So, the components can be used in templates as elements.</p>
+<h3> 6. Copying competitors</h3>
+<p>Vue has been able to copy what works in other frameworks and avoid what doesn’t. Vue’s state management library Vuex has inspiration from Elm. Along with this, Vue’s components get the similarities with Polymer’s customer elements. Vue is now rocking a virtual DOM like React.</p>
+<h2>Conclusion</h2>
+<p>Vue.js is a progressively-adoptable Javascript framework which is focussed on view layer. It is easy to integrate with other applications. The main feature of Vue is Components. Vue uses HTML based templates which can compile into Virtual DOM render functions. In Vue, we can also directly write render functions using <a title="React (JavaScript library)" href="https://en.wikipedia.org/wiki/React_(JavaScript_library)#JSX">JSX</a>.Vue.js is much simpler, flexible and has better performance than other frameworks.</p>
+<h2>References</h2>
+<p><a href="https://vuejs.org/">https://vuejs.org/</a></p>
+<p><a href="https://github.com/vuejs/vue">https://github.com/vuejs/vue</a></p>
+<p><a href="https://medium.com/@brett.marshall/vue-js-the-real-angular-2-0-62744490cb99">https://medium.com/@brett.marshall/vue-js-the-real-angular-2-0-62744490cb99</a></p>
+<p>The post <a rel="nofollow" href="/getting-started-vuejs/">Getting Started with Vue.js</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/getting-started-vuejs/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+							</item>
+		<item>
+		<title>Make unit tests great again &#8211; Integrate Jasmine into Rails</title>
+		<link>/write-beautiful-jasmine-tests-rails/</link>
+				<comments>/write-beautiful-jasmine-tests-rails/#comments</comments>
+				<pubDate>Tue, 22 Aug 2017 07:28:43 +0000</pubDate>
+		<dc:creator><![CDATA[alan]]></dc:creator>
+				<category><![CDATA[Jasmine]]></category>
+		<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[Rails]]></category>
+		<category><![CDATA[Rails 5]]></category>
+		<category><![CDATA[Ruby]]></category>
+		<category><![CDATA[Ruby 2.4]]></category>
+		<category><![CDATA[better tests]]></category>
+		<category><![CDATA[jasmine]]></category>
+		<category><![CDATA[karma]]></category>
+		<category><![CDATA[rails]]></category>
+		<category><![CDATA[test]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3149</guid>
+				<description><![CDATA[<p>Jasmine is a framework to write tests for the Javascript code in the Behaviour Driven Development (BDD) style. In this article, you will learn how to integrate Jasmine into your existing rails application and how to write clean and beautiful unit tests. Let us make tests great again! &#160; Install Jasmine To make Jasmine available&#8230;</p>
+<p>The post <a rel="nofollow" href="/write-beautiful-jasmine-tests-rails/">Make unit tests great again &#8211; Integrate Jasmine into Rails</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p>Jasmine is a framework to write tests for the Javascript code in the Behaviour Driven Development (BDD) style. In this article, you will learn how to integrate Jasmine into your existing rails application and how to write clean and beautiful unit tests. Let us make tests great again!</p>
+<p>&nbsp;</p>
+<h2>Install Jasmine</h2>
+<p>To make Jasmine available to your Rails app, you just have to place the jasmine-gem (<a href="https://github.com/jasmine/jasmine-gem">link</a>) in your Gemfile. That will do the magic. Just make sure you have it under Development and Test group in the Gemfile as follows:</p><pre class="crayon-plain-tag">group :development, :test do
+  gem "jasmine"
+end</pre><p>Then run this to install the gem:</p><pre class="crayon-plain-tag">bundle install</pre><p>After all the gems are installed, run this code to generate necessary files for Jasmine to run:</p><pre class="crayon-plain-tag">rails generate jasmine:install</pre><p>This will create the jasmine helper file and the yml file where you configure how it should run the tests.</p>
+<h2>Run tests</h2>
+<p>You can use Jasmine right after it&#8217;s installed. It can be run in several ways, the most important ones being,</p>
+<ol>
+<li>In your browser</li>
+<li>Continuous Integration Mode (CI)</li>
+</ol>
+<p>The CI mode is usually used when you have to integrate it into your build system.</p>
+<h2>Browser Mode</h2>
+<p>You have to start the Jasmine server to run it in a browser. This server runs all the tests and serves the results to a webpage. Run this to start the Jasmine Server:</p><pre class="crayon-plain-tag">rake jasmine</pre><p>With the default settings, you can view the output in:</p><pre class="crayon-plain-tag">http://localhost:8888/</pre><p>But this page would be pretty empty since you don&#8217;t have any tests written for your Javascript code. There is a method provided to generate sample tests. Try running this:</p><pre class="crayon-plain-tag">rails generate jasmine:examples</pre><p>Now refresh the webpage and you can see something similar to this:</p>
+<p><a href="https://blog.redpanthers.co/wp-content/uploads/2017/08/Screen-Shot-2017-08-21-at-3.47.22-PM.png"><img class="aligncenter wp-image-3152" src="https://blog.redpanthers.co/wp-content/uploads/2017/08/Screen-Shot-2017-08-21-at-3.47.22-PM-300x91.png" alt="Jasmine test page" width="768" height="233" /></a></p>
+<h3>Configurable Settings</h3>
+<p>Clicking on the options button in the top right corner will display a list of options that change how Jasmine runs the tests. Let&#8217;s get into each one of them:</p>
+<h4>Raise Exceptions</h4>
+<p>This option disables the error catching mechanism of Jasmine in the JavaScript source code and in the test file. The default setting is to wrap all the errors in a catch block.</p>
+<h4>Stop Spec on Expectation Failure</h4>
+<p>With this option turned on, Jasmine will stop the test at the first occurrence of an error. The default setting is to run the full test suit and then display all the tests which fail.</p>
+<h4>Run Tests in Random Order</h4>
+<p>This option enables the test to be run in a random sequence every time the test runs. The benefit of enabling this option is to reveal dependencies between tests, therefore, you can reduce test dependencies and each test will have good isolation.</p>
+<h2>Continous Integration Mode</h2>
+<p>A headless browser is used to integrate Jasmine into your continuous integration workflow. To make our lives easier, this gem that we are using supports integration with a headless browser out of the box. The default headless browser is <a href="http://phantomjs.org/">Phantom JS</a>. So it will download automatically if not installed when you try to run in CI mode. Run this code to run in CI mode:</p><pre class="crayon-plain-tag">rake jasmine:ci</pre><p>By default, Jasmine will attempt to find a random open port. To set a default port manually, just add this to the <strong>jasmine_helper.rb</strong></p><pre class="crayon-plain-tag">Jasmine.configure do |config|
+   config.ci_port = 1234
+end</pre><p></p>
+<h2>Configuration</h2>
+<p>The two files which you should be looking into, if you need to alter the behavior of tests are:</p>
+<ul>
+<li>jasmine.yml</li>
+<li>jasmine_helper.rb</li>
+</ul>
+<p>Jasmine reads the jasmine.yml first and then overrides it with the settings mentioned in jasmine_helper.rb</p>
+<h4>Sample configuration:</h4>
+<p></p><pre class="crayon-plain-tag"># spec/javascripts/support/jasmine.yml
+random: true
+show_console_log: false
+stop_spec_on_expectation_failure: true</pre><p></p><pre class="crayon-plain-tag"># spec/javascripts/support/jasmine_helper.rb
+Jasmine.configure do |config|
+  config.random = false
+  config.show_console_log = false
+  config.stop_spec_on_expectation_failure: false
+
+  config.show_full_stack_trace = false
+  config.prevent_phantom_js_auto_install = false
+end</pre><p></p>
+<h2>Testing</h2>
+<p>Writing tests for Javascript in a Rails app should be fairly straightforward as it uses same standards as Jasmine in general. But there are things that need to be considered specific to a Jasmine installation in Rails.</p>
+<h3>Testing JavaScript</h3>
+<p>Test files for JavaScript in a rails application reside in the <strong>spec/javascripts</strong> folder. For each javascript file, you need to put the test file in the same path as the file. For example, if you have the following javascript file in your app:</p>
+<p><strong>app/assets/javascripts/jasmine_examples/Calculator.js</strong></p>
+<p>You place the spec file in the following path:</p>
+<p><strong>spec/javascripts/jasmine_examples/CalculatorSpec.js</strong></p>
+<p>Jasmine will include the test on the next test run. There is no configuration to have your test run.</p>
+<h2>Plugins worth considering</h2>
+<ul>
+<li><strong>Jasmine-Jquery</strong> &#8211; this plugin provides a lot of jquery related matchers. Download it <a href="https://github.com/velesin/jasmine-jquery/releases">here</a></li>
+<li><strong>Jasmine-Matchers</strong> &#8211; a tool to provide additional matchers. Download it <a href="https://github.com/JamieMason/Jasmine-Matchers/releases">here</a></li>
+<li><strong>Jasmine-Fixture &#8211; </strong>a plugin that provides DOM creation using CSS selectors, therefore you can interact with the DOM much easier. Download it <a href="https://github.com/searls/jasmine-fixture/releases">here</a></li>
+</ul>
+<h1>Write Beautiful Unit tests</h1>
+<p>95% of the developers I know write unit tests in order to prevent defects from being deployed to production. But the essential ingredients to a great unit test is unknown to most of them. There have been countless times that I&#8217;ve seen a test fails, only to investigate and discover that I have no idea what feature the developer was trying to test, let alone how it went wrong or why it matters.</p>
+<h2>Importance of Test Discipline</h2>
+<p>Your tests are the best set of weapons to defend your code from bugs. They are more important that linting and static analysis. A few reasons why tests are your secret weapon:</p>
+<ul>
+<li>Writing tests first gives you a clearer perspective on the ideal API design.</li>
+<li>Does the developer understand the problem enough to articulate in code all critical component requirements?</li>
+<li>Manual QA is error-prone. In my experience, it’s impossible for a developer to remember all features that need testing after making a change to refactor, add new features, or remove features.</li>
+<li>Continous Integration prevents failed builds from getting deployed to production.</li>
+</ul>
+<h2>Bug Report vs plain Unit Test</h2>
+<p>The test fail report comes to save your life when a test fails. So you better make it loud and clear. I came up with a list of must-have info in your bug report.</p>
+<ul>
+<li>What are you trying to test?</li>
+<li>What should it do?</li>
+<li>What is the real-time output (actual behavior)?</li>
+<li>What is the expected output (expected behavior)?</li>
+</ul>
+<p>Here is a sample test with all of these info:</p><pre class="crayon-plain-tag">describe("CalculatorAddMethod", function() {
+
+  var calculator = new Calculator();
+
+  it("should return number", function() {
+    const actual = typeof Calculator.add(5,10);
+    const expected = 'number'
+    expect(actual).toEqual(expected);
+  });
+
+});</pre><p>This test suit answers all the questions above. Let&#8217;s go through each one of them.</p>
+<ul>
+<li>What are you trying to test?
+<ul>
+<li>-&gt; Go for the test description. It is testing for the return type of the add method of Calculator().</li>
+</ul>
+</li>
+<li>What should it do?
+<ul>
+<li>-&gt; Again, look at the test description. It clearly says that it is testing for the return type of add method.</li>
+</ul>
+</li>
+<li>What is the actual output?
+<ul>
+<li>-&gt; There is a dedicated variable which holds the actual result and how you got the actual result. TWO FOR ONE!</li>
+</ul>
+</li>
+<li>What is the expected output?
+<ul>
+<li>-&gt; Again, there is a dedicated variable which holds the actual result. Straight as a ruler!</li>
+</ul>
+</li>
+</ul>
+<h2>Make your tests even better</h2>
+<p>This is from my experiences and the knowledge I gained from good articles. This worked for me in the long run even if I find it a little difficult to implement when I started. <strong>Write every single test using toEqual()</strong>. Don&#8217;t worry about the quality impact on your test suit. It will get better with exercise.</p>
+<h2>Easter Egg</h2>
+<p>This method I suggested would answer one more question, which is by far the most important question I guess. <strong>How can you reproduce the test?</strong> The <strong>const actual </strong>holds the answer to this question. Please go take a look at the variable in my sample test suit above and get delighted.</p>
+<h1>Conclusion</h1>
+<p>Integrating Jasmine into your Rails app is done by the <strong>jasmine-gem. </strong>This gem gives you the ability to run tests in a browser or as Continous Integration mode. The usage of right plugins will improve your productivity and helps you write tests faster and better.</p>
+<p>Next time you write a test, remember to see if your test answers the following questions:</p>
+<ul>
+<li>What are you trying to test?</li>
+<li>What should it do?</li>
+<li>What is the real-time output (actual behavior)?</li>
+<li>What is the expected output (expected behavior)?</li>
+<li>How can be the test reproduced?</li>
+</ul>
+<p>The post <a rel="nofollow" href="/write-beautiful-jasmine-tests-rails/">Make unit tests great again &#8211; Integrate Jasmine into Rails</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/write-beautiful-jasmine-tests-rails/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+							</item>
+		<item>
+		<title>Taking screenshots of webpages using Ruby</title>
+		<link>/screenshots-using-ruby/</link>
+				<comments>/screenshots-using-ruby/#comments</comments>
+				<pubDate>Mon, 01 May 2017 10:48:00 +0000</pubDate>
+		<dc:creator><![CDATA[nimmy]]></dc:creator>
+				<category><![CDATA[Beginners]]></category>
+		<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[gem]]></category>
+		<category><![CDATA[phtantom js]]></category>
+		<category><![CDATA[Ruby]]></category>
+		<category><![CDATA[screencap]]></category>
+		<category><![CDATA[screenshot]]></category>
+		<category><![CDATA[web page]]></category>
+		<category><![CDATA[webshot]]></category>
+		<category><![CDATA[website]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=2373</guid>
+				<description><![CDATA[<p>&#160; Recently we have been working on taking screenshots for web page while generating reports based on that website. During this endeavor, we came across some tools to achieve that. We are sharing the information we gathered here. The tools that we will discuss for screencapture, in  Ruby,  are: PhantomJS Screencap gem Webshot gem Screencap&#8230;</p>
+<p>The post <a rel="nofollow" href="/screenshots-using-ruby/">Taking screenshots of webpages using Ruby</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p>&nbsp;</p>
+<p>Recently we have been working on taking screenshots for web page while generating reports based on that website. During this endeavor, we came across some tools to achieve that. We are sharing the information we gathered here.</p>
+<p>The tools that we will discuss for screencapture, in  Ruby,  are:</p>
+<ul>
+<li>PhantomJS</li>
+<li>Screencap gem</li>
+<li>Webshot gem</li>
+</ul>
+<p>Screencap and webshot are gems in Ruby that depends on a tool called PhantomJS. It is basically a web browser without a user interface, primarily used for testing websites. Such type of browsers are generally referred to as headless browsers,</p>
+<h2>Screenshots with PhantomJS</h2>
+<p>PhantomJS is quite easy to install and is multiplatform, available on major operating systems.</p><pre class="crayon-plain-tag">gem install phantomjs</pre><p>To start, our script must require a reference to the webpage module then use it to create an instance:</p><pre class="crayon-plain-tag">var instance = require('webpage').create();</pre><p>Use the instance.open() method and pass it the arguments, the url of the webpage that we want to capture screenshot.</p><pre class="crayon-plain-tag">instance.open('/', function() {
+instance.render('screenshot-phantom.png');
+phantom.exit();
+});</pre><p>instance.render() method captures the screenshot and saves it to the file specified in the argument.<br />
+Run the script as,</p><pre class="crayon-plain-tag">phantomjs filename.js</pre><p>Screenshot is saved in the  directory where we run the script.</p>
+<p>Now what we have above is all JavaScript, but to use the phantom JS in our rails application we have gems that provide us with an easy interface to acheive the same.</p>
+<h2>Screencap gem</h2>
+<p>The gem &#8216;screencap&#8217; is introduced in Ruby to make screenshot capture easy. However, the gem depends on  &#8216;PhantomJS&#8217;, so we need to have PhantomJS installed on machine to capture screenshots with screencap gem.<br />
+But screencap does not work with PhantomJS 2.1.1, which is the latest version.<br />
+So we need to install version 1.9.8</p><pre class="crayon-plain-tag">gem install phantomjs -v 1.9.8</pre><p>check version</p><pre class="crayon-plain-tag">phantomjs --version</pre><p>To install screencap gem in your application, add this line to gemfile</p><pre class="crayon-plain-tag">gem 'screencap'</pre><p>Or install it as</p><pre class="crayon-plain-tag">gem install screencap</pre><p></p>
+<h2>Usage</h2>
+<p>To capture screenshot with screencap</p><pre class="crayon-plain-tag">require 'screencap'
+screenshot = Screencap::Fetcher.new(&lt;url&gt;)
+image = screenshot.fetch</pre><p></p>
+<ul>
+<li>Fetcher class accepts url of the website to take screenshot.</li>
+<li>Screenshot is taken when fetch method is called.</li>
+<li>Also, fetch method supports various optional parameters to specify the area to capture the screenshot.</li>
+<li>We can specify where to store the screenshot captured, as shown below.</li>
+</ul>
+<p></p><pre class="crayon-plain-tag">image = obj.fetch(
+ output: '~/folder/file-name.png',
+ # dimensions for taking screenshot of specific area
+  width: 1024,
+ height: 768
+ )</pre><p></p>
+<h2>Example</h2>
+<p></p><pre class="crayon-plain-tag">require 'screencap'
+screenshot = Screencap::Fetcher.new('/')
+image = screenshot.fetch(output: '~/screencap/screencap.png',
+                                   width: 300,
+                                  height: 500)</pre><p>Our screenshot is captured in screencap.png</p>
+<p><a href="http://blog.redpanthers.co/wp-content/uploads/2017/04/screencap.png"><img class="alignnone size-medium wp-image-2388" src="http://blog.redpanthers.co/wp-content/uploads/2017/04/screencap-300x225.png" alt="" width="300" height="225" /></a></p>
+<h2></h2>
+<h2>Webshot gem</h2>
+<p>Webshot is another gem introduced in ruby to capture screenshots, also depends on PhantomJS.<br />
+For better experience, use latest version of PhantomJS. Webshot works with latest version of PhantomJS while screencap gem does not.<br />
+Install PhantomJS latest version.<br />
+To install webshot in your application,</p><pre class="crayon-plain-tag">gem 'webshot'</pre><p>Or install as</p><pre class="crayon-plain-tag">gem install webshot</pre><p></p>
+<h2>Usage</h2>
+<p></p><pre class="crayon-plain-tag">require 'webshot'
+screenshot = Webshot::Screenshot.instance
+screenshot.capture "https://github.com/", "image.png", width: 1024, height: 800</pre><p>Provide url of the web page and file name where screenshot to be saved.<br />
+Height and width can be given as optional parameters for taking screenshot with specified dimensions.<br />
+Above code captures github&#8217;s home page in file image.png</p>
+<p><a href="http://blog.redpanthers.co/wp-content/uploads/2017/04/image-1.png"><img class="alignnone size-medium wp-image-2398" src="http://blog.redpanthers.co/wp-content/uploads/2017/04/image-1-300x146.png" alt="" width="300" height="146" /></a></p>
+<p>In all the above methods, we capture screenshots of a particular web page by passing its url.<br />
+Also we can infer that screencap gem, even though efficiently takes screenshots, does not work for latest version of PhantomJS. This was an issue encountered while working with gem screencap as installing PhantomJS without specifying the version would install the latest version by default.</p>
+<p>So, choose gem webshot if you want to go ahead with the latest version of PhantomJS.</p>
+<h2>References</h2>
+<ul>
+<li><a href="https://github.com/ariya/phantomjs">PhantomJS</a></li>
+<li><a href="https://github.com/maxwell/screencap">Screencap gem</a></li>
+<li><a href="https://github.com/vitalie/webshot">Webshot gem</a></li>
+</ul>
+<p>The post <a rel="nofollow" href="/screenshots-using-ruby/">Taking screenshots of webpages using Ruby</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/screenshots-using-ruby/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+							</item>
+		<item>
+		<title>Flux example Application with React JS</title>
+		<link>/react-with-flux/</link>
+				<comments>/react-with-flux/#comments</comments>
+				<pubDate>Mon, 29 Feb 2016 00:07:05 +0000</pubDate>
+		<dc:creator><![CDATA[sibin]]></dc:creator>
+				<category><![CDATA[Beginners]]></category>
+		<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[Flux]]></category>
+		<category><![CDATA[React JS]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=297</guid>
+				<description><![CDATA[<p>Flux is an application architecture used to build scalable and powerful JavaScript web application with React JS. React JS is a popular view library and we have already covered React JS. Flux is not a framework like Angular JS, Backbone etc., there are a lot of differences between these frameworks with Flux. Flux only supports&#8230;</p>
+<p>The post <a rel="nofollow" href="/react-with-flux/">Flux example Application with React JS</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p>Flux is an application architecture used to build scalable and powerful JavaScript web application with React JS. React JS is a popular view library and we have already covered React JS. Flux is not a framework like Angular JS, Backbone etc., there are a lot of differences between these frameworks with Flux. Flux only supports unidirectional data flow, where Angular and Backbone supports bi-directional data flow. Unidirectional data flow prevents unexpected data flows, so it is more predictable.</p>
+<h2>
+Flux has three main parts.</h2>
+<ol>
+<li>Action</li>
+<li>Dispatcher</li>
+<li>Store</li>
+</ol>
+<p>As their name indicates, <strong>Action</strong> is the result of some events, like JavaScript events, or callbacks for Ajax calls. <strong>Dispatcher</strong>, is a connector or link between Action and Store. The dispatcher is a central hub, from where everything passes through and we only need one dispatcher per application. Dispatcher handles all Actions and Stores.<br />
+<strong>Store</strong> is very important in Flux architecture, we can write our business logics or Ajax calls to fetch data’s. I usually use it to store to get some initial data’s or to send or receive data via Ajax calls. The store uses event emitter similar to nodejs&#8217;s event emitter. We can define events in Store, and these events are connected to Store, whenever a change occurs in store, all components which listenes to this store will get an invoke and we can perform our logics.</p>
+<p>My example application will give you more idea, you can clone it from my GitHub account. In this application I have an input box where you can enter the number and a button to &#8216;Add Cart&#8217;, we can start from this button, this button has an on Click event, I have attached a Flux action on it, whenever a change occurs it passes input box data to an action.</p>
+<h4>Component</h4>
+<p></p><pre class="crayon-plain-tag">import React from 'react';
+import checkoutActions from "../actions/checkout-action";
+import checkoutStore from "../store/checkout-store";
+class CartElements extends React.Component{
+  constructor(){
+    super()
+    this.state = {
+      currentCart : checkoutStore.getCart()
+    }
+  }
+  componentDidMount(){
+    checkoutStore.addListener(this.updateCartNumber)
+  };
+  updateCartNumber = () =&gt; {
+    this.setState({
+      currentCart: checkoutStore.getCart()
+    })
+  };
+  updateCart = () =&gt; {
+
+    checkoutActions.addCart(parseInt(this.refs.cartNumber.value))
+  };
+  gotoCheckout = () =&gt; {
+    window.location.href +="?products=[1,2,3]"
+  };
+  render(){
+    var checkoutButton = "";
+    if(this.state.currentCart &gt; 0){
+      checkoutButton = &lt;a className="button" href="/welcome/checkout?products=[1,2,3,4]"&gt;CheckOut&lt;/a&gt;;
+    }
+    return(
+      &lt;div&gt;
+        &lt;div className="input-group"&gt;
+            &lt;input type="number" ref="cartNumber"/&gt;
+        &lt;/div&gt;
+        &lt;button className="button success" onClick={this.updateCart}&gt;Add to Cart&lt;/button&gt;
+        {checkoutButton}
+      &lt;/div&gt;
+    )
+  }
+}
+
+export default CartElements</pre><p></p>
+<h4>Action File</h4>
+<p></p><pre class="crayon-plain-tag">import dispatcher from "../dispatcher";
+import constants from "../const/store-const";
+var checkoutActions  = {
+  addCart: function(data){
+    dispatcher.dispatch({
+      actionType: constants.ADD_CART,
+      data: data
+    })
+  }
+}
+export default checkoutActions;</pre><p>&nbsp;</p>
+<p>In this Action, I have an <strong>addCart  </strong>method which dispatches item quantity along with a constant called &#8216;ADD_CART&#8217; which is used to distinguish it on Store.<br />
+Dispatcher is a simple file which uses Facebook dispatcher<br />
+Object Assign is a NPM module where you can combine two objects and return source object, For example<br />
+var birds = {bird:&#8221;Pigeon&#8221;}<br />
+var animals = {animal:&#8221;Dog&#8221;}<br />
+assign(birds, animals) =&gt;<br />
+{bird:&#8221;Pigeon&#8221;, animal:&#8221;Dog&#8221;}<br />
+We have a Store called checkStore, for which we have 5 methods. First 2 of them are custom methods, addCart and getCart. When we call Addcart, it increases the quantity and getCart to retrieve the latest value. Besides we have 3 required methods</p>
+<ol>
+<li>emitChange</li>
+<li>addListener</li>
+<li>removeListener</li>
+</ol>
+<p></p><pre class="crayon-plain-tag">import dispatcher from '../dispatcher.js';
+import EventEmitter from 'events';
+import assign from 'object-assign';
+var CHANGE_EVENT = 'change';
+var EventEmitterEvent  = EventEmitter.EventEmitter
+
+var _number  = 0;
+var checkoutStore = assign({}, EventEmitterEvent.prototype, {
+  addCart: function(number){
+    return _number = _number + number;
+  },
+  getCart: function(){
+    return _number;
+  },
+  emitChange: function(){
+    this.emit(CHANGE_EVENT)
+  },
+  addListener: function(callback){
+    this.on(CHANGE_EVENT, callback)
+  },
+  removeListner: function(callback){
+    this.removeListner(CHANGE_EVENT, callback)
+  }
+});
+
+dispatcher.register((action)=&gt;{
+  switch (action.actionType){
+    case 'ADD_CART':
+      console.log("hello")
+      checkoutStore.addCart(action.data)
+      checkoutStore.emitChange()
+      break;
+  }
+})
+
+
+export default checkoutStore;</pre><p>&nbsp;</p>
+<p>AddListener adds EventListner. We can use this to bind events to components. RemoveListener is used to remove listeners when we unmounts some components. EmitChange is used to update or invoke store after some actions.<br />
+The store also has a dispatcher, where we register dispatcher, and in action, we dispatch data to stores. All data which passes from action is available in action argument, the switch uses check actionType, we already pass a constant from action to distinguish various types, like CREATE, EDIT, DELETE, and here we have ADD_CART, so only particular block works. In this case, we have only one condition inside switch block and condition with ADD_CART will work. Inside this condition we call add_cart store method and pass quantity after which we can emitchange. So, this store will invoke and all components which are connected will notify.<br />
+Now we can move to a header component. There is a component called CartIconOnTopBar, in componentDidMount.I have attached a Store listener, &#8216;checkOutStore.addListener(callback)&#8217; with a callback function, in this callback function, I again called stores getCart function to get latest items quantity.</p><pre class="crayon-plain-tag">class CartIconOnTopBar extends React.Component{
+  constructor(){
+    super()
+    this.state = {
+      cartItemCount: checkoutStore.getCart()
+    }
+  }
+  componentDidMount(){
+   checkoutStore.addListener(this.updateCart)
+  };
+  updateCart = () =&gt; {
+    this.setState({
+      cartItemCount: checkoutStore.getCart()
+    })
+  };
+  openClassModal = () =&gt; {
+
+  };
+  render(){
+    return(
+        &lt;li&gt;
+          &lt;a href="#" onClick={this.openCartModal} className="cart-element"&gt;
+            &lt;i className="fi-shopping-cart"&gt;&lt;/i&gt;
+            &lt;span className="cart-count"&gt; {this.state.cartItemCount} &lt;/span&gt;
+          &lt;/a&gt;
+        &lt;/li&gt;
+    )
+  }
+}</pre><p>When we click on button, it passes data to action and through dispatcher it reaches store and it invokes store and all components which connected to this store will notify and it run callback functions and then we can update our data’s.<br />
+In this application for a demonstration you can add as many actions and store. This is only a basics of flux, there are more in <a href="https://github.com/facebook/flux" target="_blank">flux</a>, also, flux has some alternatives like <a href="https://github.com/reactjs/redux" target="_blank">redux</a>.</p>
+<p>The post <a rel="nofollow" href="/react-with-flux/">Flux example Application with React JS</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/react-with-flux/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+							</item>
+	</channel>
+</rss>

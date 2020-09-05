@@ -1,0 +1,52 @@
+ <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>
+	Comments on: Lambda vs Proc Vs Blocks	</title>
+	<atom:link href="/lambda-vs-proc-vs-blocks/feed/" rel="self" type="application/rss+xml" />
+	<link>/lambda-vs-proc-vs-blocks/</link>
+	<description>Experts in Ruby on Rails Development</description>
+	<lastBuildDate>Sat, 17 Sep 2016 05:56:00 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.7</generator>
+			<item>
+				<title>
+				By: Harisankar P S				</title>
+				<link>/lambda-vs-proc-vs-blocks/#comment-7</link>
+		<dc:creator><![CDATA[Harisankar P S]]></dc:creator>
+		<pubDate>Sat, 17 Sep 2016 05:56:00 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=467#comment-7</guid>
+					<description><![CDATA[I have corrected my article and also referenced your comment in Reddit, in the article.]]></description>
+		<content:encoded><![CDATA[<p>I have corrected my article and also referenced your comment in Reddit, in the article.</p>
+]]></content:encoded>
+						</item>
+						<item>
+				<title>
+				By: jrochkind				</title>
+				<link>/lambda-vs-proc-vs-blocks/#comment-6</link>
+		<dc:creator><![CDATA[jrochkind]]></dc:creator>
+		<pubDate>Thu, 25 Aug 2016 01:49:00 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=467#comment-6</guid>
+					<description><![CDATA[The described difference in return behavior between procs and blocks is incorrect -- there is no difference. In both of them, `return` returns from the method the proc/block was _defined in_.  You get &#039;unexpected return&#039; if the context the proc/block was defined in doesn&#039;t allow return, it wasn&#039;t in a method.  But in fact they work the same.
+
+I will demonstrate that in the following gist. Also, your examples are confusing because the statement `puts x` actually returns nil for any `x`, so `return puts x` is actually always `return nil`, although with a side effect of printing to console. In my examples I&#039;ll avoid that.
+
+https://gist.github.com/jrochkind/2f01ea0c8472af63ebf3da365b0852ff
+
+Procs and blocks behave identically with regard to `return` -- in both cases, the return will cause a return from the _place the proc or block was defined_, and in both cases you&#039;ll get a LocalJumpError if that place doesn&#039;t allow &#039;return&#039; (because it&#039;s not being executed as a method body).]]></description>
+		<content:encoded><![CDATA[<p>The described difference in return behavior between procs and blocks is incorrect &#8212; there is no difference. In both of them, <code>return</code> returns from the method the proc/block was _defined in_.  You get &#8216;unexpected return&#8217; if the context the proc/block was defined in doesn&#8217;t allow return, it wasn&#8217;t in a method.  But in fact they work the same.</p>
+<p>I will demonstrate that in the following gist. Also, your examples are confusing because the statement <code>puts x</code> actually returns nil for any <code>x</code>, so <code>return puts x</code> is actually always <code>return nil</code>, although with a side effect of printing to console. In my examples I&#8217;ll avoid that.</p>
+<p><a href="https://gist.github.com/jrochkind/2f01ea0c8472af63ebf3da365b0852ff" rel="nofollow">https://gist.github.com/jrochkind/2f01ea0c8472af63ebf3da365b0852ff</a></p>
+<p>Procs and blocks behave identically with regard to <code>return</code> &#8212; in both cases, the return will cause a return from the _place the proc or block was defined_, and in both cases you&#8217;ll get a LocalJumpError if that place doesn&#8217;t allow &#8216;return&#8217; (because it&#8217;s not being executed as a method body).</p>
+]]></content:encoded>
+						</item>
+			</channel>
+</rss>

@@ -1,0 +1,585 @@
+ <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>reshma &#8211; Red Panthers</title>
+	<atom:link href="/author/reshma/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description>Experts in Ruby on Rails Development</description>
+	<lastBuildDate>Fri, 29 Sep 2017 09:36:51 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.7</generator>
+
+<image>
+	<url>/wp-content/uploads/2017/12/rp-logo.png</url>
+	<title>reshma &#8211; Red Panthers</title>
+	<link>/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Gulp</title>
+		<link>/gulp/</link>
+				<comments>/gulp/#respond</comments>
+				<pubDate>Fri, 29 Sep 2017 09:36:51 +0000</pubDate>
+		<dc:creator><![CDATA[reshma]]></dc:creator>
+				<category><![CDATA[Javascript]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3697</guid>
+				<description><![CDATA[<p>Gulp is a toolkit for automating painful or time-consuming tasks in your development workflow, so you can stop messing around and build something. You can compile sass files, uglify and compress js files and much more. Installation Make sure that you&#8217;ve installed Node and npm before attempting to install gulp. Install the gulp command [crayon-5f53f049e4fbd368706603/] Make sure that&#8230;</p>
+<p>The post <a rel="nofollow" href="/gulp/">Gulp</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p>Gulp is a toolkit for automating painful or time-consuming tasks in your development workflow, so you can stop messing around and build something. You can compile sass files, uglify and compress js files and much more.</p>
+<h2>Installation</h2>
+<p>Make sure that you&#8217;ve installed Node and npm before attempting to install gulp.</p>
+<p>Install the gulp command</p><pre class="crayon-plain-tag">npm install --global gulp-cli</pre><p>Make sure that you have your <code>package.json</code> created by manually creating it or typing <code>npm init</code>.</p>
+<p>Run this command in your project directory:</p><pre class="crayon-plain-tag">npm install --save-dev gulp</pre><p></p>
+<h4>Create a gulpfile</h4>
+<p>In your project directory, create a file named <code>gulpfile.js</code> in your project root with these contents:</p><pre class="crayon-plain-tag">var gulp = require('gulp');
+
+gulp.task('task-name', function() {
+  // place code for your default task here
+});</pre><p>The first step to using Gulp is to <code>require</code> it in the gulpfile. Then you can begin to write a gulp task with this <code>gulp</code> variable. <code>task-name</code> refers to the name of the task, which would be used whenever you want to run a task in Gulp. You can also run the same task in the command line by writing <code>gulp task-name</code>.</p>
+<p>Run the gulp command in your project directory:</p><pre class="crayon-plain-tag">gulp</pre><p>To run multiple tasks, you can use <code>gulp &lt;task&gt; &lt;othertask&gt;</code></p>
+<p>Gulp tasks are usually a bit more complex than this. It usually contains two additional Gulp methods, plus a variety of Gulp plugins.</p><pre class="crayon-plain-tag">gulp.task('task-name', function () {
+  return gulp.src('source-files') // Get source files with gulp.src
+  .pipe(aGulpPlugin()) // Sends it through a gulp plugin
+  .pipe(gulp.dest('destination')) // Outputs the file in the destination folder
+})</pre><p><code>gulp.src</code> tells the Gulp task what files to use for the task, while <code>gulp.dest</code>tells Gulp where to output the files once the task is completed.</p>
+<p>Now, let&#8217;s run a task to compile the Sass.</p>
+<p>In terminal</p><pre class="crayon-plain-tag">$ npm install gulp-sass --save-dev</pre><p>In Gulpfile.js, we’ll write:</p><pre class="crayon-plain-tag">var sass = require('gulp-sass');
+/**
+ * Compile Sass.
+ */
+gulp.task('sass', function() {
+    return gulp.src('./sass/*.scss') // Create a stream in the directory where our Sass files are located.
+    .pipe(sass())                    // Compile Sass into style.css.
+    .pipe(gulp.dest('./'));          // Write style.css to the project's root directory.
+});</pre><p>A simple task which can be used to compile Sass and create <em>style.css</em>!</p>
+<p>To execute [‘sass’], simply type the following command into your terminal:</p><pre class="crayon-plain-tag">gulp sass</pre><p>Gulp can automatically compile Sass each time we save a Sass file</p><pre class="crayon-plain-tag">/**
+ * Watch the Sass directory for changes.
+ */
+gulp.task('watch', function() {
+  gulp.watch('./sass/*.scss', ['sass']);  // If a file changes, re-run 'sass'
+});</pre><p>In your terminal, simply type</p><pre class="crayon-plain-tag">gulp watch</pre><p>Now, anytime you make changes and save any file with a .scss extension, it will trigger this [‘watch’]<strong> </strong>task which executes [‘sass’].</p>
+<p>Gulp is a task runner that uses Node.js as a platform. Gulp purely uses the JavaScript code and helps to run front-end tasks and large-scale web applications. It builds system automated tasks like CSS and HTML minification, concatenating library files, and compiling the SASS files. These tasks can be run using Shell or Bash scripts on the command line.</p>
+<h2></h2>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://teamtreehouse.com/library/gulp-basics">https://teamtreehouse.com/library/gulp-basics</a></li>
+<li><a href="https://gulpjs.com/">https://gulpjs.com/</a></li>
+</ul>
+<p>The post <a rel="nofollow" href="/gulp/">Gulp</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/gulp/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+							</item>
+		<item>
+		<title>Getting started with Angular 4</title>
+		<link>/getting-started-with-angular-4/</link>
+				<comments>/getting-started-with-angular-4/#respond</comments>
+				<pubDate>Tue, 19 Sep 2017 11:42:19 +0000</pubDate>
+		<dc:creator><![CDATA[reshma]]></dc:creator>
+				<category><![CDATA[Angular4]]></category>
+		<category><![CDATA[AngularJS]]></category>
+		<category><![CDATA[Beginners]]></category>
+		<category><![CDATA[Javascript]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3253</guid>
+				<description><![CDATA[<p>Angular is a most popular platform for building applications with the web. Angular empowers developers to build applications that live on the web, mobile, or the desktop. The AngularCLI is a command line interface tool that can create a project, add files, and perform a variety of ongoing development tasks such as testing, bundling, and deployment. As compared to the older&#8230;</p>
+<p>The post <a rel="nofollow" href="/getting-started-with-angular-4/">Getting started with Angular 4</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p><a href="https://blog.redpanthers.co/wp-content/uploads/2017/08/angular4.jpg"><img class="alignnone wp-image-3306" src="https://blog.redpanthers.co/wp-content/uploads/2017/08/angular4-300x150.jpg" alt="" width="1210" height="605" /></a></p>
+<p>Angular is a most popular platform for building applications with the web. Angular empowers developers to build applications that live on the web, mobile, or the desktop. The <a href="https://cli.angular.io/">AngularCLI</a> is a command line interface tool that can create a project, add files, and perform a variety of ongoing development tasks such as testing, bundling, and deployment.</p>
+<p>As compared to the older versions of Angular, there are many new things added to the list. Not only new features but also some twists are there that enhance old features. Forget Angular 3, Google jumps straight to Angular 4 after Angular 2. Angular4 applications are much faster and less space consuming.  Angular4 is compatible with TypeScript’s newer versions 2.1 and 2.2. Components are the basic building blocks of your application. Every component has an associated template, style sheet, and a class with logic.</p>
+<h2>Prerequisites</h2>
+<p><strong>1. NodeJS </strong>( 6.x.x or greater )</p>
+<p><strong>2. npm </strong>(3.x.x or greater )</p>
+<h2>Installation</h2>
+<p>1. You have to install AngularCLI globally.</p><pre class="crayon-plain-tag">npm install -g @angular/cli</pre><p>2. Create a new project.</p><pre class="crayon-plain-tag">ng new my-app</pre><p>3. To serve the application, get into the project repo and run :</p><pre class="crayon-plain-tag">cd my-app
+ng serve --open</pre><p>For launching our server and for rebuilding our app when there are any changes we are using &#8220;ng serve&#8221;.</p>
+<p>When using &#8220;&#8211;open&#8221; or &#8220;&#8211;o&#8221;, it will open in &#8220;http://localhost:4200/&#8221; automatically.</p>
+<h4>And that&#8217;s it!</h4>
+<p>Your basic app is ready!</p>
+<h2>What’s New In Angular 4</h2>
+<h3>Router ParamMap</h3>
+<p>In the previous versions, we were using a simple key-value object for storing route parameters. But in Angular4, it is possible to query a so-called ParamMap in the router, that is a request for the route- and query parameter assigned to a route.</p><pre class="crayon-plain-tag">class MyComponent {
+ sessionId: Observable&lt;string&gt;;
+
+ constructor(private route: ActivatedRoute) {}
+
+ ngOnInit() {
+   this.sessionId = this.route
+     .queryParams
+     .map(params =&gt; params['session_id'] || 'None');
+ }
+}</pre><p>Now, we can run them as simple method calls (parameterMap.get(‘parameter-name’)).</p><pre class="crayon-plain-tag">class MyComponent {
+ sessionId: Observable&lt;string&gt;;
+
+ constructor(private route: ActivatedRoute) {}
+
+ ngOnInit() {
+   this.sessionId = this.route
+     .queryParamMap
+     .map(paramMap =&gt; paramMap.get('session_id') || 'None');
+ }
+}</pre><p>The parameters are also available as a map. This brings advantage in terms of type security. The old key-value structure is unsafe since it can take all possible values. In the map, the parameter value is either string or array of strings depending upon the method used. Hence it is safe.</p>
+<h3>Animation Package</h3>
+<p>All the functions of animation were provided in @angular/core module. So it was always there with our application even if we didn&#8217;t use it and many unnecessary bundles were created. To avoid this, these functions have been put into its own packages.  So that this extra code will not end up in your production bundles if you didn&#8217;t use that. We can add animations ourselves in the main NgModule by importing BrowserAnimationsModule from @angular/platform-browser/animations.</p>
+<h3>Improved *ngIf and *ngFor</h3>
+<p>It’s now also possible to use an <code class="highlighter-rouge">else</code> syntax in your templates. In the else-case, a separately referenced template is used in place of the element marked with *ngIf.</p><pre class="crayon-plain-tag">&lt;div *ngIf="races.length &gt; 0; else empty"&gt;&lt;h2&gt;Races&lt;/h2&gt;&lt;/div&gt;
+&lt;ng-template #empty&gt;&lt;h2&gt;No races.&lt;/h2&gt;&lt;/ng-template&gt;</pre><p>Another addition to the template syntax is the <code class="highlighter-rouge">as</code> keyword, to simplify the <code class="highlighter-rouge">let</code> syntax. We can store the result in a variable of the template so that we can use it in the element.</p><pre class="crayon-plain-tag">&lt;div *ngFor="let pony of ponies | slice:0:2 as total; index as i"&gt;
+  {{i+1}}/{{total.length}}: {{pony.name}}
+&lt;/div&gt;</pre><p></p>
+<h3>TypeScript 2.1 &amp; 2.2 compatibility</h3>
+<p>Version 4 is compatible with these new versions of TypeScript. This will improve the speed of ngc and give better type checking in your application.</p>
+<h3>Universal</h3>
+<p>With Angular Universal, we can do the server side rendering. It was maintained by the community until now, but after this release, it’s now an official Angular project.</p>
+<h2 class="card-container">Conclusion</h2>
+<p>The new release brings some good features and a really great improvement of the generated code size, for the price of very few breaking changes that should not impact you a lot and also makes the migration quite smooth. So Angular 4 is here and it&#8217;s time to learn one of the most popular and powerful javascript frameworks.</p>
+<h2>References</h2>
+<p><a href="https://angular.io/">https://angular.io/</a></p>
+<p><a href="https://jaxenter.com/angular-4-top-features-133165.html">https://jaxenter.com/angular-4-top-features-133165.html</a></p>
+<p><a href="https://coursetro.com/courses/12/Learn-Angular-4-from-Scratch">https://coursetro.com/courses/12/Learn-Angular-4-from-Scratch</a></p>
+<p>Happy Coding!!</p>
+<p>The post <a rel="nofollow" href="/getting-started-with-angular-4/">Getting started with Angular 4</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/getting-started-with-angular-4/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+							</item>
+		<item>
+		<title>Event Listeners in VueJS</title>
+		<link>/event-listeners-in-vuejs/</link>
+				<comments>/event-listeners-in-vuejs/#respond</comments>
+				<pubDate>Wed, 13 Sep 2017 08:20:06 +0000</pubDate>
+		<dc:creator><![CDATA[reshma]]></dc:creator>
+				<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[VueJS]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3586</guid>
+				<description><![CDATA[<p>Vue.js is a Javascript framework for user interface. There are many directives in Vuejs. A directive’s job is to reactively apply special behavior to the DOM when the value of its expression changes. You can use the v-on directive to bind event listeners to DOM events. [crayon-5f53f049e55c4565050527/] [crayon-5f53f049e55ca301863478/] We are binding a click event listener to a&#8230;</p>
+<p>The post <a rel="nofollow" href="/event-listeners-in-vuejs/">Event Listeners in VueJS</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p>Vue.js is a Javascript framework for user interface. There are many directives in Vuejs. A directive’s job is to reactively apply special behavior to the DOM when the value of its expression changes. You can use the <code>v-on</code> directive to bind event listeners to DOM events.</p><pre class="crayon-plain-tag">&lt;div id="example"&gt;
+  &lt;button v-on:click="clickme"&gt;Add 1&lt;/button&gt;
+  &lt;p&gt;The button above has been clicked {{ counter }} times.&lt;/p&gt;
+&lt;/div&gt;</pre><p></p><pre class="crayon-plain-tag">var example1 = new Vue({
+  el: '#example',
+  data: {
+    counter: 0
+  },
+  methods : {
+    clickMe : function(){
+     this.counter += 1;
+    }
+  }
+})</pre><p>We are binding a click event listener to a method named <code>clickMe</code>. Here’s how to define that method in our Vue instance. Here we have a <em>counter</em> variable initialized to zero. Inside the method, we are incrementing the value of the counter. So for each click on the button, the method is invoked. You will get the <a href="https://jsfiddle.net/reshma_shenoy/61uprqpa/" target="_blank" rel="noopener">code here</a>.</p><pre class="crayon-plain-tag">&lt;div id="example2"&gt;
+  &lt;button v-on:click="countUp"&gt;Count Up&lt;/button&gt;
+  &lt;button v-on:click="countDown"&gt;Count Down&lt;/button&gt;
+  &lt;h1&gt;Count: {{ counter }}&lt;/h1&gt;
+&lt;/div&gt;</pre><p></p><pre class="crayon-plain-tag">var example2 = new Vue({
+  el: '#example2',
+  data: {
+    counter: 0
+  },
+  methods : {
+   countUp : function(){
+    this.counter += 1;
+   },
+   countDown : function(){
+    this.counter -= 1;
+   }
+  }
+})</pre><p>Here in this example, we are using two button and methods. One for incrementing the count and other for decrementing. You can see <a href="https://jsfiddle.net/reshma_shenoy/61uprqpa/1/">code here.</a></p>
+<p><strong>Note</strong> :-</p><pre class="crayon-plain-tag">Instead of using "v-on:click", we have a shortcut. We can use "@click".</pre><p>For example,</p><pre class="crayon-plain-tag">&lt;div id="example2"&gt;
+  &lt;button @click="countUp"&gt;Count Up&lt;/button&gt;
+  &lt;button @click="countDown"&gt;Count Down&lt;/button&gt;
+  &lt;h1&gt;Count: {{ counter }}&lt;/h1&gt;
+&lt;/div&gt;</pre><p>This will give same result as before.</p>
+<p>We can see another example. Here we have an input field where we type the url which is bound to the Js using <code>v-model</code>.  We have a button with click event listener which is bound to the method <code>humanizeUrl</code>. We have two urls, <em>url</em> and <em>cleanUrl. url  </em>is what we type in the input field and <em>cleanUrl</em>  is getting by replacing the <em>url</em> using regular expression. Regular expression is not a Vue.js thing. Its a universal programming format. We are saving the domain name of url in the cleanUrl. Thus we will get the value on cleanUrl in the view. You will get the <a href="https://jsfiddle.net/reshma_shenoy/61uprqpa/5/" target="_blank" rel="noopener">code here</a>.</p><pre class="crayon-plain-tag">&lt;div id="example"&gt;
+  Visit : &lt;a href="#"&gt;{{cleanUrl}}&lt;/a&gt;&lt;br&gt;&lt;br&gt;
+  &lt;input type="text" v-model="url" placeholder="Type your Url"&gt;
+  &lt;button @click="humanizeUrl"&gt;humanizeUrl&lt;/button&gt;
+&lt;/div&gt;</pre><p></p><pre class="crayon-plain-tag">var example1 = new Vue({
+  el: '#example',
+  data: {
+    url: "",
+    cleanUrl: ""
+  },
+  methods : {
+    humanizeUrl: function(){
+      this.cleanUrl = this.url.replace(/^https?:\/\//, '').replace(/\/$/, '')
+    }
+  }
+})</pre><p>But here you won&#8217;t redirect to the url when we click on it. That is we have to get the url. So we need to bind the <code>href</code>. You can use <code>v-bind</code> directive for this.</p><pre class="crayon-plain-tag">&lt;div id="example"&gt;
+  Visit : &lt;a v-bind:href="url"&gt;{{cleanUrl}}&lt;/a&gt;&lt;br&gt;&lt;br&gt;
+  &lt;input type="text" v-model="url" placeholder="Type your Url"&gt;
+  &lt;button @click="humanizeUrl"&gt;humanizeUrl&lt;/button&gt;
+&lt;/div&gt;</pre><p>Here is the <a href="https://jsfiddle.net/reshma_shenoy/wre27pre/1/" target="_blank" rel="noopener">Demo</a>. So the url will redirect to the correct page. You can try out these examples to get an idea about event listeners in Vue.js.</p>
+<h2>Reference</h2>
+<p><a href="https://vuejs.org/v2/guide/events.html">https://vuejs.org/v2/guide/events.html</a></p>
+<p><a href="https://www.youtube.com/watch?v=4PXXQzME5no">https://www.youtube.com/watch?v=4PXXQzME5no</a></p>
+<p>The post <a rel="nofollow" href="/event-listeners-in-vuejs/">Event Listeners in VueJS</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/event-listeners-in-vuejs/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+							</item>
+		<item>
+		<title>Two way binding in Vue.js</title>
+		<link>/two-way-binding-in-vue-js/</link>
+				<comments>/two-way-binding-in-vue-js/#comments</comments>
+				<pubDate>Fri, 08 Sep 2017 13:06:37 +0000</pubDate>
+		<dc:creator><![CDATA[reshma]]></dc:creator>
+				<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[VueJS]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3499</guid>
+				<description><![CDATA[<p>Vue.js is a JavaScript framework getting popular considering its simplicity praised a lot these days. There are a lot of JavaScript frameworks among which React and Angular are popular among web developers. Vue.js is much flexible and less opinionated framework than Angular. It&#8217;s similar to React but much simpler. Vue.js supports Two-way binding. That is it keeps your data&#8230;</p>
+<p>The post <a rel="nofollow" href="/two-way-binding-in-vue-js/">Two way binding in Vue.js</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p><strong>Vue.js</strong> is a JavaScript framework getting popular considering its simplicity praised a lot these days. There are a lot of JavaScript frameworks among which React and Angular are popular among web developers. Vue.js<em> </em>is much flexible and less opinionated framework than Angular. It&#8217;s similar to React but much simpler. Vue.js supports <strong>Two-way binding.</strong> That is it keeps your data in sync with your DOM without you having to do anything. Two-way binding in Vue.js is MVVM pattern. That is <strong>M</strong>odel <strong>V</strong>iew <strong>V</strong>iew <strong>M</strong>odel. Like MVC, Model is the data object and view is what is displayed up. The Model can tie to the View and the View can tie back to Model.</p>
+<p>In one way binding, JS variable is bound to the DOM.</p><pre class="crayon-plain-tag">&lt;div id="app"&gt;
+  &lt;span&gt;The message is: {{message}}&lt;/span&gt;
+&lt;/div&gt;</pre><p></p><pre class="crayon-plain-tag">new Vue({
+ el: '#app',
+ data: {
+   message: 'vue js one way binding'
+ }
+});</pre><p>Here when you change the data in JS, it will also update in the DOM. So you will get the updated message on the page. You can get the basic <a href="https://jsfiddle.net/Ldh3r8bx/1/" target="_blank" rel="noopener">code here</a>.</p>
+<p>But in two way binding, Js variable can be bound to the DOM and data is also bound from the DOM back to JS.</p><pre class="crayon-plain-tag">&lt;div id="app"&gt;
+  &lt;span&gt;{{message}}&lt;/span&gt;&lt;br&gt;
+  &lt;input v-model="message"&gt;
+&lt;/div&gt;</pre><p></p><pre class="crayon-plain-tag">new Vue({
+  el: '#app',
+  data: {
+    message: 'vue js two way binding'
+  }
+});</pre><p>Now, if you type anything into your <em class="markup--em markup--p-em">input,</em> your JS variable is updated with the change, which in turn updates your <em class="markup--em markup--p-em">span</em>. You can get the <a href="https://jsfiddle.net/Ldh3r8bx/2/" target="_blank" rel="noopener">code here</a>.</p>
+<h2>Directive</h2>
+<p>The attribute used with input <code>v-model</code>is a vue directive. We have to assign data model with the directive. A directive’s job is to reactively apply special behavior to the DOM when the value of its expression changes. In the case of v-model, it binds the element to one of the data properties that Vue is watching. Vue has many directives. Another one is <code>v-on</code> which binds an element to an event. For example, v-on<em>:</em> <em>click</em>  is to bind element when clicking on it.</p>
+<p>Working with html forms is a breeze in Vue. This is where two-way binding shines. It does not bring any issues  even in complex cases, though watchers may remind of Angular 1 at first glance. One-way flow with callback passing is always at your service when you do your components splitting.</p>
+<h2>Two way binding with JQuery</h2>
+<p>You can also do two-way binding in jquery or plain JS. But you have to use some event listeners when there occurs any change in the input. You have to make your own logic to update DOM when there are any changes in the elements. You can see the <a href="https://jsfiddle.net/Ldh3r8bx/3/" target="_blank" rel="noopener">example here</a>.</p>
+<p>You can achieve reactive data binding in jQuery, but it’s just a sideshow. In Vue, it’s the main event. Hope you will try it.</p>
+<p>Happy Coding!</p>
+<h2>Reference</h2>
+<p><a href="https://vuejs.org/">https://vuejs.org/</a></p>
+<p><a href="https://vuejs.org/v2/guide/forms.html">https://vuejs.org/v2/guide/forms.html</a></p>
+<p><a href="https://www.youtube.com/watch?v=nEdsu6heW9o">https://www.youtube.com/watch?v=nEdsu6heW9o</a></p>
+<p>The post <a rel="nofollow" href="/two-way-binding-in-vue-js/">Two way binding in Vue.js</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/two-way-binding-in-vue-js/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+							</item>
+		<item>
+		<title>Getting Started with Vue.js</title>
+		<link>/getting-started-vuejs/</link>
+				<comments>/getting-started-vuejs/#respond</comments>
+				<pubDate>Mon, 28 Aug 2017 12:54:43 +0000</pubDate>
+		<dc:creator><![CDATA[reshma]]></dc:creator>
+				<category><![CDATA[Beginners]]></category>
+		<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[VueJS]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=2011</guid>
+				<description><![CDATA[<p>&#160; What is Vue.js? Vue.js is yet another JavaScript framework getting popular considering its simplicity praised a lot these days. There are a lot of JavaScript frameworks among which React and Angular are popular among web developers. Vue.js pronounced as &#8220;view.js&#8221;  is a much flexible and less opinionated framework than Angular. It&#8217;s similar to React but&#8230;</p>
+<p>The post <a rel="nofollow" href="/getting-started-vuejs/">Getting Started with Vue.js</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p>&nbsp;</p>
+<h2><a href="https://blog.redpanthers.co/wp-content/uploads/2017/02/vue-2.jpg"><img class="aligncenter wp-image-3224 size-large" src="https://blog.redpanthers.co/wp-content/uploads/2017/02/vue-2-1024x512.jpg" alt="Vue.js" width="1024" height="512" /></a></h2>
+<h2>What is Vue.js?</h2>
+<p><strong>Vue.js</strong> is yet another JavaScript framework getting popular considering its simplicity praised a lot these days. There are a lot of JavaScript frameworks among which React and Angular are popular among web developers. Vue.js pronounced as <em>&#8220;view.js&#8221;  </em>is a much flexible and less opinionated framework than Angular. It&#8217;s similar to React but much simpler.</p>
+<p>Vue.js gives you more freedom in designing your app, unlike Angular. So that you are not forced to do everything in their way. It can be adapted very easily to your existing application. You don&#8217;t need to know <a href="https://jsx.github.io/">JSX</a>, unlike React. All you have to do is to drop the link into your HTML page header and you are up and ready.</p>
+<h2>Overview</h2>
+<p><a href="https://blog.redpanthers.co/wp-content/uploads/2017/02/Screen-Shot-2017-08-28-at-1.10.07-pm.png"><img class="alignnone wp-image-3352" src="https://blog.redpanthers.co/wp-content/uploads/2017/02/Screen-Shot-2017-08-28-at-1.10.07-pm-300x219.png" alt="" width="456" height="333" /></a></p>
+<p>This is the basic folder structure.</p>
+<h4>&#8211; index.html</h4>
+<p>This is the main HTML template for your application. You can link your static assets inside the <strong>head</strong> tag while your processed assets will be auto injected in the <strong>body</strong>.</p><pre class="crayon-plain-tag">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;link rel="shortcut icon" type="image/png" href="/assets/images/favicon.png"/&gt;
+  &lt;/head&gt;
+
+  &lt;body&gt;
+    &lt;div id="app"&gt;&lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre><p></p>
+<h4>&#8211; src/router/index.js</h4>
+<p>This is the file which initiates <a href="https://router.vuejs.org/en/">vue-router</a> with the given components.</p><pre class="crayon-plain-tag">import Vue from 'vue';
+import VueRouter from 'vue-router';
+import Hello from '@/components/Hello';
+
+Vue.use(VueRouter);
+
+const routes = [
+  { path: '/', name: 'Hello', component: Hello },
+];
+
+/* eslint-disable no-new */
+export default new VueRouter({
+  routes,
+  mode: 'history',
+});</pre><p></p>
+<h4>&#8211; src/App.vue</h4>
+<p>This is the application’s main <a href="https://vuejs.org/">Vue.js</a> component which is basically just a wrapper for <a href="https://router.vuejs.org/en/">vue-router</a>.</p><pre class="crayon-plain-tag">&lt;template&gt;
+  &lt;div id="app"&gt;
+    &lt;router-view&gt;&lt;/router-view&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {};
+&lt;/script&gt;</pre><p></p>
+<h4>&#8211; src/main.js</h4>
+<p>This is the application entry file where you initiate your <a href="https://vuejs.org/">Vue.js</a> application with a router, store and the main <strong>App.vue </strong>component.</p><pre class="crayon-plain-tag">import Vue from 'vue';
+import router from '@/router';
+import store from '@/store';
+import App from '@/App';
+
+/* eslint-disable no-new */
+new Vue({
+  el: '#app',
+  router,
+  store,
+  render: h =&gt; h(App),
+});</pre><p></p>
+<h4>&#8211; src/components/Hello.vue</h4>
+<p>This file represents a sample <a href="https://vuejs.org/">Vue.js</a> component which will be used by the <a href="https://router.vuejs.org/en/">vue-router</a>. Please note that Hello module’s state is being used in here.</p><pre class="crayon-plain-tag">&lt;template&gt;
+  &lt;div class="hello"&gt;
+    &lt;h1&gt;{{ message }}&lt;/h1&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import { mapState } from 'vuex';
+
+export default {
+  data() {
+    return {};
+  },
+  computed: mapState({
+    message: state =&gt; state.Hello.message,
+  }),
+};
+&lt;/script&gt;</pre><p></p>
+<h2>Getting Started</h2>
+<p>The simplest way is to include this in your file.</p><pre class="crayon-plain-tag">&lt;script src="https://unpkg.com/vue"&gt;&lt;/script&gt;</pre><p>You can also download the Vue file and add it in a script tag, or else install it with NPM. It also provides an official CLI called the Vue-cli. You can find more details in the Vue.js <a href="https://vuejs.org/v2/guide/installation.html">Installation Guide</a>.</p>
+<p>Let&#8217;s compare simple JavaScript with a VueJS instance.</p><pre class="crayon-plain-tag">function printText () {
+  return 'Hello World!'
+}
+
+// Set some text in jQuery
+$('.element').text(printText())</pre><p>This is what we do when we want to manipulate the text for some element. For the last couple of years, I was writing code like this for a living. But what if the <strong>&#8216;.element&#8217; </strong>get renamed. Your whole JS will break. The binding is broken. We can overcome this in Vue.</p><pre class="crayon-plain-tag">&lt;div class="app"&gt;
+  &lt;span class=".element"&gt;
+    {{ msg }}
+  &lt;/span&gt;
+&lt;/div&gt;</pre><p></p><pre class="crayon-plain-tag">new Vue({
+  el: '.app',
+
+  data: {
+    msg: 'Hello World!'
+  }
+})</pre><p>The Vue instance referenced to an element <strong>&#8216;.app&#8217;. </strong>This is the entry point. Even if the class of the span object is changed it won&#8217;t affect the message being displayed.Vue.js also supports <strong>Loops</strong>, <strong>Two-way binding</strong>, <strong>Components</strong>,  <strong>Event Listeners</strong> like React. If you want to learnVue.js there&#8217;s no better document than the Vue.js <a href="https://vuejs.org/v2/guide/"> Guide</a>.<strong> </strong>You can see a demo <a href="https://jsfiddle.net/50wL7mdz/55744/">Here.</a></p>
+<h2>Why Vue.js?</h2>
+<p>Let&#8217;s talk about why we can use Vue.js.  Both React and Vue.js use Virtual DOM and the use of components. But in React if a component&#8217;s state is changed. It re-renders the entire component sub-tree. In Vue.js, the component&#8217;s dependencies are automatically tracked during render, so the system knows which component needs to be changed when the state is changed. Unlike React you don&#8217;t need to write everything in JavaScript. Vue.js supports the use of both JSX and Template rendering. If the HTML is valid, then it is a valid Vue template. We can give access to CSS within a single-file-component by adding a &#8216;scoped&#8217; attribute to the style tag which scopes CSS only for that particular component.</p>
+<p>Comparing Vue with AngularJS, both have similar syntax. But Vue is much simpler in terms of API and design. There are many opinions to structure an Angular application but Vue is a more flexible, modular solution by setting up <a href="https://github.com/vuejs-templates/webpack">web pack template</a>. In Vue, we use one-way data-flow between components that make the flow of data easier but in angular, it&#8217;s two-way binding between scopes. There are a lot of confusions between directives and components in Angular but in Vue, components are self-contained units with own view and data logic and directives are used for DOM manipulations only. Vue doesn&#8217;t use dirty checking so it&#8217;s much easier to optimize and has better performance. Since there are a lot of watchers in Angular, when anything in scope changes, all the watchers should re-evaluate again. So Angular becomes slow.</p>
+<p>Vue.js performs better than EmberJs since it automatically batches updates but in Ember, we need to manually manage run loops. For computed properties in Ember, we have to declare it manually and need to wrap everything in Ember Objects. But in Vue, it&#8217;s in Javascript Objects and fully automatic.</p>
+<h2>Advantages</h2>
+<h3>1. Simplicity</h3>
+<p>Vue has a good combination of structure and simplicity. Adding Vue.js to your web project can be very simple. It needs external libraries, but tend to use it with or without jQuery.</p><pre class="crayon-plain-tag">&lt;div id="app"&gt;
+  {{ message }}
+&lt;/div&gt;
+&lt;script&gt;
+new Vue({
+  el: '#app',
+  data: {
+    message: 'Hello Vue!'
+  }
+});
+&lt;/script&gt;</pre><p>The code is easily understandable about the working of Vue code.</p>
+<h3>2. Reactivity</h3>
+<p>The variables in Vue.js are reactive. At each point, when the variables change, it will automatically inform their peers.</p><pre class="crayon-plain-tag">var app = new Vue({
+  el: '#app',
+  data: {
+    message: "&lt;h1&gt;Hello World&lt;/h1&gt;"
+  }
+});
+
+setTimeout(function() {
+  app.message = "&lt;small&gt;Goodbye World&lt;/small&gt;";
+}, 2000)</pre><p></p><pre class="crayon-plain-tag">&lt;div id="app"&gt;
+  &lt;!--Renders as "Hello World" with &lt;h1&gt; tag--&gt;
+  &lt;!--Then after 2 seconds re-renders as "Goodbye World" with &lt;small&gt; tag--&gt;
+  &lt;p v-html="message"&gt;{{ message }}&lt;p&gt;
+&lt;/div&gt;</pre><p>Data properties, like <code class="markup--code markup--p-code">message</code> in this example, are <em class="markup--em markup--p-em">reactive</em>, that is they will trigger a re-render if changed.  The <code>v-html</code> attribute will render HTML templates. You can see the demo<strong><a href="https://jsfiddle.net/reshma_shenoy/k67u1s1m/" target="_blank" rel="noopener"> here</a></strong>.</p>
+<h3>3. Focus</h3>
+<p>Vue.js is mainly used for building user interfaces and this is achieved by a library that does not have any influence from the frameworks out there already. Supporting libraries are integrated with Vue.</p>
+<h3>4. Flexibility</h3>
+<p>Vue.js comes with perfect balance to write quickly and run straight from the browser. With that said, it is extremely good if you would like to create any practical app using with ES6, separate component files, JSX, building, routing etc.</p>
+<p>For example, if you have a preferred method for writing your templates, Vue lets you do it in any of these ways:</p>
+<ul class="postList">
+<li id="7fe9" class="graf graf--li graf-after--p">Write your template in an HTML file</li>
+<li id="959b" class="graf graf--li graf-after--li">Write your template in a string in a Javascript file</li>
+<li id="cc25" class="graf graf--li graf-after--li">Use JSX in a Javascript file</li>
+<li class="graf graf--li graf-after--li">Make your template in pure Javascript using virtual nodes</li>
+</ul>
+<p>This flexibility makes it easy to switch to Vue.</p>
+<h3>5. Components</h3>
+<p>Actually, this is where Vue’s flexibility system is built, so that components can be small and are reusable parts of UI. This isn’t any special because the of JavaScript frameworks are built with this concept.</p><pre class="crayon-plain-tag">&lt;div id="example"&gt;
+  &lt;my-component&gt;&lt;/my-component&gt;
+&lt;/div&gt;</pre><p></p><pre class="crayon-plain-tag">// register
+Vue.component('my-component', {
+  template: '&lt;div&gt;A custom component!&lt;/div&gt;'
+})
+// create a root instance
+new Vue({
+  el: '#example'
+})</pre><p>Which will render,</p><pre class="crayon-plain-tag">&lt;div id="example"&gt;
+  &lt;div&gt;A custom component!&lt;/div&gt;
+&lt;/div&gt;</pre><p>So, the components can be used in templates as elements.</p>
+<h3> 6. Copying competitors</h3>
+<p>Vue has been able to copy what works in other frameworks and avoid what doesn’t. Vue’s state management library Vuex has inspiration from Elm. Along with this, Vue’s components get the similarities with Polymer’s customer elements. Vue is now rocking a virtual DOM like React.</p>
+<h2>Conclusion</h2>
+<p>Vue.js is a progressively-adoptable Javascript framework which is focussed on view layer. It is easy to integrate with other applications. The main feature of Vue is Components. Vue uses HTML based templates which can compile into Virtual DOM render functions. In Vue, we can also directly write render functions using <a title="React (JavaScript library)" href="https://en.wikipedia.org/wiki/React_(JavaScript_library)#JSX">JSX</a>.Vue.js is much simpler, flexible and has better performance than other frameworks.</p>
+<h2>References</h2>
+<p><a href="https://vuejs.org/">https://vuejs.org/</a></p>
+<p><a href="https://github.com/vuejs/vue">https://github.com/vuejs/vue</a></p>
+<p><a href="https://medium.com/@brett.marshall/vue-js-the-real-angular-2-0-62744490cb99">https://medium.com/@brett.marshall/vue-js-the-real-angular-2-0-62744490cb99</a></p>
+<p>The post <a rel="nofollow" href="/getting-started-vuejs/">Getting Started with Vue.js</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/getting-started-vuejs/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+							</item>
+		<item>
+		<title>ReactJS for Beginners &#124; A Step by Step Approach</title>
+		<link>/reactjs-for-beginners-a-step-by-step-approach/</link>
+				<comments>/reactjs-for-beginners-a-step-by-step-approach/#respond</comments>
+				<pubDate>Mon, 27 Feb 2017 15:06:33 +0000</pubDate>
+		<dc:creator><![CDATA[reshma]]></dc:creator>
+				<category><![CDATA[Beginners]]></category>
+		<category><![CDATA[React.js]]></category>
+		<category><![CDATA[babel]]></category>
+		<category><![CDATA[beginer]]></category>
+		<category><![CDATA[es6]]></category>
+		<category><![CDATA[fast reload]]></category>
+		<category><![CDATA[freshers]]></category>
+		<category><![CDATA[react]]></category>
+		<category><![CDATA[shadow dom]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=1830</guid>
+				<description><![CDATA[<p>There are many problems while building large applications with data that changes over time. To solve this ,I suggest checking out ReactJS. React lets you express how your app should look at any given point, and can automatically manage all UI updates when your underlying data changes. React is one of the most popular JavaScript front end libraries&#8230;</p>
+<p>The post <a rel="nofollow" href="/reactjs-for-beginners-a-step-by-step-approach/">ReactJS for Beginners &#124; A Step by Step Approach</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p class="lang:ruby decode:true ">There are many problems while building large applications with data that changes over time. To solve this ,I suggest checking out <strong>ReactJS</strong>. React lets you express how your app should look at any given point, and can automatically manage all UI updates when your underlying data changes.</p>
+<p class="lang:ruby decode:true "><b>React</b> is one of the most popular JavaScript front end libraries which is developed by Facebook. It&#8217;s used for handling view layer for web and mobile apps. The main feature of ReactJS is that it allows us to create reusable UI components.  The syntax used in React is JSX which allows you to mix HTML with JavaScript. This is not a requirement – you can still write in plain JavaScript. But this is suggested because this makes writing your components a breeze.</p>
+<h3 class="lang:ruby decode:true ">Installation</h3>
+<p>To install React with Yarn, run:</p><pre class="crayon-plain-tag">yarn init
+yarn add react react-dom</pre><p>To install React with npm, run:</p><pre class="crayon-plain-tag">npm init
+npm install --save react react-dom</pre><p>The bundlers like <a href="https://webpack.js.org/">webpack</a> or <a href="http://browserify.org/">Browserify</a> is recommended. So you can write modular code and bundle it together into small packages to optimize load time.</p>
+<p>Use React with <a href="http://babeljs.io/">Babel</a> to let you use ES6 and JSX in your JavaScript code. <a href="https://babeljs.io/blog/2015/06/07/react-on-es6-plus">ES6</a> is a set of modern JavaScript features that make development easier.  <a href="https://www.tutorialspoint.com/reactjs/reactjs_jsx.htm">JSX</a> is an extension to the JavaScript language that works nicely with ReactJS.</p>
+<h3>React is efficient</h3>
+<p>ReactJS creates its own virtual DOM where your components actually live. It calculates what changes need to be made in the DOM beforehand and updates the DOM tree accordingly. So it is flexible and gives amazing gains in performance. It can be used on client and server side. This way, React avoids costly DOM operations and makes updates in a very efficient manner.</p>
+<p>The smallest ReactJS example looks like this:</p><pre class="crayon-plain-tag">ReactDOM.render(
+
+&lt;h1&gt;Hello, world!&lt;/h1&gt;,
+
+document.getElementById('root') );</pre><p>It renders a header saying &#8220;Hello, World!&#8221; on the page. You can see the <a href="http://jsfiddle.net/ot7re74f/3/">demo here</a>.</p>
+<h3>React Features</h3>
+<p class="lang:ruby decode:true ">Components are the heart and soul of ReactJS. You need to think of everything as a component. This is why it is helpful to maintain the code when working on larger scale projects. The one way data flow in react makes it easy to reason about your app. &#8220;Flux&#8221; is a pattern that helps keeping your data unidirectional. Components accept arbitrary inputs called &#8220;props&#8221; and return React elements describing what should appear on the screen.</p>
+<p></p><pre class="crayon-plain-tag">// Create a component named MessageComponent
+class MessageComponent extends React.Component{
+  render() {
+    return (
+      &lt;div&gt;{this.props.message}&lt;/div&gt;
+    );
+  }
+}
+
+// Render an instance of MessageComponent into document.getElementById
+ReactDOM.render(
+  &lt;MessageComponent message="Hello!"  /&gt;,
+  document.getElementById('root')
+);</pre><p>Create a new component class using component class approach. Components have one requirement, they must implement render function that tells the component what to render. You can see the <a href="https://jsfiddle.net/d2yL18pk/">demo here</a>.</p>
+<h4>States in React</h4>
+<p>State is the place where the data comes from. You should always try to make your state as simple as possible and minimize number of stateful components.</p><pre class="crayon-plain-tag">class App extends React.Component {
+   constructor(props) {
+      super(props);
+
+      this.state = {
+         header: "Header from state...",
+         "content": "Content from state..."
+      }
+   }
+
+   render() {
+      return (
+         &lt;div&gt;
+            &lt;h1&gt;{this.state.header}&lt;/h1&gt;
+            &lt;h2&gt;{this.state.content}&lt;/h2&gt;
+         &lt;/div&gt;
+      );
+   }
+}</pre><p>Now this will render the function. You can see the <a href="http://jsfiddle.net/q67r4wxx/">demo here</a>.</p>
+<p>The key difference between props and state is that state is internal and controlled by the component itself while props are external and controlled by whatever renders the component. To access a component&#8217;s state, use &#8220;this.state&#8221; , just like how we use &#8220;this.props&#8221; . To update a component&#8217;s state, call &#8220;this.setState&#8221; with an object map of keys to updated values<span style="font-family: monospace;">.</span></p>
+<h3>Component lifecycle</h3>
+<p>Lifecycle methods are  special methods that automatically get called as our component goes about its business. Each component has several &#8220;lifecycle methods&#8221; that you can override to run code at particular times in the process.</p>
+<h4><strong class="markup--strong markup--p-strong">getInitialState()</strong></h4>
+<p>This method is invoked once, right before the mounting phase.  The return value of this method will be used as initial value of <em class="markup--em markup--p-em">this.state</em> and should be an object.</p><pre class="crayon-plain-tag">getInitialState: function(){
+    return { /* something here */};
+}</pre><p></p>
+<h4>getDefaultProps()</h4>
+<p>This can be used to define any default props which can be accessed via <em>this.props</em>.</p><pre class="crayon-plain-tag">getDefaultProps: function(){
+    return { /* something here */};
+}</pre><p></p>
+<h4>componentWillMount()</h4>
+<p>This is the last method that gets called before your component gets rendered to the DOM. If you were to call &#8220;<span class="inlineCode">setState&#8221;</span> inside this method, your component will not re-render.</p><pre class="crayon-plain-tag">getInitialState: function() {...},
+componentWillMount: function() {
+    console.log('componentWillMount');
+}</pre><p></p>
+<h4>componentDidMount()</h4>
+<p>This function is called as the render method has been executed. This method is the best place for initializing other Javascript libraries that need access to the DOM and for data fetching operations.</p><pre class="crayon-plain-tag">componentDidMount: function() {
+}</pre><p></p>
+<h4><strong>shouldComponentUpdate() </strong></h4>
+<p>This method allows you to control the updating behavior. If you use this method and return a <strong>true</strong> value, the component will update. If this method returns a <strong>false</strong> value, this component will skip updating.</p><pre class="crayon-plain-tag">shouldComponentUpdate: function(nextProps, nextState){
+    // return a boolean value
+    return true;
+}</pre><p></p>
+<h4>componentWillReceiveProps()</h4>
+<p>This<em> </em>is only called when the props have changed and we can use this method as an opportunity to react to a prop transition before the <em class="markup--em markup--p-em">render() </em>method is called.</p><pre class="crayon-plain-tag">componentWillReceiveProps: function(nextProps) {
+  this.setState({
+    // set something
+  });
+}</pre><p></p>
+<h4>componentWillUpdate()</h4>
+<p>This gets called  just before your component is about to update.</p><pre class="crayon-plain-tag">componentWillUpdate: function(nextProps, nextState) {
+    console.log('componentWillUpdate', nextProps, nextState);
+}</pre><p></p>
+<h4>componentDidUpdate()</h4>
+<p>Finally this is called after the <em>render</em> method. This method can be used to perform DOM operations after the data has been updated.</p><pre class="crayon-plain-tag">componentDidUpdate: function(prevProps, prevState){
+    //
+}</pre><p>&nbsp;</p>
+<p>React is a Javascript library which allows developers to create fast user interfaces. React views are typically rendered using components that contain additional components specified as custom HTML tags. One of the unique features of ReactJS is not only it can perform on the client side, but it can also be rendered on the server side, and they can work together.</p>
+<p>It also uses the concept called Virtual DOM, creates an in-memory data structure cache, enumerates the resulting differences, and then updates the browser’s displayed DOM efficiently. That is the react libraries only renders the sub-components that have been modified. So this make it faster and efficient.</p>
+<h2>References</h2>
+<p><a href="https://facebook.github.io/react/">https://facebook.github.io/react/</a></p>
+<p><a href="https://www.tutorialspoint.com/reactjs/">https://www.tutorialspoint.com/reactjs/</a></p>
+<p><a href="http://buildwithreact.com/tutorial">http://buildwithreact.com/tutorial</a></p>
+<p>Let me know if you have any doubts.</p>
+<p>Happy coding!</p>
+<p>The post <a rel="nofollow" href="/reactjs-for-beginners-a-step-by-step-approach/">ReactJS for Beginners &#124; A Step by Step Approach</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/reactjs-for-beginners-a-step-by-step-approach/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+							</item>
+	</channel>
+</rss>

@@ -1,0 +1,43 @@
+ <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>
+	Comments on: Optimising PostgreSQL database query using indexes	</title>
+	<atom:link href="/optimising-postgresql-database-query-using-indexes/feed/" rel="self" type="application/rss+xml" />
+	<link>/optimising-postgresql-database-query-using-indexes/</link>
+	<description>Experts in Ruby on Rails Development</description>
+	<lastBuildDate>Sat, 17 Sep 2016 05:50:00 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.7</generator>
+			<item>
+				<title>
+				By: Harisankar P S				</title>
+				<link>/optimising-postgresql-database-query-using-indexes/#comment-5</link>
+		<dc:creator><![CDATA[Harisankar P S]]></dc:creator>
+		<pubDate>Sat, 17 Sep 2016 05:50:00 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=389#comment-5</guid>
+					<description><![CDATA[I haven&#039;t used it before. I will check it out. Thanks for sharing.]]></description>
+		<content:encoded><![CDATA[<p>I haven&#8217;t used it before. I will check it out. Thanks for sharing.</p>
+]]></content:encoded>
+						</item>
+						<item>
+				<title>
+				By: David Westerink				</title>
+				<link>/optimising-postgresql-database-query-using-indexes/#comment-4</link>
+		<dc:creator><![CDATA[David Westerink]]></dc:creator>
+		<pubDate>Fri, 16 Sep 2016 08:33:00 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=389#comment-4</guid>
+					<description><![CDATA[Do you know about a little gem called lol_dba? It&#039;s a small gem that helps you find good indexes on your database. Check it out; https://github.com/plentz/lol_dba]]></description>
+		<content:encoded><![CDATA[<p>Do you know about a little gem called lol_dba? It&#8217;s a small gem that helps you find good indexes on your database. Check it out; <a href="https://github.com/plentz/lol_dba" rel="nofollow">https://github.com/plentz/lol_dba</a></p>
+]]></content:encoded>
+						</item>
+			</channel>
+</rss>

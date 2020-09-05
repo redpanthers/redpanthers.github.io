@@ -1,0 +1,104 @@
+ <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>AngularJS &#8211; Red Panthers</title>
+	<atom:link href="/category/angularjs/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description>Experts in Ruby on Rails Development</description>
+	<lastBuildDate>Tue, 19 Sep 2017 11:42:19 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.7</generator>
+
+<image>
+	<url>/wp-content/uploads/2017/12/rp-logo.png</url>
+	<title>AngularJS &#8211; Red Panthers</title>
+	<link>/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Getting started with Angular 4</title>
+		<link>/getting-started-with-angular-4/</link>
+				<comments>/getting-started-with-angular-4/#respond</comments>
+				<pubDate>Tue, 19 Sep 2017 11:42:19 +0000</pubDate>
+		<dc:creator><![CDATA[reshma]]></dc:creator>
+				<category><![CDATA[Angular4]]></category>
+		<category><![CDATA[AngularJS]]></category>
+		<category><![CDATA[Beginners]]></category>
+		<category><![CDATA[Javascript]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3253</guid>
+				<description><![CDATA[<p>Angular is a most popular platform for building applications with the web. Angular empowers developers to build applications that live on the web, mobile, or the desktop. The AngularCLI is a command line interface tool that can create a project, add files, and perform a variety of ongoing development tasks such as testing, bundling, and deployment. As compared to the older&#8230;</p>
+<p>The post <a rel="nofollow" href="/getting-started-with-angular-4/">Getting started with Angular 4</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p><a href="https://blog.redpanthers.co/wp-content/uploads/2017/08/angular4.jpg"><img class="alignnone wp-image-3306" src="https://blog.redpanthers.co/wp-content/uploads/2017/08/angular4-300x150.jpg" alt="" width="1210" height="605" /></a></p>
+<p>Angular is a most popular platform for building applications with the web. Angular empowers developers to build applications that live on the web, mobile, or the desktop. The <a href="https://cli.angular.io/">AngularCLI</a> is a command line interface tool that can create a project, add files, and perform a variety of ongoing development tasks such as testing, bundling, and deployment.</p>
+<p>As compared to the older versions of Angular, there are many new things added to the list. Not only new features but also some twists are there that enhance old features. Forget Angular 3, Google jumps straight to Angular 4 after Angular 2. Angular4 applications are much faster and less space consuming.  Angular4 is compatible with TypeScript’s newer versions 2.1 and 2.2. Components are the basic building blocks of your application. Every component has an associated template, style sheet, and a class with logic.</p>
+<h2>Prerequisites</h2>
+<p><strong>1. NodeJS </strong>( 6.x.x or greater )</p>
+<p><strong>2. npm </strong>(3.x.x or greater )</p>
+<h2>Installation</h2>
+<p>1. You have to install AngularCLI globally.</p><pre class="crayon-plain-tag">npm install -g @angular/cli</pre><p>2. Create a new project.</p><pre class="crayon-plain-tag">ng new my-app</pre><p>3. To serve the application, get into the project repo and run :</p><pre class="crayon-plain-tag">cd my-app
+ng serve --open</pre><p>For launching our server and for rebuilding our app when there are any changes we are using &#8220;ng serve&#8221;.</p>
+<p>When using &#8220;&#8211;open&#8221; or &#8220;&#8211;o&#8221;, it will open in &#8220;http://localhost:4200/&#8221; automatically.</p>
+<h4>And that&#8217;s it!</h4>
+<p>Your basic app is ready!</p>
+<h2>What’s New In Angular 4</h2>
+<h3>Router ParamMap</h3>
+<p>In the previous versions, we were using a simple key-value object for storing route parameters. But in Angular4, it is possible to query a so-called ParamMap in the router, that is a request for the route- and query parameter assigned to a route.</p><pre class="crayon-plain-tag">class MyComponent {
+ sessionId: Observable&lt;string&gt;;
+
+ constructor(private route: ActivatedRoute) {}
+
+ ngOnInit() {
+   this.sessionId = this.route
+     .queryParams
+     .map(params =&gt; params['session_id'] || 'None');
+ }
+}</pre><p>Now, we can run them as simple method calls (parameterMap.get(‘parameter-name’)).</p><pre class="crayon-plain-tag">class MyComponent {
+ sessionId: Observable&lt;string&gt;;
+
+ constructor(private route: ActivatedRoute) {}
+
+ ngOnInit() {
+   this.sessionId = this.route
+     .queryParamMap
+     .map(paramMap =&gt; paramMap.get('session_id') || 'None');
+ }
+}</pre><p>The parameters are also available as a map. This brings advantage in terms of type security. The old key-value structure is unsafe since it can take all possible values. In the map, the parameter value is either string or array of strings depending upon the method used. Hence it is safe.</p>
+<h3>Animation Package</h3>
+<p>All the functions of animation were provided in @angular/core module. So it was always there with our application even if we didn&#8217;t use it and many unnecessary bundles were created. To avoid this, these functions have been put into its own packages.  So that this extra code will not end up in your production bundles if you didn&#8217;t use that. We can add animations ourselves in the main NgModule by importing BrowserAnimationsModule from @angular/platform-browser/animations.</p>
+<h3>Improved *ngIf and *ngFor</h3>
+<p>It’s now also possible to use an <code class="highlighter-rouge">else</code> syntax in your templates. In the else-case, a separately referenced template is used in place of the element marked with *ngIf.</p><pre class="crayon-plain-tag">&lt;div *ngIf="races.length &gt; 0; else empty"&gt;&lt;h2&gt;Races&lt;/h2&gt;&lt;/div&gt;
+&lt;ng-template #empty&gt;&lt;h2&gt;No races.&lt;/h2&gt;&lt;/ng-template&gt;</pre><p>Another addition to the template syntax is the <code class="highlighter-rouge">as</code> keyword, to simplify the <code class="highlighter-rouge">let</code> syntax. We can store the result in a variable of the template so that we can use it in the element.</p><pre class="crayon-plain-tag">&lt;div *ngFor="let pony of ponies | slice:0:2 as total; index as i"&gt;
+  {{i+1}}/{{total.length}}: {{pony.name}}
+&lt;/div&gt;</pre><p></p>
+<h3>TypeScript 2.1 &amp; 2.2 compatibility</h3>
+<p>Version 4 is compatible with these new versions of TypeScript. This will improve the speed of ngc and give better type checking in your application.</p>
+<h3>Universal</h3>
+<p>With Angular Universal, we can do the server side rendering. It was maintained by the community until now, but after this release, it’s now an official Angular project.</p>
+<h2 class="card-container">Conclusion</h2>
+<p>The new release brings some good features and a really great improvement of the generated code size, for the price of very few breaking changes that should not impact you a lot and also makes the migration quite smooth. So Angular 4 is here and it&#8217;s time to learn one of the most popular and powerful javascript frameworks.</p>
+<h2>References</h2>
+<p><a href="https://angular.io/">https://angular.io/</a></p>
+<p><a href="https://jaxenter.com/angular-4-top-features-133165.html">https://jaxenter.com/angular-4-top-features-133165.html</a></p>
+<p><a href="https://coursetro.com/courses/12/Learn-Angular-4-from-Scratch">https://coursetro.com/courses/12/Learn-Angular-4-from-Scratch</a></p>
+<p>Happy Coding!!</p>
+<p>The post <a rel="nofollow" href="/getting-started-with-angular-4/">Getting started with Angular 4</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/getting-started-with-angular-4/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+							</item>
+	</channel>
+</rss>

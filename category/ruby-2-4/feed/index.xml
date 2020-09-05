@@ -1,0 +1,325 @@
+ <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Ruby 2.4 &#8211; Red Panthers</title>
+	<atom:link href="/category/ruby-2-4/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description>Experts in Ruby on Rails Development</description>
+	<lastBuildDate>Tue, 22 Aug 2017 07:28:43 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.7</generator>
+
+<image>
+	<url>/wp-content/uploads/2017/12/rp-logo.png</url>
+	<title>Ruby 2.4 &#8211; Red Panthers</title>
+	<link>/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Make unit tests great again &#8211; Integrate Jasmine into Rails</title>
+		<link>/write-beautiful-jasmine-tests-rails/</link>
+				<comments>/write-beautiful-jasmine-tests-rails/#comments</comments>
+				<pubDate>Tue, 22 Aug 2017 07:28:43 +0000</pubDate>
+		<dc:creator><![CDATA[alan]]></dc:creator>
+				<category><![CDATA[Jasmine]]></category>
+		<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[Rails]]></category>
+		<category><![CDATA[Rails 5]]></category>
+		<category><![CDATA[Ruby]]></category>
+		<category><![CDATA[Ruby 2.4]]></category>
+		<category><![CDATA[better tests]]></category>
+		<category><![CDATA[jasmine]]></category>
+		<category><![CDATA[karma]]></category>
+		<category><![CDATA[rails]]></category>
+		<category><![CDATA[test]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3149</guid>
+				<description><![CDATA[<p>Jasmine is a framework to write tests for the Javascript code in the Behaviour Driven Development (BDD) style. In this article, you will learn how to integrate Jasmine into your existing rails application and how to write clean and beautiful unit tests. Let us make tests great again! &#160; Install Jasmine To make Jasmine available&#8230;</p>
+<p>The post <a rel="nofollow" href="/write-beautiful-jasmine-tests-rails/">Make unit tests great again &#8211; Integrate Jasmine into Rails</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p>Jasmine is a framework to write tests for the Javascript code in the Behaviour Driven Development (BDD) style. In this article, you will learn how to integrate Jasmine into your existing rails application and how to write clean and beautiful unit tests. Let us make tests great again!</p>
+<p>&nbsp;</p>
+<h2>Install Jasmine</h2>
+<p>To make Jasmine available to your Rails app, you just have to place the jasmine-gem (<a href="https://github.com/jasmine/jasmine-gem">link</a>) in your Gemfile. That will do the magic. Just make sure you have it under Development and Test group in the Gemfile as follows:</p><pre class="crayon-plain-tag">group :development, :test do
+  gem "jasmine"
+end</pre><p>Then run this to install the gem:</p><pre class="crayon-plain-tag">bundle install</pre><p>After all the gems are installed, run this code to generate necessary files for Jasmine to run:</p><pre class="crayon-plain-tag">rails generate jasmine:install</pre><p>This will create the jasmine helper file and the yml file where you configure how it should run the tests.</p>
+<h2>Run tests</h2>
+<p>You can use Jasmine right after it&#8217;s installed. It can be run in several ways, the most important ones being,</p>
+<ol>
+<li>In your browser</li>
+<li>Continuous Integration Mode (CI)</li>
+</ol>
+<p>The CI mode is usually used when you have to integrate it into your build system.</p>
+<h2>Browser Mode</h2>
+<p>You have to start the Jasmine server to run it in a browser. This server runs all the tests and serves the results to a webpage. Run this to start the Jasmine Server:</p><pre class="crayon-plain-tag">rake jasmine</pre><p>With the default settings, you can view the output in:</p><pre class="crayon-plain-tag">http://localhost:8888/</pre><p>But this page would be pretty empty since you don&#8217;t have any tests written for your Javascript code. There is a method provided to generate sample tests. Try running this:</p><pre class="crayon-plain-tag">rails generate jasmine:examples</pre><p>Now refresh the webpage and you can see something similar to this:</p>
+<p><a href="https://blog.redpanthers.co/wp-content/uploads/2017/08/Screen-Shot-2017-08-21-at-3.47.22-PM.png"><img class="aligncenter wp-image-3152" src="https://blog.redpanthers.co/wp-content/uploads/2017/08/Screen-Shot-2017-08-21-at-3.47.22-PM-300x91.png" alt="Jasmine test page" width="768" height="233" /></a></p>
+<h3>Configurable Settings</h3>
+<p>Clicking on the options button in the top right corner will display a list of options that change how Jasmine runs the tests. Let&#8217;s get into each one of them:</p>
+<h4>Raise Exceptions</h4>
+<p>This option disables the error catching mechanism of Jasmine in the JavaScript source code and in the test file. The default setting is to wrap all the errors in a catch block.</p>
+<h4>Stop Spec on Expectation Failure</h4>
+<p>With this option turned on, Jasmine will stop the test at the first occurrence of an error. The default setting is to run the full test suit and then display all the tests which fail.</p>
+<h4>Run Tests in Random Order</h4>
+<p>This option enables the test to be run in a random sequence every time the test runs. The benefit of enabling this option is to reveal dependencies between tests, therefore, you can reduce test dependencies and each test will have good isolation.</p>
+<h2>Continous Integration Mode</h2>
+<p>A headless browser is used to integrate Jasmine into your continuous integration workflow. To make our lives easier, this gem that we are using supports integration with a headless browser out of the box. The default headless browser is <a href="http://phantomjs.org/">Phantom JS</a>. So it will download automatically if not installed when you try to run in CI mode. Run this code to run in CI mode:</p><pre class="crayon-plain-tag">rake jasmine:ci</pre><p>By default, Jasmine will attempt to find a random open port. To set a default port manually, just add this to the <strong>jasmine_helper.rb</strong></p><pre class="crayon-plain-tag">Jasmine.configure do |config|
+   config.ci_port = 1234
+end</pre><p></p>
+<h2>Configuration</h2>
+<p>The two files which you should be looking into, if you need to alter the behavior of tests are:</p>
+<ul>
+<li>jasmine.yml</li>
+<li>jasmine_helper.rb</li>
+</ul>
+<p>Jasmine reads the jasmine.yml first and then overrides it with the settings mentioned in jasmine_helper.rb</p>
+<h4>Sample configuration:</h4>
+<p></p><pre class="crayon-plain-tag"># spec/javascripts/support/jasmine.yml
+random: true
+show_console_log: false
+stop_spec_on_expectation_failure: true</pre><p></p><pre class="crayon-plain-tag"># spec/javascripts/support/jasmine_helper.rb
+Jasmine.configure do |config|
+  config.random = false
+  config.show_console_log = false
+  config.stop_spec_on_expectation_failure: false
+
+  config.show_full_stack_trace = false
+  config.prevent_phantom_js_auto_install = false
+end</pre><p></p>
+<h2>Testing</h2>
+<p>Writing tests for Javascript in a Rails app should be fairly straightforward as it uses same standards as Jasmine in general. But there are things that need to be considered specific to a Jasmine installation in Rails.</p>
+<h3>Testing JavaScript</h3>
+<p>Test files for JavaScript in a rails application reside in the <strong>spec/javascripts</strong> folder. For each javascript file, you need to put the test file in the same path as the file. For example, if you have the following javascript file in your app:</p>
+<p><strong>app/assets/javascripts/jasmine_examples/Calculator.js</strong></p>
+<p>You place the spec file in the following path:</p>
+<p><strong>spec/javascripts/jasmine_examples/CalculatorSpec.js</strong></p>
+<p>Jasmine will include the test on the next test run. There is no configuration to have your test run.</p>
+<h2>Plugins worth considering</h2>
+<ul>
+<li><strong>Jasmine-Jquery</strong> &#8211; this plugin provides a lot of jquery related matchers. Download it <a href="https://github.com/velesin/jasmine-jquery/releases">here</a></li>
+<li><strong>Jasmine-Matchers</strong> &#8211; a tool to provide additional matchers. Download it <a href="https://github.com/JamieMason/Jasmine-Matchers/releases">here</a></li>
+<li><strong>Jasmine-Fixture &#8211; </strong>a plugin that provides DOM creation using CSS selectors, therefore you can interact with the DOM much easier. Download it <a href="https://github.com/searls/jasmine-fixture/releases">here</a></li>
+</ul>
+<h1>Write Beautiful Unit tests</h1>
+<p>95% of the developers I know write unit tests in order to prevent defects from being deployed to production. But the essential ingredients to a great unit test is unknown to most of them. There have been countless times that I&#8217;ve seen a test fails, only to investigate and discover that I have no idea what feature the developer was trying to test, let alone how it went wrong or why it matters.</p>
+<h2>Importance of Test Discipline</h2>
+<p>Your tests are the best set of weapons to defend your code from bugs. They are more important that linting and static analysis. A few reasons why tests are your secret weapon:</p>
+<ul>
+<li>Writing tests first gives you a clearer perspective on the ideal API design.</li>
+<li>Does the developer understand the problem enough to articulate in code all critical component requirements?</li>
+<li>Manual QA is error-prone. In my experience, it’s impossible for a developer to remember all features that need testing after making a change to refactor, add new features, or remove features.</li>
+<li>Continous Integration prevents failed builds from getting deployed to production.</li>
+</ul>
+<h2>Bug Report vs plain Unit Test</h2>
+<p>The test fail report comes to save your life when a test fails. So you better make it loud and clear. I came up with a list of must-have info in your bug report.</p>
+<ul>
+<li>What are you trying to test?</li>
+<li>What should it do?</li>
+<li>What is the real-time output (actual behavior)?</li>
+<li>What is the expected output (expected behavior)?</li>
+</ul>
+<p>Here is a sample test with all of these info:</p><pre class="crayon-plain-tag">describe("CalculatorAddMethod", function() {
+
+  var calculator = new Calculator();
+
+  it("should return number", function() {
+    const actual = typeof Calculator.add(5,10);
+    const expected = 'number'
+    expect(actual).toEqual(expected);
+  });
+
+});</pre><p>This test suit answers all the questions above. Let&#8217;s go through each one of them.</p>
+<ul>
+<li>What are you trying to test?
+<ul>
+<li>-&gt; Go for the test description. It is testing for the return type of the add method of Calculator().</li>
+</ul>
+</li>
+<li>What should it do?
+<ul>
+<li>-&gt; Again, look at the test description. It clearly says that it is testing for the return type of add method.</li>
+</ul>
+</li>
+<li>What is the actual output?
+<ul>
+<li>-&gt; There is a dedicated variable which holds the actual result and how you got the actual result. TWO FOR ONE!</li>
+</ul>
+</li>
+<li>What is the expected output?
+<ul>
+<li>-&gt; Again, there is a dedicated variable which holds the actual result. Straight as a ruler!</li>
+</ul>
+</li>
+</ul>
+<h2>Make your tests even better</h2>
+<p>This is from my experiences and the knowledge I gained from good articles. This worked for me in the long run even if I find it a little difficult to implement when I started. <strong>Write every single test using toEqual()</strong>. Don&#8217;t worry about the quality impact on your test suit. It will get better with exercise.</p>
+<h2>Easter Egg</h2>
+<p>This method I suggested would answer one more question, which is by far the most important question I guess. <strong>How can you reproduce the test?</strong> The <strong>const actual </strong>holds the answer to this question. Please go take a look at the variable in my sample test suit above and get delighted.</p>
+<h1>Conclusion</h1>
+<p>Integrating Jasmine into your Rails app is done by the <strong>jasmine-gem. </strong>This gem gives you the ability to run tests in a browser or as Continous Integration mode. The usage of right plugins will improve your productivity and helps you write tests faster and better.</p>
+<p>Next time you write a test, remember to see if your test answers the following questions:</p>
+<ul>
+<li>What are you trying to test?</li>
+<li>What should it do?</li>
+<li>What is the real-time output (actual behavior)?</li>
+<li>What is the expected output (expected behavior)?</li>
+<li>How can be the test reproduced?</li>
+</ul>
+<p>The post <a rel="nofollow" href="/write-beautiful-jasmine-tests-rails/">Make unit tests great again &#8211; Integrate Jasmine into Rails</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/write-beautiful-jasmine-tests-rails/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+							</item>
+		<item>
+		<title>Behind the scenes of hash table performance in ruby 2.4</title>
+		<link>/behind-scenes-hash-table-performance-ruby-2-4/</link>
+				<comments>/behind-scenes-hash-table-performance-ruby-2-4/#comments</comments>
+				<pubDate>Tue, 31 Jan 2017 07:32:26 +0000</pubDate>
+		<dc:creator><![CDATA[aboobacker]]></dc:creator>
+				<category><![CDATA[Ruby]]></category>
+		<category><![CDATA[Ruby 2.4]]></category>
+		<category><![CDATA[Hash]]></category>
+		<category><![CDATA[hashtables]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=922</guid>
+				<description><![CDATA[<p>Ruby 2.4 got released this Christmas with a lot of exciting features. One of the most underrated features in ruby 2.4 is hash table improvements. Before going into details about implementation, let&#8217;s first check the benchmark to know how this change gonna affect your ruby application. Some benchmarks are: Getting keys and values of a&#8230;</p>
+<p>The post <a rel="nofollow" href="/behind-scenes-hash-table-performance-ruby-2-4/">Behind the scenes of hash table performance in ruby 2.4</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p><strong>Ruby 2.4</strong> got released this Christmas with a lot of exciting features. One of the most underrated features in ruby 2.4 is hash table improvements. Before going into details about implementation, let&#8217;s first check the benchmark to know how this change gonna affect your ruby application.</p>
+<p>Some benchmarks are:</p>
+<h4 id="gettingkeysandvaluesofahash">Getting keys and values of a hash</h4>
+<p></p><pre class="crayon-plain-tag">h = {}
+
+10000.times do |i|
+  h[i] = nil
+end
+
+# Get all hash values
+Benchmark.measure { 50000.times { h.values } }
+
+# Get all hash keys
+Benchmark.measure { 50000.times { h.keys } }</pre><p>Output</p>
+<p>Ruby 2.3.3</p><pre class="crayon-plain-tag">=&gt; #&lt;Benchmark::Tms:0x00000002a0f990 @label="", @real=2.8023432340005456, @cstime=0.0, @cutime=0.0, @stime=0.13000000000000012, @utime=2.6799999999999997, @total=2.8099999999999996&gt;
+#&lt;Benchmark::Tms:0x00000002963398 @label="", @real=2.767410662000657, @cstime=0.0, @cutime=0.0, @stime=0.029999999999999805, @utime=2.729999999999997, @total=2.7599999999999967&gt;</pre><p>&nbsp;</p>
+<p>ruby 2.4.0</p><pre class="crayon-plain-tag">#&lt;Benchmark::Tms:0x0000000226d700 @label="", @real=0.8854832770002758, @cstime=0.0, @cutime=0.0, @stime=0.08999999999999997, @utime=0.7999999999999998, @total=0.8899999999999998&gt;
+#&lt;Benchmark::Tms:0x000000022b1018 @label="", @real=0.8476084579997405, @cstime=0.0, @cutime=0.0, @stime=0.06999999999999995, @utime=0.7799999999999994, @total=0.8499999999999993&gt;</pre><p>Yeah, the above two operations executed <strong>~ 3 times</strong> faster on my laptop. Though these numbers can vary with your machine and processor, the performance improvements will be significant on all modern processors. Not all operations became 3 times faster , average perfomence improvement is more than<strong> 50%</strong></p>
+<p>If you are a ruby developer and excited to know what are the new features in ruby 2.4, then this feature gonna make your application faster and you don&#8217;t have to change anything in the code for that. Because these changes are <strong>backward compatible</strong>. If you are curious to know what happened behind the scenes of this performance boost, then continue reading.</p>
+<h2 id="hashtable">Hash Table</h2>
+<blockquote><p>In computing, hash table (hash map) is a data structure that is used to implement an associative array, a structure that can map keys to values. Hash table uses a hash function to compute an index into an array of buckets or slots, from which the desired value can be found. <a href="https://en.wikipedia.org/wiki/Hash_table">Wikipedia</a></p></blockquote>
+<p>In other words, it is a data structure that allows you to store key value pair and helps to fetch specific data using the key in an efficient way. Unlike arrays, you don&#8217;t have to iterate through all elements to find a given element in the hash. If you are new to this data structure, check this <a href="https://www.youtube.com/watch?v=h2d9b_nEzoA">cs50 video</a> for a better understanding.</p><pre class="crayon-plain-tag">hash = {key1: value1, key2: value2}</pre><p>That is cool right! Now, let&#8217;s see how this is made possible in ruby.</p>
+<h3 id="pre24">Pre 2.4</h3>
+<p>Let&#8217;s first check how ruby implemented Hash in pre 2.4 <img class="alignnone" src="http://i.imgur.com/zGSViFd.png" alt="old hash representation , hash table" width="703" height="479" /></p>
+<p>Ruby internally uses a structure called st_<em>table to represent hash. st_</em>table contains type, the number of bins, the number of entries and pointers to bin array. Bin array is an array with 11 default size and can grow when required. Let&#8217;s take an example of hash and see how it will be represented using above diagram.</p><pre class="crayon-plain-tag">sample_hash = {a: 10, b: 20, c: 30, d: 40, e: 50}</pre><p>Let&#8217;s take keys :c and :d</p>
+<p><strong>Step 1:</strong></p>
+<p>First thing ruby does is it will take the hash of the key using the internal hash function.</p><pre class="crayon-plain-tag">2.3.1 :075 &gt; :c.hash
+=&gt; 2782
+2.3.1 :076 &gt; :d.hash
+=&gt; 2432</pre><p><strong>Step 2:</strong> After getting the hash value, result ?it  takes modulo of 11 to get figure in which bin ruby can store the given pair</p><pre class="crayon-plain-tag">2.3.1 :073 &gt; :c.hash % 11
+=&gt; 10
+2.3.1 :074 &gt; :d.hash % 11
+=&gt; 1</pre><p>This means we can put :c =&gt; 30 in 10&#8217;th bin and :d in 1st bin</p>
+<p><strong>Step 3</strong></p>
+<p>What if there are multiple modulo operations that give the result? This is called hash collision. To resolve this, ruby uses a separate chaining approach  i.e, it will make a doubly linked list and add it to the existing value in the bin.</p>
+<p><strong>Step 4</strong></p>
+<p>What if the hash is too large ?? Linked list will start growing and will make the hash slower. So, ruby will allocate more bins and do an operation called <strong>Rehashing</strong> to utilise newly added bins.</p>
+<p><span id="wmd-input-section-15489" class="wmd-input-section"><span class="token p"><span class="token strong"><strong>Improvements in 2.0</strong></span></span></span><span id="wmd-input-section-15489" class="wmd-input-section"></span></p>
+<p><span id="wmd-input-section-15489" class="wmd-input-section"><span class="token p">In ruby 2.0, Ruby eliminated the need for extra data structures for smaller hashes and uses linear search for better performance.</span></span><span id="wmd-input-section-15489" class="wmd-input-section"></span></p>
+<p><strong><span id="wmd-input-section-15489" class="wmd-input-section"><span class="token p"><span class="token strong">Improvements in 2.2</span></span></span></strong></p>
+<p><span id="wmd-input-section-15489" class="wmd-input-section"></span><span id="wmd-input-section-15489" class="wmd-input-section"><span class="token p">In 2.2.0, Ruby has used bin array sizes that correspond to powers of two (16, 32, 64, 128, &#8230;).</span> </span></p>
+<h3 id="changesin24">Changes in 2.4</h3>
+<div id="attachment_1629" style="width: 310px" class="wp-caption aligncenter"><a href="http://blog.redpanthers.co/wp-content/uploads/2016/12/hash.png"><img aria-describedby="caption-attachment-1629" class="wp-image-1629 size-medium" src="http://blog.redpanthers.co/wp-content/uploads/2016/12/hash-300x201.png" alt="new hash structure in ruby 2.4 , hash table" width="300" height="201" /></a><p id="caption-attachment-1629" class="wp-caption-text">Source: https://github.com/ruby/ruby/blob/trunk/st.c</p></div>
+<p>In ruby 2.4, Hash table is moved to <a href="https://en.wikipedia.org/wiki/Open_addressing">open addressing model</a> i.e, we no longer have the separate doubly linked list for collision resolution. Here, we will be storing records in the entries array itself i.e, there is no need of pointer chasing and data will be stored in the adjacent memory location (Data locality). The hash table has two arrays called bins and entries. Entry array contains hash entries in the order of insertion and the bin array provides access to entry the by their keys. The key hash is mapped to a bin containing the index of the corresponding entry in the entry array.</p>
+<p>&nbsp;</p>
+<p><span id="wmd-input-section-13012" class="wmd-input-section"><span class="token p"><span class="token strong"><strong>Inserting entries in Hash</strong></span></span></span><span id="wmd-input-section-13012" class="wmd-input-section"></span></p>
+<p><span id="wmd-input-section-13012" class="wmd-input-section"><span class="token p">Step 1:</span></span></p>
+<p><span id="wmd-input-section-13012" class="wmd-input-section"><span class="token p">Ruby will insert an entry to entries array in sequential order.</span></span><span id="wmd-input-section-13012" class="wmd-input-section"></span></p>
+<p><span id="wmd-input-section-13012" class="wmd-input-section"><span class="token p">Step 2:</span></span><span id="wmd-input-section-13012" class="wmd-input-section"></span></p>
+<p><span id="wmd-input-section-13012" class="wmd-input-section"><span class="token p">Ruby will identify the bin from which the entry is to be mapped. Ruby uses first few bits of the hash as the bin index, Explaining the whole process is beyond the scope of this article. You can check the logic in MRI source code <a href="https://github.com/ruby/ruby/blob/trunk/st.c#L971"><span class="token link"><span class="token md md-bracket-start">here</span></span></a></span></span><span id="wmd-input-section-13012" class="wmd-input-section"></span></p>
+<p><span id="wmd-input-section-13012" class="wmd-input-section"><span class="token p"><span class="token strong"><strong>Accessing element by key</strong></span> </span></span></p>
+<p>Let&#8217;s examine it with a sample hash **</p><pre class="crayon-plain-tag">sample_hash = {a: 10, b: 20, c: 30, d: 40, e: 50}</pre><p>Here, ruby will create two internal arrays, entries and bins as shown below</p><pre class="crayon-plain-tag">entries = [[2297,a,10], [451,b,20], [2782,c,30], [2432,d,40],[1896,e,50]]</pre><p>each record in entries array will contain a hash, key, and value respectively</p>
+<p>Default bin size in ruby is 16 so Bins array for the above hash will be somewhat like this</p><pre class="crayon-plain-tag">bins = [
+3,
+nil,
+nil,
+nil,
+1,
+nil,
+nil,
+nil,
+5,
+0,
+nil,
+nil,
+nil,
+nil,
+2,
+nil
+]</pre><p>Now what if we want to fetch an element from hash, say &#8216;c&#8217;</p><pre class="crayon-plain-tag">sample_hash[:c]</pre><p>Step 1:</p>
+<p>Find the hash using ruby&#8217;s internal hash function</p><pre class="crayon-plain-tag">:c.hash
+2782</pre><p>Step 2</p>
+<p>Find the location in bin array by using <a href="https://github.com/ruby/ruby/blob/trunk/st.c#L971">find bin method</a></p><pre class="crayon-plain-tag">find_bin(2782)</pre><p>Step 3</p>
+<p>Find the location entries array using bin array</p><pre class="crayon-plain-tag">bins[14] =&gt; 2</pre><p>&nbsp;</p>
+<p>Step 4. Find the entry using the key we got</p><pre class="crayon-plain-tag">entries[2] =&gt; [2782,c,30]</pre><p>&nbsp;</p>
+<p>Now we have value for the key &#8216;c&#8217; without iterating through all the records</p>
+<h4 id="iclassicontrashideletinganitem"><i class="icon-trash"></i> Deleting an item</h4>
+<p>If the item to be deleted is first one, then ruby will change the index of &#8216;current first entry &#8216;, otherwise ruby will mark the item as reserved using a reserved hash value.</p>
+<p>In the ruby source code, DELETED is marked using 0 and EMPTY is marked using 1.</p>
+<p>To <strong>summarise</strong> this approach made hash implementation in ruby faster because the new bins array stores much smaller reference to the entries instead of storing entries themselves. Hence, it can take advantage of the modern processor caching levels</p>
+<p>** Small hashes will use the linear search to find entries from ruby 2.0 onwards to avoid extra overhead and improve performance. Given example is just for reference only.</p>
+<p>References</p>
+<ol>
+<li><a href="https://bugs.ruby-lang.org/issues/12142">https://bugs.ruby-lang.org/issues/12142</a></li>
+<li><a href="https://blog.heroku.com/ruby-2-4-features-hashes-integers-rounding#hash-changes">https://blog.heroku.com/ruby-2-4-features-hashes-integers-rounding#hash-changes</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Hash_table">https://en.wikipedia.org/wiki/Hash_table</a></li>
+<li><a href="http://patshaughnessy.net/ruby-under-a-microscope">http://patshaughnessy.net/ruby-under-a-microscope</a></li>
+</ol>
+<p>The post <a rel="nofollow" href="/behind-scenes-hash-table-performance-ruby-2-4/">Behind the scenes of hash table performance in ruby 2.4</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/behind-scenes-hash-table-performance-ruby-2-4/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+							</item>
+		<item>
+		<title>New binding.irb introduced in ruby 2.4</title>
+		<link>/new-binding-irb-introduced-ruby-2-4/</link>
+				<comments>/new-binding-irb-introduced-ruby-2-4/#respond</comments>
+				<pubDate>Tue, 22 Nov 2016 05:23:21 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Beginners]]></category>
+		<category><![CDATA[Ruby 2.4]]></category>
+		<category><![CDATA[debugging]]></category>
+		<category><![CDATA[irb]]></category>
+		<category><![CDATA[rails]]></category>
+		<category><![CDATA[REPL]]></category>
+		<category><![CDATA[session]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=636</guid>
+				<description><![CDATA[<p>Ruby 2.4 will have the feature to introduce a REPL session, using IRB, in between your code execution for better debugging. IRB, which stands for Interactive Ruby, is the standard REPL which is bundled along with ruby. Pry is a popular alternative for IRB, which has many developer-friendly features like tab compilation and syntax highlighting.&#8230;</p>
+<p>The post <a rel="nofollow" href="/new-binding-irb-introduced-ruby-2-4/">New binding.irb introduced in ruby 2.4</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p>Ruby 2.4 will have the feature to introduce a REPL session, using IRB, in between your code execution for better debugging. <a href="http://ruby-doc.org/stdlib-2.3.0/libdoc/irb/rdoc/IRB.html">IRB</a>, which stands for Interactive Ruby, is the standard REPL which is bundled along with ruby. <a href="http://pryrepl.org/">Pry</a> is a popular alternative for IRB, which has many developer-friendly features like tab compilation and syntax highlighting. One of the most heavily used features of pry is the ability to introduce a REPL session in between your code execution for better debugging. Instead of using <code>p</code> or <code>puts</code> to print the result and various variables, this helps us try out various codes and fixes in between the code to find the right solution.</p>
+<div style="width: 635px" class="wp-caption aligncenter"><img src="http://www.alanmacdougall.com/post_content/2012-06-08-interactive-debugging-with-pry/pry_debugging_002.png" width="625" height="377" /><p class="wp-caption-text">binding.pry being used.</p></div>
+<p>&nbsp;</p>
+<p>To use <code>binding.irb</code> in your code, you need to require the IRB library to your code and call <code>binding.irb</code> where you want to introduce the REPL.</p><pre class="crayon-plain-tag">require 'irb'
+# all the codes before the binding
+binding.irb
+# all the codes after the binding</pre><p>and you will see a REPL like below.</p>
+<p><a href="http://blog.redpanthers.co/wp-content/uploads/2016/11/Screen-Shot-2016-11-22-at-10.47.27-AM.png"><img class="alignnone size-full wp-image-637" src="http://blog.redpanthers.co/wp-content/uploads/2016/11/Screen-Shot-2016-11-22-at-10.47.27-AM.png" alt="screen-shot-2016-11-22-at-10-47-27-am" width="715" height="59" /></a></p>
+<p>&nbsp;</p>
+<p>The post <a rel="nofollow" href="/new-binding-irb-introduced-ruby-2-4/">New binding.irb introduced in ruby 2.4</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/new-binding-irb-introduced-ruby-2-4/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+							</item>
+	</channel>
+</rss>

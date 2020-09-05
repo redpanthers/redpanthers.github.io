@@ -1,0 +1,32 @@
+ <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>
+	Comments on: Observer Design Pattern in Ruby	</title>
+	<atom:link href="/observer-design-pattern-ruby/feed/" rel="self" type="application/rss+xml" />
+	<link>/observer-design-pattern-ruby/</link>
+	<description>Experts in Ruby on Rails Development</description>
+	<lastBuildDate>Wed, 29 May 2019 00:24:45 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.7</generator>
+			<item>
+				<title>
+				By: Andrade				</title>
+				<link>/observer-design-pattern-ruby/#comment-90</link>
+		<dc:creator><![CDATA[Andrade]]></dc:creator>
+		<pubDate>Wed, 29 May 2019 00:24:45 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=1264#comment-90</guid>
+					<description><![CDATA[You need to call #changed to actually enable an update call on your notifier through #notify_observers.]]></description>
+		<content:encoded><![CDATA[<p>You need to call #changed to actually enable an update call on your notifier through #notify_observers.</p>
+]]></content:encoded>
+						</item>
+			</channel>
+</rss>

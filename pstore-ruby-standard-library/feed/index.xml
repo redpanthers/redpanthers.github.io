@@ -1,0 +1,47 @@
+ <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>
+	Comments on: PStore, a little known feature in the standard library	</title>
+	<atom:link href="/pstore-ruby-standard-library/feed/" rel="self" type="application/rss+xml" />
+	<link>/pstore-ruby-standard-library/</link>
+	<description>Experts in Ruby on Rails Development</description>
+	<lastBuildDate>Tue, 07 Feb 2017 06:00:00 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.7</generator>
+			<item>
+				<title>
+				By: Anjana Krishnan				</title>
+				<link>/pstore-ruby-standard-library/#comment-32</link>
+		<dc:creator><![CDATA[Anjana Krishnan]]></dc:creator>
+		<pubDate>Tue, 07 Feb 2017 06:00:00 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=1246#comment-32</guid>
+					<description><![CDATA[Thanks for the comment. I will update my post with this stdlib ‘YAML::Store’.]]></description>
+		<content:encoded><![CDATA[<p>Thanks for the comment. I will update my post with this stdlib ‘YAML::Store’.</p>
+]]></content:encoded>
+						</item>
+						<item>
+				<title>
+				By: tiagoamaro				</title>
+				<link>/pstore-ruby-standard-library/#comment-31</link>
+		<dc:creator><![CDATA[tiagoamaro]]></dc:creator>
+		<pubDate>Mon, 06 Feb 2017 22:35:00 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=1246#comment-31</guid>
+					<description><![CDATA[Hello Anjana, nice introduction post on `PStore`. A caveat from it is: it saves binary files (since it&#039;s marshalling Ruby objects), so if you&#039;re trying to create config files, this could make users life a bit difficult.
+
+
+Something I discovered when dealing with this problem was that Ruby&#039;s stdlib has `YAML::Store` class, which inherits from `PStore`. You got the same syntax, same API and a nice human readable YAML file :)]]></description>
+		<content:encoded><![CDATA[<p>Hello Anjana, nice introduction post on <code>PStore</code>. A caveat from it is: it saves binary files (since it&#8217;s marshalling Ruby objects), so if you&#8217;re trying to create config files, this could make users life a bit difficult.</p>
+<p>Something I discovered when dealing with this problem was that Ruby&#8217;s stdlib has <code>YAML::Store</code> class, which inherits from <code>PStore</code>. You got the same syntax, same API and a nice human readable YAML file 🙂</p>
+]]></content:encoded>
+						</item>
+			</channel>
+</rss>

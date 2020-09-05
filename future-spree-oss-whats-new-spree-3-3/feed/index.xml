@@ -1,0 +1,51 @@
+ <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>
+	Comments on: The future of Spree OSS and whats new in Spree 3.3	</title>
+	<atom:link href="/future-spree-oss-whats-new-spree-3-3/feed/" rel="self" type="application/rss+xml" />
+	<link>/future-spree-oss-whats-new-spree-3-3/</link>
+	<description>Experts in Ruby on Rails Development</description>
+	<lastBuildDate>Thu, 07 Sep 2017 12:55:00 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.7</generator>
+			<item>
+				<title>
+				By: Tony Vincent T.Y				</title>
+				<link>/future-spree-oss-whats-new-spree-3-3/#comment-60</link>
+		<dc:creator><![CDATA[Tony Vincent T.Y]]></dc:creator>
+		<pubDate>Thu, 07 Sep 2017 12:55:00 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3341#comment-60</guid>
+					<description><![CDATA[Thank you Damian, I will update the article with relevant link soon]]></description>
+		<content:encoded><![CDATA[<p>Thank you Damian, I will update the article with relevant link soon</p>
+]]></content:encoded>
+						</item>
+						<item>
+				<title>
+				By: Damian Legawiec				</title>
+				<link>/future-spree-oss-whats-new-spree-3-3/#comment-59</link>
+		<dc:creator><![CDATA[Damian Legawiec]]></dc:creator>
+		<pubDate>Thu, 07 Sep 2017 11:16:00 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3341#comment-59</guid>
+					<description><![CDATA[Hey Tony
+
+You can find the development roadmap for future Spree releases here -&#062; https://github.com/spree/spree/milestones?direction=asc&#038;sort=due_date&#038;state=open . We&#039;re fully transparent in terms of our vision and goals. Everyone can comment, share their ideas and contribute!
+
+Best,
+Damian]]></description>
+		<content:encoded><![CDATA[<p>Hey Tony</p>
+<p>You can find the development roadmap for future Spree releases here -&gt; <a href="https://github.com/spree/spree/milestones?direction=asc&#038;sort=due_date&#038;state=open" rel="nofollow">https://github.com/spree/spree/milestones?direction=asc&#038;sort=due_date&#038;state=open</a> . We&#8217;re fully transparent in terms of our vision and goals. Everyone can comment, share their ideas and contribute!</p>
+<p>Best,<br />
+Damian</p>
+]]></content:encoded>
+						</item>
+			</channel>
+</rss>

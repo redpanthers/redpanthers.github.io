@@ -1,0 +1,91 @@
+ <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>git &#8211; Red Panthers</title>
+	<atom:link href="/category/git/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description>Experts in Ruby on Rails Development</description>
+	<lastBuildDate>Mon, 30 Jan 2017 12:42:55 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.7</generator>
+
+<image>
+	<url>/wp-content/uploads/2017/12/rp-logo.png</url>
+	<title>git &#8211; Red Panthers</title>
+	<link>/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>How to format Git log for meaningful information</title>
+		<link>/git-log-formating-output/</link>
+				<comments>/git-log-formating-output/#respond</comments>
+				<pubDate>Mon, 30 Jan 2017 12:42:55 +0000</pubDate>
+		<dc:creator><![CDATA[harikrishnan]]></dc:creator>
+				<category><![CDATA[git]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=938</guid>
+				<description><![CDATA[<p>Git is a wonderful piece of software that makes life easier and more productive for a programmer. But sadly most developers don&#8217;t use it up to their full potential so we are going to blog about various simple and advanced usages of git as a series. In the first article of the series, we are&#8230;</p>
+<p>The post <a rel="nofollow" href="/git-log-formating-output/">How to format Git log for meaningful information</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p><strong>Git</strong> is a wonderful piece of software that makes life easier and more productive for a programmer. But sadly most developers don&#8217;t use it up to their full potential so we are going to blog about various simple and advanced usages of git as a <a href="http://blog.redpanthers.co/category/git/">series</a>. In the first article of the series, we are going to talk about git logs.</p>
+<p><strong>Git log</strong> is a great feature, that allows us to keep track of our works. There are different options available under <code>git log</code> command, which help us to customize the output of git log and also to filter the log.</p>
+<h2><strong>Git Graphs</strong></h2>
+<p></p><pre class="crayon-plain-tag">git log --graph --decorate --oneline</pre><p></p>
+<p style="text-align: left;">The <a href="https://rubygems.org/gems/graph">&#8211;graph</a> option draws a graph representing the branches and its structure of commit history. &#8211;oneline is used to display commit message and its hash in a single line, which is used along with &#8211;decorate, which helps us to easily see which commit belongs to which branch.</p>
+<h2>Custom formatting</h2>
+<p></p><pre class="crayon-plain-tag">git log --pretty=format:"&lt;string&gt;"</pre><p>This lets you display each commit however you want in printf style. For example <code>%cn</code>,  <code>%h </code>and <code>%cd</code> which represents committer name, abbreviated hash and committer date respectively.</p><pre class="crayon-plain-tag">git log --pretty=format:"%cn committed %h on %cd"</pre><p></p>
+<h2>Filtering the output</h2>
+<p>Git log can be filtered by different filters and format output</p>
+<h3>By amount</h3>
+<p></p><pre class="crayon-plain-tag">git log -&lt;n&gt;</pre><p>It displays latest n commits and its output.</p>
+<p>For example</p><pre class="crayon-plain-tag">git log -3</pre><p>Will display latest 3 commit details</p>
+<h3>By date</h3>
+<p></p><pre class="crayon-plain-tag">git log --after=&lt;date&gt;
+git log --before=&lt;date&gt;</pre><p>Using <code>--after</code> and <code>--before,</code>  we can get logs after or before the specified date. You can also use these both to get logs between two dates</p>
+<p>Example</p><pre class="crayon-plain-tag">git log --after='24-10-2016'
+or
+git log --since='24-10-2016'</pre><p><code>--since</code> and and <code>--until</code> are synonym for <code>--after</code> and <code>--before</code></p><pre class="crayon-plain-tag">git log --date=&lt;option&gt;</pre><p><code>--date</code> flag is used to format the output of the date. There are different option available for <code>--date</code> flag such as short, iso8601, relative, etc&#8230;</p>
+<h3>By Author</h3>
+<p></p><pre class="crayon-plain-tag">git log --author=&lt;name&gt;</pre><p>When you are only looking for commits by certain user you can <code>--author</code> flag. You can also use regular expressions for this.</p><pre class="crayon-plain-tag">git log --author='John\| Mary'</pre><p></p>
+<h3>By message</h3>
+<p></p><pre class="crayon-plain-tag">git log --grep='&lt;message&gt;'</pre><p>When you want to search for log with certain string using <code>--grep</code> flag. You can use <code>-i</code> option if you want ignore the case.</p>
+<h3>By file</h3>
+<p></p><pre class="crayon-plain-tag">git log -- something.rb incredible.rb</pre><p>When you want to get log only on some files you can specify files after <code>--</code> flag</p>
+<h3>By Content</h3>
+<p>Git log allows you to get logs of files containing certain string. You can specify string using the <code>-S</code> flag</p><pre class="crayon-plain-tag">git log -S"Hello World!"</pre><p></p>
+<h3>Format options available</h3>
+<p></p><pre class="crayon-plain-tag">git log --pretty=format:'&lt;options&gt;'</pre><p>Git log format options</p><pre class="crayon-plain-tag">%H  - Commit hash
+%h  - Abbreviated commit hash
+%T  - Tree hashes
+%t  - Abbreviated tree hash
+%P  - Parent hashes
+%p  - Abbreviated parent hashes
+%an - Author name
+%ae - Author email
+%ad - Author date (format respects the --date=option)
+%ar - Author date, relative
+%cn - Committer name
+%ce - Committer email
+%cd - Committer date
+%cr - Committer date, relative
+%s  - Subject
+%B  - Message</pre><p>Example</p><pre class="crayon-plain-tag">git log --pretty=format:"%B on %ad with hash %h by %an" --date=short</pre><p>That was a bit on how we can use Git log, and specifically on how to format the output. Leave your comments, questions, and doubts in the comment section in case you need to reach me.</p>
+<p>The post <a rel="nofollow" href="/git-log-formating-output/">How to format Git log for meaningful information</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/git-log-formating-output/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+							</item>
+	</channel>
+</rss>

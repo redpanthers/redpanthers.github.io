@@ -1,0 +1,202 @@
+ <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>
+	Comments on: How we made our rspec test suite to run 2x faster	</title>
+	<atom:link href="/made-rspec-test-suite-run-2x-faster/feed/" rel="self" type="application/rss+xml" />
+	<link>/made-rspec-test-suite-run-2x-faster/</link>
+	<description>Experts in Ruby on Rails Development</description>
+	<lastBuildDate>Thu, 14 Sep 2017 04:11:00 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.7</generator>
+			<item>
+				<title>
+				By: Tony Vince				</title>
+				<link>/made-rspec-test-suite-run-2x-faster/#comment-53</link>
+		<dc:creator><![CDATA[Tony Vince]]></dc:creator>
+		<pubDate>Thu, 14 Sep 2017 04:11:00 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3040#comment-53</guid>
+					<description><![CDATA[great alternative.. Thanks]]></description>
+		<content:encoded><![CDATA[<p>great alternative.. Thanks</p>
+]]></content:encoded>
+						</item>
+						<item>
+				<title>
+				By: Tony Vincent T.Y				</title>
+				<link>/made-rspec-test-suite-run-2x-faster/#comment-52</link>
+		<dc:creator><![CDATA[Tony Vincent T.Y]]></dc:creator>
+		<pubDate>Thu, 14 Sep 2017 04:01:00 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3040#comment-52</guid>
+					<description><![CDATA[Thanks Vitaly for your comment. Edited the article accordingly]]></description>
+		<content:encoded><![CDATA[<p>Thanks Vitaly for your comment. Edited the article accordingly</p>
+]]></content:encoded>
+						</item>
+						<item>
+				<title>
+				By: Patrick Helm				</title>
+				<link>/made-rspec-test-suite-run-2x-faster/#comment-51</link>
+		<dc:creator><![CDATA[Patrick Helm]]></dc:creator>
+		<pubDate>Wed, 13 Sep 2017 16:41:00 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3040#comment-51</guid>
+					<description><![CDATA[:+1: ;)]]></description>
+		<content:encoded><![CDATA[<p>:+1: 😉</p>
+]]></content:encoded>
+						</item>
+						<item>
+				<title>
+				By: Vitaly Tatarintsev				</title>
+				<link>/made-rspec-test-suite-run-2x-faster/#comment-50</link>
+		<dc:creator><![CDATA[Vitaly Tatarintsev]]></dc:creator>
+		<pubDate>Tue, 12 Sep 2017 06:39:00 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3040#comment-50</guid>
+					<description><![CDATA[This part cannot work:
+
+&lt;pre&gt;&lt;code&gt;
+before(:each) do
+  let(:article) { Article.new }
+  let(:author) { Author.new }
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+You will get:
+
+&lt;pre&gt;
+Failure/Error: let(:article) { Article.new }
+
+        `let` is not available from within an example (e.g. an `it` block) or from constructs that run in the scope of an example (e.g. `before`, `let`, etc). It is only available on an example group (e.g. a `describe` or `context` block).
+&lt;/pre&gt;
+
+It should be either `let` or `before`.
+
+In any case `before (:all)` can be pretty dangerous. Someday you may shoot yourself in the foot.
+The main idea is that all tests should not depend on the results of others.
+Using `before (:all)` objects `@autor` and `@article` are not recreated for each test.
+That being said, if attributes of these objects are changed in some tests, that can affect results of other tests.]]></description>
+		<content:encoded><![CDATA[<p>This part cannot work:</p>
+<p></p><!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+
+		<div id="crayon-5f53f05852735755076815" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+
+before(:each) do
+  let(:article) { Article.new }
+  let(:author) { Author.new }
+end
+</textarea></div>
+			<div class="crayon-main" style="">
+				<table class="crayon-table">
+					<tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5f53f05852735755076815-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53f05852735755076815-2">2</div><div class="crayon-num" data-line="crayon-5f53f05852735755076815-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53f05852735755076815-4">4</div><div class="crayon-num" data-line="crayon-5f53f05852735755076815-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53f05852735755076815-6">6</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5f53f05852735755076815-1">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-5f53f05852735755076815-2"><span class="crayon-e">before</span><span class="crayon-sy">(</span><span class="crayon-o">:</span><span class="crayon-st">each</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-st">do</span></div><div class="crayon-line" id="crayon-5f53f05852735755076815-3"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-e">let</span><span class="crayon-sy">(</span><span class="crayon-o">:</span><span class="crayon-v">article</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">{</span><span class="crayon-h"> </span><span class="crayon-v">Article</span><span class="crayon-sy">.</span><span class="crayon-i">new</span><span class="crayon-h"> </span><span class="crayon-sy">}</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53f05852735755076815-4"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-e">let</span><span class="crayon-sy">(</span><span class="crayon-o">:</span><span class="crayon-v">author</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">{</span><span class="crayon-h"> </span><span class="crayon-v">Author</span><span class="crayon-sy">.</span><span class="crayon-i">new</span><span class="crayon-h"> </span><span class="crayon-sy">}</span></div><div class="crayon-line" id="crayon-5f53f05852735755076815-5"><span class="crayon-st">end</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53f05852735755076815-6">&nbsp;</div></div></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0003 seconds] -->
+<p></p>
+<p>You will get:</p>
+<p></p><!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+
+		<div id="crayon-5f53f0585273b355569205" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+Failure/Error: let(:article) { Article.new }
+
+        `let` is not available from within an example (e.g. an `it` block) or from constructs that run in the scope of an example (e.g. `before`, `let`, etc). It is only available on an example group (e.g. a `describe` or `context` block).</textarea></div>
+			<div class="crayon-main" style="">
+				<table class="crayon-table">
+					<tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5f53f0585273b355569205-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53f0585273b355569205-2">2</div><div class="crayon-num" data-line="crayon-5f53f0585273b355569205-3">3</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5f53f0585273b355569205-1"><span class="crayon-v">Failure</span><span class="crayon-o">/</span><span class="crayon-v">Error</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-e">let</span><span class="crayon-sy">(</span><span class="crayon-o">:</span><span class="crayon-v">article</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">{</span><span class="crayon-h"> </span><span class="crayon-v">Article</span><span class="crayon-sy">.</span><span class="crayon-i">new</span><span class="crayon-h"> </span><span class="crayon-sy">}</span></div><div class="crayon-line crayon-striped-line" id="crayon-5f53f0585273b355569205-2">&nbsp;</div><div class="crayon-line" id="crayon-5f53f0585273b355569205-3"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">`</span><span class="crayon-v">let</span><span class="crayon-sy">`</span><span class="crayon-h"> </span><span class="crayon-st">is</span><span class="crayon-h"> </span><span class="crayon-st">not</span><span class="crayon-h"> </span><span class="crayon-e">available </span><span class="crayon-e">from </span><span class="crayon-e">within </span><span class="crayon-e">an </span><span class="crayon-e">example</span><span class="crayon-h"> </span><span class="crayon-sy">(</span><span class="crayon-v">e</span><span class="crayon-sy">.</span><span class="crayon-v">g</span><span class="crayon-sy">.</span><span class="crayon-h"> </span><span class="crayon-i">an</span><span class="crayon-h"> </span><span class="crayon-sy">`</span><span class="crayon-v">it</span><span class="crayon-sy">`</span><span class="crayon-h"> </span><span class="crayon-v">block</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-st">or</span><span class="crayon-h"> </span><span class="crayon-e">from </span><span class="crayon-e">constructs </span><span class="crayon-e">that </span><span class="crayon-e">run </span><span class="crayon-st">in</span><span class="crayon-h"> </span><span class="crayon-e">the </span><span class="crayon-e">scope </span><span class="crayon-e">of </span><span class="crayon-e">an </span><span class="crayon-e">example</span><span class="crayon-h"> </span><span class="crayon-sy">(</span><span class="crayon-v">e</span><span class="crayon-sy">.</span><span class="crayon-v">g</span><span class="crayon-sy">.</span><span class="crayon-h"> </span><span class="crayon-sy">`</span><span class="crayon-v">before</span><span class="crayon-sy">`</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-sy">`</span><span class="crayon-v">let</span><span class="crayon-sy">`</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">etc</span><span class="crayon-sy">)</span><span class="crayon-sy">.</span><span class="crayon-h"> </span><span class="crayon-e">It </span><span class="crayon-st">is</span><span class="crayon-h"> </span><span class="crayon-e">only </span><span class="crayon-e">available </span><span class="crayon-e">on </span><span class="crayon-e">an </span><span class="crayon-e">example </span><span class="crayon-e">group</span><span class="crayon-h"> </span><span class="crayon-sy">(</span><span class="crayon-v">e</span><span class="crayon-sy">.</span><span class="crayon-v">g</span><span class="crayon-sy">.</span><span class="crayon-h"> </span><span class="crayon-i">a</span><span class="crayon-h"> </span><span class="crayon-sy">`</span><span class="crayon-v">describe</span><span class="crayon-sy">`</span><span class="crayon-h"> </span><span class="crayon-st">or</span><span class="crayon-h"> </span><span class="crayon-sy">`</span><span class="crayon-v">context</span><span class="crayon-sy">`</span><span class="crayon-h"> </span><span class="crayon-v">block</span><span class="crayon-sy">)</span><span class="crayon-sy">.</span></div></div></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0005 seconds] -->
+<p></p>
+<p>It should be either <code>let</code> or <code>before</code>.</p>
+<p>In any case <code>before (:all)</code> can be pretty dangerous. Someday you may shoot yourself in the foot.<br />
+The main idea is that all tests should not depend on the results of others.<br />
+Using <code>before (:all)</code> objects <code>@autor</code> and <code>@article</code> are not recreated for each test.<br />
+That being said, if attributes of these objects are changed in some tests, that can affect results of other tests.</p>
+]]></content:encoded>
+						</item>
+						<item>
+				<title>
+				By: Николай				</title>
+				<link>/made-rspec-test-suite-run-2x-faster/#comment-49</link>
+		<dc:creator><![CDATA[Николай]]></dc:creator>
+		<pubDate>Mon, 11 Sep 2017 18:48:00 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3040#comment-49</guid>
+					<description><![CDATA[+ remove all callbacks in models]]></description>
+		<content:encoded><![CDATA[<p>+ remove all callbacks in models</p>
+]]></content:encoded>
+						</item>
+						<item>
+				<title>
+				By: Sharang Dashputre				</title>
+				<link>/made-rspec-test-suite-run-2x-faster/#comment-48</link>
+		<dc:creator><![CDATA[Sharang Dashputre]]></dc:creator>
+		<pubDate>Sat, 09 Sep 2017 18:50:00 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3040#comment-48</guid>
+					<description><![CDATA[Small typo: &quot;Trvis Ci&quot;]]></description>
+		<content:encoded><![CDATA[<p>Small typo: &#8220;Trvis Ci&#8221;</p>
+]]></content:encoded>
+						</item>
+						<item>
+				<title>
+				By: dontibu				</title>
+				<link>/made-rspec-test-suite-run-2x-faster/#comment-46</link>
+		<dc:creator><![CDATA[dontibu]]></dc:creator>
+		<pubDate>Fri, 08 Sep 2017 13:16:00 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3040#comment-46</guid>
+					<description><![CDATA[There is a faster alternative(but maybe less flexible) to database_cleaner: https://github.com/amatsuda/database_rewinder.]]></description>
+		<content:encoded><![CDATA[<p>There is a faster alternative(but maybe less flexible) to database_cleaner: <a href="https://github.com/amatsuda/database_rewinder" rel="nofollow">https://github.com/amatsuda/database_rewinder</a>.</p>
+]]></content:encoded>
+						</item>
+						<item>
+				<title>
+				By: dontibu				</title>
+				<link>/made-rspec-test-suite-run-2x-faster/#comment-47</link>
+		<dc:creator><![CDATA[dontibu]]></dc:creator>
+		<pubDate>Fri, 08 Sep 2017 13:16:00 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3040#comment-47</guid>
+					<description><![CDATA[There is a faster(but less flexible) alternative to database_cleaner: https://github.com/amatsuda/database_rewinder.]]></description>
+		<content:encoded><![CDATA[<p>There is a faster(but less flexible) alternative to database_cleaner: <a href="https://github.com/amatsuda/database_rewinder" rel="nofollow">https://github.com/amatsuda/database_rewinder</a>.</p>
+]]></content:encoded>
+						</item>
+						<item>
+				<title>
+				By: ArturT				</title>
+				<link>/made-rspec-test-suite-run-2x-faster/#comment-45</link>
+		<dc:creator><![CDATA[ArturT]]></dc:creator>
+		<pubDate>Thu, 07 Sep 2017 20:58:00 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3040#comment-45</guid>
+					<description><![CDATA[Thanks for the article!
+
+Regarding parallel tests when you have multiple parallel CI nodes then you can split test suite evenly across CI nodes with knapsack gem I developed https://github.com/ArturT/knapsack/ Maybe it will be helpful for someone :)]]></description>
+		<content:encoded><![CDATA[<p>Thanks for the article!</p>
+<p>Regarding parallel tests when you have multiple parallel CI nodes then you can split test suite evenly across CI nodes with knapsack gem I developed <a href="https://github.com/ArturT/knapsack/" rel="nofollow">https://github.com/ArturT/knapsack/</a> Maybe it will be helpful for someone 🙂</p>
+]]></content:encoded>
+						</item>
+			</channel>
+</rss>
