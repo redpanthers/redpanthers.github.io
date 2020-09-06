@@ -5,14 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="format-detection" content="telephone=no">
 <link rel="profile" href="https://gmpg.org/xfn/11">
-<title>Database transaction in Rails &#8211; beta.redpanthers.co</title>
+<title>Database transaction in Rails &#8211; redpanthers.co</title>
 <meta name='robots' content='noindex,follow' />
 <link rel='dns-prefetch' href='//fonts.googleapis.com' />
 <link rel='dns-prefetch' href='//s.w.org' />
-<link rel="alternate" type="application/rss+xml" title="beta.redpanthers.co &raquo; Feed" href="/feed/" />
-<link rel="alternate" type="application/rss+xml" title="beta.redpanthers.co &raquo; Comments Feed" href="/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="redpanthers.co &raquo; Feed" href="/feed/" />
+<link rel="alternate" type="application/rss+xml" title="redpanthers.co &raquo; Comments Feed" href="/comments/feed/" />
 <script type="text/javascript">
-			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/beta.redpanthers.co\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.2.7"}};
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/redpanthers.co\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.2.7"}};
 			!function(a,b,c){function d(a,b){var c=String.fromCharCode;l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,a),0,0);var d=k.toDataURL();l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,b),0,0);var e=k.toDataURL();return d===e}function e(a){var b;if(!l||!l.fillText)return!1;switch(l.textBaseline="top",l.font="600 32px Arial",a){case"flag":return!(b=d([55356,56826,55356,56819],[55356,56826,8203,55356,56819]))&&(b=d([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]),!b);case"emoji":return b=d([55357,56424,55356,57342,8205,55358,56605,8205,55357,56424,55356,57340],[55357,56424,55356,57342,8203,55358,56605,8203,55357,56424,55356,57340]),!b}return!1}function f(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var g,h,i,j,k=b.createElement("canvas"),l=k.getContext&&k.getContext("2d");for(j=Array("flag","emoji"),c.supports={everything:!0,everythingExceptFlag:!0},i=0;i<j.length;i++)c.supports[j[i]]=e(j[i]),c.supports.everything=c.supports.everything&&c.supports[j[i]],"flag"!==j[i]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[j[i]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(h=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",h,!1),a.addEventListener("load",h,!1)):(a.attachEvent("onload",h),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),g=c.source||{},g.concatemoji?f(g.concatemoji):g.wpemoji&&g.twemoji&&(f(g.twemoji),f(g.wpemoji)))}(window,document,window._wpemojiSettings);
 		</script>
 <style type="text/css">
@@ -63,10 +63,10 @@ img.emoji {
 <link rel="icon" href="/wp-content/uploads/2019/09/favicon-80.png" sizes="32x32" />
 <link rel="icon" href="/wp-content/uploads/2019/09/favicon-192.png" sizes="192x192">
 <link rel="apple-touch-icon-precomposed" href="/wp-content/uploads/2019/09/favicon-192.png" />
-<meta name="msapplication-TileImage" content="https://beta.redpanthers.co/wp-content/uploads/2019/09/favicon-192.png" />
+<meta name="msapplication-TileImage" content="https://redpanthers.co/wp-content/uploads/2019/09/favicon-192.png" />
 <style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
 <meta name="generator" content="Powered by WPBakery Page Builder - drag and drop page builder for WordPress." />
-<!--[if lte IE 9]><link rel="stylesheet" type="text/css" href="https://beta.redpanthers.co/wp-content/plugins/js_composer/assets/css/vc_lte_ie9.min.css" media="screen"><![endif]--> <style type="text/css" id="wp-custom-css">
+<!--[if lte IE 9]><link rel="stylesheet" type="text/css" href="https://redpanthers.co/wp-content/plugins/js_composer/assets/css/vc_lte_ie9.min.css" media="screen"><![endif]--> <style type="text/css" id="wp-custom-css">
 			.shadow-box{
 	box-shadow: 0px 0px 25px rgba(0,0,0,0.1);
 }
@@ -311,16 +311,16 @@ https://technet.microsoft.com/en-us/library/ms190612(v=sql.105).aspx]]&gt; </p>
 </div>
 </article> 
 <div class="post-tags">
-<strong class="tags-title">Tags:</strong> <a href="https://beta.redpanthers.co/tag/database/" rel="tag">database</a> <a href="https://beta.redpanthers.co/tag/dba/" rel="tag">DBA</a> <a href="https://beta.redpanthers.co/tag/expert/" rel="tag">expert</a> <a href="https://beta.redpanthers.co/tag/learning/" rel="tag">learning</a> <a href="https://beta.redpanthers.co/tag/nested-transaction/" rel="tag">nested transaction</a> <a href="https://beta.redpanthers.co/tag/ruby-on-rails/" rel="tag">ruby on rails</a> <a href="https://beta.redpanthers.co/tag/sql/" rel="tag">SQL</a> <a href="https://beta.redpanthers.co/tag/transaction/" rel="tag">transaction</a> </div>
+<strong class="tags-title">Tags:</strong> <a href="https://redpanthers.co/tag/database/" rel="tag">database</a> <a href="https://redpanthers.co/tag/dba/" rel="tag">DBA</a> <a href="https://redpanthers.co/tag/expert/" rel="tag">expert</a> <a href="https://redpanthers.co/tag/learning/" rel="tag">learning</a> <a href="https://redpanthers.co/tag/nested-transaction/" rel="tag">nested transaction</a> <a href="https://redpanthers.co/tag/ruby-on-rails/" rel="tag">ruby on rails</a> <a href="https://redpanthers.co/tag/sql/" rel="tag">SQL</a> <a href="https://redpanthers.co/tag/transaction/" rel="tag">transaction</a> </div>
 
 
 <div class="navigation post-navigation">
 <div class="nav-links">
 <div class="nav-previous">
-<a rel="prev" href="https://beta.redpanthers.co/after_create-vs-after_save-vs-after_commit/" title="after_create vs after_save vs after_commit">Previous Post <strong>after_create vs after_save vs after_commit</strong></a>
+<a rel="prev" href="https://redpanthers.co/after_create-vs-after_save-vs-after_commit/" title="after_create vs after_save vs after_commit">Previous Post <strong>after_create vs after_save vs after_commit</strong></a>
 </div>
 <div class="nav-next">
-<a rel="next" href="https://beta.redpanthers.co/managing-associated-objects/" title="Managing associated objects">Next Post <strong>Managing associated objects</strong></a>
+<a rel="next" href="https://redpanthers.co/managing-associated-objects/" title="Managing associated objects">Next Post <strong>Managing associated objects</strong></a>
 </div>
 </div>
 </div>
@@ -332,7 +332,7 @@ https://technet.microsoft.com/en-us/library/ms190612(v=sql.105).aspx]]&gt; </p>
 </div>
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pull-right">
 <aside id="secondary" class="widget-area">
-<section id="search-2" class="widget widget_search"><form role="search" method="get" class="search-form" action="https://beta.redpanthers.co/">
+<section id="search-2" class="widget widget_search"><form role="search" method="get" class="search-form" action="https://redpanthers.co/">
 <label>
 <span class="screen-reader-text">Search for:</span>
 <input type="search" class="search-field" placeholder="Search &hellip;" value="" name="s" />
@@ -340,237 +340,237 @@ https://technet.microsoft.com/en-us/library/ms190612(v=sql.105).aspx]]&gt; </p>
 <input type="submit" class="search-submit" value="Search" />
 </form></section> <section id="recent-posts-2" class="widget widget_recent_entries"> <h2 class="widget-title">Recent Posts</h2> <ul>
 <li>
-<a href="https://beta.redpanthers.co/clawing-our-way-to-the-top-of-clutchs-directory-of-ruby-on-rails-developers-in-india/">CLAWING OUR WAY TO THE TOP OF CLUTCH’S DIRECTORY OF RUBY ON RAILS DEVELOPERS IN INDIA</a>
+<a href="https://redpanthers.co/clawing-our-way-to-the-top-of-clutchs-directory-of-ruby-on-rails-developers-in-india/">CLAWING OUR WAY TO THE TOP OF CLUTCH’S DIRECTORY OF RUBY ON RAILS DEVELOPERS IN INDIA</a>
 </li>
 <li>
-<a href="https://beta.redpanthers.co/configuring-a-gitlab-ci-pipeline-for-rails-mongodb-and-rspec/">Configuring a GitLab CI pipeline for Rails, MongoDB, and Rspec</a>
+<a href="https://redpanthers.co/configuring-a-gitlab-ci-pipeline-for-rails-mongodb-and-rspec/">Configuring a GitLab CI pipeline for Rails, MongoDB, and Rspec</a>
 </li>
 <li>
-<a href="https://beta.redpanthers.co/rails-5-2-0/">Rails 5.2.0</a>
+<a href="https://redpanthers.co/rails-5-2-0/">Rails 5.2.0</a>
 </li>
 <li>
-<a href="https://beta.redpanthers.co/how-to-test-pdf-files/">How to test pdf files</a>
+<a href="https://redpanthers.co/how-to-test-pdf-files/">How to test pdf files</a>
 </li>
 <li>
-<a href="https://beta.redpanthers.co/red-panthers-community-report-card-2017/">Red Panthers community report card, 2017</a>
+<a href="https://redpanthers.co/red-panthers-community-report-card-2017/">Red Panthers community report card, 2017</a>
 </li>
 </ul>
-</section><section id="recent-comments-2" class="widget widget_recent_comments"><h2 class="widget-title">Recent Comments</h2><ul id="recentcomments"><li class="recentcomments"><span class="comment-author-link"><a href='http://freedompodcasting.com' rel='external nofollow' class='url'>Ian @ FreedomPodcasting.com</a></span> on <a href="https://beta.redpanthers.co/jtk-how-to-kill-a-rails-server-who-is-working-as-a-deamon/#comment-8">JTK How to kill a rails server, who is working as a deamon?</a></li><li class="recentcomments"><span class="comment-author-link">Sleeba Paul</span> on <a href="https://beta.redpanthers.co/create-json-response-using-postgresql-instead-rails/#comment-27">Introduction to generating JSON using PostgreSQL</a></li><li class="recentcomments"><span class="comment-author-link"><a href='https://site-builder.wiki/posts/6565' rel='external nofollow' class='url'>外部コマンドを実行する方法 [Ruby] &#8211; Site-Builder.wiki</a></span> on <a href="https://beta.redpanthers.co/different-ways-to-run-shell-commands-in-ruby/#comment-16">Different ways to run Shell Commands in Ruby</a></li><li class="recentcomments"><span class="comment-author-link">Shrinivas Kalangutkar</span> on <a href="https://beta.redpanthers.co/two-way-binding-in-vue-js/#comment-82">Two way binding in Vue.js</a></li><li class="recentcomments"><span class="comment-author-link"><a href='https://site-builder.wiki/posts/5645' rel='external nofollow' class='url'>JSON を出力する方法 [Rails] &#8211; Site-Builder.wiki</a></span> on <a href="https://beta.redpanthers.co/to_json-vs-as_json-in-rails-api/#comment-56">to_json vs as_json in Rails API</a></li></ul></section><section id="archives-2" class="widget widget_archive"><h2 class="widget-title">Archives</h2> <ul>
-<li><a href='https://beta.redpanthers.co/2020/09/'>September 2020</a></li>
-<li><a href='https://beta.redpanthers.co/2019/04/'>April 2019</a></li>
-<li><a href='https://beta.redpanthers.co/2018/03/'>March 2018</a></li>
-<li><a href='https://beta.redpanthers.co/2017/12/'>December 2017</a></li>
-<li><a href='https://beta.redpanthers.co/2017/11/'>November 2017</a></li>
-<li><a href='https://beta.redpanthers.co/2017/10/'>October 2017</a></li>
-<li><a href='https://beta.redpanthers.co/2017/09/'>September 2017</a></li>
-<li><a href='https://beta.redpanthers.co/2017/08/'>August 2017</a></li>
-<li><a href='https://beta.redpanthers.co/2017/06/'>June 2017</a></li>
-<li><a href='https://beta.redpanthers.co/2017/05/'>May 2017</a></li>
-<li><a href='https://beta.redpanthers.co/2017/04/'>April 2017</a></li>
-<li><a href='https://beta.redpanthers.co/2017/03/'>March 2017</a></li>
-<li><a href='https://beta.redpanthers.co/2017/02/'>February 2017</a></li>
-<li><a href='https://beta.redpanthers.co/2017/01/'>January 2017</a></li>
-<li><a href='https://beta.redpanthers.co/2016/12/'>December 2016</a></li>
-<li><a href='https://beta.redpanthers.co/2016/11/'>November 2016</a></li>
-<li><a href='https://beta.redpanthers.co/2016/09/'>September 2016</a></li>
-<li><a href='https://beta.redpanthers.co/2016/08/'>August 2016</a></li>
-<li><a href='https://beta.redpanthers.co/2016/07/'>July 2016</a></li>
-<li><a href='https://beta.redpanthers.co/2016/04/'>April 2016</a></li>
-<li><a href='https://beta.redpanthers.co/2016/02/'>February 2016</a></li>
-<li><a href='https://beta.redpanthers.co/2016/01/'>January 2016</a></li>
-<li><a href='https://beta.redpanthers.co/2015/12/'>December 2015</a></li>
-<li><a href='https://beta.redpanthers.co/2015/10/'>October 2015</a></li>
-<li><a href='https://beta.redpanthers.co/2015/08/'>August 2015</a></li>
-<li><a href='https://beta.redpanthers.co/2015/07/'>July 2015</a></li>
-<li><a href='https://beta.redpanthers.co/2013/04/'>April 2013</a></li>
-<li><a href='https://beta.redpanthers.co/2013/03/'>March 2013</a></li>
-<li><a href='https://beta.redpanthers.co/2013/02/'>February 2013</a></li>
-<li><a href='https://beta.redpanthers.co/2013/01/'>January 2013</a></li>
-<li><a href='https://beta.redpanthers.co/2012/12/'>December 2012</a></li>
-<li><a href='https://beta.redpanthers.co/2012/11/'>November 2012</a></li>
+</section><section id="recent-comments-2" class="widget widget_recent_comments"><h2 class="widget-title">Recent Comments</h2><ul id="recentcomments"><li class="recentcomments"><span class="comment-author-link"><a href='http://freedompodcasting.com' rel='external nofollow' class='url'>Ian @ FreedomPodcasting.com</a></span> on <a href="https://redpanthers.co/jtk-how-to-kill-a-rails-server-who-is-working-as-a-deamon/#comment-8">JTK How to kill a rails server, who is working as a deamon?</a></li><li class="recentcomments"><span class="comment-author-link">Sleeba Paul</span> on <a href="https://redpanthers.co/create-json-response-using-postgresql-instead-rails/#comment-27">Introduction to generating JSON using PostgreSQL</a></li><li class="recentcomments"><span class="comment-author-link"><a href='https://site-builder.wiki/posts/6565' rel='external nofollow' class='url'>外部コマンドを実行する方法 [Ruby] &#8211; Site-Builder.wiki</a></span> on <a href="https://redpanthers.co/different-ways-to-run-shell-commands-in-ruby/#comment-16">Different ways to run Shell Commands in Ruby</a></li><li class="recentcomments"><span class="comment-author-link">Shrinivas Kalangutkar</span> on <a href="https://redpanthers.co/two-way-binding-in-vue-js/#comment-82">Two way binding in Vue.js</a></li><li class="recentcomments"><span class="comment-author-link"><a href='https://site-builder.wiki/posts/5645' rel='external nofollow' class='url'>JSON を出力する方法 [Rails] &#8211; Site-Builder.wiki</a></span> on <a href="https://redpanthers.co/to_json-vs-as_json-in-rails-api/#comment-56">to_json vs as_json in Rails API</a></li></ul></section><section id="archives-2" class="widget widget_archive"><h2 class="widget-title">Archives</h2> <ul>
+<li><a href='https://redpanthers.co/2020/09/'>September 2020</a></li>
+<li><a href='https://redpanthers.co/2019/04/'>April 2019</a></li>
+<li><a href='https://redpanthers.co/2018/03/'>March 2018</a></li>
+<li><a href='https://redpanthers.co/2017/12/'>December 2017</a></li>
+<li><a href='https://redpanthers.co/2017/11/'>November 2017</a></li>
+<li><a href='https://redpanthers.co/2017/10/'>October 2017</a></li>
+<li><a href='https://redpanthers.co/2017/09/'>September 2017</a></li>
+<li><a href='https://redpanthers.co/2017/08/'>August 2017</a></li>
+<li><a href='https://redpanthers.co/2017/06/'>June 2017</a></li>
+<li><a href='https://redpanthers.co/2017/05/'>May 2017</a></li>
+<li><a href='https://redpanthers.co/2017/04/'>April 2017</a></li>
+<li><a href='https://redpanthers.co/2017/03/'>March 2017</a></li>
+<li><a href='https://redpanthers.co/2017/02/'>February 2017</a></li>
+<li><a href='https://redpanthers.co/2017/01/'>January 2017</a></li>
+<li><a href='https://redpanthers.co/2016/12/'>December 2016</a></li>
+<li><a href='https://redpanthers.co/2016/11/'>November 2016</a></li>
+<li><a href='https://redpanthers.co/2016/09/'>September 2016</a></li>
+<li><a href='https://redpanthers.co/2016/08/'>August 2016</a></li>
+<li><a href='https://redpanthers.co/2016/07/'>July 2016</a></li>
+<li><a href='https://redpanthers.co/2016/04/'>April 2016</a></li>
+<li><a href='https://redpanthers.co/2016/02/'>February 2016</a></li>
+<li><a href='https://redpanthers.co/2016/01/'>January 2016</a></li>
+<li><a href='https://redpanthers.co/2015/12/'>December 2015</a></li>
+<li><a href='https://redpanthers.co/2015/10/'>October 2015</a></li>
+<li><a href='https://redpanthers.co/2015/08/'>August 2015</a></li>
+<li><a href='https://redpanthers.co/2015/07/'>July 2015</a></li>
+<li><a href='https://redpanthers.co/2013/04/'>April 2013</a></li>
+<li><a href='https://redpanthers.co/2013/03/'>March 2013</a></li>
+<li><a href='https://redpanthers.co/2013/02/'>February 2013</a></li>
+<li><a href='https://redpanthers.co/2013/01/'>January 2013</a></li>
+<li><a href='https://redpanthers.co/2012/12/'>December 2012</a></li>
+<li><a href='https://redpanthers.co/2012/11/'>November 2012</a></li>
 </ul>
 </section><section id="categories-2" class="widget widget_categories"><h2 class="widget-title">Categories</h2> <ul>
-<li class="cat-item cat-item-375"><a href="https://beta.redpanthers.co/category/angular4/">Angular4</a>
+<li class="cat-item cat-item-375"><a href="https://redpanthers.co/category/angular4/">Angular4</a>
 </li>
-<li class="cat-item cat-item-376"><a href="https://beta.redpanthers.co/category/angularjs/">AngularJS</a>
+<li class="cat-item cat-item-376"><a href="https://redpanthers.co/category/angularjs/">AngularJS</a>
 </li>
-<li class="cat-item cat-item-153"><a href="https://beta.redpanthers.co/category/beginners/">Beginners</a>
+<li class="cat-item cat-item-153"><a href="https://redpanthers.co/category/beginners/">Beginners</a>
 </li>
-<li class="cat-item cat-item-182"><a href="https://beta.redpanthers.co/category/conferences/">Conferences</a>
+<li class="cat-item cat-item-182"><a href="https://redpanthers.co/category/conferences/">Conferences</a>
 </li>
-<li class="cat-item cat-item-158"><a href="https://beta.redpanthers.co/category/crystal/">crystal</a>
+<li class="cat-item cat-item-158"><a href="https://redpanthers.co/category/crystal/">crystal</a>
 </li>
-<li class="cat-item cat-item-150"><a href="https://beta.redpanthers.co/category/database/">Database</a>
+<li class="cat-item cat-item-150"><a href="https://redpanthers.co/category/database/">Database</a>
 </li>
-<li class="cat-item cat-item-168"><a href="https://beta.redpanthers.co/category/devops/">DevOps</a>
+<li class="cat-item cat-item-168"><a href="https://redpanthers.co/category/devops/">DevOps</a>
 </li>
-<li class="cat-item cat-item-169"><a href="https://beta.redpanthers.co/category/git/">git</a>
+<li class="cat-item cat-item-169"><a href="https://redpanthers.co/category/git/">git</a>
 </li>
-<li class="cat-item cat-item-366"><a href="https://beta.redpanthers.co/category/jasmine/">Jasmine</a>
+<li class="cat-item cat-item-366"><a href="https://redpanthers.co/category/jasmine/">Jasmine</a>
 </li>
-<li class="cat-item cat-item-156"><a href="https://beta.redpanthers.co/category/javascript/">Javascript</a>
+<li class="cat-item cat-item-156"><a href="https://redpanthers.co/category/javascript/">Javascript</a>
 </li>
-<li class="cat-item cat-item-170"><a href="https://beta.redpanthers.co/category/marketing/">Marketing</a>
+<li class="cat-item cat-item-170"><a href="https://redpanthers.co/category/marketing/">Marketing</a>
 </li>
-<li class="cat-item cat-item-151"><a href="https://beta.redpanthers.co/category/postgresql/">PostgreSQL</a>
+<li class="cat-item cat-item-151"><a href="https://redpanthers.co/category/postgresql/">PostgreSQL</a>
 </li>
-<li class="cat-item cat-item-146"><a href="https://beta.redpanthers.co/category/rails/">Rails</a>
+<li class="cat-item cat-item-146"><a href="https://redpanthers.co/category/rails/">Rails</a>
 </li>
-<li class="cat-item cat-item-154"><a href="https://beta.redpanthers.co/category/rails-5/">Rails 5</a>
+<li class="cat-item cat-item-154"><a href="https://redpanthers.co/category/rails-5/">Rails 5</a>
 </li>
-<li class="cat-item cat-item-166"><a href="https://beta.redpanthers.co/category/rails-5-1/">Rails 5.1</a>
+<li class="cat-item cat-item-166"><a href="https://redpanthers.co/category/rails-5-1/">Rails 5.1</a>
 </li>
-<li class="cat-item cat-item-352"><a href="https://beta.redpanthers.co/category/react-js/">React.js</a>
+<li class="cat-item cat-item-352"><a href="https://redpanthers.co/category/react-js/">React.js</a>
 </li>
-<li class="cat-item cat-item-379"><a href="https://beta.redpanthers.co/category/reactjs/">ReactJS</a>
+<li class="cat-item cat-item-379"><a href="https://redpanthers.co/category/reactjs/">ReactJS</a>
 </li>
-<li class="cat-item cat-item-370"><a href="https://beta.redpanthers.co/category/rspec/">RSpec</a>
+<li class="cat-item cat-item-370"><a href="https://redpanthers.co/category/rspec/">RSpec</a>
 </li>
-<li class="cat-item cat-item-152"><a href="https://beta.redpanthers.co/category/ruby/">Ruby</a>
+<li class="cat-item cat-item-152"><a href="https://redpanthers.co/category/ruby/">Ruby</a>
 </li>
-<li class="cat-item cat-item-309"><a href="https://beta.redpanthers.co/category/ruby-2-4/">Ruby 2.4</a>
+<li class="cat-item cat-item-309"><a href="https://redpanthers.co/category/ruby-2-4/">Ruby 2.4</a>
 </li>
-<li class="cat-item cat-item-387"><a href="https://beta.redpanthers.co/category/ruby-2-5/">Ruby 2.5</a>
+<li class="cat-item cat-item-387"><a href="https://redpanthers.co/category/ruby-2-5/">Ruby 2.5</a>
 </li>
-<li class="cat-item cat-item-378"><a href="https://beta.redpanthers.co/category/spree-commerce/">spree commerce</a>
+<li class="cat-item cat-item-378"><a href="https://redpanthers.co/category/spree-commerce/">spree commerce</a>
 </li>
-<li class="cat-item cat-item-160"><a href="https://beta.redpanthers.co/category/testing/">testing</a>
+<li class="cat-item cat-item-160"><a href="https://redpanthers.co/category/testing/">testing</a>
 </li>
-<li class="cat-item cat-item-197"><a href="https://beta.redpanthers.co/category/training/">Training</a>
+<li class="cat-item cat-item-197"><a href="https://redpanthers.co/category/training/">Training</a>
 </li>
-<li class="cat-item cat-item-339"><a href="https://beta.redpanthers.co/category/travel/">Travel</a>
+<li class="cat-item cat-item-339"><a href="https://redpanthers.co/category/travel/">Travel</a>
 </li>
-<li class="cat-item cat-item-1"><a href="https://beta.redpanthers.co/category/uncategorized/">Uncategorized</a>
+<li class="cat-item cat-item-1"><a href="https://redpanthers.co/category/uncategorized/">Uncategorized</a>
 </li>
-<li class="cat-item cat-item-161"><a href="https://beta.redpanthers.co/category/vuejs/">VueJS</a>
+<li class="cat-item cat-item-161"><a href="https://redpanthers.co/category/vuejs/">VueJS</a>
 </li>
 </ul>
 </section><section id="meta-2" class="widget widget_meta"><h2 class="widget-title">Meta</h2> <ul>
-<li><a href="https://beta.redpanthers.co/wp-login.php">Log in</a></li>
-<li><a href="https://beta.redpanthers.co/feed/">Entries <abbr title="Really Simple Syndication">RSS</abbr></a></li>
-<li><a href="https://beta.redpanthers.co/comments/feed/">Comments <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+<li><a href="https://redpanthers.co/wp-login.php">Log in</a></li>
+<li><a href="https://redpanthers.co/feed/">Entries <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+<li><a href="https://redpanthers.co/comments/feed/">Comments <abbr title="Really Simple Syndication">RSS</abbr></a></li>
 <li><a href="https://wordpress.org/" title="Powered by WordPress, state-of-the-art semantic personal publishing platform.">WordPress.org</a></li> </ul>
-</section><section id="search-3" class="widget widget_search"><h2 class="widget-title">Search</h2><form role="search" method="get" class="search-form" action="https://beta.redpanthers.co/">
+</section><section id="search-3" class="widget widget_search"><h2 class="widget-title">Search</h2><form role="search" method="get" class="search-form" action="https://redpanthers.co/">
 <label>
 <span class="screen-reader-text">Search for:</span>
 <input type="search" class="search-field" placeholder="Search &hellip;" value="" name="s" />
 </label>
 <input type="submit" class="search-submit" value="Search" />
 </form></section><section id="categories-3" class="widget widget_categories"><h2 class="widget-title">Categories</h2> <ul>
-<li class="cat-item cat-item-375"><a href="https://beta.redpanthers.co/category/angular4/">Angular4</a> (1)
+<li class="cat-item cat-item-375"><a href="https://redpanthers.co/category/angular4/">Angular4</a> (1)
 </li>
-<li class="cat-item cat-item-376"><a href="https://beta.redpanthers.co/category/angularjs/">AngularJS</a> (1)
+<li class="cat-item cat-item-376"><a href="https://redpanthers.co/category/angularjs/">AngularJS</a> (1)
 </li>
-<li class="cat-item cat-item-153"><a href="https://beta.redpanthers.co/category/beginners/">Beginners</a> (30)
+<li class="cat-item cat-item-153"><a href="https://redpanthers.co/category/beginners/">Beginners</a> (30)
 </li>
-<li class="cat-item cat-item-182"><a href="https://beta.redpanthers.co/category/conferences/">Conferences</a> (2)
+<li class="cat-item cat-item-182"><a href="https://redpanthers.co/category/conferences/">Conferences</a> (2)
 </li>
-<li class="cat-item cat-item-158"><a href="https://beta.redpanthers.co/category/crystal/">crystal</a> (4)
+<li class="cat-item cat-item-158"><a href="https://redpanthers.co/category/crystal/">crystal</a> (4)
 </li>
-<li class="cat-item cat-item-150"><a href="https://beta.redpanthers.co/category/database/">Database</a> (5)
+<li class="cat-item cat-item-150"><a href="https://redpanthers.co/category/database/">Database</a> (5)
 </li>
-<li class="cat-item cat-item-168"><a href="https://beta.redpanthers.co/category/devops/">DevOps</a> (8)
+<li class="cat-item cat-item-168"><a href="https://redpanthers.co/category/devops/">DevOps</a> (8)
 </li>
-<li class="cat-item cat-item-169"><a href="https://beta.redpanthers.co/category/git/">git</a> (2)
+<li class="cat-item cat-item-169"><a href="https://redpanthers.co/category/git/">git</a> (2)
 </li>
-<li class="cat-item cat-item-366"><a href="https://beta.redpanthers.co/category/jasmine/">Jasmine</a> (1)
+<li class="cat-item cat-item-366"><a href="https://redpanthers.co/category/jasmine/">Jasmine</a> (1)
 </li>
-<li class="cat-item cat-item-156"><a href="https://beta.redpanthers.co/category/javascript/">Javascript</a> (13)
+<li class="cat-item cat-item-156"><a href="https://redpanthers.co/category/javascript/">Javascript</a> (13)
 </li>
-<li class="cat-item cat-item-170"><a href="https://beta.redpanthers.co/category/marketing/">Marketing</a> (14)
+<li class="cat-item cat-item-170"><a href="https://redpanthers.co/category/marketing/">Marketing</a> (14)
 </li>
-<li class="cat-item cat-item-151"><a href="https://beta.redpanthers.co/category/postgresql/">PostgreSQL</a> (6)
+<li class="cat-item cat-item-151"><a href="https://redpanthers.co/category/postgresql/">PostgreSQL</a> (6)
 </li>
-<li class="cat-item cat-item-146"><a href="https://beta.redpanthers.co/category/rails/">Rails</a> (40)
+<li class="cat-item cat-item-146"><a href="https://redpanthers.co/category/rails/">Rails</a> (40)
 </li>
-<li class="cat-item cat-item-154"><a href="https://beta.redpanthers.co/category/rails-5/">Rails 5</a> (3)
+<li class="cat-item cat-item-154"><a href="https://redpanthers.co/category/rails-5/">Rails 5</a> (3)
 </li>
-<li class="cat-item cat-item-166"><a href="https://beta.redpanthers.co/category/rails-5-1/">Rails 5.1</a> (1)
+<li class="cat-item cat-item-166"><a href="https://redpanthers.co/category/rails-5-1/">Rails 5.1</a> (1)
 </li>
-<li class="cat-item cat-item-352"><a href="https://beta.redpanthers.co/category/react-js/">React.js</a> (1)
+<li class="cat-item cat-item-352"><a href="https://redpanthers.co/category/react-js/">React.js</a> (1)
 </li>
-<li class="cat-item cat-item-379"><a href="https://beta.redpanthers.co/category/reactjs/">ReactJS</a> (1)
+<li class="cat-item cat-item-379"><a href="https://redpanthers.co/category/reactjs/">ReactJS</a> (1)
 </li>
-<li class="cat-item cat-item-370"><a href="https://beta.redpanthers.co/category/rspec/">RSpec</a> (1)
+<li class="cat-item cat-item-370"><a href="https://redpanthers.co/category/rspec/">RSpec</a> (1)
 </li>
-<li class="cat-item cat-item-152"><a href="https://beta.redpanthers.co/category/ruby/">Ruby</a> (31)
+<li class="cat-item cat-item-152"><a href="https://redpanthers.co/category/ruby/">Ruby</a> (31)
 </li>
-<li class="cat-item cat-item-309"><a href="https://beta.redpanthers.co/category/ruby-2-4/">Ruby 2.4</a> (3)
+<li class="cat-item cat-item-309"><a href="https://redpanthers.co/category/ruby-2-4/">Ruby 2.4</a> (3)
 </li>
-<li class="cat-item cat-item-387"><a href="https://beta.redpanthers.co/category/ruby-2-5/">Ruby 2.5</a> (1)
+<li class="cat-item cat-item-387"><a href="https://redpanthers.co/category/ruby-2-5/">Ruby 2.5</a> (1)
 </li>
-<li class="cat-item cat-item-378"><a href="https://beta.redpanthers.co/category/spree-commerce/">spree commerce</a> (1)
+<li class="cat-item cat-item-378"><a href="https://redpanthers.co/category/spree-commerce/">spree commerce</a> (1)
 </li>
-<li class="cat-item cat-item-160"><a href="https://beta.redpanthers.co/category/testing/">testing</a> (1)
+<li class="cat-item cat-item-160"><a href="https://redpanthers.co/category/testing/">testing</a> (1)
 </li>
-<li class="cat-item cat-item-197"><a href="https://beta.redpanthers.co/category/training/">Training</a> (11)
+<li class="cat-item cat-item-197"><a href="https://redpanthers.co/category/training/">Training</a> (11)
 </li>
-<li class="cat-item cat-item-339"><a href="https://beta.redpanthers.co/category/travel/">Travel</a> (1)
+<li class="cat-item cat-item-339"><a href="https://redpanthers.co/category/travel/">Travel</a> (1)
 </li>
-<li class="cat-item cat-item-1"><a href="https://beta.redpanthers.co/category/uncategorized/">Uncategorized</a> (8)
+<li class="cat-item cat-item-1"><a href="https://redpanthers.co/category/uncategorized/">Uncategorized</a> (8)
 </li>
-<li class="cat-item cat-item-161"><a href="https://beta.redpanthers.co/category/vuejs/">VueJS</a> (3)
+<li class="cat-item cat-item-161"><a href="https://redpanthers.co/category/vuejs/">VueJS</a> (3)
 </li>
 </ul>
 </section> <section id="recent-posts-3" class="widget widget_recent_entries"> <h2 class="widget-title">Recent Posts</h2> <ul>
 <li>
-<a href="https://beta.redpanthers.co/clawing-our-way-to-the-top-of-clutchs-directory-of-ruby-on-rails-developers-in-india/">CLAWING OUR WAY TO THE TOP OF CLUTCH’S DIRECTORY OF RUBY ON RAILS DEVELOPERS IN INDIA</a>
+<a href="https://redpanthers.co/clawing-our-way-to-the-top-of-clutchs-directory-of-ruby-on-rails-developers-in-india/">CLAWING OUR WAY TO THE TOP OF CLUTCH’S DIRECTORY OF RUBY ON RAILS DEVELOPERS IN INDIA</a>
 <span class="post-date">September 6, 2020</span>
 </li>
 <li>
-<a href="https://beta.redpanthers.co/configuring-a-gitlab-ci-pipeline-for-rails-mongodb-and-rspec/">Configuring a GitLab CI pipeline for Rails, MongoDB, and Rspec</a>
+<a href="https://redpanthers.co/configuring-a-gitlab-ci-pipeline-for-rails-mongodb-and-rspec/">Configuring a GitLab CI pipeline for Rails, MongoDB, and Rspec</a>
 <span class="post-date">April 29, 2019</span>
 </li>
 <li>
-<a href="https://beta.redpanthers.co/rails-5-2-0/">Rails 5.2.0</a>
+<a href="https://redpanthers.co/rails-5-2-0/">Rails 5.2.0</a>
 <span class="post-date">April 29, 2019</span>
 </li>
 </ul>
-</section><section id="tag_cloud-1" class="widget widget_tag_cloud"><h2 class="widget-title">Tags</h2><div class="tagcloud"><a href="https://beta.redpanthers.co/tag/active_record/" class="tag-cloud-link tag-link-232 tag-link-position-1" style="font-size: 10.8pt;" aria-label="active_record (2 items)">active_record</a>
-<a href="https://beta.redpanthers.co/tag/algorithm/" class="tag-cloud-link tag-link-297 tag-link-position-2" style="font-size: 10.8pt;" aria-label="Algorithm (2 items)">Algorithm</a>
-<a href="https://beta.redpanthers.co/tag/anonymous-functions/" class="tag-cloud-link tag-link-269 tag-link-position-3" style="font-size: 8pt;" aria-label="anonymous functions (1 item)">anonymous functions</a>
-<a href="https://beta.redpanthers.co/tag/arugments/" class="tag-cloud-link tag-link-270 tag-link-position-4" style="font-size: 8pt;" aria-label="arugments (1 item)">arugments</a>
-<a href="https://beta.redpanthers.co/tag/basics/" class="tag-cloud-link tag-link-271 tag-link-position-5" style="font-size: 10.8pt;" aria-label="basics (2 items)">basics</a>
-<a href="https://beta.redpanthers.co/tag/beginners/" class="tag-cloud-link tag-link-176 tag-link-position-6" style="font-size: 10.8pt;" aria-label="Beginners (2 items)">Beginners</a>
-<a href="https://beta.redpanthers.co/tag/b-tree/" class="tag-cloud-link tag-link-253 tag-link-position-7" style="font-size: 10.8pt;" aria-label="B Tree (2 items)">B Tree</a>
-<a href="https://beta.redpanthers.co/tag/callbacks/" class="tag-cloud-link tag-link-236 tag-link-position-8" style="font-size: 10.8pt;" aria-label="callbacks (2 items)">callbacks</a>
-<a href="https://beta.redpanthers.co/tag/core/" class="tag-cloud-link tag-link-262 tag-link-position-9" style="font-size: 8pt;" aria-label="core (1 item)">core</a>
-<a href="https://beta.redpanthers.co/tag/database/" class="tag-cloud-link tag-link-188 tag-link-position-10" style="font-size: 18.888888888889pt;" aria-label="database (9 items)">database</a>
-<a href="https://beta.redpanthers.co/tag/deployment/" class="tag-cloud-link tag-link-199 tag-link-position-11" style="font-size: 12.666666666667pt;" aria-label="deployment (3 items)">deployment</a>
-<a href="https://beta.redpanthers.co/tag/devops/" class="tag-cloud-link tag-link-200 tag-link-position-12" style="font-size: 10.8pt;" aria-label="devops (2 items)">devops</a>
-<a href="https://beta.redpanthers.co/tag/enumerator/" class="tag-cloud-link tag-link-263 tag-link-position-13" style="font-size: 8pt;" aria-label="enumerator (1 item)">enumerator</a>
-<a href="https://beta.redpanthers.co/tag/files/" class="tag-cloud-link tag-link-264 tag-link-position-14" style="font-size: 8pt;" aria-label="files (1 item)">files</a>
-<a href="https://beta.redpanthers.co/tag/functional/" class="tag-cloud-link tag-link-265 tag-link-position-15" style="font-size: 10.8pt;" aria-label="functional (2 items)">functional</a>
-<a href="https://beta.redpanthers.co/tag/gem/" class="tag-cloud-link tag-link-328 tag-link-position-16" style="font-size: 12.666666666667pt;" aria-label="gem (3 items)">gem</a>
-<a href="https://beta.redpanthers.co/tag/hash/" class="tag-cloud-link tag-link-256 tag-link-position-17" style="font-size: 12.666666666667pt;" aria-label="Hash (3 items)">Hash</a>
-<a href="https://beta.redpanthers.co/tag/huge-files/" class="tag-cloud-link tag-link-266 tag-link-position-18" style="font-size: 8pt;" aria-label="huge files (1 item)">huge files</a>
-<a href="https://beta.redpanthers.co/tag/index/" class="tag-cloud-link tag-link-257 tag-link-position-19" style="font-size: 8pt;" aria-label="index (1 item)">index</a>
-<a href="https://beta.redpanthers.co/tag/javascript/" class="tag-cloud-link tag-link-165 tag-link-position-20" style="font-size: 12.666666666667pt;" aria-label="Javascript (3 items)">Javascript</a>
-<a href="https://beta.redpanthers.co/tag/lazy/" class="tag-cloud-link tag-link-267 tag-link-position-21" style="font-size: 8pt;" aria-label="lazy (1 item)">lazy</a>
-<a href="https://beta.redpanthers.co/tag/learning/" class="tag-cloud-link tag-link-240 tag-link-position-22" style="font-size: 12.666666666667pt;" aria-label="learning (3 items)">learning</a>
-<a href="https://beta.redpanthers.co/tag/linux/" class="tag-cloud-link tag-link-201 tag-link-position-23" style="font-size: 14.222222222222pt;" aria-label="linux (4 items)">linux</a>
-<a href="https://beta.redpanthers.co/tag/management/" class="tag-cloud-link tag-link-204 tag-link-position-24" style="font-size: 10.8pt;" aria-label="management (2 items)">management</a>
-<a href="https://beta.redpanthers.co/tag/mangaing/" class="tag-cloud-link tag-link-268 tag-link-position-25" style="font-size: 8pt;" aria-label="mangaing (1 item)">mangaing</a>
-<a href="https://beta.redpanthers.co/tag/migration/" class="tag-cloud-link tag-link-258 tag-link-position-26" style="font-size: 8pt;" aria-label="migration (1 item)">migration</a>
-<a href="https://beta.redpanthers.co/tag/multi-column/" class="tag-cloud-link tag-link-259 tag-link-position-27" style="font-size: 8pt;" aria-label="multi column (1 item)">multi column</a>
-<a href="https://beta.redpanthers.co/tag/mysql/" class="tag-cloud-link tag-link-190 tag-link-position-28" style="font-size: 10.8pt;" aria-label="mysql (2 items)">mysql</a>
-<a href="https://beta.redpanthers.co/tag/optimization/" class="tag-cloud-link tag-link-301 tag-link-position-29" style="font-size: 12.666666666667pt;" aria-label="optimization (3 items)">optimization</a>
-<a href="https://beta.redpanthers.co/tag/partial-migration/" class="tag-cloud-link tag-link-260 tag-link-position-30" style="font-size: 8pt;" aria-label="partial migration (1 item)">partial migration</a>
-<a href="https://beta.redpanthers.co/tag/postgresql/" class="tag-cloud-link tag-link-193 tag-link-position-31" style="font-size: 16.555555555556pt;" aria-label="PostgreSQL (6 items)">PostgreSQL</a>
-<a href="https://beta.redpanthers.co/tag/programming/" class="tag-cloud-link tag-link-249 tag-link-position-32" style="font-size: 10.8pt;" aria-label="programming (2 items)">programming</a>
-<a href="https://beta.redpanthers.co/tag/rack/" class="tag-cloud-link tag-link-336 tag-link-position-33" style="font-size: 10.8pt;" aria-label="Rack (2 items)">Rack</a>
-<a href="https://beta.redpanthers.co/tag/rails/" class="tag-cloud-link tag-link-147 tag-link-position-34" style="font-size: 22pt;" aria-label="rails (15 items)">rails</a>
-<a href="https://beta.redpanthers.co/tag/react-js/" class="tag-cloud-link tag-link-174 tag-link-position-35" style="font-size: 10.8pt;" aria-label="React JS (2 items)">React JS</a>
-<a href="https://beta.redpanthers.co/tag/ruby/" class="tag-cloud-link tag-link-178 tag-link-position-36" style="font-size: 19.511111111111pt;" aria-label="Ruby (10 items)">Ruby</a>
-<a href="https://beta.redpanthers.co/tag/ruby-on-rails/" class="tag-cloud-link tag-link-194 tag-link-position-37" style="font-size: 17.333333333333pt;" aria-label="ruby on rails (7 items)">ruby on rails</a>
-<a href="https://beta.redpanthers.co/tag/shell/" class="tag-cloud-link tag-link-208 tag-link-position-38" style="font-size: 12.666666666667pt;" aria-label="shell (3 items)">shell</a>
-<a href="https://beta.redpanthers.co/tag/single-column/" class="tag-cloud-link tag-link-261 tag-link-position-39" style="font-size: 8pt;" aria-label="single column (1 item)">single column</a>
-<a href="https://beta.redpanthers.co/tag/sql/" class="tag-cloud-link tag-link-195 tag-link-position-40" style="font-size: 15.466666666667pt;" aria-label="SQL (5 items)">SQL</a>
-<a href="https://beta.redpanthers.co/tag/tips/" class="tag-cloud-link tag-link-196 tag-link-position-41" style="font-size: 10.8pt;" aria-label="tips (2 items)">tips</a>
-<a href="https://beta.redpanthers.co/tag/training/" class="tag-cloud-link tag-link-198 tag-link-position-42" style="font-size: 14.222222222222pt;" aria-label="training (4 items)">training</a>
-<a href="https://beta.redpanthers.co/tag/transaction/" class="tag-cloud-link tag-link-237 tag-link-position-43" style="font-size: 10.8pt;" aria-label="transaction (2 items)">transaction</a>
-<a href="https://beta.redpanthers.co/tag/ubuntu/" class="tag-cloud-link tag-link-215 tag-link-position-44" style="font-size: 12.666666666667pt;" aria-label="ubuntu (3 items)">ubuntu</a>
-<a href="https://beta.redpanthers.co/tag/unix/" class="tag-cloud-link tag-link-210 tag-link-position-45" style="font-size: 10.8pt;" aria-label="unix (2 items)">unix</a></div>
+</section><section id="tag_cloud-1" class="widget widget_tag_cloud"><h2 class="widget-title">Tags</h2><div class="tagcloud"><a href="https://redpanthers.co/tag/active_record/" class="tag-cloud-link tag-link-232 tag-link-position-1" style="font-size: 10.8pt;" aria-label="active_record (2 items)">active_record</a>
+<a href="https://redpanthers.co/tag/algorithm/" class="tag-cloud-link tag-link-297 tag-link-position-2" style="font-size: 10.8pt;" aria-label="Algorithm (2 items)">Algorithm</a>
+<a href="https://redpanthers.co/tag/anonymous-functions/" class="tag-cloud-link tag-link-269 tag-link-position-3" style="font-size: 8pt;" aria-label="anonymous functions (1 item)">anonymous functions</a>
+<a href="https://redpanthers.co/tag/arugments/" class="tag-cloud-link tag-link-270 tag-link-position-4" style="font-size: 8pt;" aria-label="arugments (1 item)">arugments</a>
+<a href="https://redpanthers.co/tag/basics/" class="tag-cloud-link tag-link-271 tag-link-position-5" style="font-size: 10.8pt;" aria-label="basics (2 items)">basics</a>
+<a href="https://redpanthers.co/tag/beginners/" class="tag-cloud-link tag-link-176 tag-link-position-6" style="font-size: 10.8pt;" aria-label="Beginners (2 items)">Beginners</a>
+<a href="https://redpanthers.co/tag/b-tree/" class="tag-cloud-link tag-link-253 tag-link-position-7" style="font-size: 10.8pt;" aria-label="B Tree (2 items)">B Tree</a>
+<a href="https://redpanthers.co/tag/callbacks/" class="tag-cloud-link tag-link-236 tag-link-position-8" style="font-size: 10.8pt;" aria-label="callbacks (2 items)">callbacks</a>
+<a href="https://redpanthers.co/tag/core/" class="tag-cloud-link tag-link-262 tag-link-position-9" style="font-size: 8pt;" aria-label="core (1 item)">core</a>
+<a href="https://redpanthers.co/tag/database/" class="tag-cloud-link tag-link-188 tag-link-position-10" style="font-size: 18.888888888889pt;" aria-label="database (9 items)">database</a>
+<a href="https://redpanthers.co/tag/deployment/" class="tag-cloud-link tag-link-199 tag-link-position-11" style="font-size: 12.666666666667pt;" aria-label="deployment (3 items)">deployment</a>
+<a href="https://redpanthers.co/tag/devops/" class="tag-cloud-link tag-link-200 tag-link-position-12" style="font-size: 10.8pt;" aria-label="devops (2 items)">devops</a>
+<a href="https://redpanthers.co/tag/enumerator/" class="tag-cloud-link tag-link-263 tag-link-position-13" style="font-size: 8pt;" aria-label="enumerator (1 item)">enumerator</a>
+<a href="https://redpanthers.co/tag/files/" class="tag-cloud-link tag-link-264 tag-link-position-14" style="font-size: 8pt;" aria-label="files (1 item)">files</a>
+<a href="https://redpanthers.co/tag/functional/" class="tag-cloud-link tag-link-265 tag-link-position-15" style="font-size: 10.8pt;" aria-label="functional (2 items)">functional</a>
+<a href="https://redpanthers.co/tag/gem/" class="tag-cloud-link tag-link-328 tag-link-position-16" style="font-size: 12.666666666667pt;" aria-label="gem (3 items)">gem</a>
+<a href="https://redpanthers.co/tag/hash/" class="tag-cloud-link tag-link-256 tag-link-position-17" style="font-size: 12.666666666667pt;" aria-label="Hash (3 items)">Hash</a>
+<a href="https://redpanthers.co/tag/huge-files/" class="tag-cloud-link tag-link-266 tag-link-position-18" style="font-size: 8pt;" aria-label="huge files (1 item)">huge files</a>
+<a href="https://redpanthers.co/tag/index/" class="tag-cloud-link tag-link-257 tag-link-position-19" style="font-size: 8pt;" aria-label="index (1 item)">index</a>
+<a href="https://redpanthers.co/tag/javascript/" class="tag-cloud-link tag-link-165 tag-link-position-20" style="font-size: 12.666666666667pt;" aria-label="Javascript (3 items)">Javascript</a>
+<a href="https://redpanthers.co/tag/lazy/" class="tag-cloud-link tag-link-267 tag-link-position-21" style="font-size: 8pt;" aria-label="lazy (1 item)">lazy</a>
+<a href="https://redpanthers.co/tag/learning/" class="tag-cloud-link tag-link-240 tag-link-position-22" style="font-size: 12.666666666667pt;" aria-label="learning (3 items)">learning</a>
+<a href="https://redpanthers.co/tag/linux/" class="tag-cloud-link tag-link-201 tag-link-position-23" style="font-size: 14.222222222222pt;" aria-label="linux (4 items)">linux</a>
+<a href="https://redpanthers.co/tag/management/" class="tag-cloud-link tag-link-204 tag-link-position-24" style="font-size: 10.8pt;" aria-label="management (2 items)">management</a>
+<a href="https://redpanthers.co/tag/mangaing/" class="tag-cloud-link tag-link-268 tag-link-position-25" style="font-size: 8pt;" aria-label="mangaing (1 item)">mangaing</a>
+<a href="https://redpanthers.co/tag/migration/" class="tag-cloud-link tag-link-258 tag-link-position-26" style="font-size: 8pt;" aria-label="migration (1 item)">migration</a>
+<a href="https://redpanthers.co/tag/multi-column/" class="tag-cloud-link tag-link-259 tag-link-position-27" style="font-size: 8pt;" aria-label="multi column (1 item)">multi column</a>
+<a href="https://redpanthers.co/tag/mysql/" class="tag-cloud-link tag-link-190 tag-link-position-28" style="font-size: 10.8pt;" aria-label="mysql (2 items)">mysql</a>
+<a href="https://redpanthers.co/tag/optimization/" class="tag-cloud-link tag-link-301 tag-link-position-29" style="font-size: 12.666666666667pt;" aria-label="optimization (3 items)">optimization</a>
+<a href="https://redpanthers.co/tag/partial-migration/" class="tag-cloud-link tag-link-260 tag-link-position-30" style="font-size: 8pt;" aria-label="partial migration (1 item)">partial migration</a>
+<a href="https://redpanthers.co/tag/postgresql/" class="tag-cloud-link tag-link-193 tag-link-position-31" style="font-size: 16.555555555556pt;" aria-label="PostgreSQL (6 items)">PostgreSQL</a>
+<a href="https://redpanthers.co/tag/programming/" class="tag-cloud-link tag-link-249 tag-link-position-32" style="font-size: 10.8pt;" aria-label="programming (2 items)">programming</a>
+<a href="https://redpanthers.co/tag/rack/" class="tag-cloud-link tag-link-336 tag-link-position-33" style="font-size: 10.8pt;" aria-label="Rack (2 items)">Rack</a>
+<a href="https://redpanthers.co/tag/rails/" class="tag-cloud-link tag-link-147 tag-link-position-34" style="font-size: 22pt;" aria-label="rails (15 items)">rails</a>
+<a href="https://redpanthers.co/tag/react-js/" class="tag-cloud-link tag-link-174 tag-link-position-35" style="font-size: 10.8pt;" aria-label="React JS (2 items)">React JS</a>
+<a href="https://redpanthers.co/tag/ruby/" class="tag-cloud-link tag-link-178 tag-link-position-36" style="font-size: 19.511111111111pt;" aria-label="Ruby (10 items)">Ruby</a>
+<a href="https://redpanthers.co/tag/ruby-on-rails/" class="tag-cloud-link tag-link-194 tag-link-position-37" style="font-size: 17.333333333333pt;" aria-label="ruby on rails (7 items)">ruby on rails</a>
+<a href="https://redpanthers.co/tag/shell/" class="tag-cloud-link tag-link-208 tag-link-position-38" style="font-size: 12.666666666667pt;" aria-label="shell (3 items)">shell</a>
+<a href="https://redpanthers.co/tag/single-column/" class="tag-cloud-link tag-link-261 tag-link-position-39" style="font-size: 8pt;" aria-label="single column (1 item)">single column</a>
+<a href="https://redpanthers.co/tag/sql/" class="tag-cloud-link tag-link-195 tag-link-position-40" style="font-size: 15.466666666667pt;" aria-label="SQL (5 items)">SQL</a>
+<a href="https://redpanthers.co/tag/tips/" class="tag-cloud-link tag-link-196 tag-link-position-41" style="font-size: 10.8pt;" aria-label="tips (2 items)">tips</a>
+<a href="https://redpanthers.co/tag/training/" class="tag-cloud-link tag-link-198 tag-link-position-42" style="font-size: 14.222222222222pt;" aria-label="training (4 items)">training</a>
+<a href="https://redpanthers.co/tag/transaction/" class="tag-cloud-link tag-link-237 tag-link-position-43" style="font-size: 10.8pt;" aria-label="transaction (2 items)">transaction</a>
+<a href="https://redpanthers.co/tag/ubuntu/" class="tag-cloud-link tag-link-215 tag-link-position-44" style="font-size: 12.666666666667pt;" aria-label="ubuntu (3 items)">ubuntu</a>
+<a href="https://redpanthers.co/tag/unix/" class="tag-cloud-link tag-link-210 tag-link-position-45" style="font-size: 10.8pt;" aria-label="unix (2 items)">unix</a></div>
 </section><section id="text-4" class="widget widget_text"> <div class="textwidget"><p>Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum eleifend option congue nihil imperdiet doming.</p>
 </div>
 </section></aside>
@@ -601,11 +601,11 @@ https://technet.microsoft.com/en-us/library/ms190612(v=sql.105).aspx]]&gt; </p>
 <div class="blog_related_article_box_item">
 <div class="holder matchHeight">
 <div class="pic">
-<img src="https://beta.redpanthers.co/wp-content/themes/seolounge/images/blank/Blank-Image-100x60.png" alt="Blank Image" width="100" height="60">
-<a class="placeholder" href="https://beta.redpanthers.co/rails-5-2-0/" style="background-image:url('https://beta.redpanthers.co/wp-content/themes/seolounge/images/no-image/No-Image-Found.png')"></a>
+<img src="https://redpanthers.co/wp-content/themes/seolounge/images/blank/Blank-Image-100x60.png" alt="Blank Image" width="100" height="60">
+<a class="placeholder" href="https://redpanthers.co/rails-5-2-0/" style="background-image:url('https://redpanthers.co/wp-content/themes/seolounge/images/no-image/No-Image-Found.png')"></a>
 </div>
 <div class="title">
-<h6 class="title"><a href="https://beta.redpanthers.co/rails-5-2-0/" rel="bookmark" title="Rails 5.2.0">Rails 5.2.0</a></h6>
+<h6 class="title"><a href="https://redpanthers.co/rails-5-2-0/" rel="bookmark" title="Rails 5.2.0">Rails 5.2.0</a></h6>
 <p class="date"><i class="fa fa-clock-o"></i> April 29, 2019</p>
 </div>
 </div>
@@ -617,11 +617,11 @@ https://technet.microsoft.com/en-us/library/ms190612(v=sql.105).aspx]]&gt; </p>
 <div class="blog_related_article_box_item">
 <div class="holder matchHeight">
 <div class="pic">
-<img src="https://beta.redpanthers.co/wp-content/themes/seolounge/images/blank/Blank-Image-100x60.png" alt="Blank Image" width="100" height="60">
- <a class="placeholder" href="https://beta.redpanthers.co/configuring-a-gitlab-ci-pipeline-for-rails-mongodb-and-rspec/" style="background-image:url('https://beta.redpanthers.co/wp-content/themes/seolounge/images/no-image/No-Image-Found.png')"></a>
+<img src="https://redpanthers.co/wp-content/themes/seolounge/images/blank/Blank-Image-100x60.png" alt="Blank Image" width="100" height="60">
+ <a class="placeholder" href="https://redpanthers.co/configuring-a-gitlab-ci-pipeline-for-rails-mongodb-and-rspec/" style="background-image:url('https://redpanthers.co/wp-content/themes/seolounge/images/no-image/No-Image-Found.png')"></a>
 </div>
 <div class="title">
-<h6 class="title"><a href="https://beta.redpanthers.co/configuring-a-gitlab-ci-pipeline-for-rails-mongodb-and-rspec/" rel="bookmark" title="Configuring a GitLab CI pipeline for Rails, MongoDB, and Rspec">Configuring a GitLab CI pipeline for Rails, MongoDB, and Rspec</a></h6>
+<h6 class="title"><a href="https://redpanthers.co/configuring-a-gitlab-ci-pipeline-for-rails-mongodb-and-rspec/" rel="bookmark" title="Configuring a GitLab CI pipeline for Rails, MongoDB, and Rspec">Configuring a GitLab CI pipeline for Rails, MongoDB, and Rspec</a></h6>
 <p class="date"><i class="fa fa-clock-o"></i> April 29, 2019</p>
 </div>
 </div>
@@ -633,11 +633,11 @@ https://technet.microsoft.com/en-us/library/ms190612(v=sql.105).aspx]]&gt; </p>
 <div class="blog_related_article_box_item">
 <div class="holder matchHeight">
 <div class="pic">
-<img src="https://beta.redpanthers.co/wp-content/themes/seolounge/images/blank/Blank-Image-100x60.png" alt="Blank Image" width="100" height="60">
-<a class="placeholder" href="https://beta.redpanthers.co/building-a-multitenant-application-with-apartment-gem/" style="background-image:url('https://beta.redpanthers.co/wp-content/themes/seolounge/images/no-image/No-Image-Found.png')"></a>
+<img src="https://redpanthers.co/wp-content/themes/seolounge/images/blank/Blank-Image-100x60.png" alt="Blank Image" width="100" height="60">
+<a class="placeholder" href="https://redpanthers.co/building-a-multitenant-application-with-apartment-gem/" style="background-image:url('https://redpanthers.co/wp-content/themes/seolounge/images/no-image/No-Image-Found.png')"></a>
 </div>
 <div class="title">
-<h6 class="title"><a href="https://beta.redpanthers.co/building-a-multitenant-application-with-apartment-gem/" rel="bookmark" title="Building a Multitenant application with Apartment gem">Building a Multitenant application with Apartment gem</a></h6>
+<h6 class="title"><a href="https://redpanthers.co/building-a-multitenant-application-with-apartment-gem/" rel="bookmark" title="Building a Multitenant application with Apartment gem">Building a Multitenant application with Apartment gem</a></h6>
 <p class="date"><i class="fa fa-clock-o"></i> April 29, 2019</p>
 </div>
 </div>
@@ -707,7 +707,7 @@ https://technet.microsoft.com/en-us/library/ms190612(v=sql.105).aspx]]&gt; </p>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type='text/javascript'>
 /* <![CDATA[ */
-var wpcf7 = {"apiSettings":{"root":"https:\/\/beta.redpanthers.co\/wp-json\/contact-form-7\/v1","namespace":"contact-form-7\/v1"}};
+var wpcf7 = {"apiSettings":{"root":"https:\/\/redpanthers.co\/wp-json\/contact-form-7\/v1","namespace":"contact-form-7\/v1"}};
 /* ]]> */
 </script>
 <script type='text/javascript' src='/wp-content/plugins/contact-form-7/includes/js/scripts.js?ver=5.1.4'></script>

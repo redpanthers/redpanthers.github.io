@@ -8,7 +8,7 @@
 	>
 
 <channel>
-	<title>beta.redpanthers.co</title>
+	<title>redpanthers.co</title>
 	<atom:link href="/feed/" rel="self" type="application/rss+xml" />
 	<link>/</link>
 	<description>Red Panthers - Experts in Ruby on Rails, System Design and Vue.js</description>

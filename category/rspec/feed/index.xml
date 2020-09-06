@@ -8,7 +8,7 @@
 	>
 
 <channel>
-	<title>RSpec &#8211; beta.redpanthers.co</title>
+	<title>RSpec &#8211; redpanthers.co</title>
 	<atom:link href="/category/rspec/feed/" rel="self" type="application/rss+xml" />
 	<link>/</link>
 	<description>Red Panthers - Experts in Ruby on Rails, System Design and Vue.js</description>
