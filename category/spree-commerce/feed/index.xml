@@ -1,4 +1,4 @@
- <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
 	xmlns:content="http://purl.org/rss/1.0/modules/content/"
 	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -8,10 +8,10 @@
 	>
 
 <channel>
-	<title>spree commerce &#8211; Red Panthers</title>
+	<title>spree commerce &#8211; beta.redpanthers.co</title>
 	<atom:link href="/category/spree-commerce/feed/" rel="self" type="application/rss+xml" />
 	<link>/</link>
-	<description>Experts in Ruby on Rails Development</description>
+	<description>Red Panthers - Experts in Ruby on Rails, System Design and Vue.js</description>
 	<lastBuildDate>Tue, 29 Aug 2017 05:36:14 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
@@ -19,14 +19,6 @@
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
 	<generator>https://wordpress.org/?v=5.2.7</generator>
-
-<image>
-	<url>/wp-content/uploads/2017/12/rp-logo.png</url>
-	<title>spree commerce &#8211; Red Panthers</title>
-	<link>/</link>
-	<width>32</width>
-	<height>32</height>
-</image> 
 	<item>
 		<title>The future of Spree OSS and whats new in Spree 3.3</title>
 		<link>/future-spree-oss-whats-new-spree-3-3/</link>
@@ -38,32 +30,58 @@
 		<category><![CDATA[rails]]></category>
 		<category><![CDATA[spree]]></category>
 
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3341</guid>
-				<description><![CDATA[<p>The story so far Ever since its advent in 2007, Spree &#8211; originally developed by Sean Schofield, is the most popular open source Ruby On Rails E-commerce Software spanning over 17,703 commits, 725 contributes and 208 releases. Spree was acquired by First Data in the late 2015 and since then, there has been fair amount&#8230;</p>
-<p>The post <a rel="nofollow" href="/future-spree-oss-whats-new-spree-3-3/">The future of Spree OSS and whats new in Spree 3.3</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
-]]></description>
-								<content:encoded><![CDATA[<h3>The story so far</h3>
-<p>Ever since its advent in 2007, <a href="https://github.com/spree/spree">Spree</a> &#8211; originally developed by Sean Schofield, is the most popular open source Ruby On Rails E-commerce Software spanning over 17,703 commits, 725 contributes and 208 releases. Spree was acquired by <a href="https://spreecommerce.com/blog/spree-acquired-by-first-data">First Data</a> in the late 2015 and since then, there has been fair amount of speculation around Spree remaining as an opensource project and it&#8217;s long term future as outlined here in this <a href="https://spreecommerce.com/blog/future-of-spree-oss">blog post</a>.</p>
-<p>As it turned out Spree didn&#8217;t die off, but revived under a new <a href="https://github.com/spree/spree/wiki/Core-Team">core team</a>. After the acquisition announcement developers from <a href="https://sparksolutions.co/">Spark Solutions </a>and <a href="http://vinsol.com/">Vinsol</a> volunteered to keep spree alive and has been doing a fantastic job, putting shoulders to the wheel by taking Spree from version <code>3.0.4</code> to the current <code>Spree 3.3</code></p>
+		<guid isPermaLink="false">https://redpanthers.co/?p=3341</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[
+
+<h3>The story so far</h3>
+
+
+Ever since its advent in 2007, <a href="https://github.com/spree/spree">Spree</a> &#8211; originally developed by Sean Schofield, is the most popular open source Ruby On Rails E-commerce Software spanning over 17,703 commits, 725 contributes and 208 releases. Spree was acquired by <a href="https://spreecommerce.com/blog/spree-acquired-by-first-data">First Data</a> in the late 2015 and since then, there has been fair amount of speculation around Spree remaining as an opensource project and it&#8217;s long term future as outlined here in this <a href="https://spreecommerce.com/blog/future-of-spree-oss">blog post</a>.
+As it turned out Spree didn&#8217;t die off, but revived under a new <a href="https://github.com/spree/spree/wiki/Core-Team">core team</a>. After the acquisition announcement developers from <a href="https://sparksolutions.co/">Spark Solutions </a>and <a href="http://vinsol.com/">Vinsol</a> volunteered to keep spree alive and has been doing a fantastic job, putting shoulders to the wheel by taking Spree from version <code>3.0.4</code> to the current <code>Spree 3.3</code>
+
+
 <h3>Whats new in Spree 3.3</h3>
-<p>On August 22, 2017, Spree released version 3.3 and is packed with the following major features.</p>
+
+
+On August 22, 2017, Spree released version 3.3 and is packed with the following major features.
+
+
 <h5>Rails 5.1 support</h5>
-<p><code>Spree 3.3</code> is <code>Rails 5.1</code>  compatible whereas <code>Spree 3.2</code>  runs on Rails version <code>5.0</code>. Which means managing JavaScript dependencies from NPM via <code>Yarn</code>, ability to use <a href="http://edgeguides.rubyonrails.org/5_1_release_notes.html#direct-resolved-routes">direct &amp; resolved routes</a>, <a href="http://edgeguides.rubyonrails.org/5_1_release_notes.html#parameterized-mailers">parameterized mailers</a> and many more goodies <code>Rails 5.1</code>  has to offer</p>
+
+
+<code>Spree 3.3</code> is <code>Rails 5.1</code>  compatible whereas <code>Spree 3.2</code>  runs on Rails version <code>5.0</code>. Which means managing JavaScript dependencies from NPM via `Yarn`, ability to use <a href="http://edgeguides.rubyonrails.org/5_1_release_notes.html#direct-resolved-routes">direct &amp; resolved routes</a>, <a href="http://edgeguides.rubyonrails.org/5_1_release_notes.html#parameterized-mailers">parameterized mailers</a> and many more goodies `Rails 5.1`  has to offer
+
+
 <h5>Ruby 2.4 support</h5>
-<p>Spree now works with Ruby versions <code>2.2 (&gt;= 2.2.7)</code> , <code>2.2 (&gt;= 2.2.7)</code> , <code>2.2 (&gt;= 2.2.7)</code> ,  <code>2.3.x</code>  and the latest <code>2.4.x</code>. So <code>Ruby 2.4x</code> ?  Yay! that&#8217;s <a href="https://blog.redpanthers.co/behind-scenes-hash-table-performance-ruby-2-4/">Faster Hashes</a>, <a href="https://blog.heroku.com/ruby-2-4-features-hashes-integers-rounding">Unified Integers, and Better Rounding</a> for you right out of the box</p>
+
+
+Spree now works with Ruby versions `2.2 (&gt;= 2.2.7)` , <code>2.2 (&gt;= 2.2.7)</code> , <code>2.2 (&gt;= 2.2.7)</code> ,  <code>2.3.x</code>  and the latest <code>2.4.x</code>. So <code>Ruby 2.4x</code> ?  Yay! that&#8217;s <a href="https://blog.redpanthers.co/behind-scenes-hash-table-performance-ruby-2-4/">Faster Hashes</a>, <a href="https://blog.heroku.com/ruby-2-4-features-hashes-integers-rounding">Unified Integers, and Better Rounding</a> for you right out of the box
+
+
 <h5>Segment tracker integration</h5>
-<p><code>Spree 3.3</code> is bundled with <a href="https://segment.com/">segment.com</a> Tracker system which enables you to<br />
-connect your store with over 200 analytics engines, CRMs, live chats, remarketing platforms and much more without any additional development. If that&#8217;s not cool enough for you stay tuned for next releases for more third party tracker and analytics integrations.</p>
+
+
+<code>Spree 3.3</code> is bundled with <a href="https://segment.com/">segment.com</a> Tracker system which enables you to
+connect your store with over 200 analytics engines, CRMs, live chats, remarketing platforms and much more without any additional development. If that&#8217;s not cool enough for you stay tuned for next releases for more third party tracker and analytics integrations.
+
+
 <h5>Bug fixes and performance enhancements</h5>
-<p>&#8211; Unique indexes and uniqueness validation on number fields for important models<br />
-&#8211; Multiple regular &amp; unique indexes that were missing have been added to improve data consistency and performance<br />
-&#8211; Optimized Shipments and Inventory Units.<br />
-&#8211; Better Store Credits management in customer Frontend and Admin Panel</p>
+
+
+&#8211; Unique indexes and uniqueness validation on number fields for important models
+&#8211; Multiple regular &amp; unique indexes that were missing have been added to improve data consistency and performance
+&#8211; Optimized Shipments and Inventory Units.
+&#8211; Better Store Credits management in customer Frontend and Admin Panel
+
+
 <h3>Whats next?</h3>
-<p>Spree development has been slowly gaining traction recently.</p>
-<p><a href="https://blog.redpanthers.co/wp-content/uploads/2017/08/Screen-Shot-2017-08-26-at-21.53.16.png"><img class="aligncenter size-full wp-image-3344" src="https://blog.redpanthers.co/wp-content/uploads/2017/08/Screen-Shot-2017-08-26-at-21.53.16.png" alt="" width="979" height="180" /></a><br />
-The future roadmap for spree development can be found <a href="https://github.com/spree/spree/milestones?direction=asc&amp;sort=due_date&amp;state=open">here</a>. But still, it is fair to say that more focus and a unified effort is necessary for the long term survival of Spree. Let&#8217;s join the folks at Spark solutions and Vinsol and start contributing to Spree OSS project</p>
-<p>The post <a rel="nofollow" href="/future-spree-oss-whats-new-spree-3-3/">The future of Spree OSS and whats new in Spree 3.3</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+
+
+Spree development has been slowly gaining traction recently.
+<a href="https://blog.redpanthers.co/wp-content/uploads/2017/08/Screen-Shot-2017-08-26-at-21.53.16.png"><img class="aligncenter size-full wp-image-3344" src="https://blog.redpanthers.co/wp-content/uploads/2017/08/Screen-Shot-2017-08-26-at-21.53.16.png" alt="" width="979" height="180" /></a>
+The future roadmap for spree development can be found <a href="https://github.com/spree/spree/milestones?direction=asc&amp;sort=due_date&amp;state=open">here</a>. But still, it is fair to say that more focus and a unified effort is necessary for the long term survival of Spree. Let&#8217;s join the folks at Spark solutions and Vinsol and start contributing to Spree OSS project]]&gt;		</p>
 ]]></content:encoded>
 							<wfw:commentRss>/future-spree-oss-whats-new-spree-3-3/feed/</wfw:commentRss>
 		<slash:comments>2</slash:comments>

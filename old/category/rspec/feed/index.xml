@@ -1,0 +1,168 @@
+ <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>RSpec &#8211; Red Panthers</title>
+	<atom:link href="/category/rspec/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description>Experts in Ruby on Rails Development</description>
+	<lastBuildDate>Fri, 01 Sep 2017 09:24:27 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.7</generator>
+
+<image>
+	<url>/wp-content/uploads/2017/12/rp-logo.png</url>
+	<title>RSpec &#8211; Red Panthers</title>
+	<link>/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>How we made our rspec test suite to run 2x faster</title>
+		<link>/made-rspec-test-suite-run-2x-faster/</link>
+				<comments>/made-rspec-test-suite-run-2x-faster/#comments</comments>
+				<pubDate>Fri, 01 Sep 2017 09:24:27 +0000</pubDate>
+		<dc:creator><![CDATA[tony]]></dc:creator>
+				<category><![CDATA[Rails]]></category>
+		<category><![CDATA[RSpec]]></category>
+		<category><![CDATA[Ruby]]></category>
+		<category><![CDATA[testing]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3040</guid>
+				<description><![CDATA[<p>&#160; &#8220;Why on earth is my test suite taking so long to run?&#8221; If you are a developer, you might have asked this question at least once to yourself. So did we, our rails project&#8217;s test suite was taking a good 1 hour 30 minutes to run and we wanted to improve that time so&#8230;</p>
+<p>The post <a rel="nofollow" href="/made-rspec-test-suite-run-2x-faster/">How we made our rspec test suite to run 2x faster</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p>&nbsp;</p>
+<p>&#8220;<i>Why on earth is my test suite taking so long to run?</i>&#8221;</p>
+<p>If you are a developer, you might have asked this question at least once to yourself. So did we, our rails project&#8217;s test suite was taking a good 1 hour 30 minutes to run and we wanted to improve that time so badly that we eventually did exactly that, reducing nearly 1 and half hours to just minutes, and this is how we did it.</p>
+<h2>1. Database independent tests</h2>
+<p>DB operations are often time-consuming and most of the time we can do away with saving objects to the database to run our tests.</p>
+<p>Use test doubles, stubs and mocks instead of creating the real instance of a class and invoking methods on the created instance.</p>
+<div>
+<pre class="crayon-plain-tag">class Student &lt; ActiveRecord::Base
+  .
+  .
+  def name
+    first_name +" "+ last_name
+  end
+end</pre><br />
+Our test case</p>
+</div>
+<div>
+<div>
+<pre class="crayon-plain-tag">describe Student do
+  let (:student) {create(:student, first_name: 'Red', last_name: 'Panther')}
+  it 'should return name' do
+    student.name.should == 'Red Panther'
+  end
+end</pre><br />
+This test can be made faster by replacing</p>
+</div>
+<div>
+<pre class="crayon-plain-tag">let(:student) {create(:student, first_name: 'Red', last_name: 'panther')}</pre><br />
+with</p>
+<div>
+<pre class="crayon-plain-tag">let(:student) {build_stubbed(:student, first_name: 'Red', last_name: 'Panther')</pre></p>
+<h2>2) Use gem group</h2>
+</div>
+<p>Rails preload your gems before running tests. Using gem groups allow rails to load only the environment specific dependencies.</p>
+<div><b>#Gemfile</b></div>
+<div>
+<pre class="crayon-plain-tag">group: production do
+  gem 'activemerchent'
+end
+
+group :test, : development do
+  gem 'capybara'
+  gem 'rspec-rails'
+  gem 'byebug'
+end</pre></p>
+<h2><b>3) Use <code>before(:each)</code> and <code>before(:all)</code> hooks carefully</b></h2>
+</div>
+<p>Since <code>before(:each)</code> runs for every test, be careful what we include inside <code>before(:each)</code> hook. If the code inside <code>before(:each)</code> is slow every single test in your file is going to be slow.</p>
+<p>A workaround would be to refactor the code to have fewer dependencies or move them to a <code>before(:all)</code> block which runs only once.</p>
+<p>Let&#8217;s say you have</p>
+<div>
+<pre class="crayon-plain-tag">before(:each) do
+  @article = create(:article)
+  @author = create(:author)
+end</pre><br />
+moving them to a <code>before(:all)</code> block</p>
+</div>
+<div>
+<pre class="crayon-plain-tag">before(:all) do
+  @article = create(:article)
+  @author = create(:author)
+end</pre><br />
+Should save you some time but with some drawbacks of its own, for example, the objects <code>@article</code> and <code>@author</code> are not recreated for each test as they in <code>before(:all)</code> block which means any test case that changes the attributes of these objects might affect the result of other following tests.</p>
+</div>
+<h2>4. Use <code>build_stubbed</code> Instead of <code>build</code></h2>
+<p>FactoryGirl.build is not suitable when we want our instance to behave as though it is persisted. In this scenario instead of creating a real class instance, we can use <code>build_stubbed</code> which makes the instance to behave as it is persisted by assigning an id.</p><pre class="crayon-plain-tag">FactoryGirl.build_stubbed(:student)</pre><p>Also note that when we build instance using <code> .build</code> it calls .create on the associated models, where as .build_stubbed calls nothing but .build_stubbed also on associated models as well.</p>
+<h2>5. Running tests parallelly</h2>
+<p><a href="https://github.com/grosser/parallel_tests">parallel_tests</a> is a gem that allows us to run tests across multiple CPU cores. A very important thing to take into account when running tests in parallel is to make sure that the tests are independent of each other. Even though parallel_tests uses one database per thread, if there are any shared state between tests that live outside the DB such as Elastic search or Apache solar those dependencies should be taken into account when writing tests.</p>
+<h2>6. Use continuous integration</h2>
+<p>As our test suite grew into 3k test cases, it was no longer viable to run the entire suite on our local machines. That&#8217;s when we felt the urgency to switch to a CI. We chose <a href="https://circleci.com/">Circle CI</a> which supports parallel builds. We split out tests into multiple virtual machines that run parallelly and it was a huge win for us in terms of test times. Our developers wrote the code and pushed to the repo and the CI took care of the rest. Few popular CI tools are</p>
+<p>1) <a href="https://travis-ci.org/">Trvis CI</a><br />
+2) <a href="https://jenkins.io/">Jenkins</a><br />
+3) <a href="https://circleci.com/">CircleCI</a><br />
+4) <a href="https://codeship.com/">Codeship</a></p>
+<p>Automated tests with continuous integration also enhance code quality.</p>
+<h2>7. Database cleaner</h2>
+<p>We observed an increase in speed after tweaking our database_cleaner strategies a little bit.</p>
+<p>To start with, include gem database_cleaner in gemfile.</p>
+<p>Inside a separate file <code>spec/support/database_cleaner.rb</code>,</p>
+</div>
+<div>
+<div id="crayon-597801c40a13b848772980-1" class="crayon-line">
+<pre class="crayon-plain-tag">RSpec.configure do |config|
+ 
+  config.before(:suite) do
+    DatabaseCleaner.clean_with(:truncation)
+  end
+ 
+  config.before(:each) do
+    DatabaseCleaner.strategy = :transaction
+  end
+ 
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+ 
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
+ 
+end</pre></p>
+<ul>
+<li> This will clear the test database out completely before the entire test suite runs.</li>
+<li> Sets the default database cleaning strategy to be transactions, which are very fast.</li>
+<li> <code>DatabaseCleaner.start</code> and <code>DatabaseCleaner.clean</code> hook up database_cleaner when each test begins and ends.</li>
+</ul>
+</div>
+</div>
+</div>
+<h2>References</h2>
+<ul>
+<li><a href="https://github.com/grosser/parallel_tests">https://github.com/grosser/parallel_tests</a></li>
+<li><a href="https://github.com/thoughtbot/factory_girl">https://github.com/thoughtbot/factory_girl</a></li>
+<li><a href="https://circleci.com/">https://circleci.com/</a></li>
+<li><a href="https://github.com/DatabaseCleaner/database_cleaner">https://github.com/DatabaseCleaner/database_cleaner</a></li>
+</ul>
+<div></div>
+<p>The post <a rel="nofollow" href="/made-rspec-test-suite-run-2x-faster/">How we made our rspec test suite to run 2x faster</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/made-rspec-test-suite-run-2x-faster/feed/</wfw:commentRss>
+		<slash:comments>9</slash:comments>
+							</item>
+	</channel>
+</rss>

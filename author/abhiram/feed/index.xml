@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>abhiram &#8211; beta.redpanthers.co</title>
+	<atom:link href="/author/abhiram/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description>Red Panthers - Experts in Ruby on Rails, System Design and Vue.js</description>
+	<lastBuildDate>Mon, 29 Apr 2019 11:28:12 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.7</generator>
+	<item>
+		<title>Stitching it all together: Rails, PostgreSQL, Webpack, Gitlab-CI, Docker</title>
+		<link>/stitching-it-all-together-rails-postgresql-webpack-gitlab-ci-docker/</link>
+				<pubDate>Wed, 21 Mar 2018 09:25:36 +0000</pubDate>
+		<dc:creator><![CDATA[abhiram]]></dc:creator>
+				<category><![CDATA[Marketing]]></category>
+
+		<guid isPermaLink="false">http://redpanthers.co/?p=16214</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[Setting up a continuous integration and deployment pipeline for a <strong>Rails/Webpacker</strong> project using <strong>GitLab CI</strong> and <strong>Docker </strong>can be a daunting task. This article explains how to set up CI for your project using GitLab CI.
+
+
+<p id="d3e2" class="graf graf--p graf-after--p">Here is what we&#8217;ll be setting up:</p>
+
+
+
+
+<ul>
+ 	
+
+<li class="graf graf--p graf-after--p">Set up your own Runner on Docker</li>
+
+
+ 	
+
+<li>Configure your .gitlab-ci.yml</li>
+
+
+ 	
+
+<li>Setting up a PostgreSQL for running test</li>
+
+
+</ul>
+
+
+
+
+<h2>Step 1: Set up your own Runner on Docker</h2>
+
+
+GitLab has built-in continuous integration to allow you to run a number of tasks as you prepare to deploy your software. Typical tasks might be to build a software package or to run tests as specified in a YAML file. These tasks need to run by something, and in GitLab this something is called a Runner; an application that processes builds.
+Let&#8217;s use the Docker executor since it has the most supported features according to the GitLab Runner executor compatibility chart. For this, we will need to install Docker on the server that will host the GitLab Runner. Fortunately, DigitalOcean has a one-click image with Docker pre-installed on Ubuntu 16.04.
+
+
+<h3 id="create-a-droplet">Create a droplet:</h3>
+
+
+Login to DigitalOcean and from the Control Panel, click on the &#8220;Create&#8221; button on the page.
+Under the &#8220;Choose an image&#8221; section, select the &#8220;One-click Apps&#8221; tab and click the &#8220;Docker&#8221; image (the version might differ).
+The next step is to choose the droplet size and the region you would like to use. You are advised to use the <strong>1 GB </strong>/<strong>1 CPU </strong>droplet for quicker builds.
+Choose the datacenter region and your SSH Keys(*Optional) and click the &#8220;Create&#8221; button to complete your droplet creation.
+
+
+<h3>Install the GitLab Runner:</h3>
+
+
+First, login to the new droplet via SSH and verify that Docker is installed.
+To verify the Docker, run
+
+
+<pre class="nums:false lang:default decode:true">docker info</pre>
+
+
+This should show a bunch of information about the Docker version, the number of images and containers, etc. With that set, we&#8217;re ready to install GitLab Runner.
+GitLab provides a repository where you can easily install and update GitLab Runner. The supported distros as Debian, Ubuntu and CentOS. run
+
+
+<pre class="nums:false lang:default decode:true">curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh | sudo
+bash
+</pre>
+
+
+Now let&#8217;s install GitLab Runner, run
+
+
+<pre class="nums:false lang:default decode:true">sudo apt-get install gitlab-runner</pre>
+
+
+And verify it&#8217;s installed, run
+
+
+<pre class="nums:false lang:default decode:true">gitlab-runner --version</pre>
+
+
+This should show a bunch of information about the gitlab-runner. And now, we&#8217;re now ready to start using it.
+
+
+<h3 id="register-the-gitlab-runner">Register the GitLab Runner:</h3>
+
+
+Registering a Runner is the process of tying it with a specific GitLab project. Each project on GitLab has a unique token that is used by the Runner in order to be able to talk to GitLab via its API. To register a Runner we first need to know the project&#8217;s token. Go to your newly created project or pick one that already uses GitLab.com&#8217;s shared Runners. Navigate to the project&#8217;s <strong>Settings &gt; Runners </strong>and notice that the shared Runners are enabled. In the left side you get detailed information on the steps needed to register a new Runner.
+Now let&#8217;s register the runner, run
+
+
+<pre class="nums:false lang:default decode:true">sudo gitlab-runner register</pre>
+
+
+This will be asked the following information needed to register a new Runner.
+
+
+<ul>
+ 	
+
+<li style="list-style-type: none;">
+
+
+<ul>
+ 	
+
+<li>The gitlab-ci coordinator URL</li>
+
+
+ 	
+
+<li>The gitlab-ci token for this</li>
+
+
+ 	
+
+<li>The gitlab-ci description for this runner</li>
+
+
+ 	
+
+<li>The gitlab-ci tags for this runner (comma separated)</li>
+
+
+ 	
+
+<li>Whether to run untagged jobs [true/false]</li>
+
+
+ 	
+
+<li>Whether to lock Runner to current project [true/false]</li>
+
+
+ 	
+
+<li>Please enter the executor: ssh, docker+machine, docker-ssh+machine, kubernetes, docker, parallels, virtualbox, docker-ssh, shell: docker</li>
+
+
+ 	
+
+<li>Please enter the Docker image (eg. ruby:2.1):</li>
+
+
+</ul>
+
+
+</li>
+
+
+</ul>
+
+
+Once answered all questions, you can verify that the Runner is registered, run
+
+
+<pre class="nums:false lang:default decode:true">sudo gitlab-runner list</pre>
+
+
+This should show a list of configured runners . Now if you head back in your project&#8217;s <strong>Settings &gt; Runners </strong>you will see that the Runner appeared in the list. Now you have successfully set up your own runner on docker.
+
+
+<h2>Step 2: Configure your .gitlab-ci.yml</h2>
+
+
+GitLab CI uses a YAML file (.<strong>gitlab-ci-ym</strong>l) to define the project configuration, which includes a definition of all the stages that need to be run after a CI/CD pipeline is triggered in response to a git push/merge.
+If you are using Webpack for managing your Front-end dependencies, choosing a <strong>ruby-node </strong>Docker image over a plain <strong>ruby </strong>image will spare you from setting up Nodejs and other dependencies manually in <span style="font-size: 12.8px; background-color: #d2eeca;">`before_script`</span>.
+
+
+<pre class="nums:false lang:yaml decode:true ">image: starefossen/ruby-node:latest
+before_script:
+  - bundle install
+  - yarn install
+job1:
+  script: "execute-script-for-job1"</pre>
+
+
+
+
+<h2>Step 3: Setting up a PostgreSQL for running test</h2>
+
+
+The GitLab docs were helpful for configuring the CI for you test suit, but switching the database to <strong>PostgreSQL</strong> required a couple changes in <strong>.gitlab-ci.yml</strong> file and also you have to add a new file <strong>config/database.yml.gitlab</strong> in your project, which stores the CI database connection info. It should match the info you have specified in the <strong>variables</strong> section of the <strong>.gitlab-ci.yml</strong> file.
+Here&#8217;s a complete <strong>.gitlab-ci.yml</strong> that installs ruby 2.4 and node 8.9, the required packages, sets up a blank test database, then runs your test suit.
+
+
+<pre class="nums:false lang:yaml decode:true">image: starefossen/ruby-node:latest
+services:
+  - postgres:latest
+variables:
+  POSTGRES_DB: test_db
+  POSTGRES_USER: username
+  POSTGRES_PASSWORD: password
+before_script:
+  - RAILS_ENV=test bundle install --jobs $(nproc) "${FLAGS[@]}"
+  - cp config/database.yml.gitlab config/database.yml
+  - RAILS_ENV=test bundle exec rake db:create db:schema:load
+  - yarn install
+test:
+  script: "execute-script-for-job1"</pre>
+
+
+And your <strong>config/database.yml.gitlab</strong> should be looks like ,
+
+
+<pre class="nums:false lang:yaml decode:true">test:
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  timeout: 1000
+  host: postgres
+  username: username
+  password: password
+  database: test_db</pre>
+
+
+That&#8217;s it!
+
+
+<h2 id="60dd" class="graf graf--h4 graf-after--p">Summary</h2>
+
+
+That&#8217;s it! You now have CI running your test suite and code analysis for your Rails /Webpacker project.
+Here&#8217;s the complete .gitlab-ci.yml file for running the unit test for front-end components using <strong>Jest + Enzyme</strong>, feature test using <strong>Cucumber</strong> and <strong>Minitest</strong> for your rails integration test.
+
+
+<pre class="nums:false lang:yaml decode:true ">image: starefossen/ruby-node:latest
+cache:
+  paths:
+    - node_modules/
+    - .yarn
+services:
+  - postgres:latest
+variables:
+  POSTGRES_DB: test_db
+  POSTGRES_USER: runner
+  POSTGRES_PASSWORD: ""
+before_script:
+  - RAILS_ENV=test bundle install --jobs $(nproc) "${FLAGS[@]}"
+  - cp config/database.yml.gitlab config/database.yml
+  - RAILS_ENV=test bundle exec rake db:create db:schema:load
+  - yarn install
+test:
+  script:
+  - bundle exec rake test
+  - yarn jest
+  - bundle exec cucumber</pre>
+
+
+Happy coding :-)]]&gt;		</p>
+]]></content:encoded>
+										</item>
+	</channel>
+</rss>

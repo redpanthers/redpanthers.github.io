@@ -1,4 +1,4 @@
- <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
 	xmlns:content="http://purl.org/rss/1.0/modules/content/"
 	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -8,10 +8,10 @@
 	>
 
 <channel>
-	<title>VueJS &#8211; Red Panthers</title>
+	<title>VueJS &#8211; beta.redpanthers.co</title>
 	<atom:link href="/category/vuejs/feed/" rel="self" type="application/rss+xml" />
 	<link>/</link>
-	<description>Experts in Ruby on Rails Development</description>
+	<description>Red Panthers - Experts in Ruby on Rails, System Design and Vue.js</description>
 	<lastBuildDate>Wed, 13 Sep 2017 08:20:06 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
@@ -19,31 +19,29 @@
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
 	<generator>https://wordpress.org/?v=5.2.7</generator>
-
-<image>
-	<url>/wp-content/uploads/2017/12/rp-logo.png</url>
-	<title>VueJS &#8211; Red Panthers</title>
-	<link>/</link>
-	<width>32</width>
-	<height>32</height>
-</image> 
 	<item>
 		<title>Event Listeners in VueJS</title>
 		<link>/event-listeners-in-vuejs/</link>
-				<comments>/event-listeners-in-vuejs/#respond</comments>
 				<pubDate>Wed, 13 Sep 2017 08:20:06 +0000</pubDate>
 		<dc:creator><![CDATA[reshma]]></dc:creator>
 				<category><![CDATA[Javascript]]></category>
 		<category><![CDATA[VueJS]]></category>
 
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3586</guid>
-				<description><![CDATA[<p>Vue.js is a Javascript framework for user interface. There are many directives in Vuejs. A directive’s job is to reactively apply special behavior to the DOM when the value of its expression changes. You can use the v-on directive to bind event listeners to DOM events. [crayon-5f53f02d7a30d543269739/] [crayon-5f53f02d7a316113742608/] We are binding a click event listener to a&#8230;</p>
-<p>The post <a rel="nofollow" href="/event-listeners-in-vuejs/">Event Listeners in VueJS</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
-]]></description>
-								<content:encoded><![CDATA[<p>Vue.js is a Javascript framework for user interface. There are many directives in Vuejs. A directive’s job is to reactively apply special behavior to the DOM when the value of its expression changes. You can use the <code>v-on</code> directive to bind event listeners to DOM events.</p><pre class="crayon-plain-tag">&lt;div id="example"&gt;
+		<guid isPermaLink="false">https://redpanthers.co/?p=3586</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[Vue.js is a Javascript framework for user interface. There are many directives in Vuejs. A directive’s job is to reactively apply special behavior to the DOM when the value of its expression changes. You can use the <code>v-on</code> directive to bind event listeners to DOM events.
+
+
+<pre class="lang:default decode:true">&lt;div id="example"&gt;
   &lt;button v-on:click="clickme"&gt;Add 1&lt;/button&gt;
   &lt;p&gt;The button above has been clicked {{ counter }} times.&lt;/p&gt;
-&lt;/div&gt;</pre><p></p><pre class="crayon-plain-tag">var example1 = new Vue({
+&lt;/div&gt;</pre>
+
+
+
+
+<pre class="lang:default decode:true">var example1 = new Vue({
   el: '#example',
   data: {
     counter: 0
@@ -53,11 +51,22 @@
      this.counter += 1;
     }
   }
-})</pre><p>We are binding a click event listener to a method named <code>clickMe</code>. Here’s how to define that method in our Vue instance. Here we have a <em>counter</em> variable initialized to zero. Inside the method, we are incrementing the value of the counter. So for each click on the button, the method is invoked. You will get the <a href="https://jsfiddle.net/reshma_shenoy/61uprqpa/" target="_blank" rel="noopener">code here</a>.</p><pre class="crayon-plain-tag">&lt;div id="example2"&gt;
+})</pre>
+
+
+We are binding a click event listener to a method named <code>clickMe</code>. Here’s how to define that method in our Vue instance. Here we have a <em>counter</em> variable initialized to zero. Inside the method, we are incrementing the value of the counter. So for each click on the button, the method is invoked. You will get the <a href="https://jsfiddle.net/reshma_shenoy/61uprqpa/" target="_blank" rel="noopener noreferrer">code here</a>.
+
+
+<pre class="lang:default decode:true">&lt;div id="example2"&gt;
   &lt;button v-on:click="countUp"&gt;Count Up&lt;/button&gt;
   &lt;button v-on:click="countDown"&gt;Count Down&lt;/button&gt;
   &lt;h1&gt;Count: {{ counter }}&lt;/h1&gt;
-&lt;/div&gt;</pre><p></p><pre class="crayon-plain-tag">var example2 = new Vue({
+&lt;/div&gt;</pre>
+
+
+
+
+<pre class="lang:default decode:true">var example2 = new Vue({
   el: '#example2',
   data: {
     counter: 0
@@ -70,17 +79,41 @@
     this.counter -= 1;
    }
   }
-})</pre><p>Here in this example, we are using two button and methods. One for incrementing the count and other for decrementing. You can see <a href="https://jsfiddle.net/reshma_shenoy/61uprqpa/1/">code here.</a></p>
-<p><strong>Note</strong> :-</p><pre class="crayon-plain-tag">Instead of using "v-on:click", we have a shortcut. We can use "@click".</pre><p>For example,</p><pre class="crayon-plain-tag">&lt;div id="example2"&gt;
+})</pre>
+
+
+Here in this example, we are using two button and methods. One for incrementing the count and other for decrementing. You can see <a href="https://jsfiddle.net/reshma_shenoy/61uprqpa/1/">code here.</a>
+<strong>Note</strong> :-
+
+
+<pre class="lang:default decode:true ">Instead of using "v-on:click", we have a shortcut. We can use "@click".</pre>
+
+
+For example,
+
+
+<pre class="lang:default decode:true">&lt;div id="example2"&gt;
   &lt;button @click="countUp"&gt;Count Up&lt;/button&gt;
   &lt;button @click="countDown"&gt;Count Down&lt;/button&gt;
   &lt;h1&gt;Count: {{ counter }}&lt;/h1&gt;
-&lt;/div&gt;</pre><p>This will give same result as before.</p>
-<p>We can see another example. Here we have an input field where we type the url which is bound to the Js using <code>v-model</code>.  We have a button with click event listener which is bound to the method <code>humanizeUrl</code>. We have two urls, <em>url</em> and <em>cleanUrl. url  </em>is what we type in the input field and <em>cleanUrl</em>  is getting by replacing the <em>url</em> using regular expression. Regular expression is not a Vue.js thing. Its a universal programming format. We are saving the domain name of url in the cleanUrl. Thus we will get the value on cleanUrl in the view. You will get the <a href="https://jsfiddle.net/reshma_shenoy/61uprqpa/5/" target="_blank" rel="noopener">code here</a>.</p><pre class="crayon-plain-tag">&lt;div id="example"&gt;
+&lt;/div&gt;
+</pre>
+
+
+This will give same result as before.
+We can see another example. Here we have an input field where we type the url which is bound to the Js using <code>v-model</code>.  We have a button with click event listener which is bound to the method <code>humanizeUrl</code>. We have two urls, <em>url</em> and <em>cleanUrl. url  </em>is what we type in the input field and <em>cleanUrl</em>  is getting by replacing the <em>url</em> using regular expression. Regular expression is not a Vue.js thing. Its a universal programming format. We are saving the domain name of url in the cleanUrl. Thus we will get the value on cleanUrl in the view. You will get the <a href="https://jsfiddle.net/reshma_shenoy/61uprqpa/5/" target="_blank" rel="noopener noreferrer">code here</a>.
+
+
+<pre class="lang:default decode:true">&lt;div id="example"&gt;
   Visit : &lt;a href="#"&gt;{{cleanUrl}}&lt;/a&gt;&lt;br&gt;&lt;br&gt;
   &lt;input type="text" v-model="url" placeholder="Type your Url"&gt;
   &lt;button @click="humanizeUrl"&gt;humanizeUrl&lt;/button&gt;
-&lt;/div&gt;</pre><p></p><pre class="crayon-plain-tag">var example1 = new Vue({
+&lt;/div&gt;</pre>
+
+
+
+
+<pre class="lang:default decode:true">var example1 = new Vue({
   el: '#example',
   data: {
     url: "",
@@ -91,19 +124,29 @@
       this.cleanUrl = this.url.replace(/^https?:\/\//, '').replace(/\/$/, '')
     }
   }
-})</pre><p>But here you won&#8217;t redirect to the url when we click on it. That is we have to get the url. So we need to bind the <code>href</code>. You can use <code>v-bind</code> directive for this.</p><pre class="crayon-plain-tag">&lt;div id="example"&gt;
+})</pre>
+
+
+But here you won&#8217;t redirect to the url when we click on it. That is we have to get the url. So we need to bind the <code>href</code>. You can use <code>v-bind</code> directive for this.
+
+
+<pre class="lang:default decode:true ">&lt;div id="example"&gt;
   Visit : &lt;a v-bind:href="url"&gt;{{cleanUrl}}&lt;/a&gt;&lt;br&gt;&lt;br&gt;
   &lt;input type="text" v-model="url" placeholder="Type your Url"&gt;
   &lt;button @click="humanizeUrl"&gt;humanizeUrl&lt;/button&gt;
-&lt;/div&gt;</pre><p>Here is the <a href="https://jsfiddle.net/reshma_shenoy/wre27pre/1/" target="_blank" rel="noopener">Demo</a>. So the url will redirect to the correct page. You can try out these examples to get an idea about event listeners in Vue.js.</p>
+&lt;/div&gt;</pre>
+
+
+Here is the <a href="https://jsfiddle.net/reshma_shenoy/wre27pre/1/" target="_blank" rel="noopener noreferrer">Demo</a>. So the url will redirect to the correct page. You can try out these examples to get an idea about event listeners in Vue.js.
+
+
 <h2>Reference</h2>
-<p><a href="https://vuejs.org/v2/guide/events.html">https://vuejs.org/v2/guide/events.html</a></p>
-<p><a href="https://www.youtube.com/watch?v=4PXXQzME5no">https://www.youtube.com/watch?v=4PXXQzME5no</a></p>
-<p>The post <a rel="nofollow" href="/event-listeners-in-vuejs/">Event Listeners in VueJS</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+
+
+<a href="https://vuejs.org/v2/guide/events.html">https://vuejs.org/v2/guide/events.html</a>
+<a href="https://www.youtube.com/watch?v=4PXXQzME5no">https://www.youtube.com/watch?v=4PXXQzME5no</a>]]&gt;		</p>
 ]]></content:encoded>
-							<wfw:commentRss>/event-listeners-in-vuejs/feed/</wfw:commentRss>
-		<slash:comments>0</slash:comments>
-							</item>
+										</item>
 		<item>
 		<title>Two way binding in Vue.js</title>
 		<link>/two-way-binding-in-vue-js/</link>
@@ -113,40 +156,73 @@
 				<category><![CDATA[Javascript]]></category>
 		<category><![CDATA[VueJS]]></category>
 
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3499</guid>
-				<description><![CDATA[<p>Vue.js is a JavaScript framework getting popular considering its simplicity praised a lot these days. There are a lot of JavaScript frameworks among which React and Angular are popular among web developers. Vue.js is much flexible and less opinionated framework than Angular. It&#8217;s similar to React but much simpler. Vue.js supports Two-way binding. That is it keeps your data&#8230;</p>
-<p>The post <a rel="nofollow" href="/two-way-binding-in-vue-js/">Two way binding in Vue.js</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
-]]></description>
-								<content:encoded><![CDATA[<p><strong>Vue.js</strong> is a JavaScript framework getting popular considering its simplicity praised a lot these days. There are a lot of JavaScript frameworks among which React and Angular are popular among web developers. Vue.js<em> </em>is much flexible and less opinionated framework than Angular. It&#8217;s similar to React but much simpler. Vue.js supports <strong>Two-way binding.</strong> That is it keeps your data in sync with your DOM without you having to do anything. Two-way binding in Vue.js is MVVM pattern. That is <strong>M</strong>odel <strong>V</strong>iew <strong>V</strong>iew <strong>M</strong>odel. Like MVC, Model is the data object and view is what is displayed up. The Model can tie to the View and the View can tie back to Model.</p>
-<p>In one way binding, JS variable is bound to the DOM.</p><pre class="crayon-plain-tag">&lt;div id="app"&gt;
+		<guid isPermaLink="false">https://redpanthers.co/?p=3499</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[<strong>Vue.js</strong> is a JavaScript framework getting popular considering its simplicity praised a lot these days. There are a lot of JavaScript frameworks among which React and Angular are popular among web developers. Vue.js<em> </em>is much flexible and less opinionated framework than Angular. It&#8217;s similar to React but much simpler. Vue.js supports <strong>Two-way binding.</strong> That is it keeps your data in sync with your DOM without you having to do anything. Two-way binding in Vue.js is MVVM pattern. That is <strong>M</strong>odel <strong>V</strong>iew <strong>V</strong>iew <strong>M</strong>odel. Like MVC, Model is the data object and view is what is displayed up. The Model can tie to the View and the View can tie back to Model.
+In one way binding, JS variable is bound to the DOM.
+
+
+<pre class="lang:default decode:true ">&lt;div id="app"&gt;
   &lt;span&gt;The message is: {{message}}&lt;/span&gt;
-&lt;/div&gt;</pre><p></p><pre class="crayon-plain-tag">new Vue({
+&lt;/div&gt;
+</pre>
+
+
+
+
+<pre class="lang:js decode:true">new Vue({
  el: '#app',
  data: {
    message: 'vue js one way binding'
  }
-});</pre><p>Here when you change the data in JS, it will also update in the DOM. So you will get the updated message on the page. You can get the basic <a href="https://jsfiddle.net/Ldh3r8bx/1/" target="_blank" rel="noopener">code here</a>.</p>
-<p>But in two way binding, Js variable can be bound to the DOM and data is also bound from the DOM back to JS.</p><pre class="crayon-plain-tag">&lt;div id="app"&gt;
+});</pre>
+
+
+Here when you change the data in JS, it will also update in the DOM. So you will get the updated message on the page. You can get the basic <a href="https://jsfiddle.net/Ldh3r8bx/1/" target="_blank" rel="noopener noreferrer">code here</a>.
+But in two way binding, Js variable can be bound to the DOM and data is also bound from the DOM back to JS.
+
+
+<pre class="lang:default decode:true ">&lt;div id="app"&gt;
   &lt;span&gt;{{message}}&lt;/span&gt;&lt;br&gt;
   &lt;input v-model="message"&gt;
-&lt;/div&gt;</pre><p></p><pre class="crayon-plain-tag">new Vue({
+&lt;/div&gt;</pre>
+
+
+
+
+<pre class="lang:default decode:true ">new Vue({
   el: '#app',
   data: {
     message: 'vue js two way binding'
   }
-});</pre><p>Now, if you type anything into your <em class="markup--em markup--p-em">input,</em> your JS variable is updated with the change, which in turn updates your <em class="markup--em markup--p-em">span</em>. You can get the <a href="https://jsfiddle.net/Ldh3r8bx/2/" target="_blank" rel="noopener">code here</a>.</p>
+});</pre>
+
+
+Now, if you type anything into your <em class="markup--em markup--p-em">input,</em> your JS variable is updated with the change, which in turn updates your <em class="markup--em markup--p-em">span</em>. You can get the <a href="https://jsfiddle.net/Ldh3r8bx/2/" target="_blank" rel="noopener noreferrer">code here</a>.
+
+
 <h2>Directive</h2>
-<p>The attribute used with input <code>v-model</code>is a vue directive. We have to assign data model with the directive. A directive’s job is to reactively apply special behavior to the DOM when the value of its expression changes. In the case of v-model, it binds the element to one of the data properties that Vue is watching. Vue has many directives. Another one is <code>v-on</code> which binds an element to an event. For example, v-on<em>:</em> <em>click</em>  is to bind element when clicking on it.</p>
-<p>Working with html forms is a breeze in Vue. This is where two-way binding shines. It does not bring any issues  even in complex cases, though watchers may remind of Angular 1 at first glance. One-way flow with callback passing is always at your service when you do your components splitting.</p>
+
+
+The attribute used with input <code>v-model</code>is a vue directive. We have to assign data model with the directive. A directive’s job is to reactively apply special behavior to the DOM when the value of its expression changes. In the case of v-model, it binds the element to one of the data properties that Vue is watching. Vue has many directives. Another one is <code>v-on</code> which binds an element to an event. For example, v-on<em>:</em> <em>click</em>  is to bind element when clicking on it.
+Working with html forms is a breeze in Vue. This is where two-way binding shines. It does not bring any issues  even in complex cases, though watchers may remind of Angular 1 at first glance. One-way flow with callback passing is always at your service when you do your components splitting.
+
+
 <h2>Two way binding with JQuery</h2>
-<p>You can also do two-way binding in jquery or plain JS. But you have to use some event listeners when there occurs any change in the input. You have to make your own logic to update DOM when there are any changes in the elements. You can see the <a href="https://jsfiddle.net/Ldh3r8bx/3/" target="_blank" rel="noopener">example here</a>.</p>
-<p>You can achieve reactive data binding in jQuery, but it’s just a sideshow. In Vue, it’s the main event. Hope you will try it.</p>
-<p>Happy Coding!</p>
+
+
+You can also do two-way binding in jquery or plain JS. But you have to use some event listeners when there occurs any change in the input. You have to make your own logic to update DOM when there are any changes in the elements. You can see the <a href="https://jsfiddle.net/Ldh3r8bx/3/" target="_blank" rel="noopener noreferrer">example here</a>.
+You can achieve reactive data binding in jQuery, but it’s just a sideshow. In Vue, it’s the main event. Hope you will try it.
+Happy Coding!
+
+
 <h2>Reference</h2>
-<p><a href="https://vuejs.org/">https://vuejs.org/</a></p>
-<p><a href="https://vuejs.org/v2/guide/forms.html">https://vuejs.org/v2/guide/forms.html</a></p>
-<p><a href="https://www.youtube.com/watch?v=nEdsu6heW9o">https://www.youtube.com/watch?v=nEdsu6heW9o</a></p>
-<p>The post <a rel="nofollow" href="/two-way-binding-in-vue-js/">Two way binding in Vue.js</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+
+
+<a href="https://vuejs.org/">https://vuejs.org/</a>
+<a href="https://vuejs.org/v2/guide/forms.html">https://vuejs.org/v2/guide/forms.html</a>
+<a href="https://www.youtube.com/watch?v=nEdsu6heW9o">https://www.youtube.com/watch?v=nEdsu6heW9o</a>]]&gt;		</p>
 ]]></content:encoded>
 							<wfw:commentRss>/two-way-binding-in-vue-js/feed/</wfw:commentRss>
 		<slash:comments>1</slash:comments>
@@ -154,85 +230,130 @@
 		<item>
 		<title>Getting Started with Vue.js</title>
 		<link>/getting-started-vuejs/</link>
-				<comments>/getting-started-vuejs/#respond</comments>
 				<pubDate>Mon, 28 Aug 2017 12:54:43 +0000</pubDate>
 		<dc:creator><![CDATA[reshma]]></dc:creator>
 				<category><![CDATA[Beginners]]></category>
 		<category><![CDATA[Javascript]]></category>
 		<category><![CDATA[VueJS]]></category>
 
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=2011</guid>
-				<description><![CDATA[<p>&#160; What is Vue.js? Vue.js is yet another JavaScript framework getting popular considering its simplicity praised a lot these days. There are a lot of JavaScript frameworks among which React and Angular are popular among web developers. Vue.js pronounced as &#8220;view.js&#8221;  is a much flexible and less opinionated framework than Angular. It&#8217;s similar to React but&#8230;</p>
-<p>The post <a rel="nofollow" href="/getting-started-vuejs/">Getting Started with Vue.js</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
-]]></description>
-								<content:encoded><![CDATA[<p>&nbsp;</p>
+		<guid isPermaLink="false">https://redpanthers.co/?p=2011</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[&nbsp;
+
+
 <h2><a href="https://blog.redpanthers.co/wp-content/uploads/2017/02/vue-2.jpg"><img class="aligncenter wp-image-3224 size-large" src="https://blog.redpanthers.co/wp-content/uploads/2017/02/vue-2-1024x512.jpg" alt="Vue.js" width="1024" height="512" /></a></h2>
+
+
+
+
 <h2>What is Vue.js?</h2>
-<p><strong>Vue.js</strong> is yet another JavaScript framework getting popular considering its simplicity praised a lot these days. There are a lot of JavaScript frameworks among which React and Angular are popular among web developers. Vue.js pronounced as <em>&#8220;view.js&#8221;  </em>is a much flexible and less opinionated framework than Angular. It&#8217;s similar to React but much simpler.</p>
-<p>Vue.js gives you more freedom in designing your app, unlike Angular. So that you are not forced to do everything in their way. It can be adapted very easily to your existing application. You don&#8217;t need to know <a href="https://jsx.github.io/">JSX</a>, unlike React. All you have to do is to drop the link into your HTML page header and you are up and ready.</p>
+
+
+<strong>Vue.js</strong> is yet another JavaScript framework getting popular considering its simplicity praised a lot these days. There are a lot of JavaScript frameworks among which React and Angular are popular among web developers. Vue.js pronounced as <em>&#8220;view.js&#8221;  </em>is a much flexible and less opinionated framework than Angular. It&#8217;s similar to React but much simpler.
+Vue.js gives you more freedom in designing your app, unlike Angular. So that you are not forced to do everything in their way. It can be adapted very easily to your existing application. You don&#8217;t need to know <a href="https://jsx.github.io/">JSX</a>, unlike React. All you have to do is to drop the link into your HTML page header and you are up and ready.
+
+
 <h2>Overview</h2>
-<p><a href="https://blog.redpanthers.co/wp-content/uploads/2017/02/Screen-Shot-2017-08-28-at-1.10.07-pm.png"><img class="alignnone wp-image-3352" src="https://blog.redpanthers.co/wp-content/uploads/2017/02/Screen-Shot-2017-08-28-at-1.10.07-pm-300x219.png" alt="" width="456" height="333" /></a></p>
-<p>This is the basic folder structure.</p>
+
+
+<a href="https://blog.redpanthers.co/wp-content/uploads/2017/02/Screen-Shot-2017-08-28-at-1.10.07-pm.png"><img class="alignnone wp-image-3352" src="https://blog.redpanthers.co/wp-content/uploads/2017/02/Screen-Shot-2017-08-28-at-1.10.07-pm-300x219.png" alt="" width="456" height="333" /></a>
+This is the basic folder structure.
+
+
 <h4>&#8211; index.html</h4>
-<p>This is the main HTML template for your application. You can link your static assets inside the <strong>head</strong> tag while your processed assets will be auto injected in the <strong>body</strong>.</p><pre class="crayon-plain-tag">&lt;!DOCTYPE html&gt;
+
+
+This is the main HTML template for your application. You can link your static assets inside the <strong>head</strong> tag while your processed assets will be auto injected in the <strong>body</strong>.
+
+
+<pre class="theme:prism-like lang:default decode:true">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
   &lt;head&gt;
     &lt;link rel="shortcut icon" type="image/png" href="/assets/images/favicon.png"/&gt;
   &lt;/head&gt;
-
   &lt;body&gt;
     &lt;div id="app"&gt;&lt;/div&gt;
   &lt;/body&gt;
-&lt;/html&gt;</pre><p></p>
+&lt;/html&gt;</pre>
+
+
+
+
 <h4>&#8211; src/router/index.js</h4>
-<p>This is the file which initiates <a href="https://router.vuejs.org/en/">vue-router</a> with the given components.</p><pre class="crayon-plain-tag">import Vue from 'vue';
+
+
+This is the file which initiates <a href="https://router.vuejs.org/en/">vue-router</a> with the given components.
+
+
+<pre class="theme:prism-like lang:js decode:true">import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Hello from '@/components/Hello';
-
 Vue.use(VueRouter);
-
 const routes = [
   { path: '/', name: 'Hello', component: Hello },
 ];
-
 /* eslint-disable no-new */
 export default new VueRouter({
   routes,
   mode: 'history',
-});</pre><p></p>
+});</pre>
+
+
+
+
 <h4>&#8211; src/App.vue</h4>
-<p>This is the application’s main <a href="https://vuejs.org/">Vue.js</a> component which is basically just a wrapper for <a href="https://router.vuejs.org/en/">vue-router</a>.</p><pre class="crayon-plain-tag">&lt;template&gt;
+
+
+This is the application’s main <a href="https://vuejs.org/">Vue.js</a> component which is basically just a wrapper for <a href="https://router.vuejs.org/en/">vue-router</a>.
+
+
+<pre class="theme:prism-like lang:default decode:true">&lt;template&gt;
   &lt;div id="app"&gt;
     &lt;router-view&gt;&lt;/router-view&gt;
   &lt;/div&gt;
 &lt;/template&gt;
-
 &lt;script&gt;
 export default {};
-&lt;/script&gt;</pre><p></p>
+&lt;/script&gt;</pre>
+
+
+
+
 <h4>&#8211; src/main.js</h4>
-<p>This is the application entry file where you initiate your <a href="https://vuejs.org/">Vue.js</a> application with a router, store and the main <strong>App.vue </strong>component.</p><pre class="crayon-plain-tag">import Vue from 'vue';
+
+
+This is the application entry file where you initiate your <a href="https://vuejs.org/">Vue.js</a> application with a router, store and the main <strong>App.vue </strong>component.
+
+
+<pre class="theme:prism-like lang:default decode:true">import Vue from 'vue';
 import router from '@/router';
 import store from '@/store';
 import App from '@/App';
-
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
   store,
   render: h =&gt; h(App),
-});</pre><p></p>
+});</pre>
+
+
+
+
 <h4>&#8211; src/components/Hello.vue</h4>
-<p>This file represents a sample <a href="https://vuejs.org/">Vue.js</a> component which will be used by the <a href="https://router.vuejs.org/en/">vue-router</a>. Please note that Hello module’s state is being used in here.</p><pre class="crayon-plain-tag">&lt;template&gt;
+
+
+This file represents a sample <a href="https://vuejs.org/">Vue.js</a> component which will be used by the <a href="https://router.vuejs.org/en/">vue-router</a>. Please note that Hello module’s state is being used in here.
+
+
+<pre class="theme:prism-like lang:default decode:true">&lt;template&gt;
   &lt;div class="hello"&gt;
     &lt;h1&gt;{{ message }}&lt;/h1&gt;
   &lt;/div&gt;
 &lt;/template&gt;
-
 &lt;script&gt;
 import { mapState } from 'vuex';
-
 export default {
   data() {
     return {};
@@ -241,32 +362,74 @@ export default {
     message: state =&gt; state.Hello.message,
   }),
 };
-&lt;/script&gt;</pre><p></p>
+&lt;/script&gt;</pre>
+
+
+
+
 <h2>Getting Started</h2>
-<p>The simplest way is to include this in your file.</p><pre class="crayon-plain-tag">&lt;script src="https://unpkg.com/vue"&gt;&lt;/script&gt;</pre><p>You can also download the Vue file and add it in a script tag, or else install it with NPM. It also provides an official CLI called the Vue-cli. You can find more details in the Vue.js <a href="https://vuejs.org/v2/guide/installation.html">Installation Guide</a>.</p>
-<p>Let&#8217;s compare simple JavaScript with a VueJS instance.</p><pre class="crayon-plain-tag">function printText () {
+
+
+The simplest way is to include this in your file.
+
+
+<pre class="theme:prism-like lang:js decode:true">&lt;script src="https://unpkg.com/vue"&gt;&lt;/script&gt;</pre>
+
+
+You can also download the Vue file and add it in a script tag, or else install it with NPM. It also provides an official CLI called the Vue-cli. You can find more details in the Vue.js <a href="https://vuejs.org/v2/guide/installation.html">Installation Guide</a>.
+Let&#8217;s compare simple JavaScript with a VueJS instance.
+
+
+<pre class="theme:prism-like lang:js decode:true">function printText () {
   return 'Hello World!'
 }
-
 // Set some text in jQuery
-$('.element').text(printText())</pre><p>This is what we do when we want to manipulate the text for some element. For the last couple of years, I was writing code like this for a living. But what if the <strong>&#8216;.element&#8217; </strong>get renamed. Your whole JS will break. The binding is broken. We can overcome this in Vue.</p><pre class="crayon-plain-tag">&lt;div class="app"&gt;
+$('.element').text(printText())</pre>
+
+
+This is what we do when we want to manipulate the text for some element. For the last couple of years, I was writing code like this for a living. But what if the <strong>&#8216;.element&#8217; </strong>get renamed. Your whole JS will break. The binding is broken. We can overcome this in Vue.
+
+
+<pre class="theme:prism-like lang:default decode:true">&lt;div class="app"&gt;
   &lt;span class=".element"&gt;
     {{ msg }}
   &lt;/span&gt;
-&lt;/div&gt;</pre><p></p><pre class="crayon-plain-tag">new Vue({
-  el: '.app',
+&lt;/div&gt;</pre>
 
+
+
+
+<pre class="theme:prism-like lang:js decode:true">new Vue({
+  el: '.app',
   data: {
     msg: 'Hello World!'
   }
-})</pre><p>The Vue instance referenced to an element <strong>&#8216;.app&#8217;. </strong>This is the entry point. Even if the class of the span object is changed it won&#8217;t affect the message being displayed.Vue.js also supports <strong>Loops</strong>, <strong>Two-way binding</strong>, <strong>Components</strong>,  <strong>Event Listeners</strong> like React. If you want to learnVue.js there&#8217;s no better document than the Vue.js <a href="https://vuejs.org/v2/guide/"> Guide</a>.<strong> </strong>You can see a demo <a href="https://jsfiddle.net/50wL7mdz/55744/">Here.</a></p>
+})</pre>
+
+
+The Vue instance referenced to an element <strong>&#8216;.app&#8217;. </strong>This is the entry point. Even if the class of the span object is changed it won&#8217;t affect the message being displayed.Vue.js also supports <strong>Loops</strong>, <strong>Two-way binding</strong>, <strong>Components</strong>,  <strong>Event Listeners</strong> like React. If you want to learnVue.js there&#8217;s no better document than the Vue.js <a href="https://vuejs.org/v2/guide/"> Guide</a>.<strong> </strong>You can see a demo <a href="https://jsfiddle.net/50wL7mdz/55744/">Here.</a>
+
+
 <h2>Why Vue.js?</h2>
-<p>Let&#8217;s talk about why we can use Vue.js.  Both React and Vue.js use Virtual DOM and the use of components. But in React if a component&#8217;s state is changed. It re-renders the entire component sub-tree. In Vue.js, the component&#8217;s dependencies are automatically tracked during render, so the system knows which component needs to be changed when the state is changed. Unlike React you don&#8217;t need to write everything in JavaScript. Vue.js supports the use of both JSX and Template rendering. If the HTML is valid, then it is a valid Vue template. We can give access to CSS within a single-file-component by adding a &#8216;scoped&#8217; attribute to the style tag which scopes CSS only for that particular component.</p>
-<p>Comparing Vue with AngularJS, both have similar syntax. But Vue is much simpler in terms of API and design. There are many opinions to structure an Angular application but Vue is a more flexible, modular solution by setting up <a href="https://github.com/vuejs-templates/webpack">web pack template</a>. In Vue, we use one-way data-flow between components that make the flow of data easier but in angular, it&#8217;s two-way binding between scopes. There are a lot of confusions between directives and components in Angular but in Vue, components are self-contained units with own view and data logic and directives are used for DOM manipulations only. Vue doesn&#8217;t use dirty checking so it&#8217;s much easier to optimize and has better performance. Since there are a lot of watchers in Angular, when anything in scope changes, all the watchers should re-evaluate again. So Angular becomes slow.</p>
-<p>Vue.js performs better than EmberJs since it automatically batches updates but in Ember, we need to manually manage run loops. For computed properties in Ember, we have to declare it manually and need to wrap everything in Ember Objects. But in Vue, it&#8217;s in Javascript Objects and fully automatic.</p>
+
+
+Let&#8217;s talk about why we can use Vue.js.  Both React and Vue.js use Virtual DOM and the use of components. But in React if a component&#8217;s state is changed. It re-renders the entire component sub-tree. In Vue.js, the component&#8217;s dependencies are automatically tracked during render, so the system knows which component needs to be changed when the state is changed. Unlike React you don&#8217;t need to write everything in JavaScript. Vue.js supports the use of both JSX and Template rendering. If the HTML is valid, then it is a valid Vue template. We can give access to CSS within a single-file-component by adding a &#8216;scoped&#8217; attribute to the style tag which scopes CSS only for that particular component.
+Comparing Vue with AngularJS, both have similar syntax. But Vue is much simpler in terms of API and design. There are many opinions to structure an Angular application but Vue is a more flexible, modular solution by setting up <a href="https://github.com/vuejs-templates/webpack">web pack template</a>. In Vue, we use one-way data-flow between components that make the flow of data easier but in angular, it&#8217;s two-way binding between scopes. There are a lot of confusions between directives and components in Angular but in Vue, components are self-contained units with own view and data logic and directives are used for DOM manipulations only. Vue doesn&#8217;t use dirty checking so it&#8217;s much easier to optimize and has better performance. Since there are a lot of watchers in Angular, when anything in scope changes, all the watchers should re-evaluate again. So Angular becomes slow.
+Vue.js performs better than EmberJs since it automatically batches updates but in Ember, we need to manually manage run loops. For computed properties in Ember, we have to declare it manually and need to wrap everything in Ember Objects. But in Vue, it&#8217;s in Javascript Objects and fully automatic.
+
+
 <h2>Advantages</h2>
+
+
+
+
 <h3>1. Simplicity</h3>
-<p>Vue has a good combination of structure and simplicity. Adding Vue.js to your web project can be very simple. It needs external libraries, but tend to use it with or without jQuery.</p><pre class="crayon-plain-tag">&lt;div id="app"&gt;
+
+
+Vue has a good combination of structure and simplicity. Adding Vue.js to your web project can be very simple. It needs external libraries, but tend to use it with or without jQuery.
+
+
+<pre class="theme:prism-like lang:default decode:true">&lt;div id="app"&gt;
   {{ message }}
 &lt;/div&gt;
 &lt;script&gt;
@@ -276,59 +439,135 @@ new Vue({
     message: 'Hello Vue!'
   }
 });
-&lt;/script&gt;</pre><p>The code is easily understandable about the working of Vue code.</p>
+&lt;/script&gt;</pre>
+
+
+The code is easily understandable about the working of Vue code.
+
+
 <h3>2. Reactivity</h3>
-<p>The variables in Vue.js are reactive. At each point, when the variables change, it will automatically inform their peers.</p><pre class="crayon-plain-tag">var app = new Vue({
+
+
+The variables in Vue.js are reactive. At each point, when the variables change, it will automatically inform their peers.
+
+
+<pre class="theme:prism-like lang:default decode:true">var app = new Vue({
   el: '#app',
   data: {
     message: "&lt;h1&gt;Hello World&lt;/h1&gt;"
   }
 });
-
 setTimeout(function() {
   app.message = "&lt;small&gt;Goodbye World&lt;/small&gt;";
-}, 2000)</pre><p></p><pre class="crayon-plain-tag">&lt;div id="app"&gt;
+}, 2000)</pre>
+
+
+
+
+<pre class="theme:prism-like lang:default decode:true">&lt;div id="app"&gt;
   &lt;!--Renders as "Hello World" with &lt;h1&gt; tag--&gt;
   &lt;!--Then after 2 seconds re-renders as "Goodbye World" with &lt;small&gt; tag--&gt;
   &lt;p v-html="message"&gt;{{ message }}&lt;p&gt;
-&lt;/div&gt;</pre><p>Data properties, like <code class="markup--code markup--p-code">message</code> in this example, are <em class="markup--em markup--p-em">reactive</em>, that is they will trigger a re-render if changed.  The <code>v-html</code> attribute will render HTML templates. You can see the demo<strong><a href="https://jsfiddle.net/reshma_shenoy/k67u1s1m/" target="_blank" rel="noopener"> here</a></strong>.</p>
+&lt;/div&gt;</pre>
+
+
+Data properties, like <code class="markup--code markup--p-code">message</code> in this example, are <em class="markup--em markup--p-em">reactive</em>, that is they will trigger a re-render if changed.  The <code>v-html</code> attribute will render HTML templates. You can see the demo<strong><a href="https://jsfiddle.net/reshma_shenoy/k67u1s1m/" target="_blank" rel="noopener noreferrer"> here</a></strong>.
+
+
 <h3>3. Focus</h3>
-<p>Vue.js is mainly used for building user interfaces and this is achieved by a library that does not have any influence from the frameworks out there already. Supporting libraries are integrated with Vue.</p>
+
+
+Vue.js is mainly used for building user interfaces and this is achieved by a library that does not have any influence from the frameworks out there already. Supporting libraries are integrated with Vue.
+
+
 <h3>4. Flexibility</h3>
-<p>Vue.js comes with perfect balance to write quickly and run straight from the browser. With that said, it is extremely good if you would like to create any practical app using with ES6, separate component files, JSX, building, routing etc.</p>
-<p>For example, if you have a preferred method for writing your templates, Vue lets you do it in any of these ways:</p>
+
+
+Vue.js comes with perfect balance to write quickly and run straight from the browser. With that said, it is extremely good if you would like to create any practical app using with ES6, separate component files, JSX, building, routing etc.
+For example, if you have a preferred method for writing your templates, Vue lets you do it in any of these ways:
+
+
 <ul class="postList">
+ 	
+
 <li id="7fe9" class="graf graf--li graf-after--p">Write your template in an HTML file</li>
+
+
+ 	
+
 <li id="959b" class="graf graf--li graf-after--li">Write your template in a string in a Javascript file</li>
+
+
+ 	
+
 <li id="cc25" class="graf graf--li graf-after--li">Use JSX in a Javascript file</li>
+
+
+ 	
+
 <li class="graf graf--li graf-after--li">Make your template in pure Javascript using virtual nodes</li>
+
+
 </ul>
-<p>This flexibility makes it easy to switch to Vue.</p>
+
+
+This flexibility makes it easy to switch to Vue.
+
+
 <h3>5. Components</h3>
-<p>Actually, this is where Vue’s flexibility system is built, so that components can be small and are reusable parts of UI. This isn’t any special because the of JavaScript frameworks are built with this concept.</p><pre class="crayon-plain-tag">&lt;div id="example"&gt;
+
+
+Actually, this is where Vue’s flexibility system is built, so that components can be small and are reusable parts of UI. This isn’t any special because the of JavaScript frameworks are built with this concept.
+
+
+<pre class="theme:prism-like lang:default decode:true">&lt;div id="example"&gt;
   &lt;my-component&gt;&lt;/my-component&gt;
-&lt;/div&gt;</pre><p></p><pre class="crayon-plain-tag">// register
+&lt;/div&gt;</pre>
+
+
+
+
+<pre class="theme:prism-like lang:default decode:true">// register
 Vue.component('my-component', {
   template: '&lt;div&gt;A custom component!&lt;/div&gt;'
 })
 // create a root instance
 new Vue({
   el: '#example'
-})</pre><p>Which will render,</p><pre class="crayon-plain-tag">&lt;div id="example"&gt;
+})</pre>
+
+
+Which will render,
+
+
+<pre class="theme:prism-like lang:default decode:true">&lt;div id="example"&gt;
   &lt;div&gt;A custom component!&lt;/div&gt;
-&lt;/div&gt;</pre><p>So, the components can be used in templates as elements.</p>
+&lt;/div&gt;
+</pre>
+
+
+So, the components can be used in templates as elements.
+
+
 <h3> 6. Copying competitors</h3>
-<p>Vue has been able to copy what works in other frameworks and avoid what doesn’t. Vue’s state management library Vuex has inspiration from Elm. Along with this, Vue’s components get the similarities with Polymer’s customer elements. Vue is now rocking a virtual DOM like React.</p>
+
+
+Vue has been able to copy what works in other frameworks and avoid what doesn’t. Vue’s state management library Vuex has inspiration from Elm. Along with this, Vue’s components get the similarities with Polymer’s customer elements. Vue is now rocking a virtual DOM like React.
+
+
 <h2>Conclusion</h2>
-<p>Vue.js is a progressively-adoptable Javascript framework which is focussed on view layer. It is easy to integrate with other applications. The main feature of Vue is Components. Vue uses HTML based templates which can compile into Virtual DOM render functions. In Vue, we can also directly write render functions using <a title="React (JavaScript library)" href="https://en.wikipedia.org/wiki/React_(JavaScript_library)#JSX">JSX</a>.Vue.js is much simpler, flexible and has better performance than other frameworks.</p>
+
+
+Vue.js is a progressively-adoptable Javascript framework which is focussed on view layer. It is easy to integrate with other applications. The main feature of Vue is Components. Vue uses HTML based templates which can compile into Virtual DOM render functions. In Vue, we can also directly write render functions using <a title="React (JavaScript library)" href="https://en.wikipedia.org/wiki/React_(JavaScript_library)#JSX">JSX</a>.Vue.js is much simpler, flexible and has better performance than other frameworks.
+
+
 <h2>References</h2>
-<p><a href="https://vuejs.org/">https://vuejs.org/</a></p>
-<p><a href="https://github.com/vuejs/vue">https://github.com/vuejs/vue</a></p>
-<p><a href="https://medium.com/@brett.marshall/vue-js-the-real-angular-2-0-62744490cb99">https://medium.com/@brett.marshall/vue-js-the-real-angular-2-0-62744490cb99</a></p>
-<p>The post <a rel="nofollow" href="/getting-started-vuejs/">Getting Started with Vue.js</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+
+
+<a href="https://vuejs.org/">https://vuejs.org/</a>
+<a href="https://github.com/vuejs/vue">https://github.com/vuejs/vue</a>
+<a href="https://medium.com/@brett.marshall/vue-js-the-real-angular-2-0-62744490cb99">https://medium.com/@brett.marshall/vue-js-the-real-angular-2-0-62744490cb99</a>]]&gt;		</p>
 ]]></content:encoded>
-							<wfw:commentRss>/getting-started-vuejs/feed/</wfw:commentRss>
-		<slash:comments>0</slash:comments>
-							</item>
+										</item>
 	</channel>
 </rss>

@@ -1,0 +1,587 @@
+ <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Training &#8211; Red Panthers</title>
+	<atom:link href="/category/training/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description>Experts in Ruby on Rails Development</description>
+	<lastBuildDate>Sat, 17 Sep 2016 05:54:03 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.7</generator>
+
+<image>
+	<url>/wp-content/uploads/2017/12/rp-logo.png</url>
+	<title>Training &#8211; Red Panthers</title>
+	<link>/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>How to write maintainable routes in rails</title>
+		<link>/write-maintainable-routes-rails/</link>
+				<comments>/write-maintainable-routes-rails/#respond</comments>
+				<pubDate>Sat, 17 Sep 2016 05:54:03 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Beginners]]></category>
+		<category><![CDATA[Rails]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[auto generate routes]]></category>
+		<category><![CDATA[config]]></category>
+		<category><![CDATA[convention over configuration]]></category>
+		<category><![CDATA[default]]></category>
+		<category><![CDATA[everything about routes]]></category>
+		<category><![CDATA[harisankar P S]]></category>
+		<category><![CDATA[rails]]></category>
+		<category><![CDATA[resource]]></category>
+		<category><![CDATA[routes]]></category>
+		<category><![CDATA[routes.rb]]></category>
+		<category><![CDATA[training]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=489</guid>
+				<description><![CDATA[<p>config/routes.rb is the gateway to your ruby on rails application. All request send by your users are directed to the appropriate code by the routes. Example: [crayon-5f53f029c8e6e287785095/] When someone visits your-website.com/profiles then the request is taken to the Index action of the UsersController. Under that action you will get the index.html.erb. So using routes we&#8230;</p>
+<p>The post <a rel="nofollow" href="/write-maintainable-routes-rails/">How to write maintainable routes in rails</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p><strong>config/routes.rb</strong> is the gateway to your ruby on rails application. All request send by your users are directed to the appropriate code by the routes.</p>
+<p>Example:</p><pre class="crayon-plain-tag">match 'profiles', to: 'users#index', via: 'get'</pre><p>When someone visits your-website.com/profiles then the request is taken to the Index action of the UsersController. Under that action you will get the index.html.erb. So using routes we have configured the UsersController to respond to the users request it is its responsibility to do it now.</p>
+<p>We can declare routes in various ways:</p><pre class="crayon-plain-tag">match 'profiles', to: 'users#index', via: 'get'
+get 'profiles', to: 'users#index', via: 'get'
+resources :users
+resource :users, path: 'profiles'</pre><p>Since there are multiple ways to declare routes (as all forms are right), its best to stick with a single method for the code to be more readable. routes.rb is going to be one of the most heavily edited file in your project as when ever you add a new page or create a new form, you need to add a route to access the page or an end-point to accept the request. So it is most likely that your routes.rb file will start to grow ugly:</p><pre class="crayon-plain-tag">resources :saved_filters
+  match "/404" =&gt; "errors#error404", via: [ :get, :post, :patch, :delete ], as: 'error404'
+
+  devise_for :saas_admins
+  mount RailsAdmin::Engine =&gt; '/saas_admin', :as =&gt; 'rails_admin'
+
+  %w(about privacy benefits compliance onboarding payroll time_off terms contact aca-compliance).each do |page|
+    get page =&gt; "content##{page.underscore}"
+  end
+
+  get "/not_authorized", to: 'errors#not_authorized'
+
+  post '/broker_sign_in_path', to: 'application#broker_sign_in_domain', as: 'broker_sign_in_domain'
+  post '/employer_sign_in_path', to: 'application#employer_sign_in_domain', as: 'employer_sign_in_domain'
+  post '/messages/reply_from_external_user',to: 'messages#reply_from_external_user',as: '/messages/reply_from_external_user'
+  # Routes for the public site</pre><p>So here we will share some tips to write proper, maintainable routes:</p>
+<p>First important point to note is that, its best to write routes as resources<br />
+eg:</p><pre class="crayon-plain-tag">resources :users</pre><p>&nbsp;</p>
+<p>declaring resources will create the following 7 routes.</p>
+<p><a href="http://blog.redpanthers.co/wp-content/uploads/2016/09/routes.png"><img class="alignnone wp-image-537" src="http://blog.redpanthers.co/wp-content/uploads/2016/09/routes.png" alt="routes" width="599" height="325" /></a></p>
+<p>if you don&#8217;t want some of these routes, then pass that as options while declaring</p><pre class="crayon-plain-tag">resource :users, only: [:create, :update, :show, :destroy]</pre><p>Use nested routes, if you find yourself referring to a child model from parent.</p><pre class="crayon-plain-tag">resources :posts do
+  resources :comments
+end</pre><p>If you want to declare custom routes, within the resources, the they should only be declared within the resource block.</p>
+<p><span style="text-decoration: underline;">Note: Difference between Member and Collection</span></p>
+<p><strong>Member:</strong> is used when the routes is meant to work on a single object (eg:  DeActivate single user)<br />
+<strong>Collection:</strong> is used when the route is meant as an action over a collection of object (eg: search for a user)</p><pre class="crayon-plain-tag">resources :users do
+  member do
+    match 'de_activate', to: 'user#de_activate', via: 'get'
+  end
+  collection do
+    match 'search', to: 'user#search', via: 'post'
+  end
+end</pre><p>Always write routes through match rather than defining as post/get, because in future you might have to add multiple HTTP verb for the same route and using match would eleminate multiple lines of the same route.</p>
+<p>The post <a rel="nofollow" href="/write-maintainable-routes-rails/">How to write maintainable routes in rails</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/write-maintainable-routes-rails/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+							</item>
+		<item>
+		<title>Lambda vs Proc Vs Blocks</title>
+		<link>/lambda-vs-proc-vs-blocks/</link>
+				<comments>/lambda-vs-proc-vs-blocks/#comments</comments>
+				<pubDate>Tue, 23 Aug 2016 09:45:09 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Beginners]]></category>
+		<category><![CDATA[Ruby]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[anonymous functions]]></category>
+		<category><![CDATA[arugments]]></category>
+		<category><![CDATA[basics]]></category>
+		<category><![CDATA[block]]></category>
+		<category><![CDATA[difference]]></category>
+		<category><![CDATA[function]]></category>
+		<category><![CDATA[lambda]]></category>
+		<category><![CDATA[lambda vs proc vs bloc]]></category>
+		<category><![CDATA[learning]]></category>
+		<category><![CDATA[proc]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=467</guid>
+				<description><![CDATA[<p>The difference between these three is one of the most baffling concepts to grasp while anyone starts to learn ruby. Since at Red Panthers we recruit and build our own team from freshers, we too will be blogging about it here to make it easy for the beginners. But before we state the difference between&#8230;</p>
+<p>The post <a rel="nofollow" href="/lambda-vs-proc-vs-blocks/">Lambda vs Proc Vs Blocks</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p>The difference between these three is one of the most baffling concepts to grasp while anyone starts to learn ruby. Since at Red Panthers we recruit and build our own team from freshers, we too will be blogging about it here to make it easy for the beginners.</p>
+<p>But before we state the difference between the three, let me explain what all these three does to make it easy for you.</p>
+<p><strong>Blocks: </strong>They are called closures in other languages, it is a way of grouping code/statements. In ruby single line blocks are written in {} and multi-line blocks are represented using <strong>do..end</strong></p>
+<p>An interesting fact about ruby is that all methods in ruby accept a block, even if you don&#8217;t declare a variable to accept it. So for example, take the method below</p><pre class="crayon-plain-tag">def my_method
+  puts "Hello World"
+end</pre><p>It can accept a block as below</p><pre class="crayon-plain-tag">my_method { puts 'Hello Reader' }</pre><p>The code is valid, but the output will have only <strong>puts &#8220;Hello World&#8221;</strong>.</p>
+<p><strong>Why? </strong>because we passed in the block but it is not getting called. To run the block passed within your method you need to use the <em>yield </em>command.</p><pre class="crayon-plain-tag">def my_method
+  puts 'Hello World'
+  yield
+end</pre><p>Now it will print</p><pre class="crayon-plain-tag">Hello World.
+Hello Reader.</pre><p>But since we placed yield, it would now be expecting a block to be always passed in. So we need to write code to check if a block is given or not. The command to do that in ruby is <em>block_given?.</em></p><pre class="crayon-plain-tag">def my_method
+  puts 'Hello World'
+  yield if block_given?
+end</pre><p><strong>Proc</strong></p>
+<p>Is a block itself, but it&#8217;s bound to a variable. So proc lets us save a code block to a variable, and pass it around in our application.</p>
+<p>A good example from the <a href="https://ruby-doc.org/core-2.2.0/Proc.html">ruby docs</a> is shown below</p><pre class="crayon-plain-tag">def gen_times(factor)
+  return Proc.new {|n| n*factor }
+end
+
+times3 = gen_times(3)
+times5 = gen_times(5)
+
+times3.call(12)               #=&gt; 36
+times5.call(5)                #=&gt; 25
+times3.call(times5.call(4))   #=&gt; 60</pre><p><strong>Lambda</strong></p>
+<p>If you felt proc&#8217;s to be a refined version of block, then you can say lambda&#8217;s to be a refined version of proc.</p>
+<p>Lambda is essentially a proc itself but, the argument management is rigid. If it doesn&#8217;t get an argument or if the argument count is more or less it would raise an error.</p>
+<p>Example:</p><pre class="crayon-plain-tag">Proc.new {|a,b| [a,b] }.call(1,2,3)
+=&gt; [1,2]</pre><p></p><pre class="crayon-plain-tag">lambda {|a,b| [a,b] }.call(1,2,3)
+=&gt;
+ArgumentError: wrong number of arguments (3 for 2)
+	from (irb):7:in `block in irb_binding'
+	from (irb):7:in `call'
+	from (irb):7
+	from /home/dev1/.rvm/rubies/ruby-2.2.2/bin/irb:11:in `&lt;main&gt;'
+2.2.2 :008 &gt; Proc.new {|a,b| [a,b] }.call(1,2,3)</pre><p>Since it&#8217;s now clearer to you on what block, proc and lambda is, let&#8217;s start with the difference between the three.</p>
+<p>Lambda shortcut notation.</p><pre class="crayon-plain-tag">code = -&gt; (x) { x*x }
+
+code.call 4
+=&gt; 16</pre><p>&nbsp;</p>
+<p><strong>Lambda vs proc vs Blocks</strong></p>
+<p>Proc and Blocks are the same, block is actually creating a single instance of proc which can&#8217;t be moved about in a variable. You can read about the similarity of Proc and Block <a href="https://www.reddit.com/r/ruby/comments/4z86sg/another_lambda_vs_proc_vs_blocks_article/d6vj4a6">here</a>.</p>
+<p>If we do return within a lambda, it would just return from lambda and the method will continue.</p><pre class="crayon-plain-tag">def lambda_method
+  lambda { return puts 'lambda' }.call
+  return 'method'
+end
+
+lambda_method
+=&gt; method</pre><p>If we do return with a proc, it would exit the method and return that value from proc.</p><pre class="crayon-plain-tag">def proc_method
+  Proc.new { return puts 'proc' }.call
+  puts 'method'
+end
+
+proc_method
+=&gt; proc</pre><p>Arguments:</p>
+<p>The second difference between the three is the way they manage arguments. Block and Proc deal with them more or less the same, but lambda is totally different.</p>
+<p>Proc and Bloc, doesn&#8217;t mind about the number of arguments passed. But if we access a variable that is not present then it would raise an error.</p><pre class="crayon-plain-tag">def my_method
+  yield 1, 2, 3
+end
+
+my_method { |x, y| puts "#{x} &amp; #{y}" }
+=&gt; "1 &amp; 2"</pre><p></p><pre class="crayon-plain-tag">Proc.new { |x, y| puts "#{x} &amp; #{y}" }.call(4, 5, 6)
+
+=&gt; "4 &amp; 5"</pre><p>lambda will raise an error</p><pre class="crayon-plain-tag">def my_method
+  yield
+end
+
+my_method { |x, y| puts "#{x} &amp; #{y}" }</pre><p><b>Takeaways</b></p>
+<p>Block, Proc &amp; Lambda are the three  different ways of grouping the code:</p>
+<p><span style="font-weight: 400;"><strong>Block:</strong></span></p>
+<ul>
+<li><span style="font-weight: 400;">Is in between the curly braces and in between do and end.</span></li>
+<li>No issue with number of arguments.</li>
+<li>Blocks are basically a proc without a name</li>
+</ul>
+<p><span style="font-weight: 400;"><strong>Proc:</strong></span></p>
+<ul>
+<li><span style="font-weight: 400;">Similar behaviour as Block.</span></li>
+<li>Can be stored in a variable and move around.</li>
+<li>No issue with number of arguments.</li>
+<li>Return within the proc would exit the method from where it is called.</li>
+</ul>
+<p><span style="font-weight: 400;"><strong>Lambda</strong></span></p>
+<ul>
+<li><span style="font-weight: 400;">Same as Proc, but closer to a method.</span></li>
+<li>Strict regarding the arguments it gets and it needs.</li>
+<li>Return within a lambda would exit it from the lambda and the method would continue executing.</li>
+</ul>
+<p>&nbsp;</p>
+<p>The post <a rel="nofollow" href="/lambda-vs-proc-vs-blocks/">Lambda vs Proc Vs Blocks</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/lambda-vs-proc-vs-blocks/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+							</item>
+		<item>
+		<title>Lazy enumerator to handle huge files</title>
+		<link>/lazy-enumerator-to-handle-huge-files/</link>
+				<comments>/lazy-enumerator-to-handle-huge-files/#respond</comments>
+				<pubDate>Fri, 12 Aug 2016 08:49:12 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Ruby]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[core]]></category>
+		<category><![CDATA[enumerator]]></category>
+		<category><![CDATA[files]]></category>
+		<category><![CDATA[functional]]></category>
+		<category><![CDATA[huge files]]></category>
+		<category><![CDATA[lazy]]></category>
+		<category><![CDATA[mangaing]]></category>
+		<category><![CDATA[programming]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=401</guid>
+				<description><![CDATA[<p>Lazy evaluation, or call-by-need is an evaluation strategy which delays the evaluation of an expression until its value is needed. It&#8217;s frequently seen in functional languages, ruby introduced the lazy method in Ruby 2.0. For those who don&#8217;t know what are enumerators: enumerators are something that can be counted. So a collection of elements, files (file&#8230;</p>
+<p>The post <a rel="nofollow" href="/lazy-enumerator-to-handle-huge-files/">Lazy enumerator to handle huge files</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p><b>Lazy evaluation</b>, or <b>call-by-need</b> is an evaluation strategy which delays the evaluation of an expression until its value is needed. It&#8217;s frequently seen in functional languages, ruby introduced the lazy method in Ruby 2.0. For those who don&#8217;t know what are enumerators: enumerators are something that can be counted. So a collection of elements, files (file is an collection of lines of string), etc can be treated as an enumerator.</p>
+<p>In ruby we need to make something countable into an enumerator object, which is done by applying .each and .map on it.</p><pre class="crayon-plain-tag">[].each
+[1, 3, 4].each
+file.each
+{}.each</pre><p>Ruby has a wide range of operations we can do over a collection, it&#8217;s one of those features that makes Ruby such a powerful dynamic language. An enumerator can be used to generate series like the Fibonacci series.</p><pre class="crayon-plain-tag">fib = Enumerator.new do |y|
+  a = b = 1
+  loop do
+    y &lt;&lt; a
+    a, b = b, a + b
+  end
+end</pre><p>But when we do a <em>.map</em> / <em>.each</em> with a code block, then it would try to realize the enumerator fully and then apply the block over it.</p>
+<p><i></i>That would be fine when we are working on something small like:</p><pre class="crayon-plain-tag">[1,2,3].map { |i| i*i }</pre><p>But when we take the above fib enumerator, which will grow into an infinite series, adding a <em>.map </em>would lead the code to an infinite loop. If you are crazy enough to write an infinite loop, feel free to run the below code.</p><pre class="crayon-plain-tag">foo.map { |i| i * * }</pre><p>When we try to use these operations on a huge 10 GB file,there it makes your program realize the entire file is close to impossible. So this is the case where the lazy enumerator comes to place. It would ask ruby to defer the realization of the enumerator until it is required, and not before you run your operation.</p>
+<p>So with respect to the above Fibonacci enumerator, you should change the code to as below.</p><pre class="crayon-plain-tag">foo.lazy.map { |i| i * i }</pre><p>So now, the program is ready, all good it would run fast. But it won&#8217;t execute them until you call or access those elements. So only when we do <code>foo.lazy.map { |i| i* i }.</code> First the first element is calculated and given to us. Like wise if you want the first 10 elements of the fibonacci series then you have to do <code>foo.lazy.map { |i| i* i }.take(1o).to_a</code></p>
+<p>To do the  same with the files, as a file is a collection of lines, follow the below code snippets:</p><pre class="crayon-plain-tag">fille = File.open('OurHugeFile.log')</pre><p><span style="line-height: 1.5;">get the first three lines, lazily:</span></p><pre class="crayon-plain-tag">file.each_line.lazy.take(3).to_a</pre><p>get the firs two lines with word &#8220;INFO&#8221;</p><pre class="crayon-plain-tag">file.each_line.lazy.select { |line| line.match(/INFO/) }.first(2)</pre><p>So if you want to print something with line numbers, just do a map from the lazy.</p><pre class="crayon-plain-tag">file.each_line.lazy.each_with_index.map { |l, i| &quot;#{i}: #{l}&quot; }.select { |i| match(/INFO/) }.first(3)</pre><p></p>
+<hr />
+<p>If you have anything more to add to this, kindly comment below.</p>
+<p>The post <a rel="nofollow" href="/lazy-enumerator-to-handle-huge-files/">Lazy enumerator to handle huge files</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/lazy-enumerator-to-handle-huge-files/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+							</item>
+		<item>
+		<title>Working with timezones in rails</title>
+		<link>/working-timezones-rails/</link>
+				<comments>/working-timezones-rails/#respond</comments>
+				<pubDate>Thu, 11 Aug 2016 07:32:15 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Beginners]]></category>
+		<category><![CDATA[Rails]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[different]]></category>
+		<category><![CDATA[handelling]]></category>
+		<category><![CDATA[management]]></category>
+		<category><![CDATA[programming]]></category>
+		<category><![CDATA[Ruby]]></category>
+		<category><![CDATA[timezone]]></category>
+		<category><![CDATA[timzones]]></category>
+		<category><![CDATA[user]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=386</guid>
+				<description><![CDATA[<p>Ruby on Rails being an amazing framework, helps us manage the timezone of our rails application. It gives us access to a lot of helpers, to make our life easier. For example, if you want to change all the date and time of your application to the logged in users time zone, we just have&#8230;</p>
+<p>The post <a rel="nofollow" href="/working-timezones-rails/">Working with timezones in rails</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p><strong>Ruby on Rails</strong> being an amazing framework, helps us manage the timezone of our rails application. It gives us access to a lot of helpers, to make our life easier. For example, if you want to change all the date and time of your application to the logged in users time zone, we just have to place the following code in the application_controller.</p><pre class="crayon-plain-tag"># app/controllers/application_controller.rb
+
+around_action :set_time_zone, if: :current_user
+
+private
+def set_time_zone(&amp;block)
+  Time.use_zone(current_user.time_zone)
+end</pre><p>We assume that you have stored the user&#8217;s time_zone in your database in the time_zone column.</p>
+<p>The application  to show  timezone can be set in your <code>application.rb</code>, if we don&#8217;t set a particular timezone then the application will just show the systems timezone.</p><pre class="crayon-plain-tag">config.time_zone = 'Central Time (US &amp; Canada)'</pre><p>If you want to know all the timezone options available in rails, run the <code>rake -D time</code> command in your terminal.</p>
+<p>Even though rails would take care of the timezone, when we are using certain ruby commands, it gives us our systems timezone and not the one set by rails. So to avoid surprises, we should be aware of the timezones we are exposed to.</p>
+<p>A rails app, would always be exposed to three timezones:</p>
+<ul>
+<li>System timezone</li>
+<li>Database timezone</li>
+<li>Rails applications own timezone</li>
+</ul>
+<p>All three could be different, for example <em>your system timezone could be in IST, database in UTC, and rails app running in PDT</em>.</p>
+<p>To avoid accidental  assessment to a different timezone, always keep in mind the commands you should and should not use.</p>
+<p>DO NOT USE &#8211; as they all give you time with respect to the system time</p><pre class="crayon-plain-tag">* Time.now
+  * Date.today
+  * Date.today.to_time
+  * Time.parse(&quot;2015-07-04 17:05:37&quot;)
+  * Time.strptime(string, &quot;%Y-%m-%dT%H:%M:%S%z&quot;)</pre><p>USE &#8211; these give you access to the rails application time (which we can change with respect to the user)</p><pre class="crayon-plain-tag">* Time.current
+* 2.hours.ago
+* Time.zone.today
+* Date.current
+* 1.day.from_now
+* Time.zone.parse(&quot;2015-07-04 17:05:37&quot;)
+* Time.strptime(string, &quot;%Y-%m-%dT%H:%M:%S%z&quot;).in_time_zone</pre><p>&nbsp;</p>
+<p>The post <a rel="nofollow" href="/working-timezones-rails/">Working with timezones in rails</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/working-timezones-rails/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+							</item>
+		<item>
+		<title>Managing associated objects</title>
+		<link>/managing-associated-objects/</link>
+				<comments>/managing-associated-objects/#respond</comments>
+				<pubDate>Mon, 01 Aug 2016 15:33:36 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Rails]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[association]]></category>
+		<category><![CDATA[callbacks]]></category>
+		<category><![CDATA[database]]></category>
+		<category><![CDATA[foreign key]]></category>
+		<category><![CDATA[NULL]]></category>
+		<category><![CDATA[related]]></category>
+		<category><![CDATA[triggers]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=382</guid>
+				<description><![CDATA[<p>Most of the rails applications build, works around databases. And the most commonly used relationship in database is the one to many relationship. In rails its represented as has_many on the parent side and belong_to on the child&#8217;s side. Now, as we write the relationship we also need to make sure what should be done&#8230;</p>
+<p>The post <a rel="nofollow" href="/managing-associated-objects/">Managing associated objects</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p>Most of the rails applications build, works around databases. And the most commonly used relationship in database is the <code>one to many</code> relationship. In rails its represented as <code>has_many</code> on the parent side and <code>belong_to</code> on the child&#8217;s side. Now, as we write the relationship we also need to make sure what should be done to the children when the parent is destroyed. Else we will be stuck with a lot of orphan records once the parent is destroyed.</p>
+<p>So to avoid that, we pass in the <code>dependent</code> attribute at the parents side, like below:</p>
+<p><code> has_many :users, dependent: :destroy</code></p>
+<p>The above code will run the destroy method on the children, when the parent is destroyed.</p>
+<p>Like destroy, rails provides a total of five options. They are</p>
+<ul>
+<li>1: destroy &#8211; run the destroy method on all the associated objects, there by also triggering the callbacks</li>
+<li>2: delete_all &#8211; causes the associated methods to be deleted directly from DB, no callbacks triggered. This would be a faster, compared to :destroy, to delete the associated models.</li>
+<li>3: nullify &#8211; sets the foreign key to be set to NULL. no callbacks triggered. We use it when we don&#8217;t want the children to be destroyed, and kept in our system. Usually done to keep history, or protect the associated objects referencing to the children.</li>
+<li>4: restrict_with_exception &#8211; It will raise an exception if there are associated objects. Hence also prevent the destruction of the parent.</li>
+<li>5: restrict_with_error- It will prevent the deletion of the parent, and will pass in the error that it has associated objects without raising the exception.</li>
+</ul>
+<p>The post <a rel="nofollow" href="/managing-associated-objects/">Managing associated objects</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/managing-associated-objects/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+							</item>
+		<item>
+		<title>Database transaction in Rails</title>
+		<link>/database-transaction-rails/</link>
+				<comments>/database-transaction-rails/#respond</comments>
+				<pubDate>Mon, 01 Aug 2016 11:38:48 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Rails]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[database]]></category>
+		<category><![CDATA[DBA]]></category>
+		<category><![CDATA[expert]]></category>
+		<category><![CDATA[learning]]></category>
+		<category><![CDATA[nested transaction]]></category>
+		<category><![CDATA[ruby on rails]]></category>
+		<category><![CDATA[SQL]]></category>
+		<category><![CDATA[transaction]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=377</guid>
+				<description><![CDATA[<p>A transaction is a sequence of operations performed as a single logical unit of work. A logical unit of work must exhibit four properties called the atomicity, consistency, isolation and durability (ACID) properties, to qualify as a transaction. We use database transactions to make sure that all the instructions we send to database are successful, and&#8230;</p>
+<p>The post <a rel="nofollow" href="/database-transaction-rails/">Database transaction in Rails</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<blockquote><p>A transaction is a sequence of operations performed as a single logical unit of work. A logical unit of work must exhibit four properties called the <strong>atomicity</strong>, <strong>consistency</strong>, <strong>isolation</strong> and <strong>durability</strong> (<strong>ACID</strong>) properties, to qualify as a transaction.</p></blockquote>
+<p>We use database transactions to make sure that all the instructions we send to database are successful, and would cause changes to the database only if they are successful. Let&#8217;s say that you are working on a banking application which would withdraw money from one account and deposit into another account. The code for it would look like below</p><pre class="crayon-plain-tag">User.find(156).withdraw(1000)
+User.find(157).deposit(1000)</pre><p>But for some reason, the withdrawal was successful but the deposit was not, the amount was taken out but never deposited to the other user.To avoid these kind of issues, database has a functionality called transactions, in which you can  build up each sql query. But if for any reason, any of the sql statements fails or an exception rises in the block, all the transactions are rolled back to their original form.</p><pre class="crayon-plain-tag">User.transaction do
+  User.find(156).withdraw(1000)
+  User.find(157).deposit(1000)
+end</pre><p>In rails, the transaction method is available as class method and instance method, but the functionality for both is same. There is no difference when you will use.</p><pre class="crayon-plain-tag">@user.transaction do
+
+end</pre><p>and</p><pre class="crayon-plain-tag">User.transaction do
+
+end</pre><p>The reason why rails provides this, is for better readability.</p>
+<p>One can also mix various model types in a transaction, as the transaction are bound to a database connection. So there is no issue in writing code like below.</p><pre class="crayon-plain-tag">User.transaction do
+  Order.create order_attributes
+  Purchase.create purchase_attribute
+end</pre><p>&nbsp;</p>
+<p><strong>Nested Transactions: </strong>It is possible to write nested transactions. But it is to be noted that,<strong> it would just make each child transaction a part of the parent transaction</strong>. Taking the example from the Rails documentation.</p>
+<p>The below code</p><pre class="crayon-plain-tag">User.transaction do
+  User.create(username: 'Kotori')
+  User.transaction do
+    User.create(username: 'Nemu')
+    raise ActiveRecord::Rollback
+  end
+end</pre><p>Creates both “Kotori” and “Nemu”. Reason is the ActiveRecord::Rollback exception in the nested block does not issue a ROLLBACK. Since these exceptions are captured in transaction blocks, the parent block does not see it and the real transaction is committed.</p>
+<p>Reference:</p>
+<p>https://technet.microsoft.com/en-us/library/ms190612(v=sql.105).aspx</p>
+<p>The post <a rel="nofollow" href="/database-transaction-rails/">Database transaction in Rails</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/database-transaction-rails/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+							</item>
+		<item>
+		<title>after_create vs after_save vs after_commit</title>
+		<link>/after_create-vs-after_save-vs-after_commit/</link>
+				<comments>/after_create-vs-after_save-vs-after_commit/#comments</comments>
+				<pubDate>Thu, 28 Jul 2016 06:46:38 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Rails]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[active_model]]></category>
+		<category><![CDATA[active_record]]></category>
+		<category><![CDATA[after_commit]]></category>
+		<category><![CDATA[after_create]]></category>
+		<category><![CDATA[after_save]]></category>
+		<category><![CDATA[callbacks]]></category>
+		<category><![CDATA[database]]></category>
+		<category><![CDATA[mysql]]></category>
+		<category><![CDATA[PostgreSQL]]></category>
+		<category><![CDATA[rails]]></category>
+		<category><![CDATA[Ruby]]></category>
+		<category><![CDATA[transaction]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=371</guid>
+				<description><![CDATA[<p>after_save, after_create and after_commit are called active record call backs in rails. They get executed when we work on the database, similarly we also have before_* callback and callbacks on destroy as well. In this article I will explain you about the difference between *_save, *_create and *_commit callbacks. The purpose of each as per&#8230;</p>
+<p>The post <a rel="nofollow" href="/after_create-vs-after_save-vs-after_commit/">after_create vs after_save vs after_commit</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p><code>after_save</code>, <code>after_create</code> and <code>after_commit</code> are called active record call backs in rails. They get executed when we work on the database, similarly we also have before_* callback and callbacks on destroy as well. In this article I will explain you about the difference between *_save, *_create and *_commit callbacks.</p>
+<p>The purpose of each as per rails docs:</p>
+<blockquote><p>after_create<br />
+Is called after <code>Base.save</code> on new objects that haven‘t been saved yet (no record exists)</p>
+<p>after_save<br />
+Is called after <code>Base.save</code> (regardless of whether it‘s a create or update save)</p>
+<p>after_commit<br />
+Is called after the database transaction is completed.</p></blockquote>
+<p>Now to explain the real difference between the three, we must first explain about database transaction. They are a protective block around a group of sql statements, that are permanent only if all of them succeed in a single atomic statement.</p><pre class="crayon-plain-tag">User.transaction do
+    # update company
+    # update hr_department
+    # update user_table
+end</pre><p>When rails execute a create, the <code>after_save</code> and <code>after_create</code> would be called within the transaction block of the create statement. So they will be executed before executing the sql statement to make permanent changes in the DB. If the query fails, then no change will happen to the DB, but we would have executed the instructions of the after_create and <code>after_save</code> block.</p>
+<p>Where as after_commit, is called after the execution of the final/outer transaction block. Thus the changes in the DB would be permanent.</p>
+<p>The post <a rel="nofollow" href="/after_create-vs-after_save-vs-after_commit/">after_create vs after_save vs after_commit</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/after_create-vs-after_save-vs-after_commit/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+							</item>
+		<item>
+		<title>Enable log rotation within the rails application</title>
+		<link>/enable-log-rotation-within-rails-application/</link>
+				<comments>/enable-log-rotation-within-rails-application/#respond</comments>
+				<pubDate>Wed, 27 Jul 2016 05:00:19 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Beginners]]></category>
+		<category><![CDATA[DevOps]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[deployment]]></category>
+		<category><![CDATA[devops]]></category>
+		<category><![CDATA[linux]]></category>
+		<category><![CDATA[logging]]></category>
+		<category><![CDATA[Logs]]></category>
+		<category><![CDATA[management]]></category>
+		<category><![CDATA[Production]]></category>
+		<category><![CDATA[rails]]></category>
+		<category><![CDATA[rotate]]></category>
+		<category><![CDATA[scripting]]></category>
+		<category><![CDATA[shell]]></category>
+		<category><![CDATA[space]]></category>
+		<category><![CDATA[unix]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=359</guid>
+				<description><![CDATA[<p>Any person who has worked with a rails application for a good amount of time would have faced the issue of log files growing and consuming the entire space in the hard disk. Although this sounds funny, it does happen if you do not place a log management for your rails app (in production). You can manage your logs using&#8230;</p>
+<p>The post <a rel="nofollow" href="/enable-log-rotation-within-rails-application/">Enable log rotation within the rails application</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p>Any person who has worked with a rails application for a good amount of time would have faced the issue of log files growing and consuming the entire space in the hard disk. Although this sounds funny, it does happen if you do not place a log management for your rails app (in production). You can manage your logs using log rotation. Do note that log rotation is not required if you host your app in <a href="http://heroku.com/">heroku</a>, as heroku won&#8217;t let you store files for more than 15 minutes in their server. You also do not need it if you are using some third party services like <a href="https://www.loggly.com/docs/rails-logs/">loggly</a> or <a href="https://papertrailapp.com/">papertrail</a> to manage your logs .</p>
+<p>In the unix world, you can use log rotate service, which would be installed by default in all linux servers. But we at Red Panthers feel that everything that touches or involves our rails application should be placed along with our rails application as much as possible. If you feel the same way, it can be achieved by placing the code below in the production.rb file.</p><pre class="crayon-plain-tag">config.logger = Logger.new( Rails.root.join("log", Rails.env + ".log" ), 5 , 100 * 1024 * 1024 )</pre><p>The Logger.new accepts three parameters:</p>
+<ol>
+<li>The file name, which would be <em>production.log</em></li>
+<li>The number of files you want to keep</li>
+<li>The size of each file in bytes. (100 * 1024*1024 means 100 MB)</li>
+</ol>
+<p>So, when the time comes to add the 6th 100 MB log file, it will delete the oldest.</p>
+<p><strong>Unix Way</strong></p>
+<p>For those who still want to use the unix log rotate, they should create a new config file at <code>/etc/logrotate.d/myrailsapp-config</code> as shown below</p><pre class="crayon-plain-tag">$ cat /etc/logrotate.d/myrailsapp-config
+/var/www/myrailsapp/current/log/*.log {
+  compress
+  copytruncate
+  daily
+  dateext
+  delaycompress
+  missingok
+  rotate 90
+}</pre><p>In case you were wondering, here are what these options mean:</p>
+<ul>
+<li><b>compress</b> – Compress logs using gzip</li>
+<li><b>copytruncate</b> – Copy the log out of the way, and then truncate the existing logs</li>
+<li><b>daily</b> – Rotate daily</li>
+<li><b>dateext</b> – Add the date the logs were rotated as the extension instead of a number</li>
+<li><b>delaycompress</b> – Skip compressing the log until the following day</li>
+<li><b>missingok</b> – Do not raise an error when there is a missing log file</li>
+<li><b>rotate 90</b> – Keep up to 90 days worth of logs</li>
+</ul>
+<p>The post <a rel="nofollow" href="/enable-log-rotation-within-rails-application/">Enable log rotation within the rails application</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/enable-log-rotation-within-rails-application/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+							</item>
+		<item>
+		<title>Skip unnecessary files while running Rails Generate</title>
+		<link>/customize-rails-auto-generation/</link>
+				<comments>/customize-rails-auto-generation/#respond</comments>
+				<pubDate>Wed, 27 Jul 2016 04:27:04 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Rails]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[coffee]]></category>
+		<category><![CDATA[customize]]></category>
+		<category><![CDATA[generators]]></category>
+		<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[rails]]></category>
+		<category><![CDATA[ruby on rails]]></category>
+		<category><![CDATA[speed up development]]></category>
+		<category><![CDATA[Tip]]></category>
+		<category><![CDATA[tips]]></category>
+		<category><![CDATA[training]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=354</guid>
+				<description><![CDATA[<p>Rails Generate is one of the features provided by Rails that would speed up the application development. However, we won&#8217;t be needing all the files generated by rails when running the generate command. For example: rails generate controller Home Index new create,  would create the following set of files: As one knows from experience, the helper;&#8230;</p>
+<p>The post <a rel="nofollow" href="/customize-rails-auto-generation/">Skip unnecessary files while running Rails Generate</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p>Rails Generate is one of the features provided by Rails that would speed up the application development. However, we won&#8217;t be needing all the files generated by rails when running the generate command.</p>
+<p>For example:</p>
+<p><code>rails generate controller Home Index new create</code>,  would create the following set of files:</p>
+<p><a href="http://blog.redpanthers.co/wp-content/uploads/2016/07/before_altering_the_generator.png"><img class="alignnone size-full wp-image-356" src="http://blog.redpanthers.co/wp-content/uploads/2016/07/before_altering_the_generator.png" alt="before_altering_the_generator" width="488" height="312" /></a></p>
+<p>As one knows from experience, the helper; javascript and stylesheet files are not always used. In fact, most of the time, we would have a single stye.scss, and main.coffee that would take care of 95% of the total behaviour of our application. So, if we do not delete those files after generation, we would just end up with a lot of files in our system which would have no code throughout the life cycle of the program.</p>
+<p>Fortunately, rails gives us the ability to customize its own generators so that we can disable these files from being generated. Once we place the below code in the <code> application.rb</code>, it will stop the generation of these extra files.</p><pre class="crayon-plain-tag">config.generators do |g|
+  g.helper false
+  g.stylesheets false
+  g.javascripts false
+  g.view_specs false
+end</pre><p>Now, when you run <code>rails generate controller Home Index new create</code>, you will get less files.</p>
+<p><a href="http://blog.redpanthers.co/wp-content/uploads/2016/07/after_altering_generators.png"><img class="alignnone size-full wp-image-355" src="http://blog.redpanthers.co/wp-content/uploads/2016/07/after_altering_generators.png" alt="after_altering_generators" width="482" height="219" /></a></p>
+<p>The post <a rel="nofollow" href="/customize-rails-auto-generation/">Skip unnecessary files while running Rails Generate</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/customize-rails-auto-generation/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+							</item>
+		<item>
+		<title>God Class: Breaking Single Responsibility Principle</title>
+		<link>/god-class-breaking-single-responsibility-principle/</link>
+				<comments>/god-class-breaking-single-responsibility-principle/#respond</comments>
+				<pubDate>Tue, 26 Jul 2016 12:20:09 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Training]]></category>
+		<category><![CDATA[Class]]></category>
+		<category><![CDATA[database]]></category>
+		<category><![CDATA[Example]]></category>
+		<category><![CDATA[God]]></category>
+		<category><![CDATA[Object Oriented Design]]></category>
+		<category><![CDATA[Object Oriented Programming]]></category>
+		<category><![CDATA[OOP]]></category>
+		<category><![CDATA[Single Responsibility Principle]]></category>
+		<category><![CDATA[SOLID]]></category>
+		<category><![CDATA[SRP]]></category>
+		<category><![CDATA[Table]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=345</guid>
+				<description><![CDATA[<p>          &#8220;God object: In object-oriented programming, is an object that knows too much or                  does too much.&#8221;  &#8211; Source: Wikipedia God class in OOP doesn&#8217;t stand for a good thing; here it&#8217;s called an anti-pattern. In Object Oriented Programming, we create a new&#8230;</p>
+<p>The post <a rel="nofollow" href="/god-class-breaking-single-responsibility-principle/">God Class: Breaking Single Responsibility Principle</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<blockquote>
+<p class="p1" style="text-align: center;"><strong>          &#8220;<em>God object: In object-oriented programming, is an object that knows too much or                  does too much.</em>&#8221; </strong></p>
+<p class="p1" style="text-align: center;">&#8211; Source: <em>Wikipedia</em></p>
+<p class="p1" style="text-align: center;">
+</blockquote>
+<p class="p1" style="text-align: left;">God class in OOP doesn&#8217;t stand for a good thing; here it&#8217;s called an anti-pattern. In Object Oriented Programming, we create a new class to define the properties and capabilities of an object. It is using these objects that we build our system, mimicking how it would work in the real world.</p>
+<p class="p1"><strong>For example:</strong> Let&#8217;s assume that we are trying to build a software to manage the office of a school.</p>
+<p class="p1">In a typical school office, there would be different departments to handle different parts of the administration. For example, the Purchase department for the purchases, the Accounts department for the accounts, the Records department for the records, the HR department to manage the staff. When one department wants something from another department, it would ask that department for the information. As per protocol, it shouldn&#8217;t take the files from the other department without the staff or the department lending it.</p>
+<p>So, mimicking the real world would mean that we build one class for each department of the office. We should build a class called Accounting, and in that class we will write all the functions that the Accounts department does, and only what it does. We will not write the functions for the HR department in the account class. Keeping all the code for a particular function at a single place makes our code more efficient and cleaner. Now every time we want the Accounts department to do something, we will create an object of that class and pass the data we have to get the information we need.</p>
+<p><strong>Note:</strong> <em>In an actual software we will further break down the Accounts department to even smaller classes, so that it would be even more simpler to handle. </em></p>
+<p>&nbsp;</p>
+<p>In limiting the Accounts department to handle only a single responsibility, we know where exactly to look when something related to accounting is found to be broken. But as our software grow, we unknowingly or knowingly give a class more than one responsibility. Doing so might seem to be efficient when you write it &#8211; but when we make changes to one functionality of a class, we risk breaking the second functionality of that class. We have introduced an uncertainty into our system.</p>
+<p>Following the <strong>Single Responsibility Principle</strong> as much as possible ensures that your code is more maintainable, readable and changeable. And most importantly, we can be sure that changing the codes in a particular class would only break that single functionality.</p>
+<p>The post <a rel="nofollow" href="/god-class-breaking-single-responsibility-principle/">God Class: Breaking Single Responsibility Principle</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/god-class-breaking-single-responsibility-principle/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+							</item>
+	</channel>
+</rss>

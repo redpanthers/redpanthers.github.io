@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>mysql &#8211; beta.redpanthers.co</title>
+	<atom:link href="/tag/mysql/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description>Red Panthers - Experts in Ruby on Rails, System Design and Vue.js</description>
+	<lastBuildDate>Thu, 28 Jul 2016 06:46:38 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.7</generator>
+	<item>
+		<title>after_create vs after_save vs after_commit</title>
+		<link>/after_create-vs-after_save-vs-after_commit/</link>
+				<comments>/after_create-vs-after_save-vs-after_commit/#comments</comments>
+				<pubDate>Thu, 28 Jul 2016 06:46:38 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Rails]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[active_model]]></category>
+		<category><![CDATA[active_record]]></category>
+		<category><![CDATA[after_commit]]></category>
+		<category><![CDATA[after_create]]></category>
+		<category><![CDATA[after_save]]></category>
+		<category><![CDATA[callbacks]]></category>
+		<category><![CDATA[database]]></category>
+		<category><![CDATA[mysql]]></category>
+		<category><![CDATA[PostgreSQL]]></category>
+		<category><![CDATA[rails]]></category>
+		<category><![CDATA[Ruby]]></category>
+		<category><![CDATA[transaction]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=371</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[<code>after_save</code>, <code>after_create</code> and <code>after_commit</code> are called active record call backs in rails. They get executed when we work on the database, similarly we also have before_* callback and callbacks on destroy as well. In this article I will explain you about the difference between *_save, *_create and *_commit callbacks.
+The purpose of each as per rails docs:
+
+
+<blockquote>after_create
+Is called after <code>Base.save</code> on new objects that haven‘t been saved yet (no record exists)
+after_save
+Is called after <code>Base.save</code> (regardless of whether it‘s a create or update save)
+after_commit
+Is called after the database transaction is completed.</blockquote>
+
+
+Now to explain the real difference between the three, we must first explain about database transaction. They are a protective block around a group of sql statements, that are permanent only if all of them succeed in a single atomic statement.
+
+
+<pre class="lang:default decode:true">User.transaction do
+    # update company
+    # update hr_department
+    # update user_table
+end</pre>
+
+
+When rails execute a create, the <code>after_save</code> and <code>after_create</code> would be called within the transaction block of the create statement. So they will be executed before executing the sql statement to make permanent changes in the DB. If the query fails, then no change will happen to the DB, but we would have executed the instructions of the after_create and <code>after_save</code> block.
+Where as after_commit, is called after the execution of the final/outer transaction block. Thus the changes in the DB would be permanent.]]&gt;		</p>
+]]></content:encoded>
+							<wfw:commentRss>/after_create-vs-after_save-vs-after_commit/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+							</item>
+		<item>
+		<title>Counter Cache:  How to get started</title>
+		<link>/counter-cache-how-to-get-started/</link>
+				<pubDate>Tue, 26 Jul 2016 10:40:48 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Beginners]]></category>
+		<category><![CDATA[Rails]]></category>
+		<category><![CDATA[Ruby]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[cache]]></category>
+		<category><![CDATA[counter]]></category>
+		<category><![CDATA[database]]></category>
+		<category><![CDATA[improvement]]></category>
+		<category><![CDATA[mysql]]></category>
+		<category><![CDATA[oracale]]></category>
+		<category><![CDATA[performance]]></category>
+		<category><![CDATA[PostgreSQL]]></category>
+		<category><![CDATA[ruby on rails]]></category>
+		<category><![CDATA[SQL]]></category>
+		<category><![CDATA[tips]]></category>
+		<category><![CDATA[training]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=335</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[Displaying the <em>number of tasks under a projec</em>t or the <em>number of comments in a post</em> or the <em>number of users in an organization or anything </em>similar is a common requirement in most rails applications. The code for doing it is also simple- <strong>@project.tasks.count;</strong> but the problem with this code is that every time you run it, you are counting the number of tasks of that project one by one. So, the speed of execution decreases with more number of rows. This code will slow down your page load, if you are displaying the details of more than one project in your page as shown below.
+<a href="https://redpanthers.co/wp-content/uploads/2016/07/Screen-Shot-2016-07-26-at-2.10.14-PM.png"><img class="size-full wp-image-338" src="https://redpanthers.co/wp-content/uploads/2016/07/Screen-Shot-2016-07-26-at-2.10.14-PM.png" alt="project_list" width="198" height="123" /></a>
+To speed this up, rails gives you an in-build mechanism called &#8220;<a href="http://guides.rubyonrails.org/association_basics.html"><strong>Counter Cache</strong></a>&#8220;. As the name suggests, it literally means to cache the number of referenced rows it has (number of tasks a project has).
+<strong>Example code definition</strong>
+
+
+<pre class="toolbar:2 toolbar-overlay:false toolbar-hide:false toolbar-delay:false show-title:false show-lang:2 plain:false show-plain:3 plain-toggle:false popup:false lang:ruby decode:true">class Projects &lt; ActiveRecord::Base
+  has_many :tasks
+end
+class Task &lt; ActiveRecord::Base
+  belongs_to :project
+end</pre>
+
+
+To implement counter_cache, you need to pass in the <strong>counter_cache: true </strong>option along with the belongs_to relationship. You also need to add a migration to add an extra column called <strong>tasks_count</strong> to store the count. This needs to be added to the other model, which has the <strong>has_many</strong> reference.
+
+
+<pre class="toolbar:2 plain:false show-plain:3 plain-toggle:false popup:false lang:ruby decode:true ">class Task &lt; ActiveRecord::Base
+  belongs_to :project, counter_cache: true
+end</pre>
+
+
+<strong>Migration</strong>
+
+
+<pre class="toolbar:2 show-plain:3 lang:default decode:true">class AddTasksCounterCacheToProjects &lt; ActiveRecord::Migration[5.0]
+  def change
+    add_column :projects, :tasks_count, :integer
+  end
+end</pre>
+
+
+If you are adding counter cache to an existing system, you need to update your <strong>tasks_count </strong>with the existing counts. To do that, one can use the code given below. Either place the code along with the migration or run it in console in both production/development environments.
+
+
+<pre class="toolbar:2 show-plain:3 lang:ruby decode:true">Project.find_each { |project| Project.reset_counters(project.id, :tasks) }
+</pre>
+
+
+<span style="line-height: 1.5;">Also note that the tasks_count is just the default column name; if you wish to change it with another name, just pass that name along with the :counter_cache option as below.</span>
+
+
+<pre class="toolbar:2 show-plain:3 lang:ruby decode:true  ">class Task &lt; ActiveRecord::Base
+  belongs_to :project, counter_cache: :not_the_default_column_name
+end</pre>
+
+
+Now, to use the counter cache in your calculations, you should use the method &#8220;size&#8221; instead of &#8220;count&#8221;. The method &#8220;size&#8221; will use the counter_cache if its present, where as using &#8220;.count&#8221; itself would do the actual sql count.
+
+
+<pre class="toolbar:2 show-plain:3 lang:ruby decode:true">&lt;% Project.all.each do |project| %&gt;
+  &lt;%= project.name %&gt; (&lt;%= project.tasks.size %&gt;)
+&lt;% end %&gt;
+</pre>
+
+
+<span style="line-height: 1.5;"><strong>Points to Remember</strong></span>
+
+
+<ul>
+ 	
+
+<li><strong>:counter_cache</strong> is the optional attribute of a <strong>belongs_to</strong> relationship</li>
+
+
+ 	
+
+<li>It requires the creation of an extra column (tasks_count) in the table which has the <strong>has_many</strong> relationship</li>
+
+
+ 	
+
+<li>One can use another column name by passing the name along with :counter_cache option</li>
+
+
+ 	
+
+<li>To use the counter_cache, one must use the <strong>&#8220;.size&#8221;</strong> method</li>
+
+
+</ul>
+
+
+<strong>Speed Improvements</strong>
+<a href="https://redpanthers.co/wp-content/uploads/2016/07/speed_with_count.png"><img class="alignnone wp-image-339 size-full" src="https://redpanthers.co/wp-content/uploads/2016/07/speed_with_count.png" alt="Speed with just count" width="797" height="73" /></a>
+<a href="https://redpanthers.co/wp-content/uploads/2016/07/speed_with_counter_cache.png"><img class="alignnone wp-image-340 size-full" src="https://redpanthers.co/wp-content/uploads/2016/07/speed_with_counter_cache.png" alt="speed_with_counter_cache" width="776" height="53" /></a>
+&nbsp;]]&gt;		</p>
+]]></content:encoded>
+										</item>
+	</channel>
+</rss>

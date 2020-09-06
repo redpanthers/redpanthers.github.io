@@ -1,4 +1,4 @@
- <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
 	xmlns:content="http://purl.org/rss/1.0/modules/content/"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
 	xmlns:atom="http://www.w3.org/2005/Atom"
@@ -10,7 +10,7 @@
 	Comments on: Introduction to generating JSON using PostgreSQL	</title>
 	<atom:link href="/create-json-response-using-postgresql-instead-rails/feed/" rel="self" type="application/rss+xml" />
 	<link>/create-json-response-using-postgresql-instead-rails/</link>
-	<description>Experts in Ruby on Rails Development</description>
+	<description>Red Panthers - Experts in Ruby on Rails, System Design and Vue.js</description>
 	<lastBuildDate>Wed, 30 Jan 2019 09:07:07 +0000</lastBuildDate>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -20,26 +20,24 @@
 			<item>
 				<title>
 				By: Sleeba Paul				</title>
-				<link>/create-json-response-using-postgresql-instead-rails/#comment-87</link>
+				<link>/create-json-response-using-postgresql-instead-rails/#comment-27</link>
 		<dc:creator><![CDATA[Sleeba Paul]]></dc:creator>
 		<pubDate>Wed, 30 Jan 2019 09:07:07 +0000</pubDate>
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=663#comment-87</guid>
+		<guid isPermaLink="false">https://redpanthers.co/?p=663#comment-27</guid>
 					<description><![CDATA[You randomly hit to a tutorial, find `hsps`  in a code block, then you look again who is the author and you find it is written by your senior. Nice vibe!]]></description>
-		<content:encoded><![CDATA[<p>You randomly hit to a tutorial, find <code>hsps</code>  in a code block, then you look again who is the author and you find it is written by your senior. Nice vibe!</p>
+		<content:encoded><![CDATA[<p>You randomly hit to a tutorial, find `hsps`  in a code block, then you look again who is the author and you find it is written by your senior. Nice vibe!</p>
 ]]></content:encoded>
 						</item>
 						<item>
 				<title>
 				By: vijay k				</title>
-				<link>/create-json-response-using-postgresql-instead-rails/#comment-17</link>
+				<link>/create-json-response-using-postgresql-instead-rails/#comment-26</link>
 		<dc:creator><![CDATA[vijay k]]></dc:creator>
 		<pubDate>Fri, 19 Jan 2018 11:53:00 +0000</pubDate>
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=663#comment-17</guid>
+		<guid isPermaLink="false">https://redpanthers.co/?p=663#comment-26</guid>
 					<description><![CDATA[--&#062;Here I need order by of CLAIM_COUNTER .
    If i put inside json_agg it was not working.
-
 please tell me any other alternative for this one.
-
 SELECT array_to_json(array_agg(Result))
 FROM (
     SELECT
@@ -67,9 +65,9 @@ FROM (
     LIMIT 10
 ) AS result;]]></description>
 		<content:encoded><![CDATA[<p>&#8211;&gt;Here I need order by of CLAIM_COUNTER .<br />
-   If i put inside json_agg it was not working.</p>
-<p>please tell me any other alternative for this one.</p>
-<p>SELECT array_to_json(array_agg(Result))<br />
+   If i put inside json_agg it was not working.<br />
+please tell me any other alternative for this one.<br />
+SELECT array_to_json(array_agg(Result))<br />
 FROM (<br />
     SELECT<br />
         C.eCPClaim_carrier_id,<br />
@@ -100,10 +98,10 @@ FROM (<br />
 						<item>
 				<title>
 				By: vijay k				</title>
-				<link>/create-json-response-using-postgresql-instead-rails/#comment-16</link>
+				<link>/create-json-response-using-postgresql-instead-rails/#comment-25</link>
 		<dc:creator><![CDATA[vijay k]]></dc:creator>
 		<pubDate>Fri, 19 Jan 2018 06:59:00 +0000</pubDate>
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=663#comment-16</guid>
+		<guid isPermaLink="false">https://redpanthers.co/?p=663#comment-25</guid>
 					<description><![CDATA[SELECT array_to_json(array_agg(Result))
 FROM
 (
@@ -143,10 +141,10 @@ from table_name<br />
 						<item>
 				<title>
 				By: Bowen Masco				</title>
-				<link>/create-json-response-using-postgresql-instead-rails/#comment-15</link>
+				<link>/create-json-response-using-postgresql-instead-rails/#comment-24</link>
 		<dc:creator><![CDATA[Bowen Masco]]></dc:creator>
 		<pubDate>Mon, 05 Dec 2016 15:29:00 +0000</pubDate>
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=663#comment-15</guid>
+		<guid isPermaLink="false">https://redpanthers.co/?p=663#comment-24</guid>
 					<description><![CDATA[I cant remember what version of postgres we were using. It might have been an older one. We just moved the json generation back to the app servers. It works there. The database was probably about the same order of magnitude number of records. I would just recommend monitoring the database memory usage. It is possible there was some bug that we ran into that has since been fixed or there was something pathological about our queries. I did not really investigate too deeply since we were just testing it out. It was easy for us to switch back and we had a lot of higher priority stuff we needed to do.]]></description>
 		<content:encoded><![CDATA[<p>I cant remember what version of postgres we were using. It might have been an older one. We just moved the json generation back to the app servers. It works there. The database was probably about the same order of magnitude number of records. I would just recommend monitoring the database memory usage. It is possible there was some bug that we ran into that has since been fixed or there was something pathological about our queries. I did not really investigate too deeply since we were just testing it out. It was easy for us to switch back and we had a lot of higher priority stuff we needed to do.</p>
 ]]></content:encoded>
@@ -154,24 +152,23 @@ from table_name<br />
 						<item>
 				<title>
 				By: Harisankar P S				</title>
-				<link>/create-json-response-using-postgresql-instead-rails/#comment-14</link>
+				<link>/create-json-response-using-postgresql-instead-rails/#comment-23</link>
 		<dc:creator><![CDATA[Harisankar P S]]></dc:creator>
 		<pubDate>Mon, 05 Dec 2016 05:37:00 +0000</pubDate>
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=663#comment-14</guid>
+		<guid isPermaLink="false">https://redpanthers.co/?p=663#comment-23</guid>
 					<description><![CDATA[Any idea regarding it. We are using Postgres 9.5 with JSON generation in a table with presently half a million record and growing per day. The query runs in a small subset of the table after joining with other tables, but we have found no spike in memory compare to the spike we see while doing it in rails.
-
 Also what did you do instead. Did you find another suitable/efficient solution for your problem.]]></description>
-		<content:encoded><![CDATA[<p>Any idea regarding it. We are using Postgres 9.5 with JSON generation in a table with presently half a million record and growing per day. The query runs in a small subset of the table after joining with other tables, but we have found no spike in memory compare to the spike we see while doing it in rails.</p>
-<p>Also what did you do instead. Did you find another suitable/efficient solution for your problem.</p>
+		<content:encoded><![CDATA[<p>Any idea regarding it. We are using Postgres 9.5 with JSON generation in a table with presently half a million record and growing per day. The query runs in a small subset of the table after joining with other tables, but we have found no spike in memory compare to the spike we see while doing it in rails.<br />
+Also what did you do instead. Did you find another suitable/efficient solution for your problem.</p>
 ]]></content:encoded>
 						</item>
 						<item>
 				<title>
 				By: Bowen Masco				</title>
-				<link>/create-json-response-using-postgresql-instead-rails/#comment-13</link>
+				<link>/create-json-response-using-postgresql-instead-rails/#comment-22</link>
 		<dc:creator><![CDATA[Bowen Masco]]></dc:creator>
 		<pubDate>Sat, 03 Dec 2016 16:26:00 +0000</pubDate>
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=663#comment-13</guid>
+		<guid isPermaLink="false">https://redpanthers.co/?p=663#comment-22</guid>
 					<description><![CDATA[It was several months ago and we already moved away from using it.]]></description>
 		<content:encoded><![CDATA[<p>It was several months ago and we already moved away from using it.</p>
 ]]></content:encoded>
@@ -179,10 +176,10 @@ Also what did you do instead. Did you find another suitable/efficient solution f
 						<item>
 				<title>
 				By: Harisankar P S				</title>
-				<link>/create-json-response-using-postgresql-instead-rails/#comment-12</link>
+				<link>/create-json-response-using-postgresql-instead-rails/#comment-21</link>
 		<dc:creator><![CDATA[Harisankar P S]]></dc:creator>
 		<pubDate>Sat, 03 Dec 2016 05:34:00 +0000</pubDate>
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=663#comment-12</guid>
+		<guid isPermaLink="false">https://redpanthers.co/?p=663#comment-21</guid>
 					<description><![CDATA[Can you tell me the type of query that you ran and the number of records in the table. I would like to help you debug and reduce the memory usage.]]></description>
 		<content:encoded><![CDATA[<p>Can you tell me the type of query that you ran and the number of records in the table. I would like to help you debug and reduce the memory usage.</p>
 ]]></content:encoded>
@@ -190,10 +187,10 @@ Also what did you do instead. Did you find another suitable/efficient solution f
 						<item>
 				<title>
 				By: Bowen Masco				</title>
-				<link>/create-json-response-using-postgresql-instead-rails/#comment-11</link>
+				<link>/create-json-response-using-postgresql-instead-rails/#comment-20</link>
 		<dc:creator><![CDATA[Bowen Masco]]></dc:creator>
 		<pubDate>Thu, 01 Dec 2016 21:34:00 +0000</pubDate>
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=663#comment-11</guid>
+		<guid isPermaLink="false">https://redpanthers.co/?p=663#comment-20</guid>
 					<description><![CDATA[The problem I ran into was memory consumption on the database server skyrocketed. It slowed down all the other queries. So make sure and profile speed and memory usage for your workload]]></description>
 		<content:encoded><![CDATA[<p>The problem I ran into was memory consumption on the database server skyrocketed. It slowed down all the other queries. So make sure and profile speed and memory usage for your workload</p>
 ]]></content:encoded>
@@ -201,10 +198,10 @@ Also what did you do instead. Did you find another suitable/efficient solution f
 						<item>
 				<title>
 				By: Overbryd				</title>
-				<link>/create-json-response-using-postgresql-instead-rails/#comment-10</link>
+				<link>/create-json-response-using-postgresql-instead-rails/#comment-19</link>
 		<dc:creator><![CDATA[Overbryd]]></dc:creator>
 		<pubDate>Thu, 01 Dec 2016 20:16:00 +0000</pubDate>
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=663#comment-10</guid>
+		<guid isPermaLink="false">https://redpanthers.co/?p=663#comment-19</guid>
 					<description><![CDATA[As seen in 2013 (with performance benchmarks): https://hashrocket.com/blog/posts/faster-json-generation-with-postgresql]]></description>
 		<content:encoded><![CDATA[<p>As seen in 2013 (with performance benchmarks): <a href="https://hashrocket.com/blog/posts/faster-json-generation-with-postgresql" rel="nofollow">https://hashrocket.com/blog/posts/faster-json-generation-with-postgresql</a></p>
 ]]></content:encoded>
@@ -212,10 +209,10 @@ Also what did you do instead. Did you find another suitable/efficient solution f
 						<item>
 				<title>
 				By: Harisankar P S				</title>
-				<link>/create-json-response-using-postgresql-instead-rails/#comment-9</link>
+				<link>/create-json-response-using-postgresql-instead-rails/#comment-18</link>
 		<dc:creator><![CDATA[Harisankar P S]]></dc:creator>
 		<pubDate>Sat, 26 Nov 2016 09:50:00 +0000</pubDate>
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=663#comment-9</guid>
+		<guid isPermaLink="false">https://redpanthers.co/?p=663#comment-18</guid>
 					<description><![CDATA[I did this in production. I saw 4x improvement in request per seconds. Though it&#039;s not a proper benchmark. As it was just a use case for us. I feel that as the JSON data gets more complicated PostgreSQL is a faster alternative. ]]></description>
 		<content:encoded><![CDATA[<p>I did this in production. I saw 4x improvement in request per seconds. Though it&#8217;s not a proper benchmark. As it was just a use case for us. I feel that as the JSON data gets more complicated PostgreSQL is a faster alternative. </p>
 ]]></content:encoded>

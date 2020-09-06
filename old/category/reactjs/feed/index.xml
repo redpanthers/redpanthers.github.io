@@ -1,0 +1,95 @@
+ <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>ReactJS &#8211; Red Panthers</title>
+	<atom:link href="/category/reactjs/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description>Experts in Ruby on Rails Development</description>
+	<lastBuildDate>Thu, 22 Feb 2018 13:33:53 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.7</generator>
+
+<image>
+	<url>/wp-content/uploads/2017/12/rp-logo.png</url>
+	<title>ReactJS &#8211; Red Panthers</title>
+	<link>/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Getting start with React Native</title>
+		<link>/getting-start-with-react-native/</link>
+				<comments>/getting-start-with-react-native/#respond</comments>
+				<pubDate>Mon, 23 Oct 2017 04:33:07 +0000</pubDate>
+		<dc:creator><![CDATA[vishnu]]></dc:creator>
+				<category><![CDATA[Beginners]]></category>
+		<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[ReactJS]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3660</guid>
+				<description><![CDATA[<p>React Native lets you build mobile apps using only JavaScript. A React Native app is a real mobile app. It uses the same design as React, letting you compose a rich mobile UI from declarative components. Installation Using Create React Native App we can start building a new React Native application easily. It allows you to start a project without installing or&#8230;</p>
+<p>The post <a rel="nofollow" href="/getting-start-with-react-native/">Getting start with React Native</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p><strong>React Native</strong> lets you build mobile apps using only JavaScript. A React Native app is a real mobile app. It uses the same design as React, letting you compose a rich mobile UI from declarative components.</p>
+<h2>Installation</h2>
+<p>Using <a href="https://github.com/react-community/create-react-native-app" rel="noopener">Create React Native App</a> we can start building a new React Native application easily. It allows you to start a project without installing or configuring any tools to build native code &#8211; no Xcode or Android Studio installation required.</p>
+<p>Assuming that you have <a href="https://nodejs.org/en/download/" rel="noopener">Node</a> installed, you can use npm to install the <code>create-react-native-app</code> command-line utility:</p><pre class="crayon-plain-tag">$ npm install -g create-react-native-app</pre><p>Try creating a new project:-</p><pre class="crayon-plain-tag">$ npm i -g create-react-native-app
+$ create-react-native-app my-project
+$ cd my-project
+$ npm start</pre><p>This will start a development server for you, and print a QR code in your terminal.</p>
+<p>To run your app,</p>
+<p>Install the <a href="https://expo.io/" rel="noopener">Expo</a> client app on your iOS or Android phone and connect to the same wireless network as your computer. Using the Expo app, scan the QR code from your terminal to open your project.</p>
+<h2>Basic App</h2>
+<p>In the App.js file you can see:-</p><pre class="crayon-plain-tag">import React, { Component } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+
+export default class App extends Component {
+  render() {
+    return (
+      &lt;Text&gt;Hello world!&lt;/Text&gt;
+    );
+  }
+}</pre><p><code>import</code>, <code>from</code>, <code>class</code>, <code>extends</code>, and the <code>() =&gt;</code> syntax in the example above are all ES2015 (also known as ES6)  features. The unusual thing in this code example is.<code>&lt;Text&gt;Hello world!&lt;/Text&gt;</code> This is JSX &#8211; a syntax for embedding XML within JavaScript. <code>&lt;Text&gt;</code> is a built-in component that just displays some text. This code is defining, <code>App</code> a new <code>Component</code> . Anything you see on the screen is some sort of component. A component can be pretty simple &#8211; the only thing that&#8217;s required is a <code>render</code> function which returns some JSX to render.</p>
+<p>You can also write style in App.js file.</p><pre class="crayon-plain-tag">const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#4286f4',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});</pre><p>To modify your app, you can edit App.js file. The application should reload automatically once you save your changes.</p>
+<h2>Create React Native App</h2>
+<p>Create React Native App makes it really easy to run your React Native app on a physical device without setting up a development environment. If you want to run your app on the iOS Simulator or an Android Virtual Device, please refer to the instructions for building projects with native code to learn how to install Xcode and set up your Android development environment.</p>
+<p>Once you&#8217;ve set these up, you can launch your app on an Android Virtual Device by running, npm run android or on the iOS Simulator by running npm run ios (macOS only).</p>
+<h3>Pros</h3>
+<ul>
+<li>JavaScript − You can use the existing JavaScript knowledge to build native mobile apps.</li>
+<li>Community − The community around React and React Native is large, and you will be able to find any answer you need.</li>
+<li>Code sharing − You can share most of your code on different platforms.</li>
+</ul>
+<h3>Cons</h3>
+<ul>
+<li>Native Components − If you want to create a native functionality which is not created yet, you will need to write some platform specific code.</li>
+</ul>
+<p>React Native is focused solely on building a mobile UI. Compared with JavaScript frameworks like AngularJS or MeteorJS, React Native is UI-focused, making it more like a JavaScript library than a framework. The resulting UI is highly responsive and feels fluid thanks to asynchronou<span style="color: #000000;">s JavaScript interactions</span> with the native environment. This means the app will have quicker load times than a typical hybrid app, and a smoother feel.</p>
+<h2>Reference</h2>
+<p><a href="https://facebook.github.io/react-native/blog/2017/03/13/introducing-create-react-native-app.html">https://facebook.github.io/react-native/blog/2017/03/13/introducing-create-react-native-app.html</a></p>
+<p><a href="https://facebook.github.io/react-native/docs/tutorial.html#content">https://facebook.github.io/react-native/docs/tutorial.html#content</a></p>
+<p>The post <a rel="nofollow" href="/getting-start-with-react-native/">Getting start with React Native</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/getting-start-with-react-native/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+							</item>
+	</channel>
+</rss>

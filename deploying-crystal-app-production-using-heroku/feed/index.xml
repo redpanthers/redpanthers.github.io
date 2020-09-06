@@ -1,4 +1,4 @@
- <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
 	xmlns:content="http://purl.org/rss/1.0/modules/content/"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
 	xmlns:atom="http://www.w3.org/2005/Atom"
@@ -10,7 +10,7 @@
 	Comments on: Deploying Crystal app to production using Heroku	</title>
 	<atom:link href="/deploying-crystal-app-production-using-heroku/feed/" rel="self" type="application/rss+xml" />
 	<link>/deploying-crystal-app-production-using-heroku/</link>
-	<description>Experts in Ruby on Rails Development</description>
+	<description>Red Panthers - Experts in Ruby on Rails, System Design and Vue.js</description>
 	<lastBuildDate>Sat, 16 Jun 2018 20:37:14 +0000</lastBuildDate>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -23,7 +23,7 @@
 				<link>/deploying-crystal-app-production-using-heroku/#comment-81</link>
 		<dc:creator><![CDATA[mega_tux]]></dc:creator>
 		<pubDate>Sat, 16 Jun 2018 20:37:14 +0000</pubDate>
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3466#comment-81</guid>
+		<guid isPermaLink="false">https://redpanthers.co/?p=3466#comment-81</guid>
 					<description><![CDATA[shrad.yml --&gt; shard.yml]]></description>
 		<content:encoded><![CDATA[<p>shrad.yml &#8211;> shard.yml</p>
 ]]></content:encoded>

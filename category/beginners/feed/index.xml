@@ -1,4 +1,4 @@
- <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
 	xmlns:content="http://purl.org/rss/1.0/modules/content/"
 	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -8,196 +8,404 @@
 	>
 
 <channel>
-	<title>Beginners &#8211; Red Panthers</title>
+	<title>Beginners &#8211; beta.redpanthers.co</title>
 	<atom:link href="/category/beginners/feed/" rel="self" type="application/rss+xml" />
 	<link>/</link>
-	<description>Experts in Ruby on Rails Development</description>
-	<lastBuildDate>Thu, 22 Feb 2018 13:33:53 +0000</lastBuildDate>
+	<description>Red Panthers - Experts in Ruby on Rails, System Design and Vue.js</description>
+	<lastBuildDate>Mon, 23 Oct 2017 04:33:07 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
 	<generator>https://wordpress.org/?v=5.2.7</generator>
-
-<image>
-	<url>/wp-content/uploads/2017/12/rp-logo.png</url>
-	<title>Beginners &#8211; Red Panthers</title>
-	<link>/</link>
-	<width>32</width>
-	<height>32</height>
-</image> 
 	<item>
 		<title>Getting start with React Native</title>
 		<link>/getting-start-with-react-native/</link>
-				<comments>/getting-start-with-react-native/#respond</comments>
 				<pubDate>Mon, 23 Oct 2017 04:33:07 +0000</pubDate>
 		<dc:creator><![CDATA[vishnu]]></dc:creator>
 				<category><![CDATA[Beginners]]></category>
 		<category><![CDATA[Javascript]]></category>
 		<category><![CDATA[ReactJS]]></category>
 
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3660</guid>
-				<description><![CDATA[<p>React Native lets you build mobile apps using only JavaScript. A React Native app is a real mobile app. It uses the same design as React, letting you compose a rich mobile UI from declarative components. Installation Using Create React Native App we can start building a new React Native application easily. It allows you to start a project without installing or&#8230;</p>
-<p>The post <a rel="nofollow" href="/getting-start-with-react-native/">Getting start with React Native</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
-]]></description>
-								<content:encoded><![CDATA[<p><strong>React Native</strong> lets you build mobile apps using only JavaScript. A React Native app is a real mobile app. It uses the same design as React, letting you compose a rich mobile UI from declarative components.</p>
+		<guid isPermaLink="false">https://redpanthers.co/?p=3660</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[<strong>React Native</strong> lets you build mobile apps using only JavaScript. A React Native app is a real mobile app. It uses the same design as React, letting you compose a rich mobile UI from declarative components.
+
+
 <h2>Installation</h2>
-<p>Using <a href="https://github.com/react-community/create-react-native-app" rel="noopener">Create React Native App</a> we can start building a new React Native application easily. It allows you to start a project without installing or configuring any tools to build native code &#8211; no Xcode or Android Studio installation required.</p>
-<p>Assuming that you have <a href="https://nodejs.org/en/download/" rel="noopener">Node</a> installed, you can use npm to install the <code>create-react-native-app</code> command-line utility:</p><pre class="crayon-plain-tag">$ npm install -g create-react-native-app</pre><p>Try creating a new project:-</p><pre class="crayon-plain-tag">$ npm i -g create-react-native-app
+
+
+Using <a href="https://github.com/react-community/create-react-native-app" rel="noopener">Create React Native App</a> we can start building a new React Native application easily. It allows you to start a project without installing or configuring any tools to build native code &#8211; no Xcode or Android Studio installation required.
+Assuming that you have <a href="https://nodejs.org/en/download/" rel="noopener">Node</a> installed, you can use npm to install the <code>create-react-native-app</code> command-line utility:
+
+
+<pre class="lang:default decode:true">$ npm install -g create-react-native-app</pre>
+
+
+Try creating a new project:-
+
+
+<pre class="lang:default decode:true">$ npm i -g create-react-native-app
 $ create-react-native-app my-project
 $ cd my-project
-$ npm start</pre><p>This will start a development server for you, and print a QR code in your terminal.</p>
-<p>To run your app,</p>
-<p>Install the <a href="https://expo.io/" rel="noopener">Expo</a> client app on your iOS or Android phone and connect to the same wireless network as your computer. Using the Expo app, scan the QR code from your terminal to open your project.</p>
-<h2>Basic App</h2>
-<p>In the App.js file you can see:-</p><pre class="crayon-plain-tag">import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+$ npm start</pre>
 
+
+This will start a development server for you, and print a QR code in your terminal.
+To run your app,
+Install the <a href="https://expo.io/" rel="noopener">Expo</a> client app on your iOS or Android phone and connect to the same wireless network as your computer. Using the Expo app, scan the QR code from your terminal to open your project.
+
+
+<h2>Basic App</h2>
+
+
+In the App.js file you can see:-
+
+
+<pre class="lang:default decode:true">import React, { Component } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 export default class App extends Component {
   render() {
     return (
       &lt;Text&gt;Hello world!&lt;/Text&gt;
     );
   }
-}</pre><p><code>import</code>, <code>from</code>, <code>class</code>, <code>extends</code>, and the <code>() =&gt;</code> syntax in the example above are all ES2015 (also known as ES6)  features. The unusual thing in this code example is.<code>&lt;Text&gt;Hello world!&lt;/Text&gt;</code> This is JSX &#8211; a syntax for embedding XML within JavaScript. <code>&lt;Text&gt;</code> is a built-in component that just displays some text. This code is defining, <code>App</code> a new <code>Component</code> . Anything you see on the screen is some sort of component. A component can be pretty simple &#8211; the only thing that&#8217;s required is a <code>render</code> function which returns some JSX to render.</p>
-<p>You can also write style in App.js file.</p><pre class="crayon-plain-tag">const styles = StyleSheet.create({
+}</pre>
+
+
+<code>import</code>, <code>from</code>, <code>class</code>, <code>extends</code>, and the <code>() =&gt;</code> syntax in the example above are all ES2015 (also known as ES6)  features. The unusual thing in this code example is.<code>&lt;Text&gt;Hello world!&lt;/Text&gt;</code> This is JSX &#8211; a syntax for embedding XML within JavaScript. <code>&lt;Text&gt;</code> is a built-in component that just displays some text. This code is defining, <code>App</code> a new <code>Component</code> . Anything you see on the screen is some sort of component. A component can be pretty simple &#8211; the only thing that&#8217;s required is a <code>render</code> function which returns some JSX to render.
+You can also write style in App.js file.
+
+
+<pre class="lang:default decode:true">const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#4286f4',
     alignItems: 'center',
     justifyContent: 'center',
   },
-});</pre><p>To modify your app, you can edit App.js file. The application should reload automatically once you save your changes.</p>
+});
+</pre>
+
+
+To modify your app, you can edit App.js file. The application should reload automatically once you save your changes.
+
+
 <h2>Create React Native App</h2>
-<p>Create React Native App makes it really easy to run your React Native app on a physical device without setting up a development environment. If you want to run your app on the iOS Simulator or an Android Virtual Device, please refer to the instructions for building projects with native code to learn how to install Xcode and set up your Android development environment.</p>
-<p>Once you&#8217;ve set these up, you can launch your app on an Android Virtual Device by running, npm run android or on the iOS Simulator by running npm run ios (macOS only).</p>
+
+
+Create React Native App makes it really easy to run your React Native app on a physical device without setting up a development environment. If you want to run your app on the iOS Simulator or an Android Virtual Device, please refer to the instructions for building projects with native code to learn how to install Xcode and set up your Android development environment.
+Once you&#8217;ve set these up, you can launch your app on an Android Virtual Device by running, npm run android or on the iOS Simulator by running npm run ios (macOS only).
+
+
 <h3>Pros</h3>
+
+
+
+
 <ul>
+ 	
+
 <li>JavaScript − You can use the existing JavaScript knowledge to build native mobile apps.</li>
+
+
+ 	
+
 <li>Community − The community around React and React Native is large, and you will be able to find any answer you need.</li>
+
+
+ 	
+
 <li>Code sharing − You can share most of your code on different platforms.</li>
+
+
 </ul>
+
+
+
+
 <h3>Cons</h3>
+
+
+
+
 <ul>
+ 	
+
 <li>Native Components − If you want to create a native functionality which is not created yet, you will need to write some platform specific code.</li>
+
+
 </ul>
-<p>React Native is focused solely on building a mobile UI. Compared with JavaScript frameworks like AngularJS or MeteorJS, React Native is UI-focused, making it more like a JavaScript library than a framework. The resulting UI is highly responsive and feels fluid thanks to asynchronou<span style="color: #000000;">s JavaScript interactions</span> with the native environment. This means the app will have quicker load times than a typical hybrid app, and a smoother feel.</p>
+
+
+React Native is focused solely on building a mobile UI. Compared with JavaScript frameworks like AngularJS or MeteorJS, React Native is UI-focused, making it more like a JavaScript library than a framework. The resulting UI is highly responsive and feels fluid thanks to asynchronou<span style="color: #000000;">s JavaScript interactions</span> with the native environment. This means the app will have quicker load times than a typical hybrid app, and a smoother feel.
+
+
 <h2>Reference</h2>
-<p><a href="https://facebook.github.io/react-native/blog/2017/03/13/introducing-create-react-native-app.html">https://facebook.github.io/react-native/blog/2017/03/13/introducing-create-react-native-app.html</a></p>
-<p><a href="https://facebook.github.io/react-native/docs/tutorial.html#content">https://facebook.github.io/react-native/docs/tutorial.html#content</a></p>
-<p>The post <a rel="nofollow" href="/getting-start-with-react-native/">Getting start with React Native</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+
+
+<a href="https://facebook.github.io/react-native/blog/2017/03/13/introducing-create-react-native-app.html">https://facebook.github.io/react-native/blog/2017/03/13/introducing-create-react-native-app.html</a>
+<a href="https://facebook.github.io/react-native/docs/tutorial.html#content">https://facebook.github.io/react-native/docs/tutorial.html#content</a>]]&gt;		</p>
 ]]></content:encoded>
-							<wfw:commentRss>/getting-start-with-react-native/feed/</wfw:commentRss>
-		<slash:comments>0</slash:comments>
-							</item>
+										</item>
 		<item>
 		<title>Observer Design Pattern in Ruby</title>
 		<link>/observer-design-pattern-ruby/</link>
-				<comments>/observer-design-pattern-ruby/#comments</comments>
 				<pubDate>Mon, 16 Oct 2017 10:24:44 +0000</pubDate>
 		<dc:creator><![CDATA[anjana]]></dc:creator>
 				<category><![CDATA[Beginners]]></category>
 		<category><![CDATA[Ruby]]></category>
 
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=1264</guid>
-				<description><![CDATA[<p>Observer design pattern (also known as Publish/Subscribe) is a software design pattern, used when we are building a system where the state of one object affects the state of other objects. It is a key part of model-view-controller architectural pattern. In a traditional MVC ( Model-View-Controller ) architecture, a model is a subject and a view is an observer.&#8230;</p>
-<p>The post <a rel="nofollow" href="/observer-design-pattern-ruby/">Observer Design Pattern in Ruby</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
-]]></description>
-								<content:encoded><![CDATA[<p>Observer design pattern (also known as Publish/Subscribe) is a software design pattern, used when we are building a system where the state of one object affects the state of other objects. It is a key part of <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">model-view-controller</a> architectural pattern.</p>
-<p>In a traditional MVC ( Model-View-Controller ) architecture, a model is a <em class="markup--em markup--p-em">subject</em> and a view is an <em class="markup--em markup--p-em">observer</em>. A view is notified when a model changes and responds accordingly. When the subject sends observers detailed information about what has changed, indiscriminately, this is known as the <em class="markup--em markup--p-em">push model </em>of the <strong class="markup--strong markup--p-strong">Observer </strong>pattern. When a subject sends only minimal information to its observers must ask for details explicitly, this is known as the <em class="markup--em markup--p-em">pull model</em> of the <strong class="markup--strong markup--p-strong">Observer</strong> pattern.</p>
-<p><a href="http://blog.redpanthers.co/wp-content/uploads/2017/01/observer-1.png"><img class="wp-image-1459 size-full aligncenter" src="http://blog.redpanthers.co/wp-content/uploads/2017/01/observer-1.png" alt="Observer Design Pattern" width="444" height="227" /></a></p>
-<p>Ruby provides a simple mechanism to implement this design pattern using the <code>Observable</code> module. In this mechanism, the Notifier class uses the <code>Observable</code> module, which provides the methods for managing the associated observer objects.</p>
-<p>The observable object must:</p>
-<ul>
-<li>assert that it has <code>#changed</code></li>
-<li>call <code>#notify_observers</code></li>
-</ul>
-<p>An observer subscribes to updates using <a href="https://ruby-doc.org/stdlib-2.3.2/libdoc/observer/rdoc/Observable.html#method-i-add_observer">#add_observer</a>, which also specifies the method called via <a href="https://ruby-doc.org/stdlib-2.3.2/libdoc/observer/rdoc/Observable.html#method-i-notify_observers">notify observers</a>. The default method for <a href="https://ruby-doc.org/stdlib-2.3.2/libdoc/observer/rdoc/Observable.html#method-i-notify_observers">notify observers</a> is update.</p>
-<h2 class="section-header">Public Instance Methods</h2>
-<p>Instance methods are methods that are called on an instance of a class. We can use the below methods while using Observer instances.</p>
-<ul>
-<li class="method-heading"><span class="method-name">add_observer</span><span class="method-args">(observer, func=:update)</span></li>
-</ul>
-<div>
-<p style="padding-left: 60px;">Adds <code>observer</code> as an observer on this object, so that it will receive notifications.</p>
-<ul>
-<li class="method-heading"><span class="method-name">changed</span><span class="method-args">(state=true)</span></li>
-</ul>
-<div>
-<p style="padding-left: 60px;">Set the changed state of this object. Notifications will be sent only if the changed <code>state</code> is <code>true</code>.</p>
-<ul>
-<li class="method-heading"><span class="method-name">changed?</span><span class="method-args">()</span></li>
-</ul>
-<div>
-<p style="padding-left: 60px;">Returns true if this object’s state has been changed since the last notify_observers call.</p>
-<ul>
-<li class="method-heading"><span class="method-name">count_observers</span><span class="method-args">()</span></li>
-</ul>
-<p style="padding-left: 60px;">Return the number of observers associated with this object.</p>
-<ul>
-<li class="method-heading"><span class="method-name">delete_observer</span><span class="method-args">(observer)</span></li>
-</ul>
-<p style="padding-left: 60px;">Remove <code>observer</code> as an observer on this object so that it will no longer receive notifications.</p>
-<ul>
-<li class="method-heading"><span class="method-args"><span class="method-name">delete_observers</span>()</span></li>
-</ul>
-<p style="padding-left: 60px;">Remove all observers associated with this object.</p>
-<ul>
-<li>notify_observers(*arg)</li>
-</ul>
-<div style="padding-left: 60px;">Notify observers of a change in state <strong>if</strong> this object’s changed state is <code>true.</code></div>
-</div>
-</div>
-</div>
-<h2>How it works</h2>
-<p>First, we have to create a basic structure of the Notifier class which will act as an Observer. The <em>update()</em> method is the callback that the <a href="http://ruby-doc.org/stdlib-1.9.3/libdoc/observer/rdoc/Observable.html">Observable</a> module will use when notifying changes to the observer, and the method name needs to be <em>update()</em>.</p>
-<p>Let’s take an example of an application which keeps track of the bike mileage and reminds us of when we need to take the vehicle in for a scheduled bike service.</p><pre class="crayon-plain-tag">require 'observer'
+		<guid isPermaLink="false">https://redpanthers.co/?p=1264</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[Observer design pattern (also known as Publish/Subscribe) is a software design pattern, used when we are building a system where the state of one object affects the state of other objects. It is a key part of <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">model-view-controller</a> architectural pattern.
+In a traditional MVC ( Model-View-Controller ) architecture, a model is a <em class="markup--em markup--p-em">subject</em> and a view is an <em class="markup--em markup--p-em">observer</em>. A view is notified when a model changes and responds accordingly. When the subject sends observers detailed information about what has changed, indiscriminately, this is known as the <em class="markup--em markup--p-em">push model </em>of the <strong class="markup--strong markup--p-strong">Observer </strong>pattern. When a subject sends only minimal information to its observers must ask for details explicitly, this is known as the <em class="markup--em markup--p-em">pull model</em> of the <strong class="markup--strong markup--p-strong">Observer</strong> pattern.
+<a href="https://redpanthers.co/wp-content/uploads/2017/01/observer-1.png"><img class="wp-image-1459 size-full aligncenter" src="https://redpanthers.co/wp-content/uploads/2017/01/observer-1.png" alt="Observer Design Pattern" width="444" height="227" /></a>
+Ruby provides a simple mechanism to implement this design pattern using the <code>Observable</code> module. In this mechanism, the Notifier class uses the <code>Observable</code> module, which provides the methods for managing the associated observer objects.
+The observable object must:
 
+
+<ul>
+ 	
+
+<li>assert that it has <code>#changed</code></li>
+
+
+ 	
+
+<li>call <code>#notify_observers</code></li>
+
+
+</ul>
+
+
+An observer subscribes to updates using <a href="https://ruby-doc.org/stdlib-2.3.2/libdoc/observer/rdoc/Observable.html#method-i-add_observer">#add_observer</a>, which also specifies the method called via <a href="https://ruby-doc.org/stdlib-2.3.2/libdoc/observer/rdoc/Observable.html#method-i-notify_observers">notify observers</a>. The default method for <a href="https://ruby-doc.org/stdlib-2.3.2/libdoc/observer/rdoc/Observable.html#method-i-notify_observers">notify observers</a> is update.
+
+
+<h2 class="section-header">Public Instance Methods</h2>
+
+
+Instance methods are methods that are called on an instance of a class. We can use the below methods while using Observer instances.
+
+
+<ul>
+ 	
+
+<li class="method-heading"><span class="method-name">add_observer</span><span class="method-args">(observer, func=:update)</span></li>
+
+
+</ul>
+
+
+
+
+<div>
+
+
+<p style="padding-left: 60px;">Adds <code>observer</code> as an observer on this object, so that it will receive notifications.</p>
+
+
+
+
+<ul>
+ 	
+
+<li class="method-heading"><span class="method-name">changed</span><span class="method-args">(state=true)</span></li>
+
+
+</ul>
+
+
+
+
+<div>
+
+
+<p style="padding-left: 60px;">Set the changed state of this object. Notifications will be sent only if the changed <code>state</code> is <code>true</code>.</p>
+
+
+
+
+<ul>
+ 	
+
+<li class="method-heading"><span class="method-name">changed?</span><span class="method-args">()</span></li>
+
+
+</ul>
+
+
+
+
+<div>
+
+
+<p style="padding-left: 60px;">Returns true if this object’s state has been changed since the last notify_observers call.</p>
+
+
+
+
+<ul>
+ 	
+
+<li class="method-heading"><span class="method-name">count_observers</span><span class="method-args">()</span></li>
+
+
+</ul>
+
+
+
+
+<p style="padding-left: 60px;">Return the number of observers associated with this object.</p>
+
+
+
+
+<ul>
+ 	
+
+<li class="method-heading"><span class="method-name">delete_observer</span><span class="method-args">(observer)</span></li>
+
+
+</ul>
+
+
+
+
+<p style="padding-left: 60px;">Remove <code>observer</code> as an observer on this object so that it will no longer receive notifications.</p>
+
+
+
+
+<ul>
+ 	
+
+<li class="method-heading"><span class="method-args"><span class="method-name">delete_observers</span>()</span></li>
+
+
+</ul>
+
+
+
+
+<p style="padding-left: 60px;">Remove all observers associated with this object.</p>
+
+
+
+
+<ul>
+ 	
+
+<li>notify_observers(*arg)</li>
+
+
+</ul>
+
+
+
+
+<div style="padding-left: 60px;">Notify observers of a change in state <strong>if</strong> this object’s changed state is <code>true.</code></div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+<h2>How it works</h2>
+
+
+First, we have to create a basic structure of the Notifier class which will act as an Observer. The <em>update()</em> method is the callback that the <a href="http://ruby-doc.org/stdlib-1.9.3/libdoc/observer/rdoc/Observable.html">Observable</a> module will use when notifying changes to the observer, and the method name needs to be <em>update()</em>.
+Let’s take an example of an application which keeps track of the bike mileage and reminds us of when we need to take the vehicle in for a scheduled bike service.
+
+
+<pre class="lang:ruby decode:true">require 'observer'
 class Bike
   include Observable
-
   attr_reader :mileage,:service
-
   def initialize(mileage =0, service = 3000)
     @mileage,@service = mileage, service
     add_observer(Notifier.new)
   end
-
   def log(miles)
     @mileage += miles
     notify_observers(self, miles)
   end
-end</pre><p>Next, write the update method in Notifier class</p><pre class="crayon-plain-tag">class Notifier
+end</pre>
+
+
+Next, write the update method in Notifier class
+
+
+<pre class="lang:ruby decode:true ">class Notifier
   def update(bike, miles)
     puts "The bike has logged #{miles} miles, totaling #{bike.mileage} miles traveled."
     puts "The bike needs to be taken in for a service!" if bike.service &lt;= bike.mileage
   end
-end</pre><p></p>
+end</pre>
+
+
+
+
 <p class=" language-ruby">By running the code we can see</p>
-<p></p><pre class="crayon-plain-tag">bike = Bike.new(2300, 3000)
+
+
+
+
+<pre class="lang:ruby decode:true">bike = Bike.new(2300, 3000)
 bike.log(100)
 =&gt; "The bike has logged 100 miles, totaling 2400 miles traveled."
 bike.log(600)
 =&gt; "The bike has logged 300 miles, totaling 3000 miles traveled."
-=&gt; "The bike needs to be taken in for service!"</pre><p></p>
+=&gt; "The bike needs to be taken in for service!"</pre>
+
+
+
+
 <p class=" language-ruby">First, we create an instance of the <i>Bike</i> class with 2300 miles, and we set that it needs to be taken for service when it reaches 3000 miles.</p>
+
+
+
+
 <p class=" language-ruby">I hope this example helps you understand ruby observer design pattern better.</p>
-<p>Let me know in comments if you have any doubts or any implementation issues you have been facing recently. Thanks for reading!</p>
+
+
+Let me know in comments if you have any doubts or any implementation issues you have been facing recently. Thanks for reading!
+
+
 <h2 class=" language-ruby">References</h2>
+
+
+
+
 <ul>
+ 	
+
 <li><a href="https://ruby-doc.org/stdlib-2.3.2/libdoc/observer/rdoc/Observable.html#module-Observable-label-Mechanism">https://ruby-doc.org/stdlib-2.3.2/libdoc/observer/rdoc/Observable.html#module-Observable-label-Mechanism</a></li>
+
+
+ 	
+
 <li><a href="https://cbabhusal.wordpress.com/2015/10/03/gang-of-four-observer-design-pattern-in-ruby/">https://cbabhusal.wordpress.com/2015/10/03/gang-of-four-observer-design-pattern-in-ruby/</a></li>
+
+
 </ul>
-<p>The post <a rel="nofollow" href="/observer-design-pattern-ruby/">Observer Design Pattern in Ruby</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+
+]]&gt;		</p>
 ]]></content:encoded>
-							<wfw:commentRss>/observer-design-pattern-ruby/feed/</wfw:commentRss>
-		<slash:comments>1</slash:comments>
-							</item>
+										</item>
 		<item>
 		<title>Getting started with Angular 4</title>
 		<link>/getting-started-with-angular-4/</link>
-				<comments>/getting-started-with-angular-4/#respond</comments>
 				<pubDate>Tue, 19 Sep 2017 11:42:19 +0000</pubDate>
 		<dc:creator><![CDATA[reshma]]></dc:creator>
 				<category><![CDATA[Angular4]]></category>
@@ -205,84 +413,162 @@ bike.log(600)
 		<category><![CDATA[Beginners]]></category>
 		<category><![CDATA[Javascript]]></category>
 
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3253</guid>
-				<description><![CDATA[<p>Angular is a most popular platform for building applications with the web. Angular empowers developers to build applications that live on the web, mobile, or the desktop. The AngularCLI is a command line interface tool that can create a project, add files, and perform a variety of ongoing development tasks such as testing, bundling, and deployment. As compared to the older&#8230;</p>
-<p>The post <a rel="nofollow" href="/getting-started-with-angular-4/">Getting started with Angular 4</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
-]]></description>
-								<content:encoded><![CDATA[<p><a href="https://blog.redpanthers.co/wp-content/uploads/2017/08/angular4.jpg"><img class="alignnone wp-image-3306" src="https://blog.redpanthers.co/wp-content/uploads/2017/08/angular4-300x150.jpg" alt="" width="1210" height="605" /></a></p>
-<p>Angular is a most popular platform for building applications with the web. Angular empowers developers to build applications that live on the web, mobile, or the desktop. The <a href="https://cli.angular.io/">AngularCLI</a> is a command line interface tool that can create a project, add files, and perform a variety of ongoing development tasks such as testing, bundling, and deployment.</p>
-<p>As compared to the older versions of Angular, there are many new things added to the list. Not only new features but also some twists are there that enhance old features. Forget Angular 3, Google jumps straight to Angular 4 after Angular 2. Angular4 applications are much faster and less space consuming.  Angular4 is compatible with TypeScript’s newer versions 2.1 and 2.2. Components are the basic building blocks of your application. Every component has an associated template, style sheet, and a class with logic.</p>
+		<guid isPermaLink="false">https://redpanthers.co/?p=3253</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[<a href="https://blog.redpanthers.co/wp-content/uploads/2017/08/angular4.jpg"><img class="alignnone wp-image-3306" src="https://blog.redpanthers.co/wp-content/uploads/2017/08/angular4-300x150.jpg" alt="" width="1210" height="605" /></a>
+Angular is a most popular platform for building applications with the web. Angular empowers developers to build applications that live on the web, mobile, or the desktop. The <a href="https://cli.angular.io/">AngularCLI</a> is a command line interface tool that can create a project, add files, and perform a variety of ongoing development tasks such as testing, bundling, and deployment.
+As compared to the older versions of Angular, there are many new things added to the list. Not only new features but also some twists are there that enhance old features. Forget Angular 3, Google jumps straight to Angular 4 after Angular 2. Angular4 applications are much faster and less space consuming.  Angular4 is compatible with TypeScript’s newer versions 2.1 and 2.2. Components are the basic building blocks of your application. Every component has an associated template, style sheet, and a class with logic.
+
+
 <h2>Prerequisites</h2>
-<p><strong>1. NodeJS </strong>( 6.x.x or greater )</p>
-<p><strong>2. npm </strong>(3.x.x or greater )</p>
+
+
+<strong>1. NodeJS </strong>( 6.x.x or greater )
+<strong>2. npm </strong>(3.x.x or greater )
+
+
 <h2>Installation</h2>
-<p>1. You have to install AngularCLI globally.</p><pre class="crayon-plain-tag">npm install -g @angular/cli</pre><p>2. Create a new project.</p><pre class="crayon-plain-tag">ng new my-app</pre><p>3. To serve the application, get into the project repo and run :</p><pre class="crayon-plain-tag">cd my-app
-ng serve --open</pre><p>For launching our server and for rebuilding our app when there are any changes we are using &#8220;ng serve&#8221;.</p>
-<p>When using &#8220;&#8211;open&#8221; or &#8220;&#8211;o&#8221;, it will open in &#8220;http://localhost:4200/&#8221; automatically.</p>
+
+
+1. You have to install AngularCLI globally.
+
+
+<pre class="lang:ruby decode:true">npm install -g @angular/cli</pre>
+
+
+2. Create a new project.
+
+
+<pre class="lang:ruby decode:true">ng new my-app</pre>
+
+
+3. To serve the application, get into the project repo and run :
+
+
+<pre class="lang:ruby decode:true">cd my-app
+ng serve --open</pre>
+
+
+For launching our server and for rebuilding our app when there are any changes we are using &#8220;ng serve&#8221;.
+When using &#8220;&#8211;open&#8221; or &#8220;&#8211;o&#8221;, it will open in &#8220;http://localhost:4200/&#8221; automatically.
+
+
 <h4>And that&#8217;s it!</h4>
-<p>Your basic app is ready!</p>
+
+
+Your basic app is ready!
+
+
 <h2>What’s New In Angular 4</h2>
+
+
+
+
 <h3>Router ParamMap</h3>
-<p>In the previous versions, we were using a simple key-value object for storing route parameters. But in Angular4, it is possible to query a so-called ParamMap in the router, that is a request for the route- and query parameter assigned to a route.</p><pre class="crayon-plain-tag">class MyComponent {
+
+
+In the previous versions, we were using a simple key-value object for storing route parameters. But in Angular4, it is possible to query a so-called ParamMap in the router, that is a request for the route- and query parameter assigned to a route.
+
+
+<pre class="theme:orange-code lang:js decode:true">class MyComponent {
  sessionId: Observable&lt;string&gt;;
-
  constructor(private route: ActivatedRoute) {}
-
  ngOnInit() {
    this.sessionId = this.route
      .queryParams
      .map(params =&gt; params['session_id'] || 'None');
  }
-}</pre><p>Now, we can run them as simple method calls (parameterMap.get(‘parameter-name’)).</p><pre class="crayon-plain-tag">class MyComponent {
+}</pre>
+
+
+Now, we can run them as simple method calls (parameterMap.get(‘parameter-name’)).
+
+
+<pre class="theme:orange-code lang:js decode:true">class MyComponent {
  sessionId: Observable&lt;string&gt;;
-
  constructor(private route: ActivatedRoute) {}
-
  ngOnInit() {
    this.sessionId = this.route
      .queryParamMap
      .map(paramMap =&gt; paramMap.get('session_id') || 'None');
  }
-}</pre><p>The parameters are also available as a map. This brings advantage in terms of type security. The old key-value structure is unsafe since it can take all possible values. In the map, the parameter value is either string or array of strings depending upon the method used. Hence it is safe.</p>
+}</pre>
+
+
+The parameters are also available as a map. This brings advantage in terms of type security. The old key-value structure is unsafe since it can take all possible values. In the map, the parameter value is either string or array of strings depending upon the method used. Hence it is safe.
+
+
 <h3>Animation Package</h3>
-<p>All the functions of animation were provided in @angular/core module. So it was always there with our application even if we didn&#8217;t use it and many unnecessary bundles were created. To avoid this, these functions have been put into its own packages.  So that this extra code will not end up in your production bundles if you didn&#8217;t use that. We can add animations ourselves in the main NgModule by importing BrowserAnimationsModule from @angular/platform-browser/animations.</p>
+
+
+All the functions of animation were provided in @angular/core module. So it was always there with our application even if we didn&#8217;t use it and many unnecessary bundles were created. To avoid this, these functions have been put into its own packages.  So that this extra code will not end up in your production bundles if you didn&#8217;t use that. We can add animations ourselves in the main NgModule by importing BrowserAnimationsModule from @angular/platform-browser/animations.
+
+
 <h3>Improved *ngIf and *ngFor</h3>
-<p>It’s now also possible to use an <code class="highlighter-rouge">else</code> syntax in your templates. In the else-case, a separately referenced template is used in place of the element marked with *ngIf.</p><pre class="crayon-plain-tag">&lt;div *ngIf="races.length &gt; 0; else empty"&gt;&lt;h2&gt;Races&lt;/h2&gt;&lt;/div&gt;
-&lt;ng-template #empty&gt;&lt;h2&gt;No races.&lt;/h2&gt;&lt;/ng-template&gt;</pre><p>Another addition to the template syntax is the <code class="highlighter-rouge">as</code> keyword, to simplify the <code class="highlighter-rouge">let</code> syntax. We can store the result in a variable of the template so that we can use it in the element.</p><pre class="crayon-plain-tag">&lt;div *ngFor="let pony of ponies | slice:0:2 as total; index as i"&gt;
+
+
+It’s now also possible to use an <code class="highlighter-rouge">else</code> syntax in your templates. In the else-case, a separately referenced template is used in place of the element marked with *ngIf.
+
+
+<pre class="theme:prism-like lang:js decode:true highlight prettyprint">&lt;div *ngIf="races.length &gt; 0; else empty"&gt;&lt;h2&gt;Races&lt;/h2&gt;&lt;/div&gt;
+&lt;ng-template #empty&gt;&lt;h2&gt;No races.&lt;/h2&gt;&lt;/ng-template&gt;</pre>
+
+
+Another addition to the template syntax is the <code class="highlighter-rouge">as</code> keyword, to simplify the <code class="highlighter-rouge">let</code> syntax. We can store the result in a variable of the template so that we can use it in the element.
+
+
+<pre class="theme:prism-like lang:js decode:true">&lt;div *ngFor="let pony of ponies | slice:0:2 as total; index as i"&gt;
   {{i+1}}/{{total.length}}: {{pony.name}}
-&lt;/div&gt;</pre><p></p>
+&lt;/div&gt;</pre>
+
+
+
+
 <h3>TypeScript 2.1 &amp; 2.2 compatibility</h3>
-<p>Version 4 is compatible with these new versions of TypeScript. This will improve the speed of ngc and give better type checking in your application.</p>
+
+
+Version 4 is compatible with these new versions of TypeScript. This will improve the speed of ngc and give better type checking in your application.
+
+
 <h3>Universal</h3>
-<p>With Angular Universal, we can do the server side rendering. It was maintained by the community until now, but after this release, it’s now an official Angular project.</p>
+
+
+With Angular Universal, we can do the server side rendering. It was maintained by the community until now, but after this release, it’s now an official Angular project.
+
+
 <h2 class="card-container">Conclusion</h2>
-<p>The new release brings some good features and a really great improvement of the generated code size, for the price of very few breaking changes that should not impact you a lot and also makes the migration quite smooth. So Angular 4 is here and it&#8217;s time to learn one of the most popular and powerful javascript frameworks.</p>
+
+
+The new release brings some good features and a really great improvement of the generated code size, for the price of very few breaking changes that should not impact you a lot and also makes the migration quite smooth. So Angular 4 is here and it&#8217;s time to learn one of the most popular and powerful javascript frameworks.
+
+
 <h2>References</h2>
-<p><a href="https://angular.io/">https://angular.io/</a></p>
-<p><a href="https://jaxenter.com/angular-4-top-features-133165.html">https://jaxenter.com/angular-4-top-features-133165.html</a></p>
-<p><a href="https://coursetro.com/courses/12/Learn-Angular-4-from-Scratch">https://coursetro.com/courses/12/Learn-Angular-4-from-Scratch</a></p>
-<p>Happy Coding!!</p>
-<p>The post <a rel="nofollow" href="/getting-started-with-angular-4/">Getting started with Angular 4</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+
+
+<a href="https://angular.io/">https://angular.io/</a>
+<a href="https://jaxenter.com/angular-4-top-features-133165.html">https://jaxenter.com/angular-4-top-features-133165.html</a>
+<a href="https://coursetro.com/courses/12/Learn-Angular-4-from-Scratch">https://coursetro.com/courses/12/Learn-Angular-4-from-Scratch</a>
+Happy Coding!!]]&gt;		</p>
 ]]></content:encoded>
-							<wfw:commentRss>/getting-started-with-angular-4/feed/</wfw:commentRss>
-		<slash:comments>0</slash:comments>
-							</item>
+										</item>
 		<item>
 		<title>Rails Generators</title>
 		<link>/rails-generators/</link>
-				<comments>/rails-generators/#respond</comments>
 				<pubDate>Mon, 18 Sep 2017 17:27:20 +0000</pubDate>
 		<dc:creator><![CDATA[anjana]]></dc:creator>
 				<category><![CDATA[Beginners]]></category>
 		<category><![CDATA[Rails]]></category>
 		<category><![CDATA[ruby on rails]]></category>
 
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=1441</guid>
-				<description><![CDATA[<p>Rails generators are used to create many files for models, controllers, views, unit tests, migrations and more. It will do some of the manual work for us. So it saves time. They can also be used to set up some basic specs for the application test suite. Running rails generate(or rails g) by itself gives&#8230;</p>
-<p>The post <a rel="nofollow" href="/rails-generators/">Rails Generators</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
-]]></description>
-								<content:encoded><![CDATA[<p>Rails generators are used to create many files for models, controllers, views, unit tests, migrations and more. It will do some of the manual work for us. So it saves time. They can also be used to set up some basic specs for the application test suite.</p>
-<p>Running <tt>rails generate(or rails g)</tt> by itself gives a list of available generators:</p><pre class="crayon-plain-tag">$ rails generate
+		<guid isPermaLink="false">https://redpanthers.co/?p=1441</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[Rails generators are used to create many files for models, controllers, views, unit tests, migrations and more. It will do some of the manual work for us. So it saves time. They can also be used to set up some basic specs for the application test suite.
+Running <tt>rails generate(or rails g)</tt> by itself gives a list of available generators:
+
+
+<pre class="lang:sh decode:true">$ rails generate
 Usage: rails generate GENERATOR [args] [options]
 ...........
 Rails:
@@ -302,168 +588,406 @@ responders_controller
 scaffold
 scaffold_controller
 task
-.............</pre><p>The main generators that rails offers are:</p>
+.............</pre>
+
+
+The main generators that rails offers are:
+
+
 <ul>
+ 	
+
 <li>controller: The Rails controller coordinates the interaction between the user, the views, and the model.</li>
+
+
+ 	
+
 <li>helper: Code in helpers is included in the corresponding view. We can move big loops, method calls or other logic into a method in the helper.</li>
+
+
+ 	
+
 <li>mailer: It allows for sending and receiving emails from and to your application.</li>
+
+
+ 	
+
 <li>migration: Rails Migration allows you to use Ruby to define changes to your database schema.</li>
+
+
+ 	
+
 <li>model: It is Ruby class that talk to the database, store and validate data, perform the business logic.</li>
+
+
+ 	
+
 <li>scaffold: It refers to the auto-generation of a simple set of a model, views and controller usually for a single table.</li>
+
+
 </ul>
-<p>Following is the list of options, which can be used along with generators:</p>
-<p style="padding-left: 30px;">-h, [&#8211;help] # Print generator&#8217;s options and usage<br />
--p, [&#8211;pretend] # Run but do not make any changes<br />
--f, [&#8211;force] # Overwrite files that already exist<br />
--s, [&#8211;skip] # Skip files that already exist<br />
+
+
+Following is the list of options, which can be used along with generators:
+
+
+<p style="padding-left: 30px;">-h, [&#8211;help] # Print generator&#8217;s options and usage
+-p, [&#8211;pretend] # Run but do not make any changes
+-f, [&#8211;force] # Overwrite files that already exist
+-s, [&#8211;skip] # Skip files that already exist
 -q, [&#8211;quiet] # Suppress status output</p>
+
+
+
+
 <h2>Generators</h2>
-<p>You can create different generators by running <em>rails g</em> in the terminal. Let&#8217;s have a look at each of them.</p>
+
+
+You can create different generators by running <em>rails g</em> in the terminal. Let&#8217;s have a look at each of them.
+
+
 <ul>
+ 	
+
 <li>rails generate model ModellName</li>
+
+
 </ul>
+
+
+
+
 <p style="padding-left: 60px;">It generates the model and the associated database table. For example, we can add a new model to the app called User with fields name and age as,</p>
+
+
+
+
 <p style="padding-left: 60px;">Eg:  rails g model User name: string age: integer</p>
+
+
+
+
 <ul>
+ 	
+
 <li>rails generate controller ListController show edit</li>
+
+
 </ul>
+
+
+
+
 <p style="padding-left: 60px;">It generates controller. It is used if you are creating static views or non-CRUD related features. Let&#8217;s create a user controller that will manage the data flow and view for each users.</p>
+
+
+
+
 <p style="padding-left: 60px;">Eg:  rails g controller users</p>
+
+
+
+
 <ul>
+ 	
+
 <li>rails generate scaffold ModelName ControllerName</li>
+
+
 </ul>
+
+
+
+
 <p style="padding-left: 60px;">Generates Scaffold. Let&#8217;s create a scaffold User with edit and view actions.</p>
+
+
+
+
 <p style="padding-left: 60px;">Eg:  rails g scaffold User edit view</p>
+
+
+
+
 <ul>
+ 	
+
 <li>rails generate migration AddNewTable</li>
+
+
 </ul>
+
+
+
+
 <p style="padding-left: 60px;">Generates Table to migrate. We can create migration for adding a table as</p>
+
+
+
+
 <p style="padding-left: 60px;">Eg:  rails g migration User</p>
+
+
+
+
 <ul>
+ 	
+
 <li>rails generate plugin PluginName</li>
+
+
 </ul>
+
+
+
+
 <p style="padding-left: 60px;">Generates Plugin.</p>
+
+
+
+
 <p style="padding-left: 60px;">Eg:  rails g plugin rails_plugin</p>
+
+
+
+
 <ul>
+ 	
+
 <li>rails generate integration_test TestName</li>
+
+
 </ul>
+
+
+
+
 <p style="padding-left: 60px;">Generates Integration Test.</p>
+
+
+
+
 <p style="padding-left: 60px;">Eg:  rails generate integration_test User</p>
+
+
+
+
 <ul>
+ 	
+
 <li>rails generate session_migration</li>
+
+
 </ul>
+
+
+
+
 <p style="padding-left: 60px;">Generates Session Migration.</p>
+
+
+
+
 <h2 id="creating-generators-with-generators">Creating Generators with Generators</h2>
-<p>Generators themselves have a generator:</p><pre class="crayon-plain-tag">$ rails generate generator initializer
+
+
+Generators themselves have a generator:
+
+
+<pre class="lang:ruby decode:true">$ rails generate generator initializer
  create lib/generators/initializer
  create lib/generators/initializer/initializer_generator.rb
  create lib/generators/initializer/USAGE
- create lib/generators/initializer/templates</pre><p>This is the generator just created:</p><pre class="crayon-plain-tag">class InitializerGenerator &lt; Rails::Generators::NamedBase
+ create lib/generators/initializer/templates</pre>
+
+
+This is the generator just created:
+
+
+<pre class="lang:default decode:true">class InitializerGenerator &lt; Rails::Generators::NamedBase
   source_root File.expand_path("../templates", __FILE__)
-end</pre><p></p>
+end</pre>
+
+
+
+
 <p class="">First, notice that we are inheriting from <tt>Rails::Generators::NamedBase</tt> instead of <tt>Rails::Generators::Base</tt>. This means that our generator expects at least one argument, which will be the name of the initializer.</p>
+
+
+
+
 <h2>Customizing Rails generators</h2>
-<p>We can customize it in, <code>config/application.rb</code></p><pre class="crayon-plain-tag">config.generators do |g|
+
+
+We can customize it in, <code>config/application.rb</code>
+
+
+<pre class="lang:ruby decode:true">config.generators do |g|
   g.orm :active_record
   g.template_engine :erb
   g.test_framework :test_unit, fixture: false
   g.stylesheets false
   g.javascripts false
-end</pre><p>So by doing the above steps will stop generating stylesheet, JavaScript, and test fixture files. We can avoid generation of unwanted files from doing these steps.</p>
-<p>I hope this article help you in some way to know about rails generators.</p>
+end</pre>
+
+
+So by doing the above steps will stop generating stylesheet, JavaScript, and test fixture files. We can avoid generation of unwanted files from doing these steps.
+I hope this article help you in some way to know about rails generators.
+
+
 <h2>References</h2>
+
+
+
+
 <ul>
+ 	
+
 <li><a href="https://learn.co/lessons/rails-generators-readme">https://learn.co/lessons/rails-generators-readme</a></li>
+
+
+ 	
+
 <li><a href="https://www.tutorialspoint.com/ruby-on-rails/rails-generators.htm">https://www.tutorialspoint.com/ruby-on-rails/rails-generators.htm</a></li>
+
+
+ 	
+
 <li><a href="http://www.agmprojects.com/blog/building-a-rails-generator-and-packing-it-into-a-gem">http://www.agmprojects.com/blog/building-a-rails-generator-and-packing-it-into-a-gem</a></li>
+
+
 </ul>
-<p>The post <a rel="nofollow" href="/rails-generators/">Rails Generators</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+
+]]&gt;		</p>
 ]]></content:encoded>
-							<wfw:commentRss>/rails-generators/feed/</wfw:commentRss>
-		<slash:comments>0</slash:comments>
-							</item>
+										</item>
 		<item>
 		<title>Getting Started with Vue.js</title>
 		<link>/getting-started-vuejs/</link>
-				<comments>/getting-started-vuejs/#respond</comments>
 				<pubDate>Mon, 28 Aug 2017 12:54:43 +0000</pubDate>
 		<dc:creator><![CDATA[reshma]]></dc:creator>
 				<category><![CDATA[Beginners]]></category>
 		<category><![CDATA[Javascript]]></category>
 		<category><![CDATA[VueJS]]></category>
 
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=2011</guid>
-				<description><![CDATA[<p>&#160; What is Vue.js? Vue.js is yet another JavaScript framework getting popular considering its simplicity praised a lot these days. There are a lot of JavaScript frameworks among which React and Angular are popular among web developers. Vue.js pronounced as &#8220;view.js&#8221;  is a much flexible and less opinionated framework than Angular. It&#8217;s similar to React but&#8230;</p>
-<p>The post <a rel="nofollow" href="/getting-started-vuejs/">Getting Started with Vue.js</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
-]]></description>
-								<content:encoded><![CDATA[<p>&nbsp;</p>
+		<guid isPermaLink="false">https://redpanthers.co/?p=2011</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[&nbsp;
+
+
 <h2><a href="https://blog.redpanthers.co/wp-content/uploads/2017/02/vue-2.jpg"><img class="aligncenter wp-image-3224 size-large" src="https://blog.redpanthers.co/wp-content/uploads/2017/02/vue-2-1024x512.jpg" alt="Vue.js" width="1024" height="512" /></a></h2>
+
+
+
+
 <h2>What is Vue.js?</h2>
-<p><strong>Vue.js</strong> is yet another JavaScript framework getting popular considering its simplicity praised a lot these days. There are a lot of JavaScript frameworks among which React and Angular are popular among web developers. Vue.js pronounced as <em>&#8220;view.js&#8221;  </em>is a much flexible and less opinionated framework than Angular. It&#8217;s similar to React but much simpler.</p>
-<p>Vue.js gives you more freedom in designing your app, unlike Angular. So that you are not forced to do everything in their way. It can be adapted very easily to your existing application. You don&#8217;t need to know <a href="https://jsx.github.io/">JSX</a>, unlike React. All you have to do is to drop the link into your HTML page header and you are up and ready.</p>
+
+
+<strong>Vue.js</strong> is yet another JavaScript framework getting popular considering its simplicity praised a lot these days. There are a lot of JavaScript frameworks among which React and Angular are popular among web developers. Vue.js pronounced as <em>&#8220;view.js&#8221;  </em>is a much flexible and less opinionated framework than Angular. It&#8217;s similar to React but much simpler.
+Vue.js gives you more freedom in designing your app, unlike Angular. So that you are not forced to do everything in their way. It can be adapted very easily to your existing application. You don&#8217;t need to know <a href="https://jsx.github.io/">JSX</a>, unlike React. All you have to do is to drop the link into your HTML page header and you are up and ready.
+
+
 <h2>Overview</h2>
-<p><a href="https://blog.redpanthers.co/wp-content/uploads/2017/02/Screen-Shot-2017-08-28-at-1.10.07-pm.png"><img class="alignnone wp-image-3352" src="https://blog.redpanthers.co/wp-content/uploads/2017/02/Screen-Shot-2017-08-28-at-1.10.07-pm-300x219.png" alt="" width="456" height="333" /></a></p>
-<p>This is the basic folder structure.</p>
+
+
+<a href="https://blog.redpanthers.co/wp-content/uploads/2017/02/Screen-Shot-2017-08-28-at-1.10.07-pm.png"><img class="alignnone wp-image-3352" src="https://blog.redpanthers.co/wp-content/uploads/2017/02/Screen-Shot-2017-08-28-at-1.10.07-pm-300x219.png" alt="" width="456" height="333" /></a>
+This is the basic folder structure.
+
+
 <h4>&#8211; index.html</h4>
-<p>This is the main HTML template for your application. You can link your static assets inside the <strong>head</strong> tag while your processed assets will be auto injected in the <strong>body</strong>.</p><pre class="crayon-plain-tag">&lt;!DOCTYPE html&gt;
+
+
+This is the main HTML template for your application. You can link your static assets inside the <strong>head</strong> tag while your processed assets will be auto injected in the <strong>body</strong>.
+
+
+<pre class="theme:prism-like lang:default decode:true">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
   &lt;head&gt;
     &lt;link rel="shortcut icon" type="image/png" href="/assets/images/favicon.png"/&gt;
   &lt;/head&gt;
-
   &lt;body&gt;
     &lt;div id="app"&gt;&lt;/div&gt;
   &lt;/body&gt;
-&lt;/html&gt;</pre><p></p>
+&lt;/html&gt;</pre>
+
+
+
+
 <h4>&#8211; src/router/index.js</h4>
-<p>This is the file which initiates <a href="https://router.vuejs.org/en/">vue-router</a> with the given components.</p><pre class="crayon-plain-tag">import Vue from 'vue';
+
+
+This is the file which initiates <a href="https://router.vuejs.org/en/">vue-router</a> with the given components.
+
+
+<pre class="theme:prism-like lang:js decode:true">import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Hello from '@/components/Hello';
-
 Vue.use(VueRouter);
-
 const routes = [
   { path: '/', name: 'Hello', component: Hello },
 ];
-
 /* eslint-disable no-new */
 export default new VueRouter({
   routes,
   mode: 'history',
-});</pre><p></p>
+});</pre>
+
+
+
+
 <h4>&#8211; src/App.vue</h4>
-<p>This is the application’s main <a href="https://vuejs.org/">Vue.js</a> component which is basically just a wrapper for <a href="https://router.vuejs.org/en/">vue-router</a>.</p><pre class="crayon-plain-tag">&lt;template&gt;
+
+
+This is the application’s main <a href="https://vuejs.org/">Vue.js</a> component which is basically just a wrapper for <a href="https://router.vuejs.org/en/">vue-router</a>.
+
+
+<pre class="theme:prism-like lang:default decode:true">&lt;template&gt;
   &lt;div id="app"&gt;
     &lt;router-view&gt;&lt;/router-view&gt;
   &lt;/div&gt;
 &lt;/template&gt;
-
 &lt;script&gt;
 export default {};
-&lt;/script&gt;</pre><p></p>
+&lt;/script&gt;</pre>
+
+
+
+
 <h4>&#8211; src/main.js</h4>
-<p>This is the application entry file where you initiate your <a href="https://vuejs.org/">Vue.js</a> application with a router, store and the main <strong>App.vue </strong>component.</p><pre class="crayon-plain-tag">import Vue from 'vue';
+
+
+This is the application entry file where you initiate your <a href="https://vuejs.org/">Vue.js</a> application with a router, store and the main <strong>App.vue </strong>component.
+
+
+<pre class="theme:prism-like lang:default decode:true">import Vue from 'vue';
 import router from '@/router';
 import store from '@/store';
 import App from '@/App';
-
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
   store,
   render: h =&gt; h(App),
-});</pre><p></p>
+});</pre>
+
+
+
+
 <h4>&#8211; src/components/Hello.vue</h4>
-<p>This file represents a sample <a href="https://vuejs.org/">Vue.js</a> component which will be used by the <a href="https://router.vuejs.org/en/">vue-router</a>. Please note that Hello module’s state is being used in here.</p><pre class="crayon-plain-tag">&lt;template&gt;
+
+
+This file represents a sample <a href="https://vuejs.org/">Vue.js</a> component which will be used by the <a href="https://router.vuejs.org/en/">vue-router</a>. Please note that Hello module’s state is being used in here.
+
+
+<pre class="theme:prism-like lang:default decode:true">&lt;template&gt;
   &lt;div class="hello"&gt;
     &lt;h1&gt;{{ message }}&lt;/h1&gt;
   &lt;/div&gt;
 &lt;/template&gt;
-
 &lt;script&gt;
 import { mapState } from 'vuex';
-
 export default {
   data() {
     return {};
@@ -472,32 +996,74 @@ export default {
     message: state =&gt; state.Hello.message,
   }),
 };
-&lt;/script&gt;</pre><p></p>
+&lt;/script&gt;</pre>
+
+
+
+
 <h2>Getting Started</h2>
-<p>The simplest way is to include this in your file.</p><pre class="crayon-plain-tag">&lt;script src="https://unpkg.com/vue"&gt;&lt;/script&gt;</pre><p>You can also download the Vue file and add it in a script tag, or else install it with NPM. It also provides an official CLI called the Vue-cli. You can find more details in the Vue.js <a href="https://vuejs.org/v2/guide/installation.html">Installation Guide</a>.</p>
-<p>Let&#8217;s compare simple JavaScript with a VueJS instance.</p><pre class="crayon-plain-tag">function printText () {
+
+
+The simplest way is to include this in your file.
+
+
+<pre class="theme:prism-like lang:js decode:true">&lt;script src="https://unpkg.com/vue"&gt;&lt;/script&gt;</pre>
+
+
+You can also download the Vue file and add it in a script tag, or else install it with NPM. It also provides an official CLI called the Vue-cli. You can find more details in the Vue.js <a href="https://vuejs.org/v2/guide/installation.html">Installation Guide</a>.
+Let&#8217;s compare simple JavaScript with a VueJS instance.
+
+
+<pre class="theme:prism-like lang:js decode:true">function printText () {
   return 'Hello World!'
 }
-
 // Set some text in jQuery
-$('.element').text(printText())</pre><p>This is what we do when we want to manipulate the text for some element. For the last couple of years, I was writing code like this for a living. But what if the <strong>&#8216;.element&#8217; </strong>get renamed. Your whole JS will break. The binding is broken. We can overcome this in Vue.</p><pre class="crayon-plain-tag">&lt;div class="app"&gt;
+$('.element').text(printText())</pre>
+
+
+This is what we do when we want to manipulate the text for some element. For the last couple of years, I was writing code like this for a living. But what if the <strong>&#8216;.element&#8217; </strong>get renamed. Your whole JS will break. The binding is broken. We can overcome this in Vue.
+
+
+<pre class="theme:prism-like lang:default decode:true">&lt;div class="app"&gt;
   &lt;span class=".element"&gt;
     {{ msg }}
   &lt;/span&gt;
-&lt;/div&gt;</pre><p></p><pre class="crayon-plain-tag">new Vue({
-  el: '.app',
+&lt;/div&gt;</pre>
 
+
+
+
+<pre class="theme:prism-like lang:js decode:true">new Vue({
+  el: '.app',
   data: {
     msg: 'Hello World!'
   }
-})</pre><p>The Vue instance referenced to an element <strong>&#8216;.app&#8217;. </strong>This is the entry point. Even if the class of the span object is changed it won&#8217;t affect the message being displayed.Vue.js also supports <strong>Loops</strong>, <strong>Two-way binding</strong>, <strong>Components</strong>,  <strong>Event Listeners</strong> like React. If you want to learnVue.js there&#8217;s no better document than the Vue.js <a href="https://vuejs.org/v2/guide/"> Guide</a>.<strong> </strong>You can see a demo <a href="https://jsfiddle.net/50wL7mdz/55744/">Here.</a></p>
+})</pre>
+
+
+The Vue instance referenced to an element <strong>&#8216;.app&#8217;. </strong>This is the entry point. Even if the class of the span object is changed it won&#8217;t affect the message being displayed.Vue.js also supports <strong>Loops</strong>, <strong>Two-way binding</strong>, <strong>Components</strong>,  <strong>Event Listeners</strong> like React. If you want to learnVue.js there&#8217;s no better document than the Vue.js <a href="https://vuejs.org/v2/guide/"> Guide</a>.<strong> </strong>You can see a demo <a href="https://jsfiddle.net/50wL7mdz/55744/">Here.</a>
+
+
 <h2>Why Vue.js?</h2>
-<p>Let&#8217;s talk about why we can use Vue.js.  Both React and Vue.js use Virtual DOM and the use of components. But in React if a component&#8217;s state is changed. It re-renders the entire component sub-tree. In Vue.js, the component&#8217;s dependencies are automatically tracked during render, so the system knows which component needs to be changed when the state is changed. Unlike React you don&#8217;t need to write everything in JavaScript. Vue.js supports the use of both JSX and Template rendering. If the HTML is valid, then it is a valid Vue template. We can give access to CSS within a single-file-component by adding a &#8216;scoped&#8217; attribute to the style tag which scopes CSS only for that particular component.</p>
-<p>Comparing Vue with AngularJS, both have similar syntax. But Vue is much simpler in terms of API and design. There are many opinions to structure an Angular application but Vue is a more flexible, modular solution by setting up <a href="https://github.com/vuejs-templates/webpack">web pack template</a>. In Vue, we use one-way data-flow between components that make the flow of data easier but in angular, it&#8217;s two-way binding between scopes. There are a lot of confusions between directives and components in Angular but in Vue, components are self-contained units with own view and data logic and directives are used for DOM manipulations only. Vue doesn&#8217;t use dirty checking so it&#8217;s much easier to optimize and has better performance. Since there are a lot of watchers in Angular, when anything in scope changes, all the watchers should re-evaluate again. So Angular becomes slow.</p>
-<p>Vue.js performs better than EmberJs since it automatically batches updates but in Ember, we need to manually manage run loops. For computed properties in Ember, we have to declare it manually and need to wrap everything in Ember Objects. But in Vue, it&#8217;s in Javascript Objects and fully automatic.</p>
+
+
+Let&#8217;s talk about why we can use Vue.js.  Both React and Vue.js use Virtual DOM and the use of components. But in React if a component&#8217;s state is changed. It re-renders the entire component sub-tree. In Vue.js, the component&#8217;s dependencies are automatically tracked during render, so the system knows which component needs to be changed when the state is changed. Unlike React you don&#8217;t need to write everything in JavaScript. Vue.js supports the use of both JSX and Template rendering. If the HTML is valid, then it is a valid Vue template. We can give access to CSS within a single-file-component by adding a &#8216;scoped&#8217; attribute to the style tag which scopes CSS only for that particular component.
+Comparing Vue with AngularJS, both have similar syntax. But Vue is much simpler in terms of API and design. There are many opinions to structure an Angular application but Vue is a more flexible, modular solution by setting up <a href="https://github.com/vuejs-templates/webpack">web pack template</a>. In Vue, we use one-way data-flow between components that make the flow of data easier but in angular, it&#8217;s two-way binding between scopes. There are a lot of confusions between directives and components in Angular but in Vue, components are self-contained units with own view and data logic and directives are used for DOM manipulations only. Vue doesn&#8217;t use dirty checking so it&#8217;s much easier to optimize and has better performance. Since there are a lot of watchers in Angular, when anything in scope changes, all the watchers should re-evaluate again. So Angular becomes slow.
+Vue.js performs better than EmberJs since it automatically batches updates but in Ember, we need to manually manage run loops. For computed properties in Ember, we have to declare it manually and need to wrap everything in Ember Objects. But in Vue, it&#8217;s in Javascript Objects and fully automatic.
+
+
 <h2>Advantages</h2>
+
+
+
+
 <h3>1. Simplicity</h3>
-<p>Vue has a good combination of structure and simplicity. Adding Vue.js to your web project can be very simple. It needs external libraries, but tend to use it with or without jQuery.</p><pre class="crayon-plain-tag">&lt;div id="app"&gt;
+
+
+Vue has a good combination of structure and simplicity. Adding Vue.js to your web project can be very simple. It needs external libraries, but tend to use it with or without jQuery.
+
+
+<pre class="theme:prism-like lang:default decode:true">&lt;div id="app"&gt;
   {{ message }}
 &lt;/div&gt;
 &lt;script&gt;
@@ -507,60 +1073,136 @@ new Vue({
     message: 'Hello Vue!'
   }
 });
-&lt;/script&gt;</pre><p>The code is easily understandable about the working of Vue code.</p>
+&lt;/script&gt;</pre>
+
+
+The code is easily understandable about the working of Vue code.
+
+
 <h3>2. Reactivity</h3>
-<p>The variables in Vue.js are reactive. At each point, when the variables change, it will automatically inform their peers.</p><pre class="crayon-plain-tag">var app = new Vue({
+
+
+The variables in Vue.js are reactive. At each point, when the variables change, it will automatically inform their peers.
+
+
+<pre class="theme:prism-like lang:default decode:true">var app = new Vue({
   el: '#app',
   data: {
     message: "&lt;h1&gt;Hello World&lt;/h1&gt;"
   }
 });
-
 setTimeout(function() {
   app.message = "&lt;small&gt;Goodbye World&lt;/small&gt;";
-}, 2000)</pre><p></p><pre class="crayon-plain-tag">&lt;div id="app"&gt;
+}, 2000)</pre>
+
+
+
+
+<pre class="theme:prism-like lang:default decode:true">&lt;div id="app"&gt;
   &lt;!--Renders as "Hello World" with &lt;h1&gt; tag--&gt;
   &lt;!--Then after 2 seconds re-renders as "Goodbye World" with &lt;small&gt; tag--&gt;
   &lt;p v-html="message"&gt;{{ message }}&lt;p&gt;
-&lt;/div&gt;</pre><p>Data properties, like <code class="markup--code markup--p-code">message</code> in this example, are <em class="markup--em markup--p-em">reactive</em>, that is they will trigger a re-render if changed.  The <code>v-html</code> attribute will render HTML templates. You can see the demo<strong><a href="https://jsfiddle.net/reshma_shenoy/k67u1s1m/" target="_blank" rel="noopener"> here</a></strong>.</p>
+&lt;/div&gt;</pre>
+
+
+Data properties, like <code class="markup--code markup--p-code">message</code> in this example, are <em class="markup--em markup--p-em">reactive</em>, that is they will trigger a re-render if changed.  The <code>v-html</code> attribute will render HTML templates. You can see the demo<strong><a href="https://jsfiddle.net/reshma_shenoy/k67u1s1m/" target="_blank" rel="noopener noreferrer"> here</a></strong>.
+
+
 <h3>3. Focus</h3>
-<p>Vue.js is mainly used for building user interfaces and this is achieved by a library that does not have any influence from the frameworks out there already. Supporting libraries are integrated with Vue.</p>
+
+
+Vue.js is mainly used for building user interfaces and this is achieved by a library that does not have any influence from the frameworks out there already. Supporting libraries are integrated with Vue.
+
+
 <h3>4. Flexibility</h3>
-<p>Vue.js comes with perfect balance to write quickly and run straight from the browser. With that said, it is extremely good if you would like to create any practical app using with ES6, separate component files, JSX, building, routing etc.</p>
-<p>For example, if you have a preferred method for writing your templates, Vue lets you do it in any of these ways:</p>
+
+
+Vue.js comes with perfect balance to write quickly and run straight from the browser. With that said, it is extremely good if you would like to create any practical app using with ES6, separate component files, JSX, building, routing etc.
+For example, if you have a preferred method for writing your templates, Vue lets you do it in any of these ways:
+
+
 <ul class="postList">
+ 	
+
 <li id="7fe9" class="graf graf--li graf-after--p">Write your template in an HTML file</li>
+
+
+ 	
+
 <li id="959b" class="graf graf--li graf-after--li">Write your template in a string in a Javascript file</li>
+
+
+ 	
+
 <li id="cc25" class="graf graf--li graf-after--li">Use JSX in a Javascript file</li>
+
+
+ 	
+
 <li class="graf graf--li graf-after--li">Make your template in pure Javascript using virtual nodes</li>
+
+
 </ul>
-<p>This flexibility makes it easy to switch to Vue.</p>
+
+
+This flexibility makes it easy to switch to Vue.
+
+
 <h3>5. Components</h3>
-<p>Actually, this is where Vue’s flexibility system is built, so that components can be small and are reusable parts of UI. This isn’t any special because the of JavaScript frameworks are built with this concept.</p><pre class="crayon-plain-tag">&lt;div id="example"&gt;
+
+
+Actually, this is where Vue’s flexibility system is built, so that components can be small and are reusable parts of UI. This isn’t any special because the of JavaScript frameworks are built with this concept.
+
+
+<pre class="theme:prism-like lang:default decode:true">&lt;div id="example"&gt;
   &lt;my-component&gt;&lt;/my-component&gt;
-&lt;/div&gt;</pre><p></p><pre class="crayon-plain-tag">// register
+&lt;/div&gt;</pre>
+
+
+
+
+<pre class="theme:prism-like lang:default decode:true">// register
 Vue.component('my-component', {
   template: '&lt;div&gt;A custom component!&lt;/div&gt;'
 })
 // create a root instance
 new Vue({
   el: '#example'
-})</pre><p>Which will render,</p><pre class="crayon-plain-tag">&lt;div id="example"&gt;
+})</pre>
+
+
+Which will render,
+
+
+<pre class="theme:prism-like lang:default decode:true">&lt;div id="example"&gt;
   &lt;div&gt;A custom component!&lt;/div&gt;
-&lt;/div&gt;</pre><p>So, the components can be used in templates as elements.</p>
+&lt;/div&gt;
+</pre>
+
+
+So, the components can be used in templates as elements.
+
+
 <h3> 6. Copying competitors</h3>
-<p>Vue has been able to copy what works in other frameworks and avoid what doesn’t. Vue’s state management library Vuex has inspiration from Elm. Along with this, Vue’s components get the similarities with Polymer’s customer elements. Vue is now rocking a virtual DOM like React.</p>
+
+
+Vue has been able to copy what works in other frameworks and avoid what doesn’t. Vue’s state management library Vuex has inspiration from Elm. Along with this, Vue’s components get the similarities with Polymer’s customer elements. Vue is now rocking a virtual DOM like React.
+
+
 <h2>Conclusion</h2>
-<p>Vue.js is a progressively-adoptable Javascript framework which is focussed on view layer. It is easy to integrate with other applications. The main feature of Vue is Components. Vue uses HTML based templates which can compile into Virtual DOM render functions. In Vue, we can also directly write render functions using <a title="React (JavaScript library)" href="https://en.wikipedia.org/wiki/React_(JavaScript_library)#JSX">JSX</a>.Vue.js is much simpler, flexible and has better performance than other frameworks.</p>
+
+
+Vue.js is a progressively-adoptable Javascript framework which is focussed on view layer. It is easy to integrate with other applications. The main feature of Vue is Components. Vue uses HTML based templates which can compile into Virtual DOM render functions. In Vue, we can also directly write render functions using <a title="React (JavaScript library)" href="https://en.wikipedia.org/wiki/React_(JavaScript_library)#JSX">JSX</a>.Vue.js is much simpler, flexible and has better performance than other frameworks.
+
+
 <h2>References</h2>
-<p><a href="https://vuejs.org/">https://vuejs.org/</a></p>
-<p><a href="https://github.com/vuejs/vue">https://github.com/vuejs/vue</a></p>
-<p><a href="https://medium.com/@brett.marshall/vue-js-the-real-angular-2-0-62744490cb99">https://medium.com/@brett.marshall/vue-js-the-real-angular-2-0-62744490cb99</a></p>
-<p>The post <a rel="nofollow" href="/getting-started-vuejs/">Getting Started with Vue.js</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+
+
+<a href="https://vuejs.org/">https://vuejs.org/</a>
+<a href="https://github.com/vuejs/vue">https://github.com/vuejs/vue</a>
+<a href="https://medium.com/@brett.marshall/vue-js-the-real-angular-2-0-62744490cb99">https://medium.com/@brett.marshall/vue-js-the-real-angular-2-0-62744490cb99</a>]]&gt;		</p>
 ]]></content:encoded>
-							<wfw:commentRss>/getting-started-vuejs/feed/</wfw:commentRss>
-		<slash:comments>0</slash:comments>
-							</item>
+										</item>
 		<item>
 		<title>to_json vs as_json in Rails API</title>
 		<link>/to_json-vs-as_json-in-rails-api/</link>
@@ -571,46 +1213,139 @@ new Vue({
 		<category><![CDATA[Rails]]></category>
 		<category><![CDATA[Ruby]]></category>
 
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=2694</guid>
-				<description><![CDATA[<p>Recently we have been working on Rails API. During that time, we were curious about the difference between as_json and to_json. In this article, we are sharing the difference we learned. to_json in Rails API Let&#8217;s discuss how we started out building our APIs using &#8216;to_json’. to_json will return JSON string representing the hash. Option&#8230;</p>
-<p>The post <a rel="nofollow" href="/to_json-vs-as_json-in-rails-api/">to_json vs as_json in Rails API</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
-]]></description>
-								<content:encoded><![CDATA[<p>Recently we have been working on Rails API. During that time, we were curious about the difference between as_json and to_json. In this article, we are sharing the difference we learned.</p>
+		<guid isPermaLink="false">https://redpanthers.co/?p=2694</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[Recently we have been working on Rails API. During that time, we were curious about the difference between as_json and to_json. In this article, we are sharing the difference we learned.
+
+
 <h2><strong>to_json in Rails API</strong></h2>
-<p>Let&#8217;s discuss how we started out building our APIs using &#8216;to_json’. to_json will return JSON string representing the hash. Option are passed to each element.</p>
-<p>In to_json without any <em>option,  </em>the returned JSON string will include all the model attributes</p><pre class="crayon-plain-tag">user = User.find(1)
-user.to_json</pre><p>to_json had some great options of ActiveRecord objects. We could just tell the method to only render certain attributes, or to include association or method calls. We had:</p>
+
+
+Let&#8217;s discuss how we started out building our APIs using &#8216;to_json’. to_json will return JSON string representing the hash. Option are passed to each element.
+In to_json without any <em>option,  </em>the returned JSON string will include all the model attributes
+
+
+<pre class="lang:ruby decode:true">user = User.find(1)
+user.to_json
+</pre>
+
+
+to_json had some great options of ActiveRecord objects. We could just tell the method to only render certain attributes, or to include association or method calls. We had:
+
+
 <ul>
-<li>only &#8211; Only show column names in the output as specified in the list<br />
-<pre class="crayon-plain-tag">user.to_json(:only =&gt; [ :id, :email ])</pre>
+ 	
+
+<li>only &#8211; Only show column names in the output as specified in the list
+
+
+<pre class="lang:ruby decode:true">user.to_json(:only =&gt; [ :id, :email ])
+</pre>
+
+
 </li>
-<li>except &#8211; Show all column names except the ones specified in the list<br />
-<pre class="crayon-plain-tag">user.to_json(:except =&gt; [:id, :username])</pre>
+
+
+ 	
+
+<li>except &#8211; Show all column names except the ones specified in the list
+
+
+<pre class="lang:ruby decode:true">user.to_json(:except =&gt; [:id, :username])
+</pre>
+
+
 </li>
+
+
 </ul>
-<p>to_json works fine and seamlessly ok, as long as the database schema is deeply coupled with the API output.When it takes the next level where we want to render a certain attribute in json it start to break.</p><pre class="crayon-plain-tag">render :json =&gt; { :sucess =&gt; true,
-  :user =&gt; @user.to_json(:only =&gt; [:name]) }</pre><p>This will start to generate a bit load to controllers. Such methods of generating json don&#8217;t feel quite right and begin to break down. This is because the to_json is interested in &#8216;serializing&#8217; a database object while most of the developers try to put relevant representation for their API.</p>
-<p>Anytime to_json is called on an object, as_json is invoked to create the data structure, and then that hash is encoded as a JSON string using ActiveSupport::json.encode. This happens for all types: Object, Numeric, Data, String etc.</p>
-<p>Now the creation of the json is separated from the rendering of the json.  as_json is used to create the structure of the json as a Hash, and the rendering of that hash into JSON string is left up-to ActiveSupport::json.encode.</p>
+
+
+to_json works fine and seamlessly ok, as long as the database schema is deeply coupled with the API output.When it takes the next level where we want to render a certain attribute in json it start to break.
+
+
+<pre class="lang:ruby decode:true ">render :json =&gt; { :sucess =&gt; true,
+  :user =&gt; @user.to_json(:only =&gt; [:name]) }</pre>
+
+
+This will start to generate a bit load to controllers. Such methods of generating json don&#8217;t feel quite right and begin to break down. This is because the to_json is interested in &#8216;serializing&#8217; a database object while most of the developers try to put relevant representation for their API.
+Anytime to_json is called on an object, as_json is invoked to create the data structure, and then that hash is encoded as a JSON string using ActiveSupport::json.encode. This happens for all types: Object, Numeric, Data, String etc.
+Now the creation of the json is separated from the rendering of the json.  as_json is used to create the structure of the json as a Hash, and the rendering of that hash into JSON string is left up-to ActiveSupport::json.encode.
+
+
 <h2><strong>as_json in Rails API</strong></h2>
-<p>as_json Returns a hash representing the model. Like in to_json, option are passed to each element in as_json. The option include_root_in_json controls the top-level behavior of as_json. If true, as_json will emit a single root node named after the object’s type. The default value for include_root_in_json option is false. This behavior can also be achieved by setting the :root  option to true.</p><pre class="crayon-plain-tag">user.as_json(root: true)</pre><p>In as_json without any option, the returned HASH will include all the model attributes</p><pre class="crayon-plain-tag">user = User.find(1)
-user.as_json</pre><p>The <em>:only</em> and <em>:except</em> options can be used to limit the attributes included, and work similar to the attributes method.</p><pre class="crayon-plain-tag">user.as_json(:only =&gt; [ :id, :email ])
-user.as_json(:except =&gt; [:id, :username])</pre><p>Default as_json will create a hash which includes all the model attributes. We normally override the as_json to create custom JSON structure.</p><pre class="crayon-plain-tag">def as_json(options={})
+
+
+as_json Returns a hash representing the model. Like in to_json, option are passed to each element in as_json. The option include_root_in_json controls the top-level behavior of as_json. If true, as_json will emit a single root node named after the object’s type. The default value for include_root_in_json option is false. This behavior can also be achieved by setting the :root  option to true.
+
+
+<pre class="lang:ruby decode:true">user.as_json(root: true)</pre>
+
+
+In as_json without any option, the returned HASH will include all the model attributes
+
+
+<pre class="lang:ruby decode:true">user = User.find(1)
+user.as_json
+</pre>
+
+
+The <em>:only</em> and <em>:except</em> options can be used to limit the attributes included, and work similar to the attributes method.
+
+
+<pre class="lang:ruby decode:true">user.as_json(:only =&gt; [ :id, :email ])
+user.as_json(:except =&gt; [:id, :username])
+</pre>
+
+
+Default as_json will create a hash which includes all the model attributes. We normally override the as_json to create custom JSON structure.
+
+
+<pre class="lang:ruby decode:true">def as_json(options={})
  { :email =&gt; self.email }
-end</pre><p><strong>As we were going through this we also came across a method called from_json. So we decided to write about it as well</strong></p>
+end</pre>
+
+
+<strong>As we were going through this we also came across a method called from_json. So we decided to write about it as well</strong>
+
+
 <h2>from_json in Rails API</h2>
-<p>from_json will sets the model attributes from a JSON string. The default value for include_root option is false. We can change it to &#8216;true&#8217; if the given JSON string includes a single root node.</p><pre class="crayon-plain-tag">json = { user: { email: 'adone@gmail.com', username: 'adone'} }.to_json
+
+
+from_json will sets the model attributes from a JSON string. The default value for include_root option is false. We can change it to &#8216;true&#8217; if the given JSON string includes a single root node.
+
+
+<pre class="lang:ruby decode:true">json = { user: { email: 'adone@gmail.com', username: 'adone'} }.to_json
 user = User.new
 user.from_json(json, true)
 user.email                 #=&gt; "adone@gmail.com"
-user.username              #=&gt; "adone"</pre><p><code></code></p>
-<p>Do not call to_json directly, and let the render take it, in controllers. Incase of custom structured or multi level JSON structure override as_json in the model or call as_json. Using as_json will help to worry one less.</p>
+user.username              #=&gt; "adone"</pre>
+
+
+<code></code>
+Do not call to_json directly, and let the render take it, in controllers. Incase of custom structured or multi level JSON structure override as_json in the model or call as_json. Using as_json will help to worry one less.
+
+
 <h2><strong>References</strong></h2>
+
+
+
+
 <ul>
+ 	
+
 <li><a href="https://github.com/rails/rails/blob/master/activesupport/lib/active_support/core_ext/object/json.rb">https://github.com/rails/rails/blob/master/activesupport/lib/active_support/core_ext/object/json.rb</a></li>
+
+
+ 	
+
 <li><a href="http://ruby-doc.org/stdlib-2.0.0/libdoc/json/rdoc/Regexp.html">http://ruby-doc.org/stdlib-2.0.0/libdoc/json/rdoc/Regexp.html</a></li>
+
+
 </ul>
-<p>The post <a rel="nofollow" href="/to_json-vs-as_json-in-rails-api/">to_json vs as_json in Rails API</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+
+]]&gt;		</p>
 ]]></content:encoded>
 							<wfw:commentRss>/to_json-vs-as_json-in-rails-api/feed/</wfw:commentRss>
 		<slash:comments>3</slash:comments>
@@ -618,84 +1353,112 @@ user.username              #=&gt; "adone"</pre><p><code></code></p>
 		<item>
 		<title>Setup your rails  application with one command</title>
 		<link>/setup-rails-application-one-command/</link>
-				<comments>/setup-rails-application-one-command/#respond</comments>
 				<pubDate>Tue, 13 Jun 2017 14:59:33 +0000</pubDate>
 		<dc:creator><![CDATA[pankaj]]></dc:creator>
 				<category><![CDATA[Beginners]]></category>
 
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=2155</guid>
-				<description><![CDATA[<p>Generally setting up a rails app is running some same set of commands, for example installing gem, creating database, loading schema and start rails server. [crayon-5f53f00313020436063929/] We can create a script and run it to setup our application since Rails 4.2 a bin/setup file is generated by default. Here is the example of setup script. [crayon-5f53f00313026560532340/]&#8230;</p>
-<p>The post <a rel="nofollow" href="/setup-rails-application-one-command/">Setup your rails  application with one command</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
-]]></description>
-								<content:encoded><![CDATA[<p>Generally setting up a rails app is running some same set of commands, for example installing gem, creating database, loading schema and start rails server.</p><pre class="crayon-plain-tag">bundle
+		<guid isPermaLink="false">https://redpanthers.co/?p=2155</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[Generally setting up a rails app is running some same set of commands, for example installing gem, creating database, loading schema and start rails server.
+
+
+<pre class="lang:sh decode:true">bundle
 bundle exec rails db:create
-bundle exec rails s</pre><p>We can create a script and run it to setup our application since Rails 4.2 a bin/setup file is generated by default.</p>
-<p>Here is the example of setup script.</p><pre class="crayon-plain-tag">#!/usr/bin/env ruby
+bundle exec rails s</pre>
+
+
+We can create a script and run it to setup our application since Rails 4.2 a bin/setup file is generated by default.
+Here is the example of setup script.
+
+
+<pre class="lang:default decode:true">#!/usr/bin/env ruby
 require 'pathname'
 require 'fileutils'
 include FileUtils
-
 # path to your application root.
 APP_ROOT = Pathname.new File.expand_path('../../', __FILE__)
-
 def system!(*args)
   system(*args) || abort("\n== Command #{args} failed ==")
 end
-
 chdir APP_ROOT do
   # This script is a starting point to setup your application.
   # Add necessary setup steps to this file.
-
   puts '== Installing dependencies =='
   system! 'gem install bundler --conservative'
   system('bundle check') || system!('bundle install')
-
   # puts "\n== Copying sample files =="
   # unless File.exist?('config/database.yml')
   #   cp 'config/database.yml.sample', 'config/database.yml'
   # end
-
   puts "\n== Preparing database =="
   system! 'bin/rails db:setup'
-
   puts "\n== Removing old logs and tempfiles =="
   system! 'bin/rails log:clear tmp:clear'
-
   puts "\n== Restarting application server =="
   system! 'bin/rails restart'
-end</pre><p>Setup script sets your rails application for development environment instantly.  This is helpful when a new developer trying to set up your application or when setting up an application on a new machine. We should keep the setup script updated.</p>
-<p>Let&#8217;s understand the setup script step by step and modify according to our requirements.</p>
-<p>First setup basic required library and path of our application in <em>APP_ROOT</em></p><pre class="crayon-plain-tag">#!/usr/bin/env ruby
+end
+</pre>
+
+
+Setup script sets your rails application for development environment instantly.  This is helpful when a new developer trying to set up your application or when setting up an application on a new machine. We should keep the setup script updated.
+Let&#8217;s understand the setup script step by step and modify according to our requirements.
+First setup basic required library and path of our application in <em>APP_ROOT</em>
+
+
+<pre class="lang:default decode:true">#!/usr/bin/env ruby
 require 'pathname'
 require 'fileutils'
 include FileUtils
+APP_ROOT = Pathname.new File.expand_path('../../', __FILE__)
+</pre>
 
-APP_ROOT = Pathname.new File.expand_path('../../', __FILE__)</pre><p>Now <em>system! </em>method here execute the commands passed to it and shows the backtrace of error in case of command fails.</p><pre class="crayon-plain-tag">def system!(*args)
+
+Now <em>system! </em>method here execute the commands passed to it and shows the backtrace of error in case of command fails.
+
+
+<pre class="lang:default decode:true">def system!(*args)
   system(*args) || abort("\n== Command #{args} failed ==")
-end</pre><p><em>system</em> will execute the given rails command and <em>abort</em> will stop script execution and will show us the backtrace of failed command, we can modify it if we don&#8217;t want to stop the execution of the script and get some custom error messages.</p><pre class="crayon-plain-tag">def system!(*args)
+end
+</pre>
+
+
+<em>system</em> will execute the given rails command and <em>abort</em> will stop script execution and will show us the backtrace of failed command, we can modify it if we don&#8217;t want to stop the execution of the script and get some custom error messages.
+
+
+<pre class="lang:default decode:true">def system!(*args)
   system(*args) || puts "#{args} -&gt; FAILED TO EXCECUTE"
-end</pre><p>In the below snippet of the script, we are going to our application root and performing operations.</p><pre class="crayon-plain-tag">chdir APP_ROOT do
+end
+</pre>
+
+
+In the below snippet of the script, we are going to our application root and performing operations.
+
+
+<pre class="lang:default decode:true">chdir APP_ROOT do
   puts '== Installing dependencies =='
   system! 'gem install bundler --conservative'
   system('bundle check') || system!('bundle install')
-
   puts "\n== Preparing database =="
   system! 'bin/rails db:setup'
-
   puts "\n== Removing old logs and tempfiles =="
   system! 'bin/rails log:clear tmp:clear'
-
   puts "\n== Restarting application server =="
   system! 'bin/rails restart'
-end</pre><p>To create config file if not already exist, modify your script as</p><pre class="crayon-plain-tag">puts "== Copying sample files =="
+end</pre>
+
+
+To create config file if not already exist, modify your script as
+
+
+<pre class="lang:default decode:true">   puts "== Copying sample files =="
    unless File.exist?('config/database.yml')
      cp 'config/database.yml.sample', 'config/database.yml'
-   end</pre><p></p>
-<p>The post <a rel="nofollow" href="/setup-rails-application-one-command/">Setup your rails  application with one command</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+   end</pre>
+
+]]&gt;		</p>
 ]]></content:encoded>
-							<wfw:commentRss>/setup-rails-application-one-command/feed/</wfw:commentRss>
-		<slash:comments>0</slash:comments>
-							</item>
+										</item>
 		<item>
 		<title>Authorization with Pundit gem</title>
 		<link>/authorization-with-pundit-gem/</link>
@@ -705,107 +1468,191 @@ end</pre><p>To create config file if not already exist, modify your script as</p
 				<category><![CDATA[Beginners]]></category>
 		<category><![CDATA[Rails]]></category>
 
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=2636</guid>
-				<description><![CDATA[<p>&#160; Security is an important aspect of application development. Two main components of security are Authentication (Who are you?) and Authorization (are you supposed to be here?). Authentication verifies the user&#8217;s identity while authorization verifies whether that user has access rights on certain resources to perform actions on them. Two popular gems for authorization in&#8230;</p>
-<p>The post <a rel="nofollow" href="/authorization-with-pundit-gem/">Authorization with Pundit gem</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
-]]></description>
-								<content:encoded><![CDATA[<p>&nbsp;</p>
-<p>Security is an important aspect of application development. Two main components of security are Authentication (<em>Who are you?</em>) and Authorization (<em>are you supposed to be here?</em>). Authentication verifies the user&#8217;s identity while authorization verifies whether that user has access rights on certain resources to perform actions on them.</p>
-<p>Two popular gems for authorization in the rails world are CanCanCan and Pundit, we at Red Panthers prefers pundit over CanCanCan we get to write Pure Ruby Objects and keep the logic for each part separate.</p>
-<p>The gem CanCanCan isolates (encourages) all authorization logic into a single class. It is a drawback when the complexity of application increases. Pundit gem provides object oriented design patterns to build our own authorization system that meets project&#8217;s requirements. It enables us to keep the models and controllers free from authorization code and allows to keep the resource logic separately. This flexibility and simplicity of Pundit gem help to use it with ease.</p>
+		<guid isPermaLink="false">https://redpanthers.co/?p=2636</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[&nbsp;
+Security is an important aspect of application development. Two main components of security are Authentication (<em>Who are you?</em>) and Authorization (<em>are you supposed to be here?</em>). Authentication verifies the user&#8217;s identity while authorization verifies whether that user has access rights on certain resources to perform actions on them.
+Two popular gems for authorization in the rails world are CanCanCan and Pundit, we at Red Panthers prefers pundit over CanCanCan we get to write Pure Ruby Objects and keep the logic for each part separate.
+The gem CanCanCan isolates (encourages) all authorization logic into a single class. It is a drawback when the complexity of application increases. Pundit gem provides object oriented design patterns to build our own authorization system that meets project&#8217;s requirements. It enables us to keep the models and controllers free from authorization code and allows to keep the resource logic separately. This flexibility and simplicity of Pundit gem help to use it with ease.
+
+
 <h2>To start with Pundit</h2>
-<p>Add Pundit gem to your gem file and run bundle install.</p><pre class="crayon-plain-tag">gem 'pundit'</pre><p>Integrate Pundit to Rails application by adding the following line to ApplicationController.</p><pre class="crayon-plain-tag">include Pundit</pre><p>If you run the Pundit&#8217;s generator as below, it will generate app/policies folder which contains application_policy.rb by default.</p>
+
+
+Add Pundit gem to your gem file and run bundle install.
+
+
+<pre class="lang:default decode:true">gem 'pundit'</pre>
+
+
+Integrate Pundit to Rails application by adding the following line to ApplicationController.
+
+
+<pre class="lang:default decode:true">include Pundit</pre>
+
+
+If you run the Pundit&#8217;s generator as below, it will generate app/policies folder which contains application_policy.rb by default.
+
+
 <div class="highlight highlight-source-shell">
-<pre class="crayon-plain-tag">rails g pundit:install</pre>
+
+
+<pre class="lang:default decode:true">rails g pundit:install</pre>
+
+
 </div>
-<p>Then restart the Rails server.</p>
-<p>Base class policy looks like</p><pre class="crayon-plain-tag">#app/policies/application_policy.rb
+
+
+Then restart the Rails server.
+Base class policy looks like
+
+
+<pre class="lang:default decode:true">#app/policies/application_policy.rb
 class ApplicationPolicy
   attr_reader :user, :record
-
   def initialize(user, record)
     @user = user
     @record = record
   end
-
   #............
-
   def destroy?
     false
   end
-
   def scope
     Pundit.policy_scope!(user, record.class)
   end
-
   class Scope
     attr_reader :user, :scope
-
     def initialize(user, scope)
       @user = user
       @scope = scope
     end
-
     def resolve
       scope
     end
   end
-end</pre><p></p>
+end</pre>
+
+
+
+
 <h2>Create policies</h2>
-<p>Policy classes are the core of Pundit. In the app/policies folder, we can write our own policies. Each policy is a Ruby class. Each policy class should be named after a model they belong to, followed by the word Policy. For example, use CollectionPolicy for Collection model. Pundit can also be used without an associated model.</p>
-<p>Pundit uses the current_user method to get the first argument in initialize method in ApplicationPolicy. But if current_user is not the method that should be invoked by Pundit, simply define a method in your controller.</p><pre class="crayon-plain-tag">def pundit_user
+
+
+Policy classes are the core of Pundit. In the app/policies folder, we can write our own policies. Each policy is a Ruby class. Each policy class should be named after a model they belong to, followed by the word Policy. For example, use CollectionPolicy for Collection model. Pundit can also be used without an associated model.
+Pundit uses the current_user method to get the first argument in initialize method in ApplicationPolicy. But if current_user is not the method that should be invoked by Pundit, simply define a method in your controller.
+
+
+<pre class="lang:default decode:true">def pundit_user
   User.find_by_other_means
-end</pre><p>Logically, Pundit can be used outside controllers, for example, in custom services or in views.</p>
-<p>Consider the following example.</p>
-<p>In User model,</p><pre class="crayon-plain-tag">class User &lt; ApplicationRecord  
+end</pre>
+
+
+Logically, Pundit can be used outside controllers, for example, in custom services or in views.
+Consider the following example.
+In User model,
+
+
+<pre class="lang:default decode:true">class User &lt; ApplicationRecord  
   has_many :collections, dependent: :destroy
-end</pre><p>In Collection model,</p><pre class="crayon-plain-tag">class Collection &lt; ApplicationRecord  
+end</pre>
+
+
+In Collection model,
+
+
+<pre class="lang:default decode:true">class Collection &lt; ApplicationRecord  
   belongs_to :user
-end</pre><p>A collection should be able to be deleted only by the user who created it.</p>
-<p>So, let&#8217;s start by creating a new file collection_policy.rb in app/policies  that will store our policies that are specific to collections.</p>
-<p>In this file, we define a class that inherits from the ApplicationPolicy class and we will integrate delete method for managing permissions for the delete action .</p><pre class="crayon-plain-tag">#app/policies/collection_policy.rb
+end</pre>
+
+
+A collection should be able to be deleted only by the user who created it.
+So, let&#8217;s start by creating a new file collection_policy.rb in app/policies  that will store our policies that are specific to collections.
+In this file, we define a class that inherits from the ApplicationPolicy class and we will integrate delete method for managing permissions for the delete action .
+
+
+<pre class="lang:default decode:true">#app/policies/collection_policy.rb
 class CollectionPolicy &lt; ApplicationPolicy
   def destroy?
     record.user == user
   end
-end</pre><p>In our CollectionPolicy class we are overriding the delete? method originally declared in the ApplicationPolicy. There it simply returns false. We can override the methods in ApplicationPolicy class with our unique requirements since it&#8217;s intended to give a structure only.</p><pre class="crayon-plain-tag">record.user == user</pre><p>This states that, the only user that should be able to delete a collection is the user that created it. We can refactor this into their own method since it&#8217;s a better approach if other authorized users are needed to be added in future so that changes can be made easily in a single method instead of having to make the same changes in multiple places.</p>
-<p>This is very explicit, clearly describing the intent of the program flow.</p>
-<p>Definitely, we won&#8217;t be wondering, from where these record and user attributes are coming from. In ApplicationPolicy class we can see that they are set as read only attributes representing the object that we are adding authorization to, such as collection in our app and then the user. This is an instance of Pundit providing easy access to the items that we want to add authorization. If we add another policy class like CollectionPolicy then also we will be able to use very similar code like we are working with collections.</p>
-<p>Now let&#8217;s move to CollectionsController . By using Pundit policies, a proper permission structure can be integrated to the delete action, which earlier had no protection from unauthorized HTTP requests.</p><pre class="crayon-plain-tag">class CollectionsController &lt; ApplicationController
-  protect_from_forgery
+end</pre>
 
+
+In our CollectionPolicy class we are overriding the delete? method originally declared in the ApplicationPolicy. There it simply returns false. We can override the methods in ApplicationPolicy class with our unique requirements since it&#8217;s intended to give a structure only.
+
+
+<pre class="lang:default decode:true">record.user == user</pre>
+
+
+This states that, the only user that should be able to delete a collection is the user that created it. We can refactor this into their own method since it&#8217;s a better approach if other authorized users are needed to be added in future so that changes can be made easily in a single method instead of having to make the same changes in multiple places.
+This is very explicit, clearly describing the intent of the program flow.
+Definitely, we won&#8217;t be wondering, from where these record and user attributes are coming from. In ApplicationPolicy class we can see that they are set as read only attributes representing the object that we are adding authorization to, such as collection in our app and then the user. This is an instance of Pundit providing easy access to the items that we want to add authorization. If we add another policy class like CollectionPolicy then also we will be able to use very similar code like we are working with collections.
+Now let&#8217;s move to CollectionsController . By using Pundit policies, a proper permission structure can be integrated to the delete action, which earlier had no protection from unauthorized HTTP requests.
+
+
+<pre class="lang:default decode:true">class CollectionsController &lt; ApplicationController
+  protect_from_forgery
   def create
     Collections::Create.call(collection_params, current_user)
     redirect_to root_url
   end
-
   def destroy
     collection = Collection.find(params[:id])
     authorize(collection, :destroy?)
     Collections::Delete.call(collection, current_user)
     redirect_to root_url
   end
-
   private
-
   def collection_params
     params.require(:collection).permit(:name)
   end
-end</pre><p>The authorize method automatically assumes that Collection will have a corresponding CollectionPolicy class, and instantiates this class. It should call destroy? method on this instance of the policy. Passing a second argument to authorize method is optional here. It infers from the action name that it should call destroy? method on this instance of the policy. But second argument should be passed if it doesn&#8217;t match the action name.</p>
+end</pre>
+
+
+The authorize method automatically assumes that Collection will have a corresponding CollectionPolicy class, and instantiates this class. It should call destroy? method on this instance of the policy. Passing a second argument to authorize method is optional here. It infers from the action name that it should call destroy? method on this instance of the policy. But second argument should be passed if it doesn&#8217;t match the action name.
+
+
 <h3>Policy without a corresponding model</h3>
-<p>We can create &#8216;headless&#8217; policies that are not tied to any specific model. Such policies can be retrieved by passing a symbol.</p><pre class="crayon-plain-tag"># app/policies/website_policy.rb
+
+
+We can create &#8216;headless&#8217; policies that are not tied to any specific model. Such policies can be retrieved by passing a symbol.
+
+
+<pre class="lang:default decode:true"># app/policies/website_policy.rb
 class WebsitePolicy &lt; Struct.new(:user, :website)
   # ...
-end</pre><p></p><pre class="crayon-plain-tag"># In controllers
-authorize :website, :show?</pre><p></p><pre class="crayon-plain-tag"># In views
+end</pre>
+
+
+
+
+<pre class="lang:default decode:true"># In controllers
+authorize :website, :show?</pre>
+
+
+
+
+<pre class="lang:default decode:true "># In views
 &lt;% if policy(:website).show? %&gt;
   &lt;%= link_to 'Website', website_path %&gt;
-&lt;% end %&gt;</pre><p>Here a model or class named Website doesn&#8217;t exist. So WebsitePolicy is retrieved by passing a symbol. This is a headless policy.</p>
+&lt;% end %&gt;</pre>
+
+
+Here a model or class named Website doesn&#8217;t exist. So WebsitePolicy is retrieved by passing a symbol. This is a headless policy.
+
+
 <h2>Pundit scopes</h2>
-<p>In application_policy.rb, there is a scope class defined. It implements a method called resolve for filtering. We can inherit it from a base class and implement our own resolve method. In this example a scope is setup to allow users to view websites only if they have a link through collections.</p>
-<p>Let&#8217;s consider three models: User, Website, and Collection</p>
-<p>Collection belongs to User.</p>
-<p>In WebsitePolicy,</p><pre class="crayon-plain-tag">class Scope &lt; Scope
+
+
+In application_policy.rb, there is a scope class defined. It implements a method called resolve for filtering. We can inherit it from a base class and implement our own resolve method. In this example a scope is setup to allow users to view websites only if they have a link through collections.
+Let&#8217;s consider three models: User, Website, and Collection
+Collection belongs to User.
+In WebsitePolicy,
+
+
+<pre class="lang:default decode:true">class Scope &lt; Scope
   def resolve
     if user.admin?
       scope.all
@@ -813,36 +1660,93 @@ authorize :website, :show?</pre><p></p><pre class="crayon-plain-tag"># In views
       scope.where(:company_id =&gt; user.collections.select(:website_id))
     end
   end
-end</pre><p>In the websites_controller,</p><pre class="crayon-plain-tag">def index
+end</pre>
+
+
+In the websites_controller,
+
+
+<pre class="lang:default decode:true">def index
   @websites = policy_scope(Website.includes(:company).all)
   authorize @websites
-end</pre><p>Now we see only the websites where we have a collection.</p>
+end</pre>
+
+
+Now we see only the websites where we have a collection.
+
+
 <h2>Exception handling</h2>
-<p>By default, Pundit raises an exception when users attempt to access that which they are not authorized to. This situation can be handled in ApplicationController.</p><pre class="crayon-plain-tag">class ApplicationController &lt; ActionController::Base
+
+
+By default, Pundit raises an exception when users attempt to access that which they are not authorized to. This situation can be handled in ApplicationController.
+
+
+<pre class="lang:default decode:true">class ApplicationController &lt; ActionController::Base
   include Pundit
   protect_from_forgery with: :exception
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
-
   def user_not_authorized
     flash[:alert] = 'You are not authorized to perform this action.'
     redirect_back(fallback_location: root_path)
  end
-end</pre><p>We need to rescue the Pundit::NotAuthorizedError exception with a suitable method that tells how to handle it.</p>
+end</pre>
+
+
+We need to rescue the Pundit::NotAuthorizedError exception with a suitable method that tells how to handle it.
+
+
 <h2>Why Pundit?</h2>
+
+
+
+
 <ul>
+ 	
+
 <li>Well suited to the service oriented architecture that&#8217;s popular for large Rails applications</li>
+
+
+ 	
+
 <li>Keep controllers skinny</li>
+
+
+ 	
+
 <li>Pundit policy objects are lightweight, adding authorization logic without as much overhead as CanCanCan</li>
+
+
+ 	
+
 <li>Emphasizes object-oriented design with discrete Ruby objects providing specialized services</li>
+
+
 </ul>
-<p>Therefore, as an application grows in complexity it&#8217;s always better to prefer Pundit for authorization.</p>
+
+
+Therefore, as an application grows in complexity it&#8217;s always better to prefer Pundit for authorization.
+
+
 <h2>References</h2>
+
+
+
+
 <ul>
+ 	
+
 <li><a href="https://github.com/elabs/pundit">Pundit Gem on Github</a></li>
+
+
+ 	
+
 <li><a href="https://github.com/RailsApps/rails-devise-pundit">Rails-Devise-Pundit</a></li>
+
+
 </ul>
-<p>&nbsp;</p>
-<p>The post <a rel="nofollow" href="/authorization-with-pundit-gem/">Authorization with Pundit gem</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+
+
+&nbsp;]]&gt;		</p>
 ]]></content:encoded>
 							<wfw:commentRss>/authorization-with-pundit-gem/feed/</wfw:commentRss>
 		<slash:comments>6</slash:comments>
@@ -864,76 +1768,236 @@ end</pre><p>We need to rescue the Pundit::NotAuthorizedError exception with a su
 		<category><![CDATA[webshot]]></category>
 		<category><![CDATA[website]]></category>
 
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=2373</guid>
-				<description><![CDATA[<p>&#160; Recently we have been working on taking screenshots for web page while generating reports based on that website. During this endeavor, we came across some tools to achieve that. We are sharing the information we gathered here. The tools that we will discuss for screencapture, in  Ruby,  are: PhantomJS Screencap gem Webshot gem Screencap&#8230;</p>
-<p>The post <a rel="nofollow" href="/screenshots-using-ruby/">Taking screenshots of webpages using Ruby</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
-]]></description>
-								<content:encoded><![CDATA[<p>&nbsp;</p>
-<p>Recently we have been working on taking screenshots for web page while generating reports based on that website. During this endeavor, we came across some tools to achieve that. We are sharing the information we gathered here.</p>
-<p>The tools that we will discuss for screencapture, in  Ruby,  are:</p>
+		<guid isPermaLink="false">https://redpanthers.co/?p=2373</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[&nbsp;
+Recently we have been working on taking screenshots for web page while generating reports based on that website. During this endeavor, we came across some tools to achieve that. We are sharing the information we gathered here.
+The tools that we will discuss for screencapture, in  Ruby,  are:
+
+
 <ul>
+ 	
+
 <li>PhantomJS</li>
+
+
+ 	
+
 <li>Screencap gem</li>
+
+
+ 	
+
 <li>Webshot gem</li>
+
+
 </ul>
-<p>Screencap and webshot are gems in Ruby that depends on a tool called PhantomJS. It is basically a web browser without a user interface, primarily used for testing websites. Such type of browsers are generally referred to as headless browsers,</p>
+
+
+Screencap and webshot are gems in Ruby that depends on a tool called PhantomJS. It is basically a web browser without a user interface, primarily used for testing websites. Such type of browsers are generally referred to as headless browsers,
+
+
 <h2>Screenshots with PhantomJS</h2>
-<p>PhantomJS is quite easy to install and is multiplatform, available on major operating systems.</p><pre class="crayon-plain-tag">gem install phantomjs</pre><p>To start, our script must require a reference to the webpage module then use it to create an instance:</p><pre class="crayon-plain-tag">var instance = require('webpage').create();</pre><p>Use the instance.open() method and pass it the arguments, the url of the webpage that we want to capture screenshot.</p><pre class="crayon-plain-tag">instance.open('/', function() {
+
+
+PhantomJS is quite easy to install and is multiplatform, available on major operating systems.
+
+
+<pre class="lang:ruby decode:true">gem install phantomjs</pre>
+
+
+To start, our script must require a reference to the webpage module then use it to create an instance:
+
+
+<pre class="lang:ruby decode:true">var instance = require('webpage').create();</pre>
+
+
+Use the instance.open() method and pass it the arguments, the url of the webpage that we want to capture screenshot.
+
+
+<pre class="lang:ruby decode:true">instance.open('http://redpanthers.co/', function() {
 instance.render('screenshot-phantom.png');
 phantom.exit();
-});</pre><p>instance.render() method captures the screenshot and saves it to the file specified in the argument.<br />
-Run the script as,</p><pre class="crayon-plain-tag">phantomjs filename.js</pre><p>Screenshot is saved in the  directory where we run the script.</p>
-<p>Now what we have above is all JavaScript, but to use the phantom JS in our rails application we have gems that provide us with an easy interface to acheive the same.</p>
+});</pre>
+
+
+instance.render() method captures the screenshot and saves it to the file specified in the argument.
+Run the script as,
+
+
+<pre class="lang:ruby decode:true">phantomjs filename.js
+</pre>
+
+
+Screenshot is saved in the  directory where we run the script.
+Now what we have above is all JavaScript, but to use the phantom JS in our rails application we have gems that provide us with an easy interface to acheive the same.
+
+
 <h2>Screencap gem</h2>
-<p>The gem &#8216;screencap&#8217; is introduced in Ruby to make screenshot capture easy. However, the gem depends on  &#8216;PhantomJS&#8217;, so we need to have PhantomJS installed on machine to capture screenshots with screencap gem.<br />
-But screencap does not work with PhantomJS 2.1.1, which is the latest version.<br />
-So we need to install version 1.9.8</p><pre class="crayon-plain-tag">gem install phantomjs -v 1.9.8</pre><p>check version</p><pre class="crayon-plain-tag">phantomjs --version</pre><p>To install screencap gem in your application, add this line to gemfile</p><pre class="crayon-plain-tag">gem 'screencap'</pre><p>Or install it as</p><pre class="crayon-plain-tag">gem install screencap</pre><p></p>
+
+
+The gem &#8216;screencap&#8217; is introduced in Ruby to make screenshot capture easy. However, the gem depends on  &#8216;PhantomJS&#8217;, so we need to have PhantomJS installed on machine to capture screenshots with screencap gem.
+But screencap does not work with PhantomJS 2.1.1, which is the latest version.
+So we need to install version 1.9.8
+
+
+<pre class="lang:ruby decode:true">gem install phantomjs -v 1.9.8</pre>
+
+
+check version
+
+
+<pre class="lang:default decode:true">phantomjs --version</pre>
+
+
+To install screencap gem in your application, add this line to gemfile
+
+
+<pre class="lang:ruby decode:true">gem 'screencap'</pre>
+
+
+Or install it as
+
+
+<pre class="lang:ruby decode:true">gem install screencap</pre>
+
+
+
+
 <h2>Usage</h2>
-<p>To capture screenshot with screencap</p><pre class="crayon-plain-tag">require 'screencap'
+
+
+To capture screenshot with screencap
+
+
+<pre class="lang:ruby decode:true">require 'screencap'
 screenshot = Screencap::Fetcher.new(&lt;url&gt;)
-image = screenshot.fetch</pre><p></p>
+image = screenshot.fetch</pre>
+
+
+
+
 <ul>
+ 	
+
 <li>Fetcher class accepts url of the website to take screenshot.</li>
+
+
+ 	
+
 <li>Screenshot is taken when fetch method is called.</li>
+
+
+ 	
+
 <li>Also, fetch method supports various optional parameters to specify the area to capture the screenshot.</li>
+
+
+ 	
+
 <li>We can specify where to store the screenshot captured, as shown below.</li>
+
+
 </ul>
-<p></p><pre class="crayon-plain-tag">image = obj.fetch(
+
+
+
+
+<pre class="lang:ruby decode:true">image = obj.fetch(
  output: '~/folder/file-name.png',
  # dimensions for taking screenshot of specific area
   width: 1024,
  height: 768
- )</pre><p></p>
+ )</pre>
+
+
+
+
 <h2>Example</h2>
-<p></p><pre class="crayon-plain-tag">require 'screencap'
-screenshot = Screencap::Fetcher.new('/')
+
+
+
+
+<pre class="lang:ruby decode:true">require 'screencap'
+screenshot = Screencap::Fetcher.new('http://redpanthers.co/')
 image = screenshot.fetch(output: '~/screencap/screencap.png',
                                    width: 300,
-                                  height: 500)</pre><p>Our screenshot is captured in screencap.png</p>
-<p><a href="http://blog.redpanthers.co/wp-content/uploads/2017/04/screencap.png"><img class="alignnone size-medium wp-image-2388" src="http://blog.redpanthers.co/wp-content/uploads/2017/04/screencap-300x225.png" alt="" width="300" height="225" /></a></p>
+                                  height: 500)</pre>
+
+
+Our screenshot is captured in screencap.png
+<a href="https://redpanthers.co/wp-content/uploads/2017/04/screencap.png"><img class="alignnone size-medium wp-image-2388" src="https://redpanthers.co/wp-content/uploads/2017/04/screencap-300x225.png" alt="" width="300" height="225" /></a>
+
+
 <h2></h2>
+
+
+
+
 <h2>Webshot gem</h2>
-<p>Webshot is another gem introduced in ruby to capture screenshots, also depends on PhantomJS.<br />
-For better experience, use latest version of PhantomJS. Webshot works with latest version of PhantomJS while screencap gem does not.<br />
-Install PhantomJS latest version.<br />
-To install webshot in your application,</p><pre class="crayon-plain-tag">gem 'webshot'</pre><p>Or install as</p><pre class="crayon-plain-tag">gem install webshot</pre><p></p>
+
+
+Webshot is another gem introduced in ruby to capture screenshots, also depends on PhantomJS.
+For better experience, use latest version of PhantomJS. Webshot works with latest version of PhantomJS while screencap gem does not.
+Install PhantomJS latest version.
+To install webshot in your application,
+
+
+<pre class="lang:ruby decode:true">gem 'webshot'</pre>
+
+
+Or install as
+
+
+<pre class="lang:ruby decode:true">gem install webshot</pre>
+
+
+
+
 <h2>Usage</h2>
-<p></p><pre class="crayon-plain-tag">require 'webshot'
+
+
+
+
+<pre class="lang:ruby decode:true">require 'webshot'
 screenshot = Webshot::Screenshot.instance
-screenshot.capture "https://github.com/", "image.png", width: 1024, height: 800</pre><p>Provide url of the web page and file name where screenshot to be saved.<br />
-Height and width can be given as optional parameters for taking screenshot with specified dimensions.<br />
-Above code captures github&#8217;s home page in file image.png</p>
-<p><a href="http://blog.redpanthers.co/wp-content/uploads/2017/04/image-1.png"><img class="alignnone size-medium wp-image-2398" src="http://blog.redpanthers.co/wp-content/uploads/2017/04/image-1-300x146.png" alt="" width="300" height="146" /></a></p>
-<p>In all the above methods, we capture screenshots of a particular web page by passing its url.<br />
-Also we can infer that screencap gem, even though efficiently takes screenshots, does not work for latest version of PhantomJS. This was an issue encountered while working with gem screencap as installing PhantomJS without specifying the version would install the latest version by default.</p>
-<p>So, choose gem webshot if you want to go ahead with the latest version of PhantomJS.</p>
+screenshot.capture "https://github.com/", "image.png", width: 1024, height: 800</pre>
+
+
+Provide url of the web page and file name where screenshot to be saved.
+Height and width can be given as optional parameters for taking screenshot with specified dimensions.
+Above code captures github&#8217;s home page in file image.png
+<a href="https://redpanthers.co/wp-content/uploads/2017/04/image-1.png"><img class="alignnone size-medium wp-image-2398" src="https://redpanthers.co/wp-content/uploads/2017/04/image-1-300x146.png" alt="" width="300" height="146" /></a>
+In all the above methods, we capture screenshots of a particular web page by passing its url.
+Also we can infer that screencap gem, even though efficiently takes screenshots, does not work for latest version of PhantomJS. This was an issue encountered while working with gem screencap as installing PhantomJS without specifying the version would install the latest version by default.
+So, choose gem webshot if you want to go ahead with the latest version of PhantomJS.
+
+
 <h2>References</h2>
+
+
+
+
 <ul>
+ 	
+
 <li><a href="https://github.com/ariya/phantomjs">PhantomJS</a></li>
+
+
+ 	
+
 <li><a href="https://github.com/maxwell/screencap">Screencap gem</a></li>
+
+
+ 	
+
 <li><a href="https://github.com/vitalie/webshot">Webshot gem</a></li>
+
+
 </ul>
-<p>The post <a rel="nofollow" href="/screenshots-using-ruby/">Taking screenshots of webpages using Ruby</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+
+]]&gt;		</p>
 ]]></content:encoded>
 							<wfw:commentRss>/screenshots-using-ruby/feed/</wfw:commentRss>
 		<slash:comments>2</slash:comments>
@@ -948,23 +2012,53 @@ Also we can infer that screencap gem, even though efficiently takes screenshots,
 		<category><![CDATA[Database]]></category>
 		<category><![CDATA[Ruby]]></category>
 
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=1094</guid>
-				<description><![CDATA[<p>Date and time are one of the most important aspects which every coder has to deal with in Ruby. Well, let&#8217;s get to know how we keep it up alive and functional. There are 3 different classes in Ruby that handles date and time. They are Date, Time and DateTime. Date and DateTime classes are&#8230;</p>
-<p>The post <a rel="nofollow" href="/time-date-datetime/">Difference between Date, Time and DateTime</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
-]]></description>
-								<content:encoded><![CDATA[<p>Date and time are one of the most important aspects which every coder has to deal with in Ruby. Well, let&#8217;s get to know how we keep it up alive and functional.<br />
-There are 3 different classes in Ruby that handles date and time. They are Date, Time and DateTime. Date and DateTime classes are both from date library. And Time class from its own time library.</p>
-<p>In this article we’ll see how Date and Time works. Let&#8217;s have a look at each one of them.</p>
+		<guid isPermaLink="false">https://redpanthers.co/?p=1094</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[Date and time are one of the most important aspects which every coder has to deal with in Ruby. Well, let's get to know how we keep it up alive and functional.
+There are 3 different classes in Ruby that handles date and time. They are Date, Time and DateTime. Date and DateTime classes are both from date library. And Time class from its own time library.
+In this article we’ll see how Date and Time works. Let's have a look at each one of them.
+
+
 <h2><strong>Date</strong></h2>
-<p>When you need a string format of year, month and day, you have to go through <strong>Date</strong> class.</p>
+
+
+When you need a string format of year, month and day, you have to go through <strong>Date</strong> class.
+
+
 <ul>
+ 	
+
 <li>Has date attributes only (year, month, day)</li>
+
+
+ 	
+
 <li>Based on integer whole-day intervals from an arbitrary &#8220;day zero&#8221;</li>
+
+
+ 	
+
 <li>Can handle date arithmetic in units of whole days</li>
+
+
+ 	
+
 <li>Date object is created with ::new, ::jd, ::ordinal, ::commercial, ::parse, ::strptime, ::today, Time#to_date etc.</li>
+
+
+ 	
+
 <li>Takes <strong>4</strong> bytes to store.</li>
+
+
 </ul>
-<p>Eg:</p><pre class="crayon-plain-tag">$ require 'date'
+
+
+Eg:
+
+
+<pre class="lang:sh decode:true ruby">$ require 'date'
 $ Date.new(2001,2,3)
   Date: 2001-02-03
 $ Date.jd(2451944)
@@ -980,18 +2074,42 @@ $ Date.strptime('03-02-2001', '%d-%m-%Y')
 $ Time.new(2001,2,3).to_date
   Date: 2001-02-03 ...
 $ Date.today
-  "Mon, 02 Jan 2017"</pre><p></p>
+  "Mon, 02 Jan 2017"</pre>
+
+
+
+
 <h2><strong>Time</strong></h2>
-<p>If you need both date and time values, we can make use of <strong>Time</strong> class.</p>
+
+
+If you need both date and time values, we can make use of <strong>Time</strong> class.
+
+
 <ul>
+ 	
+
 <li>Has date and time attributes (year, month, day, hour, min, sec, subsec)</li>
+
+
+ 	
+
 <li>Can handle negative times before unix time</li>
+
+
+ 	
+
 <li>Can handle time arithmetic in units of seconds</li>
+
+
 </ul>
-<p>Eg:</p><pre class="crayon-plain-tag">$ require 'time'
+
+
+Eg:
+
+
+<pre class="lang:sh decode:true ">$ require 'time'
 $ Time.now
    2015-12-08 10:26:40 -0200
-
 $ time = Time.new
   Components of a Time
 $ time.year    # =&gt; Year of the date
@@ -1003,46 +2121,157 @@ $ time.hour    # =&gt; 23: 24-hour clock
 $ time.min     # =&gt; 59
 $ time.sec     # =&gt; 59
 $ time.usec    # =&gt; 999999: microseconds
-$ time.zone    # =&gt; "UTC": timezone name</pre><p>Also rails provide a really good time class called <strong>ActiveSupport::TimeWithZone</strong>. It contains all the features the <strong>Time</strong> class have, plus many improvements, such as the support for configurable time zones.</p>
-<h2><strong>DateTime</strong></h2>
-<ul>
-<li>Has date and time attributes (year, month, day, hour, min, sec)</li>
-<li>It  is formatted as YYYY-MM-DD HH:MM:SS</li>
-<li>Based on fractions of whole-day intervals from an arbitrary &#8220;day zero&#8221; (-4712-01-01)</li>
-<li>Can handle date arithmetic in units of whole days or fractions</li>
-<li>Takes 8 bytes to store, and has a precision of .001 seconds.
-<ul>
-<li>A four-byte integer packed as <code>YYYY</code>×10000 + <code>MM</code>×100 + <code>DD</code></li>
-<li>A four-byte integer packed as <code>HH</code>×10000 + <code>MM</code>×100 + <code>SS</code></li>
-</ul>
-</li>
-<li>Valid ranges go from the year 1000 to the year 9999</li>
-<li>It is created with ::new, ::jd, ::ordinal, ::commercial, ::parse, ::strptime, ::now, Time#to_datetime etc.</li>
-</ul>
-<p>Eg:</p><pre class="crayon-plain-tag">$ require 'date'
+$ time.zone    # =&gt; "UTC": timezone name
+</pre>
 
+
+Also rails provide a really good time class called <strong>ActiveSupport::TimeWithZone</strong>. It contains all the features the <strong>Time</strong> class have, plus many improvements, such as the support for configurable time zones.
+
+
+<h2><strong>DateTime</strong></h2>
+
+
+
+
+<ul>
+ 	
+
+<li>Has date and time attributes (year, month, day, hour, min, sec)</li>
+
+
+ 	
+
+<li>It  is formatted as YYYY-MM-DD HH:MM:SS</li>
+
+
+ 	
+
+<li>Based on fractions of whole-day intervals from an arbitrary &#8220;day zero&#8221; (-4712-01-01)</li>
+
+
+ 	
+
+<li>Can handle date arithmetic in units of whole days or fractions</li>
+
+
+ 	
+
+<li>Takes 8 bytes to store, and has a precision of .001 seconds.
+
+
+<ul>
+ 	
+
+<li>A four-byte integer packed as <code>YYYY</code>×10000 + <code>MM</code>×100 + <code>DD</code></li>
+
+
+ 	
+
+<li>A four-byte integer packed as <code>HH</code>×10000 + <code>MM</code>×100 + <code>SS</code></li>
+
+
+</ul>
+
+
+</li>
+
+
+ 	
+
+<li>Valid ranges go from the year 1000 to the year 9999</li>
+
+
+ 	
+
+<li>It is created with ::new, ::jd, ::ordinal, ::commercial, ::parse, ::strptime, ::now, Time#to_datetime etc.</li>
+
+
+</ul>
+
+
+Eg:
+
+
+<pre class="lang:sh decode:true ">$ require 'date'
 $ DateTime.new(2001,2,3,4,5,6)
-  DateTime: 2001-02-03T04:05:06+00:00 ...</pre><p></p>
+  DateTime: 2001-02-03T04:05:06+00:00 ...</pre>
+
+
+
+
 <h2>Let&#8217;s see the Differences among all of them which makes them unique.</h2>
+
+
+
+
 <ul>
+ 	
+
 <li>Date use rational and a &#8220;day zero&#8221; for storage. But Time doesn&#8217;t. So Time is faster.</li>
+
+
+ 	
+
 <li>Date field is populated with a literal date and does not concern itself with time zones so this can cause trouble if it is not expressed in the user&#8217;s local time. A DateTime can always be converted to a user&#8217;s local time if required.</li>
+
+
+ 	
+
 <li>Time used to track changes to records and update every time when the record is changed. DateTime used to store a specific and static value which is not affected by any changes in records.</li>
+
+
+ 	
+
 <li>Time internally converted current time zone to UTC for storage, and during retrieval converted back to the current time zone. DateTime can not do this.</li>
+
+
+ 	
+
 <li>Time affected by different TIME ZONE related setting. Datetime is constant.</li>
+
+
+ 	
+
 <li>Ruby’s <code>Time</code> class implements a <a href="http://en.wikipedia.org/wiki/Proleptic_Gregorian_calendar">proleptic Gregorian calendar</a> and has no concept of calendar reform. This problem can be overcome using DateTime class.</li>
+
+
 </ul>
-<p>Now since we know so many facets of Date, Time and DateTime , we can use them in a much better manner in future at our time of needs.</p>
-<p>Happy Coding in Ruby!</p>
+
+
+Now since we know so many facets of Date, Time and DateTime , we can use them in a much better manner in future at our time of needs.
+Happy Coding in Ruby!
+
+
 <h2>References</h2>
+
+
+
+
 <ul>
+ 	
+
 <li><a href="https://ruby-doc.org/stdlib-2.4.0/libdoc/date/rdoc/Date.html">https://ruby-doc.org/stdlib-2.4.0/libdoc/date/rdoc/Date.html</a></li>
+
+
+ 	
+
 <li><a href="http://stackoverflow.com/questions/3928275/in-ruby-on-rails-whats-the-difference-between-datetime-timestamp-time-and-da">http://stackoverflow.com/questions/3928275/in-ruby-on-rails-whats-the-difference-between-datetime-timestamp-time-and-da</a></li>
+
+
+ 	
+
 <li><a href="https://www.tutorialspoint.com/ruby/ruby_date_time.html">https://www.tutorialspoint.com/ruby/ruby_date_time.html</a></li>
+
+
+ 	
+
 <li><a href="http://stevenyue.com/blogs/date-time-datetime-in-ruby-and-rails/">http://stevenyue.com/blogs/date-time-datetime-in-ruby-and-rails/</a></li>
+
+
 </ul>
-<p>&nbsp;</p>
-<p>The post <a rel="nofollow" href="/time-date-datetime/">Difference between Date, Time and DateTime</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+
+
+&nbsp;]]&gt;		</p>
 ]]></content:encoded>
 							<wfw:commentRss>/time-date-datetime/feed/</wfw:commentRss>
 		<slash:comments>3</slash:comments>

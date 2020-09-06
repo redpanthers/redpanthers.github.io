@@ -1,4 +1,4 @@
- <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
 	xmlns:content="http://purl.org/rss/1.0/modules/content/"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
 	xmlns:atom="http://www.w3.org/2005/Atom"
@@ -10,7 +10,7 @@
 	Comments on: Difference between Date, Time and DateTime	</title>
 	<atom:link href="/time-date-datetime/feed/" rel="self" type="application/rss+xml" />
 	<link>/time-date-datetime/</link>
-	<description>Experts in Ruby on Rails Development</description>
+	<description>Red Panthers - Experts in Ruby on Rails, System Design and Vue.js</description>
 	<lastBuildDate>Tue, 11 Apr 2017 11:55:00 +0000</lastBuildDate>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -20,10 +20,10 @@
 			<item>
 				<title>
 				By: Harikrishnan N				</title>
-				<link>/time-date-datetime/#comment-27</link>
+				<link>/time-date-datetime/#comment-40</link>
 		<dc:creator><![CDATA[Harikrishnan N]]></dc:creator>
 		<pubDate>Tue, 11 Apr 2017 11:55:00 +0000</pubDate>
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=1094#comment-27</guid>
+		<guid isPermaLink="false">https://redpanthers.co/?p=1094#comment-40</guid>
 					<description><![CDATA[The issue is only in older versions of ruby (1.9.2). Thank you for notifying. I will update the blog.]]></description>
 		<content:encoded><![CDATA[<p>The issue is only in older versions of ruby (1.9.2). Thank you for notifying. I will update the blog.</p>
 ]]></content:encoded>
@@ -31,10 +31,10 @@
 						<item>
 				<title>
 				By: Sathors				</title>
-				<link>/time-date-datetime/#comment-26</link>
+				<link>/time-date-datetime/#comment-39</link>
 		<dc:creator><![CDATA[Sathors]]></dc:creator>
 		<pubDate>Fri, 07 Apr 2017 23:40:00 +0000</pubDate>
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=1094#comment-26</guid>
+		<guid isPermaLink="false">https://redpanthers.co/?p=1094#comment-39</guid>
 					<description><![CDATA[You say that Time only stores a time of a day, whereas DateTime stores a date and a time. I don&#039;t really understand what you meant by that, because Time and DateTime have the same attributes (year, month, day, hour, min, sec).]]></description>
 		<content:encoded><![CDATA[<p>You say that Time only stores a time of a day, whereas DateTime stores a date and a time. I don&#8217;t really understand what you meant by that, because Time and DateTime have the same attributes (year, month, day, hour, min, sec).</p>
 ]]></content:encoded>
@@ -42,10 +42,10 @@
 						<item>
 				<title>
 				By: Alex Patrashko				</title>
-				<link>/time-date-datetime/#comment-25</link>
+				<link>/time-date-datetime/#comment-38</link>
 		<dc:creator><![CDATA[Alex Patrashko]]></dc:creator>
 		<pubDate>Fri, 07 Apr 2017 08:27:00 +0000</pubDate>
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=1094#comment-25</guid>
+		<guid isPermaLink="false">https://redpanthers.co/?p=1094#comment-38</guid>
 					<description><![CDATA[Time.new(8700, 10, 21, 13, 39, 56) is a valid expression. Hence the question, what did you mean by &quot;Time can only represent dates between 1970 and 2038&quot; ?]]></description>
 		<content:encoded><![CDATA[<p>Time.new(8700, 10, 21, 13, 39, 56) is a valid expression. Hence the question, what did you mean by &#8220;Time can only represent dates between 1970 and 2038&#8221; ?</p>
 ]]></content:encoded>

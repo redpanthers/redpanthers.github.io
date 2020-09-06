@@ -1,4 +1,4 @@
- <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
 	xmlns:content="http://purl.org/rss/1.0/modules/content/"
 	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -8,65 +8,304 @@
 	>
 
 <channel>
-	<title>git &#8211; Red Panthers</title>
+	<title>git &#8211; beta.redpanthers.co</title>
 	<atom:link href="/category/git/feed/" rel="self" type="application/rss+xml" />
 	<link>/</link>
-	<description>Experts in Ruby on Rails Development</description>
-	<lastBuildDate>Mon, 30 Jan 2017 12:42:55 +0000</lastBuildDate>
+	<description>Red Panthers - Experts in Ruby on Rails, System Design and Vue.js</description>
+	<lastBuildDate>Mon, 29 Apr 2019 11:28:12 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
 	<generator>https://wordpress.org/?v=5.2.7</generator>
-
-<image>
-	<url>/wp-content/uploads/2017/12/rp-logo.png</url>
-	<title>git &#8211; Red Panthers</title>
-	<link>/</link>
-	<width>32</width>
-	<height>32</height>
-</image> 
 	<item>
+		<title>Configuring a GitLab CI pipeline for Rails, MongoDB, and Rspec</title>
+		<link>/configuring-a-gitlab-ci-pipeline-for-rails-mongodb-and-rspec/</link>
+				<pubDate>Mon, 29 Apr 2019 11:28:12 +0000</pubDate>
+		<dc:creator><![CDATA[tony]]></dc:creator>
+				<category><![CDATA[DevOps]]></category>
+		<category><![CDATA[git]]></category>
+		<category><![CDATA[Rails]]></category>
+		<category><![CDATA[Ruby]]></category>
+
+		<guid isPermaLink="false">http://redpanthers.co/?p=16200</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[<a href="https://about.gitlab.com/">Gitlab</a> has a free private git repository service and an integrated CI service that can be configured to suit our needs. To know more about setting up Gitlab CI, check out our [blog post](link here)
+
+
+<h3>Including MongoDB in CI build system</h3>
+
+
+Instead of installing and starting MongoDB manually, we can use the Gitlab mongo service. A Gitlab service is just another Docker image that runs during your job and is linked to the main image. The first step is to include the latest MongoDB image to the build system. Add this to your <code>.gitlab-ci.yml</code>
+
+
+<pre class="lang:yaml decode:true ">services:
+- mongo:latest</pre>
+
+
+
+
+<h3>Add the MONGODB_URI variable</h3>
+
+
+Add a <code>variables</code> section within <code>.gitlab-ci.yml</code> to set the <code>MONGODB_URI</code> variable.
+
+
+<pre class="lang:yaml decode:true">variables:
+MONGODB_URI: mongodb://mongo:27017/test_db</pre>
+
+
+
+
+<h3>Add config/mongoid.yml ile</h3>
+
+
+Add a file <code>config/mongoid.yml.gitlab</code> with the following contents
+
+
+<pre class="lang:yaml decode:true">test:
+  clients:
+    default:
+      uri: &lt;%= ENV['MONGODB_URI'] %&gt;
+</pre>
+
+
+
+
+<h3>Override config/mongoid.yml with config/mongoid.yml.gitlab</h3>
+
+
+We need to override the local test configuration with the above settings specific to CI. Add the following to the <code>before_script</code> section of <code>.gitlab-ci.yml</code>
+
+
+<pre class="lang:yaml decode:true">before_script:
+  - cp config/database.yml.gitlab config/database.yml</pre>
+
+
+That&#8217;s it fellas, you are all set
+
+
+<h3>Summary</h3>
+
+
+The complete <code>.gitlab-ci.yml</code>
+
+
+<pre class="lang:yaml decode:true">image: starefossen/ruby-node:latest
+services:
+  - mongo:latest
+variables:
+  MONGODB_URI: mongodb://mongo:27017/test_db
+before_script:
+  - RAILS_ENV=test bundle install --jobs $(nproc) "${FLAGS[@]}"
+  - cp config/mongoid.yml.gitlab config/mongoid.yml
+  - RAILS_ENV=test bundle exec rake db:create db:migrate
+test:
+  script:
+    - bundle exec rspec</pre>
+
+
+the contents of <code>config/mongoid.yml</code>
+
+
+<pre class="lang:default decode:true ">development:
+  clients:
+    default:
+      database: dev_db
+      hosts:
+        - localhost:27017
+      options:
+        read:
+          mode: :primary
+        max_pool_size: 10
+production:
+  clients:
+    default:
+      uri: &lt;%= ENV['MONGODB_URI'] %&gt;
+      pool_size: &lt;%= ENV['DB_POOL_SIZE'] %&gt;
+test:
+  clients:
+    default:
+      database: test_db
+      hosts:
+        - localhost:27017
+      options:
+        read:
+          mode: :primary
+        max_pool_size: 1</pre>
+
+
+and <code>config/mongoid.yml.gitlab</code>
+
+
+<pre class="lang:yaml decode:true ">test:
+  clients:
+    default:
+      uri: &lt;%= ENV['MONGODB_URI'] %&gt;</pre>
+
+
+May you have a green build! :-)]]&gt;		</p>
+]]></content:encoded>
+										</item>
+		<item>
 		<title>How to format Git log for meaningful information</title>
 		<link>/git-log-formating-output/</link>
-				<comments>/git-log-formating-output/#respond</comments>
 				<pubDate>Mon, 30 Jan 2017 12:42:55 +0000</pubDate>
 		<dc:creator><![CDATA[harikrishnan]]></dc:creator>
 				<category><![CDATA[git]]></category>
 
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=938</guid>
-				<description><![CDATA[<p>Git is a wonderful piece of software that makes life easier and more productive for a programmer. But sadly most developers don&#8217;t use it up to their full potential so we are going to blog about various simple and advanced usages of git as a series. In the first article of the series, we are&#8230;</p>
-<p>The post <a rel="nofollow" href="/git-log-formating-output/">How to format Git log for meaningful information</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
-]]></description>
-								<content:encoded><![CDATA[<p><strong>Git</strong> is a wonderful piece of software that makes life easier and more productive for a programmer. But sadly most developers don&#8217;t use it up to their full potential so we are going to blog about various simple and advanced usages of git as a <a href="http://blog.redpanthers.co/category/git/">series</a>. In the first article of the series, we are going to talk about git logs.</p>
-<p><strong>Git log</strong> is a great feature, that allows us to keep track of our works. There are different options available under <code>git log</code> command, which help us to customize the output of git log and also to filter the log.</p>
+		<guid isPermaLink="false">https://redpanthers.co/?p=938</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[<strong>Git</strong> is a wonderful piece of software that makes life easier and more productive for a programmer. But sadly most developers don&#8217;t use it up to their full potential so we are going to blog about various simple and advanced usages of git as a <a href="https://redpanthers.co/category/git/">series</a>. In the first article of the series, we are going to talk about git logs.
+<strong>Git log</strong> is a great feature, that allows us to keep track of our works. There are different options available under <code>git log</code> command, which help us to customize the output of git log and also to filter the log.
+
+
 <h2><strong>Git Graphs</strong></h2>
-<p></p><pre class="crayon-plain-tag">git log --graph --decorate --oneline</pre><p></p>
+
+
+
+
+<pre class="theme:solarized-dark right-set:true lang:default decode:true">git log --graph --decorate --oneline</pre>
+
+
+
+
 <p style="text-align: left;">The <a href="https://rubygems.org/gems/graph">&#8211;graph</a> option draws a graph representing the branches and its structure of commit history. &#8211;oneline is used to display commit message and its hash in a single line, which is used along with &#8211;decorate, which helps us to easily see which commit belongs to which branch.</p>
+
+
+
+
 <h2>Custom formatting</h2>
-<p></p><pre class="crayon-plain-tag">git log --pretty=format:"&lt;string&gt;"</pre><p>This lets you display each commit however you want in printf style. For example <code>%cn</code>,  <code>%h </code>and <code>%cd</code> which represents committer name, abbreviated hash and committer date respectively.</p><pre class="crayon-plain-tag">git log --pretty=format:"%cn committed %h on %cd"</pre><p></p>
+
+
+
+
+<pre class="theme:solarized-dark lang:default decode:true">git log --pretty=format:"&lt;string&gt;"</pre>
+
+
+This lets you display each commit however you want in printf style. For example <code>%cn</code>,  <code>%h </code>and <code>%cd</code> which represents committer name, abbreviated hash and committer date respectively.
+
+
+<pre class="theme:solarized-dark lang:default decode:true">git log --pretty=format:"%cn committed %h on %cd"</pre>
+
+
+
+
 <h2>Filtering the output</h2>
-<p>Git log can be filtered by different filters and format output</p>
+
+
+Git log can be filtered by different filters and format output
+
+
 <h3>By amount</h3>
-<p></p><pre class="crayon-plain-tag">git log -&lt;n&gt;</pre><p>It displays latest n commits and its output.</p>
-<p>For example</p><pre class="crayon-plain-tag">git log -3</pre><p>Will display latest 3 commit details</p>
+
+
+
+
+<pre class="theme:solarized-dark lang:default decode:true">git log -&lt;n&gt;</pre>
+
+
+It displays latest n commits and its output.
+For example
+
+
+<pre class="theme:solarized-dark lang:default decode:true">git log -3</pre>
+
+
+Will display latest 3 commit details
+
+
 <h3>By date</h3>
-<p></p><pre class="crayon-plain-tag">git log --after=&lt;date&gt;
-git log --before=&lt;date&gt;</pre><p>Using <code>--after</code> and <code>--before,</code>  we can get logs after or before the specified date. You can also use these both to get logs between two dates</p>
-<p>Example</p><pre class="crayon-plain-tag">git log --after='24-10-2016'
+
+
+
+
+<pre class="theme:solarized-dark lang:default decode:true">git log --after=&lt;date&gt;
+git log --before=&lt;date&gt;</pre>
+
+
+Using <code>--after</code> and <code>--before,</code>  we can get logs after or before the specified date. You can also use these both to get logs between two dates
+Example
+
+
+<pre class="theme:solarized-dark lang:default decode:true">git log --after='24-10-2016'
 or
-git log --since='24-10-2016'</pre><p><code>--since</code> and and <code>--until</code> are synonym for <code>--after</code> and <code>--before</code></p><pre class="crayon-plain-tag">git log --date=&lt;option&gt;</pre><p><code>--date</code> flag is used to format the output of the date. There are different option available for <code>--date</code> flag such as short, iso8601, relative, etc&#8230;</p>
+git log --since='24-10-2016'</pre>
+
+
+<code>--since</code> and and <code>--until</code> are synonym for <code>--after</code> and <code>--before</code>
+
+
+<pre class="theme:solarized-dark lang:default decode:true">git log --date=&lt;option&gt;</pre>
+
+
+<code>--date</code> flag is used to format the output of the date. There are different option available for <code>--date</code> flag such as short, iso8601, relative, etc&#8230;
+
+
 <h3>By Author</h3>
-<p></p><pre class="crayon-plain-tag">git log --author=&lt;name&gt;</pre><p>When you are only looking for commits by certain user you can <code>--author</code> flag. You can also use regular expressions for this.</p><pre class="crayon-plain-tag">git log --author='John\| Mary'</pre><p></p>
+
+
+
+
+<pre class="theme:solarized-dark lang:default decode:true">git log --author=&lt;name&gt;</pre>
+
+
+When you are only looking for commits by certain user you can <code>--author</code> flag. You can also use regular expressions for this.
+
+
+<pre class="theme:solarized-dark lang:default decode:true">git log --author='John\| Mary'</pre>
+
+
+
+
 <h3>By message</h3>
-<p></p><pre class="crayon-plain-tag">git log --grep='&lt;message&gt;'</pre><p>When you want to search for log with certain string using <code>--grep</code> flag. You can use <code>-i</code> option if you want ignore the case.</p>
+
+
+
+
+<pre class="theme:solarized-dark lang:default decode:true">git log --grep='&lt;message&gt;'</pre>
+
+
+When you want to search for log with certain string using <code>--grep</code> flag. You can use <code>-i</code> option if you want ignore the case.
+
+
 <h3>By file</h3>
-<p></p><pre class="crayon-plain-tag">git log -- something.rb incredible.rb</pre><p>When you want to get log only on some files you can specify files after <code>--</code> flag</p>
+
+
+
+
+<pre class="theme:solarized-dark lang:default decode:true">git log -- something.rb incredible.rb</pre>
+
+
+When you want to get log only on some files you can specify files after <code>--</code> flag
+
+
 <h3>By Content</h3>
-<p>Git log allows you to get logs of files containing certain string. You can specify string using the <code>-S</code> flag</p><pre class="crayon-plain-tag">git log -S"Hello World!"</pre><p></p>
+
+
+Git log allows you to get logs of files containing certain string. You can specify string using the <code>-S</code> flag
+
+
+<pre class="theme:solarized-dark lang:default decode:true">git log -S"Hello World!"</pre>
+
+
+
+
 <h3>Format options available</h3>
-<p></p><pre class="crayon-plain-tag">git log --pretty=format:'&lt;options&gt;'</pre><p>Git log format options</p><pre class="crayon-plain-tag">%H  - Commit hash
+
+
+
+
+<pre class="theme:solarized-dark lang:default decode:true">git log --pretty=format:'&lt;options&gt;'</pre>
+
+
+Git log format options
+
+
+<pre class="theme:neon lang:default decode:true">%H  - Commit hash
 %h  - Abbreviated commit hash
 %T  - Tree hashes
 %t  - Abbreviated tree hash
@@ -81,11 +320,17 @@ git log --since='24-10-2016'</pre><p><code>--since</code> and and <code>--until<
 %cd - Committer date
 %cr - Committer date, relative
 %s  - Subject
-%B  - Message</pre><p>Example</p><pre class="crayon-plain-tag">git log --pretty=format:"%B on %ad with hash %h by %an" --date=short</pre><p>That was a bit on how we can use Git log, and specifically on how to format the output. Leave your comments, questions, and doubts in the comment section in case you need to reach me.</p>
-<p>The post <a rel="nofollow" href="/git-log-formating-output/">How to format Git log for meaningful information</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+%B  - Message</pre>
+
+
+Example
+
+
+<pre class="theme:solarized-dark lang:default decode:true">git log --pretty=format:"%B on %ad with hash %h by %an" --date=short</pre>
+
+
+That was a bit on how we can use Git log, and specifically on how to format the output. Leave your comments, questions, and doubts in the comment section in case you need to reach me.]]&gt;		</p>
 ]]></content:encoded>
-							<wfw:commentRss>/git-log-formating-output/feed/</wfw:commentRss>
-		<slash:comments>0</slash:comments>
-							</item>
+										</item>
 	</channel>
 </rss>

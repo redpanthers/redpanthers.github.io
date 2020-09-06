@@ -1,4 +1,4 @@
- <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
 	xmlns:content="http://purl.org/rss/1.0/modules/content/"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
 	xmlns:atom="http://www.w3.org/2005/Atom"
@@ -10,7 +10,7 @@
 	Comments on: to_json vs as_json in Rails API	</title>
 	<atom:link href="/to_json-vs-as_json-in-rails-api/feed/" rel="self" type="application/rss+xml" />
 	<link>/to_json-vs-as_json-in-rails-api/</link>
-	<description>Experts in Ruby on Rails Development</description>
+	<description>Red Panthers - Experts in Ruby on Rails, System Design and Vue.js</description>
 	<lastBuildDate>Sun, 16 Dec 2018 02:56:53 +0000</lastBuildDate>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -20,10 +20,10 @@
 			<item>
 				<title>
 				By: JSON を出力する方法 [Rails] &#8211; Site-Builder.wiki				</title>
-				<link>/to_json-vs-as_json-in-rails-api/#comment-82</link>
+				<link>/to_json-vs-as_json-in-rails-api/#comment-56</link>
 		<dc:creator><![CDATA[JSON を出力する方法 [Rails] &#8211; Site-Builder.wiki]]></dc:creator>
 		<pubDate>Sun, 16 Dec 2018 02:56:53 +0000</pubDate>
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=2694#comment-82</guid>
+		<guid isPermaLink="false">https://redpanthers.co/?p=2694#comment-56</guid>
 					<description><![CDATA[[&#8230;] to_json vs as_json in Rails API &#124; Red Panthers [&#8230;]]]></description>
 		<content:encoded><![CDATA[<p>[&#8230;] to_json vs as_json in Rails API | Red Panthers [&#8230;]</p>
 ]]></content:encoded>
@@ -31,10 +31,10 @@
 						<item>
 				<title>
 				By: wendi				</title>
-				<link>/to_json-vs-as_json-in-rails-api/#comment-39</link>
+				<link>/to_json-vs-as_json-in-rails-api/#comment-55</link>
 		<dc:creator><![CDATA[wendi]]></dc:creator>
 		<pubDate>Wed, 13 Dec 2017 18:44:00 +0000</pubDate>
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=2694#comment-39</guid>
+		<guid isPermaLink="false">https://redpanthers.co/?p=2694#comment-55</guid>
 					<description><![CDATA[Great post, thanks!]]></description>
 		<content:encoded><![CDATA[<p>Great post, thanks!</p>
 ]]></content:encoded>
@@ -42,10 +42,10 @@
 						<item>
 				<title>
 				By: Mike Borgholthaus				</title>
-				<link>/to_json-vs-as_json-in-rails-api/#comment-38</link>
+				<link>/to_json-vs-as_json-in-rails-api/#comment-54</link>
 		<dc:creator><![CDATA[Mike Borgholthaus]]></dc:creator>
 		<pubDate>Mon, 11 Sep 2017 00:24:00 +0000</pubDate>
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=2694#comment-38</guid>
+		<guid isPermaLink="false">https://redpanthers.co/?p=2694#comment-54</guid>
 					<description><![CDATA[Thanks. +1 for mentioning &quot;from_json&quot;.]]></description>
 		<content:encoded><![CDATA[<p>Thanks. +1 for mentioning &#8220;from_json&#8221;.</p>
 ]]></content:encoded>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>callbacks &#8211; beta.redpanthers.co</title>
+	<atom:link href="/tag/callbacks/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description>Red Panthers - Experts in Ruby on Rails, System Design and Vue.js</description>
+	<lastBuildDate>Mon, 01 Aug 2016 15:33:36 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.7</generator>
+	<item>
+		<title>Managing associated objects</title>
+		<link>/managing-associated-objects/</link>
+				<pubDate>Mon, 01 Aug 2016 15:33:36 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Rails]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[association]]></category>
+		<category><![CDATA[callbacks]]></category>
+		<category><![CDATA[database]]></category>
+		<category><![CDATA[foreign key]]></category>
+		<category><![CDATA[NULL]]></category>
+		<category><![CDATA[related]]></category>
+		<category><![CDATA[triggers]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=382</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[Most of the rails applications build, works around databases. And the most commonly used relationship in database is the <code>one to many</code> relationship. In rails its represented as <code>has_many</code> on the parent side and <code>belong_to</code> on the child&#8217;s side. Now, as we write the relationship we also need to make sure what should be done to the children when the parent is destroyed. Else we will be stuck with a lot of orphan records once the parent is destroyed.
+So to avoid that, we pass in the <code>dependent</code> attribute at the parents side, like below:
+<code> has_many :users, dependent: :destroy</code>
+The above code will run the destroy method on the children, when the parent is destroyed.
+Like destroy, rails provides a total of five options. They are
+
+
+<ul>
+ 	
+
+<li>1: destroy &#8211; run the destroy method on all the associated objects, there by also triggering the callbacks</li>
+
+
+ 	
+
+<li>2: delete_all &#8211; causes the associated methods to be deleted directly from DB, no callbacks triggered. This would be a faster, compared to :destroy, to delete the associated models.</li>
+
+
+ 	
+
+<li>3: nullify &#8211; sets the foreign key to be set to NULL. no callbacks triggered. We use it when we don&#8217;t want the children to be destroyed, and kept in our system. Usually done to keep history, or protect the associated objects referencing to the children.</li>
+
+
+ 	
+
+<li>4: restrict_with_exception &#8211; It will raise an exception if there are associated objects. Hence also prevent the destruction of the parent.</li>
+
+
+ 	
+
+<li>5: restrict_with_error- It will prevent the deletion of the parent, and will pass in the error that it has associated objects without raising the exception.</li>
+
+
+</ul>
+
+]]&gt;		</p>
+]]></content:encoded>
+										</item>
+		<item>
+		<title>after_create vs after_save vs after_commit</title>
+		<link>/after_create-vs-after_save-vs-after_commit/</link>
+				<comments>/after_create-vs-after_save-vs-after_commit/#comments</comments>
+				<pubDate>Thu, 28 Jul 2016 06:46:38 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Rails]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[active_model]]></category>
+		<category><![CDATA[active_record]]></category>
+		<category><![CDATA[after_commit]]></category>
+		<category><![CDATA[after_create]]></category>
+		<category><![CDATA[after_save]]></category>
+		<category><![CDATA[callbacks]]></category>
+		<category><![CDATA[database]]></category>
+		<category><![CDATA[mysql]]></category>
+		<category><![CDATA[PostgreSQL]]></category>
+		<category><![CDATA[rails]]></category>
+		<category><![CDATA[Ruby]]></category>
+		<category><![CDATA[transaction]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=371</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[<code>after_save</code>, <code>after_create</code> and <code>after_commit</code> are called active record call backs in rails. They get executed when we work on the database, similarly we also have before_* callback and callbacks on destroy as well. In this article I will explain you about the difference between *_save, *_create and *_commit callbacks.
+The purpose of each as per rails docs:
+
+
+<blockquote>after_create
+Is called after <code>Base.save</code> on new objects that haven‘t been saved yet (no record exists)
+after_save
+Is called after <code>Base.save</code> (regardless of whether it‘s a create or update save)
+after_commit
+Is called after the database transaction is completed.</blockquote>
+
+
+Now to explain the real difference between the three, we must first explain about database transaction. They are a protective block around a group of sql statements, that are permanent only if all of them succeed in a single atomic statement.
+
+
+<pre class="lang:default decode:true">User.transaction do
+    # update company
+    # update hr_department
+    # update user_table
+end</pre>
+
+
+When rails execute a create, the <code>after_save</code> and <code>after_create</code> would be called within the transaction block of the create statement. So they will be executed before executing the sql statement to make permanent changes in the DB. If the query fails, then no change will happen to the DB, but we would have executed the instructions of the after_create and <code>after_save</code> block.
+Where as after_commit, is called after the execution of the final/outer transaction block. Thus the changes in the DB would be permanent.]]&gt;		</p>
+]]></content:encoded>
+							<wfw:commentRss>/after_create-vs-after_save-vs-after_commit/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+							</item>
+	</channel>
+</rss>

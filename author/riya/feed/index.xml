@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>riya &#8211; beta.redpanthers.co</title>
+	<atom:link href="/author/riya/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description>Red Panthers - Experts in Ruby on Rails, System Design and Vue.js</description>
+	<lastBuildDate>Mon, 29 Apr 2019 11:28:11 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.7</generator>
+	<item>
+		<title>GIT CHERRY PICK</title>
+		<link>/git-cherry-pick/</link>
+				<pubDate>Mon, 29 Apr 2019 11:28:11 +0000</pubDate>
+		<dc:creator><![CDATA[riya]]></dc:creator>
+				<category><![CDATA[Marketing]]></category>
+
+		<guid isPermaLink="false">http://redpanthers.co/?p=16161</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[&nbsp;
+
+
+<h3>What is cherry picking?</h3>
+
+
+Cherry picking is to choose a commit from one branch and apply it to another. The command used is <b>git cherry</b>&#8211;<b>pick</b> , and here we actually use forward- or back-port commits from a maintenance branch to a development branch.<code>cherry-pick</code><code></code>command in <a href="http://www.git-scm.com/">git</a> allows us to copy only one commit at a time.
+
+
+<h3>Steps on git cherry-picking:</h3>
+
+
+
+
+<ol>
+ 	
+
+<li>If you are on a particular branch and you want to apply a commit to the master branch, then checkout to master branch : <code>git checkout master</code></li>
+
+
+ 	
+
+<li>Then run the cherry-pick command : <code>git cherry-pick &lt;commit-hash&gt;</code></li>
+
+
+ 	
+
+<li>If you cherry-pick from a public branch, then you should use this, <code>git cherry-pick -x &lt;commit-hash&gt;</code> which will generate a standardized commit message.</li>
+
+
+ 	
+
+<li>If you have notes attached to the commit they do not follow the cherry-pick, to bring them over as well, you have to use: <code>git notes copy &lt;from&gt; &lt;to&gt;</code></li>
+
+
+ 	
+
+<li>A range of commits : <code>git cherry-pick <var>start_commit</var>~..<var>end_commit</var></code></li>
+
+
+ 	
+
+<li>Multiple commits (non-sequential) : <code>git cherry-pick <var>commit_1</var> <var>commit_2</var></code></li>
+
+
+</ol>
+
+
+
+
+<div class="olist arabic">
+<code><var></var></code><code><var></var></code>
+
+
+<h3 id="Cherry-picking_a_single_commit"> Sequencer Subcommands</h3>
+
+
+Cherry-pick uses continue, quit and abort subcommands in git.The continue command is used for continuing the operation in progress using .git/sequencer information.It can be also used to continue operations after resolving conflicts in a failed cherry-pick.The quit command forget about the current operation in progress and can be used to clear the sequencer state after a failed cherry-pick.And finally, the abort command cancels the operation and return to the pre-sequence state.
+
+
+<h3></h3>
+
+
+</div>
+
+
+
+
+<h3>Where can cherry-picking be applied?</h3>
+
+
+Whenever defect occurs in the production, fixation must be performed. Once the defect is fixed, you&#8217;ll want to bring this code change back to the development branch so the defect won&#8217;t be re-introduced into production with a future update.The first option is to consider whether a simple git merge would work. If a merge is possible, that would be the ideal solution. However, if there are other changes made on the production branch, shouldn&#8217;t be brought back to the development branch, a merge would not produce the desired result since it will include <em>all</em> the changes made to the production branch.
+Example:
+<strong>Figure 1:</strong> Problem is found in the Production branch. A fix for the problem is developed in commit H, but commit G does not need to be applied to the Development branch.
+<strong><span class="sfImageWrapper"><img title="Problem Is Found On Production Branch" src="https://www.farreachinc.com/images/default-source/default-album/problem-is-found-on-production-branch.png?sfvrsn=0" alt="Problem Is Found On Production Branch" /></span></strong>
+Figure 2: Commit H is cherry-picked onto the Development branch, resulting in commit H&#8217;. Note that the changes made in commit G are not included on the Development branch.
+
+
+<h4><span class="sfImageWrapper"><img title="Results In Commit H" src="https://www.farreachinc.com/images/default-source/default-album/results-in-commit-h.png?sfvrsn=0" alt="Results In Commit H" /></span></h4>
+
+
+What <code class="inline">git cherry-pick</code> does?
+It takes a commit from somewhere else, and &#8220;play it back&#8221; wherever you are right now.It can be explained by an example given below:
+
+
+<h3>Figure :3</h3>
+
+
+<img class="no-shadow" src="http://think-like-a-git.net/assets/images2/reachability-example.png" />
+&nbsp;
+Consider you were at node H in this graph, and you typed, <code class="inline">git cherry-pick E</code>you&#8217;d wind up with a copy of commit E—let&#8217;s call it &#8220;E prime&#8221; or <strong>E&#8217;</strong>—that pointed to <strong>H</strong> as its parent, and can be represented as,
+
+
+<h3>Figure: 4</h3>
+
+
+
+
+<div><img class="no-shadow" src="http://think-like-a-git.net/assets/images2/cherry-pick-example-1.png" /></div>
+
+
+
+
+<div>fig:b</div>
+
+
+
+
+<div>And if you typed,<code class="inline">git cherry-pick C D E</code> then the graph can be as,</div>
+
+
+
+
+<h3>Figure: 5</h3>
+
+
+
+
+<div><img class="no-shadow" src="http://think-like-a-git.net/assets/images2/cherry-pick-example-2.png" /></div>
+
+
+
+
+<div>From this graph, we can infer that git has copied changes made in one place, and replayed them somewhere else.</div>
+
+
+
+
+<div> If H is in the production and we are taking the difference  from B to C and apply to H, the C prime (C&#8217;) can be obtained to H, same way after cherry-picking  D and E obtains  D&#8217; and E&#8217;, and this can be diagrammatically represented as in the Figure: 5</div>
+
+
+
+
+<div class="sect1">
+&nbsp;
+</div>
+
+]]&gt;		</p>
+]]></content:encoded>
+										</item>
+	</channel>
+</rss>

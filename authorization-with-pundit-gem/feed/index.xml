@@ -1,4 +1,4 @@
- <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
 	xmlns:content="http://purl.org/rss/1.0/modules/content/"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
 	xmlns:atom="http://www.w3.org/2005/Atom"
@@ -10,7 +10,7 @@
 	Comments on: Authorization with Pundit gem	</title>
 	<atom:link href="/authorization-with-pundit-gem/feed/" rel="self" type="application/rss+xml" />
 	<link>/authorization-with-pundit-gem/</link>
-	<description>Experts in Ruby on Rails Development</description>
+	<description>Red Panthers - Experts in Ruby on Rails, System Design and Vue.js</description>
 	<lastBuildDate>Thu, 26 Apr 2018 09:12:58 +0000</lastBuildDate>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -20,11 +20,11 @@
 			<item>
 				<title>
 				By: srinu				</title>
-				<link>/authorization-with-pundit-gem/#comment-78</link>
+				<link>/authorization-with-pundit-gem/#comment-53</link>
 		<dc:creator><![CDATA[srinu]]></dc:creator>
 		<pubDate>Thu, 26 Apr 2018 09:12:58 +0000</pubDate>
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=2636#comment-78</guid>
-					<description><![CDATA[click on button add columns as well as rows 
+		<guid isPermaLink="false">https://redpanthers.co/?p=2636#comment-53</guid>
+					<description><![CDATA[click on button add columns as well as rows
 plz help me]]></description>
 		<content:encoded><![CDATA[<p>click on button add columns as well as rows<br />
 plz help me</p>
@@ -33,12 +33,12 @@ plz help me</p>
 						<item>
 				<title>
 				By: srinu				</title>
-				<link>/authorization-with-pundit-gem/#comment-77</link>
+				<link>/authorization-with-pundit-gem/#comment-52</link>
 		<dc:creator><![CDATA[srinu]]></dc:creator>
 		<pubDate>Thu, 26 Apr 2018 09:10:33 +0000</pubDate>
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=2636#comment-77</guid>
-					<description><![CDATA[in nested forms in rails 
-rows as well as columns 
+		<guid isPermaLink="false">https://redpanthers.co/?p=2636#comment-52</guid>
+					<description><![CDATA[in nested forms in rails
+rows as well as columns
 display on the out put how to write in code
 plz send github
 username: santosham]]></description>
@@ -52,10 +52,10 @@ username: santosham</p>
 						<item>
 				<title>
 				By: srinu				</title>
-				<link>/authorization-with-pundit-gem/#comment-76</link>
+				<link>/authorization-with-pundit-gem/#comment-51</link>
 		<dc:creator><![CDATA[srinu]]></dc:creator>
 		<pubDate>Thu, 26 Apr 2018 09:09:10 +0000</pubDate>
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=2636#comment-76</guid>
+		<guid isPermaLink="false">https://redpanthers.co/?p=2636#comment-51</guid>
 					<description><![CDATA[plz help me any one on ruby on rails tech nology]]></description>
 		<content:encoded><![CDATA[<p>plz help me any one on ruby on rails tech nology</p>
 ]]></content:encoded>
@@ -63,10 +63,10 @@ username: santosham</p>
 						<item>
 				<title>
 				By: srinu				</title>
-				<link>/authorization-with-pundit-gem/#comment-75</link>
+				<link>/authorization-with-pundit-gem/#comment-50</link>
 		<dc:creator><![CDATA[srinu]]></dc:creator>
 		<pubDate>Thu, 26 Apr 2018 09:08:41 +0000</pubDate>
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=2636#comment-75</guid>
+		<guid isPermaLink="false">https://redpanthers.co/?p=2636#comment-50</guid>
 					<description><![CDATA[hi]]></description>
 		<content:encoded><![CDATA[<p>hi</p>
 ]]></content:encoded>
@@ -74,10 +74,10 @@ username: santosham</p>
 						<item>
 				<title>
 				By: NIMMY J VIPIN				</title>
-				<link>/authorization-with-pundit-gem/#comment-37</link>
+				<link>/authorization-with-pundit-gem/#comment-49</link>
 		<dc:creator><![CDATA[NIMMY J VIPIN]]></dc:creator>
 		<pubDate>Thu, 17 Aug 2017 11:00:00 +0000</pubDate>
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=2636#comment-37</guid>
+		<guid isPermaLink="false">https://redpanthers.co/?p=2636#comment-49</guid>
 					<description><![CDATA[Hi Cedric,
 Thank you very much for your feedback. Please follow us for more interesting articles.]]></description>
 		<content:encoded><![CDATA[<p>Hi Cedric,<br />
@@ -87,17 +87,16 @@ Thank you very much for your feedback. Please follow us for more interesting art
 						<item>
 				<title>
 				By: Cédric Brancourt				</title>
-				<link>/authorization-with-pundit-gem/#comment-36</link>
+				<link>/authorization-with-pundit-gem/#comment-48</link>
 		<dc:creator><![CDATA[Cédric Brancourt]]></dc:creator>
 		<pubDate>Thu, 17 Aug 2017 09:15:00 +0000</pubDate>
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=2636#comment-36</guid>
+		<guid isPermaLink="false">https://redpanthers.co/?p=2636#comment-48</guid>
 					<description><![CDATA[Hi Nimmy,
-
 Great post !.
 I love Pundit&#039;s minimalism. I even wrote a blog post about dynamic authorizations management with pundit  and rails 4, 4 years ago.
 https://through-voidness.blogspot.fr/2013/10/advanced-rails-4-authorization-with.html]]></description>
-		<content:encoded><![CDATA[<p>Hi Nimmy,</p>
-<p>Great post !.<br />
+		<content:encoded><![CDATA[<p>Hi Nimmy,<br />
+Great post !.<br />
 I love Pundit&#8217;s minimalism. I even wrote a blog post about dynamic authorizations management with pundit  and rails 4, 4 years ago.<br />
 <a href="https://through-voidness.blogspot.fr/2013/10/advanced-rails-4-authorization-with.html" rel="nofollow">https://through-voidness.blogspot.fr/2013/10/advanced-rails-4-authorization-with.html</a></p>
 ]]></content:encoded>

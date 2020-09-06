@@ -1,0 +1,1422 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>rails &#8211; beta.redpanthers.co</title>
+	<atom:link href="/tag/rails/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description>Red Panthers - Experts in Ruby on Rails, System Design and Vue.js</description>
+	<lastBuildDate>Mon, 29 Apr 2019 11:28:12 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.7</generator>
+	<item>
+		<title>Upgrading to Rails 5.1x</title>
+		<link>/upgrading-to-rails-5-1x/</link>
+				<pubDate>Wed, 21 Mar 2018 08:14:20 +0000</pubDate>
+		<dc:creator><![CDATA[tony]]></dc:creator>
+				<category><![CDATA[Rails 5.1]]></category>
+		<category><![CDATA[5.1.x]]></category>
+		<category><![CDATA[jquery]]></category>
+		<category><![CDATA[rails]]></category>
+		<category><![CDATA[ruby on rails]]></category>
+		<category><![CDATA[tony vincent]]></category>
+		<category><![CDATA[upgrade]]></category>
+
+		<guid isPermaLink="false">http://redpanthers.co/?p=16171</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[Rails 5.1rolled out with some major changes and features including
+
+
+<ul>
+ 	
+
+<li>Yarn and webpack support</li>
+
+
+ 	
+
+<li>Dropped JQuery as a default dependency</li>
+
+
+ 	
+
+<li>Built-in support for writing system tests using Capybara</li>
+
+
+ 	
+
+<li>Encrypted secrets</li>
+
+
+</ul>
+
+
+and many more, you can find the detailed release notes <a href="http://edgeguides.rubyonrails.org/5_1_release_notes.html">here</a>. Recently we upgraded one of our production apps to 5.1x and since we have good test coverage, upgrading was mostly painless. We still had to make some minor changes down the road
+
+
+<h3>1. No more <code>before_filter</code></h3>
+
+
+One of our controllers still had the old-fashioned `before_filter` and we encountered the following error while booting up
+
+
+<p class="p1"><code>undefined method 'before_filter' before_filter has been deprecated in Rails 5.0 and removed in 5.1.</code></p>
+
+
+This is because `before_filter` and <code>after_filter</code> are <a href="https://github.com/rails/rails/blob/v5.0.0.beta2/actionpack/lib/abstract_controller/callbacks.rb#L190-L193">deprecated</a> from Rails 5.0.0 onwards. As you might have guessed, changing from <code>before_filter</code> to <code>before_action</code> is the solution here.
+&nbsp;
+
+
+<h3>2. <code>halt_callback_chains_on_return_false</code> is deprecated</h3>
+
+
+We saw the following deprecation warning in our logs after the update
+
+
+<p class="p1"><code>ActiveSupport.halt_callback_chains_on_return_false= is deprecated and will be removed in Rails 5.2.</code></p>
+
+
+From Rails 5.0x, the <a href="https://github.com/rails/rails/pull/17227">callback chain is <span class="x x-first x-last">not </span>halted when a before callback returns false</a>. We need to use <code class="highlighter-rouge">throw(:abort)</code> to explicitly halt callbacks
+Though we had no return false in our callbacks, we still had to remove the line,
+<code>ActiveSupport.halt_callback_chains_on_return_false = false</code> from <code>config/initializers/new_framework_defaults.rb</code> to get rid of the warning.
+&nbsp;
+
+
+<h3>3. Passing a class to the <code>class_name</code> is deprecated</h3>
+
+
+One of the deprecation warnings after the update was,
+
+
+<pre class="nums:false lang:default decode:true">Passing a class to the 'class_name' is deprecated and will raise an ArgumentError in Rails 5.2.
+It eagerloads more classes than necessary and potentially creates circular dependencies. Please pass the class name as a string:
+</pre>
+
+
+
+
+<p class="p1">This warning message was due to passing a class to `class_name` option when specifying associations &#8211; this is <a href="https://github.com/rails/rails/commit/8312a0d22212798864f142b5a94805e0baa6c562">no longer recommended</a><span class="hljs-string">&#8216;</span></p>
+
+
+
+
+<pre class="nums:false lang:default decode:true">- has_one :contact, class_name: UserContact
++ has_one :contact, class_name: 'UserContact
+</pre>
+
+
+passing class name as a string is a standard now
+Happy Hacking <img src="https://s.w.org/images/core/emoji/12.0.0-1/72x72/2764.png" alt="❤" class="wp-smiley" style="height: 1em; max-height: 1em;" />
+&nbsp;
+
+
+<hr />
+PS: If you need any help in upgrading your rails version drop an email to us at <strong>info@redpanthers.co </strong>or<strong> upgrade@redpanthers.co. </strong>We will be more than happy to go through your system and give a <strong>free upgrade action plan and estimation </strong>.]]&gt;		</p>
+]]></content:encoded>
+										</item>
+		<item>
+		<title>The future of Spree OSS and whats new in Spree 3.3</title>
+		<link>/future-spree-oss-whats-new-spree-3-3/</link>
+				<comments>/future-spree-oss-whats-new-spree-3-3/#comments</comments>
+				<pubDate>Tue, 29 Aug 2017 05:36:14 +0000</pubDate>
+		<dc:creator><![CDATA[tony]]></dc:creator>
+				<category><![CDATA[spree commerce]]></category>
+		<category><![CDATA[E-Commerce]]></category>
+		<category><![CDATA[rails]]></category>
+		<category><![CDATA[spree]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=3341</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[
+
+<h3>The story so far</h3>
+
+
+Ever since its advent in 2007, <a href="https://github.com/spree/spree">Spree</a> &#8211; originally developed by Sean Schofield, is the most popular open source Ruby On Rails E-commerce Software spanning over 17,703 commits, 725 contributes and 208 releases. Spree was acquired by <a href="https://spreecommerce.com/blog/spree-acquired-by-first-data">First Data</a> in the late 2015 and since then, there has been fair amount of speculation around Spree remaining as an opensource project and it&#8217;s long term future as outlined here in this <a href="https://spreecommerce.com/blog/future-of-spree-oss">blog post</a>.
+As it turned out Spree didn&#8217;t die off, but revived under a new <a href="https://github.com/spree/spree/wiki/Core-Team">core team</a>. After the acquisition announcement developers from <a href="https://sparksolutions.co/">Spark Solutions </a>and <a href="http://vinsol.com/">Vinsol</a> volunteered to keep spree alive and has been doing a fantastic job, putting shoulders to the wheel by taking Spree from version <code>3.0.4</code> to the current <code>Spree 3.3</code>
+
+
+<h3>Whats new in Spree 3.3</h3>
+
+
+On August 22, 2017, Spree released version 3.3 and is packed with the following major features.
+
+
+<h5>Rails 5.1 support</h5>
+
+
+<code>Spree 3.3</code> is <code>Rails 5.1</code>  compatible whereas <code>Spree 3.2</code>  runs on Rails version <code>5.0</code>. Which means managing JavaScript dependencies from NPM via `Yarn`, ability to use <a href="http://edgeguides.rubyonrails.org/5_1_release_notes.html#direct-resolved-routes">direct &amp; resolved routes</a>, <a href="http://edgeguides.rubyonrails.org/5_1_release_notes.html#parameterized-mailers">parameterized mailers</a> and many more goodies `Rails 5.1`  has to offer
+
+
+<h5>Ruby 2.4 support</h5>
+
+
+Spree now works with Ruby versions `2.2 (&gt;= 2.2.7)` , <code>2.2 (&gt;= 2.2.7)</code> , <code>2.2 (&gt;= 2.2.7)</code> ,  <code>2.3.x</code>  and the latest <code>2.4.x</code>. So <code>Ruby 2.4x</code> ?  Yay! that&#8217;s <a href="https://blog.redpanthers.co/behind-scenes-hash-table-performance-ruby-2-4/">Faster Hashes</a>, <a href="https://blog.heroku.com/ruby-2-4-features-hashes-integers-rounding">Unified Integers, and Better Rounding</a> for you right out of the box
+
+
+<h5>Segment tracker integration</h5>
+
+
+<code>Spree 3.3</code> is bundled with <a href="https://segment.com/">segment.com</a> Tracker system which enables you to
+connect your store with over 200 analytics engines, CRMs, live chats, remarketing platforms and much more without any additional development. If that&#8217;s not cool enough for you stay tuned for next releases for more third party tracker and analytics integrations.
+
+
+<h5>Bug fixes and performance enhancements</h5>
+
+
+&#8211; Unique indexes and uniqueness validation on number fields for important models
+&#8211; Multiple regular &amp; unique indexes that were missing have been added to improve data consistency and performance
+&#8211; Optimized Shipments and Inventory Units.
+&#8211; Better Store Credits management in customer Frontend and Admin Panel
+
+
+<h3>Whats next?</h3>
+
+
+Spree development has been slowly gaining traction recently.
+<a href="https://blog.redpanthers.co/wp-content/uploads/2017/08/Screen-Shot-2017-08-26-at-21.53.16.png"><img class="aligncenter size-full wp-image-3344" src="https://blog.redpanthers.co/wp-content/uploads/2017/08/Screen-Shot-2017-08-26-at-21.53.16.png" alt="" width="979" height="180" /></a>
+The future roadmap for spree development can be found <a href="https://github.com/spree/spree/milestones?direction=asc&amp;sort=due_date&amp;state=open">here</a>. But still, it is fair to say that more focus and a unified effort is necessary for the long term survival of Spree. Let&#8217;s join the folks at Spark solutions and Vinsol and start contributing to Spree OSS project]]&gt;		</p>
+]]></content:encoded>
+							<wfw:commentRss>/future-spree-oss-whats-new-spree-3-3/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+							</item>
+		<item>
+		<title>Make unit tests great again &#8211; Integrate Jasmine into Rails</title>
+		<link>/write-beautiful-jasmine-tests-rails/</link>
+				<pubDate>Tue, 22 Aug 2017 07:28:43 +0000</pubDate>
+		<dc:creator><![CDATA[alan]]></dc:creator>
+				<category><![CDATA[Jasmine]]></category>
+		<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[Rails]]></category>
+		<category><![CDATA[Rails 5]]></category>
+		<category><![CDATA[Ruby]]></category>
+		<category><![CDATA[Ruby 2.4]]></category>
+		<category><![CDATA[better tests]]></category>
+		<category><![CDATA[jasmine]]></category>
+		<category><![CDATA[karma]]></category>
+		<category><![CDATA[rails]]></category>
+		<category><![CDATA[test]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=3149</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[Jasmine is a framework to write tests for the Javascript code in the Behaviour Driven Development (BDD) style. In this article, you will learn how to integrate Jasmine into your existing rails application and how to write clean and beautiful unit tests. Let us make tests great again!
+&nbsp;
+
+
+<h2>Install Jasmine</h2>
+
+
+To make Jasmine available to your Rails app, you just have to place the jasmine-gem (<a href="https://github.com/jasmine/jasmine-gem">link</a>) in your Gemfile. That will do the magic. Just make sure you have it under Development and Test group in the Gemfile as follows:
+
+
+<pre class="theme:orange-code lang:ruby decode:true">group :development, :test do
+  gem "jasmine"
+end</pre>
+
+
+Then run this to install the gem:
+
+
+<pre class="theme:orange-code lang:default decode:true">bundle install</pre>
+
+
+After all the gems are installed, run this code to generate necessary files for Jasmine to run:
+
+
+<pre class="theme:orange-code lang:sh decode:true">rails generate jasmine:install</pre>
+
+
+This will create the jasmine helper file and the yml file where you configure how it should run the tests.
+
+
+<h2>Run tests</h2>
+
+
+You can use Jasmine right after it&#8217;s installed. It can be run in several ways, the most important ones being,
+
+
+<ol>
+ 	
+
+<li>In your browser</li>
+
+
+ 	
+
+<li>Continuous Integration Mode (CI)</li>
+
+
+</ol>
+
+
+The CI mode is usually used when you have to integrate it into your build system.
+
+
+<h2>Browser Mode</h2>
+
+
+You have to start the Jasmine server to run it in a browser. This server runs all the tests and serves the results to a webpage. Run this to start the Jasmine Server:
+
+
+<pre class="theme:orange-code lang:default decode:true">rake jasmine</pre>
+
+
+With the default settings, you can view the output in:
+
+
+<pre class="theme:orange-code lang:default decode:true">http://localhost:8888/</pre>
+
+
+But this page would be pretty empty since you don&#8217;t have any tests written for your Javascript code. There is a method provided to generate sample tests. Try running this:
+
+
+<pre class="theme:orange-code lang:default decode:true">rails generate jasmine:examples</pre>
+
+
+Now refresh the webpage and you can see something similar to this:
+<a href="https://blog.redpanthers.co/wp-content/uploads/2017/08/Screen-Shot-2017-08-21-at-3.47.22-PM.png"><img class="aligncenter wp-image-3152" src="https://blog.redpanthers.co/wp-content/uploads/2017/08/Screen-Shot-2017-08-21-at-3.47.22-PM-300x91.png" alt="Jasmine test page" width="768" height="233" /></a>
+
+
+<h3>Configurable Settings</h3>
+
+
+Clicking on the options button in the top right corner will display a list of options that change how Jasmine runs the tests. Let&#8217;s get into each one of them:
+
+
+<h4>Raise Exceptions</h4>
+
+
+This option disables the error catching mechanism of Jasmine in the JavaScript source code and in the test file. The default setting is to wrap all the errors in a catch block.
+
+
+<h4>Stop Spec on Expectation Failure</h4>
+
+
+With this option turned on, Jasmine will stop the test at the first occurrence of an error. The default setting is to run the full test suit and then display all the tests which fail.
+
+
+<h4>Run Tests in Random Order</h4>
+
+
+This option enables the test to be run in a random sequence every time the test runs. The benefit of enabling this option is to reveal dependencies between tests, therefore, you can reduce test dependencies and each test will have good isolation.
+
+
+<h2>Continous Integration Mode</h2>
+
+
+A headless browser is used to integrate Jasmine into your continuous integration workflow. To make our lives easier, this gem that we are using supports integration with a headless browser out of the box. The default headless browser is <a href="http://phantomjs.org/">Phantom JS</a>. So it will download automatically if not installed when you try to run in CI mode. Run this code to run in CI mode:
+
+
+<pre class="theme:orange-code lang:default decode:true ">rake jasmine:ci</pre>
+
+
+By default, Jasmine will attempt to find a random open port. To set a default port manually, just add this to the <strong>jasmine_helper.rb</strong>
+
+
+<pre class="theme:orange-code lang:default decode:true ">Jasmine.configure do |config|
+   config.ci_port = 1234
+end</pre>
+
+
+
+
+<h2>Configuration</h2>
+
+
+The two files which you should be looking into, if you need to alter the behavior of tests are:
+
+
+<ul>
+ 	
+
+<li>jasmine.yml</li>
+
+
+ 	
+
+<li>jasmine_helper.rb</li>
+
+
+</ul>
+
+
+Jasmine reads the jasmine.yml first and then overrides it with the settings mentioned in jasmine_helper.rb
+
+
+<h4>Sample configuration:</h4>
+
+
+
+
+<pre class="theme:orange-code lang:default decode:true "># spec/javascripts/support/jasmine.yml
+random: true
+show_console_log: false
+stop_spec_on_expectation_failure: true</pre>
+
+
+
+
+<pre class="theme:orange-code lang:default decode:true "># spec/javascripts/support/jasmine_helper.rb
+Jasmine.configure do |config|
+  config.random = false
+  config.show_console_log = false
+  config.stop_spec_on_expectation_failure: false
+  config.show_full_stack_trace = false
+  config.prevent_phantom_js_auto_install = false
+end</pre>
+
+
+
+
+<h2>Testing</h2>
+
+
+Writing tests for Javascript in a Rails app should be fairly straightforward as it uses same standards as Jasmine in general. But there are things that need to be considered specific to a Jasmine installation in Rails.
+
+
+<h3>Testing JavaScript</h3>
+
+
+Test files for JavaScript in a rails application reside in the <strong>spec/javascripts</strong> folder. For each javascript file, you need to put the test file in the same path as the file. For example, if you have the following javascript file in your app:
+<strong>app/assets/javascripts/jasmine_examples/Calculator.js</strong>
+You place the spec file in the following path:
+<strong>spec/javascripts/jasmine_examples/CalculatorSpec.js</strong>
+Jasmine will include the test on the next test run. There is no configuration to have your test run.
+
+
+<h2>Plugins worth considering</h2>
+
+
+
+
+<ul>
+ 	
+
+<li><strong>Jasmine-Jquery</strong> &#8211; this plugin provides a lot of jquery related matchers. Download it <a href="https://github.com/velesin/jasmine-jquery/releases">here</a></li>
+
+
+ 	
+
+<li><strong>Jasmine-Matchers</strong> &#8211; a tool to provide additional matchers. Download it <a href="https://github.com/JamieMason/Jasmine-Matchers/releases">here</a></li>
+
+
+ 	
+
+<li><strong>Jasmine-Fixture &#8211; </strong>a plugin that provides DOM creation using CSS selectors, therefore you can interact with the DOM much easier. Download it <a href="https://github.com/searls/jasmine-fixture/releases">here</a></li>
+
+
+</ul>
+
+
+
+
+<h1>Write Beautiful Unit tests</h1>
+
+
+95% of the developers I know write unit tests in order to prevent defects from being deployed to production. But the essential ingredients to a great unit test is unknown to most of them. There have been countless times that I&#8217;ve seen a test fails, only to investigate and discover that I have no idea what feature the developer was trying to test, let alone how it went wrong or why it matters.
+
+
+<h2>Importance of Test Discipline</h2>
+
+
+Your tests are the best set of weapons to defend your code from bugs. They are more important that linting and static analysis. A few reasons why tests are your secret weapon:
+
+
+<ul>
+ 	
+
+<li>Writing tests first gives you a clearer perspective on the ideal API design.</li>
+
+
+ 	
+
+<li>Does the developer understand the problem enough to articulate in code all critical component requirements?</li>
+
+
+ 	
+
+<li>Manual QA is error-prone. In my experience, it’s impossible for a developer to remember all features that need testing after making a change to refactor, add new features, or remove features.</li>
+
+
+ 	
+
+<li>Continous Integration prevents failed builds from getting deployed to production.</li>
+
+
+</ul>
+
+
+
+
+<h2>Bug Report vs plain Unit Test</h2>
+
+
+The test fail report comes to save your life when a test fails. So you better make it loud and clear. I came up with a list of must-have info in your bug report.
+
+
+<ul>
+ 	
+
+<li>What are you trying to test?</li>
+
+
+ 	
+
+<li>What should it do?</li>
+
+
+ 	
+
+<li>What is the real-time output (actual behavior)?</li>
+
+
+ 	
+
+<li>What is the expected output (expected behavior)?</li>
+
+
+</ul>
+
+
+Here is a sample test with all of these info:
+
+
+<pre class="theme:orange-code lang:default decode:true">describe("CalculatorAddMethod", function() {
+  var calculator = new Calculator();
+  it("should return number", function() {
+    const actual = typeof Calculator.add(5,10);
+    const expected = 'number'
+    expect(actual).toEqual(expected);
+  });
+});
+</pre>
+
+
+This test suit answers all the questions above. Let&#8217;s go through each one of them.
+
+
+<ul>
+ 	
+
+<li>What are you trying to test?
+
+
+<ul>
+ 	
+
+<li>-&gt; Go for the test description. It is testing for the return type of the add method of Calculator().</li>
+
+
+</ul>
+
+
+</li>
+
+
+ 	
+
+<li>What should it do?
+
+
+<ul>
+ 	
+
+<li>-&gt; Again, look at the test description. It clearly says that it is testing for the return type of add method.</li>
+
+
+</ul>
+
+
+</li>
+
+
+ 	
+
+<li>What is the actual output?
+
+
+<ul>
+ 	
+
+<li>-&gt; There is a dedicated variable which holds the actual result and how you got the actual result. TWO FOR ONE!</li>
+
+
+</ul>
+
+
+</li>
+
+
+ 	
+
+<li>What is the expected output?
+
+
+<ul>
+ 	
+
+<li>-&gt; Again, there is a dedicated variable which holds the actual result. Straight as a ruler!</li>
+
+
+</ul>
+
+
+</li>
+
+
+</ul>
+
+
+
+
+<h2>Make your tests even better</h2>
+
+
+This is from my experiences and the knowledge I gained from good articles. This worked for me in the long run even if I find it a little difficult to implement when I started. <strong>Write every single test using toEqual()</strong>. Don&#8217;t worry about the quality impact on your test suit. It will get better with exercise.
+
+
+<h2>Easter Egg</h2>
+
+
+This method I suggested would answer one more question, which is by far the most important question I guess. <strong>How can you reproduce the test?</strong> The <strong>const actual </strong>holds the answer to this question. Please go take a look at the variable in my sample test suit above and get delighted.
+
+
+<h1>Conclusion</h1>
+
+
+Integrating Jasmine into your Rails app is done by the <strong>jasmine-gem. </strong>This gem gives you the ability to run tests in a browser or as Continous Integration mode. The usage of right plugins will improve your productivity and helps you write tests faster and better.
+Next time you write a test, remember to see if your test answers the following questions:
+
+
+<ul>
+ 	
+
+<li>What are you trying to test?</li>
+
+
+ 	
+
+<li>What should it do?</li>
+
+
+ 	
+
+<li>What is the real-time output (actual behavior)?</li>
+
+
+ 	
+
+<li>What is the expected output (expected behavior)?</li>
+
+
+ 	
+
+<li>How can be the test reproduced?</li>
+
+
+</ul>
+
+]]&gt;		</p>
+]]></content:encoded>
+										</item>
+		<item>
+		<title>How to write your own Rack middleware</title>
+		<link>/rack-middleware/</link>
+				<comments>/rack-middleware/#comments</comments>
+				<pubDate>Mon, 09 Jan 2017 07:22:19 +0000</pubDate>
+		<dc:creator><![CDATA[anjana]]></dc:creator>
+				<category><![CDATA[Beginners]]></category>
+		<category><![CDATA[custom]]></category>
+		<category><![CDATA[design pattern]]></category>
+		<category><![CDATA[how to write]]></category>
+		<category><![CDATA[middleware]]></category>
+		<category><![CDATA[network]]></category>
+		<category><![CDATA[pipeline]]></category>
+		<category><![CDATA[Rack]]></category>
+		<category><![CDATA[rails]]></category>
+		<category><![CDATA[request]]></category>
+		<category><![CDATA[working]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=1138</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[<a href="https://redpanthers.co/wp-content/uploads/2017/01/rack-logo.png"><img class="alignnone wp-image-1212 size-full" title="How to write your own Rack middleware" src="https://redpanthers.co/wp-content/uploads/2017/01/rack-logo.png" alt="How to write your own Rack middleware" width="1000" height="500" /></a>
+<strong>Rack</strong> is a Ruby package which provides an interface for a web server to communicate with the application. It is very easy to add middleware components between the web server and the app to customize the way your request/response behaves. The middleware component sits between the client and the server, processing inbound requests and outbound responses. Rack Middleware is an implementation of the <a href="http://www.cise.ufl.edu/research/ParallelPatterns/PatternLanguage/AlgorithmStructure/Pipeline.htm">pipeline design pattern</a> for web servers using Rack.
+For example with Rack, we can have separate stages of the pipeline:
+
+
+<ul>
+ 	
+
+<li><strong>Authentication</strong>: Checks whether the login details are correct or not when the request arrives.</li>
+
+
+ 	
+
+<li><strong>Authorization</strong>:  It performs role-based security. i.e. checks whether the user is authorized to perform the particular task.</li>
+
+
+ 	
+
+<li><strong>Caching</strong>: Return a cached result if the request is already processed.</li>
+
+
+ 	
+
+<li><strong>Decoration</strong>: Enhance the request to make downstream processing better.</li>
+
+
+ 	
+
+<li><strong>Performance &amp; Usage Monitoring</strong>: Status get from the request and response.</li>
+
+
+ 	
+
+<li><strong>Execution</strong>: actually handle the request and provide a response.</li>
+
+
+</ul>
+
+
+Next, we will see how to build our own rack middleware.
+
+
+<h2 id="building-your-own-middleware-module">Building your own Rack middleware</h2>
+
+
+To add middleware to a Rack application, all you have to do is tell Rack to use it. You can use multiple middleware components, and they will change the request or response before passing it on to the next component. It uses the configuration file with extension <em>.ru</em>, that instructs Rack::Builder what middleware should it use and in which order.
+Now, let&#8217;s have a look at how to add our own rack middleware to a project. For that, add the following code in config.ru file.:
+Eg:
+
+
+<pre class="lang:ruby decode:true ">use Rack::Lint # gives more descriptive error messages when responses aren't valid
+class Example
+  def initialize(app)
+    @app = app
+  end
+  def call(env)
+    status, headers, body = @app.call(env)
+    body.map { |msg| p "Example: #{msg}" }
+    [status, headers, body]
+  end
+end
+use Example # Does nothing with uppercase'd response, just logs it to stdout
+run -&gt; env {[200, {"Content-Type" =&gt; "text/html"}, ["&lt;h1&gt;Hello Redpanthers&lt;/h1&gt;"]]}
+</pre>
+
+
+In our example, here the response from Example is then passed into the 3rd party Rack middleware Rack::Lint which will let us know if our final response is valid or not. And the first argument of the <code class="highlighter-rouge">initialize </code>method is the application or the request handler.Another rule that applies to a middleware class is the <code class="highlighter-rouge">call</code> method. The <code class="highlighter-rouge">call </code>method executes the application which returns the status, the headers and the body of the response.
+
+
+<p class="lang:default decode:true ">Finally, run the server with rackup. It will find config.ru and boot up on the specified port.</p>
+
+
+
+
+<pre class="lang:ruby decode:true">$ rackup -s Puma -p 9293
+Puma starting in single mode...
+Version 3.6.2 (ruby 2.3.1-p112), codename: Sleepy Sunday Serenity
+Min threads: 5, max threads: 5
+Environment: development
+Listening on tcp://localhost:9293
+Use Ctrl-C to stop
+"Example: &lt;h1&gt;Hello Redpanthers&lt;/h1&gt;"
+127.0.0.1 - - [05/Jan/2017:17:48:43 +0530] "GET / HTTP/1.1" 200 - 0.0035
+"Example: &lt;h1&gt;Hello Redpanthers&lt;/h1&gt;"
+127.0.0.1 - - [05/Jan/2017:17:48:43 +0530] "GET /favicon.ico HTTP/1.1" 200 - 0.0022
+</pre>
+
+
+
+
+<h3>Adding it to Rails</h3>
+
+
+We can add the middleware to our Rails app by placing middleware module to lib/&lt;file_name.rb&gt; and configure it by using <strong><em>config.middleware</em></strong><em> </em>in environments/&lt;environment&gt;.rb file. As per the above example, we can add the middleware <strong>Example</strong> in <em>lib/example.rb </em>configure it by using:
+
+
+<pre class="lang:ruby decode:true">config.middleware.use Example</pre>
+
+
+You can add your middleware using any of the following methods:
+
+
+<ul>
+ 	
+
+<li><strong>config.middleware.use(new_middleware, args)</strong> – Adds the new middleware at the bottom of the middleware stack.</li>
+
+
+</ul>
+
+
+
+
+<ul>
+ 	
+
+<li><strong>config.middleware.insert_before(existing_middleware, new_middleware, args)</strong> – Adds the new middleware before the specified existing middleware in the middleware stack.</li>
+
+
+</ul>
+
+
+
+
+<ul>
+ 	
+
+<li><strong>config.middleware.insert_after(existing_middleware, new_middleware, args)</strong> – Adds the new middleware after the specified existing middleware in the middleware stack.</li>
+
+
+</ul>
+
+
+Eg:
+
+
+<pre class="lang:ruby decode:true">config.middleware.insert_before Rails::Rack::Lint, Example
+config.middleware.insert_after Rails::Rack::Lint, Example</pre>
+
+
+So, by doing the above steps we can make our own rack middleware. Hope it helps you in some way to know about the basics of rack middleware and how to create our own middleware.
+
+
+<h2> References</h2>
+
+
+
+
+<ol>
+ 	
+
+<li><a href="https://www.amberbit.com/blog/2011/07/13/introduction-to-rack-middleware/">https://www.amberbit.com/blog/2011/07/13/introduction-to-rack-middleware/</a></li>
+
+
+ 	
+
+<li><a href="http://www.integralist.co.uk/posts/rack-middleware.html">http://www.integralist.co.uk/posts/rack-middleware.html</a></li>
+
+
+ 	
+
+<li><a href="http://ieftimov.com/writing-rack-middleware">http://ieftimov.com/writing-rack-middleware</a></li>
+
+
+ 	
+
+<li><a href="https://blog.engineyard.com/2015/understanding-rack-apps-and-middleware">https://blog.engineyard.com/2015/understanding-rack-apps-and-middleware</a></li>
+
+
+ 	
+
+<li><a href="http://www.cise.ufl.edu/research/ParallelPatterns/PatternLanguage/AlgorithmStructure/Pipeline.htm">http://www.cise.ufl.edu/research/ParallelPatterns/PatternLanguage/AlgorithmStructure/Pipeline.htm</a></li>
+
+
+</ol>
+
+]]&gt;		</p>
+]]></content:encoded>
+							<wfw:commentRss>/rack-middleware/feed/</wfw:commentRss>
+		<slash:comments>3</slash:comments>
+							</item>
+		<item>
+		<title>Introduction to generating JSON using PostgreSQL</title>
+		<link>/create-json-response-using-postgresql-instead-rails/</link>
+				<comments>/create-json-response-using-postgresql-instead-rails/#comments</comments>
+				<pubDate>Thu, 24 Nov 2016 04:38:33 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Database]]></category>
+		<category><![CDATA[PostgreSQL]]></category>
+		<category><![CDATA[API]]></category>
+		<category><![CDATA[array]]></category>
+		<category><![CDATA[benchmarking]]></category>
+		<category><![CDATA[database]]></category>
+		<category><![CDATA[Faster]]></category>
+		<category><![CDATA[generation]]></category>
+		<category><![CDATA[JSON]]></category>
+		<category><![CDATA[optimization]]></category>
+		<category><![CDATA[rails]]></category>
+		<category><![CDATA[Ruby]]></category>
+		<category><![CDATA[SQL]]></category>
+		<category><![CDATA[standards]]></category>
+		<category><![CDATA[web api]]></category>
+		<category><![CDATA[XML]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=663</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[
+
+<h2>Introduction</h2>
+
+
+One of the major requirements for any online business is to have a backend that either provides or can be extended to provide an API response. Building  websites with static HTML and simple jquery ajax is coming to an end. In this era, Javascript frameworks rules the market. Hence, it is a good decision for the database to support JSON, as JSON is becoming the glue that connects the frontend and backend.
+Rails have an inbuilt support for generating JSON, as it&#8217;s our swiss army knife of web development, and encourages the REST URL structure . And its a good choice for building API. It is good enough to a particular point of growth. Very soon you will reach bottlenecks, where you have more requests than you can handle and you have to either spawn up more servers or use some concurrent languages like elixir, go, etc. Before we go to that scale and burn down the existing codebase, we can use database to generate JSON responses for us, which is 10 times faster in generating JSON than Rails (though more verbose).
+Since PostgreSQL 9.2, the database has taken a major leap in supporting JSON. The support that PostgreSQL provides can be divided into two
+
+
+<ul>
+ 	
+
+<li>Storing data in JSON and JSONB format</li>
+
+
+ 	
+
+<li>Generating JSON results from the query itself</li>
+
+
+</ul>
+
+
+In this article, we will talk about generating JSON(an introduction) from the query itself.
+
+
+<h2>Getting Started</h2>
+
+
+One of the advantages of using a database to generate JSON is that I have found it fast while generating smaller JSON but much more faster in generating complex JSON. (Note: The speed is in comparison with rails not with respect to the database itself)
+
+
+<h3><strong>How to generate JSON</strong></h3>
+
+
+
+
+<div></div>
+
+
+
+
+<div>Simplest way to do that is row_to_json()
+For example: Query to return user with id 1 as JSON</div>
+
+
+
+
+<div>
+
+
+<pre class="lang:pgsql decode:true">select row_to_json(users) from users where id = 1;
+</pre>
+
+
+Result:
+
+
+<pre class="lang:js decode:true">{"id":1,"email":"hsps@redpanthers.co","encrypted_password":"iwillbecrazytodisplaythat",
+"reset_password_token":null,"reset_password_sent_at":null,
+"remember_created_at":"2016-11-06T08:39:47.983222",
+"sign_in_count":11,"current_sign_in_at":"2016-11-18T11:47:01.946542",
+"last_sign_in_at":"2016-11-16T20:46:31.110257",
+"current_sign_in_ip":"::1","last_sign_in_ip":"::1",
+"created_at":"2016-11-06T08:38:46.193417",
+"updated_at":"2016-11-18T11:47:01.956152",
+"first_name":"Super","last_name":"Admin","role":3}</pre>
+
+
+if you want to send only some specific fields
+</div>
+
+
+
+
+<pre class="lang:pgsql decode:true">select row_to_json(results)
+from (
+  select id, email from users
+) as results</pre>
+
+
+Result
+
+
+<pre class="lang:js decode:true">{"id":1,"email":"hsps@redpanthers.co"}</pre>
+
+
+Now let&#8217;s see how to generate more complex JSON with sub JSON, and arrays.
+
+
+<pre class="lang:pgsql decode:true">select row_to_json(result)
+from (
+  select id, email,
+    (
+      select array_to_json(array_agg(row_to_json(user_projects)))
+      from (
+        select id, name
+        from projects
+        where user_id=users.id
+        order by created_at asc
+      ) user_projects
+    ) as projects
+  from users
+  where id = 1
+) result</pre>
+
+
+This would return the JSON response
+
+
+<pre class="lang:default decode:true ">{"id":1,"email":"hsps@redpanthers.co", "project":["id": 3, "name": "CSnipp"]}</pre>
+
+
+The issue with the above code is that it is more verbose (has more text)  when compared to a ruby code. We need to make sure that while we do a bit of sacrifice there, is worthwhile. So while working with API&#8217;s  use it only where you see a delay in JSON generation.
+Similarly ,to the <strong>&#8216;array_agg&#8217;</strong> method that we used above to aggregate values to an array then to JSON, we aggregate them as JSON using <code>json_agg</code>.
+
+
+<pre class="lang:pgsql decode:true">array_to_json(array_agg(row_to_json(user_projects)))</pre>
+
+
+can be shortened to
+
+
+<pre class="lang:pgsql decode:true">json_agg(user_projects)</pre>
+
+
+&nbsp;
+Since the above method of array generation can be tedious, in PostgreSQL 9.4, they have introduced a new method called <code>json_build_object</code>. Simple usage of the function can be as below
+
+
+<pre class="lang:pgsql decode:true ">json_build_object('foo',1,'bar',2)</pre>
+
+
+which will output
+
+
+<pre class="lang:js decode:true ">{"foo": 1, "bar": 2}</pre>
+
+
+Also, we can use it to build complex JSON tree by creating functions within the PostgreSQL database. Of course, as we do that, we are moving more and more logic of the code into the DB and we would need to run migrations every time when we want to update a function. So as I said before, we are sacrificing our convenience here .So we should only use this, as the complexity of our JSON generation increases.
+I will be covering how to write PostgreSQL functions to help generate more complex JSON structure easier in the second part of this particle.
+
+
+<h2>References</h2>
+
+
+https://www.postgresql.org/docs/current/static/functions-json.html
+http://bytefish.de/blog/postgresql_json/]]&gt;		</p>
+]]></content:encoded>
+							<wfw:commentRss>/create-json-response-using-postgresql-instead-rails/feed/</wfw:commentRss>
+		<slash:comments>11</slash:comments>
+							</item>
+		<item>
+		<title>New binding.irb introduced in ruby 2.4</title>
+		<link>/new-binding-irb-introduced-ruby-2-4/</link>
+				<pubDate>Tue, 22 Nov 2016 05:23:21 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Beginners]]></category>
+		<category><![CDATA[Ruby 2.4]]></category>
+		<category><![CDATA[debugging]]></category>
+		<category><![CDATA[irb]]></category>
+		<category><![CDATA[rails]]></category>
+		<category><![CDATA[REPL]]></category>
+		<category><![CDATA[session]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=636</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[Ruby 2.4 will have the feature to introduce a REPL session, using IRB, in between your code execution for better debugging. <a href="http://ruby-doc.org/stdlib-2.3.0/libdoc/irb/rdoc/IRB.html">IRB</a>, which stands for Interactive Ruby, is the standard REPL which is bundled along with ruby. <a href="http://pryrepl.org/">Pry</a> is a popular alternative for IRB, which has many developer-friendly features like tab compilation and syntax highlighting. One of the most heavily used features of pry is the ability to introduce a REPL session in between your code execution for better debugging. Instead of using <code>p</code> or <code>puts</code> to print the result and various variables, this helps us try out various codes and fixes in between the code to find the right solution.
+[caption id="" align="aligncenter" width="625"]<img src="http://www.alanmacdougall.com/post_content/2012-06-08-interactive-debugging-with-pry/pry_debugging_002.png" width="625" height="377" /> binding.pry being used.[/caption]
+&nbsp;
+To use <code>binding.irb</code> in your code, you need to require the IRB library to your code and call <code>binding.irb</code> where you want to introduce the REPL.
+
+
+<pre class="lang:ruby decode:true ">require 'irb'
+# all the codes before the binding
+binding.irb
+# all the codes after the binding</pre>
+
+
+and you will see a REPL like below.
+<a href="https://redpanthers.co/wp-content/uploads/2016/11/Screen-Shot-2016-11-22-at-10.47.27-AM.png"><img class="alignnone size-full wp-image-637" src="https://redpanthers.co/wp-content/uploads/2016/11/Screen-Shot-2016-11-22-at-10.47.27-AM.png" alt="screen-shot-2016-11-22-at-10-47-27-am" width="715" height="59" /></a>
+&nbsp;]]&gt;		</p>
+]]></content:encoded>
+										</item>
+		<item>
+		<title>How to write maintainable routes in rails</title>
+		<link>/write-maintainable-routes-rails/</link>
+				<pubDate>Sat, 17 Sep 2016 05:54:03 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Beginners]]></category>
+		<category><![CDATA[Rails]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[auto generate routes]]></category>
+		<category><![CDATA[config]]></category>
+		<category><![CDATA[convention over configuration]]></category>
+		<category><![CDATA[default]]></category>
+		<category><![CDATA[everything about routes]]></category>
+		<category><![CDATA[harisankar P S]]></category>
+		<category><![CDATA[rails]]></category>
+		<category><![CDATA[resource]]></category>
+		<category><![CDATA[routes]]></category>
+		<category><![CDATA[routes.rb]]></category>
+		<category><![CDATA[training]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=489</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[<strong>config/routes.rb</strong> is the gateway to your ruby on rails application. All request send by your users are directed to the appropriate code by the routes.
+Example:
+
+
+<pre class="lang:ruby decode:true ">match 'profiles', to: 'users#index', via: 'get'</pre>
+
+
+When someone visits your-website.com/profiles then the request is taken to the Index action of the UsersController. Under that action you will get the index.html.erb. So using routes we have configured the UsersController to respond to the users request it is its responsibility to do it now.
+We can declare routes in various ways:
+
+
+<pre class="lang:ruby decode:true ">match 'profiles', to: 'users#index', via: 'get'
+get 'profiles', to: 'users#index', via: 'get'
+resources :users
+resource :users, path: 'profiles'</pre>
+
+
+Since there are multiple ways to declare routes (as all forms are right), its best to stick with a single method for the code to be more readable. routes.rb is going to be one of the most heavily edited file in your project as when ever you add a new page or create a new form, you need to add a route to access the page or an end-point to accept the request. So it is most likely that your routes.rb file will start to grow ugly:
+
+
+<pre class="lang:ruby decode:true ">  resources :saved_filters
+  match "/404" =&gt; "errors#error404", via: [ :get, :post, :patch, :delete ], as: 'error404'
+  devise_for :saas_admins
+  mount RailsAdmin::Engine =&gt; '/saas_admin', :as =&gt; 'rails_admin'
+  %w(about privacy benefits compliance onboarding payroll time_off terms contact aca-compliance).each do |page|
+    get page =&gt; "content##{page.underscore}"
+  end
+  get "/not_authorized", to: 'errors#not_authorized'
+  post '/broker_sign_in_path', to: 'application#broker_sign_in_domain', as: 'broker_sign_in_domain'
+  post '/employer_sign_in_path', to: 'application#employer_sign_in_domain', as: 'employer_sign_in_domain'
+  post '/messages/reply_from_external_user',to: 'messages#reply_from_external_user',as: '/messages/reply_from_external_user'
+  # Routes for the public site</pre>
+
+
+So here we will share some tips to write proper, maintainable routes:
+First important point to note is that, its best to write routes as resources
+eg:
+
+
+<pre class="lang:ruby decode:true ">resources :users</pre>
+
+
+&nbsp;
+declaring resources will create the following 7 routes.
+<a href="https://redpanthers.co/wp-content/uploads/2016/09/routes.png"><img class="alignnone wp-image-537" src="https://redpanthers.co/wp-content/uploads/2016/09/routes.png" alt="routes" width="599" height="325" /></a>
+if you don&#8217;t want some of these routes, then pass that as options while declaring
+
+
+<pre class="lang:ruby decode:true ">resource :users, only: [:create, :update, :show, :destroy]</pre>
+
+
+Use nested routes, if you find yourself referring to a child model from parent.
+
+
+<pre class="lang:ruby decode:true ">resources :posts do
+  resources :comments
+end</pre>
+
+
+If you want to declare custom routes, within the resources, the they should only be declared within the resource block.
+<span style="text-decoration: underline;">Note: Difference between Member and Collection</span>
+<strong>Member:</strong> is used when the routes is meant to work on a single object (eg:  DeActivate single user)
+<strong>Collection:</strong> is used when the route is meant as an action over a collection of object (eg: search for a user)
+
+
+<pre class="lang:ruby decode:true ">resources :users do
+  member do
+    match 'de_activate', to: 'user#de_activate', via: 'get'
+  end
+  collection do
+    match 'search', to: 'user#search', via: 'post'
+  end
+end</pre>
+
+
+Always write routes through match rather than defining as post/get, because in future you might have to add multiple HTTP verb for the same route and using match would eleminate multiple lines of the same route.]]&gt;		</p>
+]]></content:encoded>
+										</item>
+		<item>
+		<title>application_record.rb available since rails 5</title>
+		<link>/application_record-rb-available-since-rails-5/</link>
+				<pubDate>Tue, 13 Sep 2016 06:27:31 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Beginners]]></category>
+		<category><![CDATA[Rails]]></category>
+		<category><![CDATA[Rails 5]]></category>
+		<category><![CDATA[active_record]]></category>
+		<category><![CDATA[application_record]]></category>
+		<category><![CDATA[base]]></category>
+		<category><![CDATA[database]]></category>
+		<category><![CDATA[model]]></category>
+		<category><![CDATA[models]]></category>
+		<category><![CDATA[pollute]]></category>
+		<category><![CDATA[rails]]></category>
+		<category><![CDATA[universal]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=509</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[Those who have been starting with Rails 5, must have noticed the new <strong>application_record.rb</strong> file present in your model folder. And all new models seems to be inheriting the <strong>application_record.rb</strong> instead of the <strong>ActiveRecord::Base. </strong>This is done so that we don&#8217;t pollute the <strong>ActiveRecord::Base</strong> namespace with our own extensions.  Before when we require something, say an extension to the ActiveRecord itself we used to have it included using the following code.
+
+
+<pre class="lang:ruby decode:true">module NewFeature
+  def to_do_something
+    puts "I am doing something new which Active Record coudln't do before"
+  end
+end
+ActiveRecord::Base.include(NewFeature)</pre>
+
+
+Now the problem with this approach is that when we use rails engines this NewFeature gets added in there as well, and it could end up doing things that we didn&#8217;t expect.
+With the new application_record.rb, which would be inherited by all the models, we need to include the new module at the <strong>ApplicationRecord</strong> and it would be available as the new feature of <strong>ActiveRecord</strong>. Every new engine generated using <strong>rails plugin new</strong> would also be having their own <strong>application_reocord.rb</strong>
+One more point to note is that we can place application wide hooks in this file. So if you were to do
+
+
+<pre class="lang:ruby decode:true ">after_create do
+  Rails.logger.info "[DataEntry] A new record has been created"
+end</pre>
+
+
+it would be triggered when a new record is created in any of the models of the rails application.]]&gt;		</p>
+]]></content:encoded>
+										</item>
+		<item>
+		<title>Optimising PostgreSQL database query using indexes</title>
+		<link>/optimising-postgresql-database-query-using-indexes/</link>
+				<comments>/optimising-postgresql-database-query-using-indexes/#comments</comments>
+				<pubDate>Thu, 11 Aug 2016 10:59:22 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Database]]></category>
+		<category><![CDATA[PostgreSQL]]></category>
+		<category><![CDATA[B Tree]]></category>
+		<category><![CDATA[database]]></category>
+		<category><![CDATA[GIN]]></category>
+		<category><![CDATA[Guide]]></category>
+		<category><![CDATA[Hash]]></category>
+		<category><![CDATA[index]]></category>
+		<category><![CDATA[learning]]></category>
+		<category><![CDATA[migration]]></category>
+		<category><![CDATA[multi column]]></category>
+		<category><![CDATA[partial migration]]></category>
+		<category><![CDATA[rails]]></category>
+		<category><![CDATA[Ruby]]></category>
+		<category><![CDATA[ruby on rails]]></category>
+		<category><![CDATA[single column]]></category>
+		<category><![CDATA[SQL]]></category>
+		<category><![CDATA[training]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=389</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[At Red Panthers PostgreSQL is our go to database we use it everywhere. So thinking about how to optimize our database performance is one of the most talked about topic at our office. The best way to speed up report generation and data retrieval within a rails application is to leave it to the database, as they have algorithms and optimizations build just for that. We always felt that most Ruby on Rails projects out there, do not use the full potential of a database and they usually just limit it to a data store. PostgreSQL or any database for that matter is much more than that.
+We would be blogging on how we use PostgreSQL in our projects to speed up our client's applications. This particle is the first part of a series of article we would be writing on database optimization.
+<img class="aligncenter" src="http://i.imgur.com/YSZE83d.jpg?1" width="231" height="172" />
+<strong>Database Indexes:</strong>
+Indexes are a special lookup table that the database search engine can use to speed up data retrieval. An Index is similar to a pointer to a particular row of a table. As a real world example, consider a Britannica Encyclopedia with 22 volumes of books, and an extra book listing  the index,with which you can find out the item you are searching for in those 22 books.
+PostgreSQL 9.5, provides several index algorithms like B-tree, Hash, GiST, SP-GiST and GIN. When you create an index using Ruby on Rails migration, by <strong>default it would be using the B-Tree</strong> migration. Whereas, as we move on to the indexing algorithms, we need to check into the general classification of an index and the data to be indexed.
+<strong>Primary Keys</strong>
+In rails, when we generate a model , by default an ID column would be added to the table. It would have integers values and they would be unique as well. By default, when you set a column as a primary key, the database would build a <em><strong>unique index </strong></em>on it. So we don&#8217;t need to add migration for it.
+<strong>Foreign Keys</strong>
+When you build a relationship between two tables you add a <code>foreign_key</code> in the child table to point to parent, eg: <code>user_id</code>, <code>group_id</code>. We need to query through this relationship a lot in rails, for example to load all the comments of post or all members of a group.<strong> So we need to index that for speed.</strong>.
+If you are using some non id value to reference a table, lets say in your application ,you give all your users a unique URL which has the username. (Eg: http://csnipp.com/coderhs), in that case we would be using the username to query the data, so we need to have it indexed. In fact you should index all the columns you might be using in your where queries. Like if you are searching for users of a particular age or income frequents in your reports, then you should create an index for them as well.
+<strong>Note:</strong>  What we explained above are single column indexes and multi column indexes. So if you are indexing just a single column in a table, its single column indexes.
+
+
+<pre class="lang:pgsql decode:true">CREATE INDEX index_name
+ON prices (user_id);</pre>
+
+
+Rails code:
+
+
+<pre class="lang:ruby decode:true">add_index :prices, :user_id</pre>
+
+
+When we index multiple columns, they are called multi column index.
+
+
+<pre class="lang:pgsql decode:true">CREATE INDEX index_name
+ON user_views (user_id, article_id);</pre>
+
+
+Rails code:
+
+
+<pre class="lang:ruby decode:true">add_index :user_views, [:user_id, :article_id]</pre>
+
+
+If you are joining two tables, using a column (which is not the already indexed foreign key) then you should index that as well.
+<strong>State column &amp; Boolean column</strong>
+State and Boolean column are columns that should be indexed as there would be a lot of rows but only limited number of values in those columns. Boolean column would have only true or false (two values)and state columns will have more than two like eg: draft, published, pending. The speed of load would be faster for these columns as they are only limited keys that can be placed in the index, and on a single lookup we can load them.
+<strong>Partial indexes</strong> can be used in the above case, as the name suggests it&#8217;s an index over a subset of your table. The index would be building if it satisfies certain conditions. They can be most useful <strong>while writing scopes in rails. </strong>Lets say that you have a scope that picks up all the articles which are marked as SPAM. In your model you will write a scope like below
+
+
+<pre class="lang:ruby decode:true">scope :articles, where(:spam =&gt; 'true')</pre>
+
+
+So internally it&#8217;s a where query, one can add a partial index migration as follows:
+
+
+<pre class="lang:pgsql decode:true">CREATE INDEX index_name
+on articles (spam is true);</pre>
+
+
+Rails:
+
+
+<pre class="lang:ruby decode:true">add_index :articles, :spam, name: "index_articles_on_spam", where: "(spam IS true)"</pre>
+
+
+<strong>When not to use indexes</strong>
+Using indexes speeds up the SELECT and WHERE command, but it does slows down the execution of INSERT.
+<strong>So avoid indexing when we have table that has a lot of insert and update</strong>
+So we should avoid using Indexes when we have a table that holds a huge number of raw data, where we do a lot of batch updates and insert. For example, in an IoT application we would pipe all the data from multiple devices to a single table , summarize  and insert it into its proper tables. And  by a lot of data, I am referring to at least 10+ MB of data per minute. In most cases, we would just truncate that table after processing, hence it would slow us down if we were to index it.
+<strong>If the table is too small and you know it will always be small</strong>
+If you have a setting table which just stores the application settings, that can be modified by an admin panel. Then it doesn&#8217;t seem to be worth having an index there.
+<strong>When you are manipulating the values of a column a lot</strong>
+Lets say the particular value of a column gets changes extremely a lot, like the website view count. Then indexing it is not highly recommended.
+Finally to complete this article. If you want to drop an index:
+SQL
+
+
+<pre class="lang:pgsql decode:true">DROP INDEX index_name;</pre>
+
+
+Rails
+
+
+<pre class="lang:ruby decode:true">remove_index :books, :created_at</pre>
+
+
+<strong>Summary</strong>:
+
+
+<ul>
+ 	
+
+<li>Index Primary key</li>
+
+
+ 	
+
+<li>Index Foreign key</li>
+
+
+ 	
+
+<li>Index all columns you would be passing into where clause</li>
+
+
+ 	
+
+<li>Index the keys used to Join tables</li>
+
+
+ 	
+
+<li>Index the date column (if you are going to call it frequent, like rankings of a particular date)</li>
+
+
+ 	
+
+<li>Index the type column in an STI or polymorphism.</li>
+
+
+ 	
+
+<li>Add partial index to scopes</li>
+
+
+ 	
+
+<li>Do not index tables with a lot of read, write</li>
+
+
+ 	
+
+<li>Do not index tables you know that will remain small, all through out its life time</li>
+
+
+ 	
+
+<li>Do not index columns where you will be manipulating lot of its values.</li>
+
+
+</ul>
+
+
+Keep visiting here to know more about the PostgreSQL indexing algorithms in part 2 of this article.
+<strong>References:</strong>
+<a href="https://www.postgresql.org/docs/9.2/static/indexes-types.html">https://www.postgresql.org/docs/9.2/static/indexes-types.html</a>
+<a href="http://dev.mysql.com/doc/refman/5.7/en/mysql-indexes.html">http://dev.mysql.com/doc/refman/5.7/en/mysql-indexes.html</a>
+<a href="http://www.tutorialspoint.com/postgresql/postgresql_indexes.htm">http://www.tutorialspoint.com/postgresql/postgresql_indexes.htm</a>]]&gt;		</p>
+]]></content:encoded>
+							<wfw:commentRss>/optimising-postgresql-database-query-using-indexes/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+							</item>
+		<item>
+		<title>after_create vs after_save vs after_commit</title>
+		<link>/after_create-vs-after_save-vs-after_commit/</link>
+				<comments>/after_create-vs-after_save-vs-after_commit/#comments</comments>
+				<pubDate>Thu, 28 Jul 2016 06:46:38 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Rails]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[active_model]]></category>
+		<category><![CDATA[active_record]]></category>
+		<category><![CDATA[after_commit]]></category>
+		<category><![CDATA[after_create]]></category>
+		<category><![CDATA[after_save]]></category>
+		<category><![CDATA[callbacks]]></category>
+		<category><![CDATA[database]]></category>
+		<category><![CDATA[mysql]]></category>
+		<category><![CDATA[PostgreSQL]]></category>
+		<category><![CDATA[rails]]></category>
+		<category><![CDATA[Ruby]]></category>
+		<category><![CDATA[transaction]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=371</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[<code>after_save</code>, <code>after_create</code> and <code>after_commit</code> are called active record call backs in rails. They get executed when we work on the database, similarly we also have before_* callback and callbacks on destroy as well. In this article I will explain you about the difference between *_save, *_create and *_commit callbacks.
+The purpose of each as per rails docs:
+
+
+<blockquote>after_create
+Is called after <code>Base.save</code> on new objects that haven‘t been saved yet (no record exists)
+after_save
+Is called after <code>Base.save</code> (regardless of whether it‘s a create or update save)
+after_commit
+Is called after the database transaction is completed.</blockquote>
+
+
+Now to explain the real difference between the three, we must first explain about database transaction. They are a protective block around a group of sql statements, that are permanent only if all of them succeed in a single atomic statement.
+
+
+<pre class="lang:default decode:true">User.transaction do
+    # update company
+    # update hr_department
+    # update user_table
+end</pre>
+
+
+When rails execute a create, the <code>after_save</code> and <code>after_create</code> would be called within the transaction block of the create statement. So they will be executed before executing the sql statement to make permanent changes in the DB. If the query fails, then no change will happen to the DB, but we would have executed the instructions of the after_create and <code>after_save</code> block.
+Where as after_commit, is called after the execution of the final/outer transaction block. Thus the changes in the DB would be permanent.]]&gt;		</p>
+]]></content:encoded>
+							<wfw:commentRss>/after_create-vs-after_save-vs-after_commit/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+							</item>
+	</channel>
+</rss>

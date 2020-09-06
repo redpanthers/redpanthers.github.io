@@ -1,0 +1,67 @@
+ <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>
+	Comments on: Refactoring in Rails	</title>
+	<atom:link href="/refactoring-in-rails/feed/" rel="self" type="application/rss+xml" />
+	<link>/refactoring-in-rails/</link>
+	<description>Experts in Ruby on Rails Development</description>
+	<lastBuildDate>Sun, 08 Oct 2017 14:49:00 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.7</generator>
+			<item>
+				<title>
+				By: Ben Sharpe				</title>
+				<link>/refactoring-in-rails/#comment-44</link>
+		<dc:creator><![CDATA[Ben Sharpe]]></dc:creator>
+		<pubDate>Sun, 08 Oct 2017 14:49:00 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3038#comment-44</guid>
+					<description><![CDATA[I find that helpers don&#039;t help that much.  They just become a dumping ground of semi-html like things.
+For your specific example... instead of a helper how about?
+
+&lt;pre&gt;&lt;code&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+
+Which is just the newer version of &lt;code&gt;@user.try(:post)&lt;/code&gt;
+No helper needed.]]></description>
+		<content:encoded><![CDATA[<p>I find that helpers don&#8217;t help that much.  They just become a dumping ground of semi-html like things.<br />
+For your specific example&#8230; instead of a helper how about?</p>
+<p></p><!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+
+		<div id="crayon-5f53f04c67541550211359" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+
+
+</textarea></div>
+			<div class="crayon-main" style="">
+				<table class="crayon-table">
+					<tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5f53f04c67541550211359-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5f53f04c67541550211359-2">2</div><div class="crayon-num" data-line="crayon-5f53f04c67541550211359-3">3</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5f53f04c67541550211359-1">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-5f53f04c67541550211359-2">&nbsp;</div><div class="crayon-line" id="crayon-5f53f04c67541550211359-3">&nbsp;</div></div></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0001 seconds] -->
+<p></p>
+<p>Which is just the newer version of <code>@user.try(:post)</code><br />
+No helper needed.</p>
+]]></content:encoded>
+						</item>
+			</channel>
+</rss>

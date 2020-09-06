@@ -1,4 +1,4 @@
- <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
 	xmlns:content="http://purl.org/rss/1.0/modules/content/"
 	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -8,29 +8,20 @@
 	>
 
 <channel>
-	<title>Rails 5.1 &#8211; Red Panthers</title>
+	<title>Rails 5.1 &#8211; beta.redpanthers.co</title>
 	<atom:link href="/category/rails-5-1/feed/" rel="self" type="application/rss+xml" />
 	<link>/</link>
-	<description>Experts in Ruby on Rails Development</description>
-	<lastBuildDate>Wed, 21 Mar 2018 08:19:41 +0000</lastBuildDate>
+	<description>Red Panthers - Experts in Ruby on Rails, System Design and Vue.js</description>
+	<lastBuildDate>Mon, 29 Apr 2019 11:28:12 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
 	<generator>https://wordpress.org/?v=5.2.7</generator>
-
-<image>
-	<url>/wp-content/uploads/2017/12/rp-logo.png</url>
-	<title>Rails 5.1 &#8211; Red Panthers</title>
-	<link>/</link>
-	<width>32</width>
-	<height>32</height>
-</image> 
 	<item>
 		<title>Upgrading to Rails 5.1x</title>
 		<link>/upgrading-to-rails-5-1x/</link>
-				<comments>/upgrading-to-rails-5-1x/#respond</comments>
 				<pubDate>Wed, 21 Mar 2018 08:14:20 +0000</pubDate>
 		<dc:creator><![CDATA[tony]]></dc:creator>
 				<category><![CDATA[Rails 5.1]]></category>
@@ -41,44 +32,98 @@
 		<category><![CDATA[tony vincent]]></category>
 		<category><![CDATA[upgrade]]></category>
 
-		<guid isPermaLink="false">/?p=16171</guid>
-				<description><![CDATA[<p>Rails 5.1rolled out with some major changes and features including Yarn and webpack support Dropped JQuery as a default dependency Built-in support for writing system tests using Capybara Encrypted secrets and many more, you can find the detailed release notes here. Recently we upgraded one of our production apps to 5.1x and since we have good test&#8230;</p>
-<p>The post <a rel="nofollow" href="/upgrading-to-rails-5-1x/">Upgrading to Rails 5.1x</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
-]]></description>
-								<content:encoded><![CDATA[<p>Rails 5.1rolled out with some major changes and features including</p>
+		<guid isPermaLink="false">http://redpanthers.co/?p=16171</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[Rails 5.1rolled out with some major changes and features including
+
+
 <ul>
+ 	
+
 <li>Yarn and webpack support</li>
+
+
+ 	
+
 <li>Dropped JQuery as a default dependency</li>
+
+
+ 	
+
 <li>Built-in support for writing system tests using Capybara</li>
+
+
+ 	
+
 <li>Encrypted secrets</li>
+
+
 </ul>
-<p>and many more, you can find the detailed release notes <a href="http://edgeguides.rubyonrails.org/5_1_release_notes.html">here</a>. Recently we upgraded one of our production apps to 5.1x and since we have good test coverage, upgrading was mostly painless. We still had to make some minor changes down the road</p>
+
+
+and many more, you can find the detailed release notes <a href="http://edgeguides.rubyonrails.org/5_1_release_notes.html">here</a>. Recently we upgraded one of our production apps to 5.1x and since we have good test coverage, upgrading was mostly painless. We still had to make some minor changes down the road
+
+
 <h3>1. No more <code>before_filter</code></h3>
-<p>One of our controllers still had the old-fashioned <code>before_filter</code> and we encountered the following error while booting up</p>
+
+
+One of our controllers still had the old-fashioned `before_filter` and we encountered the following error while booting up
+
+
 <p class="p1"><code>undefined method 'before_filter' before_filter has been deprecated in Rails 5.0 and removed in 5.1.</code></p>
-<p>This is because <code>before_filter</code> and <code>after_filter</code> are <a href="https://github.com/rails/rails/blob/v5.0.0.beta2/actionpack/lib/abstract_controller/callbacks.rb#L190-L193">deprecated</a> from Rails 5.0.0 onwards. As you might have guessed, changing from <code>before_filter</code> to <code>before_action</code> is the solution here.</p>
-<p>&nbsp;</p>
+
+
+This is because `before_filter` and <code>after_filter</code> are <a href="https://github.com/rails/rails/blob/v5.0.0.beta2/actionpack/lib/abstract_controller/callbacks.rb#L190-L193">deprecated</a> from Rails 5.0.0 onwards. As you might have guessed, changing from <code>before_filter</code> to <code>before_action</code> is the solution here.
+&nbsp;
+
+
 <h3>2. <code>halt_callback_chains_on_return_false</code> is deprecated</h3>
-<p>We saw the following deprecation warning in our logs after the update</p>
+
+
+We saw the following deprecation warning in our logs after the update
+
+
 <p class="p1"><code>ActiveSupport.halt_callback_chains_on_return_false= is deprecated and will be removed in Rails 5.2.</code></p>
-<p>From Rails 5.0x, the <a href="https://github.com/rails/rails/pull/17227">callback chain is <span class="x x-first x-last">not </span>halted when a before callback returns false</a>. We need to use <code class="highlighter-rouge">throw(:abort)</code> to explicitly halt callbacks</p>
-<p>Though we had no return false in our callbacks, we still had to remove the line,</p>
-<p><code>ActiveSupport.halt_callback_chains_on_return_false = false</code> from <code>config/initializers/new_framework_defaults.rb</code> to get rid of the warning.</p>
-<p>&nbsp;</p>
+
+
+From Rails 5.0x, the <a href="https://github.com/rails/rails/pull/17227">callback chain is <span class="x x-first x-last">not </span>halted when a before callback returns false</a>. We need to use <code class="highlighter-rouge">throw(:abort)</code> to explicitly halt callbacks
+Though we had no return false in our callbacks, we still had to remove the line,
+<code>ActiveSupport.halt_callback_chains_on_return_false = false</code> from <code>config/initializers/new_framework_defaults.rb</code> to get rid of the warning.
+&nbsp;
+
+
 <h3>3. Passing a class to the <code>class_name</code> is deprecated</h3>
-<p>One of the deprecation warnings after the update was,</p><pre class="crayon-plain-tag">Passing a class to the 'class_name' is deprecated and will raise an ArgumentError in Rails 5.2. 
-It eagerloads more classes than necessary and potentially creates circular dependencies. Please pass the class name as a string:</pre><p></p>
-<p class="p1">This warning message was due to passing a class to <code>class_name</code> option when specifying associations &#8211; this is <a href="https://github.com/rails/rails/commit/8312a0d22212798864f142b5a94805e0baa6c562">no longer recommended</a><span class="hljs-string">&#8216;</span></p>
-<p></p><pre class="crayon-plain-tag">- has_one :contact, class_name: UserContact
-+ has_one :contact, class_name: 'UserContact</pre><p>passing class name as a string is a standard now</p>
-<p>Happy Hacking <img src="https://s.w.org/images/core/emoji/12.0.0-1/72x72/2764.png" alt="❤" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
-<p>&nbsp;</p>
+
+
+One of the deprecation warnings after the update was,
+
+
+<pre class="nums:false lang:default decode:true">Passing a class to the 'class_name' is deprecated and will raise an ArgumentError in Rails 5.2.
+It eagerloads more classes than necessary and potentially creates circular dependencies. Please pass the class name as a string:
+</pre>
+
+
+
+
+<p class="p1">This warning message was due to passing a class to `class_name` option when specifying associations &#8211; this is <a href="https://github.com/rails/rails/commit/8312a0d22212798864f142b5a94805e0baa6c562">no longer recommended</a><span class="hljs-string">&#8216;</span></p>
+
+
+
+
+<pre class="nums:false lang:default decode:true">- has_one :contact, class_name: UserContact
++ has_one :contact, class_name: 'UserContact
+</pre>
+
+
+passing class name as a string is a standard now
+Happy Hacking <img src="https://s.w.org/images/core/emoji/12.0.0-1/72x72/2764.png" alt="❤" class="wp-smiley" style="height: 1em; max-height: 1em;" />
+&nbsp;
+
+
 <hr />
-<p>PS: If you need any help in upgrading your rails version drop an email to us at <strong>info@redpanthers.co </strong>or<strong> upgrade@redpanthers.co. </strong>We will be more than happy to go through your system and give a <strong>free upgrade action plan and estimation </strong>.</p>
-<p>The post <a rel="nofollow" href="/upgrading-to-rails-5-1x/">Upgrading to Rails 5.1x</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+PS: If you need any help in upgrading your rails version drop an email to us at <strong>info@redpanthers.co </strong>or<strong> upgrade@redpanthers.co. </strong>We will be more than happy to go through your system and give a <strong>free upgrade action plan and estimation </strong>.]]&gt;		</p>
 ]]></content:encoded>
-							<wfw:commentRss>/upgrading-to-rails-5-1x/feed/</wfw:commentRss>
-		<slash:comments>0</slash:comments>
-							</item>
+										</item>
 	</channel>
 </rss>

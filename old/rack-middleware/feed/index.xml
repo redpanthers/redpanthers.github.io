@@ -1,0 +1,71 @@
+ <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>
+	Comments on: How to write your own Rack middleware	</title>
+	<atom:link href="/rack-middleware/feed/" rel="self" type="application/rss+xml" />
+	<link>/rack-middleware/</link>
+	<description>Experts in Ruby on Rails Development</description>
+	<lastBuildDate>Thu, 06 Jul 2017 19:29:00 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.7</generator>
+			<item>
+				<title>
+				By: Brian				</title>
+				<link>/rack-middleware/#comment-30</link>
+		<dc:creator><![CDATA[Brian]]></dc:creator>
+		<pubDate>Thu, 06 Jul 2017 19:29:00 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=1138#comment-30</guid>
+					<description><![CDATA[We ended up just dropping API mode because it was causing issues with other gems as well.
+The error was something along the lines of no SelectiveStack to access or something of the sort.]]></description>
+		<content:encoded><![CDATA[<p>We ended up just dropping API mode because it was causing issues with other gems as well.<br />
+The error was something along the lines of no SelectiveStack to access or something of the sort.</p>
+]]></content:encoded>
+						</item>
+						<item>
+				<title>
+				By: Aboobacker M K				</title>
+				<link>/rack-middleware/#comment-29</link>
+		<dc:creator><![CDATA[Aboobacker M K]]></dc:creator>
+		<pubDate>Thu, 06 Jul 2017 14:56:00 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=1138#comment-29</guid>
+					<description><![CDATA[Can you post exact error message with traceback, I think issue is because &quot;SelectiveStack&quot; isn&#039;t properly autoloaded, make sure that you are using exact file location as in the that SO answer]]></description>
+		<content:encoded><![CDATA[<p>Can you post exact error message with traceback, I think issue is because &#8220;SelectiveStack&#8221; isn&#8217;t properly autoloaded, make sure that you are using exact file location as in the that SO answer</p>
+]]></content:encoded>
+						</item>
+						<item>
+				<title>
+				By: Brian				</title>
+				<link>/rack-middleware/#comment-28</link>
+		<dc:creator><![CDATA[Brian]]></dc:creator>
+		<pubDate>Wed, 05 Jul 2017 22:47:00 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=1138#comment-28</guid>
+					<description><![CDATA[Hello Anjana, I know this is outside the scope of the article but by chance do you know how to create a middleware while using rails 5 in api-mode?
+
+This post shows how to do it in rails 4:
+https://stackoverflow.com/questions/26922343/omniauthnosessionerror-you-must-provide-a-session-to-use-omniauth-configur
+
+I&#039;m trying to create a middleware like the accepted answer in the above post but when adding the
+config.middleware.insert_before ActionDispatch::ParamsParser, &quot;SelectiveStack&quot;
+it throws an error saying it can&#039;t find SelectiveStack.
+
+It also won&#039;t let me add a require or includes in the application.rb to access it, so I was wondering if you&#039;ve come across this or had any ideas?]]></description>
+		<content:encoded><![CDATA[<p>Hello Anjana, I know this is outside the scope of the article but by chance do you know how to create a middleware while using rails 5 in api-mode?</p>
+<p>This post shows how to do it in rails 4:<br />
+<a href="https://stackoverflow.com/questions/26922343/omniauthnosessionerror-you-must-provide-a-session-to-use-omniauth-configur" rel="nofollow">https://stackoverflow.com/questions/26922343/omniauthnosessionerror-you-must-provide-a-session-to-use-omniauth-configur</a></p>
+<p>I&#8217;m trying to create a middleware like the accepted answer in the above post but when adding the<br />
+config.middleware.insert_before ActionDispatch::ParamsParser, &#8220;SelectiveStack&#8221;<br />
+it throws an error saying it can&#8217;t find SelectiveStack.</p>
+<p>It also won&#8217;t let me add a require or includes in the application.rb to access it, so I was wondering if you&#8217;ve come across this or had any ideas?</p>
+]]></content:encoded>
+						</item>
+			</channel>
+</rss>

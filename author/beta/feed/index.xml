@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>beta &#8211; beta.redpanthers.co</title>
+	<atom:link href="/author/beta/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description>Red Panthers - Experts in Ruby on Rails, System Design and Vue.js</description>
+	<lastBuildDate>Sun, 06 Sep 2020 07:00:39 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.7</generator>
+	<item>
+		<title>CLAWING OUR WAY TO THE TOP OF CLUTCH’S DIRECTORY OF RUBY ON RAILS DEVELOPERS IN INDIA</title>
+		<link>/clawing-our-way-to-the-top-of-clutchs-directory-of-ruby-on-rails-developers-in-india/</link>
+				<pubDate>Sun, 06 Sep 2020 07:00:37 +0000</pubDate>
+		<dc:creator><![CDATA[beta]]></dc:creator>
+				<category><![CDATA[Uncategorized]]></category>
+
+		<guid isPermaLink="false">/?p=16545</guid>
+				<description><![CDATA[Ruby is a programming language with a set of incredibly&#160;versatile strengths and applications, with the Ruby on Rails framework helping businesses in countless industries develop powerful and interactive web solutions. While Ruby on Rails provides a world of endless possibilities for quality development, most businesses lack the in house talent to tap into this source [&#8230;]]]></description>
+								<content:encoded><![CDATA[
+<p>Ruby is a programming language with a set of incredibly&nbsp;<a href="https://medium.com/kkempin/swot-analysis-of-ruby-on-rails-c421a6c83c09">versatile strengths and applications</a>, with the Ruby on Rails framework helping businesses in countless industries develop powerful and interactive web solutions. While Ruby on Rails provides a world of endless possibilities for quality development, most businesses lack the in house talent to tap into this source of innovation. We proudly fill in the skills-gap for firms looking to leverage this powerful framework to develop innovative solutions to a number of challenges.</p>
+
+
+
+<figure class="wp-block-image"><img src="https://redpanthers.co/wp-content/uploads/2019/05/Developers_India_2019-947x1024.png" alt="" class="wp-image-16442"/></figure>
+
+
+
+<p>Through our work developing quality web solutions, we have started to garner some industry recognition. We are excited to share that we have been included on Clutch’s directory of the top&nbsp;<a href="https://clutch.co/in/developers/ruby-rails">Ruby developers</a>&nbsp;in India, thanks to a recent research effort on a wide variety of service industries in India. We outranked more than 100 of our competitors as we started our climb to become a top firm in our field.</p>
+
+
+
+<p>The research effort we were the subject of included factors such as marketing presence, previous work, and most importantly, client reviews. We have a rating of 4.8 out of 5 stars thanks to what our clients have shared with us, mostly reviews like this,</p>
+
+
+
+<p>“<em>Red Panthers is a team of highly skilled and passionate engineers who strive to solve problems in eloquent ways. They were eager to learn and train their team on how to improve. They knew how to solve some problems, and when tougher problems arose, we all worked together to find solutions that worked well for everyone</em>.” –&nbsp;<strong>Founder, Devato Inc</strong></p>
+
+
+
+<p>Reviews like this help us identify our strengths, weaknesses, and how we are performing for our clients. We eagerly await whatever else our clients will share with us.</p>
+
+
+
+<p>In addition to our presence on Clutch, we are included on their sister-site, The Manifest, as one of the top&nbsp;<a href="https://themanifest.com/in/web-development/companies">web developers in India</a>. The Manifest helps firms of all shapes and sizes address a wide array of industry challenges by providing curated insights and advice. Our inclusion on their platform as a top firm is due to a number of factors, namely the quality of our work and our affordability. We are grateful to be listed as a top development team on two different industry resources, and we decided to go for a third. We have joined other expert firms in creating a profile on Visual Objects, a portfolio sharing platform for&nbsp;<a href="https://visualobjects.com/in/software-development/top-custom-software-developers">developers</a>, designers, and other innovators alike.</p>
+
+
+
+<p>We are hopeful that our status as a trusted development team will only grow from here, and we are grateful for all of the recognition we have received. Thank you to everyone who played a part in our success, we could not have done this alone, and we cannot wait to see what new challenges you have for us.</p>
+]]></content:encoded>
+										</item>
+	</channel>
+</rss>

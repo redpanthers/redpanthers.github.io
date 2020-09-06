@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Beginners &#8211; beta.redpanthers.co</title>
+	<atom:link href="/tag/beginners/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description>Red Panthers - Experts in Ruby on Rails, System Design and Vue.js</description>
+	<lastBuildDate>Tue, 26 Jul 2016 10:40:48 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.7</generator>
+	<item>
+		<title>Counter Cache:  How to get started</title>
+		<link>/counter-cache-how-to-get-started/</link>
+				<pubDate>Tue, 26 Jul 2016 10:40:48 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Beginners]]></category>
+		<category><![CDATA[Rails]]></category>
+		<category><![CDATA[Ruby]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[cache]]></category>
+		<category><![CDATA[counter]]></category>
+		<category><![CDATA[database]]></category>
+		<category><![CDATA[improvement]]></category>
+		<category><![CDATA[mysql]]></category>
+		<category><![CDATA[oracale]]></category>
+		<category><![CDATA[performance]]></category>
+		<category><![CDATA[PostgreSQL]]></category>
+		<category><![CDATA[ruby on rails]]></category>
+		<category><![CDATA[SQL]]></category>
+		<category><![CDATA[tips]]></category>
+		<category><![CDATA[training]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=335</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[Displaying the <em>number of tasks under a projec</em>t or the <em>number of comments in a post</em> or the <em>number of users in an organization or anything </em>similar is a common requirement in most rails applications. The code for doing it is also simple- <strong>@project.tasks.count;</strong> but the problem with this code is that every time you run it, you are counting the number of tasks of that project one by one. So, the speed of execution decreases with more number of rows. This code will slow down your page load, if you are displaying the details of more than one project in your page as shown below.
+<a href="https://redpanthers.co/wp-content/uploads/2016/07/Screen-Shot-2016-07-26-at-2.10.14-PM.png"><img class="size-full wp-image-338" src="https://redpanthers.co/wp-content/uploads/2016/07/Screen-Shot-2016-07-26-at-2.10.14-PM.png" alt="project_list" width="198" height="123" /></a>
+To speed this up, rails gives you an in-build mechanism called &#8220;<a href="http://guides.rubyonrails.org/association_basics.html"><strong>Counter Cache</strong></a>&#8220;. As the name suggests, it literally means to cache the number of referenced rows it has (number of tasks a project has).
+<strong>Example code definition</strong>
+
+
+<pre class="toolbar:2 toolbar-overlay:false toolbar-hide:false toolbar-delay:false show-title:false show-lang:2 plain:false show-plain:3 plain-toggle:false popup:false lang:ruby decode:true">class Projects &lt; ActiveRecord::Base
+  has_many :tasks
+end
+class Task &lt; ActiveRecord::Base
+  belongs_to :project
+end</pre>
+
+
+To implement counter_cache, you need to pass in the <strong>counter_cache: true </strong>option along with the belongs_to relationship. You also need to add a migration to add an extra column called <strong>tasks_count</strong> to store the count. This needs to be added to the other model, which has the <strong>has_many</strong> reference.
+
+
+<pre class="toolbar:2 plain:false show-plain:3 plain-toggle:false popup:false lang:ruby decode:true ">class Task &lt; ActiveRecord::Base
+  belongs_to :project, counter_cache: true
+end</pre>
+
+
+<strong>Migration</strong>
+
+
+<pre class="toolbar:2 show-plain:3 lang:default decode:true">class AddTasksCounterCacheToProjects &lt; ActiveRecord::Migration[5.0]
+  def change
+    add_column :projects, :tasks_count, :integer
+  end
+end</pre>
+
+
+If you are adding counter cache to an existing system, you need to update your <strong>tasks_count </strong>with the existing counts. To do that, one can use the code given below. Either place the code along with the migration or run it in console in both production/development environments.
+
+
+<pre class="toolbar:2 show-plain:3 lang:ruby decode:true">Project.find_each { |project| Project.reset_counters(project.id, :tasks) }
+</pre>
+
+
+<span style="line-height: 1.5;">Also note that the tasks_count is just the default column name; if you wish to change it with another name, just pass that name along with the :counter_cache option as below.</span>
+
+
+<pre class="toolbar:2 show-plain:3 lang:ruby decode:true  ">class Task &lt; ActiveRecord::Base
+  belongs_to :project, counter_cache: :not_the_default_column_name
+end</pre>
+
+
+Now, to use the counter cache in your calculations, you should use the method &#8220;size&#8221; instead of &#8220;count&#8221;. The method &#8220;size&#8221; will use the counter_cache if its present, where as using &#8220;.count&#8221; itself would do the actual sql count.
+
+
+<pre class="toolbar:2 show-plain:3 lang:ruby decode:true">&lt;% Project.all.each do |project| %&gt;
+  &lt;%= project.name %&gt; (&lt;%= project.tasks.size %&gt;)
+&lt;% end %&gt;
+</pre>
+
+
+<span style="line-height: 1.5;"><strong>Points to Remember</strong></span>
+
+
+<ul>
+ 	
+
+<li><strong>:counter_cache</strong> is the optional attribute of a <strong>belongs_to</strong> relationship</li>
+
+
+ 	
+
+<li>It requires the creation of an extra column (tasks_count) in the table which has the <strong>has_many</strong> relationship</li>
+
+
+ 	
+
+<li>One can use another column name by passing the name along with :counter_cache option</li>
+
+
+ 	
+
+<li>To use the counter_cache, one must use the <strong>&#8220;.size&#8221;</strong> method</li>
+
+
+</ul>
+
+
+<strong>Speed Improvements</strong>
+<a href="https://redpanthers.co/wp-content/uploads/2016/07/speed_with_count.png"><img class="alignnone wp-image-339 size-full" src="https://redpanthers.co/wp-content/uploads/2016/07/speed_with_count.png" alt="Speed with just count" width="797" height="73" /></a>
+<a href="https://redpanthers.co/wp-content/uploads/2016/07/speed_with_counter_cache.png"><img class="alignnone wp-image-340 size-full" src="https://redpanthers.co/wp-content/uploads/2016/07/speed_with_counter_cache.png" alt="speed_with_counter_cache" width="776" height="53" /></a>
+&nbsp;]]&gt;		</p>
+]]></content:encoded>
+										</item>
+		<item>
+		<title>How to learn Ruby on Rails</title>
+		<link>/how-to-learn-ruby-on-rails/</link>
+				<pubDate>Wed, 03 Feb 2016 09:02:37 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Beginners]]></category>
+		<category><![CDATA[Rails]]></category>
+		<category><![CDATA[Ruby]]></category>
+		<category><![CDATA[Learn]]></category>
+		<category><![CDATA[rails]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=262</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[Well I have been hearing a lot from people in facebook, google groups and online forum wanting to learn Rails. Their question is simple “<strong>I want to learn Rails</strong>”, “<strong>How do I learn Ruby on Rails?</strong>”, “<strong>How do I become a Ruby on Rails programmer?</strong>”. Well the funny feeling I get while reading these questions is that, its the exact questions I posted in Google Groups, forums, etc when I wanted to start learning Rails and Ruby couple of years ago. So I thought of giving back to the community and to my company blog, by posting on how to learn rails, and answer a few questions every newbie always have.
+
+
+<h3>Q) How to learn Ruby on Rails?</h3>
+
+
+Well to get started, I would suggest this <a href="http://ruby.railstutorial.org/ruby-on-rails-tutorial-book">Rails Tutorial</a>. Excellent tutorial, with detailed explanation. Build for people with little or no knowledge in Ruby. Further more it also teaches and introduces a newbie to Git and TDD.
+If you don’t like reading from the web, and prefer books then I suggest <a href="http://fkrt.it/W8HeUNNNNN">Agile Web Development With Rails</a> by Sam Ruby, Dave Thomas, David Heinemeier Hansson. The advantage of using rails is the ability to become more agile and roll out features faster. To be honest, I am not much of a fan of books ( technical), so if you are going to spend money then I suggest buying this book.
+Now the one that really helped me learn Ruby and Rails was the community. Find a local Ruby user group, participate in its discussions, take part in its monthly meetups. These will help you find personal mentors and a lot of cool people like you who knows Ruby is worth learning.. <img src="https://s.w.org/images/core/emoji/12.0.0-1/72x72/1f600.png" alt="😀" class="wp-smiley" style="height: 1em; max-height: 1em;" />
+Those from Kerala India, can join the <a href="https://groups.google.com/forum/?fromgroups#!forum/kerala-ruby-users-group">Kerala Ruby User Group Mailing List</a> Also read as much materials you can find about ruby and rails, reddit is a good source of interesting news for Ruby.
+[caption id="attachment_265" align="aligncenter" width="860"]<a href="https://redpanthers.co/wp-content/uploads/2016/02/ruby-on-rails.jpg" rel="attachment wp-att-265"><img class="wp-image-265 size-full" src="https://redpanthers.co/wp-content/uploads/2016/02/ruby-on-rails.jpg" alt="Learning Ruby on Rails is fun" width="860" height="480" /></a> Learn Ruby on Rails framework[/caption]
+
+
+<h3>Q) Is it required to know Ruby before you learn rails?</h3>
+
+
+Well from experience the answer is
+
+
+<blockquote><strong>NO</strong></blockquote>
+
+
+You don’t have to know ruby to learn rails, but those have do can learn it much faster, and understand the reasons behind the various jargons used in rails. But from my personal experience, as a person who learned Rails before properly understanding Ruby. If you have a better understanding of the ruby language, then the picture you have about the possibilities with rails would become limitless.. Its like you won’t feel Rails can limit you, in anyway.
+
+
+<h3>Q) How can I learn Ruby?</h3>
+
+
+Well Ruby has been around for a long time, there are plenty of how to guides and basic tutorials in Ruby. So a quick Google will get you a lot of results. Some good websites that I would suggest is
+
+
+<ol>
+ 	
+
+<li><a href="http://rubymonk.com/">http://rubymonk.com/</a></li>
+
+
+ 	
+
+<li><a href="http://tryruby.org/">http://tryruby.org/</a></li>
+
+
+ 	
+
+<li><a href="http://rubykoans.com/">http://rubykoans.com/</a></li>
+
+
+</ol>
+
+
+For those who wish to have a cheat sheet available to help you, can use this website<a href="http://overapi.com/ruby/"> http://overapi.com/ruby</a>
+
+
+<h3> Q) How long will it take to learn Ruby/Ruby on Rails?</h3>
+
+
+Well I do not have a proper answer to that one, I have been working in ruby for some time now. And even does it for a living, but I still believe that I have a lot to learn. Every new project has been challenging and has introduced me to more and more possibilities with Ruby. Thus I guess as they say, the possibilities are limitless as the Human Imagination.
+My advice to beginners would be to be, not concerned about how long it would take, and just concentrate on learning. Try out various ideas that you might have, one good exercise that I did was try to implement all the commands in a linux terminal through ruby. Get to know the community, try to contribute to various opensource projects and always keep on coding… =)
+Happy coding..
+
+
+<blockquote><strong>PS</strong>: this is just my list, <strong>if you know some good online resources. Please do add them as comments</strong>, it would help those who are starting out with Ruby and Rails. Also sorry for any typo or grammatical errors.</blockquote>
+
+]]&gt;		</p>
+]]></content:encoded>
+										</item>
+	</channel>
+</rss>

@@ -1,0 +1,866 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>SQL &#8211; beta.redpanthers.co</title>
+	<atom:link href="/tag/sql/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description>Red Panthers - Experts in Ruby on Rails, System Design and Vue.js</description>
+	<lastBuildDate>Wed, 30 Nov 2016 09:22:46 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.7</generator>
+	<item>
+		<title>Materialized Views: Caching database query</title>
+		<link>/materialized-views-caching-database-query/</link>
+				<comments>/materialized-views-caching-database-query/#comments</comments>
+				<pubDate>Wed, 30 Nov 2016 09:22:46 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Database]]></category>
+		<category><![CDATA[PostgreSQL]]></category>
+		<category><![CDATA[database]]></category>
+		<category><![CDATA[Materialized]]></category>
+		<category><![CDATA[optimization]]></category>
+		<category><![CDATA[SQL]]></category>
+		<category><![CDATA[Views]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=728</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[As a part of our database optimization series, this article is related to creating materializing views in the database.
+[caption id="" align="alignnone" width="1142"]<img class="size-full" src="https://i-msdn.sec.s-msft.com/dynimg/IC709528.png" alt="Materialzied View" width="1142" height="487" /> Materialized View Purpose[/caption]
+Before starting with a materialized view, let&#8217;s talk about database views.
+
+
+<h2>What is a database view?</h2>
+
+
+A database view is a stored set of queries, which gets executed whenever a view is called or evoked. Unlike the regular tables, the view doesn&#8217;t occupy any physical space in your hard disk but its schema and everything is stored in the system memory. It helps abstract away the underlying tables and makes it easier to work with.
+They can also be called as pseudo tables.
+Quoted from the PostgerSQL documentation.
+
+
+<blockquote>Making liberal use of views is a key aspect of good SQL database design. Views allow you to encapsulate the details of the structure of your tables, which might change as your application evolves, behind consistent interfaces.
+&nbsp;</blockquote>
+
+
+
+
+<pre class="lang:pgsql decode:true">CREATE VIEW company_manager AS
+SELECT id, name, email
+FROM  companies
+WHERE role='manager';</pre>
+
+
+Now to access all the managers
+
+
+<pre class="lang:pgsql decode:true">SELECT * FROM company_managers;</pre>
+
+
+&nbsp;
+Making more use of views makes your DB design much cleaner, but here we are talking more about using Materializing views. As that would lead to the more direct performance boost.
+
+
+<h2>So what is a Materialized view?</h2>
+
+
+The materializing view was first introduced in oracle. But now you can find it in most database systems like PostgreSQL, MicrosoftSQL server, IBM DB2, Sybase. MySQL doesn&#8217;t have native support for it, but you can find extensions for it which would help achieve this
+<strong>Materialized view </strong>is also called <strong>Matview. </strong>It is a form of database view that also has the result of the query as well. Which speeds up the results because now, you don&#8217;t have to run the query to get the results, as its already there, calculated. Of course, there are cases where we can&#8217;t have this, where we need more real-time information. But while generating reports you create a matview and then later refresh the matview to get the updated reports.
+Things to note about matview are:
+
+
+<ol>
+ 	
+
+<li>It&#8217;s read-only (pseudo-table) so you can&#8217;t update it.</li>
+
+
+ 	
+
+<li>You need to refresh the table to get the latest data.</li>
+
+
+ 	
+
+<li>While refreshing, it would block other connections to access the existing data from the material view, so you need to make the refresh run concurrently</li>
+
+
+</ol>
+
+
+
+
+<h2>So why use Materialized views in Rails?</h2>
+
+
+
+
+<ul>
+ 	
+
+<li>Capture commonly used joins &amp; filters.</li>
+
+
+ 	
+
+<li>Push data intensive processing from Ruby to Database.</li>
+
+
+ 	
+
+<li>Allow fast and live filtering of complex associations or calculation fields.</li>
+
+
+</ul>
+
+
+
+
+<h2>How do you use it in Rails?</h2>
+
+
+Well thanks to active record, it&#8217;s quite easy to use this in our code. But we need a bit of SQL as well.
+First, we add the migration to create the materialized views.
+
+
+<pre class="lang:sh decode:true">bundle exec rails g migration create_all_time_sales_mat_view</pre>
+
+
+In the migration file, we add the SQL
+
+
+<pre class="lang:ruby decode:true">class CreateAllTimesSalesMatView &lt; ActiveRecord::Migration
+  def up
+    execute &lt;&lt;-SQL
+      CREATE MATERIALIZED VIEW all_time_sales_mat_view AS
+        SELECT sum(amount) as total_sale,
+        DATE_TRUNC('day', invoice_adte) as date_of_sale
+      FROM sales
+      GROUP BY DATE_TRUNC('day', invoice_adte)
+    SQL
+  end
+  def down
+    execute("DROP MATERIALIZED VIEW IF EXISTS all_time_sales_view")
+  end
+end</pre>
+
+
+Once the view is ready , we can create the model for this at <code>app/models/all_time_sales_mat_view.rb</code>
+
+
+<pre class="lang:default decode:true">class AllTimeSalesMatView &lt; ActiveRecord::Base
+  self.table_name = 'all_time_sales_mat_view'
+  def readonly?
+    true
+  end
+  def self.refresh
+    ActiveRecord::Base.connection.execute('REFRESH MATERIALIZED VIEW CONCURRENTLY all_time_sales_mat_view')
+  end
+end</pre>
+
+
+Now we select and query the model as usual.
+
+
+<pre class="lang:ruby decode:true">AllTimeSalesMatView.select(:date_of_sale)
+AllTimeSalesMatView.sum(:total_sale)</pre>
+
+
+We can&#8217;t do any <code>create</code>, <code>save</code> or <code>update</code>. As its a read-only table.
+Creating a table with a total of million sales record for every date in the last year, gave us the following speed improvement.
+
+
+<pre class="lang:sh decode:true ">Regular
+       user     system      total        real
+     (976.4ms)  0.020000   0.000000   0.020000 (  0.990258)
+MatiView
+     (2.3ms)    0.000000   0.010000   0.010000 (  0.012010)</pre>
+
+
+Over 10 times speed improvement, yay!!
+
+
+<h2>Summarize</h2>
+
+
+
+
+<h3>Good Points</h3>
+
+
+
+
+<ul>
+ 	
+
+<li>Faster to fetch data.</li>
+
+
+ 	
+
+<li>Capture commonly used joins &amp; filters.</li>
+
+
+ 	
+
+<li>Push data intensive processing from Ruby to Database.</li>
+
+
+ 	
+
+<li>Allow fast and live filtering of complex associations or calculation .fields.</li>
+
+
+</ul>
+
+
+
+
+<h3>Pain Points</h3>
+
+
+
+
+<ul>
+ 	
+
+<li>To alter table we need to write SQL</li>
+
+
+ 	
+
+<li>We will be using more RAM and Storage</li>
+
+
+ 	
+
+<li>Requires Postgres 9.3 for MatView</li>
+
+
+ 	
+
+<li>Requires Postgres 9.4 to refresh concurrently</li>
+
+
+ 	
+
+<li>Can&#8217;t have Live data
+
+
+<ul>
+ 	
+
+<li>You can fix this by creating your own MatViewTable and updating it with the latest information</li>
+
+
+</ul>
+
+
+</li>
+
+
+</ul>
+
+
+
+
+<h2>References</h2>
+
+
+
+
+<ul>
+ 	
+
+<li>https://www.postgresql.org/docs/9.3/static/rules-materializedviews.html</li>
+
+
+ 	
+
+<li>http://en.wikipedia.org/wiki/Materialized_view</li>
+
+
+ 	
+
+<li>http://dev.mysql.com/doc/refman/5.7/en/create-view.html</li>
+
+
+ 	
+
+<li>https://blog.pivotal.io/labs/labs/database-views-performance-rails</li>
+
+
+ 	
+
+<li>https://www.sitepoint.com/speed-up-with-materialized-views-on-postgresql-and-rails/</li>
+
+
+</ul>
+
+]]&gt;		</p>
+]]></content:encoded>
+							<wfw:commentRss>/materialized-views-caching-database-query/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+							</item>
+		<item>
+		<title>Introduction to generating JSON using PostgreSQL</title>
+		<link>/create-json-response-using-postgresql-instead-rails/</link>
+				<comments>/create-json-response-using-postgresql-instead-rails/#comments</comments>
+				<pubDate>Thu, 24 Nov 2016 04:38:33 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Database]]></category>
+		<category><![CDATA[PostgreSQL]]></category>
+		<category><![CDATA[API]]></category>
+		<category><![CDATA[array]]></category>
+		<category><![CDATA[benchmarking]]></category>
+		<category><![CDATA[database]]></category>
+		<category><![CDATA[Faster]]></category>
+		<category><![CDATA[generation]]></category>
+		<category><![CDATA[JSON]]></category>
+		<category><![CDATA[optimization]]></category>
+		<category><![CDATA[rails]]></category>
+		<category><![CDATA[Ruby]]></category>
+		<category><![CDATA[SQL]]></category>
+		<category><![CDATA[standards]]></category>
+		<category><![CDATA[web api]]></category>
+		<category><![CDATA[XML]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=663</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[
+
+<h2>Introduction</h2>
+
+
+One of the major requirements for any online business is to have a backend that either provides or can be extended to provide an API response. Building  websites with static HTML and simple jquery ajax is coming to an end. In this era, Javascript frameworks rules the market. Hence, it is a good decision for the database to support JSON, as JSON is becoming the glue that connects the frontend and backend.
+Rails have an inbuilt support for generating JSON, as it&#8217;s our swiss army knife of web development, and encourages the REST URL structure . And its a good choice for building API. It is good enough to a particular point of growth. Very soon you will reach bottlenecks, where you have more requests than you can handle and you have to either spawn up more servers or use some concurrent languages like elixir, go, etc. Before we go to that scale and burn down the existing codebase, we can use database to generate JSON responses for us, which is 10 times faster in generating JSON than Rails (though more verbose).
+Since PostgreSQL 9.2, the database has taken a major leap in supporting JSON. The support that PostgreSQL provides can be divided into two
+
+
+<ul>
+ 	
+
+<li>Storing data in JSON and JSONB format</li>
+
+
+ 	
+
+<li>Generating JSON results from the query itself</li>
+
+
+</ul>
+
+
+In this article, we will talk about generating JSON(an introduction) from the query itself.
+
+
+<h2>Getting Started</h2>
+
+
+One of the advantages of using a database to generate JSON is that I have found it fast while generating smaller JSON but much more faster in generating complex JSON. (Note: The speed is in comparison with rails not with respect to the database itself)
+
+
+<h3><strong>How to generate JSON</strong></h3>
+
+
+
+
+<div></div>
+
+
+
+
+<div>Simplest way to do that is row_to_json()
+For example: Query to return user with id 1 as JSON</div>
+
+
+
+
+<div>
+
+
+<pre class="lang:pgsql decode:true">select row_to_json(users) from users where id = 1;
+</pre>
+
+
+Result:
+
+
+<pre class="lang:js decode:true">{"id":1,"email":"hsps@redpanthers.co","encrypted_password":"iwillbecrazytodisplaythat",
+"reset_password_token":null,"reset_password_sent_at":null,
+"remember_created_at":"2016-11-06T08:39:47.983222",
+"sign_in_count":11,"current_sign_in_at":"2016-11-18T11:47:01.946542",
+"last_sign_in_at":"2016-11-16T20:46:31.110257",
+"current_sign_in_ip":"::1","last_sign_in_ip":"::1",
+"created_at":"2016-11-06T08:38:46.193417",
+"updated_at":"2016-11-18T11:47:01.956152",
+"first_name":"Super","last_name":"Admin","role":3}</pre>
+
+
+if you want to send only some specific fields
+</div>
+
+
+
+
+<pre class="lang:pgsql decode:true">select row_to_json(results)
+from (
+  select id, email from users
+) as results</pre>
+
+
+Result
+
+
+<pre class="lang:js decode:true">{"id":1,"email":"hsps@redpanthers.co"}</pre>
+
+
+Now let&#8217;s see how to generate more complex JSON with sub JSON, and arrays.
+
+
+<pre class="lang:pgsql decode:true">select row_to_json(result)
+from (
+  select id, email,
+    (
+      select array_to_json(array_agg(row_to_json(user_projects)))
+      from (
+        select id, name
+        from projects
+        where user_id=users.id
+        order by created_at asc
+      ) user_projects
+    ) as projects
+  from users
+  where id = 1
+) result</pre>
+
+
+This would return the JSON response
+
+
+<pre class="lang:default decode:true ">{"id":1,"email":"hsps@redpanthers.co", "project":["id": 3, "name": "CSnipp"]}</pre>
+
+
+The issue with the above code is that it is more verbose (has more text)  when compared to a ruby code. We need to make sure that while we do a bit of sacrifice there, is worthwhile. So while working with API&#8217;s  use it only where you see a delay in JSON generation.
+Similarly ,to the <strong>&#8216;array_agg&#8217;</strong> method that we used above to aggregate values to an array then to JSON, we aggregate them as JSON using <code>json_agg</code>.
+
+
+<pre class="lang:pgsql decode:true">array_to_json(array_agg(row_to_json(user_projects)))</pre>
+
+
+can be shortened to
+
+
+<pre class="lang:pgsql decode:true">json_agg(user_projects)</pre>
+
+
+&nbsp;
+Since the above method of array generation can be tedious, in PostgreSQL 9.4, they have introduced a new method called <code>json_build_object</code>. Simple usage of the function can be as below
+
+
+<pre class="lang:pgsql decode:true ">json_build_object('foo',1,'bar',2)</pre>
+
+
+which will output
+
+
+<pre class="lang:js decode:true ">{"foo": 1, "bar": 2}</pre>
+
+
+Also, we can use it to build complex JSON tree by creating functions within the PostgreSQL database. Of course, as we do that, we are moving more and more logic of the code into the DB and we would need to run migrations every time when we want to update a function. So as I said before, we are sacrificing our convenience here .So we should only use this, as the complexity of our JSON generation increases.
+I will be covering how to write PostgreSQL functions to help generate more complex JSON structure easier in the second part of this particle.
+
+
+<h2>References</h2>
+
+
+https://www.postgresql.org/docs/current/static/functions-json.html
+http://bytefish.de/blog/postgresql_json/]]&gt;		</p>
+]]></content:encoded>
+							<wfw:commentRss>/create-json-response-using-postgresql-instead-rails/feed/</wfw:commentRss>
+		<slash:comments>11</slash:comments>
+							</item>
+		<item>
+		<title>Optimising PostgreSQL database query using indexes</title>
+		<link>/optimising-postgresql-database-query-using-indexes/</link>
+				<comments>/optimising-postgresql-database-query-using-indexes/#comments</comments>
+				<pubDate>Thu, 11 Aug 2016 10:59:22 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Database]]></category>
+		<category><![CDATA[PostgreSQL]]></category>
+		<category><![CDATA[B Tree]]></category>
+		<category><![CDATA[database]]></category>
+		<category><![CDATA[GIN]]></category>
+		<category><![CDATA[Guide]]></category>
+		<category><![CDATA[Hash]]></category>
+		<category><![CDATA[index]]></category>
+		<category><![CDATA[learning]]></category>
+		<category><![CDATA[migration]]></category>
+		<category><![CDATA[multi column]]></category>
+		<category><![CDATA[partial migration]]></category>
+		<category><![CDATA[rails]]></category>
+		<category><![CDATA[Ruby]]></category>
+		<category><![CDATA[ruby on rails]]></category>
+		<category><![CDATA[single column]]></category>
+		<category><![CDATA[SQL]]></category>
+		<category><![CDATA[training]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=389</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[At Red Panthers PostgreSQL is our go to database we use it everywhere. So thinking about how to optimize our database performance is one of the most talked about topic at our office. The best way to speed up report generation and data retrieval within a rails application is to leave it to the database, as they have algorithms and optimizations build just for that. We always felt that most Ruby on Rails projects out there, do not use the full potential of a database and they usually just limit it to a data store. PostgreSQL or any database for that matter is much more than that.
+We would be blogging on how we use PostgreSQL in our projects to speed up our client's applications. This particle is the first part of a series of article we would be writing on database optimization.
+<img class="aligncenter" src="http://i.imgur.com/YSZE83d.jpg?1" width="231" height="172" />
+<strong>Database Indexes:</strong>
+Indexes are a special lookup table that the database search engine can use to speed up data retrieval. An Index is similar to a pointer to a particular row of a table. As a real world example, consider a Britannica Encyclopedia with 22 volumes of books, and an extra book listing  the index,with which you can find out the item you are searching for in those 22 books.
+PostgreSQL 9.5, provides several index algorithms like B-tree, Hash, GiST, SP-GiST and GIN. When you create an index using Ruby on Rails migration, by <strong>default it would be using the B-Tree</strong> migration. Whereas, as we move on to the indexing algorithms, we need to check into the general classification of an index and the data to be indexed.
+<strong>Primary Keys</strong>
+In rails, when we generate a model , by default an ID column would be added to the table. It would have integers values and they would be unique as well. By default, when you set a column as a primary key, the database would build a <em><strong>unique index </strong></em>on it. So we don&#8217;t need to add migration for it.
+<strong>Foreign Keys</strong>
+When you build a relationship between two tables you add a <code>foreign_key</code> in the child table to point to parent, eg: <code>user_id</code>, <code>group_id</code>. We need to query through this relationship a lot in rails, for example to load all the comments of post or all members of a group.<strong> So we need to index that for speed.</strong>.
+If you are using some non id value to reference a table, lets say in your application ,you give all your users a unique URL which has the username. (Eg: http://csnipp.com/coderhs), in that case we would be using the username to query the data, so we need to have it indexed. In fact you should index all the columns you might be using in your where queries. Like if you are searching for users of a particular age or income frequents in your reports, then you should create an index for them as well.
+<strong>Note:</strong>  What we explained above are single column indexes and multi column indexes. So if you are indexing just a single column in a table, its single column indexes.
+
+
+<pre class="lang:pgsql decode:true">CREATE INDEX index_name
+ON prices (user_id);</pre>
+
+
+Rails code:
+
+
+<pre class="lang:ruby decode:true">add_index :prices, :user_id</pre>
+
+
+When we index multiple columns, they are called multi column index.
+
+
+<pre class="lang:pgsql decode:true">CREATE INDEX index_name
+ON user_views (user_id, article_id);</pre>
+
+
+Rails code:
+
+
+<pre class="lang:ruby decode:true">add_index :user_views, [:user_id, :article_id]</pre>
+
+
+If you are joining two tables, using a column (which is not the already indexed foreign key) then you should index that as well.
+<strong>State column &amp; Boolean column</strong>
+State and Boolean column are columns that should be indexed as there would be a lot of rows but only limited number of values in those columns. Boolean column would have only true or false (two values)and state columns will have more than two like eg: draft, published, pending. The speed of load would be faster for these columns as they are only limited keys that can be placed in the index, and on a single lookup we can load them.
+<strong>Partial indexes</strong> can be used in the above case, as the name suggests it&#8217;s an index over a subset of your table. The index would be building if it satisfies certain conditions. They can be most useful <strong>while writing scopes in rails. </strong>Lets say that you have a scope that picks up all the articles which are marked as SPAM. In your model you will write a scope like below
+
+
+<pre class="lang:ruby decode:true">scope :articles, where(:spam =&gt; 'true')</pre>
+
+
+So internally it&#8217;s a where query, one can add a partial index migration as follows:
+
+
+<pre class="lang:pgsql decode:true">CREATE INDEX index_name
+on articles (spam is true);</pre>
+
+
+Rails:
+
+
+<pre class="lang:ruby decode:true">add_index :articles, :spam, name: "index_articles_on_spam", where: "(spam IS true)"</pre>
+
+
+<strong>When not to use indexes</strong>
+Using indexes speeds up the SELECT and WHERE command, but it does slows down the execution of INSERT.
+<strong>So avoid indexing when we have table that has a lot of insert and update</strong>
+So we should avoid using Indexes when we have a table that holds a huge number of raw data, where we do a lot of batch updates and insert. For example, in an IoT application we would pipe all the data from multiple devices to a single table , summarize  and insert it into its proper tables. And  by a lot of data, I am referring to at least 10+ MB of data per minute. In most cases, we would just truncate that table after processing, hence it would slow us down if we were to index it.
+<strong>If the table is too small and you know it will always be small</strong>
+If you have a setting table which just stores the application settings, that can be modified by an admin panel. Then it doesn&#8217;t seem to be worth having an index there.
+<strong>When you are manipulating the values of a column a lot</strong>
+Lets say the particular value of a column gets changes extremely a lot, like the website view count. Then indexing it is not highly recommended.
+Finally to complete this article. If you want to drop an index:
+SQL
+
+
+<pre class="lang:pgsql decode:true">DROP INDEX index_name;</pre>
+
+
+Rails
+
+
+<pre class="lang:ruby decode:true">remove_index :books, :created_at</pre>
+
+
+<strong>Summary</strong>:
+
+
+<ul>
+ 	
+
+<li>Index Primary key</li>
+
+
+ 	
+
+<li>Index Foreign key</li>
+
+
+ 	
+
+<li>Index all columns you would be passing into where clause</li>
+
+
+ 	
+
+<li>Index the keys used to Join tables</li>
+
+
+ 	
+
+<li>Index the date column (if you are going to call it frequent, like rankings of a particular date)</li>
+
+
+ 	
+
+<li>Index the type column in an STI or polymorphism.</li>
+
+
+ 	
+
+<li>Add partial index to scopes</li>
+
+
+ 	
+
+<li>Do not index tables with a lot of read, write</li>
+
+
+ 	
+
+<li>Do not index tables you know that will remain small, all through out its life time</li>
+
+
+ 	
+
+<li>Do not index columns where you will be manipulating lot of its values.</li>
+
+
+</ul>
+
+
+Keep visiting here to know more about the PostgreSQL indexing algorithms in part 2 of this article.
+<strong>References:</strong>
+<a href="https://www.postgresql.org/docs/9.2/static/indexes-types.html">https://www.postgresql.org/docs/9.2/static/indexes-types.html</a>
+<a href="http://dev.mysql.com/doc/refman/5.7/en/mysql-indexes.html">http://dev.mysql.com/doc/refman/5.7/en/mysql-indexes.html</a>
+<a href="http://www.tutorialspoint.com/postgresql/postgresql_indexes.htm">http://www.tutorialspoint.com/postgresql/postgresql_indexes.htm</a>]]&gt;		</p>
+]]></content:encoded>
+							<wfw:commentRss>/optimising-postgresql-database-query-using-indexes/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+							</item>
+		<item>
+		<title>Database transaction in Rails</title>
+		<link>/database-transaction-rails/</link>
+				<pubDate>Mon, 01 Aug 2016 11:38:48 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Rails]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[database]]></category>
+		<category><![CDATA[DBA]]></category>
+		<category><![CDATA[expert]]></category>
+		<category><![CDATA[learning]]></category>
+		<category><![CDATA[nested transaction]]></category>
+		<category><![CDATA[ruby on rails]]></category>
+		<category><![CDATA[SQL]]></category>
+		<category><![CDATA[transaction]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=377</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[
+
+<blockquote>A transaction is a sequence of operations performed as a single logical unit of work. A logical unit of work must exhibit four properties called the <strong>atomicity</strong>, <strong>consistency</strong>, <strong>isolation</strong> and <strong>durability</strong> (<strong>ACID</strong>) properties, to qualify as a transaction.</blockquote>
+
+
+We use database transactions to make sure that all the instructions we send to database are successful, and would cause changes to the database only if they are successful. Let&#8217;s say that you are working on a banking application which would withdraw money from one account and deposit into another account. The code for it would look like below
+
+
+<pre class="lang:ruby decode:true">User.find(156).withdraw(1000)
+User.find(157).deposit(1000)</pre>
+
+
+But for some reason, the withdrawal was successful but the deposit was not, the amount was taken out but never deposited to the other user.To avoid these kind of issues, database has a functionality called transactions, in which you can  build up each sql query. But if for any reason, any of the sql statements fails or an exception rises in the block, all the transactions are rolled back to their original form.
+
+
+<pre class="lang:default decode:true">User.transaction do
+  User.find(156).withdraw(1000)
+  User.find(157).deposit(1000)
+end</pre>
+
+
+In rails, the transaction method is available as class method and instance method, but the functionality for both is same. There is no difference when you will use.
+
+
+<pre class="lang:default decode:true">@user.transaction do
+end</pre>
+
+
+and
+
+
+<pre class="lang:default decode:true">User.transaction do
+end</pre>
+
+
+The reason why rails provides this, is for better readability.
+One can also mix various model types in a transaction, as the transaction are bound to a database connection. So there is no issue in writing code like below.
+
+
+<pre class="lang:default decode:true">User.transaction do
+  Order.create order_attributes
+  Purchase.create purchase_attribute
+end</pre>
+
+
+&nbsp;
+<strong>Nested Transactions: </strong>It is possible to write nested transactions. But it is to be noted that,<strong> it would just make each child transaction a part of the parent transaction</strong>. Taking the example from the Rails documentation.
+The below code
+
+
+<pre class="lang:default decode:true">User.transaction do
+  User.create(username: 'Kotori')
+  User.transaction do
+    User.create(username: 'Nemu')
+    raise ActiveRecord::Rollback
+  end
+end</pre>
+
+
+Creates both “Kotori” and “Nemu”. Reason is the ActiveRecord::Rollback exception in the nested block does not issue a ROLLBACK. Since these exceptions are captured in transaction blocks, the parent block does not see it and the real transaction is committed.
+Reference:
+https://technet.microsoft.com/en-us/library/ms190612(v=sql.105).aspx]]&gt;		</p>
+]]></content:encoded>
+										</item>
+		<item>
+		<title>Counter Cache:  How to get started</title>
+		<link>/counter-cache-how-to-get-started/</link>
+				<pubDate>Tue, 26 Jul 2016 10:40:48 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Beginners]]></category>
+		<category><![CDATA[Rails]]></category>
+		<category><![CDATA[Ruby]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[cache]]></category>
+		<category><![CDATA[counter]]></category>
+		<category><![CDATA[database]]></category>
+		<category><![CDATA[improvement]]></category>
+		<category><![CDATA[mysql]]></category>
+		<category><![CDATA[oracale]]></category>
+		<category><![CDATA[performance]]></category>
+		<category><![CDATA[PostgreSQL]]></category>
+		<category><![CDATA[ruby on rails]]></category>
+		<category><![CDATA[SQL]]></category>
+		<category><![CDATA[tips]]></category>
+		<category><![CDATA[training]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=335</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[Displaying the <em>number of tasks under a projec</em>t or the <em>number of comments in a post</em> or the <em>number of users in an organization or anything </em>similar is a common requirement in most rails applications. The code for doing it is also simple- <strong>@project.tasks.count;</strong> but the problem with this code is that every time you run it, you are counting the number of tasks of that project one by one. So, the speed of execution decreases with more number of rows. This code will slow down your page load, if you are displaying the details of more than one project in your page as shown below.
+<a href="https://redpanthers.co/wp-content/uploads/2016/07/Screen-Shot-2016-07-26-at-2.10.14-PM.png"><img class="size-full wp-image-338" src="https://redpanthers.co/wp-content/uploads/2016/07/Screen-Shot-2016-07-26-at-2.10.14-PM.png" alt="project_list" width="198" height="123" /></a>
+To speed this up, rails gives you an in-build mechanism called &#8220;<a href="http://guides.rubyonrails.org/association_basics.html"><strong>Counter Cache</strong></a>&#8220;. As the name suggests, it literally means to cache the number of referenced rows it has (number of tasks a project has).
+<strong>Example code definition</strong>
+
+
+<pre class="toolbar:2 toolbar-overlay:false toolbar-hide:false toolbar-delay:false show-title:false show-lang:2 plain:false show-plain:3 plain-toggle:false popup:false lang:ruby decode:true">class Projects &lt; ActiveRecord::Base
+  has_many :tasks
+end
+class Task &lt; ActiveRecord::Base
+  belongs_to :project
+end</pre>
+
+
+To implement counter_cache, you need to pass in the <strong>counter_cache: true </strong>option along with the belongs_to relationship. You also need to add a migration to add an extra column called <strong>tasks_count</strong> to store the count. This needs to be added to the other model, which has the <strong>has_many</strong> reference.
+
+
+<pre class="toolbar:2 plain:false show-plain:3 plain-toggle:false popup:false lang:ruby decode:true ">class Task &lt; ActiveRecord::Base
+  belongs_to :project, counter_cache: true
+end</pre>
+
+
+<strong>Migration</strong>
+
+
+<pre class="toolbar:2 show-plain:3 lang:default decode:true">class AddTasksCounterCacheToProjects &lt; ActiveRecord::Migration[5.0]
+  def change
+    add_column :projects, :tasks_count, :integer
+  end
+end</pre>
+
+
+If you are adding counter cache to an existing system, you need to update your <strong>tasks_count </strong>with the existing counts. To do that, one can use the code given below. Either place the code along with the migration or run it in console in both production/development environments.
+
+
+<pre class="toolbar:2 show-plain:3 lang:ruby decode:true">Project.find_each { |project| Project.reset_counters(project.id, :tasks) }
+</pre>
+
+
+<span style="line-height: 1.5;">Also note that the tasks_count is just the default column name; if you wish to change it with another name, just pass that name along with the :counter_cache option as below.</span>
+
+
+<pre class="toolbar:2 show-plain:3 lang:ruby decode:true  ">class Task &lt; ActiveRecord::Base
+  belongs_to :project, counter_cache: :not_the_default_column_name
+end</pre>
+
+
+Now, to use the counter cache in your calculations, you should use the method &#8220;size&#8221; instead of &#8220;count&#8221;. The method &#8220;size&#8221; will use the counter_cache if its present, where as using &#8220;.count&#8221; itself would do the actual sql count.
+
+
+<pre class="toolbar:2 show-plain:3 lang:ruby decode:true">&lt;% Project.all.each do |project| %&gt;
+  &lt;%= project.name %&gt; (&lt;%= project.tasks.size %&gt;)
+&lt;% end %&gt;
+</pre>
+
+
+<span style="line-height: 1.5;"><strong>Points to Remember</strong></span>
+
+
+<ul>
+ 	
+
+<li><strong>:counter_cache</strong> is the optional attribute of a <strong>belongs_to</strong> relationship</li>
+
+
+ 	
+
+<li>It requires the creation of an extra column (tasks_count) in the table which has the <strong>has_many</strong> relationship</li>
+
+
+ 	
+
+<li>One can use another column name by passing the name along with :counter_cache option</li>
+
+
+ 	
+
+<li>To use the counter_cache, one must use the <strong>&#8220;.size&#8221;</strong> method</li>
+
+
+</ul>
+
+
+<strong>Speed Improvements</strong>
+<a href="https://redpanthers.co/wp-content/uploads/2016/07/speed_with_count.png"><img class="alignnone wp-image-339 size-full" src="https://redpanthers.co/wp-content/uploads/2016/07/speed_with_count.png" alt="Speed with just count" width="797" height="73" /></a>
+<a href="https://redpanthers.co/wp-content/uploads/2016/07/speed_with_counter_cache.png"><img class="alignnone wp-image-340 size-full" src="https://redpanthers.co/wp-content/uploads/2016/07/speed_with_counter_cache.png" alt="speed_with_counter_cache" width="776" height="53" /></a>
+&nbsp;]]&gt;		</p>
+]]></content:encoded>
+										</item>
+	</channel>
+</rss>

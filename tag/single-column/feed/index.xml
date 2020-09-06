@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>single column &#8211; beta.redpanthers.co</title>
+	<atom:link href="/tag/single-column/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description>Red Panthers - Experts in Ruby on Rails, System Design and Vue.js</description>
+	<lastBuildDate>Thu, 11 Aug 2016 10:59:22 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.7</generator>
+	<item>
+		<title>Optimising PostgreSQL database query using indexes</title>
+		<link>/optimising-postgresql-database-query-using-indexes/</link>
+				<comments>/optimising-postgresql-database-query-using-indexes/#comments</comments>
+				<pubDate>Thu, 11 Aug 2016 10:59:22 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Database]]></category>
+		<category><![CDATA[PostgreSQL]]></category>
+		<category><![CDATA[B Tree]]></category>
+		<category><![CDATA[database]]></category>
+		<category><![CDATA[GIN]]></category>
+		<category><![CDATA[Guide]]></category>
+		<category><![CDATA[Hash]]></category>
+		<category><![CDATA[index]]></category>
+		<category><![CDATA[learning]]></category>
+		<category><![CDATA[migration]]></category>
+		<category><![CDATA[multi column]]></category>
+		<category><![CDATA[partial migration]]></category>
+		<category><![CDATA[rails]]></category>
+		<category><![CDATA[Ruby]]></category>
+		<category><![CDATA[ruby on rails]]></category>
+		<category><![CDATA[single column]]></category>
+		<category><![CDATA[SQL]]></category>
+		<category><![CDATA[training]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=389</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[At Red Panthers PostgreSQL is our go to database we use it everywhere. So thinking about how to optimize our database performance is one of the most talked about topic at our office. The best way to speed up report generation and data retrieval within a rails application is to leave it to the database, as they have algorithms and optimizations build just for that. We always felt that most Ruby on Rails projects out there, do not use the full potential of a database and they usually just limit it to a data store. PostgreSQL or any database for that matter is much more than that.
+We would be blogging on how we use PostgreSQL in our projects to speed up our client's applications. This particle is the first part of a series of article we would be writing on database optimization.
+<img class="aligncenter" src="http://i.imgur.com/YSZE83d.jpg?1" width="231" height="172" />
+<strong>Database Indexes:</strong>
+Indexes are a special lookup table that the database search engine can use to speed up data retrieval. An Index is similar to a pointer to a particular row of a table. As a real world example, consider a Britannica Encyclopedia with 22 volumes of books, and an extra book listing  the index,with which you can find out the item you are searching for in those 22 books.
+PostgreSQL 9.5, provides several index algorithms like B-tree, Hash, GiST, SP-GiST and GIN. When you create an index using Ruby on Rails migration, by <strong>default it would be using the B-Tree</strong> migration. Whereas, as we move on to the indexing algorithms, we need to check into the general classification of an index and the data to be indexed.
+<strong>Primary Keys</strong>
+In rails, when we generate a model , by default an ID column would be added to the table. It would have integers values and they would be unique as well. By default, when you set a column as a primary key, the database would build a <em><strong>unique index </strong></em>on it. So we don&#8217;t need to add migration for it.
+<strong>Foreign Keys</strong>
+When you build a relationship between two tables you add a <code>foreign_key</code> in the child table to point to parent, eg: <code>user_id</code>, <code>group_id</code>. We need to query through this relationship a lot in rails, for example to load all the comments of post or all members of a group.<strong> So we need to index that for speed.</strong>.
+If you are using some non id value to reference a table, lets say in your application ,you give all your users a unique URL which has the username. (Eg: http://csnipp.com/coderhs), in that case we would be using the username to query the data, so we need to have it indexed. In fact you should index all the columns you might be using in your where queries. Like if you are searching for users of a particular age or income frequents in your reports, then you should create an index for them as well.
+<strong>Note:</strong>  What we explained above are single column indexes and multi column indexes. So if you are indexing just a single column in a table, its single column indexes.
+
+
+<pre class="lang:pgsql decode:true">CREATE INDEX index_name
+ON prices (user_id);</pre>
+
+
+Rails code:
+
+
+<pre class="lang:ruby decode:true">add_index :prices, :user_id</pre>
+
+
+When we index multiple columns, they are called multi column index.
+
+
+<pre class="lang:pgsql decode:true">CREATE INDEX index_name
+ON user_views (user_id, article_id);</pre>
+
+
+Rails code:
+
+
+<pre class="lang:ruby decode:true">add_index :user_views, [:user_id, :article_id]</pre>
+
+
+If you are joining two tables, using a column (which is not the already indexed foreign key) then you should index that as well.
+<strong>State column &amp; Boolean column</strong>
+State and Boolean column are columns that should be indexed as there would be a lot of rows but only limited number of values in those columns. Boolean column would have only true or false (two values)and state columns will have more than two like eg: draft, published, pending. The speed of load would be faster for these columns as they are only limited keys that can be placed in the index, and on a single lookup we can load them.
+<strong>Partial indexes</strong> can be used in the above case, as the name suggests it&#8217;s an index over a subset of your table. The index would be building if it satisfies certain conditions. They can be most useful <strong>while writing scopes in rails. </strong>Lets say that you have a scope that picks up all the articles which are marked as SPAM. In your model you will write a scope like below
+
+
+<pre class="lang:ruby decode:true">scope :articles, where(:spam =&gt; 'true')</pre>
+
+
+So internally it&#8217;s a where query, one can add a partial index migration as follows:
+
+
+<pre class="lang:pgsql decode:true">CREATE INDEX index_name
+on articles (spam is true);</pre>
+
+
+Rails:
+
+
+<pre class="lang:ruby decode:true">add_index :articles, :spam, name: "index_articles_on_spam", where: "(spam IS true)"</pre>
+
+
+<strong>When not to use indexes</strong>
+Using indexes speeds up the SELECT and WHERE command, but it does slows down the execution of INSERT.
+<strong>So avoid indexing when we have table that has a lot of insert and update</strong>
+So we should avoid using Indexes when we have a table that holds a huge number of raw data, where we do a lot of batch updates and insert. For example, in an IoT application we would pipe all the data from multiple devices to a single table , summarize  and insert it into its proper tables. And  by a lot of data, I am referring to at least 10+ MB of data per minute. In most cases, we would just truncate that table after processing, hence it would slow us down if we were to index it.
+<strong>If the table is too small and you know it will always be small</strong>
+If you have a setting table which just stores the application settings, that can be modified by an admin panel. Then it doesn&#8217;t seem to be worth having an index there.
+<strong>When you are manipulating the values of a column a lot</strong>
+Lets say the particular value of a column gets changes extremely a lot, like the website view count. Then indexing it is not highly recommended.
+Finally to complete this article. If you want to drop an index:
+SQL
+
+
+<pre class="lang:pgsql decode:true">DROP INDEX index_name;</pre>
+
+
+Rails
+
+
+<pre class="lang:ruby decode:true">remove_index :books, :created_at</pre>
+
+
+<strong>Summary</strong>:
+
+
+<ul>
+ 	
+
+<li>Index Primary key</li>
+
+
+ 	
+
+<li>Index Foreign key</li>
+
+
+ 	
+
+<li>Index all columns you would be passing into where clause</li>
+
+
+ 	
+
+<li>Index the keys used to Join tables</li>
+
+
+ 	
+
+<li>Index the date column (if you are going to call it frequent, like rankings of a particular date)</li>
+
+
+ 	
+
+<li>Index the type column in an STI or polymorphism.</li>
+
+
+ 	
+
+<li>Add partial index to scopes</li>
+
+
+ 	
+
+<li>Do not index tables with a lot of read, write</li>
+
+
+ 	
+
+<li>Do not index tables you know that will remain small, all through out its life time</li>
+
+
+ 	
+
+<li>Do not index columns where you will be manipulating lot of its values.</li>
+
+
+</ul>
+
+
+Keep visiting here to know more about the PostgreSQL indexing algorithms in part 2 of this article.
+<strong>References:</strong>
+<a href="https://www.postgresql.org/docs/9.2/static/indexes-types.html">https://www.postgresql.org/docs/9.2/static/indexes-types.html</a>
+<a href="http://dev.mysql.com/doc/refman/5.7/en/mysql-indexes.html">http://dev.mysql.com/doc/refman/5.7/en/mysql-indexes.html</a>
+<a href="http://www.tutorialspoint.com/postgresql/postgresql_indexes.htm">http://www.tutorialspoint.com/postgresql/postgresql_indexes.htm</a>]]&gt;		</p>
+]]></content:encoded>
+							<wfw:commentRss>/optimising-postgresql-database-query-using-indexes/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+							</item>
+	</channel>
+</rss>

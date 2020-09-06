@@ -1,0 +1,398 @@
+ <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Uncategorized &#8211; Red Panthers</title>
+	<atom:link href="/category/uncategorized/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description>Experts in Ruby on Rails Development</description>
+	<lastBuildDate>Fri, 25 Aug 2017 13:05:34 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.7</generator>
+
+<image>
+	<url>/wp-content/uploads/2017/12/rp-logo.png</url>
+	<title>Uncategorized &#8211; Red Panthers</title>
+	<link>/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>securing and showing a redis server to the world</title>
+		<link>/securing-and-showing-a-redis-server-to-the-world/</link>
+				<comments>/securing-and-showing-a-redis-server-to-the-world/#respond</comments>
+				<pubDate>Fri, 25 Aug 2017 13:05:34 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Uncategorized]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3193</guid>
+				<description><![CDATA[<p>Redis is an in memory based key value data structure server. They keywords here are in-memory (RAM) and Key &#8211; Value (Hash). RAM being the easily accessible memory location for your CPU, and hash being the most accissable data-structure a combination of both makes it lethal. It was developed by an Italian developer named Salvatore Sanfilippo, in&#8230;</p>
+<p>The post <a rel="nofollow" href="/securing-and-showing-a-redis-server-to-the-world/">securing and showing a redis server to the world</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<div style="width: 1290px" class="wp-caption aligncenter"><img class="size-full" src="https://upload.wikimedia.org/wikipedia/en/thumb/6/6b/Redis_Logo.svg/1280px-Redis_Logo.svg.png" alt="redis logo" width="1280" height="428" /><p class="wp-caption-text">Redis</p></div>
+<p>Redis is an in memory based key value data structure server. They keywords here are in-memory (RAM) and Key &#8211; Value (Hash). RAM being the easily accessible memory location for your CPU, and hash being the most accissable data-structure a combination of both makes it lethal. It was developed by an Italian developer named <a href="http://antirez.com/">Salvatore Sanfilippo</a>, in 2009.</p>
+<p>Such a system is useful in multiple scenarios. Especially in cases where key is readily available, constant and not changing. Some example use cases being. In a rails projects Redis is used at multiple places for example:</p>
+<ul>
+<li>Backend of action cable which is used to provide notifications (pub/sub)</li>
+<li>Queue system used by background workers (Sidekiq, Resque)</li>
+<li>Web Caching</li>
+<li>Session Store &#8211; sharing user session across all the load balanced servers</li>
+<li>Fast accessible meta data catalog for your inventory or tool</li>
+<li>Counting &#8211; Redis offers a fast method to increment and decrement value. Being an in-memory storage does add</li>
+</ul>
+<p>&nbsp;</p>
+<p>Coming back to the topic of this article, most self hosted rails applications starts off by installing redis in the same server as your rails application. In fact sidekiq, crontab (for scheduling tasks) would all be on the same server. Over time as your projects grows with users you would see that your application is slowing dow, CPU spiking to 100%, etc. We can start fixing that by moving sidekiq and the cron to another server (like how its done in heroku). But the first thing we need to make is the redis on our main server open to the second server and secure it.</p>
+<p>The steps to be followed are:</p>
+<p><strong>To open up your redis to the world.</strong></p>
+<p>Go to <code>/etc/redis/redis.conf</code> find the following line <code>bind 127.0.0.1</code>, by removing that line you will make your redis application accessable to the world through the default port <code>6379</code> . You can also set for the world by placing the ip as <code>0.0.0.0</code>. Lets remove it for now, as we will be securing it in our firewall (since my example is the AWS i would be doing that in the security group). If you don&#8217;t have a security group then add the ip of the servers connecting to it after a space <code>bind 127.0.0.1 192.168.1.1</code></p>
+<p><strong>Disable Protective mod</strong></p>
+<p>Since 3.2.0 redis comes with a default <code>protective-mode yes</code> that make it accepts query and request only from loopback (the machine itself). It was enables so as most people would install redis and have it exposed to the world (redis has limited security in itself, its expected for the system admin to take care of the necessary arrangements). So we need to turn it off. Find the line saying <code>protective-mode</code> and the set it to <code>no</code></p>
+<p><strong>Set a password for your instance</strong></p>
+<p>As a final step we can set a password to access redis. To set that find the like that says <code>requirepass</code> and after that word provide your password : <code>requirepass iwouldbeafooltosharemyrealpassword</code></p>
+<p>&nbsp;</p>
+<p><strong>SET the IP of your secondary server in your security group</strong></p>
+<p>For all those who uses AWS, like us. You need to open up this particular port in your machine, but do not make it accessable to all the IPs. Redis doesn&#8217;t have user permissions so basically if anyone were to get access they could just do a FLUSHALL and you will loose all your data.</p>
+<p>So open the port <code>6379</code> in your security group or IP tables (if you are in just a linux server) to the IP of the clients you want to connect. You can read about security group here -&gt; <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html">http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html</a></p>
+<p>With the above 4 steps you would have opened up your existing redis installed in your main server to the secondary new server. You can further add more machines by adding their IP to security group/ IP Tables.</p>
+<p>&nbsp;</p>
+<p>The post <a rel="nofollow" href="/securing-and-showing-a-redis-server-to-the-world/">securing and showing a redis server to the world</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/securing-and-showing-a-redis-server-to-the-world/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+							</item>
+		<item>
+		<title>Managing threads with Queue and SizedQueue</title>
+		<link>/managing-threads-queue-sizedqueue/</link>
+				<comments>/managing-threads-queue-sizedqueue/#comments</comments>
+				<pubDate>Tue, 22 Aug 2017 12:36:00 +0000</pubDate>
+		<dc:creator><![CDATA[nimmy]]></dc:creator>
+				<category><![CDATA[Uncategorized]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3081</guid>
+				<description><![CDATA[<p>Threads in Ruby To make our applications do multiple things faster at the same time, we can use Ruby threads. For a long-running application, re-using a pool of such threads can provide great performance benefits. Thread pool is a way to have a fixed set of threads doing the work, instead of creating new ones each time.&#8230;</p>
+<p>The post <a rel="nofollow" href="/managing-threads-queue-sizedqueue/">Managing threads with Queue and SizedQueue</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<h2></h2>
+<h2>Threads in Ruby</h2>
+<p>To make our applications do multiple things faster at the same time, we can use Ruby threads. For a long-running application, re-using a pool of such threads can provide great performance benefits. Thread pool is a way to have a fixed set of threads doing the work, instead of creating new ones each time.</p>
+<p>Considering a simple program as below, we realize the importance of threads.</p><pre class="crayon-plain-tag">def add_elements(group)
+  sleep(4)
+  sum = 0
+  group.each do |item|
+    sum += item
+  end
+  sum
+end
+
+@group1 = [22, 44, 55]
+@group2 = [45, 59, 72]
+@group3 = [99, 22, 33]
+
+puts "sum of group1 = #{add_elements(@group1)}"
+puts "sum of group2 = #{add_elements(@group2)}"
+puts "sum of group3 = #{add_elements(@group3)}"</pre><p>You will get the sum of each array as output but the sleep(4) instruction will pause execution for 4 seconds and then continue. Thus, group1 will get the sum after 4 seconds, group2 after 8 seconds and so on, which is not feasible. In such cases, it is more economical to have threads, since we can have the sum of each array calculated independently.</p>
+<p>Threads allow us to execute different parts of our program independently. For implementing threads, after initializing each array,</p><pre class="crayon-plain-tag">threads = (1..3).map do |c|
+  Thread.new(c) do |c|
+    groups = instance_variable_get("@groups#{element}")
+    puts "groups#{element} = #{add_element(groups)}"
+  end
+end
+threads.each {|t| t.join}</pre><p>The add_element method definition is same but we wrapped method call in a Thread.new block.</p>
+<p>Now, instead of getting the sum of each array after 4 seconds, 8 seconds and 12 seconds respectively, you will get the sum of all arrays after 4 seconds. This indicates better performance and efficiency which is the power of threads.</p>
+<h2>Queue for managing threads</h2>
+<p>To safely exchange information between threads, we can use Queue in the standard library. The tasks that are added first in the queue are retrieved first. PUSH and POP are the two main methods in Queue that add and retrieves an item respectively.</p>
+<p>Consider the following example.</p>
+<p>To create new queue instance, use the new() method.</p><pre class="crayon-plain-tag">require 'thread'
+queue = Queue.new
+
+Thread.new do
+  4.times do |i|
+    sleep(2)
+    queue &lt;&lt; i
+    puts "Thread #{i} produced"
+  end
+end</pre><p>5 items are inserted into the queue.</p>
+<p>Output as follows,</p><pre class="crayon-plain-tag">Thread 0
+
+Thread 1
+
+Thread 2
+
+Thread 3</pre><p>Now, to pop off items from queue,</p><pre class="crayon-plain-tag">Thread.new do
+  4.times do |i|
+     sleep(2)
+     puts "consumed thread #{queue.pop}"
+  end
+end</pre><p>It produces the following output</p><pre class="crayon-plain-tag">Thread 0
+
+consumed 0
+
+Thread 1
+
+consumed 1
+
+Thread 2
+
+consumed 2
+
+Thread 3
+
+consumed 3</pre><p></p>
+<h2>Sized queue for fixed-length queue</h2>
+<p>The sized queue is useful in situations where the rate of production is higher than consumption.</p>
+<p>In the following example,</p><pre class="crayon-plain-tag">require 'thread'
+queue = Queue.new
+
+Thread.new do
+  10.times do |i|
+    sleep(2)
+    queue &lt;&lt; i
+    puts "Thread #{i} produced"
+  end
+end
+
+Thread.new do
+  4.times do |i|
+    sleep(2)
+    puts "consumed thread #{queue.pop}"
+  end
+end</pre><p>We see, 10 items are produced and 4 items are consumed and remaining accumulate in the queue.</p>
+<p>This is an issue of memory wastage.</p>
+<p>Hence we rely on the sized queue.</p>
+<p>Instead of Queue.new, we use SizedQueue.new(maxvalue).</p>
+<p>The argument specifies the maximum number of items we allow to put in a queue.</p>
+<p>Modifying our example, we can save memory space.</p><pre class="crayon-plain-tag">require 'thread'
+queue = SizedQueue.new(4)
+
+Thread.new do
+  10.times do |i|
+    sleep(2)
+    queue &lt;&lt; i
+    puts "Thread #{i}"
+  end
+end
+
+Thread.new do
+  4.times do |i|
+    sleep(2)
+    puts "consumed #{queue.pop}"
+  end
+end</pre><p>4 threads are produced and consumed. After that, the maximum limit is checked and push operation is blocked. The maximum value of our sized queue is 4 here, so after that push, the operation is not allowed, even though the loop is for 10 times.</p>
+<p>Output:</p><pre class="crayon-plain-tag">Thread 0 produced 
+
+consumed thread 0
+
+Thread 1 produced 
+
+consumed thread 1
+
+Thread 2 produced 
+
+consumed thread 2
+
+Thread 3 produced 
+
+consumed thread 3
+
+Thread 4 produced 
+
+Thread 5 produced 
+
+Thread 6 produced 
+
+Thread 7 produced</pre><p>&nbsp;</p>
+<p>To conclude, we can say that while Queue can be used to safely exchange information between threads, SizedQueue helps to overcome the problem with the queue as mentioned above.</p>
+<h2>References</h2>
+<ul>
+<li><a href="https://docs.ruby-lang.org/en/2.4.0/Queue.html">https://docs.ruby-lang.org/en/2.4.0/Queue.html</a></li>
+<li><a href="https://docs.ruby-lang.org/en/2.4.0/SizedQueue.html">https://docs.ruby-lang.org/en/2.4.0/SizedQueue.html</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>The post <a rel="nofollow" href="/managing-threads-queue-sizedqueue/">Managing threads with Queue and SizedQueue</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/managing-threads-queue-sizedqueue/feed/</wfw:commentRss>
+		<slash:comments>3</slash:comments>
+							</item>
+		<item>
+		<title>PRY- Alternative for IRB</title>
+		<link>/pry-alternative-irb/</link>
+				<comments>/pry-alternative-irb/#respond</comments>
+				<pubDate>Sat, 30 Jan 2016 08:08:16 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Uncategorized]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=195</guid>
+				<description><![CDATA[<p>What is PRY? Why do we need PRY? Why read an article on PRY? Some of these questions might pop up in your mind when you read the title of this blog. Let me explain why you should be knowing about PRY. &#160; &#160; PRY is an attempt to remake IRB, the interactive Ruby interpreter,&#8230;</p>
+<p>The post <a rel="nofollow" href="/pry-alternative-irb/">PRY- Alternative for IRB</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p><span style="font-family: garamond,serif;">What is PRY? Why do we need PRY? Why read an article on PRY? Some of these questions might pop up in your mind when you read the title of this blog. Let me explain why you should be knowing about PRY.</span></p>
+<p>&nbsp;</p>
+<h4><img class="aligncenter" src="http://pryrepl.org/images/pry_logo.png" alt="PRY " width="418" height="305" /></h4>
+<p>&nbsp;</p>
+<p><span style="font-family: garamond,serif;">PRY is an attempt to remake IRB, the interactive Ruby interpreter, in a way that makes more sense for mordern programmers. Some of the most important features of PRY are syntax highlighting, code indentation and code debugging. In other words, instead of coding inside a REPL session, you can start a REPL session inside your code execution with the help of PRY.<br />
+</span></p>
+<p><strong><span style="font-family: garamond,serif;">Installing PRY</span></strong></p>
+<p><span style="font-family: garamond,serif;">Since PRY is a Ruby gem, installing it is straightforward. The following commands will work:</span></p><pre class="crayon-plain-tag">$ gem install pry
+$ pry</pre><p></p>
+<h4></h4>
+<h4><span style="font-family: garamond,serif;">Features</span></h4>
+<p><span style="font-family: garamond,serif;">PRY colorizes the syntax as it is typed into the console just like most mordern editors. In addition to this, PRY also auto-indents code thus allowing ensuring that the &#8216;end&#8217; words line up with the lines that open the block.</span></p>
+<p><code><br />
+pry(main) &gt; class User<br />
+pry(main)*   def greet<br />
+pry(main)*     puts "Hello world"<br />
+pry(main)*   end<br />
+pry(main)* end<br />
+</code></p>
+<p><span style="font-family: garamond,serif;">Another cool feature of PRY, as per my opinion, is it&#8217;s ability to show a method&#8217;s documentation and source code inside REPL. Having this feature inside PRY lets us bypass using <code>ri</code> to search for method documentations. Since PRY directly extracts it from source code, we don&#8217;t require RDoc to be installed. The documentation and/or source code can be viewed inside PRY using <code>show-doc</code> and <code>show-method</code> commands.</span></p>
+<p>&nbsp;</p>
+<p><strong><span style="font-family: garamond,serif;">PRY as Debugger</span></strong></p>
+<p><span style="font-family: garamond,serif;">Coming to one of the most important features of PRY, its role as a debugger during code execution. Generally, <code>puts</code> statements are used to output current values for debugging purposes or bona-fide debuggers are required. When using PRY, it automatically opens an IRB session at the current execution point and makes the whole program state, at that specific point, available.</span></p>
+<p><span style="font-family: garamond,serif;">If you want to specify exactly when the </span><code class="western">binding.pry</code><span style="font-family: garamond,serif;"> will crack open a pry-session. I do this with Ruby code conditionals:</span></p><pre class="crayon-plain-tag">binding.pry if session[:added_to_cart] == false
+binding.pry if @first_name == &quot;Jeena&quot;
+binding.pry if iteration &amp;gt; 5</pre><p><span style="font-family: garamond,serif;">To use PRY, the Gemfile of your Rails application should contain <code>gem pry</code>. Take care to place PRY under the development group. Once this is done, you can add the line <code>binding.pry</code> inside your code. Whenever Ruby interpreter executes that line, it stops further execution and opens up a PRY REPL session at that point. In case you want PRY sessions to open under certain conditions, you could do the following with Ruby code conditionals:</span></p>
+<p><span style="font-family: garamond,serif;"></p>
+<p><strong>Interactive modification of runtime state</strong></span></p>
+<p><span style="font-family: garamond,serif;">It might be convenient to open a PRY session in the middle of an executing program to modify the runtime state. Using <code>cd</code> and <code>ls</code> commands, the navigation feels natural and familiar. You can also pop in and out of objects, nesting sessions as deeply as you like.</span></p>
+<p>&nbsp;</p>
+<p><strong><span style="font-family: garamond,serif;">Customizability</span></strong></p>
+<p><span style="font-family: garamond,serif;">PRY can be easily customized using an user&#8217;s <code>.pryrc</code> file. Starting from the color of the prompt, to enabling/disabling of history or specifying the editor to be used with PRY are some of the configurations that you can set. Advanced users can even set the Input and Output objects from using the default values of <code>Readline</code> and <code>$stdout</code>.</p>
+<p>As a conclusion to this article, I would say that these are just some points of PRY that were interesting to me. For a more thorough reading, you could look up the following sites:</p>
+<p><a href="http://pryrepl.org/" target="_blank">http://pryrepl.org/</a><br />
+<a href="https://github.com/pry/pry/">https://github.com/pry/pry/</a></span></p>
+<h4></h4>
+<p>&nbsp;</p>
+<p>The post <a rel="nofollow" href="/pry-alternative-irb/">PRY- Alternative for IRB</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/pry-alternative-irb/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+							</item>
+		<item>
+		<title>Jenkins &#8211; Continuous Integration</title>
+		<link>/157/</link>
+				<comments>/157/#respond</comments>
+				<pubDate>Fri, 29 Jan 2016 10:39:22 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Uncategorized]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=157</guid>
+				<description><![CDATA[<p>In this article am going to explain about Jenkins. So what is jenkins? Jenkins is the leading open source continuous integration server. Built with java. Jenkin is a CI so first we need to know what is continuos integration. Nowadays developers are working from different corners of the world. When same code is modified by&#8230;</p>
+<p>The post <a rel="nofollow" href="/157/">Jenkins &#8211; Continuous Integration</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p><a href="http://blog.redpanthers.co/wp-content/uploads/2016/01/header_logo-1.png" rel="attachment wp-att-257"><img class="size-medium wp-image-257 aligncenter" src="http://blog.redpanthers.co/wp-content/uploads/2016/01/header_logo-1-300x96.png" alt="header_logo (1)" width="300" height="96" /></a></p>
+<p>In this article am going to explain about Jenkins. <strong>So what is jenkins?</strong></p>
+<p>Jenkins is the leading open source continuous integration server. Built with java. Jenkin is a CI so first we need to know what is continuos integration. Nowadays developers are working from different corners of the world. When same code is modified by different users the chance for conflicts are very high, this consume large amout of time to solve the issue.To avoid this we use continuos integration. This is a practice of merging all developers working copies into a repository many times aday. There are different continuous integration tools available, some of them are Bamboo, Apache Continuum, DeployBot, Hudson, Jenkins etc</p>
+<h4>So many continuous integrations tools are available then why we choose Jenkins?</h4>
+<p>Jenkins is an extensible continuous integration engine forked from Hudson and Hudson team has moved to develop Jenkins, large number of plugins are available in Jenkins and the authers are choosen to support their plugins on Jenkins, Jenkins make incremental itrative improvement to the code,<br />
+Jenkins provide hundreds of plugins to support building,testing,deploying and automatin for any projects. Plugins have been released for jenkins that extend its use to projects written in language other than java. Plugins available for integrating jenkins with most version control systems and big database. Plugins can also change the the way jenkins looks or add new functionality.</p>
+<h4>These are some features of the Jenkins that make it user-friendly&#8230;</h4>
+<p>1. Easy installation: For installation run java-jar jenkins.war, deploy it in a servelet container. No additional installation or database is needed.</p>
+<p>2. Easy configuaration: Using its user friendly GUI we can easily configuare the jenkins</p>
+<p>3. Plugins: There are 100s of plugins available for jenkins. Most part of the jenkins can be extended and modified</p>
+<p>4. Distributed builds: jenkins can distribute to multiple computers with differentt operating systems</p>
+<h4>These are the steps to install Jenkins on ubuntu</h4>
+<p></p><pre class="crayon-plain-tag">wget -q -O - https://jenkins-ci.org/debian/jenkins-ci.org.key | sudo apt-key add -
+sudo sh -c 'echo deb http://pkg.jenkins-ci.org/debian binary/ &gt; /etc/apt/sources.list.d/jenkins.list'
+sudo apt-get update
+sudo apt-get install jenkins</pre><p>&nbsp;</p>
+<p>use these for installing jenkins in ubuntu</p>
+<h2>Configuring jenkins</h2>
+<p>After the proper installation of the Jenkins next we need to create a new project and configure the same. For creating a new project in jenkins go to the dashboard click on the &#8216;New Item&#8217; and set your project as your need. for configuring jenkins get into that project and go to the &#8216;configure tab in the left sidebar&#8217;. We can set our project_name, description slack notifications etc in this page. We can set our repository address deploying address etc in this.By using plugins we can add more features to it. After configuring save the changes and click &#8216;build now&#8217; to build. After this jenkins will show whether the build is succeed or not by whether build trend. Jenkins can execute shell scripts, bash script and Ant targets.</p>
+<p><a href="http://blog.redpanthers.co/wp-content/uploads/2016/01/configure.png" rel="attachment wp-att-249"><img class="wp-image-249 aligncenter" src="http://blog.redpanthers.co/wp-content/uploads/2016/01/configure-300x149.png" alt="configure" width="640" height="318" /></a></p>
+<p>&nbsp;</p>
+<h3>Jenkins plugins</h3>
+<p>The most important feature of Jenkins is its plugins, so lets have a look through it..<br />
+plugins are very helpful while accessing the project. Different types of plugins are availabe for integrating jenkins. We can add new functionality using plugins. We can install existing plugins and create new plugins.<br />
+Now lets have a look at how to install plugins. There 3 ways to install a plugins</p>
+<p>1) installing the newest version<br />
+2) installing a specific version<br />
+3) installing by hand</p>
+<h4>installing the newest version</h4>
+<p>click on the &#8216;manage plugin&#8217; in the &#8216;manage Jenkins&#8217; go to the availabe tab select which plugin should be installed from available plugin then attempt &#8216;install without restart&#8217;</p>
+<p><a href="http://blog.redpanthers.co/wp-content/uploads/2016/01/managejenkins.png" rel="attachment wp-att-250"><img class="size-medium wp-image-250 alignnone" src="http://blog.redpanthers.co/wp-content/uploads/2016/01/managejenkins-300x68.png" alt="managejenkins" width="300" height="68" /></a> <a href="http://blog.redpanthers.co/wp-content/uploads/2016/01/newmanage.png" rel="attachment wp-att-255"><img class="alignnone size-medium wp-image-255" src="http://blog.redpanthers.co/wp-content/uploads/2016/01/newmanage-300x84.png" alt="newmanage" width="300" height="84" /></a></p>
+<h4>installing a specific version</h4>
+<p>download the older version of plugin. Upload it from your computer on &#8216;advanced tab&#8217; of the &#8216;manage plugin&#8217; page</p>
+<p><a href="http://blog.redpanthers.co/wp-content/uploads/2016/01/manageplugin.png" rel="attachment wp-att-251"><img class="wp-image-251 aligncenter" src="http://blog.redpanthers.co/wp-content/uploads/2016/01/manageplugin-300x133.png" alt="manageplugin" width="640" height="285" /></a></p>
+<h4>installing by hand</h4>
+<p>save the downloaded .hpi/.jpi into the $jenkins_home directory plugin. You will need to restart your computer.</p>
+<h4>Create plugins</h4>
+<p>As i said earlier we can also create plugins in Jenkins, only few steps are needed for creating a plugin<br />
+to start the plugin use the following</p><pre class="crayon-plain-tag">$ mvn -U org.jenkins-ci.tools:maven-hpi-plugin:create</pre><p>&nbsp;</p>
+<p>this will ask you few questions like groupid artifactid.</p><pre class="crayon-plain-tag">$ cd newly-created-directory
+$ mvn package</pre><p>&nbsp;</p>
+<p>then we need to build the plugin for that just run<br />
+mvn install</p>
+<h3>Useful jenkins plugins</h3>
+<ol>
+<li>build flow</li>
+<li>build monitor</li>
+<li>build name setter</li>
+<li>build pipeline</li>
+<li>email extension</li>
+<li>git</li>
+<li>SSH</li>
+<li>heroku</li>
+<li>priority sorter</li>
+<li>checkstyle</li>
+</ol>
+<p>The post <a rel="nofollow" href="/157/">Jenkins &#8211; Continuous Integration</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/157/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+							</item>
+		<item>
+		<title>Setting Up RSpec in Rails Application</title>
+		<link>/setup-rspec-in-rails-app/</link>
+				<comments>/setup-rspec-in-rails-app/#respond</comments>
+				<pubDate>Fri, 29 Jan 2016 07:06:12 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Rails]]></category>
+		<category><![CDATA[Uncategorized]]></category>
+		<category><![CDATA[automated-testing]]></category>
+		<category><![CDATA[rails]]></category>
+		<category><![CDATA[rspec]]></category>
+		<category><![CDATA[rspec-rails]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=149</guid>
+				<description><![CDATA[<p>This article describes the RSpec setup process in your Rails application. Installing RSpec When generating a new Rails project, just add the flag --skip-test-unit to supress creation of the test directory associated with the default Test::Unit framework as won&#8217;t be needing that. In the Gemfile, add: [crayon-5f53f02c4d629236568307/] RSpec-Rails has a dependency to RSpec, so we&#8230;</p>
+<p>The post <a rel="nofollow" href="/setup-rspec-in-rails-app/">Setting Up RSpec in Rails Application</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p>This article describes the RSpec setup process in your Rails application.</p>
+<h4>Installing RSpec</h4>
+<p>When generating a new Rails project, just add the flag <code>--skip-test-unit</code> to supress creation of the test directory associated with the default Test::Unit framework as won&#8217;t be needing that.</p>
+<p>In the Gemfile, add:</p><pre class="crayon-plain-tag">group :development, :test do
+  gem 'rspec-rails'
+end</pre><p>RSpec-Rails has a dependency to RSpec, so we don&#8217;t need to include it separately.</p>
+<p>Yeah, we need it in development env too. Let&#8217;s see why :</p>
+<ul>
+<li>The development mode RSpec files add RSpec-specific generators</li>
+<li>Test mode includes files to run the tests</li>
+</ul>
+<p>Once you have run <code>bundle install</code>, Run this snippet to configure Rails to use RSpec in place of Test::Unit <code>rails generate rspec:install</code></p>
+<p>This single command would generate you 4 new files :</p><pre class="crayon-plain-tag">.rspec
+ spec
+ spec/spec_helper.rb
+ spec/rails_helper.rb`</pre><p>We&#8217;ll cover more in detail regarding those later.</p>
+<h4>Updating the test database</h4>
+<p>Check for pending migrations and load the test schema <code>rake db:test:prepare</code></p>
+<p>N.B <a href="http://makandracards.com/makandra/2945-preparing-your-test-database-mind-the-differences">Preparing your test database</a></p>
+<h4>Run your test suit</h4>
+<p><code>rspec</code></p>
+<p>Yup, Its simple as that&#8230; <img src="https://s.w.org/images/core/emoji/12.0.0-1/72x72/1f642.png" alt="🙂" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p>The post <a rel="nofollow" href="/setup-rspec-in-rails-app/">Setting Up RSpec in Rails Application</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/setup-rspec-in-rails-app/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+							</item>
+	</channel>
+</rss>

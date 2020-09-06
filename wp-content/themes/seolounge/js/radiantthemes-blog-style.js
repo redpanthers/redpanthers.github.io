@@ -1,0 +1,1 @@
+(function($){"use strict";jQuery(window).on("load",function(){jQuery(".isotope-blog-style").isotope({itemSelector:'.isotope-blog-style-item',layoutMode:'masonry',});});})(jQuery);

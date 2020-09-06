@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>enumerator &#8211; beta.redpanthers.co</title>
+	<atom:link href="/tag/enumerator/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description>Red Panthers - Experts in Ruby on Rails, System Design and Vue.js</description>
+	<lastBuildDate>Fri, 12 Aug 2016 08:49:12 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.7</generator>
+	<item>
+		<title>Lazy enumerator to handle huge files</title>
+		<link>/lazy-enumerator-to-handle-huge-files/</link>
+				<pubDate>Fri, 12 Aug 2016 08:49:12 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Ruby]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[core]]></category>
+		<category><![CDATA[enumerator]]></category>
+		<category><![CDATA[files]]></category>
+		<category><![CDATA[functional]]></category>
+		<category><![CDATA[huge files]]></category>
+		<category><![CDATA[lazy]]></category>
+		<category><![CDATA[mangaing]]></category>
+		<category><![CDATA[programming]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=401</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[<b>Lazy evaluation</b>, or <b>call-by-need</b> is an evaluation strategy which delays the evaluation of an expression until its value is needed. It&#8217;s frequently seen in functional languages, ruby introduced the lazy method in Ruby 2.0. For those who don&#8217;t know what are enumerators: enumerators are something that can be counted. So a collection of elements, files (file is an collection of lines of string), etc can be treated as an enumerator.
+In ruby we need to make something countable into an enumerator object, which is done by applying .each and .map on it.
+
+
+<pre class="lang:ruby decode:true">[].each
+[1, 3, 4].each
+file.each
+{}.each</pre>
+
+
+Ruby has a wide range of operations we can do over a collection, it&#8217;s one of those features that makes Ruby such a powerful dynamic language. An enumerator can be used to generate series like the Fibonacci series.
+
+
+<pre class="lang:ruby decode:true">fib = Enumerator.new do |y|
+  a = b = 1
+  loop do
+    y &lt;&lt; a
+    a, b = b, a + b
+  end
+end</pre>
+
+
+But when we do a <em>.map</em> / <em>.each</em> with a code block, then it would try to realize the enumerator fully and then apply the block over it.
+<i></i>That would be fine when we are working on something small like:
+
+
+<pre class="lang:default decode:true">[1,2,3].map { |i| i*i }</pre>
+
+
+But when we take the above fib enumerator, which will grow into an infinite series, adding a <em>.map </em>would lead the code to an infinite loop. If you are crazy enough to write an infinite loop, feel free to run the below code.
+
+
+<pre class="lang:ruby decode:true">foo.map { |i| i * * }</pre>
+
+
+When we try to use these operations on a huge 10 GB file,there it makes your program realize the entire file is close to impossible. So this is the case where the lazy enumerator comes to place. It would ask ruby to defer the realization of the enumerator until it is required, and not before you run your operation.
+So with respect to the above Fibonacci enumerator, you should change the code to as below.
+
+
+<pre class="lang:ruby decode:true">foo.lazy.map { |i| i * i }</pre>
+
+
+So now, the program is ready, all good it would run fast. But it won&#8217;t execute them until you call or access those elements. So only when we do <code>foo.lazy.map { |i| i* i }.</code> First the first element is calculated and given to us. Like wise if you want the first 10 elements of the fibonacci series then you have to do <code>foo.lazy.map { |i| i* i }.take(1o).to_a</code>
+To do the  same with the files, as a file is a collection of lines, follow the below code snippets:
+
+
+<pre class="lang:ruby decode:true">fille = File.open('OurHugeFile.log')
+</pre>
+
+
+<span style="line-height: 1.5;">get the first three lines, lazily:</span>
+
+
+<pre class="lang:ruby decode:true">file.each_line.lazy.take(3).to_a</pre>
+
+
+get the firs two lines with word &#8220;INFO&#8221;
+
+
+<pre class="lang:ruby decode:true "> file.each_line.lazy.select { |line| line.match(/INFO/) }.first(2)
+</pre>
+
+
+So if you want to print something with line numbers, just do a map from the lazy.
+
+
+<pre class="">file.each_line.lazy.each_with_index.map { |l, i| "#{i}: #{l}" }.select { |i| match(/INFO/) }.first(3)</pre>
+
+
+
+
+<hr />
+If you have anything more to add to this, kindly comment below.]]&gt;		</p>
+]]></content:encoded>
+										</item>
+	</channel>
+</rss>

@@ -1,0 +1,274 @@
+ <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>harikrishnan &#8211; Red Panthers</title>
+	<atom:link href="/author/harikrishnan/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description>Experts in Ruby on Rails Development</description>
+	<lastBuildDate>Wed, 05 Apr 2017 10:23:42 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.7</generator>
+
+<image>
+	<url>/wp-content/uploads/2017/12/rp-logo.png</url>
+	<title>harikrishnan &#8211; Red Panthers</title>
+	<link>/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Difference between Date, Time and DateTime</title>
+		<link>/time-date-datetime/</link>
+				<comments>/time-date-datetime/#comments</comments>
+				<pubDate>Wed, 05 Apr 2017 10:23:42 +0000</pubDate>
+		<dc:creator><![CDATA[harikrishnan]]></dc:creator>
+				<category><![CDATA[Beginners]]></category>
+		<category><![CDATA[Database]]></category>
+		<category><![CDATA[Ruby]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=1094</guid>
+				<description><![CDATA[<p>Date and time are one of the most important aspects which every coder has to deal with in Ruby. Well, let&#8217;s get to know how we keep it up alive and functional. There are 3 different classes in Ruby that handles date and time. They are Date, Time and DateTime. Date and DateTime classes are&#8230;</p>
+<p>The post <a rel="nofollow" href="/time-date-datetime/">Difference between Date, Time and DateTime</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p>Date and time are one of the most important aspects which every coder has to deal with in Ruby. Well, let&#8217;s get to know how we keep it up alive and functional.<br />
+There are 3 different classes in Ruby that handles date and time. They are Date, Time and DateTime. Date and DateTime classes are both from date library. And Time class from its own time library.</p>
+<p>In this article we’ll see how Date and Time works. Let&#8217;s have a look at each one of them.</p>
+<h2><strong>Date</strong></h2>
+<p>When you need a string format of year, month and day, you have to go through <strong>Date</strong> class.</p>
+<ul>
+<li>Has date attributes only (year, month, day)</li>
+<li>Based on integer whole-day intervals from an arbitrary &#8220;day zero&#8221;</li>
+<li>Can handle date arithmetic in units of whole days</li>
+<li>Date object is created with ::new, ::jd, ::ordinal, ::commercial, ::parse, ::strptime, ::today, Time#to_date etc.</li>
+<li>Takes <strong>4</strong> bytes to store.</li>
+</ul>
+<p>Eg:</p><pre class="crayon-plain-tag">$ require 'date'
+$ Date.new(2001,2,3)
+  Date: 2001-02-03
+$ Date.jd(2451944)
+  Date: 2001-02-03 ...
+$ Date.ordinal(2001,34)
+  Date: 2001-02-03 ...
+$ Date.commercial(2001,5,6)
+  Date: 2001-02-03 ...
+$ Date.parse('2001-02-03')
+  Date: 2001-02-03 ...
+$ Date.strptime('03-02-2001', '%d-%m-%Y')
+  Date: 2001-02-03 ...
+$ Time.new(2001,2,3).to_date
+  Date: 2001-02-03 ...
+$ Date.today
+  "Mon, 02 Jan 2017"</pre><p></p>
+<h2><strong>Time</strong></h2>
+<p>If you need both date and time values, we can make use of <strong>Time</strong> class.</p>
+<ul>
+<li>Has date and time attributes (year, month, day, hour, min, sec, subsec)</li>
+<li>Can handle negative times before unix time</li>
+<li>Can handle time arithmetic in units of seconds</li>
+</ul>
+<p>Eg:</p><pre class="crayon-plain-tag">$ require 'time'
+$ Time.now
+   2015-12-08 10:26:40 -0200
+
+$ time = Time.new
+  Components of a Time
+$ time.year    # =&gt; Year of the date
+$ time.month   # =&gt; Month of the date (1 to 12)
+$ time.day     # =&gt; Day of the date (1 to 31 )
+$ time.wday    # =&gt; 0: Day of week: 0 is Sunday
+$ time.yday    # =&gt; 365: Day of year
+$ time.hour    # =&gt; 23: 24-hour clock
+$ time.min     # =&gt; 59
+$ time.sec     # =&gt; 59
+$ time.usec    # =&gt; 999999: microseconds
+$ time.zone    # =&gt; "UTC": timezone name</pre><p>Also rails provide a really good time class called <strong>ActiveSupport::TimeWithZone</strong>. It contains all the features the <strong>Time</strong> class have, plus many improvements, such as the support for configurable time zones.</p>
+<h2><strong>DateTime</strong></h2>
+<ul>
+<li>Has date and time attributes (year, month, day, hour, min, sec)</li>
+<li>It  is formatted as YYYY-MM-DD HH:MM:SS</li>
+<li>Based on fractions of whole-day intervals from an arbitrary &#8220;day zero&#8221; (-4712-01-01)</li>
+<li>Can handle date arithmetic in units of whole days or fractions</li>
+<li>Takes 8 bytes to store, and has a precision of .001 seconds.
+<ul>
+<li>A four-byte integer packed as <code>YYYY</code>×10000 + <code>MM</code>×100 + <code>DD</code></li>
+<li>A four-byte integer packed as <code>HH</code>×10000 + <code>MM</code>×100 + <code>SS</code></li>
+</ul>
+</li>
+<li>Valid ranges go from the year 1000 to the year 9999</li>
+<li>It is created with ::new, ::jd, ::ordinal, ::commercial, ::parse, ::strptime, ::now, Time#to_datetime etc.</li>
+</ul>
+<p>Eg:</p><pre class="crayon-plain-tag">$ require 'date'
+
+$ DateTime.new(2001,2,3,4,5,6)
+  DateTime: 2001-02-03T04:05:06+00:00 ...</pre><p></p>
+<h2>Let&#8217;s see the Differences among all of them which makes them unique.</h2>
+<ul>
+<li>Date use rational and a &#8220;day zero&#8221; for storage. But Time doesn&#8217;t. So Time is faster.</li>
+<li>Date field is populated with a literal date and does not concern itself with time zones so this can cause trouble if it is not expressed in the user&#8217;s local time. A DateTime can always be converted to a user&#8217;s local time if required.</li>
+<li>Time used to track changes to records and update every time when the record is changed. DateTime used to store a specific and static value which is not affected by any changes in records.</li>
+<li>Time internally converted current time zone to UTC for storage, and during retrieval converted back to the current time zone. DateTime can not do this.</li>
+<li>Time affected by different TIME ZONE related setting. Datetime is constant.</li>
+<li>Ruby’s <code>Time</code> class implements a <a href="http://en.wikipedia.org/wiki/Proleptic_Gregorian_calendar">proleptic Gregorian calendar</a> and has no concept of calendar reform. This problem can be overcome using DateTime class.</li>
+</ul>
+<p>Now since we know so many facets of Date, Time and DateTime , we can use them in a much better manner in future at our time of needs.</p>
+<p>Happy Coding in Ruby!</p>
+<h2>References</h2>
+<ul>
+<li><a href="https://ruby-doc.org/stdlib-2.4.0/libdoc/date/rdoc/Date.html">https://ruby-doc.org/stdlib-2.4.0/libdoc/date/rdoc/Date.html</a></li>
+<li><a href="http://stackoverflow.com/questions/3928275/in-ruby-on-rails-whats-the-difference-between-datetime-timestamp-time-and-da">http://stackoverflow.com/questions/3928275/in-ruby-on-rails-whats-the-difference-between-datetime-timestamp-time-and-da</a></li>
+<li><a href="https://www.tutorialspoint.com/ruby/ruby_date_time.html">https://www.tutorialspoint.com/ruby/ruby_date_time.html</a></li>
+<li><a href="http://stevenyue.com/blogs/date-time-datetime-in-ruby-and-rails/">http://stevenyue.com/blogs/date-time-datetime-in-ruby-and-rails/</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>The post <a rel="nofollow" href="/time-date-datetime/">Difference between Date, Time and DateTime</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/time-date-datetime/feed/</wfw:commentRss>
+		<slash:comments>3</slash:comments>
+							</item>
+		<item>
+		<title>Rack::Attack &#8211; secure you rails app for the real world</title>
+		<link>/rack-attack-secure-you-rails-app-for-the-real-world/</link>
+				<comments>/rack-attack-secure-you-rails-app-for-the-real-world/#respond</comments>
+				<pubDate>Mon, 27 Feb 2017 15:08:19 +0000</pubDate>
+		<dc:creator><![CDATA[harikrishnan]]></dc:creator>
+				<category><![CDATA[Rails]]></category>
+		<category><![CDATA[Ruby]]></category>
+		<category><![CDATA[attack]]></category>
+		<category><![CDATA[hackers]]></category>
+		<category><![CDATA[Rack]]></category>
+		<category><![CDATA[safety]]></category>
+		<category><![CDATA[security]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=1465</guid>
+				<description><![CDATA[<p>Are you worried about the security issues in your Rails app? The rack-attack gem, can help you. Rack::Attack is a rack middleware which provides security to our rails application. It allows us to safelist, blacklist, throttle and to track requests. If the request matches any safelist, it is allowed. If the request matches any blocklist, it is blocked. If the&#8230;</p>
+<p>The post <a rel="nofollow" href="/rack-attack-secure-you-rails-app-for-the-real-world/">Rack::Attack &#8211; secure you rails app for the real world</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p><a href="http://blog.redpanthers.co/wp-content/uploads/2017/01/rack-attack.png"><img class="wp-image-1491 aligncenter" src="http://blog.redpanthers.co/wp-content/uploads/2017/01/rack-attack.png" alt="" width="359" height="202" /></a></p>
+<p>Are you worried about the security issues in your Rails app? The <a href="https://github.com/kickstarter/rack-attack">rack-attack gem</a>, can help you. <strong>Rack::Attack</strong> is a rack middleware which provides security to our rails application. It allows us to <strong>safelist, blacklist, throttle</strong> and to <strong>track requests</strong>.</p>
+<ul>
+<li>If the request matches any <strong>safelist</strong>, it is allowed.</li>
+<li>If the request matches any <strong>blocklist</strong>, it is blocked.</li>
+<li>If the request matches any <strong>throttle</strong>, a counter is incremented in the Rack::Attack.cache. If any throttle&#8217;s limit is exceeded, the request is blocked.</li>
+<li>Otherwise, all <strong>tracks</strong> are checked, and the request is allowed.</li>
+</ul>
+<h2>Implementation</h2>
+<p>Install the rack-attack gem, or add it to you Gemfile as:</p><pre class="crayon-plain-tag">gem 'rack-attack'</pre><p>Then tell your app to use the Rack::Attack middleware. For Rails 3+ apps:</p><pre class="crayon-plain-tag"># In config/application.rb
+config.middleware.use Rack::Attack</pre><p>Or you can use it in Rackup file as</p><pre class="crayon-plain-tag"># In config.ru
+use Rack::Attack</pre><p>By default, Rack Attack uses Rails cache. You can override that by setting the <code>Rack::Attack.cache.store</code> value. It <span class="n">is </span><span class="n">used</span> <span class="k">for</span> <span class="n">throttling. If you want to create use a custom adapter, for example, memory store,  </span>create a file called rack_attack.rb in config/initializers to configure Rack Attack and put the following code in the file:</p><pre class="crayon-plain-tag">class Rack::Attack
+  Rack::Attack.cache.store = ActiveSupport::Cache::MemoryStore.new
+  ########
+end</pre><p></p>
+<h3>Throttle</h3>
+<p></p><pre class="crayon-plain-tag">throttle('api/ip', limit: 3, period: 10) do |req|
+  req.ip
+end</pre><p>Here we are limiting the request per seconds from the same IP address. Here we are limiting only 3 requests in 10 sec.</p>
+<h3>Safelist</h3>
+<p></p><pre class="crayon-plain-tag">Rack::Attack.safelist('allow from localhost') do |req|
+  '127.0.0.1' == req.ip
+end</pre><p>Above example always allows the request from localhost. And the request is allowed if the value is true.</p>
+<h3>Blacklist</h3>
+<p></p><pre class="crayon-plain-tag">Rack::Attack.blacklist('block 2.2.2.2') do |req|
+  '2.2.2.2' == req.ip
+end</pre><p>Here, it blocks the request from &#8216;2.2.2.2&#8217;.</p>
+<blockquote><p><strong>Fail2Ban</strong>: <code>Fail2Ban.filter</code> can be used within a blocklist to block all requests from misbehaving clients.</p>
+<p><strong>Allow2Ban: </strong><code>Allow2Ban.filter</code> works the same way as the <code>Fail2Ban.filter</code> except that it allows requests from misbehaving clients until such time as they reach maximum retry.</p></blockquote>
+<h3>Block logins from a bad user agent</h3>
+<p></p><pre class="crayon-plain-tag">Rack::Attack.blacklist('block bad UA logins') do |req|
+  req.path == '/login' &amp;&amp; req.post? &amp;&amp; req.user_agent == 'BadUA'
+end</pre><p>In the above example, if a bad user tries to login, the request is blocked.</p>
+<h3 id="Tracks">Tracks</h3>
+<p></p><pre class="crayon-plain-tag">Rack::Attack.track("special_agent") do |req|
+  req.user_agent == "SpecialAgent"
+end</pre><p>It tracks request from a special user.</p>
+<h2>Security issues that Rack Attack addresses</h2>
+<ul>
+<li class="entry-title">Rate limits against DDoS and abusive users</li>
+</ul>
+<p style="padding-left: 60px;"><em><strong>DDoS</strong> is short for <strong>D</strong>istributed <strong>D</strong>enial <strong>o</strong>f <strong>S</strong>ervice. </em>It uses multiple computers and Internet connections to flood the targeted resource.</p>
+<p>When you need more security to your rails app, don&#8217;t forget to add Rack::Attack in it. It will protect your app from bad clients.</p>
+<h2>Whitelist Search Engine spiders</h2>
+<p style="text-align: left;">        Though we blacklist IP&#8217;s that are misbehaving, we have to whitelist search engine spiders. But they have a huge range of IP&#8217;s. So we can check user agent. But it&#8217;s something anyone can fake. We can run a <a href="https://support.google.com/webmasters/answer/80553?hl=en">reverse DNS lookup</a> of the accessing IP and perform a forward DNS lookup on the domain (using <code>host</code> command). Verify that it is same as the original IP address from the logs.</p>
+<h2>References</h2>
+<ul>
+<li><a href="https://www.diycode.cc/projects/kickstarter/rack-attack">https://www.diycode.cc/projects/kickstarter/rack-attack</a></li>
+<li><a href="https://searchcode.com/file/86455896/README.md">https://searchcode.com/file/86455896/README.md</a></li>
+<li><a href="http://sourcey.com/building-the-prefect-rails-5-api-only-app/">http://sourcey.com/building-the-prefect-rails-5-api-only-app/</a></li>
+</ul>
+<p>The post <a rel="nofollow" href="/rack-attack-secure-you-rails-app-for-the-real-world/">Rack::Attack &#8211; secure you rails app for the real world</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/rack-attack-secure-you-rails-app-for-the-real-world/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+							</item>
+		<item>
+		<title>How to format Git log for meaningful information</title>
+		<link>/git-log-formating-output/</link>
+				<comments>/git-log-formating-output/#respond</comments>
+				<pubDate>Mon, 30 Jan 2017 12:42:55 +0000</pubDate>
+		<dc:creator><![CDATA[harikrishnan]]></dc:creator>
+				<category><![CDATA[git]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=938</guid>
+				<description><![CDATA[<p>Git is a wonderful piece of software that makes life easier and more productive for a programmer. But sadly most developers don&#8217;t use it up to their full potential so we are going to blog about various simple and advanced usages of git as a series. In the first article of the series, we are&#8230;</p>
+<p>The post <a rel="nofollow" href="/git-log-formating-output/">How to format Git log for meaningful information</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p><strong>Git</strong> is a wonderful piece of software that makes life easier and more productive for a programmer. But sadly most developers don&#8217;t use it up to their full potential so we are going to blog about various simple and advanced usages of git as a <a href="http://blog.redpanthers.co/category/git/">series</a>. In the first article of the series, we are going to talk about git logs.</p>
+<p><strong>Git log</strong> is a great feature, that allows us to keep track of our works. There are different options available under <code>git log</code> command, which help us to customize the output of git log and also to filter the log.</p>
+<h2><strong>Git Graphs</strong></h2>
+<p></p><pre class="crayon-plain-tag">git log --graph --decorate --oneline</pre><p></p>
+<p style="text-align: left;">The <a href="https://rubygems.org/gems/graph">&#8211;graph</a> option draws a graph representing the branches and its structure of commit history. &#8211;oneline is used to display commit message and its hash in a single line, which is used along with &#8211;decorate, which helps us to easily see which commit belongs to which branch.</p>
+<h2>Custom formatting</h2>
+<p></p><pre class="crayon-plain-tag">git log --pretty=format:"&lt;string&gt;"</pre><p>This lets you display each commit however you want in printf style. For example <code>%cn</code>,  <code>%h </code>and <code>%cd</code> which represents committer name, abbreviated hash and committer date respectively.</p><pre class="crayon-plain-tag">git log --pretty=format:"%cn committed %h on %cd"</pre><p></p>
+<h2>Filtering the output</h2>
+<p>Git log can be filtered by different filters and format output</p>
+<h3>By amount</h3>
+<p></p><pre class="crayon-plain-tag">git log -&lt;n&gt;</pre><p>It displays latest n commits and its output.</p>
+<p>For example</p><pre class="crayon-plain-tag">git log -3</pre><p>Will display latest 3 commit details</p>
+<h3>By date</h3>
+<p></p><pre class="crayon-plain-tag">git log --after=&lt;date&gt;
+git log --before=&lt;date&gt;</pre><p>Using <code>--after</code> and <code>--before,</code>  we can get logs after or before the specified date. You can also use these both to get logs between two dates</p>
+<p>Example</p><pre class="crayon-plain-tag">git log --after='24-10-2016'
+or
+git log --since='24-10-2016'</pre><p><code>--since</code> and and <code>--until</code> are synonym for <code>--after</code> and <code>--before</code></p><pre class="crayon-plain-tag">git log --date=&lt;option&gt;</pre><p><code>--date</code> flag is used to format the output of the date. There are different option available for <code>--date</code> flag such as short, iso8601, relative, etc&#8230;</p>
+<h3>By Author</h3>
+<p></p><pre class="crayon-plain-tag">git log --author=&lt;name&gt;</pre><p>When you are only looking for commits by certain user you can <code>--author</code> flag. You can also use regular expressions for this.</p><pre class="crayon-plain-tag">git log --author='John\| Mary'</pre><p></p>
+<h3>By message</h3>
+<p></p><pre class="crayon-plain-tag">git log --grep='&lt;message&gt;'</pre><p>When you want to search for log with certain string using <code>--grep</code> flag. You can use <code>-i</code> option if you want ignore the case.</p>
+<h3>By file</h3>
+<p></p><pre class="crayon-plain-tag">git log -- something.rb incredible.rb</pre><p>When you want to get log only on some files you can specify files after <code>--</code> flag</p>
+<h3>By Content</h3>
+<p>Git log allows you to get logs of files containing certain string. You can specify string using the <code>-S</code> flag</p><pre class="crayon-plain-tag">git log -S"Hello World!"</pre><p></p>
+<h3>Format options available</h3>
+<p></p><pre class="crayon-plain-tag">git log --pretty=format:'&lt;options&gt;'</pre><p>Git log format options</p><pre class="crayon-plain-tag">%H  - Commit hash
+%h  - Abbreviated commit hash
+%T  - Tree hashes
+%t  - Abbreviated tree hash
+%P  - Parent hashes
+%p  - Abbreviated parent hashes
+%an - Author name
+%ae - Author email
+%ad - Author date (format respects the --date=option)
+%ar - Author date, relative
+%cn - Committer name
+%ce - Committer email
+%cd - Committer date
+%cr - Committer date, relative
+%s  - Subject
+%B  - Message</pre><p>Example</p><pre class="crayon-plain-tag">git log --pretty=format:"%B on %ad with hash %h by %an" --date=short</pre><p>That was a bit on how we can use Git log, and specifically on how to format the output. Leave your comments, questions, and doubts in the comment section in case you need to reach me.</p>
+<p>The post <a rel="nofollow" href="/git-log-formating-output/">How to format Git log for meaningful information</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/git-log-formating-output/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+							</item>
+	</channel>
+</rss>

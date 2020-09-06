@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>functional &#8211; beta.redpanthers.co</title>
+	<atom:link href="/tag/functional/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description>Red Panthers - Experts in Ruby on Rails, System Design and Vue.js</description>
+	<lastBuildDate>Wed, 30 Aug 2017 12:51:56 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.7</generator>
+	<item>
+		<title>Integrating Elm with Rails</title>
+		<link>/integrating-elm-rails/</link>
+				<pubDate>Wed, 30 Aug 2017 12:51:56 +0000</pubDate>
+		<dc:creator><![CDATA[nimmy]]></dc:creator>
+				<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[elm]]></category>
+		<category><![CDATA[frontend]]></category>
+		<category><![CDATA[functional]]></category>
+		<category><![CDATA[language]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=3091</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[&nbsp;
+Front-end languages and frameworks are changing significantly over years. The trend is towards light-weight, modular architecture. Functional programming has influenced JavaScript and its frameworks a lot. For beautiful single page web applications, Elm is a framework that can be chosen. It gets compiled to efficient JavaScript code. But when to use Elm instead of JavaScript?  If you are building complicated single page applications Elm can do better.
+Elm is a functional programming language created by Evan Czaplicki in 2012 for building reliable Web Applications. Elm is simple to use and offers much quality. Its architecture is a simple pattern for building web apps, that help you to add features quickly. Also, we can use Elm in existing projects as it can be used along with already written JavaScript code.
+
+
+<h2>Why Elm?</h2>
+
+
+Switching to functional programming languages makes it a better environment for multi-threaded applications. For example, immutability is a powerful functional concept that JavaScript lacks. But in Elm, once created value cannot be changed, thus making a <strong>thread-safe environment</strong>. Each thread need not worry about other threads when they act on data since these data are represented by immutable objects in Elm.
+While in other languages it&#8217;s hard to catch production errors, Elm offers <strong>&#8216;no run time exceptions&#8217;</strong> guarantee.
+
+
+<h3><strong>Friendly error messages</strong></h3>
+
+
+Elm has a reputation for great error messages, being statically typed.
+Consider the following Elm code
+
+
+<pre class="lang:default decode:true">import Html exposing(..)
+view orders =
+  div [] (List.mapp viewOrder orders)
+viewOrder order =
+  span [] (text order.name)
+</pre>
+
+
+Here&#8217;s an example for an error message after compiling the Elm code:
+This is what errors look like in the command line
+
+
+<pre class="lang:default decode:true">--NAMING ERROR-----------------------------------------------------list-mapp.elm
+Cannot find variable 'List.mapp' .
+6| div [] (List.mapp viewOrder orders)
+List does not expose 'mapp' . May be you want one of the following?
+List.map
+List.any
+List.map2
+List.map3
+</pre>
+
+
+
+
+<ul>
+ 	
+
+<li>shows the line number in the code which caused the error</li>
+
+
+ 	
+
+<li>shows the actual line of code</li>
+
+
+ 	
+
+<li>lists the maximum possibilities for correct code</li>
+
+
+</ul>
+
+
+If you have a nice editor with Elm language integration, these error messages can be seen as a pop-up when hovering over the line of code which causes the error. This line of code can be identified easily as it will be red underlined.
+To start with Elm, we don&#8217;t have to worry about the huge libraries as in case of other frameworks. Just install Elm CLI and start coding. In a JavaScript application, we are probably putting together some collection of tools as below.
+
+
+<ul>
+ 	
+
+<li>React</li>
+
+
+ 	
+
+<li>Redux</li>
+
+
+ 	
+
+<li>npm/yarn</li>
+
+
+ 	
+
+<li>Webpack</li>
+
+
+ 	
+
+<li>Immutable.JS</li>
+
+
+</ul>
+
+
+But Elm addresses these issue by providing all of them <strong>built in a single installer.</strong>
+JavaScript languages and browser engines are subjected to constant changes always. It&#8217;s not feasible to refactor the application accordingly. Building our application in Elm enables to get more efficient JavaScript code when newer versions of the language are released with compiler updates.
+
+
+<h2>Start with Elm</h2>
+
+
+Elm is a delightful language meant for developer happiness. When you write an Elm app, you write a number of modules in separate files and feed those files to Elm compiler. It gets compiled to JavaScript that&#8217;s ready to run the program.
+
+
+<h3>Architecture</h3>
+
+
+Whenever we write an Elm app this architecture will be following. All Elm apps in practice are structured this way.
+So, we start by writing an init function, whose job is to generate the initial model for our app. This is the complete model for the current state of the front end as it&#8217;s running in the browser.
+The second function is the view that takes the model and generates the Html interface for your web app. In React like frameworks, it lets you generate a virtual DOM. So every time front end is rendered it will calculate the entire user interface and the framework takes responsibility for efficiently updating the changes in the actual browser. Elm also has its own virtual DOM implementation that is really faster compared to React, Angular etc.
+As part of our interface, we will declare the events we are interested in. If the user does something like click a button, Elm will send the program a message. So we need to write a third function to handle those messages and that&#8217;s the update function. This function will take that message and the program&#8217;s existing model and put them together in order to generate the new updated model for the program. Then it feeds to the view function to generate the updated interface. This is how Elm looks like.
+
+
+<h2>Install on Rails</h2>
+
+
+Elm is officially supported in Rails 5.1 via the webpacker gem.
+Be sure to <a href="https://yarnpkg.com/en/docs/install">install yarn</a> and <a href="https://nodejs.org/en/download/">Node.js</a> first. Node.js version should be &gt;6.4.0+
+Then, to use Webpacker with Elm,
+
+
+<pre class="lang:default decode:true">rails new elm-on-rails --webpack=elm</pre>
+
+
+If Rails application is already setup with webpacker, run
+
+
+<pre class="lang:default decode:true">./bin/rails webpacker:install:elm</pre>
+
+
+within the app.
+If it&#8217;s not setup with webpacker, add gem &#8216;webpacker&#8217; to your gemfile and then install Elm.
+Navigate to app/javascript/packs directory.  A file named Main.elm that displays &#8220;Hello Elm!&#8221; text is generated there, along with a companion file hello_elm.js
+
+
+<pre class="lang:default decode:true">#hello_elm.js
+import Elm from './Main'
+document.addEventListener('DOMContentLoaded', () =&gt; {
+const target = document.createElement('div')
+document.body.appendChild(target)
+Elm.Main.embed(target)
+})</pre>
+
+
+Now, we need a page to display the Elm output.
+We&#8217;ll create a new file app/views/application/index.html.erb in order to render the layout:
+Use the javascript_pack_tag helper to import hello_elm.js file:
+
+
+<pre class="lang:default decode:true">&lt;%= javascript_pack_tag "hello_elm" %&gt;
+</pre>
+
+
+Add this line in application.html.erb or index.html.erb since hello_elm.js file embeds the output in the current document.
+Then add a default route
+
+
+<pre class="lang:default decode:true">#config/routes.rb
+get '/', to: 'application#index'
+</pre>
+
+
+Before firing up Rails server, do
+
+
+<pre class="lang:default decode:true">bundle exec rails webpacker:compile
+</pre>
+
+
+Then run rails server and you will be seeing the &#8220;Hello Elm!&#8221; greeting.
+
+
+<h2>Immutable Data and Pure Functions</h2>
+
+
+Elm programs are made up of immutable data and pure functions. This contributes to the simplicity of the language.
+In Ruby, if I say,
+
+
+<pre class="lang:default decode:true">user.update(params)
+</pre>
+
+
+Calling an update method will change that user object in place. The initial value in user object is gone now if we do not have a copy of it before method call.
+In the same controller,
+
+
+<pre class="lang:default decode:true">new_hash = hash.merge(params)
+</pre>
+
+
+Calling hash.merge doesn&#8217;t modify the hash in place but returns a new_hash with updates applied to it.
+The above examples are two different APIs designed in different ways.
+This can be confusing to beginners if they find it difficult to understand why different functions work in different ways. But it&#8217;s not an issue in Elm as its values are immutable.
+In Elm,
+
+
+<pre class="lang:default decode:true">newUser = update params user
+</pre>
+
+
+user object can be passed to update function but that can&#8217;t change its value; it&#8217;s immutable.
+What we can do is to create a new value with some changes applied to it. Thus, the update function will return the newly updated user. That&#8217;s just how all Elm functions work, so there&#8217;s little situation of confusion as explained first.
+The update function we explained in Ruby can have side effects. It brings changes to the database. If a function does nothing but provides the same return value based on its arguments, then only it can be called side-effect-free. The function should not make any impact on anything else; that&#8217;s pure function in terms of functional programming.
+Elm functions cannot have side effects because all Elm functions are pure functions &#8211; a strong reason why Elm defined as a functional programming language. The only thing the functions do in Elm is calculating its return value by the arguments that we passed to and constants. They cannot have side effects. The advantage is that we get more predictable programs.
+
+
+<h2>Elm Platform</h2>
+
+
+To develop our Elm applications, four tools will be essential.
+
+
+<ul>
+ 	
+
+<li>elm-repl</li>
+
+
+</ul>
+
+
+To quickly execute a small piece of Elm code from the command line without having to create a file. To start using the REPL, execute elm-repl in the terminal.
+
+
+<ul>
+ 	
+
+<li>elm-reactor</li>
+
+
+</ul>
+
+
+Creates a server that will compile your elm code and will be able to see the result directly on the browser. Also, we can set a different port and custom address.
+
+
+<pre class="lang:default decode:true">elm-reactor -a 0.0.0.0 -p 3000</pre>
+
+
+
+
+<ul>
+ 	
+
+<li>elm-make</li>
+
+
+</ul>
+
+
+We can use elm-make to translate the Elm code to native files for the web(HTML, CSS, and JavaScript)
+
+
+<ul>
+ 	
+
+<li>elm-package</li>
+
+
+</ul>
+
+
+Tool to install and publish Elm packages.
+Type elm-package in your command line to make it available, and to install a package:
+
+
+<pre class="lang:default decode:true">elm-package install &lt;package-name&gt;
+</pre>
+
+
+Elm having a solid architecture enables to build our projects with a guarantee that we have things under control even when application increases in complexity.
+&nbsp;
+
+
+<h2>References</h2>
+
+
+
+
+<ul>
+ 	
+
+<li><a href="https://github.com/rails/webpacker">https://github.com/rails/webpacker</a></li>
+
+
+ 	
+
+<li><a href="https://guide.elm-lang.org/">https://guide.elm-lang.org/</a></li>
+
+
+ 	
+
+<li><a href="https://www.elm-tutorial.org/en/">https://www.elm-tutorial.org/en/</a></li>
+
+
+ 	
+
+<li><a href="https://github.com/fbonetti/elm-rails">https://github.com/fbonetti/elm-rails</a></li>
+
+
+</ul>
+
+
+&nbsp;]]&gt;		</p>
+]]></content:encoded>
+										</item>
+		<item>
+		<title>Lazy enumerator to handle huge files</title>
+		<link>/lazy-enumerator-to-handle-huge-files/</link>
+				<pubDate>Fri, 12 Aug 2016 08:49:12 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Ruby]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[core]]></category>
+		<category><![CDATA[enumerator]]></category>
+		<category><![CDATA[files]]></category>
+		<category><![CDATA[functional]]></category>
+		<category><![CDATA[huge files]]></category>
+		<category><![CDATA[lazy]]></category>
+		<category><![CDATA[mangaing]]></category>
+		<category><![CDATA[programming]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=401</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[<b>Lazy evaluation</b>, or <b>call-by-need</b> is an evaluation strategy which delays the evaluation of an expression until its value is needed. It&#8217;s frequently seen in functional languages, ruby introduced the lazy method in Ruby 2.0. For those who don&#8217;t know what are enumerators: enumerators are something that can be counted. So a collection of elements, files (file is an collection of lines of string), etc can be treated as an enumerator.
+In ruby we need to make something countable into an enumerator object, which is done by applying .each and .map on it.
+
+
+<pre class="lang:ruby decode:true">[].each
+[1, 3, 4].each
+file.each
+{}.each</pre>
+
+
+Ruby has a wide range of operations we can do over a collection, it&#8217;s one of those features that makes Ruby such a powerful dynamic language. An enumerator can be used to generate series like the Fibonacci series.
+
+
+<pre class="lang:ruby decode:true">fib = Enumerator.new do |y|
+  a = b = 1
+  loop do
+    y &lt;&lt; a
+    a, b = b, a + b
+  end
+end</pre>
+
+
+But when we do a <em>.map</em> / <em>.each</em> with a code block, then it would try to realize the enumerator fully and then apply the block over it.
+<i></i>That would be fine when we are working on something small like:
+
+
+<pre class="lang:default decode:true">[1,2,3].map { |i| i*i }</pre>
+
+
+But when we take the above fib enumerator, which will grow into an infinite series, adding a <em>.map </em>would lead the code to an infinite loop. If you are crazy enough to write an infinite loop, feel free to run the below code.
+
+
+<pre class="lang:ruby decode:true">foo.map { |i| i * * }</pre>
+
+
+When we try to use these operations on a huge 10 GB file,there it makes your program realize the entire file is close to impossible. So this is the case where the lazy enumerator comes to place. It would ask ruby to defer the realization of the enumerator until it is required, and not before you run your operation.
+So with respect to the above Fibonacci enumerator, you should change the code to as below.
+
+
+<pre class="lang:ruby decode:true">foo.lazy.map { |i| i * i }</pre>
+
+
+So now, the program is ready, all good it would run fast. But it won&#8217;t execute them until you call or access those elements. So only when we do <code>foo.lazy.map { |i| i* i }.</code> First the first element is calculated and given to us. Like wise if you want the first 10 elements of the fibonacci series then you have to do <code>foo.lazy.map { |i| i* i }.take(1o).to_a</code>
+To do the  same with the files, as a file is a collection of lines, follow the below code snippets:
+
+
+<pre class="lang:ruby decode:true">fille = File.open('OurHugeFile.log')
+</pre>
+
+
+<span style="line-height: 1.5;">get the first three lines, lazily:</span>
+
+
+<pre class="lang:ruby decode:true">file.each_line.lazy.take(3).to_a</pre>
+
+
+get the firs two lines with word &#8220;INFO&#8221;
+
+
+<pre class="lang:ruby decode:true "> file.each_line.lazy.select { |line| line.match(/INFO/) }.first(2)
+</pre>
+
+
+So if you want to print something with line numbers, just do a map from the lazy.
+
+
+<pre class="">file.each_line.lazy.each_with_index.map { |l, i| "#{i}: #{l}" }.select { |i| match(/INFO/) }.first(3)</pre>
+
+
+
+
+<hr />
+If you have anything more to add to this, kindly comment below.]]&gt;		</p>
+]]></content:encoded>
+										</item>
+	</channel>
+</rss>

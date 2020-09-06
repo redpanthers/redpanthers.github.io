@@ -1,0 +1,60 @@
+ <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>
+	Comments on: Managing threads with Queue and SizedQueue	</title>
+	<atom:link href="/managing-threads-queue-sizedqueue/feed/" rel="self" type="application/rss+xml" />
+	<link>/managing-threads-queue-sizedqueue/</link>
+	<description>Experts in Ruby on Rails Development</description>
+	<lastBuildDate>Wed, 23 Aug 2017 05:14:00 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.7</generator>
+			<item>
+				<title>
+				By: Harisankar P S				</title>
+				<link>/managing-threads-queue-sizedqueue/#comment-56</link>
+		<dc:creator><![CDATA[Harisankar P S]]></dc:creator>
+		<pubDate>Wed, 23 Aug 2017 05:14:00 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3081#comment-56</guid>
+					<description><![CDATA[Thanks for the comment, it&#039;s always good to use the mature open source libraries for production.
+
+ But it&#039;s always good to learn how to roll in your own. Incase you want to go minimalistic.
+
+Thanks again for the comment.]]></description>
+		<content:encoded><![CDATA[<p>Thanks for the comment, it&#8217;s always good to use the mature open source libraries for production.</p>
+<p> But it&#8217;s always good to learn how to roll in your own. Incase you want to go minimalistic.</p>
+<p>Thanks again for the comment.</p>
+]]></content:encoded>
+						</item>
+						<item>
+				<title>
+				By: NIMMY J VIPIN				</title>
+				<link>/managing-threads-queue-sizedqueue/#comment-55</link>
+		<dc:creator><![CDATA[NIMMY J VIPIN]]></dc:creator>
+		<pubDate>Wed, 23 Aug 2017 05:11:00 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3081#comment-55</guid>
+					<description><![CDATA[Thanks for the comment. Will update it soon.]]></description>
+		<content:encoded><![CDATA[<p>Thanks for the comment. Will update it soon.</p>
+]]></content:encoded>
+						</item>
+						<item>
+				<title>
+				By: nil2				</title>
+				<link>/managing-threads-queue-sizedqueue/#comment-54</link>
+		<dc:creator><![CDATA[nil2]]></dc:creator>
+		<pubDate>Wed, 23 Aug 2017 04:09:00 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3081#comment-54</guid>
+					<description><![CDATA[Please consider using ruby-concurrent and the classes it has (including a thread pool class, ThreadPoolExecutor), instead of rolling your own.]]></description>
+		<content:encoded><![CDATA[<p>Please consider using ruby-concurrent and the classes it has (including a thread pool class, ThreadPoolExecutor), instead of rolling your own.</p>
+]]></content:encoded>
+						</item>
+			</channel>
+</rss>

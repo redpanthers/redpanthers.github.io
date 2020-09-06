@@ -1,0 +1,1708 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Ruby &#8211; beta.redpanthers.co</title>
+	<atom:link href="/tag/ruby/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description>Red Panthers - Experts in Ruby on Rails, System Design and Vue.js</description>
+	<lastBuildDate>Tue, 22 Aug 2017 07:28:43 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.7</generator>
+	<item>
+		<title>Make unit tests great again &#8211; Integrate Jasmine into Rails</title>
+		<link>/write-beautiful-jasmine-tests-rails/</link>
+				<pubDate>Tue, 22 Aug 2017 07:28:43 +0000</pubDate>
+		<dc:creator><![CDATA[alan]]></dc:creator>
+				<category><![CDATA[Jasmine]]></category>
+		<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[Rails]]></category>
+		<category><![CDATA[Rails 5]]></category>
+		<category><![CDATA[Ruby]]></category>
+		<category><![CDATA[Ruby 2.4]]></category>
+		<category><![CDATA[better tests]]></category>
+		<category><![CDATA[jasmine]]></category>
+		<category><![CDATA[karma]]></category>
+		<category><![CDATA[rails]]></category>
+		<category><![CDATA[test]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=3149</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[Jasmine is a framework to write tests for the Javascript code in the Behaviour Driven Development (BDD) style. In this article, you will learn how to integrate Jasmine into your existing rails application and how to write clean and beautiful unit tests. Let us make tests great again!
+&nbsp;
+
+
+<h2>Install Jasmine</h2>
+
+
+To make Jasmine available to your Rails app, you just have to place the jasmine-gem (<a href="https://github.com/jasmine/jasmine-gem">link</a>) in your Gemfile. That will do the magic. Just make sure you have it under Development and Test group in the Gemfile as follows:
+
+
+<pre class="theme:orange-code lang:ruby decode:true">group :development, :test do
+  gem "jasmine"
+end</pre>
+
+
+Then run this to install the gem:
+
+
+<pre class="theme:orange-code lang:default decode:true">bundle install</pre>
+
+
+After all the gems are installed, run this code to generate necessary files for Jasmine to run:
+
+
+<pre class="theme:orange-code lang:sh decode:true">rails generate jasmine:install</pre>
+
+
+This will create the jasmine helper file and the yml file where you configure how it should run the tests.
+
+
+<h2>Run tests</h2>
+
+
+You can use Jasmine right after it&#8217;s installed. It can be run in several ways, the most important ones being,
+
+
+<ol>
+ 	
+
+<li>In your browser</li>
+
+
+ 	
+
+<li>Continuous Integration Mode (CI)</li>
+
+
+</ol>
+
+
+The CI mode is usually used when you have to integrate it into your build system.
+
+
+<h2>Browser Mode</h2>
+
+
+You have to start the Jasmine server to run it in a browser. This server runs all the tests and serves the results to a webpage. Run this to start the Jasmine Server:
+
+
+<pre class="theme:orange-code lang:default decode:true">rake jasmine</pre>
+
+
+With the default settings, you can view the output in:
+
+
+<pre class="theme:orange-code lang:default decode:true">http://localhost:8888/</pre>
+
+
+But this page would be pretty empty since you don&#8217;t have any tests written for your Javascript code. There is a method provided to generate sample tests. Try running this:
+
+
+<pre class="theme:orange-code lang:default decode:true">rails generate jasmine:examples</pre>
+
+
+Now refresh the webpage and you can see something similar to this:
+<a href="https://blog.redpanthers.co/wp-content/uploads/2017/08/Screen-Shot-2017-08-21-at-3.47.22-PM.png"><img class="aligncenter wp-image-3152" src="https://blog.redpanthers.co/wp-content/uploads/2017/08/Screen-Shot-2017-08-21-at-3.47.22-PM-300x91.png" alt="Jasmine test page" width="768" height="233" /></a>
+
+
+<h3>Configurable Settings</h3>
+
+
+Clicking on the options button in the top right corner will display a list of options that change how Jasmine runs the tests. Let&#8217;s get into each one of them:
+
+
+<h4>Raise Exceptions</h4>
+
+
+This option disables the error catching mechanism of Jasmine in the JavaScript source code and in the test file. The default setting is to wrap all the errors in a catch block.
+
+
+<h4>Stop Spec on Expectation Failure</h4>
+
+
+With this option turned on, Jasmine will stop the test at the first occurrence of an error. The default setting is to run the full test suit and then display all the tests which fail.
+
+
+<h4>Run Tests in Random Order</h4>
+
+
+This option enables the test to be run in a random sequence every time the test runs. The benefit of enabling this option is to reveal dependencies between tests, therefore, you can reduce test dependencies and each test will have good isolation.
+
+
+<h2>Continous Integration Mode</h2>
+
+
+A headless browser is used to integrate Jasmine into your continuous integration workflow. To make our lives easier, this gem that we are using supports integration with a headless browser out of the box. The default headless browser is <a href="http://phantomjs.org/">Phantom JS</a>. So it will download automatically if not installed when you try to run in CI mode. Run this code to run in CI mode:
+
+
+<pre class="theme:orange-code lang:default decode:true ">rake jasmine:ci</pre>
+
+
+By default, Jasmine will attempt to find a random open port. To set a default port manually, just add this to the <strong>jasmine_helper.rb</strong>
+
+
+<pre class="theme:orange-code lang:default decode:true ">Jasmine.configure do |config|
+   config.ci_port = 1234
+end</pre>
+
+
+
+
+<h2>Configuration</h2>
+
+
+The two files which you should be looking into, if you need to alter the behavior of tests are:
+
+
+<ul>
+ 	
+
+<li>jasmine.yml</li>
+
+
+ 	
+
+<li>jasmine_helper.rb</li>
+
+
+</ul>
+
+
+Jasmine reads the jasmine.yml first and then overrides it with the settings mentioned in jasmine_helper.rb
+
+
+<h4>Sample configuration:</h4>
+
+
+
+
+<pre class="theme:orange-code lang:default decode:true "># spec/javascripts/support/jasmine.yml
+random: true
+show_console_log: false
+stop_spec_on_expectation_failure: true</pre>
+
+
+
+
+<pre class="theme:orange-code lang:default decode:true "># spec/javascripts/support/jasmine_helper.rb
+Jasmine.configure do |config|
+  config.random = false
+  config.show_console_log = false
+  config.stop_spec_on_expectation_failure: false
+  config.show_full_stack_trace = false
+  config.prevent_phantom_js_auto_install = false
+end</pre>
+
+
+
+
+<h2>Testing</h2>
+
+
+Writing tests for Javascript in a Rails app should be fairly straightforward as it uses same standards as Jasmine in general. But there are things that need to be considered specific to a Jasmine installation in Rails.
+
+
+<h3>Testing JavaScript</h3>
+
+
+Test files for JavaScript in a rails application reside in the <strong>spec/javascripts</strong> folder. For each javascript file, you need to put the test file in the same path as the file. For example, if you have the following javascript file in your app:
+<strong>app/assets/javascripts/jasmine_examples/Calculator.js</strong>
+You place the spec file in the following path:
+<strong>spec/javascripts/jasmine_examples/CalculatorSpec.js</strong>
+Jasmine will include the test on the next test run. There is no configuration to have your test run.
+
+
+<h2>Plugins worth considering</h2>
+
+
+
+
+<ul>
+ 	
+
+<li><strong>Jasmine-Jquery</strong> &#8211; this plugin provides a lot of jquery related matchers. Download it <a href="https://github.com/velesin/jasmine-jquery/releases">here</a></li>
+
+
+ 	
+
+<li><strong>Jasmine-Matchers</strong> &#8211; a tool to provide additional matchers. Download it <a href="https://github.com/JamieMason/Jasmine-Matchers/releases">here</a></li>
+
+
+ 	
+
+<li><strong>Jasmine-Fixture &#8211; </strong>a plugin that provides DOM creation using CSS selectors, therefore you can interact with the DOM much easier. Download it <a href="https://github.com/searls/jasmine-fixture/releases">here</a></li>
+
+
+</ul>
+
+
+
+
+<h1>Write Beautiful Unit tests</h1>
+
+
+95% of the developers I know write unit tests in order to prevent defects from being deployed to production. But the essential ingredients to a great unit test is unknown to most of them. There have been countless times that I&#8217;ve seen a test fails, only to investigate and discover that I have no idea what feature the developer was trying to test, let alone how it went wrong or why it matters.
+
+
+<h2>Importance of Test Discipline</h2>
+
+
+Your tests are the best set of weapons to defend your code from bugs. They are more important that linting and static analysis. A few reasons why tests are your secret weapon:
+
+
+<ul>
+ 	
+
+<li>Writing tests first gives you a clearer perspective on the ideal API design.</li>
+
+
+ 	
+
+<li>Does the developer understand the problem enough to articulate in code all critical component requirements?</li>
+
+
+ 	
+
+<li>Manual QA is error-prone. In my experience, it’s impossible for a developer to remember all features that need testing after making a change to refactor, add new features, or remove features.</li>
+
+
+ 	
+
+<li>Continous Integration prevents failed builds from getting deployed to production.</li>
+
+
+</ul>
+
+
+
+
+<h2>Bug Report vs plain Unit Test</h2>
+
+
+The test fail report comes to save your life when a test fails. So you better make it loud and clear. I came up with a list of must-have info in your bug report.
+
+
+<ul>
+ 	
+
+<li>What are you trying to test?</li>
+
+
+ 	
+
+<li>What should it do?</li>
+
+
+ 	
+
+<li>What is the real-time output (actual behavior)?</li>
+
+
+ 	
+
+<li>What is the expected output (expected behavior)?</li>
+
+
+</ul>
+
+
+Here is a sample test with all of these info:
+
+
+<pre class="theme:orange-code lang:default decode:true">describe("CalculatorAddMethod", function() {
+  var calculator = new Calculator();
+  it("should return number", function() {
+    const actual = typeof Calculator.add(5,10);
+    const expected = 'number'
+    expect(actual).toEqual(expected);
+  });
+});
+</pre>
+
+
+This test suit answers all the questions above. Let&#8217;s go through each one of them.
+
+
+<ul>
+ 	
+
+<li>What are you trying to test?
+
+
+<ul>
+ 	
+
+<li>-&gt; Go for the test description. It is testing for the return type of the add method of Calculator().</li>
+
+
+</ul>
+
+
+</li>
+
+
+ 	
+
+<li>What should it do?
+
+
+<ul>
+ 	
+
+<li>-&gt; Again, look at the test description. It clearly says that it is testing for the return type of add method.</li>
+
+
+</ul>
+
+
+</li>
+
+
+ 	
+
+<li>What is the actual output?
+
+
+<ul>
+ 	
+
+<li>-&gt; There is a dedicated variable which holds the actual result and how you got the actual result. TWO FOR ONE!</li>
+
+
+</ul>
+
+
+</li>
+
+
+ 	
+
+<li>What is the expected output?
+
+
+<ul>
+ 	
+
+<li>-&gt; Again, there is a dedicated variable which holds the actual result. Straight as a ruler!</li>
+
+
+</ul>
+
+
+</li>
+
+
+</ul>
+
+
+
+
+<h2>Make your tests even better</h2>
+
+
+This is from my experiences and the knowledge I gained from good articles. This worked for me in the long run even if I find it a little difficult to implement when I started. <strong>Write every single test using toEqual()</strong>. Don&#8217;t worry about the quality impact on your test suit. It will get better with exercise.
+
+
+<h2>Easter Egg</h2>
+
+
+This method I suggested would answer one more question, which is by far the most important question I guess. <strong>How can you reproduce the test?</strong> The <strong>const actual </strong>holds the answer to this question. Please go take a look at the variable in my sample test suit above and get delighted.
+
+
+<h1>Conclusion</h1>
+
+
+Integrating Jasmine into your Rails app is done by the <strong>jasmine-gem. </strong>This gem gives you the ability to run tests in a browser or as Continous Integration mode. The usage of right plugins will improve your productivity and helps you write tests faster and better.
+Next time you write a test, remember to see if your test answers the following questions:
+
+
+<ul>
+ 	
+
+<li>What are you trying to test?</li>
+
+
+ 	
+
+<li>What should it do?</li>
+
+
+ 	
+
+<li>What is the real-time output (actual behavior)?</li>
+
+
+ 	
+
+<li>What is the expected output (expected behavior)?</li>
+
+
+ 	
+
+<li>How can be the test reproduced?</li>
+
+
+</ul>
+
+]]&gt;		</p>
+]]></content:encoded>
+										</item>
+		<item>
+		<title>Taking screenshots of webpages using Ruby</title>
+		<link>/screenshots-using-ruby/</link>
+				<comments>/screenshots-using-ruby/#comments</comments>
+				<pubDate>Mon, 01 May 2017 10:48:00 +0000</pubDate>
+		<dc:creator><![CDATA[nimmy]]></dc:creator>
+				<category><![CDATA[Beginners]]></category>
+		<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[gem]]></category>
+		<category><![CDATA[phtantom js]]></category>
+		<category><![CDATA[Ruby]]></category>
+		<category><![CDATA[screencap]]></category>
+		<category><![CDATA[screenshot]]></category>
+		<category><![CDATA[web page]]></category>
+		<category><![CDATA[webshot]]></category>
+		<category><![CDATA[website]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=2373</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[&nbsp;
+Recently we have been working on taking screenshots for web page while generating reports based on that website. During this endeavor, we came across some tools to achieve that. We are sharing the information we gathered here.
+The tools that we will discuss for screencapture, in  Ruby,  are:
+
+
+<ul>
+ 	
+
+<li>PhantomJS</li>
+
+
+ 	
+
+<li>Screencap gem</li>
+
+
+ 	
+
+<li>Webshot gem</li>
+
+
+</ul>
+
+
+Screencap and webshot are gems in Ruby that depends on a tool called PhantomJS. It is basically a web browser without a user interface, primarily used for testing websites. Such type of browsers are generally referred to as headless browsers,
+
+
+<h2>Screenshots with PhantomJS</h2>
+
+
+PhantomJS is quite easy to install and is multiplatform, available on major operating systems.
+
+
+<pre class="lang:ruby decode:true">gem install phantomjs</pre>
+
+
+To start, our script must require a reference to the webpage module then use it to create an instance:
+
+
+<pre class="lang:ruby decode:true">var instance = require('webpage').create();</pre>
+
+
+Use the instance.open() method and pass it the arguments, the url of the webpage that we want to capture screenshot.
+
+
+<pre class="lang:ruby decode:true">instance.open('http://redpanthers.co/', function() {
+instance.render('screenshot-phantom.png');
+phantom.exit();
+});</pre>
+
+
+instance.render() method captures the screenshot and saves it to the file specified in the argument.
+Run the script as,
+
+
+<pre class="lang:ruby decode:true">phantomjs filename.js
+</pre>
+
+
+Screenshot is saved in the  directory where we run the script.
+Now what we have above is all JavaScript, but to use the phantom JS in our rails application we have gems that provide us with an easy interface to acheive the same.
+
+
+<h2>Screencap gem</h2>
+
+
+The gem &#8216;screencap&#8217; is introduced in Ruby to make screenshot capture easy. However, the gem depends on  &#8216;PhantomJS&#8217;, so we need to have PhantomJS installed on machine to capture screenshots with screencap gem.
+But screencap does not work with PhantomJS 2.1.1, which is the latest version.
+So we need to install version 1.9.8
+
+
+<pre class="lang:ruby decode:true">gem install phantomjs -v 1.9.8</pre>
+
+
+check version
+
+
+<pre class="lang:default decode:true">phantomjs --version</pre>
+
+
+To install screencap gem in your application, add this line to gemfile
+
+
+<pre class="lang:ruby decode:true">gem 'screencap'</pre>
+
+
+Or install it as
+
+
+<pre class="lang:ruby decode:true">gem install screencap</pre>
+
+
+
+
+<h2>Usage</h2>
+
+
+To capture screenshot with screencap
+
+
+<pre class="lang:ruby decode:true">require 'screencap'
+screenshot = Screencap::Fetcher.new(&lt;url&gt;)
+image = screenshot.fetch</pre>
+
+
+
+
+<ul>
+ 	
+
+<li>Fetcher class accepts url of the website to take screenshot.</li>
+
+
+ 	
+
+<li>Screenshot is taken when fetch method is called.</li>
+
+
+ 	
+
+<li>Also, fetch method supports various optional parameters to specify the area to capture the screenshot.</li>
+
+
+ 	
+
+<li>We can specify where to store the screenshot captured, as shown below.</li>
+
+
+</ul>
+
+
+
+
+<pre class="lang:ruby decode:true">image = obj.fetch(
+ output: '~/folder/file-name.png',
+ # dimensions for taking screenshot of specific area
+  width: 1024,
+ height: 768
+ )</pre>
+
+
+
+
+<h2>Example</h2>
+
+
+
+
+<pre class="lang:ruby decode:true">require 'screencap'
+screenshot = Screencap::Fetcher.new('http://redpanthers.co/')
+image = screenshot.fetch(output: '~/screencap/screencap.png',
+                                   width: 300,
+                                  height: 500)</pre>
+
+
+Our screenshot is captured in screencap.png
+<a href="https://redpanthers.co/wp-content/uploads/2017/04/screencap.png"><img class="alignnone size-medium wp-image-2388" src="https://redpanthers.co/wp-content/uploads/2017/04/screencap-300x225.png" alt="" width="300" height="225" /></a>
+
+
+<h2></h2>
+
+
+
+
+<h2>Webshot gem</h2>
+
+
+Webshot is another gem introduced in ruby to capture screenshots, also depends on PhantomJS.
+For better experience, use latest version of PhantomJS. Webshot works with latest version of PhantomJS while screencap gem does not.
+Install PhantomJS latest version.
+To install webshot in your application,
+
+
+<pre class="lang:ruby decode:true">gem 'webshot'</pre>
+
+
+Or install as
+
+
+<pre class="lang:ruby decode:true">gem install webshot</pre>
+
+
+
+
+<h2>Usage</h2>
+
+
+
+
+<pre class="lang:ruby decode:true">require 'webshot'
+screenshot = Webshot::Screenshot.instance
+screenshot.capture "https://github.com/", "image.png", width: 1024, height: 800</pre>
+
+
+Provide url of the web page and file name where screenshot to be saved.
+Height and width can be given as optional parameters for taking screenshot with specified dimensions.
+Above code captures github&#8217;s home page in file image.png
+<a href="https://redpanthers.co/wp-content/uploads/2017/04/image-1.png"><img class="alignnone size-medium wp-image-2398" src="https://redpanthers.co/wp-content/uploads/2017/04/image-1-300x146.png" alt="" width="300" height="146" /></a>
+In all the above methods, we capture screenshots of a particular web page by passing its url.
+Also we can infer that screencap gem, even though efficiently takes screenshots, does not work for latest version of PhantomJS. This was an issue encountered while working with gem screencap as installing PhantomJS without specifying the version would install the latest version by default.
+So, choose gem webshot if you want to go ahead with the latest version of PhantomJS.
+
+
+<h2>References</h2>
+
+
+
+
+<ul>
+ 	
+
+<li><a href="https://github.com/ariya/phantomjs">PhantomJS</a></li>
+
+
+ 	
+
+<li><a href="https://github.com/maxwell/screencap">Screencap gem</a></li>
+
+
+ 	
+
+<li><a href="https://github.com/vitalie/webshot">Webshot gem</a></li>
+
+
+</ul>
+
+]]&gt;		</p>
+]]></content:encoded>
+							<wfw:commentRss>/screenshots-using-ruby/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+							</item>
+		<item>
+		<title>Rack::Attack &#8211; secure you rails app for the real world</title>
+		<link>/rack-attack-secure-you-rails-app-for-the-real-world/</link>
+				<pubDate>Mon, 27 Feb 2017 15:08:19 +0000</pubDate>
+		<dc:creator><![CDATA[harikrishnan]]></dc:creator>
+				<category><![CDATA[Rails]]></category>
+		<category><![CDATA[Ruby]]></category>
+		<category><![CDATA[attack]]></category>
+		<category><![CDATA[hackers]]></category>
+		<category><![CDATA[Rack]]></category>
+		<category><![CDATA[safety]]></category>
+		<category><![CDATA[security]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=1465</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[<a href="https://redpanthers.co/wp-content/uploads/2017/01/rack-attack.png"><img class="wp-image-1491 aligncenter" src="https://redpanthers.co/wp-content/uploads/2017/01/rack-attack.png" alt="" width="359" height="202" /></a>
+Are you worried about the security issues in your Rails app? The <a href="https://github.com/kickstarter/rack-attack">rack-attack gem</a>, can help you. <strong>Rack::Attack</strong> is a rack middleware which provides security to our rails application. It allows us to <strong>safelist, blacklist, throttle</strong> and to <strong>track requests</strong>.
+
+
+<ul>
+ 	
+
+<li>If the request matches any <strong>safelist</strong>, it is allowed.</li>
+
+
+ 	
+
+<li>If the request matches any <strong>blocklist</strong>, it is blocked.</li>
+
+
+ 	
+
+<li>If the request matches any <strong>throttle</strong>, a counter is incremented in the Rack::Attack.cache. If any throttle&#8217;s limit is exceeded, the request is blocked.</li>
+
+
+ 	
+
+<li>Otherwise, all <strong>tracks</strong> are checked, and the request is allowed.</li>
+
+
+</ul>
+
+
+
+
+<h2>Implementation</h2>
+
+
+Install the rack-attack gem, or add it to you Gemfile as:
+
+
+<pre class="lang:ruby decode:true">gem 'rack-attack'</pre>
+
+
+Then tell your app to use the Rack::Attack middleware. For Rails 3+ apps:
+
+
+<pre class="lang:ruby decode:true"># In config/application.rb
+config.middleware.use Rack::Attack</pre>
+
+
+Or you can use it in Rackup file as
+
+
+<pre class="lang:ruby decode:true "># In config.ru
+use Rack::Attack</pre>
+
+
+By default, Rack Attack uses Rails cache. You can override that by setting the `Rack::Attack.cache.store` value. It <span class="n">is </span><span class="n">used</span> <span class="k">for</span> <span class="n">throttling. If you want to create use a custom adapter, for example, memory store,  </span>create a file called rack_attack.rb in config/initializers to configure Rack Attack and put the following code in the file:
+
+
+<pre class="lang:ruby decode:true">class Rack::Attack
+  Rack::Attack.cache.store = ActiveSupport::Cache::MemoryStore.new
+  ########
+end</pre>
+
+
+
+
+<h3>Throttle</h3>
+
+
+
+
+<pre class="lang:ruby decode:true">throttle('api/ip', limit: 3, period: 10) do |req|
+  req.ip
+end</pre>
+
+
+Here we are limiting the request per seconds from the same IP address. Here we are limiting only 3 requests in 10 sec.
+
+
+<h3>Safelist</h3>
+
+
+
+
+<pre class="">Rack::Attack.safelist('allow from localhost') do |req|
+  '127.0.0.1' == req.ip
+end
+</pre>
+
+
+Above example always allows the request from localhost. And the request is allowed if the value is true.
+
+
+<h3>Blacklist</h3>
+
+
+
+
+<pre class="lang:ruby decode:true">Rack::Attack.blacklist('block 2.2.2.2') do |req|
+  '2.2.2.2' == req.ip
+end</pre>
+
+
+Here, it blocks the request from &#8216;2.2.2.2&#8217;.
+
+
+<blockquote><strong>Fail2Ban</strong>: <code>Fail2Ban.filter</code> can be used within a blocklist to block all requests from misbehaving clients.
+<strong>Allow2Ban: </strong><code>Allow2Ban.filter</code> works the same way as the <code>Fail2Ban.filter</code> except that it allows requests from misbehaving clients until such time as they reach maximum retry.</blockquote>
+
+
+
+
+<h3>Block logins from a bad user agent</h3>
+
+
+
+
+<pre class="lang:ruby decode:true">Rack::Attack.blacklist('block bad UA logins') do |req|
+  req.path == '/login' &amp;&amp; req.post? &amp;&amp; req.user_agent == 'BadUA'
+end</pre>
+
+
+In the above example, if a bad user tries to login, the request is blocked.
+
+
+<h3 id="Tracks">Tracks</h3>
+
+
+
+
+<pre class="lang:ruby decode:true">Rack::Attack.track("special_agent") do |req|
+  req.user_agent == "SpecialAgent"
+end</pre>
+
+
+It tracks request from a special user.
+
+
+<h2>Security issues that Rack Attack addresses</h2>
+
+
+
+
+<ul>
+ 	
+
+<li class="entry-title">Rate limits against DDoS and abusive users</li>
+
+
+</ul>
+
+
+
+
+<p style="padding-left: 60px;"><em><strong>DDoS</strong> is short for <strong>D</strong>istributed <strong>D</strong>enial <strong>o</strong>f <strong>S</strong>ervice. </em>It uses multiple computers and Internet connections to flood the targeted resource.</p>
+
+
+When you need more security to your rails app, don&#8217;t forget to add Rack::Attack in it. It will protect your app from bad clients.
+
+
+<h2>Whitelist Search Engine spiders</h2>
+
+
+
+
+<p style="text-align: left;">        Though we blacklist IP&#8217;s that are misbehaving, we have to whitelist search engine spiders. But they have a huge range of IP&#8217;s. So we can check user agent. But it&#8217;s something anyone can fake. We can run a <a href="https://support.google.com/webmasters/answer/80553?hl=en">reverse DNS lookup</a> of the accessing IP and perform a forward DNS lookup on the domain (using <code>host</code> command). Verify that it is same as the original IP address from the logs.</p>
+
+
+
+
+<h2>References</h2>
+
+
+
+
+<ul>
+ 	
+
+<li><a href="https://www.diycode.cc/projects/kickstarter/rack-attack">https://www.diycode.cc/projects/kickstarter/rack-attack</a></li>
+
+
+ 	
+
+<li><a href="https://searchcode.com/file/86455896/README.md">https://searchcode.com/file/86455896/README.md</a></li>
+
+
+ 	
+
+<li><a href="http://sourcey.com/building-the-prefect-rails-5-api-only-app/">http://sourcey.com/building-the-prefect-rails-5-api-only-app/</a></li>
+
+
+</ul>
+
+]]&gt;		</p>
+]]></content:encoded>
+										</item>
+		<item>
+		<title>Chartkick: data visualization made easy with Ruby</title>
+		<link>/chartkick-data-visualization-easy-ruby/</link>
+				<comments>/chartkick-data-visualization-easy-ruby/#comments</comments>
+				<pubDate>Wed, 18 Jan 2017 13:11:11 +0000</pubDate>
+		<dc:creator><![CDATA[govind]]></dc:creator>
+				<category><![CDATA[Ruby]]></category>
+		<category><![CDATA[Chartkick]]></category>
+		<category><![CDATA[Dynamic]]></category>
+		<category><![CDATA[gem]]></category>
+		<category><![CDATA[graphs]]></category>
+		<category><![CDATA[ruby on rails]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=975</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[Recently, I've been using Highcharts, Google charts and Chart Js for visualizing dynamic data in my projects. But it was difficult to integrate it with the rails application. However, for every problem in Ruby, there is a gem out there to save your day and Chartkick, a Ruby gem exclusively available for data visualization is truly a savior. Chartkick can work with Highcharts, Chart.js and Google charts to create dynamic and interactive charts that draw data from the Rails application. And the best part, you just need to write one single line of Ruby code. Isn't that amazing and powerful!
+Let's begin with Installation
+For installation, all you have to do is adding this line to your application's Gemfile:
+
+
+<pre class="">gem &#8220;chartkick&#8221;</pre>
+
+
+Then you have to choose your charting library.
+In case, if more than one charting library is loaded, choose between them with the following code:
+
+
+<pre class="lang:xhtml decode:true">&lt;%= line_chart data, adapter: "google" %&gt; &lt;!-- or highcharts --&gt;</pre>
+
+
+P.S:- highcharts is the default adapter is nothing else is defined.
+Using Chartkick
+Once it&#8217;s installed, you can start playing around with chartkick. For example:
+
+
+<pre class="lang:xhtml decode:true">&lt;%= line_chart User.group_by_day(:created_at).count %&gt;
+</pre>
+
+
+
+
+<p class="">In the above example, I have just shown you how we can make a line chart.Similarly, you can create Pie chart, Column chart, Bar chart, Area chart, Scatter chart, Geo charts, Timeline(Google Charts)etc. All you need is that one line of Ruby code. Cool, isn&#8217;t it!!</p>
+
+
+Chartkick gives you a variety of options to make your charts interesting. You can also set a Global option for each chart by using initializers and even customize the HTML. Data can be passed as a Hash or as an Array. You can find more details about using Chartkick options, sending data in <a href="http://chartkick.com/">Chartkick documentation</a>.
+Now, let&#8217;s have some real fun by using Chartkick to create some interactive <strong>Graphs, </strong>using<strong> Dynamic data</strong>.
+To create a graph which drives data from the ajax request, you just need to define a method in the controller and pass the JSON data. For example
+<em>app/controllers/views_controller.rb:</em>
+
+
+<pre class="lang:ruby decode:true">class ViewsController &lt; ApplicationController
+  def show
+    @view = View.all
+  end
+  def views_by_day
+    render json: View.group_by_day(:viewed_at, format: "%B %d, %Y").count
+  end
+end</pre>
+
+
+Next, add in the code listed below to your views/show view.
+<em>app/views/views/show.html.erb:</em>
+
+
+<pre class="lang:xhtml decode:true">&lt;div class="container"&gt;
+  &lt;h3&gt;Views By Day&lt;/h3&gt;
+  &lt;%= line_chart views_by_day_view_path %&gt;
+&lt;/div&gt;</pre>
+
+
+We can also create graphs with Multiple Series with the below codes
+
+
+<pre class="lang:xhtml decode:true">&lt;%= line_chart @.map { |view|
+ {name: view.name, data: view.feats.group_by_week(:created_at).count}
+} %&gt;</pre>
+
+
+or
+
+
+<pre class="lang:xhtml decode:true">&lt;%= line_chart Feat.view(:view_id).group_by_week(:created_at).count %&gt;
+</pre>
+
+
+Voila! there you have it how you want.
+Here is an example charts I got for you
+<a href="https://redpanthers.co/wp-content/uploads/2017/01/Chartkick.js.png"><img class="alignleft wp-image-1498 size-full" src="https://redpanthers.co/wp-content/uploads/2017/01/Chartkick.js.png" alt="Chartkick" width="541" height="746" /></a>
+So, next time if you want to create charts and graphs easily in your web application, don&#8217;t forget to use <strong>Chartkick </strong>and let me know in the comment section if you know any such tool that made your coding a bliss!
+Happy Coding!
+
+
+<h2>References</h2>
+
+
+
+
+<ul>
+ 	
+
+<li><a href="http://chartkick.com/">http://chartkick.com/</a></li>
+
+
+ 	
+
+<li><a href="https://ankane.github.io/chartkick.js/examples/">https://ankane.github.io/chartkick.js/examples/</a></li>
+
+
+</ul>
+
+]]&gt;		</p>
+]]></content:encoded>
+							<wfw:commentRss>/chartkick-data-visualization-easy-ruby/feed/</wfw:commentRss>
+		<slash:comments>3</slash:comments>
+							</item>
+		<item>
+		<title>Introduction to generating JSON using PostgreSQL</title>
+		<link>/create-json-response-using-postgresql-instead-rails/</link>
+				<comments>/create-json-response-using-postgresql-instead-rails/#comments</comments>
+				<pubDate>Thu, 24 Nov 2016 04:38:33 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Database]]></category>
+		<category><![CDATA[PostgreSQL]]></category>
+		<category><![CDATA[API]]></category>
+		<category><![CDATA[array]]></category>
+		<category><![CDATA[benchmarking]]></category>
+		<category><![CDATA[database]]></category>
+		<category><![CDATA[Faster]]></category>
+		<category><![CDATA[generation]]></category>
+		<category><![CDATA[JSON]]></category>
+		<category><![CDATA[optimization]]></category>
+		<category><![CDATA[rails]]></category>
+		<category><![CDATA[Ruby]]></category>
+		<category><![CDATA[SQL]]></category>
+		<category><![CDATA[standards]]></category>
+		<category><![CDATA[web api]]></category>
+		<category><![CDATA[XML]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=663</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[
+
+<h2>Introduction</h2>
+
+
+One of the major requirements for any online business is to have a backend that either provides or can be extended to provide an API response. Building  websites with static HTML and simple jquery ajax is coming to an end. In this era, Javascript frameworks rules the market. Hence, it is a good decision for the database to support JSON, as JSON is becoming the glue that connects the frontend and backend.
+Rails have an inbuilt support for generating JSON, as it&#8217;s our swiss army knife of web development, and encourages the REST URL structure . And its a good choice for building API. It is good enough to a particular point of growth. Very soon you will reach bottlenecks, where you have more requests than you can handle and you have to either spawn up more servers or use some concurrent languages like elixir, go, etc. Before we go to that scale and burn down the existing codebase, we can use database to generate JSON responses for us, which is 10 times faster in generating JSON than Rails (though more verbose).
+Since PostgreSQL 9.2, the database has taken a major leap in supporting JSON. The support that PostgreSQL provides can be divided into two
+
+
+<ul>
+ 	
+
+<li>Storing data in JSON and JSONB format</li>
+
+
+ 	
+
+<li>Generating JSON results from the query itself</li>
+
+
+</ul>
+
+
+In this article, we will talk about generating JSON(an introduction) from the query itself.
+
+
+<h2>Getting Started</h2>
+
+
+One of the advantages of using a database to generate JSON is that I have found it fast while generating smaller JSON but much more faster in generating complex JSON. (Note: The speed is in comparison with rails not with respect to the database itself)
+
+
+<h3><strong>How to generate JSON</strong></h3>
+
+
+
+
+<div></div>
+
+
+
+
+<div>Simplest way to do that is row_to_json()
+For example: Query to return user with id 1 as JSON</div>
+
+
+
+
+<div>
+
+
+<pre class="lang:pgsql decode:true">select row_to_json(users) from users where id = 1;
+</pre>
+
+
+Result:
+
+
+<pre class="lang:js decode:true">{"id":1,"email":"hsps@redpanthers.co","encrypted_password":"iwillbecrazytodisplaythat",
+"reset_password_token":null,"reset_password_sent_at":null,
+"remember_created_at":"2016-11-06T08:39:47.983222",
+"sign_in_count":11,"current_sign_in_at":"2016-11-18T11:47:01.946542",
+"last_sign_in_at":"2016-11-16T20:46:31.110257",
+"current_sign_in_ip":"::1","last_sign_in_ip":"::1",
+"created_at":"2016-11-06T08:38:46.193417",
+"updated_at":"2016-11-18T11:47:01.956152",
+"first_name":"Super","last_name":"Admin","role":3}</pre>
+
+
+if you want to send only some specific fields
+</div>
+
+
+
+
+<pre class="lang:pgsql decode:true">select row_to_json(results)
+from (
+  select id, email from users
+) as results</pre>
+
+
+Result
+
+
+<pre class="lang:js decode:true">{"id":1,"email":"hsps@redpanthers.co"}</pre>
+
+
+Now let&#8217;s see how to generate more complex JSON with sub JSON, and arrays.
+
+
+<pre class="lang:pgsql decode:true">select row_to_json(result)
+from (
+  select id, email,
+    (
+      select array_to_json(array_agg(row_to_json(user_projects)))
+      from (
+        select id, name
+        from projects
+        where user_id=users.id
+        order by created_at asc
+      ) user_projects
+    ) as projects
+  from users
+  where id = 1
+) result</pre>
+
+
+This would return the JSON response
+
+
+<pre class="lang:default decode:true ">{"id":1,"email":"hsps@redpanthers.co", "project":["id": 3, "name": "CSnipp"]}</pre>
+
+
+The issue with the above code is that it is more verbose (has more text)  when compared to a ruby code. We need to make sure that while we do a bit of sacrifice there, is worthwhile. So while working with API&#8217;s  use it only where you see a delay in JSON generation.
+Similarly ,to the <strong>&#8216;array_agg&#8217;</strong> method that we used above to aggregate values to an array then to JSON, we aggregate them as JSON using <code>json_agg</code>.
+
+
+<pre class="lang:pgsql decode:true">array_to_json(array_agg(row_to_json(user_projects)))</pre>
+
+
+can be shortened to
+
+
+<pre class="lang:pgsql decode:true">json_agg(user_projects)</pre>
+
+
+&nbsp;
+Since the above method of array generation can be tedious, in PostgreSQL 9.4, they have introduced a new method called <code>json_build_object</code>. Simple usage of the function can be as below
+
+
+<pre class="lang:pgsql decode:true ">json_build_object('foo',1,'bar',2)</pre>
+
+
+which will output
+
+
+<pre class="lang:js decode:true ">{"foo": 1, "bar": 2}</pre>
+
+
+Also, we can use it to build complex JSON tree by creating functions within the PostgreSQL database. Of course, as we do that, we are moving more and more logic of the code into the DB and we would need to run migrations every time when we want to update a function. So as I said before, we are sacrificing our convenience here .So we should only use this, as the complexity of our JSON generation increases.
+I will be covering how to write PostgreSQL functions to help generate more complex JSON structure easier in the second part of this particle.
+
+
+<h2>References</h2>
+
+
+https://www.postgresql.org/docs/current/static/functions-json.html
+http://bytefish.de/blog/postgresql_json/]]&gt;		</p>
+]]></content:encoded>
+							<wfw:commentRss>/create-json-response-using-postgresql-instead-rails/feed/</wfw:commentRss>
+		<slash:comments>11</slash:comments>
+							</item>
+		<item>
+		<title>Lazy enumerator to handle huge files</title>
+		<link>/lazy-enumerator-to-handle-huge-files/</link>
+				<pubDate>Fri, 12 Aug 2016 08:49:12 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Ruby]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[core]]></category>
+		<category><![CDATA[enumerator]]></category>
+		<category><![CDATA[files]]></category>
+		<category><![CDATA[functional]]></category>
+		<category><![CDATA[huge files]]></category>
+		<category><![CDATA[lazy]]></category>
+		<category><![CDATA[mangaing]]></category>
+		<category><![CDATA[programming]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=401</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[<b>Lazy evaluation</b>, or <b>call-by-need</b> is an evaluation strategy which delays the evaluation of an expression until its value is needed. It&#8217;s frequently seen in functional languages, ruby introduced the lazy method in Ruby 2.0. For those who don&#8217;t know what are enumerators: enumerators are something that can be counted. So a collection of elements, files (file is an collection of lines of string), etc can be treated as an enumerator.
+In ruby we need to make something countable into an enumerator object, which is done by applying .each and .map on it.
+
+
+<pre class="lang:ruby decode:true">[].each
+[1, 3, 4].each
+file.each
+{}.each</pre>
+
+
+Ruby has a wide range of operations we can do over a collection, it&#8217;s one of those features that makes Ruby such a powerful dynamic language. An enumerator can be used to generate series like the Fibonacci series.
+
+
+<pre class="lang:ruby decode:true">fib = Enumerator.new do |y|
+  a = b = 1
+  loop do
+    y &lt;&lt; a
+    a, b = b, a + b
+  end
+end</pre>
+
+
+But when we do a <em>.map</em> / <em>.each</em> with a code block, then it would try to realize the enumerator fully and then apply the block over it.
+<i></i>That would be fine when we are working on something small like:
+
+
+<pre class="lang:default decode:true">[1,2,3].map { |i| i*i }</pre>
+
+
+But when we take the above fib enumerator, which will grow into an infinite series, adding a <em>.map </em>would lead the code to an infinite loop. If you are crazy enough to write an infinite loop, feel free to run the below code.
+
+
+<pre class="lang:ruby decode:true">foo.map { |i| i * * }</pre>
+
+
+When we try to use these operations on a huge 10 GB file,there it makes your program realize the entire file is close to impossible. So this is the case where the lazy enumerator comes to place. It would ask ruby to defer the realization of the enumerator until it is required, and not before you run your operation.
+So with respect to the above Fibonacci enumerator, you should change the code to as below.
+
+
+<pre class="lang:ruby decode:true">foo.lazy.map { |i| i * i }</pre>
+
+
+So now, the program is ready, all good it would run fast. But it won&#8217;t execute them until you call or access those elements. So only when we do <code>foo.lazy.map { |i| i* i }.</code> First the first element is calculated and given to us. Like wise if you want the first 10 elements of the fibonacci series then you have to do <code>foo.lazy.map { |i| i* i }.take(1o).to_a</code>
+To do the  same with the files, as a file is a collection of lines, follow the below code snippets:
+
+
+<pre class="lang:ruby decode:true">fille = File.open('OurHugeFile.log')
+</pre>
+
+
+<span style="line-height: 1.5;">get the first three lines, lazily:</span>
+
+
+<pre class="lang:ruby decode:true">file.each_line.lazy.take(3).to_a</pre>
+
+
+get the firs two lines with word &#8220;INFO&#8221;
+
+
+<pre class="lang:ruby decode:true "> file.each_line.lazy.select { |line| line.match(/INFO/) }.first(2)
+</pre>
+
+
+So if you want to print something with line numbers, just do a map from the lazy.
+
+
+<pre class="">file.each_line.lazy.each_with_index.map { |l, i| "#{i}: #{l}" }.select { |i| match(/INFO/) }.first(3)</pre>
+
+
+
+
+<hr />
+If you have anything more to add to this, kindly comment below.]]&gt;		</p>
+]]></content:encoded>
+										</item>
+		<item>
+		<title>Optimising PostgreSQL database query using indexes</title>
+		<link>/optimising-postgresql-database-query-using-indexes/</link>
+				<comments>/optimising-postgresql-database-query-using-indexes/#comments</comments>
+				<pubDate>Thu, 11 Aug 2016 10:59:22 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Database]]></category>
+		<category><![CDATA[PostgreSQL]]></category>
+		<category><![CDATA[B Tree]]></category>
+		<category><![CDATA[database]]></category>
+		<category><![CDATA[GIN]]></category>
+		<category><![CDATA[Guide]]></category>
+		<category><![CDATA[Hash]]></category>
+		<category><![CDATA[index]]></category>
+		<category><![CDATA[learning]]></category>
+		<category><![CDATA[migration]]></category>
+		<category><![CDATA[multi column]]></category>
+		<category><![CDATA[partial migration]]></category>
+		<category><![CDATA[rails]]></category>
+		<category><![CDATA[Ruby]]></category>
+		<category><![CDATA[ruby on rails]]></category>
+		<category><![CDATA[single column]]></category>
+		<category><![CDATA[SQL]]></category>
+		<category><![CDATA[training]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=389</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[At Red Panthers PostgreSQL is our go to database we use it everywhere. So thinking about how to optimize our database performance is one of the most talked about topic at our office. The best way to speed up report generation and data retrieval within a rails application is to leave it to the database, as they have algorithms and optimizations build just for that. We always felt that most Ruby on Rails projects out there, do not use the full potential of a database and they usually just limit it to a data store. PostgreSQL or any database for that matter is much more than that.
+We would be blogging on how we use PostgreSQL in our projects to speed up our client's applications. This particle is the first part of a series of article we would be writing on database optimization.
+<img class="aligncenter" src="http://i.imgur.com/YSZE83d.jpg?1" width="231" height="172" />
+<strong>Database Indexes:</strong>
+Indexes are a special lookup table that the database search engine can use to speed up data retrieval. An Index is similar to a pointer to a particular row of a table. As a real world example, consider a Britannica Encyclopedia with 22 volumes of books, and an extra book listing  the index,with which you can find out the item you are searching for in those 22 books.
+PostgreSQL 9.5, provides several index algorithms like B-tree, Hash, GiST, SP-GiST and GIN. When you create an index using Ruby on Rails migration, by <strong>default it would be using the B-Tree</strong> migration. Whereas, as we move on to the indexing algorithms, we need to check into the general classification of an index and the data to be indexed.
+<strong>Primary Keys</strong>
+In rails, when we generate a model , by default an ID column would be added to the table. It would have integers values and they would be unique as well. By default, when you set a column as a primary key, the database would build a <em><strong>unique index </strong></em>on it. So we don&#8217;t need to add migration for it.
+<strong>Foreign Keys</strong>
+When you build a relationship between two tables you add a <code>foreign_key</code> in the child table to point to parent, eg: <code>user_id</code>, <code>group_id</code>. We need to query through this relationship a lot in rails, for example to load all the comments of post or all members of a group.<strong> So we need to index that for speed.</strong>.
+If you are using some non id value to reference a table, lets say in your application ,you give all your users a unique URL which has the username. (Eg: http://csnipp.com/coderhs), in that case we would be using the username to query the data, so we need to have it indexed. In fact you should index all the columns you might be using in your where queries. Like if you are searching for users of a particular age or income frequents in your reports, then you should create an index for them as well.
+<strong>Note:</strong>  What we explained above are single column indexes and multi column indexes. So if you are indexing just a single column in a table, its single column indexes.
+
+
+<pre class="lang:pgsql decode:true">CREATE INDEX index_name
+ON prices (user_id);</pre>
+
+
+Rails code:
+
+
+<pre class="lang:ruby decode:true">add_index :prices, :user_id</pre>
+
+
+When we index multiple columns, they are called multi column index.
+
+
+<pre class="lang:pgsql decode:true">CREATE INDEX index_name
+ON user_views (user_id, article_id);</pre>
+
+
+Rails code:
+
+
+<pre class="lang:ruby decode:true">add_index :user_views, [:user_id, :article_id]</pre>
+
+
+If you are joining two tables, using a column (which is not the already indexed foreign key) then you should index that as well.
+<strong>State column &amp; Boolean column</strong>
+State and Boolean column are columns that should be indexed as there would be a lot of rows but only limited number of values in those columns. Boolean column would have only true or false (two values)and state columns will have more than two like eg: draft, published, pending. The speed of load would be faster for these columns as they are only limited keys that can be placed in the index, and on a single lookup we can load them.
+<strong>Partial indexes</strong> can be used in the above case, as the name suggests it&#8217;s an index over a subset of your table. The index would be building if it satisfies certain conditions. They can be most useful <strong>while writing scopes in rails. </strong>Lets say that you have a scope that picks up all the articles which are marked as SPAM. In your model you will write a scope like below
+
+
+<pre class="lang:ruby decode:true">scope :articles, where(:spam =&gt; 'true')</pre>
+
+
+So internally it&#8217;s a where query, one can add a partial index migration as follows:
+
+
+<pre class="lang:pgsql decode:true">CREATE INDEX index_name
+on articles (spam is true);</pre>
+
+
+Rails:
+
+
+<pre class="lang:ruby decode:true">add_index :articles, :spam, name: "index_articles_on_spam", where: "(spam IS true)"</pre>
+
+
+<strong>When not to use indexes</strong>
+Using indexes speeds up the SELECT and WHERE command, but it does slows down the execution of INSERT.
+<strong>So avoid indexing when we have table that has a lot of insert and update</strong>
+So we should avoid using Indexes when we have a table that holds a huge number of raw data, where we do a lot of batch updates and insert. For example, in an IoT application we would pipe all the data from multiple devices to a single table , summarize  and insert it into its proper tables. And  by a lot of data, I am referring to at least 10+ MB of data per minute. In most cases, we would just truncate that table after processing, hence it would slow us down if we were to index it.
+<strong>If the table is too small and you know it will always be small</strong>
+If you have a setting table which just stores the application settings, that can be modified by an admin panel. Then it doesn&#8217;t seem to be worth having an index there.
+<strong>When you are manipulating the values of a column a lot</strong>
+Lets say the particular value of a column gets changes extremely a lot, like the website view count. Then indexing it is not highly recommended.
+Finally to complete this article. If you want to drop an index:
+SQL
+
+
+<pre class="lang:pgsql decode:true">DROP INDEX index_name;</pre>
+
+
+Rails
+
+
+<pre class="lang:ruby decode:true">remove_index :books, :created_at</pre>
+
+
+<strong>Summary</strong>:
+
+
+<ul>
+ 	
+
+<li>Index Primary key</li>
+
+
+ 	
+
+<li>Index Foreign key</li>
+
+
+ 	
+
+<li>Index all columns you would be passing into where clause</li>
+
+
+ 	
+
+<li>Index the keys used to Join tables</li>
+
+
+ 	
+
+<li>Index the date column (if you are going to call it frequent, like rankings of a particular date)</li>
+
+
+ 	
+
+<li>Index the type column in an STI or polymorphism.</li>
+
+
+ 	
+
+<li>Add partial index to scopes</li>
+
+
+ 	
+
+<li>Do not index tables with a lot of read, write</li>
+
+
+ 	
+
+<li>Do not index tables you know that will remain small, all through out its life time</li>
+
+
+ 	
+
+<li>Do not index columns where you will be manipulating lot of its values.</li>
+
+
+</ul>
+
+
+Keep visiting here to know more about the PostgreSQL indexing algorithms in part 2 of this article.
+<strong>References:</strong>
+<a href="https://www.postgresql.org/docs/9.2/static/indexes-types.html">https://www.postgresql.org/docs/9.2/static/indexes-types.html</a>
+<a href="http://dev.mysql.com/doc/refman/5.7/en/mysql-indexes.html">http://dev.mysql.com/doc/refman/5.7/en/mysql-indexes.html</a>
+<a href="http://www.tutorialspoint.com/postgresql/postgresql_indexes.htm">http://www.tutorialspoint.com/postgresql/postgresql_indexes.htm</a>]]&gt;		</p>
+]]></content:encoded>
+							<wfw:commentRss>/optimising-postgresql-database-query-using-indexes/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+							</item>
+		<item>
+		<title>Working with timezones in rails</title>
+		<link>/working-timezones-rails/</link>
+				<pubDate>Thu, 11 Aug 2016 07:32:15 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Beginners]]></category>
+		<category><![CDATA[Rails]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[different]]></category>
+		<category><![CDATA[handelling]]></category>
+		<category><![CDATA[management]]></category>
+		<category><![CDATA[programming]]></category>
+		<category><![CDATA[Ruby]]></category>
+		<category><![CDATA[timezone]]></category>
+		<category><![CDATA[timzones]]></category>
+		<category><![CDATA[user]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=386</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[<strong>Ruby on Rails</strong> being an amazing framework, helps us manage the timezone of our rails application. It gives us access to a lot of helpers, to make our life easier. For example, if you want to change all the date and time of your application to the logged in users time zone, we just have to place the following code in the application_controller.
+
+
+<pre class="lang:ruby decode:true "># app/controllers/application_controller.rb
+around_action :set_time_zone, if: :current_user
+private
+def set_time_zone(&amp;block)
+  Time.use_zone(current_user.time_zone)
+end</pre>
+
+
+We assume that you have stored the user&#8217;s time_zone in your database in the time_zone column.
+The application  to show  timezone can be set in your <code>application.rb</code>, if we don&#8217;t set a particular timezone then the application will just show the systems timezone.
+
+
+<pre class="lang:default decode:true">config.time_zone = 'Central Time (US &amp; Canada)'</pre>
+
+
+If you want to know all the timezone options available in rails, run the <code>rake -D time</code> command in your terminal.
+Even though rails would take care of the timezone, when we are using certain ruby commands, it gives us our systems timezone and not the one set by rails. So to avoid surprises, we should be aware of the timezones we are exposed to.
+A rails app, would always be exposed to three timezones:
+
+
+<ul>
+ 	
+
+<li>System timezone</li>
+
+
+ 	
+
+<li>Database timezone</li>
+
+
+ 	
+
+<li>Rails applications own timezone</li>
+
+
+</ul>
+
+
+All three could be different, for example <em>your system timezone could be in IST, database in UTC, and rails app running in PDT</em>.
+To avoid accidental  assessment to a different timezone, always keep in mind the commands you should and should not use.
+DO NOT USE &#8211; as they all give you time with respect to the system time
+
+
+<pre class="highlight"><code>  * Time.now
+  * Date.today
+  * Date.today.to_time
+  * Time.parse("2015-07-04 17:05:37")
+  * Time.strptime(string, "%Y-%m-%dT%H:%M:%S%z")</code></pre>
+
+
+USE &#8211; these give you access to the rails application time (which we can change with respect to the user)
+
+
+<pre class="highlight"><code>* Time.current
+* 2.hours.ago
+* Time.zone.today
+* Date.current
+* 1.day.from_now
+* Time.zone.parse("2015-07-04 17:05:37")
+* Time.strptime(string, "%Y-%m-%dT%H:%M:%S%z").in_time_zone</code></pre>
+
+
+&nbsp;]]&gt;		</p>
+]]></content:encoded>
+										</item>
+		<item>
+		<title>after_create vs after_save vs after_commit</title>
+		<link>/after_create-vs-after_save-vs-after_commit/</link>
+				<comments>/after_create-vs-after_save-vs-after_commit/#comments</comments>
+				<pubDate>Thu, 28 Jul 2016 06:46:38 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Rails]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[active_model]]></category>
+		<category><![CDATA[active_record]]></category>
+		<category><![CDATA[after_commit]]></category>
+		<category><![CDATA[after_create]]></category>
+		<category><![CDATA[after_save]]></category>
+		<category><![CDATA[callbacks]]></category>
+		<category><![CDATA[database]]></category>
+		<category><![CDATA[mysql]]></category>
+		<category><![CDATA[PostgreSQL]]></category>
+		<category><![CDATA[rails]]></category>
+		<category><![CDATA[Ruby]]></category>
+		<category><![CDATA[transaction]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=371</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[<code>after_save</code>, <code>after_create</code> and <code>after_commit</code> are called active record call backs in rails. They get executed when we work on the database, similarly we also have before_* callback and callbacks on destroy as well. In this article I will explain you about the difference between *_save, *_create and *_commit callbacks.
+The purpose of each as per rails docs:
+
+
+<blockquote>after_create
+Is called after <code>Base.save</code> on new objects that haven‘t been saved yet (no record exists)
+after_save
+Is called after <code>Base.save</code> (regardless of whether it‘s a create or update save)
+after_commit
+Is called after the database transaction is completed.</blockquote>
+
+
+Now to explain the real difference between the three, we must first explain about database transaction. They are a protective block around a group of sql statements, that are permanent only if all of them succeed in a single atomic statement.
+
+
+<pre class="lang:default decode:true">User.transaction do
+    # update company
+    # update hr_department
+    # update user_table
+end</pre>
+
+
+When rails execute a create, the <code>after_save</code> and <code>after_create</code> would be called within the transaction block of the create statement. So they will be executed before executing the sql statement to make permanent changes in the DB. If the query fails, then no change will happen to the DB, but we would have executed the instructions of the after_create and <code>after_save</code> block.
+Where as after_commit, is called after the execution of the final/outer transaction block. Thus the changes in the DB would be permanent.]]&gt;		</p>
+]]></content:encoded>
+							<wfw:commentRss>/after_create-vs-after_save-vs-after_commit/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+							</item>
+		<item>
+		<title>How to learn Ruby on Rails</title>
+		<link>/how-to-learn-ruby-on-rails/</link>
+				<pubDate>Wed, 03 Feb 2016 09:02:37 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Beginners]]></category>
+		<category><![CDATA[Rails]]></category>
+		<category><![CDATA[Ruby]]></category>
+		<category><![CDATA[Learn]]></category>
+		<category><![CDATA[rails]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=262</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[Well I have been hearing a lot from people in facebook, google groups and online forum wanting to learn Rails. Their question is simple “<strong>I want to learn Rails</strong>”, “<strong>How do I learn Ruby on Rails?</strong>”, “<strong>How do I become a Ruby on Rails programmer?</strong>”. Well the funny feeling I get while reading these questions is that, its the exact questions I posted in Google Groups, forums, etc when I wanted to start learning Rails and Ruby couple of years ago. So I thought of giving back to the community and to my company blog, by posting on how to learn rails, and answer a few questions every newbie always have.
+
+
+<h3>Q) How to learn Ruby on Rails?</h3>
+
+
+Well to get started, I would suggest this <a href="http://ruby.railstutorial.org/ruby-on-rails-tutorial-book">Rails Tutorial</a>. Excellent tutorial, with detailed explanation. Build for people with little or no knowledge in Ruby. Further more it also teaches and introduces a newbie to Git and TDD.
+If you don’t like reading from the web, and prefer books then I suggest <a href="http://fkrt.it/W8HeUNNNNN">Agile Web Development With Rails</a> by Sam Ruby, Dave Thomas, David Heinemeier Hansson. The advantage of using rails is the ability to become more agile and roll out features faster. To be honest, I am not much of a fan of books ( technical), so if you are going to spend money then I suggest buying this book.
+Now the one that really helped me learn Ruby and Rails was the community. Find a local Ruby user group, participate in its discussions, take part in its monthly meetups. These will help you find personal mentors and a lot of cool people like you who knows Ruby is worth learning.. <img src="https://s.w.org/images/core/emoji/12.0.0-1/72x72/1f600.png" alt="😀" class="wp-smiley" style="height: 1em; max-height: 1em;" />
+Those from Kerala India, can join the <a href="https://groups.google.com/forum/?fromgroups#!forum/kerala-ruby-users-group">Kerala Ruby User Group Mailing List</a> Also read as much materials you can find about ruby and rails, reddit is a good source of interesting news for Ruby.
+[caption id="attachment_265" align="aligncenter" width="860"]<a href="https://redpanthers.co/wp-content/uploads/2016/02/ruby-on-rails.jpg" rel="attachment wp-att-265"><img class="wp-image-265 size-full" src="https://redpanthers.co/wp-content/uploads/2016/02/ruby-on-rails.jpg" alt="Learning Ruby on Rails is fun" width="860" height="480" /></a> Learn Ruby on Rails framework[/caption]
+
+
+<h3>Q) Is it required to know Ruby before you learn rails?</h3>
+
+
+Well from experience the answer is
+
+
+<blockquote><strong>NO</strong></blockquote>
+
+
+You don’t have to know ruby to learn rails, but those have do can learn it much faster, and understand the reasons behind the various jargons used in rails. But from my personal experience, as a person who learned Rails before properly understanding Ruby. If you have a better understanding of the ruby language, then the picture you have about the possibilities with rails would become limitless.. Its like you won’t feel Rails can limit you, in anyway.
+
+
+<h3>Q) How can I learn Ruby?</h3>
+
+
+Well Ruby has been around for a long time, there are plenty of how to guides and basic tutorials in Ruby. So a quick Google will get you a lot of results. Some good websites that I would suggest is
+
+
+<ol>
+ 	
+
+<li><a href="http://rubymonk.com/">http://rubymonk.com/</a></li>
+
+
+ 	
+
+<li><a href="http://tryruby.org/">http://tryruby.org/</a></li>
+
+
+ 	
+
+<li><a href="http://rubykoans.com/">http://rubykoans.com/</a></li>
+
+
+</ol>
+
+
+For those who wish to have a cheat sheet available to help you, can use this website<a href="http://overapi.com/ruby/"> http://overapi.com/ruby</a>
+
+
+<h3> Q) How long will it take to learn Ruby/Ruby on Rails?</h3>
+
+
+Well I do not have a proper answer to that one, I have been working in ruby for some time now. And even does it for a living, but I still believe that I have a lot to learn. Every new project has been challenging and has introduced me to more and more possibilities with Ruby. Thus I guess as they say, the possibilities are limitless as the Human Imagination.
+My advice to beginners would be to be, not concerned about how long it would take, and just concentrate on learning. Try out various ideas that you might have, one good exercise that I did was try to implement all the commands in a linux terminal through ruby. Get to know the community, try to contribute to various opensource projects and always keep on coding… =)
+Happy coding..
+
+
+<blockquote><strong>PS</strong>: this is just my list, <strong>if you know some good online resources. Please do add them as comments</strong>, it would help those who are starting out with Ruby and Rails. Also sorry for any typo or grammatical errors.</blockquote>
+
+]]&gt;		</p>
+]]></content:encoded>
+										</item>
+	</channel>
+</rss>

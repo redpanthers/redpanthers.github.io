@@ -1,4 +1,4 @@
- <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
 	xmlns:content="http://purl.org/rss/1.0/modules/content/"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
 	xmlns:atom="http://www.w3.org/2005/Atom"
@@ -10,7 +10,7 @@
 	Comments on: Chartkick: data visualization made easy with Ruby	</title>
 	<atom:link href="/chartkick-data-visualization-easy-ruby/feed/" rel="self" type="application/rss+xml" />
 	<link>/chartkick-data-visualization-easy-ruby/</link>
-	<description>Experts in Ruby on Rails Development</description>
+	<description>Red Panthers - Experts in Ruby on Rails, System Design and Vue.js</description>
 	<lastBuildDate>Mon, 17 Jul 2017 09:33:09 +0000</lastBuildDate>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -20,33 +20,29 @@
 			<item>
 				<title>
 				By: Govind K.U				</title>
-				<link>/chartkick-data-visualization-easy-ruby/#comment-23</link>
+				<link>/chartkick-data-visualization-easy-ruby/#comment-31</link>
 		<dc:creator><![CDATA[Govind K.U]]></dc:creator>
 		<pubDate>Mon, 17 Jul 2017 09:33:09 +0000</pubDate>
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=975#comment-23</guid>
+		<guid isPermaLink="false">https://redpanthers.co/?p=975#comment-31</guid>
 					<description><![CDATA[Hi there.There are surely solutions for displaying dynamic data.You can refer www.chartkick.com for more details.
 &lt;code&gt;&lt;%= line_chart url, refresh: 60 %&gt;&lt;/code&gt;
 You can use this to refresh the data at equal intervals of time.Or else you can do this if you want to refresh the graph only when you need with an ajax call.
-
 You can create a partial and render it inside the controller.
 &lt;code&gt;
 class ViewsController &lt; ApplicationController
   def show
     @view = View.all
   end
-
   def views_by_day
     @dynamic_data =  View.group_by_day(:viewed_at, format: &quot;%B %d, %Y&quot;).count
  render :partial =&gt; &#039;dynamic_data_partial&#039;
   end
 end
 &lt;/code&gt;
-
 Then create a partial _dynamic_data_partial.html.erb inside your view folder with the following data.
 &lt;code&gt;
 &lt;%= line_chart @dynamic_data %&gt;
 &lt;/code&gt;
-
 So when you need to call the data, you need to trigger the ajax call and in the success function you need to replace the html of the div with the new data.
 So in the &lt;em&gt;app/views/views/show.html.erb:&lt;/em&gt; move the graph into a div.
 &lt;code&gt;
@@ -57,7 +53,6 @@ So in the &lt;em&gt;app/views/views/show.html.erb:&lt;/em&gt; move the graph int
   &lt;/div&gt;
 &lt;/div&gt;
 &lt;/code&gt;
-
 So you can you use the id of the div to replace the html.
 &lt;code&gt;
 function updateGraph() {
@@ -70,29 +65,27 @@ function updateGraph() {
                 });
             }
 &lt;/code&gt;
-
 This is how i solved it when i came across the problem. Hope it&#039;ll help you. Thank you for the comment.]]></description>
 		<content:encoded><![CDATA[<p>Hi there.There are surely solutions for displaying dynamic data.You can refer <a href="http://www.chartkick.com/" rel="nofollow">http://www.chartkick.com/</a> for more details.<br />
 <code>< %= line_chart url, refresh: 60 %></code><br />
-You can use this to refresh the data at equal intervals of time.Or else you can do this if you want to refresh the graph only when you need with an ajax call.</p>
-<p>You can create a partial and render it inside the controller.<br />
+You can use this to refresh the data at equal intervals of time.Or else you can do this if you want to refresh the graph only when you need with an ajax call.<br />
+You can create a partial and render it inside the controller.<br />
 <code><br />
 class ViewsController < ApplicationController
   def show
     @view = View.all
   end
-
   def views_by_day
     @dynamic_data =  View.group_by_day(:viewed_at, format: "%B %d, %Y").count
  render :partial => 'dynamic_data_partial'<br />
   end<br />
 end<br />
-</code></p>
-<p>Then create a partial _dynamic_data_partial.html.erb inside your view folder with the following data.<br />
+</code><br />
+Then create a partial _dynamic_data_partial.html.erb inside your view folder with the following data.<br />
 <code><br />
 < %= line_chart @dynamic_data %><br />
-</code></p>
-<p>So when you need to call the data, you need to trigger the ajax call and in the success function you need to replace the html of the div with the new data.<br />
+</code><br />
+So when you need to call the data, you need to trigger the ajax call and in the success function you need to replace the html of the div with the new data.<br />
 So in the <em>app/views/views/show.html.erb:</em> move the graph into a div.<br />
 <code></p>
 <div class="container">
@@ -101,8 +94,8 @@ So in the <em>app/views/views/show.html.erb:</em> move the graph into a div.<br 
     < %= line_chart @dynamic_data %>
   </div>
 </div>
-<p></code></p>
-<p>So you can you use the id of the div to replace the html.<br />
+<p></code><br />
+So you can you use the id of the div to replace the html.<br />
 <code><br />
 function updateGraph() {<br />
                 $.ajax({<br />
@@ -113,44 +106,34 @@ function updateGraph() {<br />
                     }<br />
                 });<br />
             }<br />
-</code></p>
-<p>This is how i solved it when i came across the problem. Hope it&#8217;ll help you. Thank you for the comment.</p>
+</code><br />
+This is how i solved it when i came across the problem. Hope it&#8217;ll help you. Thank you for the comment.</p>
 ]]></content:encoded>
 						</item>
 						<item>
 				<title>
 				By: Govind K U				</title>
-				<link>/chartkick-data-visualization-easy-ruby/#comment-24</link>
+				<link>/chartkick-data-visualization-easy-ruby/#comment-32</link>
 		<dc:creator><![CDATA[Govind K U]]></dc:creator>
 		<pubDate>Mon, 17 Jul 2017 09:33:00 +0000</pubDate>
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=975#comment-24</guid>
+		<guid isPermaLink="false">https://redpanthers.co/?p=975#comment-32</guid>
 					<description><![CDATA[Hi there.There are surely solutions for displaying dynamic data.You can refer www.chartkick.com for more details.
 &lt;code&gt;&lt;/code&gt;
 You can use this to refresh the data at equal intervals of time.Or else you can do this if you want to refresh the graph only when you need with an ajax call.
-
 You can create a partial and render it inside the controller.
 &lt;code&gt;
 class ViewsController  &#039;dynamic_data_partial&#039;
   end
 end
 &lt;/code&gt;
-
 Then create a partial _dynamic_data_partial.html.erb inside your view folder with the following data.
 &lt;code&gt;
-
 &lt;/code&gt;
-
 So when you need to call the data, you need to trigger the ajax call and in the success function you need to replace the html of the div with the new data.
 So in the &lt;em&gt;app/views/views/show.html.erb:&lt;/em&gt; move the graph into a div.
 &lt;code&gt;
-
   Views By Day
-
-
-
-
 &lt;/code&gt;
-
 So you can you use the id of the div to replace the html.
 &lt;code&gt;
 function updateGraph() {
@@ -163,26 +146,25 @@ function updateGraph() {
                 });
             }
 &lt;/code&gt;
-
 This is how i solved it when i came across the problem. Hope it&#039;ll help you. Thank you for the comment.]]></description>
 		<content:encoded><![CDATA[<p>Hi there.There are surely solutions for displaying dynamic data.You can refer <a href="http://www.chartkick.com/" rel="nofollow">http://www.chartkick.com/</a> for more details.<br />
 <code></code><br />
-You can use this to refresh the data at equal intervals of time.Or else you can do this if you want to refresh the graph only when you need with an ajax call.</p>
-<p>You can create a partial and render it inside the controller.<br />
+You can use this to refresh the data at equal intervals of time.Or else you can do this if you want to refresh the graph only when you need with an ajax call.<br />
+You can create a partial and render it inside the controller.<br />
 <code><br />
 class ViewsController  'dynamic_data_partial'<br />
   end<br />
 end<br />
-</code></p>
-<p>Then create a partial _dynamic_data_partial.html.erb inside your view folder with the following data.<br />
-<code></p>
-<p></code></p>
-<p>So when you need to call the data, you need to trigger the ajax call and in the success function you need to replace the html of the div with the new data.<br />
+</code><br />
+Then create a partial _dynamic_data_partial.html.erb inside your view folder with the following data.<br />
+<code><br />
+</code><br />
+So when you need to call the data, you need to trigger the ajax call and in the success function you need to replace the html of the div with the new data.<br />
 So in the <em>app/views/views/show.html.erb:</em> move the graph into a div.<br />
-<code></p>
-<p>  Views By Day</p>
-<p></code></p>
-<p>So you can you use the id of the div to replace the html.<br />
+<code><br />
+  Views By Day<br />
+</code><br />
+So you can you use the id of the div to replace the html.<br />
 <code><br />
 function updateGraph() {<br />
                 $.ajax({<br />
@@ -193,17 +175,17 @@ function updateGraph() {<br />
                     }<br />
                 });<br />
             }<br />
-</code></p>
-<p>This is how i solved it when i came across the problem. Hope it&#8217;ll help you. Thank you for the comment.</p>
+</code><br />
+This is how i solved it when i came across the problem. Hope it&#8217;ll help you. Thank you for the comment.</p>
 ]]></content:encoded>
 						</item>
 						<item>
 				<title>
 				By: A Brand				</title>
-				<link>/chartkick-data-visualization-easy-ruby/#comment-22</link>
+				<link>/chartkick-data-visualization-easy-ruby/#comment-30</link>
 		<dc:creator><![CDATA[A Brand]]></dc:creator>
 		<pubDate>Thu, 06 Jul 2017 19:28:00 +0000</pubDate>
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=975#comment-22</guid>
+		<guid isPermaLink="false">https://redpanthers.co/?p=975#comment-30</guid>
 					<description><![CDATA[I like to tutorial. It&#039;s helpful. I came across it looking for ways to use chartkick that updates the charts without refreshing the page, dynamic data. The post has the dynamic tag, but I didn&#039;t find any references to displaying dynamic data. Do you have any recommendations on where to find that information? Is there an update coming that will cover that?]]></description>
 		<content:encoded><![CDATA[<p>I like to tutorial. It&#8217;s helpful. I came across it looking for ways to use chartkick that updates the charts without refreshing the page, dynamic data. The post has the dynamic tag, but I didn&#8217;t find any references to displaying dynamic data. Do you have any recommendations on where to find that information? Is there an update coming that will cover that?</p>
 ]]></content:encoded>

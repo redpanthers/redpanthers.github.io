@@ -1,4 +1,4 @@
- <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
 	xmlns:content="http://purl.org/rss/1.0/modules/content/"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
 	xmlns:atom="http://www.w3.org/2005/Atom"
@@ -10,7 +10,7 @@
 	Comments on: Disabling transaction block during migration	</title>
 	<atom:link href="/disabling-transaction-block-during-migration/feed/" rel="self" type="application/rss+xml" />
 	<link>/disabling-transaction-block-during-migration/</link>
-	<description>Experts in Ruby on Rails Development</description>
+	<description>Red Panthers - Experts in Ruby on Rails, System Design and Vue.js</description>
 	<lastBuildDate>Fri, 15 Jun 2018 09:30:57 +0000</lastBuildDate>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -20,10 +20,10 @@
 			<item>
 				<title>
 				By: Wellington Torrejais				</title>
-				<link>/disabling-transaction-block-during-migration/#comment-79</link>
+				<link>/disabling-transaction-block-during-migration/#comment-43</link>
 		<dc:creator><![CDATA[Wellington Torrejais]]></dc:creator>
 		<pubDate>Fri, 15 Jun 2018 09:30:57 +0000</pubDate>
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=1537#comment-79</guid>
+		<guid isPermaLink="false">https://redpanthers.co/?p=1537#comment-43</guid>
 					<description><![CDATA[Nice! Thanks!]]></description>
 		<content:encoded><![CDATA[<p>Nice! Thanks!</p>
 ]]></content:encoded>
@@ -31,10 +31,10 @@
 						<item>
 				<title>
 				By: Wellington Torrejais				</title>
-				<link>/disabling-transaction-block-during-migration/#comment-80</link>
+				<link>/disabling-transaction-block-during-migration/#comment-44</link>
 		<dc:creator><![CDATA[Wellington Torrejais]]></dc:creator>
 		<pubDate>Fri, 15 Jun 2018 09:30:57 +0000</pubDate>
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=1537#comment-80</guid>
+		<guid isPermaLink="false">https://redpanthers.co/?p=1537#comment-44</guid>
 					<description><![CDATA[Nice! Thanks!]]></description>
 		<content:encoded><![CDATA[<p>Nice! Thanks!</p>
 ]]></content:encoded>

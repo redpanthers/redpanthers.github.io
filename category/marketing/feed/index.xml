@@ -1,4 +1,4 @@
- <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
 	xmlns:content="http://purl.org/rss/1.0/modules/content/"
 	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -8,106 +8,832 @@
 	>
 
 <channel>
-	<title>Marketing &#8211; Red Panthers</title>
+	<title>Marketing &#8211; beta.redpanthers.co</title>
 	<atom:link href="/category/marketing/feed/" rel="self" type="application/rss+xml" />
 	<link>/</link>
-	<description>Experts in Ruby on Rails Development</description>
-	<lastBuildDate>Mon, 13 May 2019 23:09:00 +0000</lastBuildDate>
+	<description>Red Panthers - Experts in Ruby on Rails, System Design and Vue.js</description>
+	<lastBuildDate>Mon, 29 Apr 2019 11:28:11 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
 	<generator>https://wordpress.org/?v=5.2.7</generator>
-
-<image>
-	<url>/wp-content/uploads/2017/12/rp-logo.png</url>
-	<title>Marketing &#8211; Red Panthers</title>
-	<link>/</link>
-	<width>32</width>
-	<height>32</height>
-</image> 
 	<item>
-		<title>Clawing Our Way to the Top of Clutch’s Directory of Ruby on Rails Developers in India</title>
-		<link>/clawing-our-way-to-the-top-of-clutchs-directory-of-ruby-on-rails-developers-in-india/</link>
-				<comments>/clawing-our-way-to-the-top-of-clutchs-directory-of-ruby-on-rails-developers-in-india/#respond</comments>
-				<pubDate>Mon, 13 May 2019 23:08:56 +0000</pubDate>
+		<title>GIT CHERRY PICK</title>
+		<link>/git-cherry-pick/</link>
+				<pubDate>Mon, 29 Apr 2019 11:28:11 +0000</pubDate>
+		<dc:creator><![CDATA[riya]]></dc:creator>
+				<category><![CDATA[Marketing]]></category>
+
+		<guid isPermaLink="false">http://redpanthers.co/?p=16161</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[&nbsp;
+
+
+<h3>What is cherry picking?</h3>
+
+
+Cherry picking is to choose a commit from one branch and apply it to another. The command used is <b>git cherry</b>&#8211;<b>pick</b> , and here we actually use forward- or back-port commits from a maintenance branch to a development branch.<code>cherry-pick</code><code></code>command in <a href="http://www.git-scm.com/">git</a> allows us to copy only one commit at a time.
+
+
+<h3>Steps on git cherry-picking:</h3>
+
+
+
+
+<ol>
+ 	
+
+<li>If you are on a particular branch and you want to apply a commit to the master branch, then checkout to master branch : <code>git checkout master</code></li>
+
+
+ 	
+
+<li>Then run the cherry-pick command : <code>git cherry-pick &lt;commit-hash&gt;</code></li>
+
+
+ 	
+
+<li>If you cherry-pick from a public branch, then you should use this, <code>git cherry-pick -x &lt;commit-hash&gt;</code> which will generate a standardized commit message.</li>
+
+
+ 	
+
+<li>If you have notes attached to the commit they do not follow the cherry-pick, to bring them over as well, you have to use: <code>git notes copy &lt;from&gt; &lt;to&gt;</code></li>
+
+
+ 	
+
+<li>A range of commits : <code>git cherry-pick <var>start_commit</var>~..<var>end_commit</var></code></li>
+
+
+ 	
+
+<li>Multiple commits (non-sequential) : <code>git cherry-pick <var>commit_1</var> <var>commit_2</var></code></li>
+
+
+</ol>
+
+
+
+
+<div class="olist arabic">
+<code><var></var></code><code><var></var></code>
+
+
+<h3 id="Cherry-picking_a_single_commit"> Sequencer Subcommands</h3>
+
+
+Cherry-pick uses continue, quit and abort subcommands in git.The continue command is used for continuing the operation in progress using .git/sequencer information.It can be also used to continue operations after resolving conflicts in a failed cherry-pick.The quit command forget about the current operation in progress and can be used to clear the sequencer state after a failed cherry-pick.And finally, the abort command cancels the operation and return to the pre-sequence state.
+
+
+<h3></h3>
+
+
+</div>
+
+
+
+
+<h3>Where can cherry-picking be applied?</h3>
+
+
+Whenever defect occurs in the production, fixation must be performed. Once the defect is fixed, you&#8217;ll want to bring this code change back to the development branch so the defect won&#8217;t be re-introduced into production with a future update.The first option is to consider whether a simple git merge would work. If a merge is possible, that would be the ideal solution. However, if there are other changes made on the production branch, shouldn&#8217;t be brought back to the development branch, a merge would not produce the desired result since it will include <em>all</em> the changes made to the production branch.
+Example:
+<strong>Figure 1:</strong> Problem is found in the Production branch. A fix for the problem is developed in commit H, but commit G does not need to be applied to the Development branch.
+<strong><span class="sfImageWrapper"><img title="Problem Is Found On Production Branch" src="https://www.farreachinc.com/images/default-source/default-album/problem-is-found-on-production-branch.png?sfvrsn=0" alt="Problem Is Found On Production Branch" /></span></strong>
+Figure 2: Commit H is cherry-picked onto the Development branch, resulting in commit H&#8217;. Note that the changes made in commit G are not included on the Development branch.
+
+
+<h4><span class="sfImageWrapper"><img title="Results In Commit H" src="https://www.farreachinc.com/images/default-source/default-album/results-in-commit-h.png?sfvrsn=0" alt="Results In Commit H" /></span></h4>
+
+
+What <code class="inline">git cherry-pick</code> does?
+It takes a commit from somewhere else, and &#8220;play it back&#8221; wherever you are right now.It can be explained by an example given below:
+
+
+<h3>Figure :3</h3>
+
+
+<img class="no-shadow" src="http://think-like-a-git.net/assets/images2/reachability-example.png" />
+&nbsp;
+Consider you were at node H in this graph, and you typed, <code class="inline">git cherry-pick E</code>you&#8217;d wind up with a copy of commit E—let&#8217;s call it &#8220;E prime&#8221; or <strong>E&#8217;</strong>—that pointed to <strong>H</strong> as its parent, and can be represented as,
+
+
+<h3>Figure: 4</h3>
+
+
+
+
+<div><img class="no-shadow" src="http://think-like-a-git.net/assets/images2/cherry-pick-example-1.png" /></div>
+
+
+
+
+<div>fig:b</div>
+
+
+
+
+<div>And if you typed,<code class="inline">git cherry-pick C D E</code> then the graph can be as,</div>
+
+
+
+
+<h3>Figure: 5</h3>
+
+
+
+
+<div><img class="no-shadow" src="http://think-like-a-git.net/assets/images2/cherry-pick-example-2.png" /></div>
+
+
+
+
+<div>From this graph, we can infer that git has copied changes made in one place, and replayed them somewhere else.</div>
+
+
+
+
+<div> If H is in the production and we are taking the difference  from B to C and apply to H, the C prime (C&#8217;) can be obtained to H, same way after cherry-picking  D and E obtains  D&#8217; and E&#8217;, and this can be diagrammatically represented as in the Figure: 5</div>
+
+
+
+
+<div class="sect1">
+&nbsp;
+</div>
+
+]]&gt;		</p>
+]]></content:encoded>
+										</item>
+		<item>
+		<title>Setting up your own private GIT server</title>
+		<link>/setting-up-your-own-private-git-server/</link>
+				<pubDate>Mon, 29 Apr 2019 11:28:11 +0000</pubDate>
+		<dc:creator><![CDATA[levi]]></dc:creator>
+				<category><![CDATA[Marketing]]></category>
+
+		<guid isPermaLink="false">http://redpanthers.co/?p=16369</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[Git, a version control software, is primarily used for source code management and tracking any changes any set of files. Git is very effective in coordinating the work of multiple people working on a project. Being a distributed revision control system, Git aims at speed, data integrity and support for distributed, non-linear workflows.
+&nbsp;
+Companies like Github and Gitlab provides code hosting services based on Git. There are over 10 million people who are hosting their codes on these services. There are few limitations while using these services. One of them is restrictions of using private repositories while using the free services. One of the way to overcome this is we hosting git on our own server. By means of this, we also get more control over the server.
+&nbsp;
+To get started, first add a <strong>git</strong> user and a <strong>.ssh</strong> directory for the user. Follow the commands given below.
+
+
+<pre class="lang:default decode:true ">$ sudo adduser git
+$ su git
+$ cd
+$ mkdir .ssh &amp;&amp; chmod 700 .ssh
+$ touch .ssh/authorized_keys &amp;&amp; chmod 600 .ssh/authorized_keys</pre>
+
+
+&nbsp;
+Let&#8217;s add some <strong>SSH</strong> keys to the <strong>authorized_keys </strong>file for the <strong>git </strong>user. They should be like
+
+
+<pre class="lang:default decode:true ">$ cat /tmp/id_rsa.john.pub
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCB007n/ww+ouN4gSLKssMxXnBOvf9LGt4L
+ojG6rs6hPB09j9R/T17/x4lhJA0F3FR1rP6kYBRsWj2aThGw6HXLm9/5zytK6Ztg3RPKK+4k
+Yjh6541NYsnEAZuXz0jTTyAUfrtU3Z5E003C4oxOj6H0rfIF1kKI9MAQLMdpGW1GYEIgS9Ez
+Sdfd8AcCIicTDWbqLAcU4UpkaX8KyGlLwsNuuGztobF8m72ALC/nLF6JLtPofwFBlgc+myiv
+O7TCUSBdLQlgMVOFq1I2uPWQOkOWQAHukEOmfjy2jctxSDBQ220ymjaNsHT4kgtZg2AYYgPq
+dAv8JggJICUvax2T9va5 gsg-keypair
+</pre>
+
+
+&nbsp;
+We now append them to the <strong>git</strong> user’s <strong>authorized_keys</strong><code></code>file in its <strong>.ssh</strong> directory.
+
+
+<pre class="lang:default decode:true ">$ cat /tmp/id_rsa.john.pub &gt;&gt; ~/.ssh/authorized_keys
+$ cat /tmp/id_rsa.josie.pub &gt;&gt; ~/.ssh/authorized_keys
+$ cat /tmp/id_rsa.jessica.pub &gt;&gt; ~/.ssh/authorized_keys</pre>
+
+
+&nbsp;
+We can now set up an empty repository by running <strong>git init</strong> with the <strong>&#8211;bare</strong> option, which initializes a repository without a working directory.
+
+
+<pre class="lang:default decode:true ">$ cd /srv/git
+$ mkdir project.git
+$ cd project.git
+$ git init --bare
+Initialized empty Git repository in /srv/git/project.git/</pre>
+
+
+&nbsp;
+Now one can push their first version of their project into that repository by adding it as a remote and pushing up a branch. We can now use a hostname of the server in which we have set up <strong>git</strong> user and repository.
+
+
+<pre class="lang:default decode:true ">$ cd myproject
+$ git init
+$ git add .
+$ git commit -m 'initial commit'
+$ git remote add origin git@gitserver:/srv/git/project.git
+$ git push origin master</pre>
+
+
+&nbsp;
+Now, others can clone the directory and push back the changes.
+
+
+<pre class="lang:default decode:true ">$ git clone git@gitserver:/srv/git/project.git
+$ cd project
+$ vim README
+$ git commit -am 'fix for the README file'
+$ git push origin master</pre>
+
+
+&nbsp;
+We can restrict a user to have only <strong>git </strong>related activitis using a shell tool called <strong>git-shell</strong>. If we set the shell to a user&#8217;s login shell, he cannot have normal usage. To use, specify the <strong>git-shell</strong> instead of bash or csh for your user’s login shell.First add <strong>git-shell </strong>to <strong>/etc/shells</strong> if it does not exist.
+
+
+<pre class="lang:default decode:true">$ cat /etc/shells   # see if `git-shell` is already in there.  If not...
+$ which git-shell   # make sure git-shell is installed on your system.
+$ sudo vim /etc/shells  # and add the path to git-shell from last command</pre>
+
+
+&nbsp;
+
+
+<div class="paragraph">
+Now you can edit the shell for a user using <code>chsh &lt;username&gt; -s &lt;shell&gt;</code>:
+</div>
+
+
+
+
+<div class="listingblock">
+
+
+<div class="content">
+
+
+<pre class="highlight"><code class="language-console" data-lang="console">$ sudo chsh git -s $(which git-shell)</code></pre>
+
+
+</div>
+
+
+</div>
+
+
+
+
+<div class="paragraph">
+Now, the <code>git</code> user can only use the SSH connection to push and pull Git repositories and can’t shell onto the machine. If you try, you’ll see a login rejection like this.
+</div>
+
+
+
+
+<pre class="lang:default decode:true ">$ ssh git@gitserver
+fatal: Interactive git shell is not enabled.
+hint: ~/git-shell-commands should exist and have read and execute access.
+Connection to gitserver closed.</pre>
+
+
+&nbsp;
+If you are in need of higher control over your git repositories, setup your own private git server.]]&gt;		</p>
+]]></content:encoded>
+										</item>
+		<item>
+		<title>Git &#8211; Resolving Conflicts</title>
+		<link>/git-resolving-conflicts/</link>
+				<pubDate>Mon, 29 Apr 2019 11:28:11 +0000</pubDate>
+		<dc:creator><![CDATA[levi]]></dc:creator>
+				<category><![CDATA[Marketing]]></category>
+
+		<guid isPermaLink="false">http://redpanthers.co/?p=16372</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[Git, a version control software, is primarily used for source code management and tracking any changes any set of files. Git is very effective in coordinating the work of multiple people working on a project. Being a distributed revision control system, Git aims at speed, data integrity and support for distributed, non-linear workflows.
+&nbsp;
+Merge conflicts happen when you merge branches that have competing commits. That is when competing changes are made on the same line of a file, or when a person edits the file while one deletes it. Now, <strong>git</strong> needs your help in deciding which change needs to be incorporated in the final merge of the branch.
+&nbsp;
+Git can often resolve the difference between branches and merges the branches automatically. Usually, the changes are on different lines or even different files. This makes it easy for the computer to understand. However, there are few changes that <strong>git</strong> cannot resolve without the user&#8217;s help. This happens usually when different people make changes to the same line in a file or a person edits the file while another deletes it. This causes a conflict of changes while merging the branch.
+&nbsp;
+We need to resolve all the conflicts before we merge a pull request to the git server. If we have a merge conflict between the compare branch and the base branch, we can see the files and the changes that caused the conflict above the <strong>merge pull request</strong> button. The <strong>merge pull request</strong> button is deactivated until the conflict is resolved.
+&nbsp;
+To resolve the merge conflict, we need to manually edit the conflict inflicted changes. We must edit and specify the final changes that are to be merged. We can either resolve the changes in the local computer and then push to the repository or we can directly edit the changes in the conflict editor of the git server like <strong>github </strong>or <strong>gitlab</strong>. If we have any conflicts in the command line, we cannot push the local changes to the server until we resolve the merge conflicts. If we try to merge the branches with a conflict from the command line, we will be getting an error message. A sample error message is given below.
+
+
+<pre class="lang:default decode:true">git merge BRANCH-NAME
+Auto-merging example.md
+CONFLICT (content): Merge conflict in example.md
+Automatic merge failed; fix conflicts and then commit the result</pre>
+
+
+&nbsp;
+Once the conflicts are resolved and the changes are pushed, be happy. You can now merge the branch with no worries.]]&gt;		</p>
+]]></content:encoded>
+										</item>
+		<item>
+		<title>Automate code formatting in your rails project</title>
+		<link>/automate-code-formatting-in-your-rails-project/</link>
+				<pubDate>Mon, 29 Apr 2019 11:28:11 +0000</pubDate>
 		<dc:creator><![CDATA[coderhs]]></dc:creator>
 				<category><![CDATA[Marketing]]></category>
 
-		<guid isPermaLink="false">/?p=16441</guid>
-				<description><![CDATA[<p>Ruby is a programming language with a set of incredibly versatile strengths and applications, with the Ruby on Rails framework helping businesses in countless industries develop powerful and interactive web solutions. While Ruby on Rails provides a world of endless possibilities for quality development, most businesses lack the in house talent to tap into this&#8230;</p>
-<p>The post <a rel="nofollow" href="/clawing-our-way-to-the-top-of-clutchs-directory-of-ruby-on-rails-developers-in-india/">Clawing Our Way to the Top of Clutch’s Directory of Ruby on Rails Developers in India</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
-]]></description>
-								<content:encoded><![CDATA[
-<p>
-Ruby is a programming language
-with a set of incredibly <a href="https://medium.com/kkempin/swot-analysis-of-ruby-on-rails-c421a6c83c09">versatile
-strengths and applications</a>,
-with the Ruby on Rails framework helping businesses in countless
-industries develop powerful and interactive web solutions. While Ruby
-on Rails provides a world of endless possibilities for quality
-development, most businesses lack the in house talent to tap into
-this source of innovation. We proudly fill in the skills-gap for
-firms looking to leverage this powerful framework to develop
-innovative solutions to a number of challenges.
-</p>
+		<guid isPermaLink="false">http://redpanthers.co/?p=16235</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[We give a lot of importance to how the code looks because we feel programming should be like an art. Anyone who sees the code in future should be inspired to work in it and not feel threatened so much as to run away from it. Code styling and writing test go hand in hand to improve the hygiene of your application.
+In some of our projects, we use pronto (A flash talk by Tony one of our developer during Deccan Ruby Conf 2017 - <a href="https://www.youtube.com/watch?v=C759shnD97k)">https://www.youtube.com/watch?v=C759shnD97k)</a>. The problem here is that we are all still human and we make mistakes, accidentally breaking the standard here or there. So we decided to automate this and finally have a devised a standard way to automate code formatting in our rails project. We will be automating both our ruby code and our JS code, since the marriage between web packer and rails it&#8217;s now inevitable to keep JS out of our workflow. The idea devised is to run the auto code check right after we commit the code, in case if there are any issues that can’t be auto-corrected by the system the system should stop the commit. Also, it&#8217;s important that the auto-correction runs only on the diff so that we don’t end up confusing the reviewers.
+&nbsp;
+For a legacy project, I suggest doing `bundle exec rubocop –a` and fix the errors before adding this hook.
+&nbsp;
 
 
-
-<div class="wp-block-image"><figure class="alignright is-resized"><img src="/wp-content/uploads/2019/05/Developers_India_2019-947x1024.png" alt="" class="wp-image-16442" width="341" height="369" srcset="/wp-content/uploads/2019/05/Developers_India_2019-947x1024.png 947w, /wp-content/uploads/2019/05/Developers_India_2019-278x300.png 278w, /wp-content/uploads/2019/05/Developers_India_2019-768x830.png 768w, /wp-content/uploads/2019/05/Developers_India_2019.png 1480w" sizes="(max-width: 341px) 100vw, 341px" /></figure></div>
-
+<h2>How to implement</h2>
 
 
-<p>Through our work developing quality web solutions, we have started to garner some industry recognition. We are excited to share that we have been included on Clutch’s directory of the top <a href="https://clutch.co/in/developers/ruby-rails">Ruby developers</a> in India, thanks to a recent research effort on a wide variety of service industries in India. We outranked more than 100 of our competitors as we started our climb to become a top firm in our field.</p>
+To implement this we are using husky (<a href="https://github.com/typicode/husky)">https://github.com/typicode/husky)</a> a really nice JS library that helps us build git hooks easily.
 
 
-
-<p>The
-research effort we were the subject of included factors such as
-marketing presence, previous work, and most importantly, client
-reviews. We have a rating of 4.8 out of 5 stars thanks to what our
-clients have shared with us, mostly reviews like this,</p>
+<pre class="lang:sh decode:true">yarn add --dev husky</pre>
 
 
-
-<p>“<em>Red Panthers is a team of highly skilled and passionate engineers who strive to solve problems in eloquent ways. They were eager to learn and train their team on how to improve. They knew how to solve some problems, and when tougher problems arose, we all worked together to find solutions that worked well for everyone</em>.” &#8211; <strong>Founder, Devato Inc</strong> </p>
-
-
-
-<p>Reviews
-like this help us identify our strengths, weaknesses, and how we are
-performing for our clients. We eagerly await whatever else our
-clients will share with us.</p>
+&nbsp;
+The second JS library we are going to add is `lint-staged` which limits our formatters to only run on the staged git files (ie. The changes).
 
 
-
-<p>In
-addition to our presence on Clutch, we are included on their
-sister-site, The Manifest, as one of the top <a href="https://themanifest.com/in/web-development/companies">web
-developers in India</a>.
-The Manifest helps firms of all shapes and sizes address a wide array
-of industry challenges by providing curated insights and advice. Our
-inclusion on their platform as a top firm is due to a number of
-factors, namely the quality of our work and our affordability. We are
-grateful to be listed as a top development team on two different
-industry resources, and we decided to go for a third. We have joined
-other expert firms in creating a profile on Visual Objects, a
-portfolio sharing platform for <a href="https://visualobjects.com/in/software-development/top-custom-software-developers">developers</a>,
-designers, and other innovators alike.</p>
+<pre class="lang:sh decode:true">yarn add --dev lint-staged
+</pre>
 
 
+Once these two are installed we can set our system to autorun rubocop by adding the following lines to the package.json.
 
-<p>We
-are hopeful that our status as a trusted development team will only
-grow from here, and we are grateful for all of the recognition we
-have received. Thank you to everyone who played a part in our
-success, we could not have done this alone, and we cannot wait to see
-what new challenges you have for us.</p>
-<p>The post <a rel="nofollow" href="/clawing-our-way-to-the-top-of-clutchs-directory-of-ruby-on-rails-developers-in-india/">Clawing Our Way to the Top of Clutch’s Directory of Ruby on Rails Developers in India</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+
+<pre class="lang:js decode:true">"scripts": {
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+   "{app,spec,lib}/**/*.rb": [
+      "bundle exec rubocop -a",
+      "git add"
+    ]
+  }</pre>
+
+
+&nbsp;
+the above configuration would ensure that our formatters run only inside the app or spec or lib folders. Also<strong> please note that since we have the </strong>pre commit<strong> hook, this code </strong>is executed<strong> after you typed `git commit –m`</strong> but it will get executed before the actual commit happening.
+<strong><sub> </sub></strong>
+
+
+<h2><strong><sub>Auto Formatting Javascript</sub></strong></h2>
+
+
+<a href="https://prettier.io/">https://prettier.io/</a> is an opinionated code formatter that supports many languages, in fact it’s also being extended to ruby. We will be using it to format our javascript code, which internally we are using es6. You can read more about it from its project page.
+
+
+<pre class="lang:sh decode:true">yarn add --dev prettier</pre>
+
+
+Following which we need to add to the script section of our code:
+
+
+<pre class="lang:js decode:true">   "app/**/*.{js,es6,jsx,scss,css}": [
+      "./node_modules/prettier/bin-prettier.js --trailing-comma es5 --write",
+      "git add"
+    ]</pre>
+
+
+The final package.json inside a fresh project would look like this:
+
+
+<pre class="lang:js decode:true">{
+  "name": "starter",
+  "private": true,
+  "dependencies": {
+    "@rails/webpacker": "^3.3.0"
+  },
+  "scripts": {
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "app/**/*.{js,es6,jsx,scss,css}": [
+      "./node_modules/prettier/bin-prettier.js --trailing-comma es5 --write",
+      "git add"
+    ],
+    "{app,test}/**/*.rb": [
+      "bundle exec rubocop -a",
+      "git add"
+    ]
+  },
+  "devDependencies": {
+    "husky": "^0.13.4",
+    "lint-staged": "^3.6.0",
+    "prettier": "^1.4.2",
+    "webpack-dev-server": "^2.11.1"
+  }
+}
+</pre>
+
+
+&nbsp;]]&gt;		</p>
 ]]></content:encoded>
-							<wfw:commentRss>/clawing-our-way-to-the-top-of-clutchs-directory-of-ruby-on-rails-developers-in-india/feed/</wfw:commentRss>
-		<slash:comments>0</slash:comments>
-							</item>
+										</item>
+		<item>
+		<title>What is Test Driven Development?</title>
+		<link>/what-is-test-driven-development/</link>
+				<pubDate>Mon, 29 Apr 2019 11:28:11 +0000</pubDate>
+		<dc:creator><![CDATA[levi]]></dc:creator>
+				<category><![CDATA[Marketing]]></category>
+
+		<guid isPermaLink="false">http://redpanthers.co/?p=16375</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[<strong>Test Driven Development (TDD)</strong> is a software development process that weighs on a short development cycle. The developer first writes an automated test defining the new feature or update, which fails at first, then write minimal code for the tests to pass, then refactor the code according to the needed standards.<strong> TDD</strong> is helpful in keeping the code neater, simple and bug-free
+&nbsp;
+<strong>TDD</strong> starts with designing and developing tests for every small functionality of an application. The test is developed which will specify and validate what the code will do. n the normal Testing process, we first generate the code and then test. Tests might fail since tests are developed even before the development. In order to pass the test, the development team has to develop and refactors the code, which means changing the code without affecting its actual behaviour.
+&nbsp;
+We usually follow the following sequences in <strong>TDD</strong>.
+
+
+<ul>
+ 	
+
+<li>Add a test</li>
+
+
+ 	
+
+<li>Run all tests and see if the new one fails</li>
+
+
+ 	
+
+<li>Write some code</li>
+
+
+ 	
+
+<li>Run tests</li>
+
+
+ 	
+
+<li>Refactor code</li>
+
+
+ 	
+
+<li>Repeat</li>
+
+
+</ul>
+
+
+<img class="alignnone size-full wp-image-16376" src="http://redpanthers.co/wp-content/uploads/2018/09/download.png" alt="" width="196" height="257" />
+&nbsp;
+The simple concept of TDD is to write and correct the failed tests before writing new code. This helps to avoid duplication of code as we write a small amount of code at a time in order to pass tests. Test-Driven development is a process of developing and running automated test before actual development of the application. Hence, TDD sometimes also called as <strong>Test First Development.</strong>
+&nbsp;
+In short, <strong>TDD</strong> is
+
+
+<ol>
+ 	
+
+<li>Write a test</li>
+
+
+ 	
+
+<li>Make it run.</li>
+
+
+ 	
+
+<li>Change the code to make it right i.e. Refactor.</li>
+
+
+ 	
+
+<li>Repeat process.</li>
+
+
+</ol>
+
+
+&nbsp;
+
+
+<h1>Why use Test Driven Development</h1>
+
+
+
+
+<ul>
+ 	
+
+<li><strong>Early bug notification.</strong>Developers test their code but in the database world, this often consists of manual tests or one-off scripts. Using TDD you build up, over time, a suite of automated tests that you and any other developer can rerun at will.</li>
+
+
+ 	
+
+<li><strong>Better Designed, cleaner and more extensible code.</strong>
+
+
+<ul>
+ 	
+
+<li>It helps to understand how the code will be used and how it interacts with other modules.</li>
+
+
+ 	
+
+<li>It results in better design decision and more maintainable code.</li>
+
+
+ 	
+
+<li>TDD allows writing smaller code having single responsibility rather than monolithic procedures with multiple responsibilities. This makes the code simpler to understand.</li>
+
+
+ 	
+
+<li>TDD also forces to write only production code to pass tests based on user requirements.</li>
+
+
+</ul>
+
+
+</li>
+
+
+ 	
+
+<li><strong>Confidence to Refactor</strong>
+
+
+<ul>
+ 	
+
+<li>If you refactor code, there can be possibilities of breaks in the code. So having a set of automated tests you can fix those breaks before release. Proper warning will be given if breaks found when automated tests are used.</li>
+
+
+ 	
+
+<li>Using TDD, should results in faster, more extensible code with fewer bugs that can be updated with minimal risks.</li>
+
+
+</ul>
+
+
+</li>
+
+
+ 	
+
+<li><strong>Good for teamwork</strong>In the absence of any team member, other team members can easily pick up and work on the code. It also aids knowledge sharing, thereby making the team more effective overall.</li>
+
+
+ 	
+
+<li><strong>Good for Developers</strong>Though developers have to spend more time in writing TDD test cases, it takes a lot less time for debugging and developing new features. You will write cleaner, less complicated code.</li>
+
+
+</ul>
+
+
+&nbsp;
+<strong>Test Driven Development</strong> is a very effective method to follow to keep our code, neat and bug-free.
+&nbsp;]]&gt;		</p>
+]]></content:encoded>
+										</item>
+		<item>
+		<title>History Of Git</title>
+		<link>/history-of-git/</link>
+				<pubDate>Mon, 29 Apr 2019 11:28:11 +0000</pubDate>
+		<dc:creator><![CDATA[levi]]></dc:creator>
+				<category><![CDATA[Marketing]]></category>
+
+		<guid isPermaLink="false">http://redpanthers.co/?p=16347</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[Git, a version control software, is primarily used for source code management and tracking any changes any set of files. Git is very effective in coordinating the work of multiple people working on a project. Being a distributed revision control system, Git aims at speed, data integrity and support for distributed, non-linear workflows.
+Linus Torvalds created git in 2005 for the development of Linux Kernel. The development started after many Linux kernel developers gave up access of BitKeeper, a proprietary source control management system that used to maintain the project. Larry McVoy, the copyright holder of BitKeeper had withdrawn the free use of the products after claiming that the BitKeeper protocols were reverse-engineered by Andrew Tridell.
+Linus Torvalds wanted a distributed system like BitKeeper to use, but there were no free systems that could suit his need. Torvalds gave an example of a source code management system that needs 30 seconds to apply a patch and update all associated metadata. He noted that this the system would not scale the needs of Linux kernel development, where synchronizing with other developers could require over 250 actions at once. For his design, he required the patching to take not more than 3 seconds. He wanted the system not to do what a Concurrent Versions Systems, in fact, do the exact opposite. The system should support a distributed workflow and include very strong safeguards against corruption, either accidental or malicious.
+These criteria eliminated every extent of version control systems. Immediately of the release of Linux kernel 2.6.12-rc2, Linus set to write his own version controller. The development of Git began on 5th April 2005. Torvalds announced the project on April 6th and self-hosted on 7th. First merge of multiple branches took place on April 18th. On 29 April, the nascent Git has benchmarked recording patches to the Linux kernel tree at the rate of 6.7 patches per second. Linus later handed over the maintenance of Git to Junio Hamano, a major contributor to the project, who was responsible for later releases of Git.
+Torvalds named the project Git, which means an unpleasant person in the British-English slang. "I'm an egotistical bastard, and I name all my projects after myself. First ‘Linux’, now 'git'.", said Linus. Git is described as a stupid content tracker in its man page.
+Today, they were 289 versions of Git released. The latest version, 2.18, was released on June 21st, 2018.]]&gt;		</p>
+]]></content:encoded>
+										</item>
+		<item>
+		<title>Working Of Git</title>
+		<link>/working-of-git/</link>
+				<pubDate>Mon, 29 Apr 2019 11:28:11 +0000</pubDate>
+		<dc:creator><![CDATA[levi]]></dc:creator>
+				<category><![CDATA[Marketing]]></category>
+
+		<guid isPermaLink="false">http://redpanthers.co/?p=16350</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[Git, a version control software, is primarily used for source code management and tracking any changes any set of files. Git is very effective in coordinating the work of multiple people working on a project. Being a distributed revision control system, Git aims at speed, data integrity and support for distributed, non-linear workflows.
+Git handles contents in one snapshot for each commit. Git knows how to apply or rollback changes. To get started, we need to run the command "git init". This converts the current working directory into a Git working directory and creates a ".git" directory. We can now start working on Git.
+The checkout and commit, which are similar to other source code repositories, focuses on changesets in Git. That's why we have "add" command, which causes a change in the working directory to be moved into a staging area, known as the index, of the next command.
+"git status" command helps us track the changes of files made in the current working branch. "git diff" shows us the changes in lines of code of each file made in the current working directory. "git log" shows the entire history of commits made in the current directory.
+Snapshots, which are the main elements of Git commits are named as commit ID. It is derived from the content of the snapshot, which comprises the actual content and some metadata. We usually work in branches, which is a named stream of changes, which in Git is a named pointer to the snapshots. Branches are of a concept in which each snapshot can have more than a single child. A named second change made to a snapshot, resulting in a separate stream of development, called as a branch. When a change is applied to a branch, the branch label is moved to a new commit. The HEAD points to where a change has to be made in a branch. The HEAD of the development is where you last checked out your workspace and where to commit.
+These are the basic working of Git. The basic concepts on how to get started with Git, add changes, find out the changed files and know the status of the current working directory or the branch is discusses here. There are other important functionalities like Git Branch, Merging branches, Git Rebase, Cherry-Picking and Reverting changes to be discussed.]]&gt;		</p>
+]]></content:encoded>
+										</item>
+		<item>
+		<title>Git Blame</title>
+		<link>/git-blame/</link>
+				<pubDate>Mon, 29 Apr 2019 11:28:11 +0000</pubDate>
+		<dc:creator><![CDATA[levi]]></dc:creator>
+				<category><![CDATA[Marketing]]></category>
+
+		<guid isPermaLink="false">http://redpanthers.co/?p=16352</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[
+
+<p align="left">Git, a version control software, is primarily used for source code management and tracking any changes any set of files. Git is very effective in coordinating the work of multiple people working on a project. Being a distributed revision control system, Git aims at speed, data integrity and support for distributed, non-linear workflows.</p>
+
+
+
+
+<p align="left">
+
+
+
+
+<p align="left">More than 1 developers may change the contents of a file. Using <strong>git blame</strong>, we can find the person responsible for the last change of code of each line. The command, as the name suggests, helps to find the person who changed a line of code and to blame them. In short, <strong>git blame</strong> shows the revision and author of each code of line of a file.</p>
+
+
+
+
+<p align="left">
+
+
+
+
+<p align="left">To get started with <strong>git blame</strong>, try the following syntax.</p>
+
+
+
+
+<pre class="lang:default decode:true ">git blame filename</pre>
+
+
+We then get the list of authors of each line of code for the file. <strong>git blame</strong> operates on individual files, therefore, it&#8217;s better to specify the path of the file. Here is a sample output of <strong>git blame</strong>.
+
+
+<pre class="lang:default decode:true ">$ git blame README.md
+82496ea3 (kev 2018-02-28 13:37:02 -0800 1) # Git Blame example
+82496ea3 (kev 2018-02-28 13:37:02 -0800 2)
+89feb84d (Alie So 2018-03-01 00:54:03 +0000 3) new line
+82496ea3 (kev 2018-02-28 13:37:02 -0800 4)
+82496ea3 (kev 2018-02-28 13:37:02 -0800 5) git blame
+82496ea3 (kev 2018-02-28 13:37:02 -0800 6)
+89feb84d (Alie So 2018-03-01 00:54:03 +0000 7) sun is going down</pre>
+
+
+
+
+<h2>Commonly used options</h2>
+
+
+We can use a set of options for <strong>git blame</strong>. Some of them are given below.
+
+
+<pre class="lang:default decode:true ">git blame -L 1,5 README.md
+</pre>
+
+
+This option restricts the display from lines 1 to 5.
+&nbsp;
+
+
+<pre class="lang:default decode:true ">git blame -e README.md</pre>
+
+
+This option displays the email address of the author instead of his username.
+&nbsp;
+
+
+<pre class="lang:default decode:true ">git blame -w README.md</pre>
+
+
+This option ignores the whitespaces in the file and mentions the authors of other lines.
+&nbsp;
+
+
+<pre class="lang:default decode:true">git blame -M README.md</pre>
+
+
+This option detects the copied or moved lines within a file. The command returns the original author instead of the person who copied or moved the file.
+&nbsp;
+
+
+<pre class="lang:default decode:true ">git blame -C README.md</pre>
+
+
+This option detects the copied or moved lines among any files. The command returns the original author instead of the person who copied or moved the file.
+&nbsp;
+<strong>git blame</strong> is a very useful command in finding the author of each line of code. and to see when the modifications were done. <strong>git blame </strong>comes in handy while managing a project.]]&gt;		</p>
+]]></content:encoded>
+										</item>
+		<item>
+		<title>Git Bisect</title>
+		<link>/git-bisect/</link>
+				<pubDate>Mon, 29 Apr 2019 11:28:11 +0000</pubDate>
+		<dc:creator><![CDATA[levi]]></dc:creator>
+				<category><![CDATA[Marketing]]></category>
+
+		<guid isPermaLink="false">http://redpanthers.co/?p=16355</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[Git, a version control software, is primarily used for source code management and tracking any changes any set of files. Git is very effective in coordinating the work of multiple people working on a project. Being a distributed revision control system, Git aims at speed, data integrity and support for distributed, non-linear workflows.
+&nbsp;
+Sometimes finding a bad commit is tedious and time consuming. We have to check commit by commit to find a bug in our code. We have to start from the oldest commit, check if the bug exists there, and if not, check the next newer commit.This goes on until we find the commit that caused the bug. This approach is slow and painstaking. Using <strong>git bisect</strong>, we can find the bad commit much easier.
+&nbsp;
+<strong>git bisect</strong> is a git command used to find the commit that introduced a bug in your code. We mention a  good commit where there was no bug and also a bad commit where we noticed the bug. <strong>git bisect</strong> picks a commit in between and asks if the commit is good or bad. This goes on till we find the bad commit. <strong>git bisect</strong> works just as a binary search does.
+&nbsp;
+To get started with <strong>git bisect</strong>, we run the command
+
+
+<pre class="lang:default decode:true ">git bisect start</pre>
+
+
+Now, we add the good commit. The syntax is
+
+
+<pre class="lang:default decode:true ">git bisect good commit_id</pre>
+
+
+Then, we add the bad commit as the following syntax.
+
+
+<pre class="lang:default decode:true ">git bisect bad commit_id</pre>
+
+
+&nbsp;
+Now, the command will trigger splitting the commits into half and revise it. We respond if the commit is good or bad as <strong>git bisect good</strong> or <strong>git bisect bad</strong>.
+The revision is narrowed down until we find the commit that caused the bug.
+&nbsp;
+Sometimes, we can automate finding the bugs. We can pass any script and check the script against each commits. The commit returning a non-zero status is the failing one.
+Here, as an example, I am running a failing test
+
+
+<pre class="lang:default decode:true">git bisect run rspec spec/features/my_broken_spec.rb</pre>
+
+
+&nbsp;
+<strong>git bisect</strong> is an awesome method to find the commit which caused the bug. It helps us saving our time and money.
+&nbsp;]]&gt;		</p>
+]]></content:encoded>
+										</item>
+		<item>
+		<title>Git Rebase</title>
+		<link>/git-rebase/</link>
+				<pubDate>Mon, 29 Apr 2019 11:28:11 +0000</pubDate>
+		<dc:creator><![CDATA[levi]]></dc:creator>
+				<category><![CDATA[Marketing]]></category>
+
+		<guid isPermaLink="false">http://redpanthers.co/?p=16357</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[Git, a version control software, is primarily used for source code management and tracking any changes any set of files. Git is very effective in coordinating the work of multiple people working on a project. Being a distributed revision control system, Git aims at speed, data integrity and support for distributed, non-linear workflows.
+&nbsp;
+Git rebasing is the process of combining a series of commits to a new base commit. Rebasing is easily implemented and visualized in the context of a branching workflow. Git rebasing is changing the base of your branch from one commit to another making it appear that we created the branch from another commit. This is done by creating a new commit and applying to the specified base.
+&nbsp;
+The main reason to rebase is to keep a linear project history. Let's take a small example. Imagine that the master has branch has progress than what we started in the feature branch. We need to have the latest updates from the master branch to the feature branch, but we need a clean history of commits. For this purpose, we do rebase the feature branch with the master branch. Now, the feature branch will have the updates of the master, just as we created the branch from the master.
+Assume that currently, I am at my feature branch. I want to rebase it with my master. I can do this by running the command
+
+
+<pre class="lang:default decode:true ">git rebase master</pre>
+
+
+or
+
+
+<pre class="lang:default decode:true">git rebase master feature_branch</pre>
+
+
+&nbsp;
+There are two ways to integrate the feature branch with the master, that is merging directly and rebasing and then merging. Merging directly results in a 3-way merge and has a merge commit. Rebasing and merging is a fast-forward merge and a perfect commit history.
+&nbsp;
+Having a clean commit history is good, especially when it comes to finding bugs. Imagine a bug occurs in the code and the developer could not track where the bug was introduced using <strong>git log</strong>. Now, he may run <strong>git bisect</strong> to find the bad commit. Because the commit history is clean, the <strong>git bisect</strong> has a refined set of commits to work on. This helps the developer to find the bug faster.
+&nbsp;
+We can run <strong>git rebase</strong> in an interactive mode by either giving the option <strong>-i</strong> or <strong>&#8211;interactive</strong>
+
+
+<pre class="lang:default decode:true ">git rebase --interactive</pre>
+
+
+This triggers the interactive mode. Interactive mode means we can play with the commits. Instead of the standard rebase, which moves all the commits blindly, the interactive commit let us alter with the commits. We can choose the commits we need, keeping the history cleaner. We can pick the commit, alter the commit, squash or discard the commit.
+&nbsp;
+Rebasing is a very helpful way to integrate your branches while keeping your commit history clean, which helps while debugging.]]&gt;		</p>
+]]></content:encoded>
+										</item>
 	</channel>
 </rss>

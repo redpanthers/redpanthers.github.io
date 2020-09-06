@@ -1,4 +1,4 @@
- <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
 	xmlns:content="http://purl.org/rss/1.0/modules/content/"
 	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -8,10 +8,10 @@
 	>
 
 <channel>
-	<title>rajana &#8211; Red Panthers</title>
+	<title>rajana &#8211; beta.redpanthers.co</title>
 	<atom:link href="/author/rajana/feed/" rel="self" type="application/rss+xml" />
 	<link>/</link>
-	<description>Experts in Ruby on Rails Development</description>
+	<description>Red Panthers - Experts in Ruby on Rails, System Design and Vue.js</description>
 	<lastBuildDate>Wed, 28 Jun 2017 12:07:19 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
@@ -19,14 +19,6 @@
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
 	<generator>https://wordpress.org/?v=5.2.7</generator>
-
-<image>
-	<url>/wp-content/uploads/2017/12/rp-logo.png</url>
-	<title>rajana &#8211; Red Panthers</title>
-	<link>/</link>
-	<width>32</width>
-	<height>32</height>
-</image> 
 	<item>
 		<title>Readability of text using odyssey</title>
 		<link>/odyssey-in-rails/</link>
@@ -42,95 +34,309 @@
 		<category><![CDATA[redability]]></category>
 		<category><![CDATA[smart]]></category>
 
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=2738</guid>
-				<description><![CDATA[<p>When you are writing something like article, text, document etc you are focusing on readability. If you are not then you should. As readability influence how a reader can read and understand the content, how you are presenting the content etc. It would also influence how much likely one is to share your article as&#8230;</p>
-<p>The post <a rel="nofollow" href="/odyssey-in-rails/">Readability of text using odyssey</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
-]]></description>
-								<content:encoded><![CDATA[<p>When you are writing something like article, text, document etc you are focusing on readability. If you are not then you should. As readability influence how a reader can read and understand the content, how you are presenting the content etc. It would also influence how much likely one is to share your article as well. To find the readability there are a lot of statistical tests. Few are listed below.</p>
+		<guid isPermaLink="false">https://redpanthers.co/?p=2738</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[When you are writing something like article, text, document etc you are focusing on readability. If you are not then you should. As readability influence how a reader can read and understand the content, how you are presenting the content etc. It would also influence how much likely one is to share your article as well. To find the readability there are a lot of statistical tests. Few are listed below.
+
+
 <ul>
+ 	
+
 <li>Flesch-Kincaid readability test</li>
+
+
+ 	
+
 <li>
+
+
 <p class="push-top">Flesch Kincaid Grade Level</p>
+
+
 </li>
+
+
+ 	
+
 <li>
+
+
 <p class="push-top">Gunning Fog Score</p>
+
+
 </li>
+
+
+ 	
+
 <li>
+
+
 <p class="push-top">SMOG</p>
+
+
 </li>
+
+
+ 	
+
 <li>
+
+
 <p class="push-top">Coleman Liau Index</p>
+
+
 </li>
+
+
+ 	
+
 <li>
+
+
 <p class="push-top">Automated Readability Index (ARI)</p>
+
+
 </li>
+
+
 </ul>
-<p>Recently in a project that we worked on we were asked to find the readability of various pages of a website. We decided to start with Flesch-Kincaid test, as we found this to be a popular one in our research.</p>
-<p><strong>Flesch-Kincaid readability test</strong> is designed to indicate how difficult a passage in English is to understand. In this test higher score indicates how easier to read and a lower score indicates how difficult it is to read.The formula to find Flesch-Kincaid reading-ease score is</p>
-<p>206.835 &#8211; 1.015 * (total words / total sentences) &#8211; 84.6 * (total syllables / total words)</p>
-<p>The scores can be interrupted as</p>
+
+
+Recently in a project that we worked on we were asked to find the readability of various pages of a website. We decided to start with Flesch-Kincaid test, as we found this to be a popular one in our research.
+<strong>Flesch-Kincaid readability test</strong> is designed to indicate how difficult a passage in English is to understand. In this test higher score indicates how easier to read and a lower score indicates how difficult it is to read.The formula to find Flesch-Kincaid reading-ease score is
+206.835 &#8211; 1.015 * (total words / total sentences) &#8211; 84.6 * (total syllables / total words)
+The scores can be interrupted as
+
+
 <table border="2px">
+
+
 <tbody>
+
+
 <tr>
+
+
 <th>Score</th>
+
+
+
+
 <th>School Level</th>
+
+
+
+
 <th>Notes</th>
+
+
 </tr>
+
+
+
+
 <tr>
+
+
 <th>100.00-90.00</th>
+
+
+
+
 <th>5th grade</th>
+
+
+
+
 <th>Very easy to read.</th>
+
+
 </tr>
+
+
+
+
 <tr>
+
+
 <th>90.00-80.00</th>
+
+
+
+
 <th>6th grade</th>
+
+
+
+
 <th>Easy to read.</th>
+
+
 </tr>
+
+
+
+
 <tr>
+
+
 <th>80.00-70.00</th>
+
+
+
+
 <th>7th grade</th>
+
+
+
+
 <th>Fairly easy to read.</th>
+
+
 </tr>
+
+
+
+
 <tr>
+
+
 <th>70.00-60.00</th>
+
+
+
+
 <th>8th &amp; 9th grade</th>
+
+
+
+
 <th>Plain English.</th>
+
+
 </tr>
+
+
+
+
 <tr>
+
+
 <th>60.00-50.00</th>
+
+
+
+
 <th>10th to 12th grade</th>
+
+
+
+
 <th>Fairly difficult to read.</th>
+
+
 </tr>
+
+
+
+
 <tr>
+
+
 <th>50.00-30.00</th>
+
+
+
+
 <th>College</th>
+
+
+
+
 <th>Difficult to read.</th>
+
+
 </tr>
+
+
+
+
 <tr>
+
+
 <th>30.00-0.00</th>
+
+
+
+
 <th>College Graduate</th>
+
+
+
+
 <th>Very difficult to read.</th>
+
+
 </tr>
+
+
 </tbody>
+
+
 </table>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>Since we were not experts we wanted the ability to tweak and play around with it. We found an already build gem called <strong>Odyssey </strong>which had all these various tests and also provided the ability to extend this feature as well. So here in this article, we will discuss how to use Odyssey gem to find readability of an article and a web page.</p>
-<p><code></code></p>
+
+
+&nbsp;
+&nbsp;
+Since we were not experts we wanted the ability to tweak and play around with it. We found an already build gem called <strong>Odyssey </strong>which had all these various tests and also provided the ability to extend this feature as well. So here in this article, we will discuss how to use Odyssey gem to find readability of an article and a web page.
+<code></code>
+
+
 <h2>Install Odyssey</h2>
-<p>Add in your Gemfile.</p><pre class="crayon-plain-tag">gem 'odyssey'</pre><p></p>
+
+
+Add in your Gemfile.
+
+
+<pre class="lang:ruby decode:true">gem 'odyssey'</pre>
+
+
+
+
 <h2>Usage</h2>
-<p></p><pre class="crayon-plain-tag">require 'odyssey'
 
-Odyssey.formula_name(text, all_stats)</pre><p>So if we want to use the Flesch-Kincaid test, we write the code as below.</p><pre class="crayon-plain-tag">require 'odyssey'
 
-Odyssey.flesch_kincaid_re(text, all_stats)</pre><p>To find the readability of a website we use Nokogiri and Odyssey together. Nokogiri to fetch the contents of the page and Odyssey to get the readability.</p>
-<p>Example of finding readability of our own website ()/</p><pre class="crayon-plain-tag">url = "/"
+
+
+<pre class="lang:ruby decode:true">require 'odyssey'
+Odyssey.formula_name(text, all_stats)</pre>
+
+
+So if we want to use the Flesch-Kincaid test, we write the code as below.
+
+
+<pre class="lang:ruby decode:true">require 'odyssey'
+Odyssey.flesch_kincaid_re(text, all_stats)</pre>
+
+
+To find the readability of a website we use Nokogiri and Odyssey together. Nokogiri to fetch the contents of the page and Odyssey to get the readability.
+Example of finding readability of our own website (https://redpanthers.co)/
+
+
+<pre class="lang:ruby decode:true">url = "https://redpanthers.co/"
 doc = Nokogiri::HTML(open(url))
 # Get all the contents
 paragraph = doc.css('p', 'article', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'a').map(&amp;:text)
 score = Odyssey.flesch_kincaid_re(para.join('. '), true)
-p score</pre><p>If <strong>all_stats</strong> is set to <strong>false</strong>, it returns score only. If it is true returns a hash like below</p><pre class="crayon-plain-tag">{
+p score</pre>
+
+
+If <strong>all_stats</strong> is set to <strong>false</strong>, it returns score only. If it is true returns a hash like below
+
+
+<pre class="lang:ruby decode:true">{
  "string_length"=&gt;3024,
  "letter_count"=&gt;2270,
  "syllable_count"=&gt;808,
@@ -141,12 +347,25 @@ p score</pre><p>If <strong>all_stats</strong> is set to <strong>false</strong>, 
  "name"=&gt;"Flesch-Kincaid Reading Ease",
  "formula"=&gt;#&lt;FleschKincaidRe:0x00000000c83548&gt;,
  "score"=&gt;64.6
-}</pre><p>We can perform multiple text analyses on the same text as shown below</p><pre class="crayon-plain-tag">url = "http://blog.redpanthers.co/"
+}</pre>
+
+
+We can perform multiple text analyses on the same text as shown below
+
+
+<pre class="lang:rust decode:true">url = "https://redpanthers.co/"
 doc = Nokogiri::HTML(open(url))
 para = doc.css('p', 'article', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'a').map(&amp;:text)
 score = Odyssey.analyze_multi(para.join('. ').gsub('\n', ' '),
           ['FleschKincaidRe', 'FleschKincaidGl', 'GunningFog', 'Smog','Ari','ColemanLiau'],
-          true)</pre><p>if all_stats is set to true it will return a hash like this</p><pre class="crayon-plain-tag">{
+          true)
+</pre>
+
+
+if all_stats is set to true it will return a hash like this
+
+
+<pre class="lang:ruby decode:true">{
 "string_length"=&gt;19892,
  "letter_count"=&gt;14932,
  "syllable_count"=&gt;5079,
@@ -163,21 +382,41 @@ score = Odyssey.analyze_multi(para.join('. ').gsub('\n', ' '),
    "Ari"=&gt;3.5,
    "ColemanLiau"=&gt;10.6
   }
-}</pre><p></p>
-<h2>Extending odyssey</h2>
-<p>To extending odyssey, you can create a class that inherit from formula</p><pre class="crayon-plain-tag">class NewFormula &lt; Formula
+}
+</pre>
 
+
+
+
+<h2>Extending odyssey</h2>
+
+
+To extending odyssey, you can create a class that inherit from formula
+
+
+<pre class="lang:ruby decode:true">class NewFormula &lt; Formula
   def score(passage, stats)
     p passage
     p stats
   end
-
   def sentence
     "Red Panthers is a Ruby on Rails development studio,
      based in the beautiful city of Cochin."
   end
-end</pre><p>To call your formula you just use</p><pre class="crayon-plain-tag">obj = NewFormula.new
-Odyssey.new_formula(obj.sentence, false)</pre><p>Resultant passage will be a Hash like this</p><pre class="crayon-plain-tag">{
+end</pre>
+
+
+To call your formula you just use
+
+
+<pre class="lang:ruby decode:true">obj = NewFormula.new
+Odyssey.new_formula(obj.sentence, false)</pre>
+
+
+Resultant passage will be a Hash like this
+
+
+<pre class="lang:ruby decode:true">{
  "raw"=&gt;"Red Panthers is a Ruby on Rails development studio,
         based in the beautiful city of Cochin.",
  "words"=&gt;["Red", "Panthers", "is", "a", "Ruby", "on", "Rails",
@@ -186,7 +425,14 @@ Odyssey.new_formula(obj.sentence, false)</pre><p>Resultant passage will be a Has
  "sentences"=&gt;["Red Panthers is a Ruby on Rails development studio,
                based in the beautiful city of Cochin."],
  "syllables"=&gt;[1, 2, 1, 1, 2, 1, 1, 4, 2, 1, 1, 1, 4, 2, 1, 2]
-}</pre><p>and resultant status will be a Hash like this</p><pre class="crayon-plain-tag">{
+}
+</pre>
+
+
+and resultant status will be a Hash like this
+
+
+<pre class="lang:ruby decode:true">{
  "string_length"=&gt;90,
  "letter_count"=&gt;73,
  "word_count"=&gt;16,
@@ -194,14 +440,33 @@ Odyssey.new_formula(obj.sentence, false)</pre><p>Resultant passage will be a Has
  "sentence_count"=&gt;1,
  "average_words_per_sentence"=&gt;16.0,
  "average_syllables_per_word"=&gt;1.6875
-}</pre><p>Because we have access to formula&#8217;s class that is  &#8216;status&#8217; flag set to true then we have access to other methods or class formula.</p>
-<p>Thanks to Odyssey we were able to implement the feature quite easily and right now the algorithm we are using have evolved to new forms. But that&#8217;s another article. But if you want to build a simple readability checker then it&#8217;s quite easy and simple in Rails.</p>
+}
+</pre>
+
+
+Because we have access to formula&#8217;s class that is  &#8216;status&#8217; flag set to true then we have access to other methods or class formula.
+Thanks to Odyssey we were able to implement the feature quite easily and right now the algorithm we are using have evolved to new forms. But that&#8217;s another article. But if you want to build a simple readability checker then it&#8217;s quite easy and simple in Rails.
+
+
 <h2>References</h2>
+
+
+
+
 <ul>
+ 	
+
 <li><a href="http://www.rubydoc.info/gems/odyssey/0.1.8">http://www.rubydoc.info/gems/odyssey/0.1.8</a></li>
+
+
+ 	
+
 <li><a href="https://github.com/cameronsutter/odyssey">https://github.com/cameronsutter/odyssey</a></li>
+
+
 </ul>
-<p>The post <a rel="nofollow" href="/odyssey-in-rails/">Readability of text using odyssey</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+
+]]&gt;		</p>
 ]]></content:encoded>
 							<wfw:commentRss>/odyssey-in-rails/feed/</wfw:commentRss>
 		<slash:comments>2</slash:comments>
@@ -216,46 +481,139 @@ Odyssey.new_formula(obj.sentence, false)</pre><p>Resultant passage will be a Has
 		<category><![CDATA[Rails]]></category>
 		<category><![CDATA[Ruby]]></category>
 
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=2694</guid>
-				<description><![CDATA[<p>Recently we have been working on Rails API. During that time, we were curious about the difference between as_json and to_json. In this article, we are sharing the difference we learned. to_json in Rails API Let&#8217;s discuss how we started out building our APIs using &#8216;to_json’. to_json will return JSON string representing the hash. Option&#8230;</p>
-<p>The post <a rel="nofollow" href="/to_json-vs-as_json-in-rails-api/">to_json vs as_json in Rails API</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
-]]></description>
-								<content:encoded><![CDATA[<p>Recently we have been working on Rails API. During that time, we were curious about the difference between as_json and to_json. In this article, we are sharing the difference we learned.</p>
+		<guid isPermaLink="false">https://redpanthers.co/?p=2694</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[Recently we have been working on Rails API. During that time, we were curious about the difference between as_json and to_json. In this article, we are sharing the difference we learned.
+
+
 <h2><strong>to_json in Rails API</strong></h2>
-<p>Let&#8217;s discuss how we started out building our APIs using &#8216;to_json’. to_json will return JSON string representing the hash. Option are passed to each element.</p>
-<p>In to_json without any <em>option,  </em>the returned JSON string will include all the model attributes</p><pre class="crayon-plain-tag">user = User.find(1)
-user.to_json</pre><p>to_json had some great options of ActiveRecord objects. We could just tell the method to only render certain attributes, or to include association or method calls. We had:</p>
+
+
+Let&#8217;s discuss how we started out building our APIs using &#8216;to_json’. to_json will return JSON string representing the hash. Option are passed to each element.
+In to_json without any <em>option,  </em>the returned JSON string will include all the model attributes
+
+
+<pre class="lang:ruby decode:true">user = User.find(1)
+user.to_json
+</pre>
+
+
+to_json had some great options of ActiveRecord objects. We could just tell the method to only render certain attributes, or to include association or method calls. We had:
+
+
 <ul>
-<li>only &#8211; Only show column names in the output as specified in the list<br />
-<pre class="crayon-plain-tag">user.to_json(:only =&gt; [ :id, :email ])</pre>
+ 	
+
+<li>only &#8211; Only show column names in the output as specified in the list
+
+
+<pre class="lang:ruby decode:true">user.to_json(:only =&gt; [ :id, :email ])
+</pre>
+
+
 </li>
-<li>except &#8211; Show all column names except the ones specified in the list<br />
-<pre class="crayon-plain-tag">user.to_json(:except =&gt; [:id, :username])</pre>
+
+
+ 	
+
+<li>except &#8211; Show all column names except the ones specified in the list
+
+
+<pre class="lang:ruby decode:true">user.to_json(:except =&gt; [:id, :username])
+</pre>
+
+
 </li>
+
+
 </ul>
-<p>to_json works fine and seamlessly ok, as long as the database schema is deeply coupled with the API output.When it takes the next level where we want to render a certain attribute in json it start to break.</p><pre class="crayon-plain-tag">render :json =&gt; { :sucess =&gt; true,
-  :user =&gt; @user.to_json(:only =&gt; [:name]) }</pre><p>This will start to generate a bit load to controllers. Such methods of generating json don&#8217;t feel quite right and begin to break down. This is because the to_json is interested in &#8216;serializing&#8217; a database object while most of the developers try to put relevant representation for their API.</p>
-<p>Anytime to_json is called on an object, as_json is invoked to create the data structure, and then that hash is encoded as a JSON string using ActiveSupport::json.encode. This happens for all types: Object, Numeric, Data, String etc.</p>
-<p>Now the creation of the json is separated from the rendering of the json.  as_json is used to create the structure of the json as a Hash, and the rendering of that hash into JSON string is left up-to ActiveSupport::json.encode.</p>
+
+
+to_json works fine and seamlessly ok, as long as the database schema is deeply coupled with the API output.When it takes the next level where we want to render a certain attribute in json it start to break.
+
+
+<pre class="lang:ruby decode:true ">render :json =&gt; { :sucess =&gt; true,
+  :user =&gt; @user.to_json(:only =&gt; [:name]) }</pre>
+
+
+This will start to generate a bit load to controllers. Such methods of generating json don&#8217;t feel quite right and begin to break down. This is because the to_json is interested in &#8216;serializing&#8217; a database object while most of the developers try to put relevant representation for their API.
+Anytime to_json is called on an object, as_json is invoked to create the data structure, and then that hash is encoded as a JSON string using ActiveSupport::json.encode. This happens for all types: Object, Numeric, Data, String etc.
+Now the creation of the json is separated from the rendering of the json.  as_json is used to create the structure of the json as a Hash, and the rendering of that hash into JSON string is left up-to ActiveSupport::json.encode.
+
+
 <h2><strong>as_json in Rails API</strong></h2>
-<p>as_json Returns a hash representing the model. Like in to_json, option are passed to each element in as_json. The option include_root_in_json controls the top-level behavior of as_json. If true, as_json will emit a single root node named after the object’s type. The default value for include_root_in_json option is false. This behavior can also be achieved by setting the :root  option to true.</p><pre class="crayon-plain-tag">user.as_json(root: true)</pre><p>In as_json without any option, the returned HASH will include all the model attributes</p><pre class="crayon-plain-tag">user = User.find(1)
-user.as_json</pre><p>The <em>:only</em> and <em>:except</em> options can be used to limit the attributes included, and work similar to the attributes method.</p><pre class="crayon-plain-tag">user.as_json(:only =&gt; [ :id, :email ])
-user.as_json(:except =&gt; [:id, :username])</pre><p>Default as_json will create a hash which includes all the model attributes. We normally override the as_json to create custom JSON structure.</p><pre class="crayon-plain-tag">def as_json(options={})
+
+
+as_json Returns a hash representing the model. Like in to_json, option are passed to each element in as_json. The option include_root_in_json controls the top-level behavior of as_json. If true, as_json will emit a single root node named after the object’s type. The default value for include_root_in_json option is false. This behavior can also be achieved by setting the :root  option to true.
+
+
+<pre class="lang:ruby decode:true">user.as_json(root: true)</pre>
+
+
+In as_json without any option, the returned HASH will include all the model attributes
+
+
+<pre class="lang:ruby decode:true">user = User.find(1)
+user.as_json
+</pre>
+
+
+The <em>:only</em> and <em>:except</em> options can be used to limit the attributes included, and work similar to the attributes method.
+
+
+<pre class="lang:ruby decode:true">user.as_json(:only =&gt; [ :id, :email ])
+user.as_json(:except =&gt; [:id, :username])
+</pre>
+
+
+Default as_json will create a hash which includes all the model attributes. We normally override the as_json to create custom JSON structure.
+
+
+<pre class="lang:ruby decode:true">def as_json(options={})
  { :email =&gt; self.email }
-end</pre><p><strong>As we were going through this we also came across a method called from_json. So we decided to write about it as well</strong></p>
+end</pre>
+
+
+<strong>As we were going through this we also came across a method called from_json. So we decided to write about it as well</strong>
+
+
 <h2>from_json in Rails API</h2>
-<p>from_json will sets the model attributes from a JSON string. The default value for include_root option is false. We can change it to &#8216;true&#8217; if the given JSON string includes a single root node.</p><pre class="crayon-plain-tag">json = { user: { email: 'adone@gmail.com', username: 'adone'} }.to_json
+
+
+from_json will sets the model attributes from a JSON string. The default value for include_root option is false. We can change it to &#8216;true&#8217; if the given JSON string includes a single root node.
+
+
+<pre class="lang:ruby decode:true">json = { user: { email: 'adone@gmail.com', username: 'adone'} }.to_json
 user = User.new
 user.from_json(json, true)
 user.email                 #=&gt; "adone@gmail.com"
-user.username              #=&gt; "adone"</pre><p><code></code></p>
-<p>Do not call to_json directly, and let the render take it, in controllers. Incase of custom structured or multi level JSON structure override as_json in the model or call as_json. Using as_json will help to worry one less.</p>
+user.username              #=&gt; "adone"</pre>
+
+
+<code></code>
+Do not call to_json directly, and let the render take it, in controllers. Incase of custom structured or multi level JSON structure override as_json in the model or call as_json. Using as_json will help to worry one less.
+
+
 <h2><strong>References</strong></h2>
+
+
+
+
 <ul>
+ 	
+
 <li><a href="https://github.com/rails/rails/blob/master/activesupport/lib/active_support/core_ext/object/json.rb">https://github.com/rails/rails/blob/master/activesupport/lib/active_support/core_ext/object/json.rb</a></li>
+
+
+ 	
+
 <li><a href="http://ruby-doc.org/stdlib-2.0.0/libdoc/json/rdoc/Regexp.html">http://ruby-doc.org/stdlib-2.0.0/libdoc/json/rdoc/Regexp.html</a></li>
+
+
 </ul>
-<p>The post <a rel="nofollow" href="/to_json-vs-as_json-in-rails-api/">to_json vs as_json in Rails API</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+
+]]&gt;		</p>
 ]]></content:encoded>
 							<wfw:commentRss>/to_json-vs-as_json-in-rails-api/feed/</wfw:commentRss>
 		<slash:comments>3</slash:comments>
@@ -263,96 +621,234 @@ user.username              #=&gt; "adone"</pre><p><code></code></p>
 		<item>
 		<title>Fixtures in Rails Tests</title>
 		<link>/rails-test-fixtures/</link>
-				<comments>/rails-test-fixtures/#respond</comments>
 				<pubDate>Mon, 13 Feb 2017 10:32:47 +0000</pubDate>
 		<dc:creator><![CDATA[rajana]]></dc:creator>
 				<category><![CDATA[Rails]]></category>
 
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=1495</guid>
-				<description><![CDATA[<p>Fixtures  are very much relevant in Rails testing. Fixtures are a way of organizing your test data.Testing the application helps to debug it more efficiently and ensures the desired functionality to the application. Let&#8217;s have a look on them. It is used to manage the test data. It tests against the real data and is&#8230;</p>
-<p>The post <a rel="nofollow" href="/rails-test-fixtures/">Fixtures in Rails Tests</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
-]]></description>
-								<content:encoded><![CDATA[<p><strong>Fixtures</strong>  are very much relevant in Rails testing. Fixtures are a way of organizing your test data.Testing the application helps to debug it more efficiently and ensures the desired functionality to the application. Let&#8217;s have a look on them.</p>
-<p>It is used to manage the test data. It tests against the real data and is written in YAML files. For each model in the application, there is a .yml file in the <code>test/fixtures</code> directory. When we generate the model using rails g it will automatically create the .yml file also. Here you can see an example,</p><pre class="crayon-plain-tag">Matz:
+		<guid isPermaLink="false">https://redpanthers.co/?p=1495</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[<strong>Fixtures</strong>  are very much relevant in Rails testing. Fixtures are a way of organizing your test data.Testing the application helps to debug it more efficiently and ensures the desired functionality to the application. Let&#8217;s have a look on them.
+It is used to manage the test data. It tests against the real data and is written in YAML files. For each model in the application, there is a .yml file in the <code>test/fixtures</code> directory. When we generate the model using rails g it will automatically create the .yml file also. Here you can see an example,
+
+
+<pre class="lang:ruby decode:true">Matz:
  name: redpanthers
- message: hi</pre><p>Here &#8216;Matz&#8217; is the fixture name. And the name and message are the fields in the User model.</p>
-<p>Fixtures come in 3 flavours:</p>
+ message: hi</pre>
+
+
+Here &#8216;Matz&#8217; is the fixture name. And the name and message are the fields in the User model.
+Fixtures come in 3 flavours:
+
+
 <ul>
+ 	
+
 <li><strong>YAML fixtures</strong>: It is a file format which describes data structures in human-readable format.These are stored in a single file per model(above example is in yaml format).</li>
+
+
+ 	
+
 <li><strong>CSV fixtures:</strong> Here values are kept in the Comma Separated Value (CSV) format. These are stored in a single file but instead end with the <tt>.csv</tt> file extension.</li>
+
+
 </ul>
+
+
+
+
 <p style="padding-left: 60px;">Eg:</p>
-<p></p><pre class="crayon-plain-tag">name, message
-   redpanthers, hi</pre><p></p>
+
+
+
+
+<pre class="">  name, message
+   redpanthers, hi</pre>
+
+
+
+
 <ul>
+ 	
+
 <li><strong>Single-file fixtures: </strong>These are the original format for Active Record.</li>
+
+
 </ul>
+
+
+
+
 <p style="padding-left: 60px;">Eg:</p>
-<p></p><pre class="crayon-plain-tag">name =&gt; redpanthers
-message =&gt; hi</pre><p></p>
+
+
+
+
+<pre class="lang:ruby decode:true ">name =&gt; redpanthers
+message =&gt; hi</pre>
+
+
+
+
 <h2>Creating multiple/random items in fixtures</h2>
-<p>You can create multiple items as:</p><pre class="crayon-plain-tag">Adorn:
+
+
+You can create multiple items as:
+
+
+<pre class="lang:ruby decode:true">Adorn:
  name: redpanthers
  message: hi
 Alex:
  name: google
  message: hello
-.............</pre><p>When you add fixtures, they get IDs based on a hash of the table name and the fixture name. To us humans, they just look like random numbers. So there is no need to define the id for this. It will ensure that the id is unique for every item.</p>
-<p>Fixtures are unordered. If you want ordered items, use the omap YAML type. Also, you can access the data in the test as:</p><pre class="crayon-plain-tag">test &quot;find&quot; do
-  assert_equal &quot;User&quot;, users(:Adorn).name
-end</pre><p>Where &#8216;users&#8217; is the name of the yml file and &#8216;Adorn&#8217; is the fixture name.</p>
+.............</pre>
+
+
+When you add fixtures, they get IDs based on a hash of the table name and the fixture name. To us humans, they just look like random numbers. So there is no need to define the id for this. It will ensure that the id is unique for every item.
+Fixtures are unordered. If you want ordered items, use the omap YAML type. Also, you can access the data in the test as:
+
+
+<pre class="ruby">test "find" do
+  assert_equal "User", users(:Adorn).name
+end</pre>
+
+
+Where &#8216;users&#8217; is the name of the yml file and &#8216;Adorn&#8217; is the fixture name.
+
+
 <h2>ERB Fixtures</h2>
-<p>You can add ERB with your YAML fixtures to create a bunch of fixtures as:</p>
+
+
+You can add ERB with your YAML fixtures to create a bunch of fixtures as:
+
+
 <div class="line number1 index0 alt2">
-<pre class="crayon-plain-tag">&lt;% 1000.times do |i| %&gt;
+
+
+<pre class="lang:ruby decode:true">&lt;% 1000.times do |i| %&gt;
 user_&lt;%= i %&gt;:
   name: &lt;%= "user#{i}" %&gt;
   message: &lt;%= "message#{i}" %&gt;
-&lt;% end %&gt;</pre><br />
-In the above example, the code generate 1000 users.</p>
+&lt;% end %&gt;</pre>
+
+
+In the above example, the code generate 1000 users.
 </div>
+
+
+
+
 <h2>Writing belongs_to/has_many relationships</h2>
-<p>We can also define associations between fixtures. For example, if a user has so many customers there exists a has_many/belongs to a relationship. So we can get the value as:</p><pre class="crayon-plain-tag"># In fixtures/customers.yml
+
+
+We can also define associations between fixtures. For example, if a user has so many customers there exists a has_many/belongs to a relationship. So we can get the value as:
+
+
+<pre class="lang:ruby decode:true"># In fixtures/customers.yml
 Jacob:
  name: Tiago
-
 # In fixtures/users.yml
 David:
  name: redpanthers
  message: hi
- customer: Jacob</pre><p>Like above, you can get customer details in users.yml.</p>
+ customer: Jacob</pre>
+
+
+Like above, you can get customer details in users.yml.
+
+
 <h2>Why are they Special?</h2>
+
+
+
+
 <ul>
+ 	
+
 <li>It allows you to populate your test database with values so that you can test more conveniently without having to put lots of data into it when setting up a test run.</li>
+
+
+ 	
+
 <li>These are the instances of Active Record. So you can access the object directly because it is automatically setup as a local variable of the test case.</li>
+
+
 </ul>
+
+
+
+
 <p style="padding-left: 60px;">Eg:</p>
-<p></p><pre class="crayon-plain-tag"># this will return the User object for the fixture named David
-Adam(:David)</pre><p></p>
+
+
+
+
+<pre class="line number1 index0 alt2" style="padding-left: 60px;"># this will return the User object for the fixture named David
+Adam(:David)</pre>
+
+
+
+
 <ul>
+ 	
+
 <li>We can set a value to nil/blank from the fixture.</li>
+
+
 </ul>
+
+
+
+
 <p style="padding-left: 60px;">Eg:</p>
-<p></p><pre class="crayon-plain-tag">require 'yaml'
+
+
+
+
+<pre class="lang:ruby decode:true">require 'yaml'
 YAML.load "--- \n:private: null\n")
 =&gt; {:private=&gt;nil}
-
 # In fixture
 Abner:
  name: john
- private: null</pre><p>I hope this article helps you in a better way to know the basics about fixtures!</p>
+ private: null</pre>
+
+
+I hope this article helps you in a better way to know the basics about fixtures!
+
+
 <h2>References</h2>
+
+
+
+
 <ul>
+ 	
+
 <li><a href="http://guides.rubyonrails.org/v4.2/testing.html">A Guide to Testing Rails Applications</a></li>
+
+
+ 	
+
 <li>
+
+
 <p class="post-title"><a href="http://blog.bigbinary.com/2014/09/21/tricks-and-tips-for-using-fixtures-in-rails.html">blog.bigbinary.com</a></p>
+
+
 </li>
+
+
+ 	
+
 <li><a href="https://whatdoitest.com/getting-friendly-with-fixtures">whatdoitest.com</a></li>
+
+
 </ul>
-<p>The post <a rel="nofollow" href="/rails-test-fixtures/">Fixtures in Rails Tests</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+
+]]&gt;		</p>
 ]]></content:encoded>
-							<wfw:commentRss>/rails-test-fixtures/feed/</wfw:commentRss>
-		<slash:comments>0</slash:comments>
-							</item>
+										</item>
 	</channel>
 </rss>

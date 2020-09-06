@@ -1,4 +1,4 @@
- <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
 	xmlns:content="http://purl.org/rss/1.0/modules/content/"
 	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -8,10 +8,10 @@
 	>
 
 <channel>
-	<title>mukesh &#8211; Red Panthers</title>
+	<title>mukesh &#8211; beta.redpanthers.co</title>
 	<atom:link href="/author/mukesh/feed/" rel="self" type="application/rss+xml" />
 	<link>/</link>
-	<description>Experts in Ruby on Rails Development</description>
+	<description>Red Panthers - Experts in Ruby on Rails, System Design and Vue.js</description>
 	<lastBuildDate>Fri, 19 Apr 2013 13:10:05 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
@@ -19,52 +19,57 @@
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
 	<generator>https://wordpress.org/?v=5.2.7</generator>
-
-<image>
-	<url>/wp-content/uploads/2017/12/rp-logo.png</url>
-	<title>mukesh &#8211; Red Panthers</title>
-	<link>/</link>
-	<width>32</width>
-	<height>32</height>
-</image> 
 	<item>
 		<title>Refinements – Ruby Monkey-Patching Redifined</title>
 		<link>/refinements-ruby-monkey-patching-redifined/</link>
-				<comments>/refinements-ruby-monkey-patching-redifined/#respond</comments>
 				<pubDate>Fri, 19 Apr 2013 13:10:05 +0000</pubDate>
 		<dc:creator><![CDATA[mukesh]]></dc:creator>
 				<category><![CDATA[Rails]]></category>
 		<category><![CDATA[Ruby]]></category>
 
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=1343</guid>
-				<description><![CDATA[<p>Ruby classes are special in many ways. One of the most useful among these specialities is that, in Ruby, all classes are mutable. The ability to change the way classes behave at runtime(aka monkey-patching) has been used by many libraries and frameworks to decorate Ruby&#8217;s core classes with additions and/or replacements. But good and evil&#8230;</p>
-<p>The post <a rel="nofollow" href="/refinements-ruby-monkey-patching-redifined/">Refinements – Ruby Monkey-Patching Redifined</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
-]]></description>
-								<content:encoded><![CDATA[<p>Ruby classes are special in many ways. One of the most useful among these specialities is that, in Ruby, all classes are mutable. The ability to change the way classes behave at runtime(aka monkey-patching) has been used by many libraries and frameworks to decorate Ruby&#8217;s core classes with additions and/or replacements. But good and evil are two sides of a coin. Anything that helps you a lot can also get you into problems.</p>
-<p>Many patterns in Ruby are built around the ability to modify classes. But, the problem rises if a library patches code in a way the user does not expect (or want), or if two libraries try to apply conflicting patches. Sometimes, you simply don&#8217;t want patches to be applied globally, and this is where refinements come in. Refinements are intended to allow monkey-patching only within certain limited scopes, like within a library that wants to use altered or enhanced versions of core Ruby types without affecting code outside the library. Refinements are defined in a module using the refine method. It takes a single argument, the class you want to change the behavior of, as well as a block. Inside this block you&#8217;re going to define the methods you want to change the behavior of. See the code sample below.</p><pre class="crayon-plain-tag">refine String do
+		<guid isPermaLink="false">https://redpanthers.co/?p=1343</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[Ruby classes are special in many ways. One of the most useful among these specialities is that, in Ruby, all classes are mutable. The ability to change the way classes behave at runtime(aka monkey-patching) has been used by many libraries and frameworks to decorate Ruby's core classes with additions and/or replacements. But good and evil are two sides of a coin. Anything that helps you a lot can also get you into problems.
+Many patterns in Ruby are built around the ability to modify classes. But, the problem rises if a library patches code in a way the user does not expect (or want), or if two libraries try to apply conflicting patches. Sometimes, you simply don't want patches to be applied globally, and this is where refinements come in. Refinements are intended to allow monkey-patching only within certain limited scopes, like within a library that wants to use altered or enhanced versions of core Ruby types without affecting code outside the library. Refinements are defined in a module using the refine method. It takes a single argument, the class you want to change the behavior of, as well as a block. Inside this block you're going to define the methods you want to change the behavior of. See the code sample below.
+
+
+<pre class="code highlight js-syntax-highlight plaintext white"><code>refine String do
   def upcase
     self.downcase
   end
-end</pre><p>The above code defines a refinement. Now this is how you will be actually using it.</p><pre class="crayon-plain-tag">class TestRefinement
+end</code></pre>
+
+
+The above code defines a refinement. Now this is how you will be actually using it.
+
+
+<pre class="code highlight js-syntax-highlight plaintext white"><code>  class TestRefinement
     def modify_string
-      test_string = &ldquo;this Is A TesTSriNG&rdquo;
-      test_string.upcase  #will give &ldquo;THIS IS A TESTSTRING&rdquo;. Ruby default
+      test_string = “this Is A TesTSriNG”
+      test_string.upcase  #will give “THIS IS A TESTSTRING”. Ruby default
     end
     using RefineString
     def testing_refinement
-      test_string = &ldquo;this Is A TesTSriNG&rdquo;
-      test_string.upcase  #will give &ldquo;this is a teststring&rdquo;. Refined
+      test_string = “this Is A TesTSriNG”
+      test_string.upcase  #will give “this is a teststring”. Refined
     end
-  end</pre><p>Looks weird, huh? What I did now is that I changed the default String::upcase function to down-case the string instead of up-casing it.</p>
-<p>Once you&#8217;re in the scope you need to use the refinement, call the using method with the module holding the monkey-patch/ monkey-patches (as they can hold more than one), you want to activate. At this scope, or any deeper scope, the refinement will be active. As of now, a using call affects all of the following scopes related to where it is called:</p>
-<p>The direct scope, such as the top-level of a script, the body of a class, or the body of a method or block Classes down-hierarchy from a refined class or module body Bodies of code run via eval forms that change the &#8220;self&#8221; of the code, such as module_eval</p>
-<p>Note that refinements applied in a class will be carried over to its subclasses. That means, if you are using my_refinements_module in your ParentClass, your ChildClass &lt; ParentClass will have the refinements even if you don&#8217;t explicitly say using my_refinements_module your ChildClass. So, when using refinements, one must know everything about the calling hierarchy to foresee method calls and expected results. You can get the refinements version of ruby from the r29837 of trunk, and apply the patch. Here is how you do it using rvm.</p><pre class="crayon-plain-tag">$ curl -O http://stuff.judofyr.net/refinements.diff
-  $ rvm install ruby-head-r29837 &ndash;patch refinements.diff
-  $ rvm ruby-head-r29837</pre><p>monkey-patching has always been a risky prospect. It is scary that you will have to check for refinements before you inherit a class. So, if you are using one, make sure that its details are well documented along with your code. Monkey-patching is not encouraged to be used by a good programmer. But, refinement makes it less dangerous, and only &#8216;less&#8217; dangerous.</p>
-<p>The post <a rel="nofollow" href="/refinements-ruby-monkey-patching-redifined/">Refinements – Ruby Monkey-Patching Redifined</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+  end</code></pre>
+
+
+Looks weird, huh? What I did now is that I changed the default String::upcase function to down-case the string instead of up-casing it.
+Once you&#8217;re in the scope you need to use the refinement, call the using method with the module holding the monkey-patch/ monkey-patches (as they can hold more than one), you want to activate. At this scope, or any deeper scope, the refinement will be active. As of now, a using call affects all of the following scopes related to where it is called:
+The direct scope, such as the top-level of a script, the body of a class, or the body of a method or block Classes down-hierarchy from a refined class or module body Bodies of code run via eval forms that change the &#8220;self&#8221; of the code, such as module_eval
+Note that refinements applied in a class will be carried over to its subclasses. That means, if you are using my_refinements_module in your ParentClass, your ChildClass &lt; ParentClass will have the refinements even if you don&#8217;t explicitly say using my_refinements_module your ChildClass. So, when using refinements, one must know everything about the calling hierarchy to foresee method calls and expected results. You can get the refinements version of ruby from the r29837 of trunk, and apply the patch. Here is how you do it using rvm.
+
+
+<pre class="code highlight js-syntax-highlight plaintext white"><code>  $ curl -O http://stuff.judofyr.net/refinements.diff
+  $ rvm install ruby-head-r29837 –patch refinements.diff
+  $ rvm ruby-head-r29837</code></pre>
+
+
+monkey-patching has always been a risky prospect. It is scary that you will have to check for refinements before you inherit a class. So, if you are using one, make sure that its details are well documented along with your code. Monkey-patching is not encouraged to be used by a good programmer. But, refinement makes it less dangerous, and only &#8216;less&#8217; dangerous.]]&gt;		</p>
 ]]></content:encoded>
-							<wfw:commentRss>/refinements-ruby-monkey-patching-redifined/feed/</wfw:commentRss>
-		<slash:comments>0</slash:comments>
-							</item>
+										</item>
 	</channel>
 </rss>

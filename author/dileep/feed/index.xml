@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>dileep &#8211; beta.redpanthers.co</title>
+	<atom:link href="/author/dileep/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description>Red Panthers - Experts in Ruby on Rails, System Design and Vue.js</description>
+	<lastBuildDate>Mon, 29 Apr 2019 11:28:12 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.7</generator>
+	<item>
+		<title>How to test pdf files</title>
+		<link>/how-to-test-pdf-files/</link>
+				<pubDate>Mon, 29 Apr 2019 11:28:12 +0000</pubDate>
+		<dc:creator><![CDATA[dileep]]></dc:creator>
+				<category><![CDATA[Uncategorized]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=4276</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[There are many ways of generating PDF in ruby. Here we will show how to test the content of the pdf generated using Prawn pdf with pdf-reader.
+Let we have a pdf generator class EmployeeWriter which export employee data into pdf
+
+
+<pre class="lang:default decode:true">class EmployeeWriter
+  attr_accessor :employee, :output_file
+  def initialize(employee, output_file)
+    @employee = employee
+    @output_file = output_file
+  end
+  def export_to_pdf
+    Prawn::Document.generate(output_file) do
+      bounding_box([0, cursor], width: 200) do
+        text &#8220;Name: #{employee.name}&#8221;
+        text &#8220;Employee id: #{employee.employee_id}&#8221;
+        text &#8220;Occupation: #{employee.occupation}&#8221;
+        stroke_bounds
+      end
+  end
+</pre>
+
+
+And we have Employee class
+
+
+<pre class="lang:default decode:true ">  class Employee
+    attr_accessor :name, :employee_id, :occupation
+    def initialize(name, employee_id, occupation)
+      @name = name
+      @employee_id = employee_id
+      @occupation = occupation
+    end
+  end
+</pre>
+
+
+Now
+
+
+<pre class="lang:default decode:true">EmployeeWriter.new(
+    Employee.new("name", "employee_id", "occupation")
+    'filename.pdf'
+  ).export_to_pdf</pre>
+
+
+will give us the following pdf
+<img class="alignnone wp-image-4278" src="https://blog.redpanthers.co/wp-content/uploads/pdf-1-300x83.png" alt="" width="249" height="69" />
+Now let us write test which ensure pdf has right contents. We read the data using Pdfreader
+First get the pdf-reader
+
+
+<pre class="lang:default decode:true">gem install pdf-reader -v 1.4.0</pre>
+
+
+
+
+<pre class="lang:default decode:true">RSpec.describe EmployeeWriter do
+  it "should have correct content" do
+    employee = Employee.new("employee_name", "employee_id", "developer")
+    EmployeeWriter.new(employee, 'employee.pdf').export_to_pdf
+    reader = PDF::Reader.new('employee.pdf')
+    pdf_content = reader.pages[0].to_s
+    expect(pdf_content).to include('Name: employee_name')
+    expect(pdf_content).to include('Employee id: employee_id')
+    expect(pdf_content).to include('Occupation: developer')
+  end
+end</pre>
+
+
+&nbsp;]]&gt;		</p>
+]]></content:encoded>
+										</item>
+	</channel>
+</rss>

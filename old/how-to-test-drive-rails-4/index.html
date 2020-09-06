@@ -1,0 +1,878 @@
+ <!DOCTYPE html>
+<!--[if !(IE 6) | !(IE 7) | !(IE 8)  ]><!-->
+<html lang="en-US" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+<meta name="theme-color" content="#e1474d" /> <link rel="profile" href="https://gmpg.org/xfn/11" />
+<script type="text/javascript">
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                var originalAddEventListener = EventTarget.prototype.addEventListener,
+                    oldWidth = window.innerWidth;
+
+                EventTarget.prototype.addEventListener = function (eventName, eventHandler, useCapture) {
+                    if (eventName === "resize") {
+                        originalAddEventListener.call(this, eventName, function (event) {
+                            if (oldWidth === window.innerWidth) {
+                                return;
+                            }
+                            else if (oldWidth !== window.innerWidth) {
+                                oldWidth = window.innerWidth;
+                            }
+                            if (eventHandler.handleEvent) {
+                                eventHandler.handleEvent.call(this, event);
+                            }
+                            else {
+                                eventHandler.call(this, event);
+                            };
+                        }, useCapture);
+                    }
+                    else {
+                        originalAddEventListener.call(this, eventName, eventHandler, useCapture);
+                    };
+                };
+            };
+        </script>
+<title>How to test drive rails 4? | Red Panthers</title>
+
+<meta name="description" content="how-to-test-drive-rails-4" />
+<meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+<link rel="canonical" href="/how-to-test-drive-rails-4/" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="How to test drive rails 4? | Red Panthers" />
+<meta property="og:description" content="how-to-test-drive-rails-4" />
+<meta property="og:url" content="https://redpanthers.co/old/how-to-test-drive-rails-4/" />
+<meta property="og:site_name" content="Red Panthers" />
+<meta property="article:publisher" content="https://www.facebook.com/redpanthers.co" />
+<meta property="article:section" content="Rails" />
+<meta property="article:published_time" content="2013-02-20T13:00:37+00:00" />
+<meta property="article:modified_time" content="2018-02-22T07:08:22+00:00" />
+<meta property="og:updated_time" content="2018-02-22T07:08:22+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:description" content="how-to-test-drive-rails-4" />
+<meta name="twitter:title" content="How to test drive rails 4? | Red Panthers" />
+<meta name="twitter:site" content="@redpanthershq" />
+<meta name="twitter:creator" content="@redpanthershq" />
+<script type='application/ld+json' class='yoast-schema-graph yoast-schema-graph--main'>{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://redpanthers.co/old/#website","url":"https://redpanthers.co/old/","name":"Red Panthers","potentialAction":{"@type":"SearchAction","target":"https://redpanthers.co/old/?s={search_term_string}","query-input":"required name=search_term_string"}},{"@type":"WebPage","@id":"https://redpanthers.co/old/how-to-test-drive-rails-4/#webpage","url":"https://redpanthers.co/old/how-to-test-drive-rails-4/","inLanguage":"en-US","name":"How to test drive rails 4? | Red Panthers","isPartOf":{"@id":"https://redpanthers.co/old/#website"},"datePublished":"2013-02-20T13:00:37+00:00","dateModified":"2018-02-22T07:08:22+00:00","author":{"@id":"https://redpanthers.co/old/#/schema/person/08ee8367c2b6019671b0b26e7011e895"},"description":"how-to-test-drive-rails-4"},{"@type":["Person"],"@id":"https://redpanthers.co/old/#/schema/person/08ee8367c2b6019671b0b26e7011e895","name":"coderhs","image":{"@type":"ImageObject","@id":"https://redpanthers.co/old/#authorlogo","url":"https://secure.gravatar.com/avatar/ee4937edf278e5be5b29f2d184c7c4e5?s=96&r=g","caption":"coderhs"},"sameAs":[]}]}</script>
+
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="Red Panthers &raquo; Feed" href="/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Red Panthers &raquo; Comments Feed" href="/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Red Panthers &raquo; How to test drive rails 4? Comments Feed" href="/how-to-test-drive-rails-4/feed/" />
+<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/redpanthers.co\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.2.7"}};
+			!function(a,b,c){function d(a,b){var c=String.fromCharCode;l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,a),0,0);var d=k.toDataURL();l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,b),0,0);var e=k.toDataURL();return d===e}function e(a){var b;if(!l||!l.fillText)return!1;switch(l.textBaseline="top",l.font="600 32px Arial",a){case"flag":return!(b=d([55356,56826,55356,56819],[55356,56826,8203,55356,56819]))&&(b=d([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]),!b);case"emoji":return b=d([55357,56424,55356,57342,8205,55358,56605,8205,55357,56424,55356,57340],[55357,56424,55356,57342,8203,55358,56605,8203,55357,56424,55356,57340]),!b}return!1}function f(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var g,h,i,j,k=b.createElement("canvas"),l=k.getContext&&k.getContext("2d");for(j=Array("flag","emoji"),c.supports={everything:!0,everythingExceptFlag:!0},i=0;i<j.length;i++)c.supports[j[i]]=e(j[i]),c.supports.everything=c.supports.everything&&c.supports[j[i]],"flag"!==j[i]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[j[i]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(h=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",h,!1),a.addEventListener("load",h,!1)):(a.attachEvent("onload",h),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),g=c.source||{},g.concatemoji?f(g.concatemoji):g.wpemoji&&g.twemoji&&(f(g.twemoji),f(g.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='crayon-css' href='/wp-content/plugins/crayon-syntax-highlighter/css/min/crayon.min.css?ver=_2.7.2_beta' type='text/css' media='all' />
+<link rel='stylesheet' id='crayon-theme-classic-css' href='/wp-content/plugins/crayon-syntax-highlighter/themes/classic/classic.css?ver=_2.7.2_beta' type='text/css' media='all' />
+<link rel='stylesheet' id='crayon-font-monaco-css' href='/wp-content/plugins/crayon-syntax-highlighter/fonts/monaco.css?ver=_2.7.2_beta' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-block-library-css' href='/wp-includes/css/dist/block-library/style.min.css?ver=5.2.7' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-block-library-theme-css' href='/wp-includes/css/dist/block-library/theme.min.css?ver=5.2.7' type='text/css' media='all' />
+<link rel='stylesheet' id='contact-form-7-css' href='/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=5.1.4' type='text/css' media='all' />
+<link rel='stylesheet' id='rs-plugin-settings-css' href='/wp-content/plugins/revslider/public/assets/css/settings.css?ver=5.4.8.3' type='text/css' media='all' />
+<style id='rs-plugin-settings-inline-css' type='text/css'>
+#rs-demo-id {}
+</style>
+<link rel='stylesheet' id='the7-Defaults-css' href='/wp-content/uploads/smile_fonts/Defaults/Defaults.css?ver=5.2.7' type='text/css' media='all' />
+<link rel='stylesheet' id='dt-web-fonts-css' href='//fonts.googleapis.com/css?family=Roboto%3A400%2C500%2C600%2C700%7CRoboto+Condensed%3A400%2C600%2C700&#038;ver=7.5.0.2' type='text/css' media='all' />
+<link rel='stylesheet' id='dt-main-css' href='/wp-content/themes/dt-the7/css/main.min.css?ver=7.5.0.2' type='text/css' media='all' />
+<link rel='stylesheet' id='dt-awsome-fonts-back-css' href='/wp-content/themes/dt-the7/fonts/FontAwesome/back-compat.min.css?ver=7.5.0.2' type='text/css' media='all' />
+<link rel='stylesheet' id='dt-awsome-fonts-css' href='/wp-content/themes/dt-the7/fonts/FontAwesome/css/all.min.css?ver=7.5.0.2' type='text/css' media='all' />
+<link rel='stylesheet' id='dt-fontello-css' href='/wp-content/themes/dt-the7/fonts/fontello/css/fontello.min.css?ver=7.5.0.2' type='text/css' media='all' />
+<link rel='stylesheet' id='the7pt-static-css' href='/wp-content/themes/dt-the7/css/post-type.css?ver=7.5.0.2' type='text/css' media='all' />
+<link rel='stylesheet' id='dt-custom-css' href='/wp-content/uploads/the7-css/custom.css?ver=cea948eda11c' type='text/css' media='all' />
+<link rel='stylesheet' id='dt-media-css' href='/wp-content/uploads/the7-css/media.css?ver=cea948eda11c' type='text/css' media='all' />
+<link rel='stylesheet' id='the7pt.less-css' href='/wp-content/uploads/the7-css/post-type-dynamic.css?ver=cea948eda11c' type='text/css' media='all' />
+<link rel='stylesheet' id='style-css' href='/wp-content/themes/dt-the7/style.css?ver=7.5.0.2' type='text/css' media='all' />
+<script type='text/javascript' src='/wp-includes/js/jquery/jquery.js?ver=1.12.4-wp'></script>
+<script type='text/javascript' src='/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var CrayonSyntaxSettings = {"version":"_2.7.2_beta","is_admin":"0","ajaxurl":"https:\/\/redpanthers.co\/wp-admin\/admin-ajax.php","prefix":"crayon-","setting":"crayon-setting","selected":"crayon-setting-selected","changed":"crayon-setting-changed","special":"crayon-setting-special","orig_value":"data-orig-value","debug":""};
+var CrayonSyntaxStrings = {"copy":"Press %s to Copy, %s to Paste","minimize":"Click To Expand Code"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='/wp-content/plugins/crayon-syntax-highlighter/js/min/crayon.min.js?ver=_2.7.2_beta'></script>
+<script type='text/javascript' src='/wp-content/plugins/revslider/public/assets/js/jquery.themepunch.tools.min.js?ver=5.4.8.3'></script>
+<script type='text/javascript' src='/wp-content/plugins/revslider/public/assets/js/jquery.themepunch.revolution.min.js?ver=5.4.8.3'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var dtLocal = {"themeUrl":"https:\/\/redpanthers.co\/wp-content\/themes\/dt-the7","passText":"To view this protected post, enter the password below:","moreButtonText":{"loading":"Loading...","loadMore":"Load more"},"postID":"1337","ajaxurl":"https:\/\/redpanthers.co\/wp-admin\/admin-ajax.php","contactMessages":{"required":"One or more fields have an error. Please check and try again.","terms":"Please accept the privacy policy."},"ajaxNonce":"33fe5cbdb7","pageData":"","themeSettings":{"smoothScroll":"off","lazyLoading":false,"accentColor":{"mode":"solid","color":"#e1474d"},"desktopHeader":{"height":110},"floatingHeader":{"showAfter":160,"showMenu":true,"height":68,"logo":{"showLogo":true,"html":"<img class=\" preload-me\" src=\"https:\/\/redpanthers.co\/wp-content\/uploads\/2017\/12\/logo-1.png\" srcset=\"https:\/\/redpanthers.co\/wp-content\/uploads\/2017\/12\/logo-1.png 170w, https:\/\/redpanthers.co\/wp-content\/uploads\/2017\/12\/logo-1.png 170w\" width=\"170\" height=\"64\"   sizes=\"170px\" alt=\"Red Panthers\" \/>","url":"https:\/\/redpanthers.co\/"}},"mobileHeader":{"firstSwitchPoint":1100,"secondSwitchPoint":990,"firstSwitchPointHeight":68,"secondSwitchPointHeight":68},"stickyMobileHeaderFirstSwitch":{"logo":{"html":"<img class=\" preload-me\" src=\"https:\/\/redpanthers.co\/wp-content\/uploads\/2017\/12\/logo-1.png\" srcset=\"https:\/\/redpanthers.co\/wp-content\/uploads\/2017\/12\/logo-1.png 170w, https:\/\/redpanthers.co\/wp-content\/uploads\/2017\/12\/logo-1.png 170w\" width=\"170\" height=\"64\"   sizes=\"170px\" alt=\"Red Panthers\" \/>"}},"stickyMobileHeaderSecondSwitch":{"logo":{"html":"<img class=\" preload-me\" src=\"https:\/\/redpanthers.co\/wp-content\/uploads\/2017\/12\/logo-1.png\" srcset=\"https:\/\/redpanthers.co\/wp-content\/uploads\/2017\/12\/logo-1.png 170w, https:\/\/redpanthers.co\/wp-content\/uploads\/2017\/12\/logo-1.png 170w\" width=\"170\" height=\"64\"   sizes=\"170px\" alt=\"Red Panthers\" \/>"}},"content":{"textColor":"#85868c","headerColor":"#333333"},"sidebar":{"switchPoint":990},"boxedWidth":"1340px","stripes":{"stripe1":{"textColor":"#72777d","headerColor":"#3c3e45"},"stripe2":{"textColor":"#f4f4f5","headerColor":"#f4f4f5"},"stripe3":{"textColor":"#ffffff","headerColor":"#ffffff"}}},"VCMobileScreenWidth":"768"};
+var dtShare = {"shareButtonText":{"facebook":"Share on Facebook","twitter":"Tweet","pinterest":"Pin it","linkedin":"Share on Linkedin","whatsapp":"Share on Whatsapp","google":"Share on Google Plus"},"overlayOpacity":"85"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='/wp-content/themes/dt-the7/js/above-the-fold.min.js?ver=7.5.0.2'></script>
+<link rel='https://api.w.org/' href='/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="/wp-includes/wlwmanifest.xml" />
+<meta name="generator" content="WordPress 5.2.7" />
+<link rel='shortlink' href='/?p=1337' />
+<link rel="alternate" type="application/json+oembed" href="/wp-json/oembed/1.0/embed?url=https%3A%2F%2F%2Fhow-to-test-drive-rails-4%2F" />
+<link rel="alternate" type="text/xml+oembed" href="/wp-json/oembed/1.0/embed?url=https%3A%2F%2F%2Fhow-to-test-drive-rails-4%2F&#038;format=xml" />
+<link rel="pingback" href="/xmlrpc.php">
+<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+<meta name="generator" content="Powered by WPBakery Page Builder - drag and drop page builder for WordPress." />
+<!--[if lte IE 9]><link rel="stylesheet" type="text/css" href="https://redpanthers.co/old/wp-content/plugins/js_composer/assets/css/vc_lte_ie9.min.css" media="screen"><![endif]--><style type="text/css">.broken_link, a.broken_link {
+	text-decoration: line-through;
+}</style><meta name="generator" content="Powered by Slider Revolution 5.4.8.3 - responsive, Mobile-Friendly Slider Plugin for WordPress with comfortable drag and drop interface." />
+<link rel="icon" href="/wp-content/uploads/2017/12/rp-logo.png" sizes="32x32" />
+<link rel="icon" href="/wp-content/uploads/2017/12/rp-logo.png" sizes="192x192" />
+<link rel="apple-touch-icon-precomposed" href="/wp-content/uploads/2017/12/rp-logo.png" />
+<meta name="msapplication-TileImage" content="https://redpanthers.co/old/wp-content/uploads/2017/12/rp-logo.png" />
+<script type="text/javascript">function setREVStartSize(e){									
+						try{ e.c=jQuery(e.c);var i=jQuery(window).width(),t=9999,r=0,n=0,l=0,f=0,s=0,h=0;
+							if(e.responsiveLevels&&(jQuery.each(e.responsiveLevels,function(e,f){f>i&&(t=r=f,l=e),i>f&&f>r&&(r=f,n=e)}),t>r&&(l=n)),f=e.gridheight[l]||e.gridheight[0]||e.gridheight,s=e.gridwidth[l]||e.gridwidth[0]||e.gridwidth,h=i/s,h=h>1?1:h,f=Math.round(h*f),"fullscreen"==e.sliderLayout){var u=(e.c.width(),jQuery(window).height());if(void 0!=e.fullScreenOffsetContainer){var c=e.fullScreenOffsetContainer.split(",");if (c) jQuery.each(c,function(e,i){u=jQuery(i).length>0?u-jQuery(i).outerHeight(!0):u}),e.fullScreenOffset.split("%").length>1&&void 0!=e.fullScreenOffset&&e.fullScreenOffset.length>0?u-=jQuery(window).height()*parseInt(e.fullScreenOffset,0)/100:void 0!=e.fullScreenOffset&&e.fullScreenOffset.length>0&&(u-=parseInt(e.fullScreenOffset,0))}f=u}else void 0!=e.minHeight&&f<e.minHeight&&(f=e.minHeight);e.c.closest(".rev_slider_wrapper").css({height:f})					
+						}catch(d){console.log("Failure at Presize of Slider:"+d)}						
+					};</script>
+<style type="text/css" id="wp-custom-css">
+			.padding{
+padding-top: 50px;
+}
+p.normal{
+	font-weight: normal;
+}
+p.bold{
+	font-weight: bold;
+}		</style>
+<noscript><style type="text/css"> .wpb_animate_when_almost_visible { opacity: 1; }</style></noscript>
+<script type="text/javascript">
+var sc_project=10785868; 
+var sc_invisible=1; 
+var sc_security="4809ed3f"; 
+</script>
+<script type="text/javascript" src="https://www.statcounter.com/counter/counter.js" async></script>
+<noscript><div class="statcounter"><a title="Web AnalyticsMade Easy - StatCounter" href="http://statcounter.com/"
+target="_blank"><img class="statcounter"
+src="//c.statcounter.com/10785868/0/4809ed3f/1/" alt="WebAnalytics Made Easy - StatCounter"></a></div></noscript>
+
+
+<script type="text/javascript" src="https://static1.clutch.co/sites/all/modules/custom/clutch_widget/js/widget.js"></script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-66116295-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-66116295-1');
+</script><style id='the7-custom-inline-css' type='text/css'>
+.inner-footer {
+  text-align: left;
+  margin-left: 0;
+}
+.heading{
+        font: normal bold 20px / 30px "Roboto Condensed", Helvetica, Arial, Verdana, sans-serif;
+color: white;
+margin-bottom: 10px;
+}
+.footer .textwidget a {
+       color: #85868c !important;
+}
+
+p{
+font-size: 18px !important;
+line-height: 1.8;
+}
+.hr_color .hr-thin{
+border-color: white !important;
+}
+.box_padding .aio-icon-header{
+padding-top:10px !important;
+}
+.img_padding img{
+padding-top: 55px;
+}
+#main{
+padding-top: 0px !important;
+padding-bottom: 0px !important;
+}
+.process_team h1{
+color: white !important;
+}
+
+.process_carousel h3,li{
+/* color: white !important; */
+}
+.opening_offer_heading h1{
+color: white !important;
+}
+
+.offer_left_box p{
+color: white !important;
+}
+.offer_left_box h4{
+color: white !important;
+}
+.offer_right_box p{
+color: black !important;
+}
+.ruby_on_rails_support_offer li{
+color: #85868c !important;
+}
+   .phoenix_text li{
+ color: #85868c !important;
+}
+.form_project li label{
+color:#85868c !important;
+}
+.form_project .wpforms-submit {
+    border-radius: 6px !important;
+    background-color: #e1474d !important;
+    color: white !important;
+border: none !important;
+}
+.form_project input[type=checkbox] {
+  position: absolute;
+  opacity: 0;
+}
+.form_project input[type=checkbox] + label {
+  position: relative;
+  cursor: pointer;
+  padding: 0;
+}
+.form_project input[type=checkbox] + label:before {
+  content: '';
+  margin-right: 10px;
+  display: inline-block;
+  vertical-align: text-top;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #ddd !important;
+}
+.form_project input[type=checkbox]:hover + label:before {
+  background: #e1474d !important;
+}
+.form_project input[type=checkbox]:focus + label:before {
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.12);
+}
+.form_project input[type=checkbox]:checked + label:before {
+  background: #e1474d !important;
+}
+.form_project input[type=checkbox]:disabled + label {
+  color: #b8b8b8;
+  cursor: auto;
+}
+.form_project input[type=checkbox]:disabled + label:before {
+  box-shadow: none;
+  background: #ddd;
+}
+.form_project input[type=checkbox]:checked + label:after {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 9px;
+  background: white;
+  width: 2px;
+  height: 2px;
+  box-shadow: 2px 0 0 white, 4px 0 0 white, 4px -2px 0 white, 4px -4px 0 white, 4px -6px 0 white, 4px -8px 0 white;
+  transform: rotate(45deg);
+}
+.form_project input[type="radio"]:checked,
+.form_project input[type="radio"]:not(:checked) {
+    position: absolute;
+    left: -9999px;
+}
+.form_project input[type="radio"]:checked + label,
+.form_project input[type="radio"]:not(:checked) + label
+{
+    position: relative;
+    padding-left: 28px;
+    cursor: pointer;
+    line-height: 20px;
+    display: inline-block;
+    color: #666;
+}
+.form_project input[type="radio"]:checked + label:before,
+.form_project input[type="radio"]:not(:checked) + label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #ddd;
+    border-radius: 100%;
+    background: #fff;
+}
+.form_project input[type="radio"]:checked + label:after,
+.form_project input[type="radio"]:not(:checked) + label:after {
+    content: '';
+    width: 12px;
+    height: 12px;
+    background: #e1474d ;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    border-radius: 100%;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+.form_project input[type="radio"]:not(:checked) + label:after {
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+}
+.form_project input[type="radio"]:checked + label:after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+
+.mvp_list_color li{
+color: #85868c !important;
+font-size: 18px !important;
+}
+@media screen and (min-width: 779px) {
+  .pull_right_till_778 {
+    float: right;
+  }
+.padd_none{
+padding: 100px !important
+}
+.padd_none .ruby_on_rails_support_offer{
+padding-left: 50px !important;
+padding-right: 50px !important;
+}
+.padding_left_right_100{
+padding-left: 100px !important;
+padding-right: 100px !important;
+}
+}
+div.wpforms-container-full .wpforms-form input.wpforms-field-medium, div.wpforms-container-full .wpforms-form select.wpforms-field-medium, div.wpforms-container-full .wpforms-form .wpforms-field-row.wpforms-field-medium {
+    max-width: 100% !important;
+}
+.social-media ul li a:hover{
+    background: #e1474d;
+    color: #fff !important;
+} .social-media ul li a:active{
+    background: #e1474d;
+    color: #fff !important;
+}
+ .social-media ul li a:focus {
+    background: #e1474d;
+    color: #fff !important;
+}
+.social-media ul li {
+    display: block;
+    width: 28px;
+    height: 28px;
+    margin-right: 15px;
+    float: left;
+}
+.social-media ul li:last-child {
+    margin-right: 0;
+}
+social-media ul {
+    display: table;
+    margin-top: 20px;
+    margin-left: 0;
+    padding: 0;
+}
+.social-media ul li a {
+    width: 28px;
+    display: block;
+    height: 28px;
+    border-radius: 4px;
+    color: #fff !important;
+    background: #3e3e3e;
+    transition: all 0.3s linear 0.05s;
+    text-align: center;
+    padding-top: 4px;
+}
+.newsletter_submit{
+background: #e1474d !important;
+    border: none !important;
+    color: white !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    border-radius: 4px !important;
+}
+.newsletter .wpforms-title{
+    font: normal bold 20px / 30px "Roboto Condensed", Helvetica, Arial, Verdana, sans-serif !important;
+    color: white !important;
+    margin-bottom: 10px !important;
+}
+.newsletter_email input{
+width:75% !important;
+}
+.newsletter_email .wpforms-required-label, .newsletter_email .wpforms-error{
+    color: #85868c !important;
+}
+.accent-icon-color .aio-icon-description{
+    margin-left: 40px;
+}
+.accent-icon-color a{
+   color: #85868c !important;
+   text-decoration: none !important
+}
+.display_flex ul{
+display: flex;
+}
+@media screen and (max-width: 778px){
+.text_align_left_mobile p{
+text-align: left !important;
+}
+.text_align_left_mobile h1{
+text-align: left !important;
+}
+.text_align_left_mobile h2{
+text-align: left !important;
+}
+.text_align_left_mobile h3{
+text-align: left !important;
+}
+.text_align_left_mobile h4{
+text-align: left !important;
+}
+.text_align_left_mobile h5{
+text-align: left !important;
+}
+.text_align_left_mobile h6{
+text-align: left !important;
+}
+}
+@media screen and (max-width: 989px){
+.mobile-branding a img {
+    max-width: 80% !important;
+    height: auto;
+}
+mobile-branding img {
+    max-width: 78% !important;
+}
+}
+.menu-text .fa{
+font-size:17px !important;
+}
+.wpforms-confirmation-container-full {
+    color: #fff !important;
+    background: #e1474d !important;
+    border: 1px solid #e1474d !important;
+}
+.mail-us a{
+    font-size: 18px !important;
+    line-height: 1.8;
+}
+.margin_top_0px .vc_column-inner{
+padding-top: 0px !important;
+}
+.landing_page_form form{
+display: flex;
+max-width: fit-content;
+margin: 0 auto !important;
+}
+.landing_page_form .wpforms-field-container{
+display: flex;
+}
+.landing_page_form .wpforms-field-email{
+    margin-left: 20px !important ;
+}
+.landing_page_form .wpforms-submit {
+    margin: 24px !important;
+    background: #e1474d !important;
+    border: none !important;
+    color: white !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    border-radius: 4px !important;
+    padding: 19px 12px !important;
+}
+.landing_page_form .wpforms-field-label{
+text-align: left !important;
+}
+.landing_page_form .wpforms-field-medium{
+text-align: left !important;
+}
+.service_fontcolor{
+     color: white !important
+}
+@media screen and (min-width: 779px){
+.pull_left{
+float: left !important;
+}
+}
+
+</style>
+</head>
+<body class="post-template-default single single-post postid-1337 single-format-standard wp-embed-responsive dt-responsive-on srcset-enabled btn-flat custom-btn-color custom-btn-hover-color phantom-sticky phantom-shadow-decoration phantom-main-logo-on floating-mobile-menu-icon top-header first-switch-logo-left first-switch-menu-right second-switch-logo-left second-switch-menu-right right-mobile-menu layzr-loading-on popup-message-style dt-fa-compatibility the7-ver-7.5.0.2 wpb-js-composer js-comp-ver-5.4.5 vc_responsive">
+
+<div id="page">
+<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+<div class="masthead inline-header right shadow-decoration small-mobile-menu-icon" role="banner">
+<div class="top-bar top-bar-empty top-bar-line-hide">
+<div class="top-bar-bg"></div>
+<div class="mini-widgets left-widgets"></div><div class="mini-widgets right-widgets"></div></div>
+<header class="header-bar">
+<div class="branding">
+<div id="site-title" class="assistive-text">Red Panthers</div>
+<div id="site-description" class="assistive-text">Experts in Ruby on Rails Development</div>
+<a class="same-logo" href="/"><img class="preload-me" src="/wp-content/uploads/2017/12/logo-1.png" srcset="/wp-content/uploads/2017/12/logo-1.png 170w, /wp-content/uploads/2017/12/logo-1.png 170w" width="170" height="64" sizes="170px" alt="Red Panthers" /></a></div>
+<ul id="primary-menu" class="main-nav underline-decoration from-centre-line" role="menu"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-14973 first"><a href='/about/' data-level='1'><span class="menu-item-text"><span class="menu-text">About</span></span></a></li> <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-14969"><a href='/processes/' data-level='1'><span class="menu-item-text"><span class="menu-text">Process</span></span></a></li> <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-15036 has-children dt-mega-menu mega-auto-width mega-column-3"><a href='/services/' class='not-clickable-item' data-level='1'><span class="menu-item-text"><span class="menu-text">Services</span></span></a><div class="dt-mega-menu-wrap"><ul class="sub-nav level-arrows-on"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-15656 first has-children hide-mega-title no-link dt-mega-parent wf-1-3"><a href='#' class='not-clickable-item' data-level='2'><span class="menu-item-text"><span class="menu-text">Service</span></span></a><ul class="sub-nav level-arrows-on"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15001 first"><a href='/services/ruby_on_rails_development_team/' data-level='3'><span class="menu-item-text"><span class="menu-text">Ruby on Rails Development Team</span></span></a></li> <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15020"><a href='/services/ruby_on_rails_developer_support/' data-level='3'><span class="menu-item-text"><span class="menu-text">Ruby on Rails Developer Support</span></span></a></li> <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15022"><a href='/services/ruby_on_rails_web_application_development/' data-level='3'><span class="menu-item-text"><span class="menu-text">Ruby on Rails Web Application Development</span></span></a></li> </ul></li> <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-15657 has-children hide-mega-title no-link dt-mega-parent wf-1-3"><a href='#' class='not-clickable-item' data-level='2'><span class="menu-item-text"><span class="menu-text">Service</span></span></a><ul class="sub-nav level-arrows-on"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15021 first"><a href='/services/ruby_on_rails_training/' data-level='3'><span class="menu-item-text"><span class="menu-text">Ruby on Rails Training</span></span></a></li> <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15023"><a href='/services/react_web_development/' data-level='3'><span class="menu-item-text"><span class="menu-text">React Web Development</span></span></a></li> <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15024"><a href='/services/react_native_mobile_app_development/' data-level='3'><span class="menu-item-text"><span class="menu-text">React Native Mobile App Development</span></span></a></li> </ul></li> <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-15658 has-children hide-mega-title no-link dt-mega-parent wf-1-3"><a href='#' class='not-clickable-item' data-level='2'><span class="menu-item-text"><span class="menu-text">Service</span></span></a><ul class="sub-nav level-arrows-on"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15025 first"><a href='/about/angular_js_web_development/' data-level='3'><span class="menu-item-text"><span class="menu-text">Angular JS Web Development</span></span></a></li> <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15026"><a href='/services/angular_js_ionic_mobile_app_development/' data-level='3'><span class="menu-item-text"><span class="menu-text">Angular JS Ionic Mobile App Development</span></span></a></li> <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15027"><a href='/services/elixir_phoenix_high_concurrent_web_application_development/' data-level='3'><span class="menu-item-text"><span class="menu-text">Elixir Phoenix High Concurrent Web Application Development</span></span></a></li> </ul></li> </ul></div></li> <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15738"><a href='/videos/' data-level='1'><span class="menu-item-text"><span class="menu-text">Videos</span></span></a></li> <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15579"><a href='/blog/' data-level='1'><span class="menu-item-text"><span class="menu-text">Blog</span></span></a></li> <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15234"><a href='/openings/' data-level='1'><span class="menu-item-text"><span class="menu-text">Careers</span></span></a></li> <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-16272"><a href='/newsroom/' data-level='1'><span class="menu-item-text"><span class="menu-text">Newsroom</span></span></a></li> <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-16123"><a href='/contact/' data-level='1'><span class="menu-item-text"><span class="menu-text">Contact</span></span></a></li> <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-15485"><a href='#' data-level='1'><span class="menu-item-text"><span class="menu-text"><i class="fa fa-phone" aria-hidden="true"></i>+1-860-514-8237</span></span></a></li> </ul>
+</header>
+</div>
+<div class='dt-close-mobile-menu-icon'><span></span></div>
+<div class='dt-mobile-header'>
+<ul id="mobile-menu" class="mobile-main-nav" role="menu">
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-14973 first"><a href='/about/' data-level='1'><span class="menu-item-text"><span class="menu-text">About</span></span></a></li> <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-14969"><a href='/processes/' data-level='1'><span class="menu-item-text"><span class="menu-text">Process</span></span></a></li> <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-15036 has-children dt-mega-menu mega-auto-width mega-column-3"><a href='/services/' class='not-clickable-item' data-level='1'><span class="menu-item-text"><span class="menu-text">Services</span></span></a><div class="dt-mega-menu-wrap"><ul class="sub-nav level-arrows-on"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-15656 first has-children hide-mega-title no-link dt-mega-parent wf-1-3"><a href='#' class='not-clickable-item' data-level='2'><span class="menu-item-text"><span class="menu-text">Service</span></span></a><ul class="sub-nav level-arrows-on"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15001 first"><a href='/services/ruby_on_rails_development_team/' data-level='3'><span class="menu-item-text"><span class="menu-text">Ruby on Rails Development Team</span></span></a></li> <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15020"><a href='/services/ruby_on_rails_developer_support/' data-level='3'><span class="menu-item-text"><span class="menu-text">Ruby on Rails Developer Support</span></span></a></li> <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15022"><a href='/services/ruby_on_rails_web_application_development/' data-level='3'><span class="menu-item-text"><span class="menu-text">Ruby on Rails Web Application Development</span></span></a></li> </ul></li> <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-15657 has-children hide-mega-title no-link dt-mega-parent wf-1-3"><a href='#' class='not-clickable-item' data-level='2'><span class="menu-item-text"><span class="menu-text">Service</span></span></a><ul class="sub-nav level-arrows-on"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15021 first"><a href='/services/ruby_on_rails_training/' data-level='3'><span class="menu-item-text"><span class="menu-text">Ruby on Rails Training</span></span></a></li> <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15023"><a href='/services/react_web_development/' data-level='3'><span class="menu-item-text"><span class="menu-text">React Web Development</span></span></a></li> <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15024"><a href='/services/react_native_mobile_app_development/' data-level='3'><span class="menu-item-text"><span class="menu-text">React Native Mobile App Development</span></span></a></li> </ul></li> <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-15658 has-children hide-mega-title no-link dt-mega-parent wf-1-3"><a href='#' class='not-clickable-item' data-level='2'><span class="menu-item-text"><span class="menu-text">Service</span></span></a><ul class="sub-nav level-arrows-on"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15025 first"><a href='/about/angular_js_web_development/' data-level='3'><span class="menu-item-text"><span class="menu-text">Angular JS Web Development</span></span></a></li> <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15026"><a href='/services/angular_js_ionic_mobile_app_development/' data-level='3'><span class="menu-item-text"><span class="menu-text">Angular JS Ionic Mobile App Development</span></span></a></li> <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15027"><a href='/services/elixir_phoenix_high_concurrent_web_application_development/' data-level='3'><span class="menu-item-text"><span class="menu-text">Elixir Phoenix High Concurrent Web Application Development</span></span></a></li> </ul></li> </ul></div></li> <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15738"><a href='/videos/' data-level='1'><span class="menu-item-text"><span class="menu-text">Videos</span></span></a></li> <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15579"><a href='/blog/' data-level='1'><span class="menu-item-text"><span class="menu-text">Blog</span></span></a></li> <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15234"><a href='/openings/' data-level='1'><span class="menu-item-text"><span class="menu-text">Careers</span></span></a></li> <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-16272"><a href='/newsroom/' data-level='1'><span class="menu-item-text"><span class="menu-text">Newsroom</span></span></a></li> <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-16123"><a href='/contact/' data-level='1'><span class="menu-item-text"><span class="menu-text">Contact</span></span></a></li> <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-15485"><a href='#' data-level='1'><span class="menu-item-text"><span class="menu-text"><i class="fa fa-phone" aria-hidden="true"></i>+1-860-514-8237</span></span></a></li> </ul>
+<div class='mobile-mini-widgets-in-menu'></div>
+</div>
+<div class="page-title title-left solid-bg breadcrumbs-mobile-off page-title-responsive-enabled">
+<div class="wf-wrap">
+<div class="page-title-head hgroup"><h1 class="entry-title">How to test drive rails 4?</h1></div><div class="page-title-breadcrumbs"><div class="assistive-text">You are here:</div><ol class="breadcrumbs text-small" xmlns:v="http://rdf.data-vocabulary.org/#"><li typeof="v:Breadcrumb"><a rel="v:url" property="v:title" href="/" title="">Home</a></li><li typeof="v:Breadcrumb"><a rel="v:url" property="v:title" href="/category/rails/">Rails</a></li><li class="current">How to test drive rails&hellip;</li></ol></div> </div>
+</div>
+<div id="main" class="sidebar-right sidebar-divider-off">
+<div class="main-gradient"></div>
+<div class="wf-wrap">
+<div class="wf-container-main">
+<div id="content" class="content" role="main">
+<article id="post-1337" class="circle-fancy-style post-1337 post type-post status-publish format-standard category-rails category-ruby category-42 category-48 description-off">
+<div class="entry-content"><p>As you all know, almost everyone in the rails or ruby community is excited about the upcoming rails 4 and its exciting features. For those who wish to try out the latest release of Rails 4, can do so by following these simple steps</p>
+<p>Clone the latest code:</p>
+<div id="crayon-5f53ef3b0edfa040599200" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div></div></div>
+<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+git clone https://github.com/rails/rails.git</textarea></div>
+<div class="crayon-main" style="">
+<table class="crayon-table">
+<tr class="crayon-row">
+<td class="crayon-nums" data-settings="show">
+<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5f53ef3b0edfa040599200-1">1</div></div>
+</td>
+<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5f53ef3b0edfa040599200-1"><span class="crayon-e">git </span><span class="crayon-r">clone</span><span class="crayon-h"> </span><span class="crayon-v">https</span><span class="crayon-o">:</span><span class="crayon-c">//github.com/rails/rails.git</span></div></div></td>
+</tr>
+</table>
+</div>
+</div>
+
+<p>move into that directory and install all the dependencies of rails cd rails bundle install cd ../</p>
+<p>Now let&#8217;s create a new Rails 4 application ruby rails/railties/bin/rails new APPNAME &#8211;dev</p>
+<p>All finished, now to run your Rails application as usual cd APPNAME bundle install bundle exec rails s —-</p>
+<p>—-</p>
+<p>For migrating your rails application from Rails 3 to Rails 4 contact <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="026b6c646d4270676672636c766a6770712c616d">[email&#160;protected]</a></p>
+<p>&#8212;</p>
+</div> <div class="author-info entry-author">
+<div class="author-avatar round-images"><img alt='' src='https://secure.gravatar.com/avatar/ee4937edf278e5be5b29f2d184c7c4e5?s=80&#038;r=g' srcset='https://secure.gravatar.com/avatar/ee4937edf278e5be5b29f2d184c7c4e5?s=160&#038;r=g 2x' class='avatar avatar-80 photo' height='80' width='80' /></div> <div class="author-description">
+<h4><span class="author-heading">Author:</span>&nbsp;coderhs</h4>
+<p class="author-bio"></p>
+</div>
+</div>
+<nav class="navigation post-navigation" role="navigation"><h2 class="screen-reader-text">Post navigation</h2><div class="nav-links"><a class="nav-previous" href="/model-update_attribute-update_attributes/" rel="prev"><i class="fa fa-angle-left" aria-hidden="true"></i><span class="meta-nav" aria-hidden="true">Previous</span><span class="screen-reader-text">Previous post:</span><span class="post-title h4-size">Model-update_attribute &amp; update_attributes</span></a><a class="nav-next" href="/jtk-how-to-kill-a-rails-server-who-is-working-as-a-deamon/" rel="next"><i class="fa fa-angle-right" aria-hidden="true"></i><span class="meta-nav" aria-hidden="true">Next</span><span class="screen-reader-text">Next post:</span><span class="post-title h4-size">JTK How to kill a rails server, who is working as a deamon?</span></a></div></nav><div class="single-related-posts"><h3>Related posts</h3><section class="items-grid"><div class="related-item"><article class="post-format-standard"><div class="mini-post-img"><a class="alignleft post-rollover no-avatar" href="/whats-new-ruby-2-5/" style="width:110px; height: 80px;"></a></div><div class="post-content"><a href="/whats-new-ruby-2-5/">What&#8217;s new in Ruby 2.5</a><br /><time class="text-secondary" datetime="2017-12-25T13:38:56+05:30">December 25, 2017</time></div></article></div><div class="related-item"><article class="post-format-standard"><div class="mini-post-img"><a class="alignleft post-rollover no-avatar" href="/getting-started-faraday-gem/" style="width:110px; height: 80px;"></a></div><div class="post-content"><a href="/getting-started-faraday-gem/">Getting started with Faraday gem</a><br /><time class="text-secondary" datetime="2017-11-16T23:24:51+05:30">November 16, 2017</time></div></article></div><div class="related-item"><article class="post-format-standard"><div class="mini-post-img"><a class="alignleft post-rollover no-avatar" href="/observer-design-pattern-ruby/" style="width:110px; height: 80px;"></a></div><div class="post-content"><a href="/observer-design-pattern-ruby/">Observer Design Pattern in Ruby</a><br /><time class="text-secondary" datetime="2017-10-16T15:54:44+05:30">October 16, 2017</time></div></article></div><div class="related-item"><article class="post-format-standard"><div class="mini-post-img"><a class="alignleft post-rollover no-avatar" href="/cheat-sheet-for-managing-files-from-ruby/" style="width:110px; height: 80px;"></a></div><div class="post-content"><a href="/cheat-sheet-for-managing-files-from-ruby/">Cheat sheet for managing files from Ruby</a><br /><time class="text-secondary" datetime="2017-09-22T23:04:15+05:30">September 22, 2017</time></div></article></div><div class="related-item"><article class="post-format-standard"><div class="mini-post-img"><a class="alignleft post-rollover no-avatar" href="/get-into-sentiment-analysis-with-ruby/" style="width:110px; height: 80px;"></a></div><div class="post-content"><a href="/get-into-sentiment-analysis-with-ruby/">Get into Sentiment Analysis with Ruby</a><br /><time class="text-secondary" datetime="2017-09-21T19:16:35+05:30">September 21, 2017</time></div></article></div><div class="related-item"><article class="post-format-standard"><div class="mini-post-img"><a class="alignleft post-rollover no-avatar" href="/refactoring-in-rails/" style="width:110px; height: 80px;"></a></div><div class="post-content"><a href="/refactoring-in-rails/">Refactoring in Rails</a><br /><time class="text-secondary" datetime="2017-09-20T21:01:09+05:30">September 20, 2017</time></div></article></div></section></div>
+</article>
+<div id="disqus_thread"></div>
+</div>
+<aside id="sidebar" class="sidebar bg-under-widget">
+<div class="sidebar-content widget-divider-off">
+<section id="search-2" class="widget widget_search"> <form class="searchform" role="search" method="get" action="/">
+<label for="search" class="screen-reader-text">Search:</label>
+<input type="text" class="field searchform-s" name="s" value="" placeholder="Type and hit enter &hellip;" />
+<input type="submit" class="assistive-text searchsubmit" value="Go!" />
+<a href="#go" class="submit"></a>
+</form></section> <section id="recent-posts-2" class="widget widget_recent_entries"> <div class="widget-title">Recent Posts</div> <ul>
+<li>
+<a href="/clawing-our-way-to-the-top-of-clutchs-directory-of-ruby-on-rails-developers-in-india/">Clawing Our Way to the Top of Clutch’s Directory of Ruby on Rails Developers in India</a>
+</li>
+<li>
+<a href="/upgrading-to-rails-5-1x/">Upgrading to Rails 5.1x</a>
+</li>
+<li>
+<a href="/whats-new-ruby-2-5/">What&#8217;s new in Ruby 2.5</a>
+</li>
+<li>
+<a href="/tuples-immutable-data-crystal/">Crystal tuples: the immutable data structure of crystal</a>
+</li>
+<li>
+<a href="/getting-started-faraday-gem/">Getting started with Faraday gem</a>
+</li>
+</ul>
+</section><section id="recent-comments-2" class="widget widget_recent_comments"><div class="widget-title">Recent Comments</div><ul id="recentcomments"><li class="recentcomments"><span class="comment-author-link">Roger Deloy Pack</span> on <a href="/tuples-immutable-data-crystal/#comment-92">Crystal tuples: the immutable data structure of crystal</a></li><li class="recentcomments"><span class="comment-author-link">Lenka</span> on <a href="/write-beautiful-jasmine-tests-rails/#comment-91">Make unit tests great again &#8211; Integrate Jasmine into Rails</a></li><li class="recentcomments"><span class="comment-author-link">Andrade</span> on <a href="/observer-design-pattern-ruby/#comment-90">Observer Design Pattern in Ruby</a></li><li class="recentcomments"><span class="comment-author-link"><a href='http://freedompodcasting.com/' rel='external nofollow' class='url'>Ian @ FreedomPodcasting.com</a></span> on <a href="/jtk-how-to-kill-a-rails-server-who-is-working-as-a-deamon/#comment-88">JTK How to kill a rails server, who is working as a deamon?</a></li><li class="recentcomments"><span class="comment-author-link">Sleeba Paul</span> on <a href="/create-json-response-using-postgresql-instead-rails/#comment-87">Introduction to generating JSON using PostgreSQL</a></li></ul></section><section id="archives-2" class="widget widget_archive"><div class="widget-title">Archives</div> <ul>
+<li><a href='/2019/05/'>May 2019</a></li>
+<li><a href='/2018/03/'>March 2018</a></li>
+<li><a href='/2017/12/'>December 2017</a></li>
+<li><a href='/2017/11/'>November 2017</a></li>
+<li><a href='/2017/10/'>October 2017</a></li>
+<li><a href='/2017/09/'>September 2017</a></li>
+<li><a href='/2017/08/'>August 2017</a></li>
+<li><a href='/2017/06/'>June 2017</a></li>
+<li><a href='/2017/05/'>May 2017</a></li>
+<li><a href='/2017/04/'>April 2017</a></li>
+<li><a href='/2017/03/'>March 2017</a></li>
+<li><a href='/2017/02/'>February 2017</a></li>
+<li><a href='/2017/01/'>January 2017</a></li>
+<li><a href='/2016/12/'>December 2016</a></li>
+<li><a href='/2016/11/'>November 2016</a></li>
+<li><a href='/2016/09/'>September 2016</a></li>
+<li><a href='/2016/08/'>August 2016</a></li>
+<li><a href='/2016/07/'>July 2016</a></li>
+<li><a href='/2016/04/'>April 2016</a></li>
+<li><a href='/2016/02/'>February 2016</a></li>
+<li><a href='/2016/01/'>January 2016</a></li>
+<li><a href='/2015/12/'>December 2015</a></li>
+<li><a href='/2015/10/'>October 2015</a></li>
+<li><a href='/2015/08/'>August 2015</a></li>
+<li><a href='/2015/07/'>July 2015</a></li>
+<li><a href='/2013/04/'>April 2013</a></li>
+<li><a href='/2013/03/'>March 2013</a></li>
+<li><a href='/2013/02/'>February 2013</a></li>
+<li><a href='/2013/01/'>January 2013</a></li>
+<li><a href='/2012/12/'>December 2012</a></li>
+<li><a href='/2012/11/'>November 2012</a></li>
+</ul>
+</section><section id="categories-2" class="widget widget_categories"><div class="widget-title">Categories</div> <ul>
+<li class="cat-item cat-item-271"><a href="/category/angular4/">Angular4</a>
+</li>
+<li class="cat-item cat-item-272"><a href="/category/angularjs/">AngularJS</a>
+</li>
+<li class="cat-item cat-item-49"><a href="/category/beginners/">Beginners</a>
+</li>
+<li class="cat-item cat-item-67"><a href="/category/conferences/">Conferences</a>
+</li>
+<li class="cat-item cat-item-56"><a href="/category/crystal/">crystal</a>
+</li>
+<li class="cat-item cat-item-46"><a href="/category/database/">Database</a>
+</li>
+<li class="cat-item cat-item-113"><a href="/category/devops/">DevOps</a>
+</li>
+<li class="cat-item cat-item-222"><a href="/category/git/">git</a>
+</li>
+<li class="cat-item cat-item-266"><a href="/category/jasmine/">Jasmine</a>
+</li>
+<li class="cat-item cat-item-54"><a href="/category/javascript/">Javascript</a>
+</li>
+<li class="cat-item cat-item-5"><a href="/category/marketing/">Marketing</a>
+</li>
+<li class="cat-item cat-item-47"><a href="/category/postgresql/">PostgreSQL</a>
+</li>
+<li class="cat-item cat-item-42"><a href="/category/rails/">Rails</a>
+</li>
+<li class="cat-item cat-item-50"><a href="/category/rails-5/">Rails 5</a>
+</li>
+<li class="cat-item cat-item-64"><a href="/category/rails-5-1/">Rails 5.1</a>
+</li>
+<li class="cat-item cat-item-248"><a href="/category/react-js/">React.js</a>
+</li>
+<li class="cat-item cat-item-275"><a href="/category/reactjs/">ReactJS</a>
+</li>
+<li class="cat-item cat-item-261"><a href="/category/rspec/">RSpec</a>
+</li>
+<li class="cat-item cat-item-48"><a href="/category/ruby/">Ruby</a>
+</li>
+<li class="cat-item cat-item-204"><a href="/category/ruby-2-4/">Ruby 2.4</a>
+</li>
+<li class="cat-item cat-item-283"><a href="/category/ruby-2-5/">Ruby 2.5</a>
+</li>
+<li class="cat-item cat-item-274"><a href="/category/spree-commerce/">spree commerce</a>
+</li>
+<li class="cat-item cat-item-58"><a href="/category/testing/">testing</a>
+</li>
+<li class="cat-item cat-item-95"><a href="/category/training/">Training</a>
+</li>
+<li class="cat-item cat-item-241"><a href="/category/travel/">Travel</a>
+</li>
+<li class="cat-item cat-item-1"><a href="/category/uncategorized/">Uncategorized</a>
+</li>
+<li class="cat-item cat-item-59"><a href="/category/vuejs/">VueJS</a>
+</li>
+</ul>
+</section><section id="meta-2" class="widget widget_meta"><div class="widget-title">Meta</div> <ul>
+<li><a rel="nofollow" href="/wp-login.php">Log in</a></li>
+<li><a href="/feed/">Entries <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+<li><a href="/comments/feed/">Comments <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+<li><a href="https://wordpress.org/" title="Powered by WordPress, state-of-the-art semantic personal publishing platform.">WordPress.org</a></li> </ul>
+</section> </div>
+</aside>
+</div>
+</div>
+</div>
+
+<footer id="footer" class="footer solid-bg">
+<div class="wf-wrap">
+<div class="wf-container-footer">
+<div class="wf-container">
+<section id="custom_html-3" class="widget_text widget widget_custom_html wf-cell wf-1-3"><div class="textwidget custom-html-widget"><div class="inner-footer">
+<div class="location">
+<div class="location-address">
+<div class="address address-one">
+<div class="heading">
+<span class="fa fa-map-marker"></span>
+&nbspKochi, India
+</div>
+<p>
+Vijaya Complex
+</p>
+<p>
+Chembumukku, Kakkanad.
+</p>
+<p>
+Kochi, Kerala, India - 682030
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="inner-footer">
+<div class="location">
+<div class="location-address">
+<div class="address address-one">
+<div class="heading">
+<span class="fa fa-map-marker"></span>
+&nbsp Wyoming, USA
+</div>
+<p>
+412 N Main St Ste100
+</p>
+<p>
+Buffalo, WY, USA, 82834
+</p>
+</div>
+</div>
+</div>
+</div></div></section><section id="custom_html-5" class="widget_text widget widget_custom_html wf-cell wf-1-3"><div class="textwidget custom-html-widget"><h4>
+Engineering
+</h4>
+<p>
+<a href="/mvp/">MVP in 6-8 weeks</a>
+</p>
+<p>
+<a href="/design_complex_business_model/">Design Complex Business Models</a>
+</p>
+<p>
+<a href="/upgrade_legacy_code/">Upgrade Legacy Code</a>
+</p>
+<p>
+<a href="/support_agile_development/">Support in agile development</a>
+</p>
+<p>
+<a href="/code_review/">Code Reviews/Architecture Consultation</a>
+</p>
+<p>
+<a href="/ui_ux_consultation/">UI/UX consultation</a>
+</p>
+<p>
+<a href="/tdd_bdd/">Implement TDD/BDD</a>
+</p></div></section><section id="custom_html-8" class="widget_text widget widget_custom_html wf-cell wf-1-3"><div class="textwidget custom-html-widget"><div class="wpforms-container wpforms-container-full newsletter" id="wpforms-15455"><form method="post" enctype="multipart/form-data" id="wpforms-form-15455" action="/how-to-test-drive-rails-4/#wpforms-15455" class="wpforms-validate wpforms-form" data-formid="15455"><div class="wpforms-head-container"><div class="wpforms-title">Newsletter</div></div><div class="wpforms-field-container"><div id="wpforms-15455-field_1-container" class="wpforms-field wpforms-field-email newsletter_email" data-field-id="1"><label class="wpforms-field-label" for="wpforms-15455-field_1">Email <span class="wpforms-required-label">*</span></label><input type="email" id="wpforms-15455-field_1" class="wpforms-field-medium wpforms-field-required" name="wpforms[fields][1]" required></div></div><div class="wpforms-field wpforms-field-hp" id="wpform-field-hp"><label for="wpforms-field_hp" class="wpforms-field-label">Phone</label><input type="text" name="wpforms[hp]" id="wpforms-field_hp" class="wpforms-field-medium"></div><div class="wpforms-submit-container"><input type="hidden" name="wpforms[id]" value="15455"><input type="hidden" name="wpforms[author]" value="2"><input type="hidden" name="wpforms[post_id]" value="1337"><button type="submit" name="wpforms[submit]" class="wpforms-submit newsletter_submit" id="wpforms-submit-15455" value="wpforms-submit" data-alt-text="Sending...">Subscribe</button></div></form></div>
+<div class="mail-us">
+<h4 class="text-capitalize">
+MAIL US
+</h4>
+<a href="/cdn-cgi/l/email-protection#026b6c646d4270676672636c766a6770712c616d"><span class="__cf_email__" data-cfemail="cda4a3aba28dbfa8a9bdaca3b9a5a8bfbee3aea2">[email&#160;protected]</span></a>
+</div>
+<div class="social-media">
+<ul>
+<li>
+<a href="https://www.facebook.com/redpanthers.co" target="_blank" rel="noopener noreferrer">
+<span class="fa fa-facebook"></span>
+</a>
+</li>
+<li>
+<a href="https://twitter.com/redpanthershq" target="_blank" rel="noopener noreferrer">
+<span class="fa fa-twitter"></span>
+</a>
+</li>
+<li>
+<a href="https://www.linkedin.com/company/red-panthers" target="_blank" rel="noopener noreferrer">
+<span class="fa fa-linkedin"></span>
+</a>
+</li>
+<li>
+<a href="https://github.com/redpanthers" target="_blank" rel="noopener noreferrer">
+<span class="fa fa-github"></span>
+</a>
+</li>
+<li>
+<a href="https://www.pinterest.com/redpanthers/">
+<span class="fa fa-pinterest-p"></span>
+</a>
+</li>
+</ul>
+</div></div></section> </div>
+</div>
+</div>
+</footer>
+<a href="#" class="scroll-top"><span class="screen-reader-text">Go to Top</span></a>
+</div>
+<link rel='stylesheet' id='wpforms-full-css' href='/wp-content/plugins/wpforms/assets/css/wpforms-full.css?ver=1.4.3' type='text/css' media='all' />
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type='text/javascript' src='/wp-content/themes/dt-the7/js/main.min.js?ver=7.5.0.2'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var wpcf7 = {"apiSettings":{"root":"https:\/\/redpanthers.co\/wp-json\/contact-form-7\/v1","namespace":"contact-form-7\/v1"}};
+/* ]]> */
+</script>
+<script type='text/javascript' src='/wp-content/plugins/contact-form-7/includes/js/scripts.js?ver=5.1.4'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var countVars = {"disqusShortname":"red-panthers"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='/wp-content/plugins/disqus-comment-system/public/js/comment_count.js?ver=3.0.17'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var embedVars = {"disqusConfig":{"integration":"wordpress 3.0.17"},"disqusIdentifier":"1337 http:\/\/blog.redpanthers.co\/?p=1337","disqusShortname":"red-panthers","disqusTitle":"How to test drive rails 4?","disqusUrl":"https:\/\/redpanthers.co\/how-to-test-drive-rails-4\/","postId":"1337"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='/wp-content/plugins/disqus-comment-system/public/js/comment_embed.js?ver=3.0.17'></script>
+<script type='text/javascript' src='/wp-includes/js/comment-reply.min.js?ver=5.2.7'></script>
+<script type='text/javascript' src='/wp-content/themes/dt-the7/js/post-type.js?ver=7.5.0.2'></script>
+<script type='text/javascript' src='/wp-includes/js/wp-embed.min.js?ver=5.2.7'></script>
+<script type='text/javascript' src='/wp-content/plugins/wpforms/assets/js/jquery.validate.min.js?ver=1.15.1'></script>
+<script type='text/javascript' src='/wp-content/plugins/wpforms/assets/js/wpforms.js?ver=1.4.3'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var wpforms_settings = {"val_required":"This field is required.","val_url":"Please enter a valid URL.","val_email":"Please enter a valid email address.","val_number":"Please enter a valid number.","val_confirm":"Field values do not match.","val_fileextension":"File type is not allowed.","val_filesize":"File exceeds max size allowed.","val_time12h":"Please enter time in 12-hour AM\/PM format (eg 8:45 AM).","val_time24h":"Please enter time in 24-hour format (eg 22:45).","val_requiredpayment":"Payment is required.","val_creditcard":"Please enter a valid credit card number.","currency_code":"USD","currency_thousands":",","currency_decimal":".","currency_symbol":"$","currency_symbol_pos":"left"}
+/* ]]> */
+</script>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="pswp__bg"></div>
+<div class="pswp__scroll-wrap">
+<div class="pswp__container">
+<div class="pswp__item"></div>
+<div class="pswp__item"></div>
+<div class="pswp__item"></div>
+</div>
+<div class="pswp__ui pswp__ui--hidden">
+<div class="pswp__top-bar">
+<div class="pswp__counter"></div>
+<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title="Share"></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+<div class="pswp__preloader">
+<div class="pswp__preloader__icn">
+<div class="pswp__preloader__cut">
+<div class="pswp__preloader__donut"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+<div class="pswp__share-tooltip"></div>
+</div>
+<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+</button>
+<div class="pswp__caption">
+<div class="pswp__caption__center"></div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

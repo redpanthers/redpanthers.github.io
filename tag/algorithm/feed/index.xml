@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Algorithm &#8211; beta.redpanthers.co</title>
+	<atom:link href="/tag/algorithm/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description>Red Panthers - Experts in Ruby on Rails, System Design and Vue.js</description>
+	<lastBuildDate>Wed, 28 Jun 2017 12:07:19 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.7</generator>
+	<item>
+		<title>Readability of text using odyssey</title>
+		<link>/odyssey-in-rails/</link>
+				<comments>/odyssey-in-rails/#comments</comments>
+				<pubDate>Wed, 28 Jun 2017 12:07:19 +0000</pubDate>
+		<dc:creator><![CDATA[rajana]]></dc:creator>
+				<category><![CDATA[Ruby]]></category>
+		<category><![CDATA[Algorithm]]></category>
+		<category><![CDATA[analysis]]></category>
+		<category><![CDATA[gem]]></category>
+		<category><![CDATA[natural language]]></category>
+		<category><![CDATA[odyssey]]></category>
+		<category><![CDATA[redability]]></category>
+		<category><![CDATA[smart]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=2738</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[When you are writing something like article, text, document etc you are focusing on readability. If you are not then you should. As readability influence how a reader can read and understand the content, how you are presenting the content etc. It would also influence how much likely one is to share your article as well. To find the readability there are a lot of statistical tests. Few are listed below.
+
+
+<ul>
+ 	
+
+<li>Flesch-Kincaid readability test</li>
+
+
+ 	
+
+<li>
+
+
+<p class="push-top">Flesch Kincaid Grade Level</p>
+
+
+</li>
+
+
+ 	
+
+<li>
+
+
+<p class="push-top">Gunning Fog Score</p>
+
+
+</li>
+
+
+ 	
+
+<li>
+
+
+<p class="push-top">SMOG</p>
+
+
+</li>
+
+
+ 	
+
+<li>
+
+
+<p class="push-top">Coleman Liau Index</p>
+
+
+</li>
+
+
+ 	
+
+<li>
+
+
+<p class="push-top">Automated Readability Index (ARI)</p>
+
+
+</li>
+
+
+</ul>
+
+
+Recently in a project that we worked on we were asked to find the readability of various pages of a website. We decided to start with Flesch-Kincaid test, as we found this to be a popular one in our research.
+<strong>Flesch-Kincaid readability test</strong> is designed to indicate how difficult a passage in English is to understand. In this test higher score indicates how easier to read and a lower score indicates how difficult it is to read.The formula to find Flesch-Kincaid reading-ease score is
+206.835 &#8211; 1.015 * (total words / total sentences) &#8211; 84.6 * (total syllables / total words)
+The scores can be interrupted as
+
+
+<table border="2px">
+
+
+<tbody>
+
+
+<tr>
+
+
+<th>Score</th>
+
+
+
+
+<th>School Level</th>
+
+
+
+
+<th>Notes</th>
+
+
+</tr>
+
+
+
+
+<tr>
+
+
+<th>100.00-90.00</th>
+
+
+
+
+<th>5th grade</th>
+
+
+
+
+<th>Very easy to read.</th>
+
+
+</tr>
+
+
+
+
+<tr>
+
+
+<th>90.00-80.00</th>
+
+
+
+
+<th>6th grade</th>
+
+
+
+
+<th>Easy to read.</th>
+
+
+</tr>
+
+
+
+
+<tr>
+
+
+<th>80.00-70.00</th>
+
+
+
+
+<th>7th grade</th>
+
+
+
+
+<th>Fairly easy to read.</th>
+
+
+</tr>
+
+
+
+
+<tr>
+
+
+<th>70.00-60.00</th>
+
+
+
+
+<th>8th &amp; 9th grade</th>
+
+
+
+
+<th>Plain English.</th>
+
+
+</tr>
+
+
+
+
+<tr>
+
+
+<th>60.00-50.00</th>
+
+
+
+
+<th>10th to 12th grade</th>
+
+
+
+
+<th>Fairly difficult to read.</th>
+
+
+</tr>
+
+
+
+
+<tr>
+
+
+<th>50.00-30.00</th>
+
+
+
+
+<th>College</th>
+
+
+
+
+<th>Difficult to read.</th>
+
+
+</tr>
+
+
+
+
+<tr>
+
+
+<th>30.00-0.00</th>
+
+
+
+
+<th>College Graduate</th>
+
+
+
+
+<th>Very difficult to read.</th>
+
+
+</tr>
+
+
+</tbody>
+
+
+</table>
+
+
+&nbsp;
+&nbsp;
+Since we were not experts we wanted the ability to tweak and play around with it. We found an already build gem called <strong>Odyssey </strong>which had all these various tests and also provided the ability to extend this feature as well. So here in this article, we will discuss how to use Odyssey gem to find readability of an article and a web page.
+<code></code>
+
+
+<h2>Install Odyssey</h2>
+
+
+Add in your Gemfile.
+
+
+<pre class="lang:ruby decode:true">gem 'odyssey'</pre>
+
+
+
+
+<h2>Usage</h2>
+
+
+
+
+<pre class="lang:ruby decode:true">require 'odyssey'
+Odyssey.formula_name(text, all_stats)</pre>
+
+
+So if we want to use the Flesch-Kincaid test, we write the code as below.
+
+
+<pre class="lang:ruby decode:true">require 'odyssey'
+Odyssey.flesch_kincaid_re(text, all_stats)</pre>
+
+
+To find the readability of a website we use Nokogiri and Odyssey together. Nokogiri to fetch the contents of the page and Odyssey to get the readability.
+Example of finding readability of our own website (https://redpanthers.co)/
+
+
+<pre class="lang:ruby decode:true">url = "https://redpanthers.co/"
+doc = Nokogiri::HTML(open(url))
+# Get all the contents
+paragraph = doc.css('p', 'article', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'a').map(&amp;:text)
+score = Odyssey.flesch_kincaid_re(para.join('. '), true)
+p score</pre>
+
+
+If <strong>all_stats</strong> is set to <strong>false</strong>, it returns score only. If it is true returns a hash like below
+
+
+<pre class="lang:ruby decode:true">{
+ "string_length"=&gt;3024,
+ "letter_count"=&gt;2270,
+ "syllable_count"=&gt;808,
+ "word_count"=&gt;505,
+ "sentence_count"=&gt;75,
+ "average_words_per_sentence"=&gt;6.733333333333333,
+ "average_syllables_per_word"=&gt;1.6,
+ "name"=&gt;"Flesch-Kincaid Reading Ease",
+ "formula"=&gt;#&lt;FleschKincaidRe:0x00000000c83548&gt;,
+ "score"=&gt;64.6
+}</pre>
+
+
+We can perform multiple text analyses on the same text as shown below
+
+
+<pre class="lang:rust decode:true">url = "https://redpanthers.co/"
+doc = Nokogiri::HTML(open(url))
+para = doc.css('p', 'article', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'a').map(&amp;:text)
+score = Odyssey.analyze_multi(para.join('. ').gsub('\n', ' '),
+          ['FleschKincaidRe', 'FleschKincaidGl', 'GunningFog', 'Smog','Ari','ColemanLiau'],
+          true)
+</pre>
+
+
+if all_stats is set to true it will return a hash like this
+
+
+<pre class="lang:ruby decode:true">{
+"string_length"=&gt;19892,
+ "letter_count"=&gt;14932,
+ "syllable_count"=&gt;5079,
+ "word_count"=&gt;3325,
+ "sentence_count"=&gt;435,
+ "average_words_per_sentence"=&gt;7.64367816091954,
+ "average_syllables_per_word"=&gt;1.5275187969924813,
+ "scores"=&gt;
+  {
+   "FleschKincaidRe"=&gt;69.8,
+   "FleschKincaidGl"=&gt;5.4,
+   "GunningFog"=&gt;3.1,
+   "Smog"=&gt;8.7,
+   "Ari"=&gt;3.5,
+   "ColemanLiau"=&gt;10.6
+  }
+}
+</pre>
+
+
+
+
+<h2>Extending odyssey</h2>
+
+
+To extending odyssey, you can create a class that inherit from formula
+
+
+<pre class="lang:ruby decode:true">class NewFormula &lt; Formula
+  def score(passage, stats)
+    p passage
+    p stats
+  end
+  def sentence
+    "Red Panthers is a Ruby on Rails development studio,
+     based in the beautiful city of Cochin."
+  end
+end</pre>
+
+
+To call your formula you just use
+
+
+<pre class="lang:ruby decode:true">obj = NewFormula.new
+Odyssey.new_formula(obj.sentence, false)</pre>
+
+
+Resultant passage will be a Hash like this
+
+
+<pre class="lang:ruby decode:true">{
+ "raw"=&gt;"Red Panthers is a Ruby on Rails development studio,
+        based in the beautiful city of Cochin.",
+ "words"=&gt;["Red", "Panthers", "is", "a", "Ruby", "on", "Rails",
+           "development", "studio", "based", "in", "the",
+           "beautiful", "city", "of", "Cochin"],
+ "sentences"=&gt;["Red Panthers is a Ruby on Rails development studio,
+               based in the beautiful city of Cochin."],
+ "syllables"=&gt;[1, 2, 1, 1, 2, 1, 1, 4, 2, 1, 1, 1, 4, 2, 1, 2]
+}
+</pre>
+
+
+and resultant status will be a Hash like this
+
+
+<pre class="lang:ruby decode:true">{
+ "string_length"=&gt;90,
+ "letter_count"=&gt;73,
+ "word_count"=&gt;16,
+ "syllable_count"=&gt;27,
+ "sentence_count"=&gt;1,
+ "average_words_per_sentence"=&gt;16.0,
+ "average_syllables_per_word"=&gt;1.6875
+}
+</pre>
+
+
+Because we have access to formula&#8217;s class that is  &#8216;status&#8217; flag set to true then we have access to other methods or class formula.
+Thanks to Odyssey we were able to implement the feature quite easily and right now the algorithm we are using have evolved to new forms. But that&#8217;s another article. But if you want to build a simple readability checker then it&#8217;s quite easy and simple in Rails.
+
+
+<h2>References</h2>
+
+
+
+
+<ul>
+ 	
+
+<li><a href="http://www.rubydoc.info/gems/odyssey/0.1.8">http://www.rubydoc.info/gems/odyssey/0.1.8</a></li>
+
+
+ 	
+
+<li><a href="https://github.com/cameronsutter/odyssey">https://github.com/cameronsutter/odyssey</a></li>
+
+
+</ul>
+
+]]&gt;		</p>
+]]></content:encoded>
+							<wfw:commentRss>/odyssey-in-rails/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+							</item>
+		<item>
+		<title>Different types of Index in PostgreSQL</title>
+		<link>/different-types-index-postgresql/</link>
+				<pubDate>Mon, 19 Sep 2016 07:38:45 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Beginners]]></category>
+		<category><![CDATA[PostgreSQL]]></category>
+		<category><![CDATA[Algorithm]]></category>
+		<category><![CDATA[B Tree]]></category>
+		<category><![CDATA[BRIN]]></category>
+		<category><![CDATA[GiST]]></category>
+		<category><![CDATA[Hash]]></category>
+		<category><![CDATA[indexing]]></category>
+		<category><![CDATA[optimization]]></category>
+		<category><![CDATA[part two]]></category>
+		<category><![CDATA[series]]></category>
+		<category><![CDATA[SP-GiST]]></category>
+		<category><![CDATA[Speeing up database]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=549</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[This is part two of our PostgreSQL optimization series. You can read the first article where we discuss when to index <a href="https://redpanthers.co/optimising-postgresql-database-query-using-indexes/">here</a>.
+PostgreSQL uses a different set of algorithm while indexing tables, each type of algorithm is good for a certain set of data. Here we will be discussing the various algorithms available and when we should be using them. (Note these are the algorithms found in PostgreSQL 9.5)
+
+
+<h2>Algorithms</h2>
+
+
+<strong>B-Tree (Balance Tree),</strong> is the <strong>default</strong> algorithm used when we build indexes in Rails. It keeps a sorted copy of our column, which would be our index. So if we want to find the row of the word starting with <strong>a </strong>then as soon as the words starting with a are over. It will stop searching and return null, as the index has kept everything sorted. It is good in most cases, hence it is the default algorithm used.
+<strong>Hash </strong>is one of the most popular indexing algorithms. But only the equate operator works on it, thus the query planner will only use an index with a hash algorithm if we do an equal operation searching for it. Another point to note is that Hash index is not WAL (Write Ahead Log) logged, so if the database crash we can&#8217;t rebuild the index and would need to REINDEX the entire column.
+<strong>GIN</strong>, <strong>Generalized Inverted Indexing</strong> are great for indexing columns and expressions that contain an array, JSON, JSONB, etc. Internally, a <acronym class="ACRONYM">GIN</acronym> index contains a B-tree index constructed over keys, where each key is an element of one or more indexed items and where each tuple in a leaf page contains either a pointer to a B-tree of heap pointers.
+<strong>GiST</strong>, <strong>Generalized Search Tree</strong> isn&#8217;t a single indexing scheme but rather an abstraction that makes it possible to implement indexing schemes for new data types by providing a balanced tree structure access method. In the past building and implementing custom indexing algorithm for custom data types include an understanding of the internals of the database. With the implementation of GiST, it provides an abstraction of the internal working which can be used to build your own indexing algorithm. It uses B-Tree internally, and thus we can use GiST to index IP address, Geo Location, etc.
+<strong>SP-GiST</strong>, <strong>Space Partitioned  Generalized Search Tree</strong> &#8211; as the name suggest its GiST implementation itself but instead of balance tree structure we can use one of the non-balanced tree structure such as radix tree, quadtree, k-d tree.
+<strong>BRIN, Block Range Indexes </strong>are designed to handle very large tables in which the rows’ natural sort order correlates to certain column values. For example, a table storing log entries might have a timestamp column for when each log entry was written. By using a BRIN index on this column, scanning large parts of the table can be avoided when querying rows by their timestamp value with very little overhead.
+&nbsp;]]&gt;		</p>
+]]></content:encoded>
+										</item>
+	</channel>
+</rss>

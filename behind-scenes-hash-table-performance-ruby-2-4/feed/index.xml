@@ -1,4 +1,4 @@
- <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
 	xmlns:content="http://purl.org/rss/1.0/modules/content/"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
 	xmlns:atom="http://www.w3.org/2005/Atom"
@@ -10,7 +10,7 @@
 	Comments on: Behind the scenes of hash table performance in ruby 2.4	</title>
 	<atom:link href="/behind-scenes-hash-table-performance-ruby-2-4/feed/" rel="self" type="application/rss+xml" />
 	<link>/behind-scenes-hash-table-performance-ruby-2-4/</link>
-	<description>Experts in Ruby on Rails Development</description>
+	<description>Red Panthers - Experts in Ruby on Rails, System Design and Vue.js</description>
 	<lastBuildDate>Fri, 03 Feb 2017 10:01:00 +0000</lastBuildDate>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -20,10 +20,10 @@
 			<item>
 				<title>
 				By: Aboobacker Mk				</title>
-				<link>/behind-scenes-hash-table-performance-ruby-2-4/#comment-21</link>
+				<link>/behind-scenes-hash-table-performance-ruby-2-4/#comment-37</link>
 		<dc:creator><![CDATA[Aboobacker Mk]]></dc:creator>
 		<pubDate>Fri, 03 Feb 2017 10:01:00 +0000</pubDate>
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=922#comment-21</guid>
+		<guid isPermaLink="false">https://redpanthers.co/?p=922#comment-37</guid>
 					<description><![CDATA[Thanks for your inputs , 3 times performance improvement for accessing keys and values are from my laptop , it can vary with the processor you have .  My point was to show that some hash operations became upto 3 times time faster , not all operations became 3 times faster . I will update the post with other benchmarks to avoid confusions .]]></description>
 		<content:encoded><![CDATA[<p>Thanks for your inputs , 3 times performance improvement for accessing keys and values are from my laptop , it can vary with the processor you have .  My point was to show that some hash operations became upto 3 times time faster , not all operations became 3 times faster . I will update the post with other benchmarks to avoid confusions .</p>
 ]]></content:encoded>
@@ -31,12 +31,12 @@
 						<item>
 				<title>
 				By: wrzasa				</title>
-				<link>/behind-scenes-hash-table-performance-ruby-2-4/#comment-20</link>
+				<link>/behind-scenes-hash-table-performance-ruby-2-4/#comment-36</link>
 		<dc:creator><![CDATA[wrzasa]]></dc:creator>
 		<pubDate>Fri, 03 Feb 2017 07:34:00 +0000</pubDate>
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=922#comment-20</guid>
+		<guid isPermaLink="false">https://redpanthers.co/?p=922#comment-36</guid>
 					<description><![CDATA[The article proves that the benchmark presented at the beginning is misleading and suggests invalid conclusions. Since in 2.4 Hash stores list of its entries in sequential array, so the `hash.values` operation is immediate -- just need to copy the array. So there is significant performance gain comparing to 2.3, but it has nothing to do with performance of usual hash operations: insert, find, delete. Results of the presented benchmark cannot be used to predict performance gain of other hash operations.]]></description>
-		<content:encoded><![CDATA[<p>The article proves that the benchmark presented at the beginning is misleading and suggests invalid conclusions. Since in 2.4 Hash stores list of its entries in sequential array, so the <code>hash.values</code> operation is immediate &#8212; just need to copy the array. So there is significant performance gain comparing to 2.3, but it has nothing to do with performance of usual hash operations: insert, find, delete. Results of the presented benchmark cannot be used to predict performance gain of other hash operations.</p>
+		<content:encoded><![CDATA[<p>The article proves that the benchmark presented at the beginning is misleading and suggests invalid conclusions. Since in 2.4 Hash stores list of its entries in sequential array, so the `hash.values` operation is immediate &#8212; just need to copy the array. So there is significant performance gain comparing to 2.3, but it has nothing to do with performance of usual hash operations: insert, find, delete. Results of the presented benchmark cannot be used to predict performance gain of other hash operations.</p>
 ]]></content:encoded>
 						</item>
 			</channel>

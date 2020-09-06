@@ -1,4 +1,4 @@
- <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
 	xmlns:content="http://purl.org/rss/1.0/modules/content/"
 	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -8,167 +8,394 @@
 	>
 
 <channel>
-	<title>Travel &#8211; Red Panthers</title>
+	<title>Travel &#8211; beta.redpanthers.co</title>
 	<atom:link href="/category/travel/feed/" rel="self" type="application/rss+xml" />
 	<link>/</link>
-	<description>Experts in Ruby on Rails Development</description>
-	<lastBuildDate>Wed, 14 Feb 2018 13:39:22 +0000</lastBuildDate>
+	<description>Red Panthers - Experts in Ruby on Rails, System Design and Vue.js</description>
+	<lastBuildDate>Mon, 23 Jan 2017 18:18:40 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
 	<generator>https://wordpress.org/?v=5.2.7</generator>
-
-<image>
-	<url>/wp-content/uploads/2017/12/rp-logo.png</url>
-	<title>Travel &#8211; Red Panthers</title>
-	<link>/</link>
-	<width>32</width>
-	<height>32</height>
-</image> 
 	<item>
 		<title>Kochi : Truly the Queen of the Arabian Sea</title>
 		<link>/kochi-truly-queen-arabian-sea/</link>
-				<comments>/kochi-truly-queen-arabian-sea/#respond</comments>
 				<pubDate>Mon, 23 Jan 2017 18:18:40 +0000</pubDate>
 		<dc:creator><![CDATA[jacob]]></dc:creator>
 				<category><![CDATA[Travel]]></category>
 
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=1480</guid>
-				<description><![CDATA[<p>Before you set afoot on the land known as the &#8220;God&#8217;s Own Country&#8221;, you can see lush greenery covering up the suburb developed structures and providing that much needed fresh air to breathe. Kochi is a coastal city built on the ethos of communal integrity, cultural unity &#38; truly to love nature. While under the&#8230;</p>
-<p>The post <a rel="nofollow" href="/kochi-truly-queen-arabian-sea/">Kochi : Truly the Queen of the Arabian Sea</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
-]]></description>
-								<content:encoded><![CDATA[<p>Before you set afoot on the land known as the &#8220;God&#8217;s Own Country&#8221;, you can see lush greenery covering up the suburb developed structures and providing that much needed fresh air to breathe. Kochi is a coastal city built on the ethos of communal integrity, cultural unity &amp; truly to love nature. While under the colonial rule of the British Empire, they had laid the foundation on which Kochi is standing today.</p>
-<p>Kochi is the Business Capital of Kerala and home to more than 2.1 million people. It is a rapidly developing metropolitan city and is one of the selected cities to be developed as a Smart City under the Smart Cities Mission of Government of India.</p>
-<p>It also home to Kerala&#8217;s ever growing IT/ITES Industry, Infopark &#8211; an IT park developed by the Government of Kerala. Recently, World Trade Center opened its splendid office spaces here. Special Economic Zone for hardware manufacturing, Oil Refinery with a capacity of refining 9.5 million metric tons per annum to name few achievements. Kochi has a sprawling blend of industries.</p>
-<p>While you are at Cochin a.k.a Kochi to attend Ruby Conf India 2017 we just felt it would be really good to let you know about the must to visit, must to eat places around here. Being proud sponsors of Rubyconf2017 we believe it&#8217;s our duty to treat our guests in the best possible manner and this article is a small step to make your overall Rubyconf2017 experience pleasant and bliss.</p>
-<p>This is a curated list which we have jotted down from our experience here and we truly recommend each one of you adding one of the places to your itinerary. After all coming down to God&#8217;s Own Country it is very much necessary that you travel around to experience the cultural extravaganza of this unique city.</p>
+		<guid isPermaLink="false">https://redpanthers.co/?p=1480</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[Before you set afoot on the land known as the "God's Own Country", you can see lush greenery covering up the suburb developed structures and providing that much needed fresh air to breathe. Kochi is a coastal city built on the ethos of communal integrity, cultural unity &amp; truly to love nature. While under the colonial rule of the British Empire, they had laid the foundation on which Kochi is standing today.
+Kochi is the Business Capital of Kerala and home to more than 2.1 million people. It is a rapidly developing metropolitan city and is one of the selected cities to be developed as a Smart City under the Smart Cities Mission of Government of India.
+It also home to Kerala's ever growing IT/ITES Industry, Infopark - an IT park developed by the Government of Kerala. Recently, World Trade Center opened its splendid office spaces here. Special Economic Zone for hardware manufacturing, Oil Refinery with a capacity of refining 9.5 million metric tons per annum to name few achievements. Kochi has a sprawling blend of industries.
+While you are at Cochin a.k.a Kochi to attend Ruby Conf India 2017 we just felt it would be really good to let you know about the must to visit, must to eat places around here. Being proud sponsors of Rubyconf2017 we believe it's our duty to treat our guests in the best possible manner and this article is a small step to make your overall Rubyconf2017 experience pleasant and bliss.
+This is a curated list which we have jotted down from our experience here and we truly recommend each one of you adding one of the places to your itinerary. After all coming down to God's Own Country it is very much necessary that you travel around to experience the cultural extravaganza of this unique city.
+
+
 <ul>
+ 	
+
 <li>
+
+
 <h2>Fort Cochin</h2>
-<p>Kochi was basically once a fishing village in the pre-colonial era and you could find out that the best practices and other methodologies in fishing are still being practiced and Fisheries is a tradition in Cochin which still exists.Since Fort Cochin was in the possession of the Portuguese, the Dutch and the British at different points of time, the region still bears the influence of European architecture.Presently <a href="https://www.kochimuzirisbiennale.org/">Kochi-Muziriz Biennale 2016</a> is taking up all the headlines from Fort Cochin. It&#8217;s a must visit place.</p>
-<p><a href="http://blog.redpanthers.co/wp-content/uploads/2017/01/Fort-Kochi-1-e1485158052214.jpg"><img class="alignnone wp-image-1533 size-full" src="http://blog.redpanthers.co/wp-content/uploads/2017/01/Fort-Kochi-1-e1485158052214.jpg" alt="Fort Cochin , Red Panthers, Kochi, Ruby Conf Kerala 2017" width="1680" height="747" /></a></p>
+
+
+Kochi was basically once a fishing village in the pre-colonial era and you could find out that the best practices and other methodologies in fishing are still being practiced and Fisheries is a tradition in Cochin which still exists.Since Fort Cochin was in the possession of the Portuguese, the Dutch and the British at different points of time, the region still bears the influence of European architecture.Presently <a href="https://www.kochimuzirisbiennale.org/">Kochi-Muziriz Biennale 2016</a> is taking up all the headlines from Fort Cochin. It&#8217;s a must visit place.
+<a href="https://redpanthers.co/wp-content/uploads/2017/01/Fort-Kochi-1-e1485158052214.jpg"><img class="alignnone wp-image-1533 size-full" src="https://redpanthers.co/wp-content/uploads/2017/01/Fort-Kochi-1-e1485158052214.jpg" alt="Fort Cochin , Red Panthers, Kochi, Ruby Conf Kerala 2017" width="1680" height="747" /></a>
+
+
 <div><strong><span class=" author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze">Major Attractions</span></strong></div>
+
+
+
+
 <div></div>
+
+
+
+
 <ul class="listtype-bullet listindent1 list-bullet1">
+ 	
+
 <li><a href="https://www.kochimuzirisbiennale.org/"><span class=" author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze">Kochi Muziris Biennale </span></a></li>
+
+
+ 	
+
 <li><a href="https://goo.gl/maps/uJfuCjTHqAU2"><span class=" author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze">Chinese Net</span></a></li>
+
+
+ 	
+
 <li><a href="https://goo.gl/maps/fHL1Mp7LRA42"><span class=" author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze">Indo-Portuguese Museum</span></a></li>
+
+
+ 	
+
 <li><a href="https://goo.gl/maps/hSo8Fz8QZYA2"><span class=" author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze">Dutch Cemetry</span></a></li>
+
+
+ 	
+
 <li><a href="https://goo.gl/maps/rejUJH5P9EE2"><span class=" author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze">Southern Naval Command Maritime Museum</span></a></li>
+
+
+ 	
+
 <li><span class=" author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze"><a href="https://goo.gl/maps/ppjzjGBztSy">St. Francis CSI Church</a>( Oldest European Church in India &amp; Vasco Da Gama was once buried, also home to Dutch Cemetry)</span></li>
+
+
+ 	
+
 <li><a href="https://goo.gl/maps/QUU7KdhwMU82"><span class=" author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze">Santa Cruz Basilica</span></a></li>
+
+
+ 	
+
 <li><a href="https://goo.gl/maps/Uqisc14H5im"><span class=" author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze">Bishop&#8217;s House</span></a></li>
+
+
+ 	
+
 <li><a href="https://goo.gl/maps/HJbBiwbpB1m"><span class=" author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze">Fort Emmanuel</span></a></li>
+
+
+ 	
+
 <li><span class=" author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze">Steam Boilers</span></li>
+
+
 </ul>
-<p>Read more about Fort Kochi <a href="https://www.keralatourism.org/destination/fort-kochi/422/">here</a></li>
+
+
+Read more about Fort Kochi <a href="https://www.keralatourism.org/destination/fort-kochi/422/">here</a></li>
+
+
+ 	
+
 <li>
+
+
 <h2>Cherai Beach</h2>
-<p>If you want to take those water-scooter &amp; speedboat rides at a clean and shallow beach then Cherai Beach is the right place to go it&#8217;s an amazing beach located at the north-end of Cochin.</p>
-<p><a href="http://blog.redpanthers.co/wp-content/uploads/2017/01/Cherai.png"><img class="alignnone wp-image-1538 size-large" src="http://blog.redpanthers.co/wp-content/uploads/2017/01/Cherai-1024x576.png" width="1024" height="576" /></a><br />
-Read more about Cherai Beach <a href="https://www.keralatourism.org/destination/cherai-beach-kochi/179">here.<br />
+
+
+If you want to take those water-scooter &amp; speedboat rides at a clean and shallow beach then Cherai Beach is the right place to go it&#8217;s an amazing beach located at the north-end of Cochin.
+<a href="https://redpanthers.co/wp-content/uploads/2017/01/Cherai.png"><img class="alignnone wp-image-1538 size-large" src="https://redpanthers.co/wp-content/uploads/2017/01/Cherai-1024x576.png" width="1024" height="576" /></a>
+Read more about Cherai Beach <a href="https://www.keralatourism.org/destination/cherai-beach-kochi/179">here.
 </a></li>
+
+
+ 	
+
 <li>
+
+
 <h2><strong>Andhakaranazhy Beach</strong></h2>
-<p>This place is not much popular amongst the tourist but it&#8217;s a beach where you should go if you want to just sit on the sand and relax, by evening there won&#8217;t be much crowd. The tourism department is slowly catching up and developing the infrastructure here.</p>
-<p><a href="http://blog.redpanthers.co/wp-content/uploads/2017/01/andakarnadhi.png"><img class="alignnone wp-image-1534 size-large" src="http://blog.redpanthers.co/wp-content/uploads/2017/01/andakarnadhi-e1485162495750-1024x499.png" alt="Andakarnadhi, Red Panthers, Kochi, Ruby Conf Kerala 2017" width="1024" height="499" /></a></p>
-<p>Here is the <a href="https://goo.gl/maps/Zo49SZzpnKG2">Geolocation of the Beach.<br />
+
+
+This place is not much popular amongst the tourist but it&#8217;s a beach where you should go if you want to just sit on the sand and relax, by evening there won&#8217;t be much crowd. The tourism department is slowly catching up and developing the infrastructure here.
+<a href="https://redpanthers.co/wp-content/uploads/2017/01/andakarnadhi.png"><img class="alignnone wp-image-1534 size-large" src="https://redpanthers.co/wp-content/uploads/2017/01/andakarnadhi-e1485162495750-1024x499.png" alt="Andakarnadhi, Red Panthers, Kochi, Ruby Conf Kerala 2017" width="1024" height="499" /></a>
+Here is the <a href="https://goo.gl/maps/Zo49SZzpnKG2">Geolocation of the Beach.
 </a></li>
+
+
+ 	
+
 <li>
+
+
 <h2>Marine Drive</h2>
-<p>It&#8217;s famous for its beautiful promenades and it&#8217;s built facing the backwaters of Kochi. It&#8217;s popular amongst the youth as a hangout spot and the jogging area for morning people. It has few local shopping malls and people go there to see the sunset over the sea mouth and feel the gentle breeze.</p>
-<p><a href="http://blog.redpanthers.co/wp-content/uploads/2017/01/Marine-Drive-Kochi-1.jpg"><img class="alignnone wp-image-1541 size-large" src="http://blog.redpanthers.co/wp-content/uploads/2017/01/Marine-Drive-Kochi-1-e1485161705454-1024x440.jpg" width="1024" height="440" /></a></p>
-<p>Read more about Marine Drive <a href="https://www.keralatourism.org/destination/marine-drive-kochi/546">here.</a></li>
+
+
+It&#8217;s famous for its beautiful promenades and it&#8217;s built facing the backwaters of Kochi. It&#8217;s popular amongst the youth as a hangout spot and the jogging area for morning people. It has few local shopping malls and people go there to see the sunset over the sea mouth and feel the gentle breeze.
+<a href="https://redpanthers.co/wp-content/uploads/2017/01/Marine-Drive-Kochi-1.jpg"><img class="alignnone wp-image-1541 size-large" src="https://redpanthers.co/wp-content/uploads/2017/01/Marine-Drive-Kochi-1-e1485161705454-1024x440.jpg" width="1024" height="440" /></a>
+Read more about Marine Drive <a href="https://www.keralatourism.org/destination/marine-drive-kochi/546">here.</a></li>
+
+
+ 	
+
 <li>
+
+
 <h2>Kumbalanghi Model Tourism Village</h2>
-<p>Kumbalanghi is my ancestral place and here you can savor a variety of natural splendors and the location is so well located having the perfect ecological balance. The Model Tourism village is the first of its kind in the country.</p>
-<p><a href="http://blog.redpanthers.co/wp-content/uploads/2017/01/kumbalanghi1-e1485161795155.jpg"><img class="alignnone wp-image-1540 size-large" src="http://blog.redpanthers.co/wp-content/uploads/2017/01/kumbalanghi1-e1485161795155-1024x452.jpg" alt="Kumbalanghi , Red Panthers, Kochi, Ruby Conf Kerala 2017" width="1024" height="452" /></a></p>
-<p>Read more about Kumbalanghi <a href="https://www.keralatourism.org/destination/kumbalangi-kochi-tourist-village/353">here.</a></li>
+
+
+Kumbalanghi is my ancestral place and here you can savor a variety of natural splendors and the location is so well located having the perfect ecological balance. The Model Tourism village is the first of its kind in the country.
+<a href="https://redpanthers.co/wp-content/uploads/2017/01/kumbalanghi1-e1485161795155.jpg"><img class="alignnone wp-image-1540 size-large" src="https://redpanthers.co/wp-content/uploads/2017/01/kumbalanghi1-e1485161795155-1024x452.jpg" alt="Kumbalanghi , Red Panthers, Kochi, Ruby Conf Kerala 2017" width="1024" height="452" /></a>
+Read more about Kumbalanghi <a href="https://www.keralatourism.org/destination/kumbalangi-kochi-tourist-village/353">here.</a></li>
+
+
+ 	
+
 <li>
+
+
 <h2>Mattancherry</h2>
-<p>This place was once a very busy marketplace, and if you&#8217;re going there you would get lost in its old world charm it still has. It is dotted with queer old buildings, fancy restaurants, and antique shops. It&#8217;s near to Fort Cochin and if you are going there go there just to enjoy the street vibes.</p>
-<p><a href="http://blog.redpanthers.co/wp-content/uploads/2017/01/mattanchery.jpg"><img class="alignnone size-large wp-image-1542" src="http://blog.redpanthers.co/wp-content/uploads/2017/01/mattanchery-1024x768.jpg" alt="Mattanchery , Red Panthers, Kochi, Ruby Conf Kerala 2017" width="1024" height="768" /></a></p>
-<p><strong><span class=" author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze">Major Attractions</span></strong></p>
+
+
+This place was once a very busy marketplace, and if you&#8217;re going there you would get lost in its old world charm it still has. It is dotted with queer old buildings, fancy restaurants, and antique shops. It&#8217;s near to Fort Cochin and if you are going there go there just to enjoy the street vibes.
+<a href="https://redpanthers.co/wp-content/uploads/2017/01/mattanchery.jpg"><img class="alignnone size-large wp-image-1542" src="https://redpanthers.co/wp-content/uploads/2017/01/mattanchery-1024x768.jpg" alt="Mattanchery , Red Panthers, Kochi, Ruby Conf Kerala 2017" width="1024" height="768" /></a>
+<strong><span class=" author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze">Major Attractions</span></strong>
+
+
 <ul class="listtype-bullet listindent1 list-bullet1">
+ 	
+
 <li><span class="attrlink url author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze"><a class="attrlink" href="https://www.google.co.in/maps/place/Jew+St,+Ernakulam,+Kerala/data=!4m2!3m1!1s0x3b080d56c647fe59:0x98bd4234b9d5a037?sa=X&amp;ved=0ahUKEwiSnpnuw9DRAhUXR48KHQSCATMQ8gEIHzAB" rel="noreferrer nofollow noopener" data-target-href="https://www.google.co.in/maps/place/Jew+St,+Ernakulam,+Kerala/data=!4m2!3m1!1s0x3b080d56c647fe59:0x98bd4234b9d5a037?sa=X&amp;ved=0ahUKEwiSnpnuw9DRAhUXR48KHQSCATMQ8gEIHzAB">Jew Street</a></span></li>
+
+
+ 	
+
 <li><span class="attrlink url author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze"><a class="attrlink" href="https://goo.gl/maps/EYfhHgMxhru" rel="noreferrer nofollow noopener" data-target-href="https://goo.gl/maps/EYfhHgMxhru">Jew Cemetery</a></span></li>
+
+
+ 	
+
 <li><span class="attrlink url author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze"><a class="attrlink" href="https://goo.gl/maps/M2Pi6awUTZ42" rel="noreferrer nofollow noopener" data-target-href="https://goo.gl/maps/M2Pi6awUTZ42">Synagogue</a></span></li>
+
+
+ 	
+
 <li><span class="attrlink url author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze"><a class="attrlink" href="https://goo.gl/maps/dasWAMahVQ62" rel="noreferrer nofollow noopener" data-target-href="https://goo.gl/maps/dasWAMahVQ62">International Tourism Police Museum</a></span><span class=" author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze"> </span></li>
+
+
+ 	
+
 <li><span class=" author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze">Traditional Mattanchery Sweets </span></li>
+
+
+ 	
+
 <li><span class="attrlink url author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze"><a class="attrlink" href="https://goo.gl/maps/yCPJW5rUurt" rel="noreferrer nofollow noopener" data-target-href="https://goo.gl/maps/yCPJW5rUurt">Jain Temple</a></span></li>
+
+
+ 	
+
 <li><span class="attrlink url author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze"><a class="attrlink" href="https://goo.gl/maps/iHi8nFPcog62" rel="noreferrer nofollow noopener" data-target-href="https://goo.gl/maps/iHi8nFPcog62">Mattancherry Palace</a></span><span class=" author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze">(Built by Portuguese in 1555)</span></li>
+
+
 </ul>
-<p>Read more about Mattancherry <a href="https://www.keralatourism.org/kochi/mattancherry-kochi.php">here.<br />
+
+
+Read more about Mattancherry <a href="https://www.keralatourism.org/kochi/mattancherry-kochi.php">here.
 </a></li>
+
+
+ 	
+
 <li>
+
+
 <h2>Munambam Beach</h2>
-<p>It is is a beautiful, long beach near Munambam Fishing Harbour at the northern end of Vypeen. Ideal for kite flying, the beach also has many village homestays nearby. Munambam beach is situated at Vypeen</p>
-<p><a href="http://blog.redpanthers.co/wp-content/uploads/2017/01/munambam_beach_ernakulam20131127174020_545_1.jpg"><img class="alignnone size-full wp-image-1543" src="http://blog.redpanthers.co/wp-content/uploads/2017/01/munambam_beach_ernakulam20131127174020_545_1.jpg" alt="Munambam Beach , Red Panthers, Kochi, Ruby Conf Kerala 2017" width="720" height="405" /></a></p>
-<p>Read more about Munambam<a href="https://www.keralatourism.org/destination/munambam-beach-vypin/545"> here.<br />
+
+
+It is is a beautiful, long beach near Munambam Fishing Harbour at the northern end of Vypeen. Ideal for kite flying, the beach also has many village homestays nearby. Munambam beach is situated at Vypeen
+<a href="https://redpanthers.co/wp-content/uploads/2017/01/munambam_beach_ernakulam20131127174020_545_1.jpg"><img class="alignnone size-full wp-image-1543" src="https://redpanthers.co/wp-content/uploads/2017/01/munambam_beach_ernakulam20131127174020_545_1.jpg" alt="Munambam Beach , Red Panthers, Kochi, Ruby Conf Kerala 2017" width="720" height="405" /></a>
+Read more about Munambam<a href="https://www.keralatourism.org/destination/munambam-beach-vypin/545"> here.
 </a></li>
+
+
+ 	
+
 <li>
+
+
 <h2>Bolgatty Island</h2>
-<p>Near the historic town of Fort Kochi in Ernakulam district, the commercial capital of Kerala is the Bolgatty Island. This lush, lovely island is famous for its palace of the same name. The Bolgatty Palace, built in 1744 by the Dutch and later taken over by the British. Today, it is a premium hotel run by the Kerala Tourism Development Corporation (KTDC) Hotels &amp; Resorts, with a small golf course and special honeymoon cottages.</p>
-<p><a href="http://blog.redpanthers.co/wp-content/uploads/2017/01/bolgatty_island_kochi_12_348.jpg"><img class="alignnone size-large wp-image-1535" src="http://blog.redpanthers.co/wp-content/uploads/2017/01/bolgatty_island_kochi_12_348-1024x683.jpg" alt="Bolgatty Island , Red Panthers, Kochi, Ruby Conf Kerala 2017" width="1024" height="683" /></a><br />
+
+
+Near the historic town of Fort Kochi in Ernakulam district, the commercial capital of Kerala is the Bolgatty Island. This lush, lovely island is famous for its palace of the same name. The Bolgatty Palace, built in 1744 by the Dutch and later taken over by the British. Today, it is a premium hotel run by the Kerala Tourism Development Corporation (KTDC) Hotels &amp; Resorts, with a small golf course and special honeymoon cottages.
+<a href="https://redpanthers.co/wp-content/uploads/2017/01/bolgatty_island_kochi_12_348.jpg"><img class="alignnone size-large wp-image-1535" src="https://redpanthers.co/wp-content/uploads/2017/01/bolgatty_island_kochi_12_348-1024x683.jpg" alt="Bolgatty Island , Red Panthers, Kochi, Ruby Conf Kerala 2017" width="1024" height="683" /></a>
 Read more about Bolgatty Island <a href="http://www.bolgattypalacekochi.com/">here.</a></li>
+
+
 </ul>
-<p>Apart from the above places, there is numerous mouth-watering variety of food you should try out to tickle your taste buds in Cochin.</p>
-<p>If you are a foodie then Cochin ought to be on your bucket list, it&#8217;s an exhaustive list but we would try to skim down the list and give you a variety of food joints to choose from.</p>
+
+
+Apart from the above places, there is numerous mouth-watering variety of food you should try out to tickle your taste buds in Cochin.
+If you are a foodie then Cochin ought to be on your bucket list, it&#8217;s an exhaustive list but we would try to skim down the list and give you a variety of food joints to choose from.
+
+
 <ul>
+ 	
+
 <li>
+
+
 <h2><strong><strong><strong>Grand Pavilion, Ernakulam</strong></strong></strong></h2>
-<p>The Grand hotel Pavilion is one of Kochi&#8217;s oldest and most popular restaurants. The restaurant is part of the Grand Hotel which started in 1963 offering lodging and food. But it’s the restaurant which has become the landmark, and not without reason. The Grand is famous for its Syrian (Christian) food and the Karimeen Pollicahthu (fried pear spot fish) here is a highlight. So is the seafood and the Biryani (a rice dish made of herbs, spices, and meat).It can be very crowded during lunch hours (not surprising, given its popularity) but if you are looking for true Keralan delicacies at fantastic value, then Grand is the place to be.</p>
-<p>Geo-location: <a href="https://goo.gl/maps/HyS9P8byamC2">Google Maps</a></li>
+
+
+The Grand hotel Pavilion is one of Kochi&#8217;s oldest and most popular restaurants. The restaurant is part of the Grand Hotel which started in 1963 offering lodging and food. But it’s the restaurant which has become the landmark, and not without reason. The Grand is famous for its Syrian (Christian) food and the Karimeen Pollicahthu (fried pear spot fish) here is a highlight. So is the seafood and the Biryani (a rice dish made of herbs, spices, and meat).It can be very crowded during lunch hours (not surprising, given its popularity) but if you are looking for true Keralan delicacies at fantastic value, then Grand is the place to be.
+Geo-location: <a href="https://goo.gl/maps/HyS9P8byamC2">Google Maps</a></li>
+
+
+ 	
+
 <li>
+
+
 <h2>Kayyikka Restaurant</h2>
-<p>Whilst Kochi mostly attracts international attention for its outstanding seafood, the humble biryani is also worthy of note, being one of the city’s defining culinary characteristics. Although officially entitled the <a class="external" href="https://www.tripadvisor.co.uk/Restaurant_Review-g297633-d2227230-Reviews-Kayees_Rahmathullah_Hotel_Restaurant-Kochi_Cochin_Kerala.html">Rahmuthalla Hotel</a>, Kochi locals popularly refer to this space as Kayikka’s, after the man who first discovered and honed the original biryani recipe in the same spot. Kayikka’s has cultivated a cult following, each enjoying the deliciously sumptuous richness of a dish cooked in copious amounts of pure <em>ghee,</em> or clarified butter. Whether it’s for the evergreen chicken and mutton biryani or the fish and prawn biryani served with date pickle, Kayikka’s loyal fan-base can always be found frequenting this popular haunt.</p>
-<p>Geo-location: <a href="https://goo.gl/maps/RwC6jjqBSuo">Google Maps</a></li>
+
+
+Whilst Kochi mostly attracts international attention for its outstanding seafood, the humble biryani is also worthy of note, being one of the city’s defining culinary characteristics. Although officially entitled the <a class="external" href="https://www.tripadvisor.co.uk/Restaurant_Review-g297633-d2227230-Reviews-Kayees_Rahmathullah_Hotel_Restaurant-Kochi_Cochin_Kerala.html">Rahmuthalla Hotel</a>, Kochi locals popularly refer to this space as Kayikka’s, after the man who first discovered and honed the original biryani recipe in the same spot. Kayikka’s has cultivated a cult following, each enjoying the deliciously sumptuous richness of a dish cooked in copious amounts of pure <em>ghee,</em> or clarified butter. Whether it’s for the evergreen chicken and mutton biryani or the fish and prawn biryani served with date pickle, Kayikka’s loyal fan-base can always be found frequenting this popular haunt.
+Geo-location: <a href="https://goo.gl/maps/RwC6jjqBSuo">Google Maps</a></li>
+
+
+ 	
+
 <li>
+
+
 <h2>The Rice Boat &#8211; Vivanta</h2>
-<p>Whilst in Kerala, do what the locals do. If abiding by this mantra, sampling seafood is top of the list. The <a class="external" href="http://www.vivantabytaj.com/malabar-cochin/dining/the-rice-boat-restaurant.html">Vivanta</a> is housed on a stationary ‘kettuvalam’ or rice boat and boasts the juiciest seafood in Kerala. The fresh daily catch is enhanced by the spectacular waterfront view of Fort Cochin, complementing the rustic décor aboard the boat. The signature dishes such as tiger prawns in coconut oil, white snapper in banana leaf and soft-shelled crab with tartar sauce comes to life with the flavor of local spices, especially the fragrant turmeric and coconut. The restaurant also caters to the pared-down palette of the visiting Westerner, serving lobster bisque, crab au gratin, and crepe Suzette.</p>
-<p>Geo-location: <a href="https://goo.gl/maps/aqFJYogYSnT2">Google Maps</a></li>
+
+
+Whilst in Kerala, do what the locals do. If abiding by this mantra, sampling seafood is top of the list. The <a class="external" href="http://www.vivantabytaj.com/malabar-cochin/dining/the-rice-boat-restaurant.html">Vivanta</a> is housed on a stationary ‘kettuvalam’ or rice boat and boasts the juiciest seafood in Kerala. The fresh daily catch is enhanced by the spectacular waterfront view of Fort Cochin, complementing the rustic décor aboard the boat. The signature dishes such as tiger prawns in coconut oil, white snapper in banana leaf and soft-shelled crab with tartar sauce comes to life with the flavor of local spices, especially the fragrant turmeric and coconut. The restaurant also caters to the pared-down palette of the visiting Westerner, serving lobster bisque, crab au gratin, and crepe Suzette.
+Geo-location: <a href="https://goo.gl/maps/aqFJYogYSnT2">Google Maps</a></li>
+
+
+ 	
+
 <li>
+
+
 <h2><strong>History Restaurant &#8211; The Brunton Boatyard Hotel</strong></h2>
-<p>Located in the <a href="http://www.cghearth.com/brunton-boatyard">Brunton Boatyard Hotel,</a> History Restaurant is an ingenious concept in stylish travel. The food is exquisite. The menu here offers a wide range of options tracing Cochin’s Jewish, Syrian, Arabic and Portuguese history. These cuisines have been enriched with recipes borrowed from the kitchens of Kochi families. For the main course, one can have the ‘Fisherman’s, Stew’, a Portuguese favourite of mixed seafood cooked with kidney beans, herbs and fresh ground pepper; the ‘Kariveppila Kozhy’ which has chicken cooked in Kerala spices with coconut; and the Curry Leaf and ‘Byculla Club Curry’, a dish from the British era which consists of cottage cheese dumplings stuffed with banana and served with a velvety green sauce. The hotel is located in the heart of Fort Cochin but is easily reachable from the main town as well.</p>
-<p>Geo-location: <a href="https://goo.gl/maps/snT2KFwjbUR2">Google Map<br />
+
+
+Located in the <a href="http://www.cghearth.com/brunton-boatyard">Brunton Boatyard Hotel,</a> History Restaurant is an ingenious concept in stylish travel. The food is exquisite. The menu here offers a wide range of options tracing Cochin’s Jewish, Syrian, Arabic and Portuguese history. These cuisines have been enriched with recipes borrowed from the kitchens of Kochi families. For the main course, one can have the ‘Fisherman’s, Stew’, a Portuguese favourite of mixed seafood cooked with kidney beans, herbs and fresh ground pepper; the ‘Kariveppila Kozhy’ which has chicken cooked in Kerala spices with coconut; and the Curry Leaf and ‘Byculla Club Curry’, a dish from the British era which consists of cottage cheese dumplings stuffed with banana and served with a velvety green sauce. The hotel is located in the heart of Fort Cochin but is easily reachable from the main town as well.
+Geo-location: <a href="https://goo.gl/maps/snT2KFwjbUR2">Google Map
 </a></li>
+
+
+ 	
+
 <li>
+
+
 <h2><span class=" author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze"> </span><strong>Pai Brothers</strong></h2>
-<p>You<span class=" author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze"> can find more than 150 varieties of </span><span class="attrlink url author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze"><a class="attrlink" href="https://en.wikipedia.org/wiki/Dosa" rel="noreferrer nofollow noopener" data-target-href="https://en.wikipedia.org/wiki/Dosa">Dosa</a></span><span class=" author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze"> here, a typical popular South Indian dish. It has been a popular hangout place among the natives since quite a long time.It&#8217;s very rare you find so many options of mouth watering dosas under one roof.</span></p>
-<p>Geo-location:<a href="https://maps.app.goo.gl/i/ywyKY"> Google Map</a></li>
+
+
+You<span class=" author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze"> can find more than 150 varieties of </span><span class="attrlink url author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze"><a class="attrlink" href="https://en.wikipedia.org/wiki/Dosa" rel="noreferrer nofollow noopener" data-target-href="https://en.wikipedia.org/wiki/Dosa">Dosa</a></span><span class=" author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze"> here, a typical popular South Indian dish. It has been a popular hangout place among the natives since quite a long time.It&#8217;s very rare you find so many options of mouth watering dosas under one roof.</span>
+Geo-location:<a href="https://maps.app.goo.gl/i/ywyKY"> Google Map</a></li>
+
+
+ 	
+
 <li>
+
+
 <h2><span class="attrlink url author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze">Primate Raw Food</span></h2>
-<p><span class=" author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze">If you are one of those food conscious souls or one among who likes trying out something new this place is a must visit for you, it has something different to offer you.Primate is India’s first restaurant specialized in raw food dishes using fruits, vegetables, micro greens, sprouts, nuts, honey, jaggery etc. It&#8217;s a place that offers nature in its purest form.Everything that you have here is not at all cooked, rather its sun-baked.</span></p>
-<p>Geo-location:<a href="https://goo.gl/maps/dZjP9i36a5o"> Google Map</a></li>
+
+
+<span class=" author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze">If you are one of those food conscious souls or one among who likes trying out something new this place is a must visit for you, it has something different to offer you.Primate is India’s first restaurant specialized in raw food dishes using fruits, vegetables, micro greens, sprouts, nuts, honey, jaggery etc. It&#8217;s a place that offers nature in its purest form.Everything that you have here is not at all cooked, rather its sun-baked.</span>
+Geo-location:<a href="https://goo.gl/maps/dZjP9i36a5o"> Google Map</a></li>
+
+
+ 	
+
 <li>
+
+
 <h2><span class="attrlink url author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze"><b>Jhivras</b></span></h2>
-<p>Another such outlet which is one of a kind, offering recipes made out of more than 100 man-years of dedicated efforts and expertise in the domain of Human Wellness. Jhivras is an ultimate destination for those who love clean and healthy food without sacrificing taste. You will be amazed by the quantity they can offer you with the best quality and fair price.A true example of Ayurveda blended in food.</p>
-<p>Geo-location:<a href="https://goo.gl/maps/cdds51xNdRT2"> Google Map</a></li>
+
+
+Another such outlet which is one of a kind, offering recipes made out of more than 100 man-years of dedicated efforts and expertise in the domain of Human Wellness. Jhivras is an ultimate destination for those who love clean and healthy food without sacrificing taste. You will be amazed by the quantity they can offer you with the best quality and fair price.A true example of Ayurveda blended in food.
+Geo-location:<a href="https://goo.gl/maps/cdds51xNdRT2"> Google Map</a></li>
+
+
+ 	
+
 <li>
+
+
 <h2><span class="attrlink url author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze"><b>Dhe Puttu</b></span></h2>
-<p><span class=" author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze"><span class=" author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze">If you are a fan of variety, this is the place that you should not give a slip. The name Puttu(basically steamed cylinders of ground rice layered with coconut) refers to a popular breakfast dish prominent in Kerala, but what makes this place class apart is the varieties of Puttu available here. Different versions of local puttu available across Kerala can be tasted here under one single roof.</span></span>Geo-location:<a href="https://goo.gl/maps/N65cVTp6ShL2"> Google Maps</a></p>
-<p>Well, am a foodie myself and I would carry on with the list. let&#8217;s keep it short but here are two exhaustive lists you can choose from depending on your taste &amp; mood.</li>
+
+
+<span class=" author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze"><span class=" author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze">If you are a fan of variety, this is the place that you should not give a slip. The name Puttu(basically steamed cylinders of ground rice layered with coconut) refers to a popular breakfast dish prominent in Kerala, but what makes this place class apart is the varieties of Puttu available here. Different versions of local puttu available across Kerala can be tasted here under one single roof.</span></span>Geo-location:<a href="https://goo.gl/maps/N65cVTp6ShL2"> Google Maps</a>
+Well, am a foodie myself and I would carry on with the list. let&#8217;s keep it short but here are two exhaustive lists you can choose from depending on your taste &amp; mood.</li>
+
+
 </ul>
+
+
+
+
 <h3 style="text-align: center;"><a href="https://www.zomato.com/kochi">Zomato Kochi Restaurants</a> | <a href="https://www.tripadvisor.in/Restaurants-g297633-Kochi_Cochin_Kerala.html">TripAdvisor Kochi Restaurants</a></h3>
-<p><span class=" author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze">Apart from all these food joints, you can also please your senses with popular Kerala snacks which are available easily at any bakery such as Chips(Banana, Jackfruit, Tapioca etc), Pazampuri(A ripe banana dipped in a batter and fried, a traditional evening snack with a huge fan following) etc. All you need to do is to step into a bakery and ask for. It&#8217;s also available in Le Meridian where most of you are staying.</span></p>
-<p><span class=" author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze">Well when it comes to souvenirs you can buy traditional handicrafts, spices from Broadway, also you can buy </span><span class="attrlink url author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze"><a class="attrlink" href="https://en.wikipedia.org/wiki/Kerala_sari" rel="noreferrer nofollow noopener" data-target-href="https://en.wikipedia.org/wiki/Kerala_sari">Pattu Sari or Kerala saree</a> </span><span class=" author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze">(a traditional silk saree for women exclusive to Kerala customs), <a href="https://en.wikipedia.org/wiki/Mundu">Kasavu mundu or Mundu</a> (For men) which is abundantly available at various malls and exclusive retail showrooms all across Kochi.Also, if you like glitters, Kochi is a place where you can see gold, yes! lots of gold being sold in a way you never before have come across or imagined, special dedicated shops like malls selling gold by private players. The prominent ones are <a href="https://goo.gl/maps/gVkPxU5VHwt">Joylukkas</a> ( At  Marine Drive), <a href="https://goo.gl/maps/qBG2wAdzg1T2">Bhima</a>, <a href="https://goo.gl/maps/5oBLzPKtED32">Alappatt</a> etc.</span></p>
-<p><span class=" author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze">You can get all souvenirs  easily at </span><span class="attrlink url author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze"><b><a class="attrlink" href="https://goo.gl/maps/hwbnWdGAZYL2" rel="noreferrer nofollow noopener" data-target-href="https://goo.gl/maps/hwbnWdGAZYL2">LULU Mall</a>, </b></span><span class=" author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze">(The largest and biggest mall in India and the most visited place in Kerala) though it could be a bit expensive, but if you are more of an explorer type you can do all the purchases you wish with a much more involved approach at <a href="https://goo.gl/maps/PNLpc5demGE2">Broadway</a> at much cheaper rates. However, you must visit this mall too.<br />
-</span><br />
-<span class=" author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze">In case if you have more time in your hand to stay back you can also visit  some of these sensual places</span></p>
+
+
+<span class=" author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze">Apart from all these food joints, you can also please your senses with popular Kerala snacks which are available easily at any bakery such as Chips(Banana, Jackfruit, Tapioca etc), Pazampuri(A ripe banana dipped in a batter and fried, a traditional evening snack with a huge fan following) etc. All you need to do is to step into a bakery and ask for. It&#8217;s also available in Le Meridian where most of you are staying.</span>
+<span class=" author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze">Well when it comes to souvenirs you can buy traditional handicrafts, spices from Broadway, also you can buy </span><span class="attrlink url author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze"><a class="attrlink" href="https://en.wikipedia.org/wiki/Kerala_sari" rel="noreferrer nofollow noopener" data-target-href="https://en.wikipedia.org/wiki/Kerala_sari">Pattu Sari or Kerala saree</a> </span><span class=" author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze">(a traditional silk saree for women exclusive to Kerala customs), <a href="https://en.wikipedia.org/wiki/Mundu">Kasavu mundu or Mundu</a> (For men) which is abundantly available at various malls and exclusive retail showrooms all across Kochi.Also, if you like glitters, Kochi is a place where you can see gold, yes! lots of gold being sold in a way you never before have come across or imagined, special dedicated shops like malls selling gold by private players. The prominent ones are <a href="https://goo.gl/maps/gVkPxU5VHwt">Joylukkas</a> ( At  Marine Drive), <a href="https://goo.gl/maps/qBG2wAdzg1T2">Bhima</a>, <a href="https://goo.gl/maps/5oBLzPKtED32">Alappatt</a> etc.</span>
+<span class=" author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze">You can get all souvenirs  easily at </span><span class="attrlink url author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze"><b><a class="attrlink" href="https://goo.gl/maps/hwbnWdGAZYL2" rel="noreferrer nofollow noopener" data-target-href="https://goo.gl/maps/hwbnWdGAZYL2">LULU Mall</a>, </b></span><span class=" author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze">(The largest and biggest mall in India and the most visited place in Kerala) though it could be a bit expensive, but if you are more of an explorer type you can do all the purchases you wish with a much more involved approach at <a href="https://goo.gl/maps/PNLpc5demGE2">Broadway</a> at much cheaper rates. However, you must visit this mall too.
+</span>
+<span class=" author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze">In case if you have more time in your hand to stay back you can also visit  some of these sensual places</span>
+
+
 <ul>
+ 	
+
 <li><span class="ace-all-bold-hthree"><span class="attrlink url author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze"><a class="attrlink" href="https://en.wikipedia.org/wiki/Munnar" rel="noreferrer nofollow noopener" data-target-href="https://en.wikipedia.org/wiki/Munnar"><b>Munnar</b></a></span></span></li>
+
+
+ 	
+
 <li><span class="ace-all-bold-hthree"><span class="attrlink url author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze"><a class="attrlink" href="https://en.wikipedia.org/wiki/Wayanad_district" rel="noreferrer nofollow noopener" data-target-href="https://en.wikipedia.org/wiki/Wayanad_district"><b>Wayanad</b></a></span></span></li>
+
+
+ 	
+
 <li><span class="ace-all-bold-hthree"><span class="attrlink url author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze"><b><a class="attrlink" href="https://en.wikipedia.org/wiki/Alappuzha" rel="noreferrer nofollow noopener" data-target-href="https://en.wikipedia.org/wiki/Alappuzha">Alappuzha</a></b></span></span></li>
+
+
 </ul>
-<p><span class=" author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze">We hope you have a great experience with all the information available here to know and feel Kochi a bit closer and real.</span></p>
-<p><span class=" author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze"><br />
-P.S List Compiled by <em>Imran Khan</em> &amp; <em>Jacob Mani </em></span></p>
-<p>The post <a rel="nofollow" href="/kochi-truly-queen-arabian-sea/">Kochi : Truly the Queen of the Arabian Sea</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+
+
+<span class=" author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze">We hope you have a great experience with all the information available here to know and feel Kochi a bit closer and real.</span>
+<span class=" author-d-iz88z86z86za0dz67zz78zz78zz74zz68zjz80zz71z9iz90za3u7z76zz66zz88z0z72zwz84zhz71zz84zz65zjsytm9sz68zz66zcz67zz72zz71zqz69ze">
+P.S List Compiled by <em>Imran Khan</em> &amp; <em>Jacob Mani </em></span>]]&gt;		</p>
 ]]></content:encoded>
-							<wfw:commentRss>/kochi-truly-queen-arabian-sea/feed/</wfw:commentRss>
-		<slash:comments>0</slash:comments>
-							</item>
+										</item>
 	</channel>
 </rss>

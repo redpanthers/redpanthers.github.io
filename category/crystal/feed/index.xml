@@ -1,4 +1,4 @@
- <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
 	xmlns:content="http://purl.org/rss/1.0/modules/content/"
 	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -8,10 +8,10 @@
 	>
 
 <channel>
-	<title>crystal &#8211; Red Panthers</title>
+	<title>crystal &#8211; beta.redpanthers.co</title>
 	<atom:link href="/category/crystal/feed/" rel="self" type="application/rss+xml" />
 	<link>/</link>
-	<description>Experts in Ruby on Rails Development</description>
+	<description>Red Panthers - Experts in Ruby on Rails, System Design and Vue.js</description>
 	<lastBuildDate>Wed, 06 Dec 2017 13:47:11 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
@@ -19,18 +19,9 @@
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
 	<generator>https://wordpress.org/?v=5.2.7</generator>
-
-<image>
-	<url>/wp-content/uploads/2017/12/rp-logo.png</url>
-	<title>crystal &#8211; Red Panthers</title>
-	<link>/</link>
-	<width>32</width>
-	<height>32</height>
-</image> 
 	<item>
 		<title>Crystal tuples: the immutable data structure of crystal</title>
 		<link>/tuples-immutable-data-crystal/</link>
-				<comments>/tuples-immutable-data-crystal/#comments</comments>
 				<pubDate>Wed, 06 Dec 2017 13:47:11 +0000</pubDate>
 		<dc:creator><![CDATA[coderhs]]></dc:creator>
 				<category><![CDATA[crystal]]></category>
@@ -42,46 +33,116 @@
 		<category><![CDATA[newbie]]></category>
 		<category><![CDATA[tuple]]></category>
 
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3985</guid>
-				<description><![CDATA[<p>Tuple is a data structure which has immutable elements and is of a fixed size. Its similar to an array, but unlike arrays in crystal and ruby which allows adding more values over time a tuple is of fixed and cannot change. (Disclaimer: This article is meant for Ruby developer and explaining what a tuple&#8230;</p>
-<p>The post <a rel="nofollow" href="/tuples-immutable-data-crystal/">Crystal tuples: the immutable data structure of crystal</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
-]]></description>
-								<content:encoded><![CDATA[<p><strong>Tuple</strong> is a data structure which has immutable elements and is of a fixed size. Its similar to an array, but unlike arrays in crystal and ruby which allows adding more values over time a tuple is of fixed and cannot change. (Disclaimer: This article is meant for Ruby developer and explaining what a tuple is to a ruby developer).</p>
-<p>In crystal we have two types of tuple</p>
-<p>1) Tuple <code>{1, "hello", :world}</code><br />
-2) NamedTuple <code>{x: 1, y:2, z: 5}</code></p>
-<p>They are immutable, which means if you try changing the value of an element in a tuple you will get an exception. Since crystal programs are compiled before execution you will get to see these errors while you compile the program itself.</p>
-<p>example:</p><pre class="crayon-plain-tag">x = {1, 2, 3}
+		<guid isPermaLink="false">https://redpanthers.co/?p=3985</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[<strong>Tuple</strong> is a data structure which has immutable elements and is of a fixed size. Its similar to an array, but unlike arrays in crystal and ruby which allows adding more values over time a tuple is of fixed and cannot change. (Disclaimer: This article is meant for Ruby developer and explaining what a tuple is to a ruby developer).
+In crystal we have two types of tuple
+1) Tuple <code>{1, "hello", :world}</code>
+2) NamedTuple <code>{x: 1, y:2, z: 5}</code>
+They are immutable, which means if you try changing the value of an element in a tuple you will get an exception. Since crystal programs are compiled before execution you will get to see these errors while you compile the program itself.
+example:
 
+
+<pre class="lang:ruby decode:true">x = {1, 2, 3}
 # to get the value use
-x[0]</pre><p>If you try assigning a value to it, like so</p><pre class="crayon-plain-tag">x[0] = 10</pre><p>You will get an exception like bellow.</p><pre class="crayon-plain-tag">undefined method '[]=' for Tuple(Int32, Int32)</pre><p>In crsytal, tuples are the preferred way to return a multiple results from a method.</p>
-<p><strong>For example</strong> inside the crystal core we have a method to get the minimum and maximum of an array.</p><pre class="crayon-plain-tag">(1..100).minmax</pre><p>the result would be <strong>{1, 100}</strong></p>
-<blockquote><p>Note: Since we just mentioned <strong>minmax</strong>, have a look at <strong>minmax_by</strong> method as well.<b> </b>It would let you apply a block of code over your range and then return the minimum and maximum based on the returned collection.</p><pre class="crayon-plain-tag">["1234", "12", "123"].minmax_by { |i| i.size }
-# =&gt; {"12", "1234"}</pre><p>
-</p></blockquote>
-<p>Advantage of using tuple to return results instead of something like hash, is that we can be sure that our result cannot be altered accidentally. (since the data structure is immutable) ?</p>
-<p><strong>You can build a tuple from an array by using the <code>.from</code> method</strong></p><pre class="crayon-plain-tag">Tuple(Int32, Int32).from([1, 2])</pre><p>As a developer, the place where we use tuple the most in crystal are with splats(symbol: *). Passing arguments to method using splat and double splat operator is something we use widely in ruby keep our code small and readable. So if you wish to do the same in crystal you need to make a tuple not a hash or array.</p>
-<p>If you use splat on an array directly like <code>test(*[1,2])</code> it would return an error</p><pre class="crayon-plain-tag">argument to splat must be a tuple, not Array(Int32)</pre><p>So to achieve the same effect as a splat with array in crystal we would need to do <code>test(*{1,2})</code></p>
-<h2>Named Tuple</h2>
-<p>Named Tuple are everything as above, but with a name for each element. Named Tuple looks like <code>{x: 1, y:2}</code> it gives more meaning to our tuple. Like the above you can access the values but not change them.</p><pre class="crayon-plain-tag">data = {x: 1, y: 2}
+x[0]
+</pre>
 
+
+If you try assigning a value to it, like so
+
+
+<pre class="lang:ruby decode:true">x[0] = 10</pre>
+
+
+You will get an exception like bellow.
+
+
+<pre class="lang:ruby decode:true">undefined method '[]=' for Tuple(Int32, Int32)</pre>
+
+
+In crsytal, tuples are the preferred way to return a multiple results from a method.
+<strong>For example</strong> inside the crystal core we have a method to get the minimum and maximum of an array.
+
+
+<pre class="lang:ruby decode:true ">(1..100).minmax</pre>
+
+
+the result would be <strong>{1, 100}</strong>
+
+
+<blockquote>Note: Since we just mentioned <strong>minmax</strong>, have a look at <strong>minmax_by</strong> method as well.<b> </b>It would let you apply a block of code over your range and then return the minimum and maximum based on the returned collection.
+
+
+<pre class="lang:ruby decode:true">["1234", "12", "123"].minmax_by { |i| i.size }
+# =&gt; {"12", "1234"}</pre>
+
+
+</blockquote>
+
+
+Advantage of using tuple to return results instead of something like hash, is that we can be sure that our result cannot be altered accidentally. (since the data structure is immutable) ?
+<strong>You can build a tuple from an array by using the <code>.from</code> method</strong>
+
+
+<pre class="lang:ruby decode:true">Tuple(Int32, Int32).from([1, 2])</pre>
+
+
+As a developer, the place where we use tuple the most in crystal are with splats(symbol: *). Passing arguments to method using splat and double splat operator is something we use widely in ruby keep our code small and readable. So if you wish to do the same in crystal you need to make a tuple not a hash or array.
+If you use splat on an array directly like <code>test(*[1,2])</code> it would return an error
+
+
+<pre class="lang:sh decode:true ">argument to splat must be a tuple, not Array(Int32)</pre>
+
+
+So to achieve the same effect as a splat with array in crystal we would need to do <code>test(*{1,2})</code>
+
+
+<h2>Named Tuple</h2>
+
+
+Named Tuple are everything as above, but with a name for each element. Named Tuple looks like <code>{x: 1, y:2}</code> it gives more meaning to our tuple. Like the above you can access the values but not change them.
+
+
+<pre class="lang:default decode:true">data = {x: 1, y: 2}
 # to get the value
 data[:x]
-
 # raises errors when we try to change it
-data[:x] = 1</pre><p>Double splats are meant for Named Tuple where in we can pass in the values for a particular argument using named tuple and double splat.</p><pre class="crayon-plain-tag">def print_date(year = nil, month = nil, day = nil)
+data[:x] = 1</pre>
+
+
+Double splats are meant for Named Tuple where in we can pass in the values for a particular argument using named tuple and double splat.
+
+
+<pre class="lang:default decode:true ">def print_date(year = nil, month = nil, day = nil)
   puts "#{year}/#{month}/#{day}"
 end
-
 birth_day = { year: 1990, month: 4, day: 3}
-
 print_date(**birth_day)
-
 card_expiry = { year: 2020, month: 1}
+print_date(**card_expiry)</pre>
 
-print_date(**card_expiry)</pre><p>You can build a NamedTuple from a hash.</p><pre class="crayon-plain-tag">NamedTuple(name: String, val: String).from({"name" =&gt; "number", "val" =&gt; "Harisankar P S"}</pre><p><strong>Note:</strong> Crystal has a nifty feature called Union types (a variable can store data of multiple data types), so if it happen to pass such a variable to a named tuple/tuple, it will still check for the exact type that we want if the data is not in that variable then an exception would be raised</p>
-<p>Example</p><pre class="crayon-plain-tag">k = 42.as(Int32 | String)
-NamedTuple(name: String, val: String).from({"name" =&gt; "number", "val" =&gt; K}</pre><p>Exception:</p><pre class="crayon-plain-tag">cast from Int32 to String failed, at /usr/local/Cellar/crystal-lang/0.23.1_1/src/class.cr:41:5:41 (TypeCastError)
+
+You can build a NamedTuple from a hash.
+
+
+<pre class="lang:ruby decode:true">NamedTuple(name: String, val: String).from({"name" =&gt; "number", "val" =&gt; "Harisankar P S"}</pre>
+
+
+<strong>Note:</strong> Crystal has a nifty feature called Union types (a variable can store data of multiple data types), so if it happen to pass such a variable to a named tuple/tuple, it will still check for the exact type that we want if the data is not in that variable then an exception would be raised
+Example
+
+
+<pre class="lang:default decode:true ">k = 42.as(Int32 | String)
+NamedTuple(name: String, val: String).from({"name" =&gt; "number", "val" =&gt; K}
+</pre>
+
+
+Exception:
+
+
+<pre class="lang:sh decode:true ">cast from Int32 to String failed, at /usr/local/Cellar/crystal-lang/0.23.1_1/src/class.cr:41:5:41 (TypeCastError)
 0x10e8f1085: *CallStack::unwind:Array(Pointer(Void)) at ??
 0x10e8f1021: *CallStack#initialize:Array(Pointer(Void)) at ??
 0x10e8f0ff8: *CallStack::new:CallStack at ??
@@ -91,32 +152,73 @@ NamedTuple(name: String, val: String).from({"name" =&gt; "number", "val" =&gt; K
 0x10e95f787: *NamedTuple(name: String, val: String)@NamedTuple(T)::from&lt;Hash(String, Int32 | String)&gt;:NamedTuple(name: String, val: String) at ??
 0x10e8ef8a6: *__icr_exec__:NamedTuple(name: String, val: String) at ??
 0x10e8db130: __crystal_main at ??
-0x10e8ee578: main at ??</pre><p></p>
+0x10e8ee578: main at ??</pre>
+
+
+
+
 <h2><strong>Extra Note:</strong></h2>
-<p><span style="font-size: 16px;">If you put a splat before method argument and pass in arguments, they will be converted to a tuple</span></p><pre class="crayon-plain-tag">def a_method(*data)
+
+
+<span style="font-size: 16px;">If you put a splat before method argument and pass in arguments, they will be converted to a tuple</span>
+
+
+<pre class="lang:ruby decode:true ">def a_method(*data)
   puts data
 end
-
 a_method(1,2,3)
-#=&gt; {1,2,3}</pre><p>If you put a double splat before method argument and pass in data as keyword argument it gets converted to a NamedTuple</p><pre class="crayon-plain-tag">def a_method(**data)
+#=&gt; {1,2,3}</pre>
+
+
+If you put a double splat before method argument and pass in data as keyword argument it gets converted to a NamedTuple
+
+
+<pre class="lang:default decode:true ">def a_method(**data)
   puts data
 end
-
 a_method(x: 1, y: 10)
-#=&gt; {x: 1, y: 10}</pre><p>&nbsp;</p>
+#=&gt; {x: 1, y: 10}</pre>
+
+
+&nbsp;
+
+
 <h3>To summarize:</h3>
+
+
+
+
 <ul>
+ 	
+
 <li>Tuples are immutable data structure</li>
+
+
+ 	
+
 <li>Regular tuple is like a frozen array</li>
+
+
+ 	
+
 <li>You can use splat only with a tuple</li>
+
+
+ 	
+
 <li>NamedTuple is like a frozen hash</li>
+
+
+ 	
+
 <li>Double splat can only be used with NamedTuple</li>
+
+
 </ul>
-<p>The post <a rel="nofollow" href="/tuples-immutable-data-crystal/">Crystal tuples: the immutable data structure of crystal</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+
+]]&gt;		</p>
 ]]></content:encoded>
-							<wfw:commentRss>/tuples-immutable-data-crystal/feed/</wfw:commentRss>
-		<slash:comments>1</slash:comments>
-							</item>
+										</item>
 		<item>
 		<title>Web Frameworks in Crystal</title>
 		<link>/web-frameworks-crystal/</link>
@@ -126,102 +228,262 @@ a_method(x: 1, y: 10)
 				<category><![CDATA[crystal]]></category>
 		<category><![CDATA[Crystal lang]]></category>
 
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3199</guid>
-				<description><![CDATA[<p>&#160; The creator of Ruby, Yukihiro Matsumoto said that the language was made to make programmers happy. Imagine a language as elegant as Ruby and blazingly fast as C. If you already love Ruby, maybe it is time to start considering Crystal lang, the younger sibling of Ruby. It is a compiled language which is&#8230;</p>
-<p>The post <a rel="nofollow" href="/web-frameworks-crystal/">Web Frameworks in Crystal</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
-]]></description>
-								<content:encoded><![CDATA[<p>&nbsp;</p>
-<p>The creator of Ruby, Yukihiro Matsumoto said that the language was made to make programmers happy. Imagine a language as elegant as Ruby and blazingly fast as C. If you already love Ruby, maybe it is time to start considering Crystal lang, the younger sibling of Ruby. It is a compiled language which is syntactically very similar to Ruby and designed for high throughput and performance.</p>
-<h4>Features</h4>
-<ul>
-<li>Native WebSocket support</li>
-<li>Compiles to efficient native code</li>
-<li>Statically typed =&gt; if any errors it will let you know at compile time.</li>
-<li>Less memory consumption</li>
-</ul>
-<h2>Web frameworks in Crystal</h2>
-<p>Applications developed using framework are easy to maintain and upgrade at a lower cost. This article lets you get familiar with some of the most popular frameworks of Crystal.</p>
-<p>Install Crystal to get started.</p>
-<p><a href="https://crystal-lang.org/docs/installation/index.html">https://crystal-lang.org/docs/installation/index.html</a></p>
-<p>Create our Crystal app</p><pre class="crayon-plain-tag">crystal init app sample-app</pre><p></p>
-<h3><strong>Kemal</strong></h3>
-<p><a href="https://github.com/kemalcr/kemal">https://github.com/kemalcr/kemal</a></p>
-<p>To know the true potential of Crystal, let&#8217;s familiarise with Kemal, most popular Crystal framework. It&#8217;s a Sinatra inspired framework.</p>
-<h4>Install Kemal</h4>
-<p>In our app,</p>
-<p>Open in an editor and add Kemal as a dependency in the shard.yml file.</p>
-<p>To get dependencies, run</p><pre class="crayon-plain-tag">shards install</pre><p>This will install Kemal.</p>
-<p>This is similar to adding gems in gem file and bundle install in Rails.</p>
-<p>In the file sample-app.cr created in the src directory, substitute the following</p><pre class="crayon-plain-tag">require "kemal"
+		<guid isPermaLink="false">https://redpanthers.co/?p=3199</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[&nbsp;
+The creator of Ruby, Yukihiro Matsumoto said that the language was made to make programmers happy. Imagine a language as elegant as Ruby and blazingly fast as C. If you already love Ruby, maybe it is time to start considering Crystal lang, the younger sibling of Ruby. It is a compiled language which is syntactically very similar to Ruby and designed for high throughput and performance.
 
+
+<h4>Features</h4>
+
+
+
+
+<ul>
+ 	
+
+<li>Native WebSocket support</li>
+
+
+ 	
+
+<li>Compiles to efficient native code</li>
+
+
+ 	
+
+<li>Statically typed =&gt; if any errors it will let you know at compile time.</li>
+
+
+ 	
+
+<li>Less memory consumption</li>
+
+
+</ul>
+
+
+
+
+<h2>Web frameworks in Crystal</h2>
+
+
+Applications developed using framework are easy to maintain and upgrade at a lower cost. This article lets you get familiar with some of the most popular frameworks of Crystal.
+Install Crystal to get started.
+<a href="https://crystal-lang.org/docs/installation/index.html">https://crystal-lang.org/docs/installation/index.html</a>
+Create our Crystal app
+
+
+<pre class="lang:default decode:true">crystal init app sample-app
+</pre>
+
+
+
+
+<h3><strong>Kemal</strong></h3>
+
+
+<a href="https://github.com/kemalcr/kemal">https://github.com/kemalcr/kemal</a>
+To know the true potential of Crystal, let&#8217;s familiarise with Kemal, most popular Crystal framework. It&#8217;s a Sinatra inspired framework.
+
+
+<h4>Install Kemal</h4>
+
+
+In our app,
+Open in an editor and add Kemal as a dependency in the shard.yml file.
+To get dependencies, run
+
+
+<pre class="lang:default decode:true">shards install
+</pre>
+
+
+This will install Kemal.
+This is similar to adding gems in gem file and bundle install in Rails.
+In the file sample-app.cr created in the src directory, substitute the following
+
+
+<pre class="lang:default decode:true">require "kemal"
 # Matches GET ""
 get "/" do
 "Hello World!"
 end
+Kemal.run</pre>
 
-Kemal.run</pre><p>In the terminal run</p><pre class="crayon-plain-tag">crystal run src/sample-app.cr</pre><p>We can see logs in the terminal as Kemal is ready in localhost.</p>
-<p>Using WebSockets is quite easy with Kemal. (Will be explaining it in our another blog)</p>
+
+In the terminal run
+
+
+<pre class="lang:default decode:true">crystal run src/sample-app.cr
+</pre>
+
+
+We can see logs in the terminal as Kemal is ready in localhost.
+Using WebSockets is quite easy with Kemal. (Will be explaining it in our another blog)
+
+
 <h3>Amethyst</h3>
-<p><a href="https://github.com/crystal-community/amethyst">https://github.com/crystal-community/amethyst</a></p>
-<p>Like Sinatra inspired framework Kemal for crystal, Amethyst is Rails-inspired framework for crystal which is extremely fast and flexible in application development.</p>
-<p>Installation is similar as Kemal; add as a dependency in the shard.yml file. To start using Amethyst, require it in project code.</p>
-<p>For fastest and lightweight framework in crystal we could choose Kemal or if interested in something more like Rails rather than speed Amethyst can be a better option. For controllers and to describe routes, Amethyst has a Rails-like approach. After Kemal, Amethyst is the popular framework of Crystal.</p>
+
+
+<a href="https://github.com/crystal-community/amethyst">https://github.com/crystal-community/amethyst</a>
+Like Sinatra inspired framework Kemal for crystal, Amethyst is Rails-inspired framework for crystal which is extremely fast and flexible in application development.
+Installation is similar as Kemal; add as a dependency in the shard.yml file. To start using Amethyst, require it in project code.
+For fastest and lightweight framework in crystal we could choose Kemal or if interested in something more like Rails rather than speed Amethyst can be a better option. For controllers and to describe routes, Amethyst has a Rails-like approach. After Kemal, Amethyst is the popular framework of Crystal.
+
+
 <h3>Amber</h3>
-<p><a href="https://github.com/Amber-Crystal/amber">https://github.com/Amber-Crystal/amber</a></p>
-<p>Amber framework was developed inspired by Kemal, Rails, Django and other popular frameworks. Amber follows the concepts and conventions of these already successful frameworks. It implements MVC pattern, implementing ORM (Object-Relational-Model) in Crystal.</p>
-<p>To use Amber, after installing crystal, download and install amber</p>
-<p>In the terminal</p><pre class="crayon-plain-tag">git clone https://github.com/amber-crystal/amber.git</pre><p></p><pre class="crayon-plain-tag">cd amber</pre><p></p><pre class="crayon-plain-tag">shards install</pre><p></p><pre class="crayon-plain-tag">make</pre><p>To create new application in Amber refer to official doc <a href="https://amber-crystal.gitbooks.io/amber/content/getting-started/Installation/create-new-app.html">https://amber-crystal.gitbooks.io/amber/content/getting-started/Installation/create-new-app.html</a></p>
-<p>To provide an ORM Model in Crystal add the library Granite:: ORM to your project dependencies in the shard.yml file.</p><pre class="crayon-plain-tag">dependencies:
+
+
+<a href="https://github.com/Amber-Crystal/amber">https://github.com/Amber-Crystal/amber</a>
+Amber framework was developed inspired by Kemal, Rails, Django and other popular frameworks. Amber follows the concepts and conventions of these already successful frameworks. It implements MVC pattern, implementing ORM (Object-Relational-Model) in Crystal.
+To use Amber, after installing crystal, download and install amber
+In the terminal
+
+
+<pre class="lang:default decode:true">git clone https://github.com/amber-crystal/amber.git
+</pre>
+
+
+
+
+<pre class="lang:default decode:true">cd amber
+</pre>
+
+
+
+
+<pre class="lang:default decode:true">shards install
+</pre>
+
+
+
+
+<pre class="lang:default decode:true">make
+</pre>
+
+
+To create new application in Amber refer to official doc <a href="https://amber-crystal.gitbooks.io/amber/content/getting-started/Installation/create-new-app.html">https://amber-crystal.gitbooks.io/amber/content/getting-started/Installation/create-new-app.html</a>
+To provide an ORM Model in Crystal add the library Granite:: ORM to your project dependencies in the shard.yml file.
+
+
+<pre class="lang:default decode:true">dependencies:
   granite_orm:
-    github: Amber-Crystal/granite-orm</pre><p>Amber provides WebSocket support for real-time communication which is very simple, and only requires a Socket, a Channel, and client-side interaction using javascript. Amber is inspired by Kemal, which has inbuilt WebSocket support.</p>
+    github: Amber-Crystal/granite-orm</pre>
+
+
+Amber provides WebSocket support for real-time communication which is very simple, and only requires a Socket, a Channel, and client-side interaction using javascript. Amber is inspired by Kemal, which has inbuilt WebSocket support.
+
+
 <h3>Kemalyst</h3>
-<p><a href="https://github.com/kemalyst/kemalyst">https://github.com/kemalyst/kemalyst</a></p>
-<p>Kemalyst is a Crystal lang framework based on Kemal. Kemalyst is also a Rails similar framework like Amber. Following the MVC pattern, Kemalyst supports MySQL, PG, and SQLite.</p>
-<p>Views are handled via <a href="https://github.com/jeromegn/kilt">kilt</a>, generic template interface for Crystal.</p>
-<p>Kemalyst also provides support for WebSockets, jobs to perform background tasks using sidekiq.cr, the simple and efficient job processing for Crystal.</p>
+
+
+<a href="https://github.com/kemalyst/kemalyst">https://github.com/kemalyst/kemalyst</a>
+Kemalyst is a Crystal lang framework based on Kemal. Kemalyst is also a Rails similar framework like Amber. Following the MVC pattern, Kemalyst supports MySQL, PG, and SQLite.
+Views are handled via <a href="https://github.com/jeromegn/kilt">kilt</a>, generic template interface for Crystal.
+Kemalyst also provides support for WebSockets, jobs to perform background tasks using sidekiq.cr, the simple and efficient job processing for Crystal.
+
+
 <h3>Raze</h3>
-<p>Refer<a href="https://github.com/samueleaton/raze"> https://github.com/samueleaton/raze</a> for installation which is as simple as Kemal.</p>
-<p>Raze framework is a modular, light web framework for Crystal. Raze can handle approximately 120,000 requests per second, which is way more than Kemal(90,000 requests per second).</p>
-<p>Raze implements a middleware-centric design for greater modularity. Putting more logic inside reusable middlewares considerably reduces the need for route blocks.</p>
-<p>When writing routes in Raze there are two things to be noted:</p>
+
+
+Refer<a href="https://github.com/samueleaton/raze"> https://github.com/samueleaton/raze</a> for installation which is as simple as Kemal.
+Raze framework is a modular, light web framework for Crystal. Raze can handle approximately 120,000 requests per second, which is way more than Kemal(90,000 requests per second).
+Raze implements a middleware-centric design for greater modularity. Putting more logic inside reusable middlewares considerably reduces the need for route blocks.
+When writing routes in Raze there are two things to be noted:
+
+
 <ul>
+ 	
+
 <li>Two matching routes that both having a block is not possible</li>
+
+
 </ul>
-<p>For example, this will fail</p><pre class="crayon-plain-tag">get "/hello*" do |ctx|
+
+
+For example, this will fail
+
+
+<pre class="lang:default decode:true">get "/hello*" do |ctx|
   do_something
 end
-
 get "/hello/raze" do |ctx|
   "hello, raze"
-end</pre><p>This is where middleware is used if you want to do something before the second route.</p>
-<p>If you wanted to add a custom DoSomething middleware to your get &#8220;/hello*&#8221; route, it&#8217;s as simple as the following:</p><pre class="crayon-plain-tag">get "/hello*", DoSomething.new</pre><p>Now, this will work.</p><pre class="crayon-plain-tag">get "/hello*", DoSomething.new
+end</pre>
 
+
+This is where middleware is used if you want to do something before the second route.
+If you wanted to add a custom DoSomething middleware to your get &#8220;/hello*&#8221; route, it&#8217;s as simple as the following:
+
+
+<pre class="lang:default decode:true">get "/hello*", DoSomething.new</pre>
+
+
+Now, this will work.
+
+
+<pre class="lang:default decode:true">get "/hello*", DoSomething.new
 get "/hello/raze" do |ctx|
   "hello, raze"
-end</pre><p></p>
+end</pre>
+
+
+
+
 <ul>
+ 	
+
 <li>Route ambiguity order</li>
+
+
 </ul>
-<p>Raze will make sure that any matching routes are in order from most to least ambiguous. The less specific path must be defined before the more specific path as shown in the above example or else Raze will raise route exceptions.</p>
+
+
+Raze will make sure that any matching routes are in order from most to least ambiguous. The less specific path must be defined before the more specific path as shown in the above example or else Raze will raise route exceptions.
+
+
 <h2>Limitations</h2>
-<p>Crystal language is relatively new and therefore the community and ecosystem need more time to mature.</p>
-<p>Crystal lang is currently implemented as a single-threaded process. This means that you <em>probably</em> can&#8217;t max out all CPUs of your machine with just a single process. If we need scaling in the future for a real product, then Erlang or Elixir would be a much better choice than Crystal. Compared to Erlang, Golang, and Clojure, Crystal is less concurrent.</p>
-<p>Also, Crystal not supporting Windows yet is another limitation<em>.</em> But in Windows 10 you can (experimentally) try Crystal using <a href="https://msdn.microsoft.com/en-us/commandline/wsl/about" rel="noopener">Bash on Ubuntu on Windows</a>, an experimental Bash environment running on Windows.</p>
+
+
+Crystal language is relatively new and therefore the community and ecosystem need more time to mature.
+Crystal lang is currently implemented as a single-threaded process. This means that you <em>probably</em> can&#8217;t max out all CPUs of your machine with just a single process. If we need scaling in the future for a real product, then Erlang or Elixir would be a much better choice than Crystal. Compared to Erlang, Golang, and Clojure, Crystal is less concurrent.
+Also, Crystal not supporting Windows yet is another limitation<em>.</em> But in Windows 10 you can (experimentally) try Crystal using <a href="https://msdn.microsoft.com/en-us/commandline/wsl/about" rel="noopener">Bash on Ubuntu on Windows</a>, an experimental Bash environment running on Windows.
+
+
 <h2>Conclusion</h2>
-<p>All these frameworks are growing rapidly and expecting further contributions. Yet there are many other frameworks such as <a href="https://github.com/jasonl99/lattice-core">Lattice-core</a>, <a href="https://github.com/luckyframework">luckyframework </a>which is in the early stages of development. Lattice-core is built on Kemal framework. All of them focusing on speed, modularity, and simplicity.</p>
-<p>None of Crystal&#8217;s frameworks are mature enough to be a full-blown web framework yet. But still, Kemal is my favorite over all other frameworks. There are more companies already using Crystal / Kemal in production now.</p>
-<p><a href="https://github.com/crystal-lang/crystal/wiki/Used-in-production">https://github.com/crystal-lang/crystal/wiki/Used-in-production</a></p>
-<p>Kemal is been extremely fast and responsive by using just 1/50 of the resource.</p>
-<p>Kemal&#8217;s superb performance for Websockets and easily extensible middlewares are appreciable.</p>
-<p>Also, deploying a Kemal app on Heroku is as simple as follows:</p>
-<p><a href="https://blog.redpanthers.co/deploying-crystal-app-production-using-heroku/">https://blog.redpanthers.co/deploying-crystal-app-production-using-heroku</a></p>
+
+
+All these frameworks are growing rapidly and expecting further contributions. Yet there are many other frameworks such as <a href="https://github.com/jasonl99/lattice-core">Lattice-core</a>, <a href="https://github.com/luckyframework">luckyframework </a>which is in the early stages of development. Lattice-core is built on Kemal framework. All of them focusing on speed, modularity, and simplicity.
+None of Crystal&#8217;s frameworks are mature enough to be a full-blown web framework yet. But still, Kemal is my favorite over all other frameworks. There are more companies already using Crystal / Kemal in production now.
+<a href="https://github.com/crystal-lang/crystal/wiki/Used-in-production">https://github.com/crystal-lang/crystal/wiki/Used-in-production</a>
+Kemal is been extremely fast and responsive by using just 1/50 of the resource.
+Kemal&#8217;s superb performance for Websockets and easily extensible middlewares are appreciable.
+Also, deploying a Kemal app on Heroku is as simple as follows:
+<a href="https://blog.redpanthers.co/deploying-crystal-app-production-using-heroku/">https://blog.redpanthers.co/deploying-crystal-app-production-using-heroku</a>
+
+
 <h2></h2>
+
+
+
+
 <h2>Reference</h2>
+
+
+
+
 <ul>
+ 	
+
 <li><a href="https://github.com/veelenga/awesome-crystal#web-frameworks">https://github.com/veelenga/awesome-crystal#web-frameworks</a></li>
+
+
 </ul>
-<p>&nbsp;</p>
-<p>The post <a rel="nofollow" href="/web-frameworks-crystal/">Web Frameworks in Crystal</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+
+
+&nbsp;]]&gt;		</p>
 ]]></content:encoded>
 							<wfw:commentRss>/web-frameworks-crystal/feed/</wfw:commentRss>
 		<slash:comments>2</slash:comments>
@@ -234,63 +496,127 @@ end</pre><p></p>
 		<dc:creator><![CDATA[tony]]></dc:creator>
 				<category><![CDATA[crystal]]></category>
 
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3461</guid>
-				<description><![CDATA[<p>Many Ruby developers use the awesome whenever gem for scheduling tasks in their projects, so do we and with &#8216;whenever&#8217;  scheduling tasks become so effortless that we absolutely loved it. Recently we have been deploying Crytal apps to production and Kemal is our framework of choice. During the process, we felt the urge to have something similar&#8230;</p>
-<p>The post <a rel="nofollow" href="/painless-cron-jobs-crystal-using-schedule/">Painless Cron jobs in Crystal using Schedule</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
-]]></description>
-								<content:encoded><![CDATA[<p>Many Ruby developers use the awesome <a href="https://github.com/javan/whenever">whenever</a> gem for scheduling tasks in their projects, so do we and with &#8216;whenever&#8217;  scheduling tasks become so effortless that we absolutely loved it. Recently we have been deploying <a href="https://crystal-lang.org/">Crytal</a> apps to production and <a href="http://kemalcr.com/">Kemal</a> is our framework of choice. During the process, we felt the urge to have something similar to <code>whenever</code> in Crystal for cron jobs and that&#8217;s when we discovered <a href="https://github.com/hugoabonizio/schedule.cr">Schedule</a> &#8211; a Crystal shard that provides a clear DSL to write periodic or scheduled tasks and there was no turning back.</p>
-<h3>Getting started</h3>
-<p>Add Schedule to your <code>shard.yml</code> file</p><pre class="crayon-plain-tag">dependencies:
-  schedule:
-    github: hugoabonizio/schedule.cr</pre><p>you are all set to schedule your tasks, all you gotta do is require the schedule module as <code>require "schedule"</code></p>
-<h3>Examples</h3>
-<p>Schedul&#8217;s API defines 2 important methods, <code>.every</code> and <code>.after</code> for periodic and scheduled execution of tasks respectively.</p>
-<h5>Periodic execution</h5>
-<p>For running a task periodically we have to pass in a valid interval as well as a block to the <code>.every</code> method. For example,</p><pre class="crayon-plain-tag">require "schedule"
+		<guid isPermaLink="false">https://redpanthers.co/?p=3461</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[Many Ruby developers use the awesome <a href="https://github.com/javan/whenever">whenever</a> gem for scheduling tasks in their projects, so do we and with &#8216;whenever&#8217;  scheduling tasks become so effortless that we absolutely loved it. Recently we have been deploying <a href="https://crystal-lang.org/">Crytal</a> apps to production and <a href="http://kemalcr.com/">Kemal</a> is our framework of choice. During the process, we felt the urge to have something similar to <code>whenever</code> in Crystal for cron jobs and that&#8217;s when we discovered <a href="https://github.com/hugoabonizio/schedule.cr">Schedule</a> &#8211; a Crystal shard that provides a clear DSL to write periodic or scheduled tasks and there was no turning back.
 
+
+<h3>Getting started</h3>
+
+
+Add Schedule to your `shard.yml` file
+
+
+<pre class="lang:yaml decode:true">dependencies:
+  schedule:
+    github: hugoabonizio/schedule.cr</pre>
+
+
+you are all set to schedule your tasks, all you gotta do is require the schedule module as <code>require "schedule"</code>
+
+
+<h3>Examples</h3>
+
+
+Schedul&#8217;s API defines 2 important methods, <code>.every</code> and <code>.after</code> for periodic and scheduled execution of tasks respectively.
+
+
+<h5>Periodic execution</h5>
+
+
+For running a task periodically we have to pass in a valid interval as well as a block to the <code>.every</code> method. For example,
+
+
+<pre class="lang:ruby decode:true">require "schedule"
 Schedule.every(3.seconds) do
   puts "I run every 3 seconds"
-end</pre><p>will print the message on every 3 seconds.</p>
-<p>Similarly</p><pre class="crayon-plain-tag">require "schedule"
+end</pre>
 
+
+will print the message on every 3 seconds.
+Similarly
+
+
+<pre class="lang:ruby decode:true ">require "schedule"
 Schedule.every(1.hour) do
   ClassName.hourly_job
-end</pre><p>will call the class method <code>hourly_job</code> every 1 hour</p>
-<h5>Scheduled execution</h5>
-<p>For scheduling tasks to run sometime in the future we can make use of the <code>after</code> method.</p><pre class="crayon-plain-tag">require "schedule"
+end
+</pre>
 
+
+will call the class method <code>hourly_job</code> every 1 hour
+
+
+<h5>Scheduled execution</h5>
+
+
+For scheduling tasks to run sometime in the future we can make use of the <code>after</code> method.
+
+
+<pre class="lang:ruby decode:true ">require "schedule"
 # Execute a task after X interval
 Schedule.after(10.seconds) do
   puts "I am going to run after 10 seconds"
-end</pre><p></p>
-<h5>Stop and Retry jobs</h5>
-<p>Call <code>Schedule.retry</code> to retry a task and <code>Schedule.stop</code> to stop the executing a task</p>
-<div class="highlight highlight-source-crystal">
-<pre class="crayon-plain-tag">MAX_COUNT = 3
+end</pre>
 
+
+
+
+<h5>Stop and Retry jobs</h5>
+
+
+Call <code>Schedule.retry</code> to retry a task and <code>Schedule.stop</code> to stop the executing a task
+
+
+<div class="highlight highlight-source-crystal">
+
+
+<pre class="lang:ruby decode:true">MAX_COUNT = 3
 Schedule.every(10.seconds) do
   count = get_count
   Schedule.retry if count == 0
   Schedule.stop if count &gt;= MAX_COUNT
-end</pre>
-</div>
-<h5> Exception handlers</h5>
-<p>We can use <code>Schedule.exception_handler</code> to set an exception handler in our tasks</p><pre class="crayon-plain-tag">require "schedule"
+end
+</pre>
 
+
+</div>
+
+
+
+
+<h5> Exception handlers</h5>
+
+
+We can use <code>Schedule.exception_handler</code> to set an exception handler in our tasks
+
+
+<pre class="lang:ruby decode:true">require "schedule"
 Schedule.exception_handler do |ex|
   puts "Exception recued! #{ex.message}"
 end
-
 Schedule.every(100.milliseconds) do
   raise "I'm an Exception"
-end</pre><p>it is also possible to pass a proc to <code>Schedule.exception_handler</code> directly to set the exception handler</p>
+end</pre>
+
+
+it is also possible to pass a proc to `Schedule.exception_handler` directly to set the exception handler
+
+
 <div class="highlight highlight-source-crystal">
-<pre class="crayon-plain-tag">handler = -&gt;(ex : Exception) { puts "Exception recued! #{ex.message}" }
-Schedule.exception_handler = handler</pre>
+
+
+<pre class="lang:ruby decode:true">handler = -&gt;(ex : Exception) { puts "Exception recued! #{ex.message}" }
+Schedule.exception_handler = handler
+</pre>
+
+
 </div>
-<p>schedule.cr is still in the early stages of development and many options that we are familiar with using whenever &#8211; like running tasks on a specific day of the week are <a href="https://github.com/hugoabonizio/schedule.cr/issues/3">not available yet</a> but are coming soon.</p>
-<p><em> Happy Hacking </em>&lt;3</p>
-<p>The post <a rel="nofollow" href="/painless-cron-jobs-crystal-using-schedule/">Painless Cron jobs in Crystal using Schedule</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+
+
+schedule.cr is still in the early stages of development and many options that we are familiar with using whenever &#8211; like running tasks on a specific day of the week are <a href="https://github.com/hugoabonizio/schedule.cr/issues/3">not available yet</a> but are coming soon.
+<em> Happy Hacking </em>&lt;3]]&gt;		</p>
 ]]></content:encoded>
 							<wfw:commentRss>/painless-cron-jobs-crystal-using-schedule/feed/</wfw:commentRss>
 		<slash:comments>2</slash:comments>
@@ -303,14 +629,30 @@ Schedule.exception_handler = handler</pre>
 		<dc:creator><![CDATA[tony]]></dc:creator>
 				<category><![CDATA[crystal]]></category>
 
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3466</guid>
-				<description><![CDATA[<p>This article assumes that you have Crystal and Heroku CLI installed. Create a sample application Create a new application using [crayon-5f53f00565f17202119855/] You should see the following on your terminal [crayon-5f53f00565f1d379669109/] now cd to the root of the app, $ cd sample-app  and add Kemal to shrad.yml file [crayon-5f53f00565f20391714918/] and run $ crystal deps for installing dependencies. Add&#8230;</p>
-<p>The post <a rel="nofollow" href="/deploying-crystal-app-production-using-heroku/">Deploying Crystal app to production using Heroku</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
-]]></description>
-								<content:encoded><![CDATA[<blockquote><p>This article assumes that you have <a href="https://crystal-lang.org/">Crystal</a> and <a href="https://devcenter.heroku.com/articles/heroku-cli">Heroku CLI</a> installed.</p></blockquote>
+		<guid isPermaLink="false">https://redpanthers.co/?p=3466</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[
+
+<blockquote>This article assumes that you have <a href="https://crystal-lang.org/">Crystal</a> and <a href="https://devcenter.heroku.com/articles/heroku-cli">Heroku CLI</a> installed.</blockquote>
+
+
+
+
 <h3>Create a sample application</h3>
-<p>Create a new application using</p><pre class="crayon-plain-tag">$ crystal init app sample-app</pre><p><span class="s1">You should see the following on your terminal<br />
-</span></p><pre class="crayon-plain-tag">$ crystal init app sample-app
+
+
+Create a new application using
+
+
+<pre class="wrap:true lang:ruby decode:true ">$ crystal init app sample-app</pre>
+
+
+<span class="s1">You should see the following on your terminal
+</span>
+
+
+<pre class="lang:sh decode:true">$ crystal init app sample-app
       create  sample-app/.gitignore
       create  sample-app/.editorconfig
       create  sample-app/LICENSE
@@ -321,44 +663,71 @@ Schedule.exception_handler = handler</pre>
       create  sample-app/src/sample-app/version.cr
       create  sample-app/spec/spec_helper.cr
       create  sample-app/spec/sample-app_spec.cr
-Initialized empty Git repository in /Users/yourname/Desktop/sample-app/.git/</pre><p>now cd to the root of the app, <code>$ cd sample-app</code>  and add <a href="https://github.com/kemalcr/kemal">Kemal</a> to <code>shrad.yml</code> file</p><pre class="crayon-plain-tag">name: sample-app
-version: 0.1.0
+Initialized empty Git repository in /Users/yourname/Desktop/sample-app/.git/</pre>
 
+
+now cd to the root of the app, <code>$ cd sample-app</code>  and add <a href="https://github.com/kemalcr/kemal">Kemal</a> to <code>shrad.yml</code> file
+
+
+<pre class="lang:yaml decode:true">name: sample-app
+version: 0.1.0
 authors:
   - John Doe &lt;email@example.co&gt;
-
 dependencies:
   kemal:
     github: kemalcr/kemal
     branch: master
-
 targets:
   sample-app:
     main: src/sample-app.cr
-
 crystal: 0.23.1
+license: MIT</pre>
 
-license: MIT</pre><p>and run <code>$ crystal deps</code> <span class="s1">for installing dependencies.</span></p>
+
+and run <code>$ crystal deps</code> <span class="s1">for installing dependencies.</span>
+
+
 <h3>Add a &#8220;/&#8221; route</h3>
-<p>Open <code>sample-app.cr</code> file and add replace the contents with the following code</p><pre class="crayon-plain-tag">require "kemal"
 
+
+Open <code>sample-app.cr</code> file and add replace the contents with the following code
+
+
+<pre class="lang:ruby decode:true ">require "kemal"
 get "/" do
 "Hello World"
 end
+Kemal.run</pre>
 
-Kemal.run</pre><p>now run <code>$ crystal src/kemal_sample.cr</code>  and go to <code>http://localhost:3000/</code>on your browser. You should see ur app running and the message &#8216;Hello World&#8217;.</p>
+
+now run <code>$ crystal src/kemal_sample.cr</code>  and go to <code>http://localhost:3000/</code>on your browser. You should see ur app running and the message &#8216;Hello World&#8217;.
+
+
 <h3>Deploy to Heroku</h3>
-<p>So far so good <img src="https://s.w.org/images/core/emoji/12.0.0-1/72x72/1f642.png" alt="🙂" class="wp-smiley" style="height: 1em; max-height: 1em;" /> Now let us deploy our app to Heroku. Run</p>
-<p><pre class="crayon-plain-tag">$ heroku create your-custom-name --buildpack https://github.com/crystal-lang/heroku-buildpack-crystal.git</pre></p>
-<p>You should see something like the following on your terminal.</p><pre class="crayon-plain-tag">$ heroku create your-custom-name --buildpack https://github.com/crystal-lang/heroku-buildpack-crystal.git
+
+
+So far so good <img src="https://s.w.org/images/core/emoji/12.0.0-1/72x72/1f642.png" alt="🙂" class="wp-smiley" style="height: 1em; max-height: 1em;" /> Now let us deploy our app to Heroku. Run
+<span class="lang:ruby decode:true crayon-inline ">$ heroku create your-custom-name &#8211;buildpack https://github.com/crystal-lang/heroku-buildpack-crystal.git</span>
+You should see something like the following on your terminal.
+
+
+<pre class="lang:ruby decode:true ">$ heroku create your-custom-name --buildpack https://github.com/crystal-lang/heroku-buildpack-crystal.git
 Creating ⬢ your-custom-name... done
 Setting buildpack to https://github.com/crystal-lang/heroku-buildpack-crystal.git... done
-https://your-custom-name.herokuapp.com/ | https://git.heroku.com/your-custom-name.git</pre><p>You are all set. Commit and push to heroku</p><pre class="crayon-plain-tag">$ git status
+https://your-custom-name.herokuapp.com/ | https://git.heroku.com/your-custom-name.git</pre>
+
+
+You are all set. Commit and push to heroku
+
+
+<pre class="lang:default decode:true ">$ git status
 $ git add -A
 $ git commit -m "commit message"
-$ git push heroku master</pre><p>To see your app running go to <code>https://your-custom-name.herokuapp.com/</code> . Congratulations you just deployed your crystal app to production</p>
-<p><em>Happy Coding</em></p>
-<p>The post <a rel="nofollow" href="/deploying-crystal-app-production-using-heroku/">Deploying Crystal app to production using Heroku</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+$ git push heroku master</pre>
+
+
+To see your app running go to <code>https://your-custom-name.herokuapp.com/</code> . Congratulations you just deployed your crystal app to production
+<em>Happy Coding</em>]]&gt;		</p>
 ]]></content:encoded>
 							<wfw:commentRss>/deploying-crystal-app-production-using-heroku/feed/</wfw:commentRss>
 		<slash:comments>1</slash:comments>

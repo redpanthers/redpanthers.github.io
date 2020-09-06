@@ -1,0 +1,1196 @@
+ <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>nimmy &#8211; Red Panthers</title>
+	<atom:link href="/author/nimmy/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description>Experts in Ruby on Rails Development</description>
+	<lastBuildDate>Wed, 14 Feb 2018 13:01:15 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.7</generator>
+
+<image>
+	<url>/wp-content/uploads/2017/12/rp-logo.png</url>
+	<title>nimmy &#8211; Red Panthers</title>
+	<link>/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>What&#8217;s new in Ruby 2.5</title>
+		<link>/whats-new-ruby-2-5/</link>
+				<comments>/whats-new-ruby-2-5/#respond</comments>
+				<pubDate>Mon, 25 Dec 2017 08:08:56 +0000</pubDate>
+		<dc:creator><![CDATA[nimmy]]></dc:creator>
+				<category><![CDATA[Ruby]]></category>
+		<category><![CDATA[Ruby 2.5]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=4219</guid>
+				<description><![CDATA[<p>The Ruby language has increasingly stabilized over the years. The upcoming release of Ruby 2.5 is not going to let us down too. It introduces lots of new features and improvements over the previous version. The first preview was released on 10th October 2017 and the final build will be released on this 25th. This&#8230;</p>
+<p>The post <a rel="nofollow" href="/whats-new-ruby-2-5/">What&#8217;s new in Ruby 2.5</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p>The Ruby language has increasingly stabilized over the years. The upcoming release of Ruby 2.5 is not going to let us down too. It introduces lots of new features and improvements over the previous version. The first preview was released on 10th October 2017 and the final build will be released on this 25th. This blog dissects into this latest and exciting release and goes through some of the most important changes, we will be writing another article on performance improvement once the 2.5 if officially released.</p>
+<ul>
+<li>
+<h2>Added <code>Hash#transform_keys</code> method</h2>
+</li>
+</ul>
+<p>Ruby 2.4 added the <code>transform_values</code> method, 2.5 completes it by adding <code>transform_keys</code> thus make it a perfect pair.</p>
+<p>Hash#transform_keys can change keys according to the return value of a block:</p><pre class="crayon-plain-tag">hash = { a: 1, b: 2 }
+=&gt; {:a=&gt;1, :b=&gt;2}
+hash.transform_keys { |k| k.to_s }
+=&gt; {"a"=&gt;1, "b"=&gt;2}
+hash
+=&gt; {:a=&gt;1, :b=&gt;2}</pre><p><code>transform_keys!</code> is a destructive version:</p><pre class="crayon-plain-tag">hash = { a: 1, b: 2 }
+=&gt; {:a=&gt;1, :b=&gt;2}
+hash.transform_keys! { |k| k.to_s } 
+=&gt; {"a"=&gt;1, "b"=&gt;2}
+hash
+=&gt; {"a"=&gt;1, "b"=&gt;2}</pre><p>We know how many times we had to manipulate the keys of a hash. <code>transform_keys</code> is gonna be a game changer and going to be very compelling to be used in your legacy app. The destructive version is a just silver lining to this.</p>
+<ul>
+<li>
+<h2>Array#prepend and Array#append</h2>
+</li>
+</ul>
+<p>Ruby 2.5 brings home two new aliases which are so much better than the two of the most used operations in the language. <code>Array#prepend</code> and <code>Array#append</code> are more programmer friendly than the conventional <code>Array#unshift</code> and <code>Array#push</code>. Ruby IS THE language which focuses on the programmers&#8217; happiness primarily after all.</p><pre class="crayon-plain-tag">&gt;&gt; a = ["hello"]
+=&gt; ["hello"]
+&gt;&gt; a.append "world"
+=&gt; ["hello", "world"]
+&gt;&gt; a.prepend "Hi"
+=&gt; ["Hi", "hello", "world"]</pre><p></p>
+<ul>
+<li>
+<h2>Added yield_self method</h2>
+</li>
+</ul>
+<p>This method yields the receiver to the given block and returns the output of the last statement in the block which is somewhat similar to the tap method.The only difference is the value that is returned.<code class="highlighter-rouge">yield_self</code> method returns the output of the block but <code class="highlighter-rouge">tap</code> method returns the receiver itself.</p><pre class="crayon-plain-tag">"Hello".yield_self { |obj| obj + " World"}
+=&gt; "Hello World"
+
+"Hello".tap { |obj| obj + " World" }
+ =&gt; "Hello"</pre><p></p>
+<ul>
+<li>
+<h2>rescue/else/ensure are allowed inside do/end blocks without begin/end</h2>
+</li>
+</ul>
+<p>We could omit the begin/end and not need the extra wrapper for rescue/else/ensure clauses in Ruby 2.5</p><pre class="crayon-plain-tag">[1].each do |n|
+  n / 0
+rescue
+  # rescue
+else
+  # else
+ensure
+  # ensure
+end</pre><p></p>
+<ul>
+<li>
+<h2>String#delete_prefix/delete_suffix</h2>
+</li>
+</ul>
+<p>In Ruby 2.4 we used chomp method to remove the suffix &#8216;world&#8217; from &#8216;HelloWorld&#8217; and to remove prefix there is no corresponding method for chomp. The solution was to resort to a <a href="https://ruby-doc.org/core-2.4.2/String.html#sub-method">sub</a> which is using the regular expression for such a simple task.</p>
+<p>Ruby 2.5 added new methods to take care of such tasks. Now in order to delete prefix, we can use delete_prefix and to delete suffix we could use chomp. But the method names don&#8217;t seem good. So for symmetry delete_suffix was added.</p><pre class="crayon-plain-tag">'HelloWorld'.delete_prefix('Hello')
+=&gt; "World" 
+'HelloWorld'.delete_suffix('World')
+=&gt; "Hello"</pre><p></p>
+<ul>
+<li>
+<h2>Ruby 2.5 has removed top-level constant lookup</h2>
+</li>
+</ul>
+<p>Consider the following code in Ruby 2.4.</p><pre class="crayon-plain-tag">class Book;
+end
+class Seller;
+end
+ 
+Book::Seller</pre><p>This code works with a warning. The top-level constants are defined under Object class, and Ruby tries to look up the superclass of Book class, and eventually finds Seller under the Object class which is a superclass of Book class.</p>
+<p>But in Ruby 2.5, Ruby won’t look up superclass. So the previous code fails with an error.</p><pre class="crayon-plain-tag">Book::Seller
+#=&gt; NameError: uninitialized constant Book::Seller
+#   Did you mean?  Seller</pre><p>Ruby 2.5 throws an error if it is unable to find constant in the specified scope.</p>
+<ul>
+<li>
+<h2>New method to ERB to allow assigning the local variables from a hash</h2>
+</li>
+</ul>
+<p>In Ruby 2.4, we had to do hacks like following to assign local variables to ERB template.</p><pre class="crayon-plain-tag">require 'erb'
+require 'ostruct'
+ 
+namespace = OpenStruct.new(a: 10, b: 3)
+template = 'Result: &lt;%= a * b %&gt;'
+ERB.new(template).result(namespace.instance_eval { binding })
+#=&gt; "Result: 30"</pre><p>ERB could allow a hash instead of a binding for processing the template in Ruby 2.5 such that we could avoid hacks as above.</p>
+<p>To allow assigning the local variables from a hash we can use <code>result_with_hash</code> method.</p><pre class="crayon-plain-tag">require 'erb'
+
+result = 'Result: &lt;%= a * b %&gt;'
+ERB.new(result).result_with_hash(a: 10, b: 3)
+#=&gt; "Result: 30"</pre><p></p>
+<ul>
+<li>
+<h2>Dir.children and Dir.each_child</h2>
+</li>
+</ul>
+<p>ls -a command will list all files including hidden files (files with names beginning with a dot). Dir.entries  method present in Ruby 2.4 returns this output in an array.</p><pre class="crayon-plain-tag">Dir.entries("/home")
+=&gt; ["..", "user", "."]</pre><p>Another method Dir.foreach  iterates and yields each value from the output of ls -a command to the block.</p><pre class="crayon-plain-tag">Dir.foreach("/home") { |child| puts child }
+..
+user
+.</pre><p>The output includes the directives for the current directory and parent directory which are &#8220;.&#8221; and &#8220;..&#8221;.</p>
+<p>When we want to have access only to the children files and directories, we do not need the [&#8220;.&#8221;, &#8220;..&#8221;] subarray. To overcome such issues, Ruby 2.5 introduced Dir.children. It returns the output of ls -a command without the directives for current and parent directories.</p><pre class="crayon-plain-tag">Dir.children("/home")
+=&gt; ["user"]</pre><p>We can use Dir.each_child method to avoid yielding current and parent directory directives while iterating.</p><pre class="crayon-plain-tag">Dir.each_child("/home") { |child| puts child }
+user</pre><p></p>
+<ul>
+<li>
+<h2>Imported features from ActiveSupport library</h2>
+</li>
+</ul>
+<p>Over the past few years, Ruby has been merging the best features from the ActiveSupport library, into the core language. In Ruby 2.5 version, <code>Hash#slice</code>, <code>Hash#slice!</code>, <code>Hash#except</code>, <code>Hash#except!</code> are such methods continuing the trend, imported from ActiveSupport.</p>
+<p>The ActiveSupport library comes bundled with the popular Ruby on Rails framework, but can also be used in isolation. It provides many extensions to Ruby&#8217;s core classes.</p><pre class="crayon-plain-tag">{a: 1, b: 2, c: 3}.slice(:a, :b)
+#=&gt; {:a=&gt;1, :b=&gt;2}</pre><p>&nbsp;</p>
+<p>One of the notable feature in 2.5 release was bundler packed with ruby core, but it is posponed due to some issues, See the <a href="https://github.com/ruby/ruby/commit/7825e8363d4b2ccad8e2d3f5eeba9e26f6656911">commit</a></p>
+<h2>Further changes</h2>
+<p><a href="https://github.com/ruby/ruby/blob/v2_5_0/NEWS">NEWS for Ruby 2.5.0 </a> news page can be referred to find other news and changes on Ruby 2.5</p>
+<h2></h2>
+<h2>References</h2>
+<ul>
+<li><a href="https://github.com/ruby/ruby/blob/v2_5_0/NEWS">https://github.com/ruby/ruby/blob/v2_5_0/NEWS</a></li>
+<li><a href="https://www.ruby-lang.org/en/news/2017/12/25/ruby-2-5-0-released/">https://www.ruby-lang.org/en/news/2017/12/25/ruby-2-5-0-released/</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>The post <a rel="nofollow" href="/whats-new-ruby-2-5/">What&#8217;s new in Ruby 2.5</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/whats-new-ruby-2-5/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+							</item>
+		<item>
+		<title>Getting started with Faraday gem</title>
+		<link>/getting-started-faraday-gem/</link>
+				<comments>/getting-started-faraday-gem/#respond</comments>
+				<pubDate>Thu, 16 Nov 2017 17:54:51 +0000</pubDate>
+		<dc:creator><![CDATA[nimmy]]></dc:creator>
+				<category><![CDATA[Rails]]></category>
+		<category><![CDATA[Ruby]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=4033</guid>
+				<description><![CDATA[<p>&#160; Client libraries help in reducing the amount of code for the application developer who is using the API, whether a REST API or any other. By adding a set of code to the application, it provides the basic things an application needs to do in order to interact with the API. This is what a&#8230;</p>
+<p>The post <a rel="nofollow" href="/getting-started-faraday-gem/">Getting started with Faraday gem</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p>&nbsp;</p>
+<p>Client libraries help in reducing the amount of code for the application developer who is using the API, whether a REST API or any other. By adding a set of code to the application, it provides the basic things an application needs to do in order to interact with the API. This is what a client library does. Also, it may handle user authentication and authorization.</p>
+<p>Client libraries are developed by API developer or the community.</p>
+<p>There are several HTTP client libraries in Ruby such as:</p>
+<ul>
+<li>
+<h4><a href="https://github.com/jnunemaker/httparty">HTTParty</a></h4>
+</li>
+<li>
+<h4><a href="https://github.com/lostisland/faraday">Faraday</a></h4>
+</li>
+<li>
+<h4>Built-in <a href="http://ruby-doc.org/stdlib-2.2.3/libdoc/net/http/rdoc/Net/HTTP.html">Net::HTTP</a></h4>
+</li>
+<li>
+<h4><a href="https://github.com/rest-client/rest-client">Rest-Client</a></h4>
+</li>
+<li>
+<h4><a href="https://github.com/nahi/httpclient">HTTPClient</a></h4>
+</li>
+</ul>
+<p>Among them, the favorite of mine is Faraday gem. Faraday has adapters for popular libraries like Net::HTTP. It is simple, flexible and supports multiple backends and embraces the concept of Rack middleware when processing the request/response cycle. Also, it&#8217;s possible to customize its behavior with middleware.</p>
+<p>We will use a connection object to start with Faraday as it&#8217;s more flexible way than a simple <code>get</code>request.</p><pre class="crayon-plain-tag">conn = Faraday.new
+response = conn.get 'http://localhost:3000/tasks'</pre><p>Using this connection object, we make HTTP requests.</p><pre class="crayon-plain-tag">params = {:title =&gt; 'Faraday gem', :created_by =&gt; 'blog'}
+conn.post('http://localhost:3000/tasks',params)</pre><p>This will POST  title = &#8216;Faraday gem&#8217;  and created by = &#8216;blog&#8217; to http://localhost:3000/tasks.</p>
+<p>All HTTP verb methods can take an optional block that will yield a<code>Faraday::Request</code> object.</p><pre class="crayon-plain-tag"> conn.post do |req|
+   req.url '/tasks'
+   req.headers['Content-Type'] = 'application/json'
+   req.body = '{"some": "content"}'
+ end</pre><p></p>
+<h2>Authentication</h2>
+<p>Basic and Token authentication are handled by <code>Faraday::Request::BasicAuthentication</code> and <code>Faraday::Request::TokenAuthentication</code> respectively. These can be added as middleware manually or through the helper methods.</p><pre class="crayon-plain-tag">conn.basic_auth('username', 'password')
+conn.token_auth('token')</pre><p></p>
+<h2>Proxies</h2>
+<p>To specify an HTTP proxy:</p><pre class="crayon-plain-tag">Faraday.new(:proxy =&gt; 'http://proxy.example.com:80/')</pre><p></p>
+<h2>Using a different HTTP Adapter</h2>
+<p>Faraday provides an interface between our code and adapter. Sometimes we may want to use features that are not covered in Faraday&#8217;s interface. In such cases, we can have access to features specific to any of the adapters supported by Faraday, by passing a block when specifying the adapter to customize it.</p>
+<p>For example, you can switch to the HTTPClient adapter as below</p><pre class="crayon-plain-tag"> conn = Faraday.new do |builder|
+   builder.adapter :httpclient do |client| # yields HTTPClient
+     client.keep_alive_timeout = 20
+   end
+ end</pre><p>Like this, we can switch to any of the supported adapters.</p>
+<p>The block parameters will change based on the adapters we are using.</p>
+<h2><code>Faraday::Connection</code> object middlewares</h2>
+<p>A <code>Faraday::Connection</code> object has a list of middlewares, just like a Rack app. Faraday middlewares are passed as an <code>env</code> hash. It has request and response information.</p><pre class="crayon-plain-tag">conn = Faraday.new
+conn.builder
+=&gt; #&lt;Faraday::RackBuilder:0x0000000155d1f0 @handlers=[Faraday::Request::UrlEncoded,
+   #Faraday::Adapter::NetHttp]&gt;</pre><p><code>Faraday::Builder</code> is similar to <code>Rack::Builder</code>.</p>
+<p>A new <code>Faraday::Connection</code>object is initialized. It has middlewares <code> Faraday::Request::UrlEncoded</code> in front of an adapter <code>Faraday::Adapter::NetHttp</code>.  Like a Rack application, the adapter at the end of the builder chain is what actually executes the request.</p>
+<p>Middlewares are grouped into request middlewares, response middlewares, and adapters.</p><pre class="crayon-plain-tag">Faraday.new do |builder|
+
+  builder.request :retry
+
+  builder.request :basic_authentication, 'login', 'pass'
+
+  builder.response :logger
+
+  builder.adapter :net_http
+
+end</pre><p></p>
+<h2>Advanced Middleware Usage</h2>
+<p>The order in which middleware is stacked in Faraday is like in Rack. The first middleware on the list wraps all others, while the last middleware is the innermost one, so that’s usually the adapter.</p><pre class="crayon-plain-tag">conn = Faraday.new(:url =&gt; '/') do |builder|
+
+  # POST/PUT params encoders:
+
+  builder.request :multipart
+
+  builder.request :url_encoded
+
+  builder.adapter :net_http
+
+end</pre><p>Middlewares stack is manipulated by the <code>Faraday::Builder</code> instance. Each <code>Faraday::Connection</code> instance has a <code>Faraday::Builder</code> instance.</p><pre class="crayon-plain-tag">conn = Faraday.new
+
+conn.builder.swap(1, Faraday::Adapter::HTTPClient)
+
+# replace adapter
+
+conn.builder.insert(0, MyCustomMiddleware)
+
+# add middleware to beginning
+
+conn.builder.delete(MyCustomMiddleware)</pre><p></p>
+<h2>Writing middleware</h2>
+<p>Middlewares are classes that respond to call. When middleware is executing, it&#8217;s passed as an env hash that has request and response information. Middleware wrap the request/response cycle.</p>
+<p>The general interface for a middleware is:</p><pre class="crayon-plain-tag">class CustomizedMiddleware
+
+  def call(env)
+
+    # do something with the request
+
+    @app.call(env).on_complete do |env|
+
+    # do something with the response
+
+    end
+  end
+end</pre><p>All processing of the response should be done in the on-complete block. This enables middleware to work in parallel mode when many requests are occurring at the same time. After the on_complete block, env[:response] is filled in. Faraday::Response instance will be available <span class="hljs-keyword">only</span> <span class="hljs-keyword">after</span> <code><span class="hljs-string">on_complete</code>.</span></p>
+<p><a href="https://github.com/lostisland/faraday_middleware">faraday-middleware</a>  is a collection of various Faraday middlewares for Faraday-based API wrappers.</p>
+<p>For testing middleware, Faraday::Adapter::Test is an HTTP adapter middleware that lets you to fake responses.</p>
+<p>&nbsp;</p>
+<h2>References</h2>
+<ul>
+<li><a href="https://github.com/lostisland/faraday">https://github.com/lostisland/faraday</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>The post <a rel="nofollow" href="/getting-started-faraday-gem/">Getting started with Faraday gem</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/getting-started-faraday-gem/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+							</item>
+		<item>
+		<title>Get into Sentiment Analysis with Ruby</title>
+		<link>/get-into-sentiment-analysis-with-ruby/</link>
+				<comments>/get-into-sentiment-analysis-with-ruby/#respond</comments>
+				<pubDate>Thu, 21 Sep 2017 13:46:35 +0000</pubDate>
+		<dc:creator><![CDATA[nimmy]]></dc:creator>
+				<category><![CDATA[Ruby]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3497</guid>
+				<description><![CDATA[<p>&#160; Sometimes we fail to understand other&#8217;s emotion. So how it will be when machines try to understand ours? When writing programs we care about the syntax and structures but these concerns are not there in communication between people. To process our language machines have to understand not only what we say, but what we&#8230;</p>
+<p>The post <a rel="nofollow" href="/get-into-sentiment-analysis-with-ruby/">Get into Sentiment Analysis with Ruby</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p>&nbsp;</p>
+<p>Sometimes we fail to understand other&#8217;s emotion. So how it will be when machines try to understand ours? When writing programs we care about the syntax and structures but these concerns are not there in communication between people. To process our language machines have to understand not only what we say, but what we mean. Natural language processing is a fascinating subject to explore. But what makes it complicated?</p>
+<p>Human communication isn&#8217;t just a group of words. It&#8217;s a mix of sentiments which needed to be analyzed to understand what we really mean.</p>
+<h2>Why should I care</h2>
+<p>The contemporary business world is a place where huge success and failure sit side by side. In traditional market research, business spends a huge amount to analyze customer&#8217;s opinions through continuous surveys and consultants. But nowadays social media empowers business a lot. Most the existing and potential customers are generating a treasure trove of data through Twitter, Facebook, LinkedIn and so on. Sentiment analysis is a powerful tool for mining the gold beneath the social media landslide.</p>
+<p><strong>The goal of sentiment analysis is to identify the opinions expressed in a text.</strong></p>
+<h2>It seems easy, right?</h2>
+<ol>
+<li>I&#8217;m <em>happy</em> to watch a new movie</li>
+<li>I <em>hate</em> war</li>
+</ol>
+<p>Since happy is a positive word and hate is negative, we know the sentiments in each sentence. This is the most simple situation.</p>
+<p><em>But what if a text contains two opinion words and one sentiment?</em></p>
+<p>If we assign +1 to positive word and -1 to negative word,</p>
+<ul>
+<li>I&#8217;m <em>happy</em> and <em>excited</em> to be going to watch a new movie</li>
+</ul>
+<p>The above sentence is positive +2</p>
+<ul>
+<li>I <em>hate</em> war and the <em>violence</em> it makes</li>
+</ul>
+<p>The text contains two negative words so it is negative -2</p>
+<p>Now, let&#8217;s consider a text with mixed polarity.</p>
+<p>That&#8217;s, <em>two opinion words and two sentiments</em></p>
+<p>What we learned is adding +1 and -1 equals 0 but here it doesn&#8217;t mean that the text is necessarily neutral.</p>
+<ul>
+<li>Ice cream shops are doing <em>great</em> even when the weather is <em>bad</em></li>
+</ul>
+<p>The statement is positive about ice cream shops but negative about weather condition. In general, we will say that this is a positive statement about ice cream shops. We wouldn&#8217;t say this is neutral.</p>
+<h2>When SA turns hard</h2>
+<p>Sometimes it&#8217;s not possible to identify the opinion by just analyzing the polarity of words. Language usage and sarcasm are some of the reasons why sentiment analysis turns hard. It&#8217;s tough to analyze <strong>mixed sentiments in a text.</strong></p>
+<p>Sometimes it&#8217;s difficult to classify <strong>sarcastic statements </strong>as positive or negative. As a human being, we can understand what sarcasm is and how it actually makes sense. If you put this into a neural network or any machine learning framework that come up with a simple classifier to just understand the sentiment, this would fail miserably.</p>
+<p>Another point to be considered is <strong>local dialects.</strong> If you train any neural network on data about local dialects, it would invariably not understand what is trying to say. Because some of the words in local dialects may not have any sense and its tough to train anything and everything. So if you have a pre-trained model doing some sort of test on these data and then, it would completely fail. This is one of the reasons why it&#8217;s important to understand the local culture and some companies are setting up local data centers, where local sentiment is captured.</p>
+<p>Natural language has a lot of ambiguity. From the above examples, it&#8217;s clear that words make sense contextually in natural language which humans can comprehend and distinguish easily, but machines can’t. This makes Natural Language Processing one of the most difficult and interesting tasks in AI.</p>
+<h2>Using Natural Language Processing</h2>
+<ul>
+<li>Spell check and grammar check</li>
+<li>Predictive text</li>
+<li>Auto summarization</li>
+<li>Machine translation</li>
+<li>Sentiment analysis</li>
+</ul>
+<h3>Some common approaches to sentiment analysis</h3>
+<p>Various methods in Machine learning and Natural Language Processing for sentiment analysis. Some of the most effective approaches we have today rely on the human-in-the-loop-approach: learning from the user feedback. The combination of machine-driven classification enhanced by human-in-the-loop approach increases acceptable accuracy than pure Machine Learning based systems.</p>
+<h3>Tools &amp; Libraries</h3>
+<p>Python&#8217;s scientific calculation libraries such as SciPy, NumPy have strong support from the academic world. It&#8217;s a very well established library that was chosen for its expressiveness, ease-of-use.</p>
+<h2>We too have tools&#8230;&#8230;</h2>
+<p>Much of the data that machine learning algorithms need for NLP tasks such as sentiment analysis, spam filtering all come from the web. Ruby has a web framework that is quite popular and generates massive amounts of data. While it doesn’t have the same vast academic network that Python or R has, it does have tools and has the added benefit of being easy to learn and comprehend.</p>
+<h2>Sentimental gem</h2>
+<p><a href="https://github.com/7compass/sentimental">https://github.com/7compass/sentimental</a></p>
+<p>Sentimental gem was introduced for simple sentiment analysis with Ruby. It implements a lexicon-based approach to extract sentiments, where the overall contextual sentiment orientation is the sum of sentiment orientation of each word(tokens). The overall sentiment of a sentence is output as positive, negative or neutral. It uses a dictionary consisting of pre-tagged lexicons. The input text is converted to tokens by the Tokenizer and is then matched for the pre-tagged lexicons in the dictionary.</p>
+<p>To classify sentiments we can set a threshold value. Values greater than the threshold is considered as positive and less than that is considered negative. The default threshold is 0.0. If a sentence has a score of 0, it is deemed &#8220;neutral&#8221;.</p><pre class="crayon-plain-tag">gem install sentimental</pre><p>Consider the following example</p><pre class="crayon-plain-tag">require "sentimental"
+ analyzer = Sentimental.new
+ analyzer.load_defaults
+ sentiment = analyzer.sentiment 'Be the reason someone smiles today'
+ score = analyzer.score 'Be the reason someone smiles today'
+ puts sentiment, score</pre><p>It outputs</p><pre class="crayon-plain-tag">positive
+0.225</pre><p>It works well for a simple sentence. Consider another example with mixed polarity.</p>
+<p>But, consider another example with mixed polarity.</p><pre class="crayon-plain-tag">require "sentimental"
+ analyzer = Sentimental.new
+ analyzer.load_defaults
+ sentiment = analyzer.sentiment 'Icecream shops are doing good even at bad weather'
+ score = analyzer.score 'Icecream shops are doing good even at bad weather'
+ puts sentiment, score</pre><p>We get the output as</p><pre class="crayon-plain-tag">negative
+-0.4194</pre><p>We expect a positive result here, but it failed.</p>
+<p>The overall score is determined by the sum of the scores of each opinion words. In its lexical dictionary, <em>good</em> is assigned a score 0.6394, <em>bad</em> is assigned -0.5588, and the token <em>weather</em> is assigned a score of -0.5. Hence the overall sentiment scores -0.4194.</p>
+<p>The gem was found to work well for simple sentences, but failed to give accurate results for sentences with mixed polarity.</p>
+<h2>Sentimentalizer gem</h2>
+<p><a href="https://github.com/malavbhavsar/sentimentalizer">https://github.com/malavbhavsar/sentimentalizer</a></p>
+<p>Implements sentiment analysis in Ruby with machine learning. It&#8217;s basically training a model to use in the application. Machine learning based analysis gains more interest of researchers due to its adaptability and accuracy. It overcomes the limitation of the lexical approach of performance degradation and works well even when the dictionary size grows rapidly.</p><pre class="crayon-plain-tag">gem install sentimentalizer</pre><p>We need to train the engine in order to use it.</p><pre class="crayon-plain-tag">require "sentimentalizer"
+
+ Sentimentalizer.setup
+
+ class Analyzer
+   def initialize
+     Sentimentalizer.setup
+   end
+
+   sentiment = Sentimentalizer.analyze('I love Ruby', true)
+   puts sentiment
+
+ end</pre><p>This outputs as</p><pre class="crayon-plain-tag">Training analyser with +ve sentiment
+ +ve sentiment training complete
+ Training analyser with -ve sentiment
+ -ve sentiment training complete
+ {"text":"I love Ruby","probability":0.8568115588520226,"sentiment":":)"}</pre><p>Overall sentiment is positive which is indicated as <img src="https://s.w.org/images/core/emoji/12.0.0-1/72x72/1f642.png" alt="🙂" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p>But this method faces challenges in designing classifier, availability of training data, the correct interpretation of a new phrase which is not in the training dataset.</p>
+<h2>Classifying with Bayesian and SVM classifiers</h2>
+<p>Basically, sentiment analysis is the classification of text. <a href="https://github.com/bmuller/ankusa">Ankusa</a>, <a href="https://github.com/arrac/eluka">Eluka</a>, <a href="https://github.com/cardmagic/classifier">Classifier</a>, and<a href="https://github.com/rattle/hoatzin"> Hoatzin</a> are some Bayesian and SVM classifiers that can be used for sentiment analysis. Among them, Hoatzin, Classifier, and Eluka use LibSVM, a library for Support Vector Machine. Simple models work best for all. The gem Ankusa provides Naive Bayes classifier which provides more accuracy than Baseline but less than gem Eluka which implements SVM classifier.</p>
+<h2>When we need more&#8230;</h2>
+<h2>JRuby</h2>
+<p>Ruby is a very expressive language with excellent string processing capabilities. Also, there are excellent Java libraries for NLP and JVM is a high-performance platform with true multi-threading capabilities. JRuby allows us to leverage well-established, mature Java libraries from within your Ruby code.</p>
+<h2>Sentiment Analysis using Tensorflow Ruby API</h2>
+<p><a href="https://github.com/somaticio/tensorflow.rb">https://github.com/somaticio/tensorflow.rb</a></p>
+<p>TensorFlow is an extraordinary open source software library for numerical computation using data flow graphs developed by researchers working on the Google Brain Team within Google’s Machine Intelligence research organization for conducting machine learning and deep neural networks research. Even though Tensorflow seems to be an overkill for simpler tasks, certainly it would be an alternate and more efficient way to analyze tweets if you have rich and high volume data. It helps to create your own sentiment classifiers to understand the large amounts of natural language in the world.</p>
+<p>In this article, we discussed the various approaches towards sentiment analysis which is a part of Natural Language Processing. We have seen that sentiment extraction and analysis can be done using supervised or unsupervised learning, sentiment lexicon-based approach or a mix of these and any of these methods can be implemented in Ruby.</p>
+<p>&nbsp;</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://github.com/malavbhavsar/sentimentalizer">https://github.com/malavbhavsar/sentimentalizer</a></li>
+<li><a href="https://github.com/7compass/sentimental">https://github.com/7compass/sentimental</a></li>
+<li><a href="https://github.com/diasks2/ruby-nlp">https://github.com/diasks2/ruby-nlp</a></li>
+</ul>
+<p>The post <a rel="nofollow" href="/get-into-sentiment-analysis-with-ruby/">Get into Sentiment Analysis with Ruby</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/get-into-sentiment-analysis-with-ruby/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+							</item>
+		<item>
+		<title>Refactoring in Rails</title>
+		<link>/refactoring-in-rails/</link>
+				<comments>/refactoring-in-rails/#comments</comments>
+				<pubDate>Wed, 20 Sep 2017 15:31:09 +0000</pubDate>
+		<dc:creator><![CDATA[nimmy]]></dc:creator>
+				<category><![CDATA[Rails]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3038</guid>
+				<description><![CDATA[<p>&#160; When the complexity of our Rails application increases, it becomes difficult to test and add new features. As we know, Rails is built on the principle of convention over configuration. Putting too much logic in the controller will eventually violate the single responsibility principle making future changes to the codebase difficult and error-prone. Refactoring the&#8230;</p>
+<p>The post <a rel="nofollow" href="/refactoring-in-rails/">Refactoring in Rails</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p>&nbsp;</p>
+<p>When the complexity of our Rails application increases, it becomes difficult to test and add new features. As we know, Rails is built on the principle of <a href="https://en.wikipedia.org/wiki/Convention_over_configuration">convention over configuration</a>. Putting too much logic in the controller will eventually violate the <a href="http://www.oodesign.com/single-responsibility-principle.html">single responsibility principle</a> making future changes to the codebase difficult and error-prone. Refactoring the code helps for quality, clarity, and maintainability.</p>
+<h2>When should we refactor?</h2>
+<p>Tests usually run faster with well-isolated code. Slow running tests indicate the need of more sophisticated design. For example, each class should be concerned about one unique functionality. Also, models and controllers with too many lines of code needed to be refactored to make code DRY and clean. We can use best approaches of Object Oriented Programming to achieve this.</p>
+<p>Consider the following example of a controller where the whole logic for creation and deletion is concentrated.</p><pre class="crayon-plain-tag">class WebsitesController &lt; ApplicationController
+  def create
+    create_website
+    find_or_create_user
+    fetch_rank
+    redirect_to root_url
+  end
+
+  def destroy
+    .........
+  end
+
+.............
+
+  private
+
+  def create_website
+    @website = website.first_or_create
+    CollectionWebsite.create(collection_id: collection_id, website_id: website.id)
+    @website.fetch_meta_description
+  end
+
+  def find_or_create_user
+    site_urls = user.websites.map(&amp;:url)
+    websites_count = user.websites.count
+    user.update!(sites: site_urls, site_number: websites_count)
+  end
+
+  def fetch_rank
+    return if website.alexaranks.any?
+    FetchRankJob.perform_later(website)
+  end
+ end</pre><p>&nbsp;</p>
+<h2>Moving a big controller&#8217;s action to service objects</h2>
+<p>To achieve the new design, keep controllers as thin as possible and always call service objects. Controllers are a good place to have the HTTP routing, parameters parsing, authentication, calling the right service, exception catching, response formatting, and returning the right HTTP status code. A service object&#8217;s job is to hold the code for a particular bit of business logic.</p>
+<p>Calling services from controllers result in many classes each of which serves a single purpose. This helps to achieve more isolation between objects. Another important thing is that service objects should be well named to show what an application does. Extracting code from controllers/models to service objects would support single responsibility principle, which leads to better design and better unit tests.</p>
+<p>The above example can be rewritten by calling separate services for creating and deleting as shown below. This considerably reduces the number of lines of code in the controller and provides more clarity on the tasks performed.</p><pre class="crayon-plain-tag">class WebsitesController &lt; ApplicationController
+  def create
+    Websites::Create.call(website_params, current_user)
+    redirect_to root_url
+  end
+  ..........
+  def destroy
+    Websites::Delete.call(website_params, current_user)
+    redirect_to root_url
+  end
+  ..........
+
+  private
+
+  def website_params
+    params.require(:website).permit(:url, :collection_id)
+  end
+end</pre><p>Now WebsitesController looks cleaner. Service objects are callable from anywhere, like from controllers as well as other service objects, DelayedJob / Rescue / Sidekiq Jobs, Rake tasks, console, etc. In app/services folder, we create services for each controller&#8217;s actions.</p>
+<p>Prefer subdirectories for business-logic heavy domains.  For example, the file app/services/websites/create.rb will define Websites::Create while app/services/websites/delete.rb will define Websites::Delete.</p><pre class="crayon-plain-tag">module Websites
+  class Create
+    # From the controller, use it like this:
+    # Websites::Create.call(params, user)
+    def self.call(params, user)
+      new(params, user).call
+    end
+
+    def initialize(params, user)
+      @params = params
+      @user = user
+      @website = Website.where(url: params[:website][:url])
+    end
+
+    def call
+      create_website
+      find_or_create_user
+      fetch_rank
+    end
+
+    private
+
+    attr_reader :params, :user, :website
+
+    def create_website
+      @website = website.first_or_create
+      CollectionWebsite.create(collection_id: collection_id, website_id: website.id)
+      @website.fetch_meta_description
+    end
+
+    def find_or_create_user
+      site_urls = user.websites.map(&amp;:url)
+      websites_count = user.websites.count
+      user.update!(sites: site_urls, site_number: websites_count)
+    end
+
+    def fetch_rank
+      return if website.alexaranks.any?
+      FetchRankJob.perform_later(website)
+    end
+  end
+end</pre><p>Designing the class for a service object is relatively straightforward, since it needs no special gems and relies on the software design skills only. When the action is complex or needs to interact with an external service, service objects are really beneficial.</p>
+<p style="text-align: left;">While refactoring, at each step we have to make sure that none of our tests failed.</p>
+<h2>Partials and helpers</h2>
+<p><strong>Partials</strong> and <strong>helpers</strong> are the standard methods to extract reusable functionality. For larger HTML code, partials can be used to split into smaller logic parts. Partials are used for side-menu, header etc.</p>
+<p>When developing an application for the first time, I did notice the app/helpers directory but couldn&#8217;t find any use at that time. Generally, helpers are used for chunks of ruby code with minimal HTML or generating simple HTML from parameters. For example,  Once started using it, found it efficient in scenarios where we want to extract some complexity out of view and also if we want to reuse it or want to avoid it one day. This refers mostly to cases like conditionals or calculations.</p>
+<p>Consider something like this in the view:</p><pre class="crayon-plain-tag">&lt;% if @user &amp;&amp; @user.post.present? %&gt;
+  &lt;%= @user.post %&gt;
+&lt;% end %&gt;</pre><p>If put it in a helper,</p><pre class="crayon-plain-tag">module SiteHelper
+  def user_post(user)
+    user.post if user &amp;&amp; user.post.present?
+  end
+end</pre><p>And then in the view code, call the helper method and pass it the user as an argument.</p><pre class="crayon-plain-tag">&lt;%= user_post(@user) %&gt;</pre><p>Views are in charge of displaying information only. They are not responsible for deciding what to display.</p>
+<p>The concept of object-oriented programming paved the way for design patterns and refactoring patterns such as service objects and also <strong>decorators</strong> and <strong>presenters</strong>. Decorator patterns enable us to attach additional responsibilities to an object dynamically, without affecting other objects of same class. A presenter is a type of<em> </em>subpattern of the decorator pattern. The main difference between them is how they extract logic out of the view. Presenters are very close to the view layer, while decorators are some more broad concept.</p>
+<p>Anyway, try to avoid helpers and concerns as much as possible, if you want to make objects easier to test, then Plain Ruby Objects are easier to test than helpers and concerns which are tied to Rails.</p>
+<p>The presenter pattern also has the problem of making things harder to test.</p>
+<p>Because of this, I prefer to use a mix of POROs (Plain Old Ruby objects) and helpers if can&#8217;t avoid having them. Always keep the minimum amount of code in helpers and move as much logic as possible into POROs. It&#8217;s the same with concerns &#8211; try to avoid them maximum, but it&#8217;s being used in larger code bases.</p>
+<p>&nbsp;</p>
+<div></div>
+<h2>References</h2>
+<ul>
+<li><a href="https://github.com/adamniedzielski/service-objects-example">https://github.com/adamniedzielski/service-objects-example</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>The post <a rel="nofollow" href="/refactoring-in-rails/">Refactoring in Rails</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/refactoring-in-rails/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+							</item>
+		<item>
+		<title>Web Frameworks in Crystal</title>
+		<link>/web-frameworks-crystal/</link>
+				<comments>/web-frameworks-crystal/#comments</comments>
+				<pubDate>Thu, 14 Sep 2017 18:16:07 +0000</pubDate>
+		<dc:creator><![CDATA[nimmy]]></dc:creator>
+				<category><![CDATA[crystal]]></category>
+		<category><![CDATA[Crystal lang]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3199</guid>
+				<description><![CDATA[<p>&#160; The creator of Ruby, Yukihiro Matsumoto said that the language was made to make programmers happy. Imagine a language as elegant as Ruby and blazingly fast as C. If you already love Ruby, maybe it is time to start considering Crystal lang, the younger sibling of Ruby. It is a compiled language which is&#8230;</p>
+<p>The post <a rel="nofollow" href="/web-frameworks-crystal/">Web Frameworks in Crystal</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p>&nbsp;</p>
+<p>The creator of Ruby, Yukihiro Matsumoto said that the language was made to make programmers happy. Imagine a language as elegant as Ruby and blazingly fast as C. If you already love Ruby, maybe it is time to start considering Crystal lang, the younger sibling of Ruby. It is a compiled language which is syntactically very similar to Ruby and designed for high throughput and performance.</p>
+<h4>Features</h4>
+<ul>
+<li>Native WebSocket support</li>
+<li>Compiles to efficient native code</li>
+<li>Statically typed =&gt; if any errors it will let you know at compile time.</li>
+<li>Less memory consumption</li>
+</ul>
+<h2>Web frameworks in Crystal</h2>
+<p>Applications developed using framework are easy to maintain and upgrade at a lower cost. This article lets you get familiar with some of the most popular frameworks of Crystal.</p>
+<p>Install Crystal to get started.</p>
+<p><a href="https://crystal-lang.org/docs/installation/index.html">https://crystal-lang.org/docs/installation/index.html</a></p>
+<p>Create our Crystal app</p><pre class="crayon-plain-tag">crystal init app sample-app</pre><p></p>
+<h3><strong>Kemal</strong></h3>
+<p><a href="https://github.com/kemalcr/kemal">https://github.com/kemalcr/kemal</a></p>
+<p>To know the true potential of Crystal, let&#8217;s familiarise with Kemal, most popular Crystal framework. It&#8217;s a Sinatra inspired framework.</p>
+<h4>Install Kemal</h4>
+<p>In our app,</p>
+<p>Open in an editor and add Kemal as a dependency in the shard.yml file.</p>
+<p>To get dependencies, run</p><pre class="crayon-plain-tag">shards install</pre><p>This will install Kemal.</p>
+<p>This is similar to adding gems in gem file and bundle install in Rails.</p>
+<p>In the file sample-app.cr created in the src directory, substitute the following</p><pre class="crayon-plain-tag">require "kemal"
+
+# Matches GET ""
+get "/" do
+"Hello World!"
+end
+
+Kemal.run</pre><p>In the terminal run</p><pre class="crayon-plain-tag">crystal run src/sample-app.cr</pre><p>We can see logs in the terminal as Kemal is ready in localhost.</p>
+<p>Using WebSockets is quite easy with Kemal. (Will be explaining it in our another blog)</p>
+<h3>Amethyst</h3>
+<p><a href="https://github.com/crystal-community/amethyst">https://github.com/crystal-community/amethyst</a></p>
+<p>Like Sinatra inspired framework Kemal for crystal, Amethyst is Rails-inspired framework for crystal which is extremely fast and flexible in application development.</p>
+<p>Installation is similar as Kemal; add as a dependency in the shard.yml file. To start using Amethyst, require it in project code.</p>
+<p>For fastest and lightweight framework in crystal we could choose Kemal or if interested in something more like Rails rather than speed Amethyst can be a better option. For controllers and to describe routes, Amethyst has a Rails-like approach. After Kemal, Amethyst is the popular framework of Crystal.</p>
+<h3>Amber</h3>
+<p><a href="https://github.com/Amber-Crystal/amber">https://github.com/Amber-Crystal/amber</a></p>
+<p>Amber framework was developed inspired by Kemal, Rails, Django and other popular frameworks. Amber follows the concepts and conventions of these already successful frameworks. It implements MVC pattern, implementing ORM (Object-Relational-Model) in Crystal.</p>
+<p>To use Amber, after installing crystal, download and install amber</p>
+<p>In the terminal</p><pre class="crayon-plain-tag">git clone https://github.com/amber-crystal/amber.git</pre><p></p><pre class="crayon-plain-tag">cd amber</pre><p></p><pre class="crayon-plain-tag">shards install</pre><p></p><pre class="crayon-plain-tag">make</pre><p>To create new application in Amber refer to official doc <a href="https://amber-crystal.gitbooks.io/amber/content/getting-started/Installation/create-new-app.html">https://amber-crystal.gitbooks.io/amber/content/getting-started/Installation/create-new-app.html</a></p>
+<p>To provide an ORM Model in Crystal add the library Granite:: ORM to your project dependencies in the shard.yml file.</p><pre class="crayon-plain-tag">dependencies:
+  granite_orm:
+    github: Amber-Crystal/granite-orm</pre><p>Amber provides WebSocket support for real-time communication which is very simple, and only requires a Socket, a Channel, and client-side interaction using javascript. Amber is inspired by Kemal, which has inbuilt WebSocket support.</p>
+<h3>Kemalyst</h3>
+<p><a href="https://github.com/kemalyst/kemalyst">https://github.com/kemalyst/kemalyst</a></p>
+<p>Kemalyst is a Crystal lang framework based on Kemal. Kemalyst is also a Rails similar framework like Amber. Following the MVC pattern, Kemalyst supports MySQL, PG, and SQLite.</p>
+<p>Views are handled via <a href="https://github.com/jeromegn/kilt">kilt</a>, generic template interface for Crystal.</p>
+<p>Kemalyst also provides support for WebSockets, jobs to perform background tasks using sidekiq.cr, the simple and efficient job processing for Crystal.</p>
+<h3>Raze</h3>
+<p>Refer<a href="https://github.com/samueleaton/raze"> https://github.com/samueleaton/raze</a> for installation which is as simple as Kemal.</p>
+<p>Raze framework is a modular, light web framework for Crystal. Raze can handle approximately 120,000 requests per second, which is way more than Kemal(90,000 requests per second).</p>
+<p>Raze implements a middleware-centric design for greater modularity. Putting more logic inside reusable middlewares considerably reduces the need for route blocks.</p>
+<p>When writing routes in Raze there are two things to be noted:</p>
+<ul>
+<li>Two matching routes that both having a block is not possible</li>
+</ul>
+<p>For example, this will fail</p><pre class="crayon-plain-tag">get "/hello*" do |ctx|
+  do_something
+end
+
+get "/hello/raze" do |ctx|
+  "hello, raze"
+end</pre><p>This is where middleware is used if you want to do something before the second route.</p>
+<p>If you wanted to add a custom DoSomething middleware to your get &#8220;/hello*&#8221; route, it&#8217;s as simple as the following:</p><pre class="crayon-plain-tag">get "/hello*", DoSomething.new</pre><p>Now, this will work.</p><pre class="crayon-plain-tag">get "/hello*", DoSomething.new
+
+get "/hello/raze" do |ctx|
+  "hello, raze"
+end</pre><p></p>
+<ul>
+<li>Route ambiguity order</li>
+</ul>
+<p>Raze will make sure that any matching routes are in order from most to least ambiguous. The less specific path must be defined before the more specific path as shown in the above example or else Raze will raise route exceptions.</p>
+<h2>Limitations</h2>
+<p>Crystal language is relatively new and therefore the community and ecosystem need more time to mature.</p>
+<p>Crystal lang is currently implemented as a single-threaded process. This means that you <em>probably</em> can&#8217;t max out all CPUs of your machine with just a single process. If we need scaling in the future for a real product, then Erlang or Elixir would be a much better choice than Crystal. Compared to Erlang, Golang, and Clojure, Crystal is less concurrent.</p>
+<p>Also, Crystal not supporting Windows yet is another limitation<em>.</em> But in Windows 10 you can (experimentally) try Crystal using <a href="https://msdn.microsoft.com/en-us/commandline/wsl/about" rel="noopener">Bash on Ubuntu on Windows</a>, an experimental Bash environment running on Windows.</p>
+<h2>Conclusion</h2>
+<p>All these frameworks are growing rapidly and expecting further contributions. Yet there are many other frameworks such as <a href="https://github.com/jasonl99/lattice-core">Lattice-core</a>, <a href="https://github.com/luckyframework">luckyframework </a>which is in the early stages of development. Lattice-core is built on Kemal framework. All of them focusing on speed, modularity, and simplicity.</p>
+<p>None of Crystal&#8217;s frameworks are mature enough to be a full-blown web framework yet. But still, Kemal is my favorite over all other frameworks. There are more companies already using Crystal / Kemal in production now.</p>
+<p><a href="https://github.com/crystal-lang/crystal/wiki/Used-in-production">https://github.com/crystal-lang/crystal/wiki/Used-in-production</a></p>
+<p>Kemal is been extremely fast and responsive by using just 1/50 of the resource.</p>
+<p>Kemal&#8217;s superb performance for Websockets and easily extensible middlewares are appreciable.</p>
+<p>Also, deploying a Kemal app on Heroku is as simple as follows:</p>
+<p><a href="https://blog.redpanthers.co/deploying-crystal-app-production-using-heroku/">https://blog.redpanthers.co/deploying-crystal-app-production-using-heroku</a></p>
+<h2></h2>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://github.com/veelenga/awesome-crystal#web-frameworks">https://github.com/veelenga/awesome-crystal#web-frameworks</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>The post <a rel="nofollow" href="/web-frameworks-crystal/">Web Frameworks in Crystal</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/web-frameworks-crystal/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+							</item>
+		<item>
+		<title>Integrating Elm with Rails</title>
+		<link>/integrating-elm-rails/</link>
+				<comments>/integrating-elm-rails/#respond</comments>
+				<pubDate>Wed, 30 Aug 2017 12:51:56 +0000</pubDate>
+		<dc:creator><![CDATA[nimmy]]></dc:creator>
+				<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[elm]]></category>
+		<category><![CDATA[frontend]]></category>
+		<category><![CDATA[functional]]></category>
+		<category><![CDATA[language]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3091</guid>
+				<description><![CDATA[<p>&#160; Front-end languages and frameworks are changing significantly over years. The trend is towards light-weight, modular architecture. Functional programming has influenced JavaScript and its frameworks a lot. For beautiful single page web applications, Elm is a framework that can be chosen. It gets compiled to efficient JavaScript code. But when to use Elm instead of&#8230;</p>
+<p>The post <a rel="nofollow" href="/integrating-elm-rails/">Integrating Elm with Rails</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p>&nbsp;</p>
+<p>Front-end languages and frameworks are changing significantly over years. The trend is towards light-weight, modular architecture. Functional programming has influenced JavaScript and its frameworks a lot. For beautiful single page web applications, Elm is a framework that can be chosen. It gets compiled to efficient JavaScript code. But when to use Elm instead of JavaScript?  If you are building complicated single page applications Elm can do better.</p>
+<p>Elm is a functional programming language created by Evan Czaplicki in 2012 for building reliable Web Applications. Elm is simple to use and offers much quality. Its architecture is a simple pattern for building web apps, that help you to add features quickly. Also, we can use Elm in existing projects as it can be used along with already written JavaScript code.</p>
+<h2>Why Elm?</h2>
+<p>Switching to functional programming languages makes it a better environment for multi-threaded applications. For example, immutability is a powerful functional concept that JavaScript lacks. But in Elm, once created value cannot be changed, thus making a <strong>thread-safe environment</strong>. Each thread need not worry about other threads when they act on data since these data are represented by immutable objects in Elm.</p>
+<p>While in other languages it&#8217;s hard to catch production errors, Elm offers <strong>&#8216;no run time exceptions&#8217;</strong> guarantee.</p>
+<h3><strong>Friendly error messages</strong></h3>
+<p>Elm has a reputation for great error messages, being statically typed.</p>
+<p>Consider the following Elm code</p><pre class="crayon-plain-tag">import Html exposing(..)
+
+
+view orders =
+
+  div [] (List.mapp viewOrder orders)
+
+viewOrder order =
+
+  span [] (text order.name)</pre><p>Here&#8217;s an example for an error message after compiling the Elm code:</p>
+<p>This is what errors look like in the command line</p><pre class="crayon-plain-tag">--NAMING ERROR-----------------------------------------------------list-mapp.elm
+
+Cannot find variable 'List.mapp' .
+
+6| div [] (List.mapp viewOrder orders)
+
+List does not expose 'mapp' . May be you want one of the following?
+
+List.map
+
+List.any
+
+List.map2
+
+List.map3</pre><p></p>
+<ul>
+<li>shows the line number in the code which caused the error</li>
+<li>shows the actual line of code</li>
+<li>lists the maximum possibilities for correct code</li>
+</ul>
+<p>If you have a nice editor with Elm language integration, these error messages can be seen as a pop-up when hovering over the line of code which causes the error. This line of code can be identified easily as it will be red underlined.</p>
+<p>To start with Elm, we don&#8217;t have to worry about the huge libraries as in case of other frameworks. Just install Elm CLI and start coding. In a JavaScript application, we are probably putting together some collection of tools as below.</p>
+<ul>
+<li>React</li>
+<li>Redux</li>
+<li>npm/yarn</li>
+<li>Webpack</li>
+<li>Immutable.JS</li>
+</ul>
+<p>But Elm addresses these issue by providing all of them <strong>built in a single installer.</strong></p>
+<p>JavaScript languages and browser engines are subjected to constant changes always. It&#8217;s not feasible to refactor the application accordingly. Building our application in Elm enables to get more efficient JavaScript code when newer versions of the language are released with compiler updates.</p>
+<h2>Start with Elm</h2>
+<p>Elm is a delightful language meant for developer happiness. When you write an Elm app, you write a number of modules in separate files and feed those files to Elm compiler. It gets compiled to JavaScript that&#8217;s ready to run the program.</p>
+<h3>Architecture</h3>
+<p>Whenever we write an Elm app this architecture will be following. All Elm apps in practice are structured this way.</p>
+<p>So, we start by writing an init function, whose job is to generate the initial model for our app. This is the complete model for the current state of the front end as it&#8217;s running in the browser.</p>
+<p>The second function is the view that takes the model and generates the Html interface for your web app. In React like frameworks, it lets you generate a virtual DOM. So every time front end is rendered it will calculate the entire user interface and the framework takes responsibility for efficiently updating the changes in the actual browser. Elm also has its own virtual DOM implementation that is really faster compared to React, Angular etc.</p>
+<p>As part of our interface, we will declare the events we are interested in. If the user does something like click a button, Elm will send the program a message. So we need to write a third function to handle those messages and that&#8217;s the update function. This function will take that message and the program&#8217;s existing model and put them together in order to generate the new updated model for the program. Then it feeds to the view function to generate the updated interface. This is how Elm looks like.</p>
+<h2>Install on Rails</h2>
+<p>Elm is officially supported in Rails 5.1 via the webpacker gem.</p>
+<p>Be sure to <a href="https://yarnpkg.com/en/docs/install">install yarn</a> and <a href="https://nodejs.org/en/download/">Node.js</a> first. Node.js version should be &gt;6.4.0+</p>
+<p>Then, to use Webpacker with Elm,</p><pre class="crayon-plain-tag">rails new elm-on-rails --webpack=elm</pre><p>If Rails application is already setup with webpacker, run</p><pre class="crayon-plain-tag">./bin/rails webpacker:install:elm</pre><p>within the app.</p>
+<p>If it&#8217;s not setup with webpacker, add gem &#8216;webpacker&#8217; to your gemfile and then install Elm.</p>
+<p>Navigate to app/javascript/packs directory.  A file named Main.elm that displays &#8220;Hello Elm!&#8221; text is generated there, along with a companion file hello_elm.js</p><pre class="crayon-plain-tag">#hello_elm.js
+
+import Elm from './Main'
+
+document.addEventListener('DOMContentLoaded', () =&gt; {
+const target = document.createElement('div')
+
+document.body.appendChild(target)
+Elm.Main.embed(target)
+})</pre><p>Now, we need a page to display the Elm output.</p>
+<p>We&#8217;ll create a new file app/views/application/index.html.erb in order to render the layout:</p>
+<p>Use the javascript_pack_tag helper to import hello_elm.js file:</p><pre class="crayon-plain-tag">&lt;%= javascript_pack_tag "hello_elm" %&gt;</pre><p>Add this line in application.html.erb or index.html.erb since hello_elm.js file embeds the output in the current document.</p>
+<p>Then add a default route</p><pre class="crayon-plain-tag">#config/routes.rb
+
+get '/', to: 'application#index'</pre><p>Before firing up Rails server, do</p><pre class="crayon-plain-tag">bundle exec rails webpacker:compile</pre><p>Then run rails server and you will be seeing the &#8220;Hello Elm!&#8221; greeting.</p>
+<h2>Immutable Data and Pure Functions</h2>
+<p>Elm programs are made up of immutable data and pure functions. This contributes to the simplicity of the language.</p>
+<p>In Ruby, if I say,</p><pre class="crayon-plain-tag">user.update(params)</pre><p>Calling an update method will change that user object in place. The initial value in user object is gone now if we do not have a copy of it before method call.</p>
+<p>In the same controller,</p><pre class="crayon-plain-tag">new_hash = hash.merge(params)</pre><p>Calling hash.merge doesn&#8217;t modify the hash in place but returns a new_hash with updates applied to it.</p>
+<p>The above examples are two different APIs designed in different ways.</p>
+<p>This can be confusing to beginners if they find it difficult to understand why different functions work in different ways. But it&#8217;s not an issue in Elm as its values are immutable.</p>
+<p>In Elm,</p><pre class="crayon-plain-tag">newUser = update params user</pre><p>user object can be passed to update function but that can&#8217;t change its value; it&#8217;s immutable.</p>
+<p>What we can do is to create a new value with some changes applied to it. Thus, the update function will return the newly updated user. That&#8217;s just how all Elm functions work, so there&#8217;s little situation of confusion as explained first.</p>
+<p>The update function we explained in Ruby can have side effects. It brings changes to the database. If a function does nothing but provides the same return value based on its arguments, then only it can be called side-effect-free. The function should not make any impact on anything else; that&#8217;s pure function in terms of functional programming.</p>
+<p>Elm functions cannot have side effects because all Elm functions are pure functions &#8211; a strong reason why Elm defined as a functional programming language. The only thing the functions do in Elm is calculating its return value by the arguments that we passed to and constants. They cannot have side effects. The advantage is that we get more predictable programs.</p>
+<h2>Elm Platform</h2>
+<p>To develop our Elm applications, four tools will be essential.</p>
+<ul>
+<li>elm-repl</li>
+</ul>
+<p>To quickly execute a small piece of Elm code from the command line without having to create a file. To start using the REPL, execute elm-repl in the terminal.</p>
+<ul>
+<li>elm-reactor</li>
+</ul>
+<p>Creates a server that will compile your elm code and will be able to see the result directly on the browser. Also, we can set a different port and custom address.</p><pre class="crayon-plain-tag">elm-reactor -a 0.0.0.0 -p 3000</pre><p></p>
+<ul>
+<li>elm-make</li>
+</ul>
+<p>We can use elm-make to translate the Elm code to native files for the web(HTML, CSS, and JavaScript)</p>
+<ul>
+<li>elm-package</li>
+</ul>
+<p>Tool to install and publish Elm packages.<br />
+Type elm-package in your command line to make it available, and to install a package:</p><pre class="crayon-plain-tag">elm-package install &lt;package-name&gt;</pre><p>Elm having a solid architecture enables to build our projects with a guarantee that we have things under control even when application increases in complexity.</p>
+<p>&nbsp;</p>
+<h2>References</h2>
+<ul>
+<li><a href="https://github.com/rails/webpacker">https://github.com/rails/webpacker</a></li>
+<li><a href="https://guide.elm-lang.org/">https://guide.elm-lang.org/</a></li>
+<li><a href="https://www.elm-tutorial.org/en/">https://www.elm-tutorial.org/en/</a></li>
+<li><a href="https://github.com/fbonetti/elm-rails">https://github.com/fbonetti/elm-rails</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>The post <a rel="nofollow" href="/integrating-elm-rails/">Integrating Elm with Rails</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/integrating-elm-rails/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+							</item>
+		<item>
+		<title>Managing threads with Queue and SizedQueue</title>
+		<link>/managing-threads-queue-sizedqueue/</link>
+				<comments>/managing-threads-queue-sizedqueue/#comments</comments>
+				<pubDate>Tue, 22 Aug 2017 12:36:00 +0000</pubDate>
+		<dc:creator><![CDATA[nimmy]]></dc:creator>
+				<category><![CDATA[Uncategorized]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3081</guid>
+				<description><![CDATA[<p>Threads in Ruby To make our applications do multiple things faster at the same time, we can use Ruby threads. For a long-running application, re-using a pool of such threads can provide great performance benefits. Thread pool is a way to have a fixed set of threads doing the work, instead of creating new ones each time.&#8230;</p>
+<p>The post <a rel="nofollow" href="/managing-threads-queue-sizedqueue/">Managing threads with Queue and SizedQueue</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<h2></h2>
+<h2>Threads in Ruby</h2>
+<p>To make our applications do multiple things faster at the same time, we can use Ruby threads. For a long-running application, re-using a pool of such threads can provide great performance benefits. Thread pool is a way to have a fixed set of threads doing the work, instead of creating new ones each time.</p>
+<p>Considering a simple program as below, we realize the importance of threads.</p><pre class="crayon-plain-tag">def add_elements(group)
+  sleep(4)
+  sum = 0
+  group.each do |item|
+    sum += item
+  end
+  sum
+end
+
+@group1 = [22, 44, 55]
+@group2 = [45, 59, 72]
+@group3 = [99, 22, 33]
+
+puts "sum of group1 = #{add_elements(@group1)}"
+puts "sum of group2 = #{add_elements(@group2)}"
+puts "sum of group3 = #{add_elements(@group3)}"</pre><p>You will get the sum of each array as output but the sleep(4) instruction will pause execution for 4 seconds and then continue. Thus, group1 will get the sum after 4 seconds, group2 after 8 seconds and so on, which is not feasible. In such cases, it is more economical to have threads, since we can have the sum of each array calculated independently.</p>
+<p>Threads allow us to execute different parts of our program independently. For implementing threads, after initializing each array,</p><pre class="crayon-plain-tag">threads = (1..3).map do |c|
+  Thread.new(c) do |c|
+    groups = instance_variable_get("@groups#{element}")
+    puts "groups#{element} = #{add_element(groups)}"
+  end
+end
+threads.each {|t| t.join}</pre><p>The add_element method definition is same but we wrapped method call in a Thread.new block.</p>
+<p>Now, instead of getting the sum of each array after 4 seconds, 8 seconds and 12 seconds respectively, you will get the sum of all arrays after 4 seconds. This indicates better performance and efficiency which is the power of threads.</p>
+<h2>Queue for managing threads</h2>
+<p>To safely exchange information between threads, we can use Queue in the standard library. The tasks that are added first in the queue are retrieved first. PUSH and POP are the two main methods in Queue that add and retrieves an item respectively.</p>
+<p>Consider the following example.</p>
+<p>To create new queue instance, use the new() method.</p><pre class="crayon-plain-tag">require 'thread'
+queue = Queue.new
+
+Thread.new do
+  4.times do |i|
+    sleep(2)
+    queue &lt;&lt; i
+    puts "Thread #{i} produced"
+  end
+end</pre><p>5 items are inserted into the queue.</p>
+<p>Output as follows,</p><pre class="crayon-plain-tag">Thread 0
+
+Thread 1
+
+Thread 2
+
+Thread 3</pre><p>Now, to pop off items from queue,</p><pre class="crayon-plain-tag">Thread.new do
+  4.times do |i|
+     sleep(2)
+     puts "consumed thread #{queue.pop}"
+  end
+end</pre><p>It produces the following output</p><pre class="crayon-plain-tag">Thread 0
+
+consumed 0
+
+Thread 1
+
+consumed 1
+
+Thread 2
+
+consumed 2
+
+Thread 3
+
+consumed 3</pre><p></p>
+<h2>Sized queue for fixed-length queue</h2>
+<p>The sized queue is useful in situations where the rate of production is higher than consumption.</p>
+<p>In the following example,</p><pre class="crayon-plain-tag">require 'thread'
+queue = Queue.new
+
+Thread.new do
+  10.times do |i|
+    sleep(2)
+    queue &lt;&lt; i
+    puts "Thread #{i} produced"
+  end
+end
+
+Thread.new do
+  4.times do |i|
+    sleep(2)
+    puts "consumed thread #{queue.pop}"
+  end
+end</pre><p>We see, 10 items are produced and 4 items are consumed and remaining accumulate in the queue.</p>
+<p>This is an issue of memory wastage.</p>
+<p>Hence we rely on the sized queue.</p>
+<p>Instead of Queue.new, we use SizedQueue.new(maxvalue).</p>
+<p>The argument specifies the maximum number of items we allow to put in a queue.</p>
+<p>Modifying our example, we can save memory space.</p><pre class="crayon-plain-tag">require 'thread'
+queue = SizedQueue.new(4)
+
+Thread.new do
+  10.times do |i|
+    sleep(2)
+    queue &lt;&lt; i
+    puts "Thread #{i}"
+  end
+end
+
+Thread.new do
+  4.times do |i|
+    sleep(2)
+    puts "consumed #{queue.pop}"
+  end
+end</pre><p>4 threads are produced and consumed. After that, the maximum limit is checked and push operation is blocked. The maximum value of our sized queue is 4 here, so after that push, the operation is not allowed, even though the loop is for 10 times.</p>
+<p>Output:</p><pre class="crayon-plain-tag">Thread 0 produced 
+
+consumed thread 0
+
+Thread 1 produced 
+
+consumed thread 1
+
+Thread 2 produced 
+
+consumed thread 2
+
+Thread 3 produced 
+
+consumed thread 3
+
+Thread 4 produced 
+
+Thread 5 produced 
+
+Thread 6 produced 
+
+Thread 7 produced</pre><p>&nbsp;</p>
+<p>To conclude, we can say that while Queue can be used to safely exchange information between threads, SizedQueue helps to overcome the problem with the queue as mentioned above.</p>
+<h2>References</h2>
+<ul>
+<li><a href="https://docs.ruby-lang.org/en/2.4.0/Queue.html">https://docs.ruby-lang.org/en/2.4.0/Queue.html</a></li>
+<li><a href="https://docs.ruby-lang.org/en/2.4.0/SizedQueue.html">https://docs.ruby-lang.org/en/2.4.0/SizedQueue.html</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>The post <a rel="nofollow" href="/managing-threads-queue-sizedqueue/">Managing threads with Queue and SizedQueue</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/managing-threads-queue-sizedqueue/feed/</wfw:commentRss>
+		<slash:comments>3</slash:comments>
+							</item>
+		<item>
+		<title>Authorization with Pundit gem</title>
+		<link>/authorization-with-pundit-gem/</link>
+				<comments>/authorization-with-pundit-gem/#comments</comments>
+				<pubDate>Mon, 12 Jun 2017 10:55:09 +0000</pubDate>
+		<dc:creator><![CDATA[nimmy]]></dc:creator>
+				<category><![CDATA[Beginners]]></category>
+		<category><![CDATA[Rails]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=2636</guid>
+				<description><![CDATA[<p>&#160; Security is an important aspect of application development. Two main components of security are Authentication (Who are you?) and Authorization (are you supposed to be here?). Authentication verifies the user&#8217;s identity while authorization verifies whether that user has access rights on certain resources to perform actions on them. Two popular gems for authorization in&#8230;</p>
+<p>The post <a rel="nofollow" href="/authorization-with-pundit-gem/">Authorization with Pundit gem</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p>&nbsp;</p>
+<p>Security is an important aspect of application development. Two main components of security are Authentication (<em>Who are you?</em>) and Authorization (<em>are you supposed to be here?</em>). Authentication verifies the user&#8217;s identity while authorization verifies whether that user has access rights on certain resources to perform actions on them.</p>
+<p>Two popular gems for authorization in the rails world are CanCanCan and Pundit, we at Red Panthers prefers pundit over CanCanCan we get to write Pure Ruby Objects and keep the logic for each part separate.</p>
+<p>The gem CanCanCan isolates (encourages) all authorization logic into a single class. It is a drawback when the complexity of application increases. Pundit gem provides object oriented design patterns to build our own authorization system that meets project&#8217;s requirements. It enables us to keep the models and controllers free from authorization code and allows to keep the resource logic separately. This flexibility and simplicity of Pundit gem help to use it with ease.</p>
+<h2>To start with Pundit</h2>
+<p>Add Pundit gem to your gem file and run bundle install.</p><pre class="crayon-plain-tag">gem 'pundit'</pre><p>Integrate Pundit to Rails application by adding the following line to ApplicationController.</p><pre class="crayon-plain-tag">include Pundit</pre><p>If you run the Pundit&#8217;s generator as below, it will generate app/policies folder which contains application_policy.rb by default.</p>
+<div class="highlight highlight-source-shell">
+<pre class="crayon-plain-tag">rails g pundit:install</pre>
+</div>
+<p>Then restart the Rails server.</p>
+<p>Base class policy looks like</p><pre class="crayon-plain-tag">#app/policies/application_policy.rb
+class ApplicationPolicy
+  attr_reader :user, :record
+
+  def initialize(user, record)
+    @user = user
+    @record = record
+  end
+
+  #............
+
+  def destroy?
+    false
+  end
+
+  def scope
+    Pundit.policy_scope!(user, record.class)
+  end
+
+  class Scope
+    attr_reader :user, :scope
+
+    def initialize(user, scope)
+      @user = user
+      @scope = scope
+    end
+
+    def resolve
+      scope
+    end
+  end
+end</pre><p></p>
+<h2>Create policies</h2>
+<p>Policy classes are the core of Pundit. In the app/policies folder, we can write our own policies. Each policy is a Ruby class. Each policy class should be named after a model they belong to, followed by the word Policy. For example, use CollectionPolicy for Collection model. Pundit can also be used without an associated model.</p>
+<p>Pundit uses the current_user method to get the first argument in initialize method in ApplicationPolicy. But if current_user is not the method that should be invoked by Pundit, simply define a method in your controller.</p><pre class="crayon-plain-tag">def pundit_user
+  User.find_by_other_means
+end</pre><p>Logically, Pundit can be used outside controllers, for example, in custom services or in views.</p>
+<p>Consider the following example.</p>
+<p>In User model,</p><pre class="crayon-plain-tag">class User &lt; ApplicationRecord  
+  has_many :collections, dependent: :destroy
+end</pre><p>In Collection model,</p><pre class="crayon-plain-tag">class Collection &lt; ApplicationRecord  
+  belongs_to :user
+end</pre><p>A collection should be able to be deleted only by the user who created it.</p>
+<p>So, let&#8217;s start by creating a new file collection_policy.rb in app/policies  that will store our policies that are specific to collections.</p>
+<p>In this file, we define a class that inherits from the ApplicationPolicy class and we will integrate delete method for managing permissions for the delete action .</p><pre class="crayon-plain-tag">#app/policies/collection_policy.rb
+class CollectionPolicy &lt; ApplicationPolicy
+  def destroy?
+    record.user == user
+  end
+end</pre><p>In our CollectionPolicy class we are overriding the delete? method originally declared in the ApplicationPolicy. There it simply returns false. We can override the methods in ApplicationPolicy class with our unique requirements since it&#8217;s intended to give a structure only.</p><pre class="crayon-plain-tag">record.user == user</pre><p>This states that, the only user that should be able to delete a collection is the user that created it. We can refactor this into their own method since it&#8217;s a better approach if other authorized users are needed to be added in future so that changes can be made easily in a single method instead of having to make the same changes in multiple places.</p>
+<p>This is very explicit, clearly describing the intent of the program flow.</p>
+<p>Definitely, we won&#8217;t be wondering, from where these record and user attributes are coming from. In ApplicationPolicy class we can see that they are set as read only attributes representing the object that we are adding authorization to, such as collection in our app and then the user. This is an instance of Pundit providing easy access to the items that we want to add authorization. If we add another policy class like CollectionPolicy then also we will be able to use very similar code like we are working with collections.</p>
+<p>Now let&#8217;s move to CollectionsController . By using Pundit policies, a proper permission structure can be integrated to the delete action, which earlier had no protection from unauthorized HTTP requests.</p><pre class="crayon-plain-tag">class CollectionsController &lt; ApplicationController
+  protect_from_forgery
+
+  def create
+    Collections::Create.call(collection_params, current_user)
+    redirect_to root_url
+  end
+
+  def destroy
+    collection = Collection.find(params[:id])
+    authorize(collection, :destroy?)
+    Collections::Delete.call(collection, current_user)
+    redirect_to root_url
+  end
+
+  private
+
+  def collection_params
+    params.require(:collection).permit(:name)
+  end
+end</pre><p>The authorize method automatically assumes that Collection will have a corresponding CollectionPolicy class, and instantiates this class. It should call destroy? method on this instance of the policy. Passing a second argument to authorize method is optional here. It infers from the action name that it should call destroy? method on this instance of the policy. But second argument should be passed if it doesn&#8217;t match the action name.</p>
+<h3>Policy without a corresponding model</h3>
+<p>We can create &#8216;headless&#8217; policies that are not tied to any specific model. Such policies can be retrieved by passing a symbol.</p><pre class="crayon-plain-tag"># app/policies/website_policy.rb
+class WebsitePolicy &lt; Struct.new(:user, :website)
+  # ...
+end</pre><p></p><pre class="crayon-plain-tag"># In controllers
+authorize :website, :show?</pre><p></p><pre class="crayon-plain-tag"># In views
+&lt;% if policy(:website).show? %&gt;
+  &lt;%= link_to 'Website', website_path %&gt;
+&lt;% end %&gt;</pre><p>Here a model or class named Website doesn&#8217;t exist. So WebsitePolicy is retrieved by passing a symbol. This is a headless policy.</p>
+<h2>Pundit scopes</h2>
+<p>In application_policy.rb, there is a scope class defined. It implements a method called resolve for filtering. We can inherit it from a base class and implement our own resolve method. In this example a scope is setup to allow users to view websites only if they have a link through collections.</p>
+<p>Let&#8217;s consider three models: User, Website, and Collection</p>
+<p>Collection belongs to User.</p>
+<p>In WebsitePolicy,</p><pre class="crayon-plain-tag">class Scope &lt; Scope
+  def resolve
+    if user.admin?
+      scope.all
+    else
+      scope.where(:company_id =&gt; user.collections.select(:website_id))
+    end
+  end
+end</pre><p>In the websites_controller,</p><pre class="crayon-plain-tag">def index
+  @websites = policy_scope(Website.includes(:company).all)
+  authorize @websites
+end</pre><p>Now we see only the websites where we have a collection.</p>
+<h2>Exception handling</h2>
+<p>By default, Pundit raises an exception when users attempt to access that which they are not authorized to. This situation can be handled in ApplicationController.</p><pre class="crayon-plain-tag">class ApplicationController &lt; ActionController::Base
+  include Pundit
+  protect_from_forgery with: :exception
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
+  def user_not_authorized
+    flash[:alert] = 'You are not authorized to perform this action.'
+    redirect_back(fallback_location: root_path)
+ end
+end</pre><p>We need to rescue the Pundit::NotAuthorizedError exception with a suitable method that tells how to handle it.</p>
+<h2>Why Pundit?</h2>
+<ul>
+<li>Well suited to the service oriented architecture that&#8217;s popular for large Rails applications</li>
+<li>Keep controllers skinny</li>
+<li>Pundit policy objects are lightweight, adding authorization logic without as much overhead as CanCanCan</li>
+<li>Emphasizes object-oriented design with discrete Ruby objects providing specialized services</li>
+</ul>
+<p>Therefore, as an application grows in complexity it&#8217;s always better to prefer Pundit for authorization.</p>
+<h2>References</h2>
+<ul>
+<li><a href="https://github.com/elabs/pundit">Pundit Gem on Github</a></li>
+<li><a href="https://github.com/RailsApps/rails-devise-pundit">Rails-Devise-Pundit</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>The post <a rel="nofollow" href="/authorization-with-pundit-gem/">Authorization with Pundit gem</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/authorization-with-pundit-gem/feed/</wfw:commentRss>
+		<slash:comments>6</slash:comments>
+							</item>
+		<item>
+		<title>Taking screenshots of webpages using Ruby</title>
+		<link>/screenshots-using-ruby/</link>
+				<comments>/screenshots-using-ruby/#comments</comments>
+				<pubDate>Mon, 01 May 2017 10:48:00 +0000</pubDate>
+		<dc:creator><![CDATA[nimmy]]></dc:creator>
+				<category><![CDATA[Beginners]]></category>
+		<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[gem]]></category>
+		<category><![CDATA[phtantom js]]></category>
+		<category><![CDATA[Ruby]]></category>
+		<category><![CDATA[screencap]]></category>
+		<category><![CDATA[screenshot]]></category>
+		<category><![CDATA[web page]]></category>
+		<category><![CDATA[webshot]]></category>
+		<category><![CDATA[website]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=2373</guid>
+				<description><![CDATA[<p>&#160; Recently we have been working on taking screenshots for web page while generating reports based on that website. During this endeavor, we came across some tools to achieve that. We are sharing the information we gathered here. The tools that we will discuss for screencapture, in  Ruby,  are: PhantomJS Screencap gem Webshot gem Screencap&#8230;</p>
+<p>The post <a rel="nofollow" href="/screenshots-using-ruby/">Taking screenshots of webpages using Ruby</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p>&nbsp;</p>
+<p>Recently we have been working on taking screenshots for web page while generating reports based on that website. During this endeavor, we came across some tools to achieve that. We are sharing the information we gathered here.</p>
+<p>The tools that we will discuss for screencapture, in  Ruby,  are:</p>
+<ul>
+<li>PhantomJS</li>
+<li>Screencap gem</li>
+<li>Webshot gem</li>
+</ul>
+<p>Screencap and webshot are gems in Ruby that depends on a tool called PhantomJS. It is basically a web browser without a user interface, primarily used for testing websites. Such type of browsers are generally referred to as headless browsers,</p>
+<h2>Screenshots with PhantomJS</h2>
+<p>PhantomJS is quite easy to install and is multiplatform, available on major operating systems.</p><pre class="crayon-plain-tag">gem install phantomjs</pre><p>To start, our script must require a reference to the webpage module then use it to create an instance:</p><pre class="crayon-plain-tag">var instance = require('webpage').create();</pre><p>Use the instance.open() method and pass it the arguments, the url of the webpage that we want to capture screenshot.</p><pre class="crayon-plain-tag">instance.open('/', function() {
+instance.render('screenshot-phantom.png');
+phantom.exit();
+});</pre><p>instance.render() method captures the screenshot and saves it to the file specified in the argument.<br />
+Run the script as,</p><pre class="crayon-plain-tag">phantomjs filename.js</pre><p>Screenshot is saved in the  directory where we run the script.</p>
+<p>Now what we have above is all JavaScript, but to use the phantom JS in our rails application we have gems that provide us with an easy interface to acheive the same.</p>
+<h2>Screencap gem</h2>
+<p>The gem &#8216;screencap&#8217; is introduced in Ruby to make screenshot capture easy. However, the gem depends on  &#8216;PhantomJS&#8217;, so we need to have PhantomJS installed on machine to capture screenshots with screencap gem.<br />
+But screencap does not work with PhantomJS 2.1.1, which is the latest version.<br />
+So we need to install version 1.9.8</p><pre class="crayon-plain-tag">gem install phantomjs -v 1.9.8</pre><p>check version</p><pre class="crayon-plain-tag">phantomjs --version</pre><p>To install screencap gem in your application, add this line to gemfile</p><pre class="crayon-plain-tag">gem 'screencap'</pre><p>Or install it as</p><pre class="crayon-plain-tag">gem install screencap</pre><p></p>
+<h2>Usage</h2>
+<p>To capture screenshot with screencap</p><pre class="crayon-plain-tag">require 'screencap'
+screenshot = Screencap::Fetcher.new(&lt;url&gt;)
+image = screenshot.fetch</pre><p></p>
+<ul>
+<li>Fetcher class accepts url of the website to take screenshot.</li>
+<li>Screenshot is taken when fetch method is called.</li>
+<li>Also, fetch method supports various optional parameters to specify the area to capture the screenshot.</li>
+<li>We can specify where to store the screenshot captured, as shown below.</li>
+</ul>
+<p></p><pre class="crayon-plain-tag">image = obj.fetch(
+ output: '~/folder/file-name.png',
+ # dimensions for taking screenshot of specific area
+  width: 1024,
+ height: 768
+ )</pre><p></p>
+<h2>Example</h2>
+<p></p><pre class="crayon-plain-tag">require 'screencap'
+screenshot = Screencap::Fetcher.new('/')
+image = screenshot.fetch(output: '~/screencap/screencap.png',
+                                   width: 300,
+                                  height: 500)</pre><p>Our screenshot is captured in screencap.png</p>
+<p><a href="http://blog.redpanthers.co/wp-content/uploads/2017/04/screencap.png"><img class="alignnone size-medium wp-image-2388" src="http://blog.redpanthers.co/wp-content/uploads/2017/04/screencap-300x225.png" alt="" width="300" height="225" /></a></p>
+<h2></h2>
+<h2>Webshot gem</h2>
+<p>Webshot is another gem introduced in ruby to capture screenshots, also depends on PhantomJS.<br />
+For better experience, use latest version of PhantomJS. Webshot works with latest version of PhantomJS while screencap gem does not.<br />
+Install PhantomJS latest version.<br />
+To install webshot in your application,</p><pre class="crayon-plain-tag">gem 'webshot'</pre><p>Or install as</p><pre class="crayon-plain-tag">gem install webshot</pre><p></p>
+<h2>Usage</h2>
+<p></p><pre class="crayon-plain-tag">require 'webshot'
+screenshot = Webshot::Screenshot.instance
+screenshot.capture "https://github.com/", "image.png", width: 1024, height: 800</pre><p>Provide url of the web page and file name where screenshot to be saved.<br />
+Height and width can be given as optional parameters for taking screenshot with specified dimensions.<br />
+Above code captures github&#8217;s home page in file image.png</p>
+<p><a href="http://blog.redpanthers.co/wp-content/uploads/2017/04/image-1.png"><img class="alignnone size-medium wp-image-2398" src="http://blog.redpanthers.co/wp-content/uploads/2017/04/image-1-300x146.png" alt="" width="300" height="146" /></a></p>
+<p>In all the above methods, we capture screenshots of a particular web page by passing its url.<br />
+Also we can infer that screencap gem, even though efficiently takes screenshots, does not work for latest version of PhantomJS. This was an issue encountered while working with gem screencap as installing PhantomJS without specifying the version would install the latest version by default.</p>
+<p>So, choose gem webshot if you want to go ahead with the latest version of PhantomJS.</p>
+<h2>References</h2>
+<ul>
+<li><a href="https://github.com/ariya/phantomjs">PhantomJS</a></li>
+<li><a href="https://github.com/maxwell/screencap">Screencap gem</a></li>
+<li><a href="https://github.com/vitalie/webshot">Webshot gem</a></li>
+</ul>
+<p>The post <a rel="nofollow" href="/screenshots-using-ruby/">Taking screenshots of webpages using Ruby</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/screenshots-using-ruby/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+							</item>
+	</channel>
+</rss>

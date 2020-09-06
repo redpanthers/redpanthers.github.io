@@ -1,4 +1,4 @@
- <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
 	xmlns:content="http://purl.org/rss/1.0/modules/content/"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
 	xmlns:atom="http://www.w3.org/2005/Atom"
@@ -10,7 +10,7 @@
 	Comments on: Cheat sheet for managing files from Ruby	</title>
 	<atom:link href="/cheat-sheet-for-managing-files-from-ruby/feed/" rel="self" type="application/rss+xml" />
 	<link>/cheat-sheet-for-managing-files-from-ruby/</link>
-	<description>Experts in Ruby on Rails Development</description>
+	<description>Red Panthers - Experts in Ruby on Rails, System Design and Vue.js</description>
 	<lastBuildDate>Fri, 22 Sep 2017 19:59:00 +0000</lastBuildDate>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -20,12 +20,12 @@
 			<item>
 				<title>
 				By: eibhinn				</title>
-				<link>/cheat-sheet-for-managing-files-from-ruby/#comment-63</link>
+				<link>/cheat-sheet-for-managing-files-from-ruby/#comment-62</link>
 		<dc:creator><![CDATA[eibhinn]]></dc:creator>
 		<pubDate>Fri, 22 Sep 2017 19:59:00 +0000</pubDate>
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=1596#comment-63</guid>
+		<guid isPermaLink="false">https://redpanthers.co/?p=1596#comment-62</guid>
 					<description><![CDATA[Thanks so much for an awesome post! This is a great tutorial. A quick thought: in my experience `read` is more widely used and is friendlier than `sysread` (no exceptions) -- is there a reason you’re choosing `sysread` for general cases? Would be interested to know. In any case, thanks again for the excellent resource!]]></description>
-		<content:encoded><![CDATA[<p>Thanks so much for an awesome post! This is a great tutorial. A quick thought: in my experience <code>read</code> is more widely used and is friendlier than <code>sysread</code> (no exceptions) &#8212; is there a reason you’re choosing <code>sysread</code> for general cases? Would be interested to know. In any case, thanks again for the excellent resource!</p>
+		<content:encoded><![CDATA[<p>Thanks so much for an awesome post! This is a great tutorial. A quick thought: in my experience `read` is more widely used and is friendlier than `sysread` (no exceptions) &#8212; is there a reason you’re choosing `sysread` for general cases? Would be interested to know. In any case, thanks again for the excellent resource!</p>
 ]]></content:encoded>
 						</item>
 			</channel>

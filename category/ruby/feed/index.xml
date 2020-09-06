@@ -1,4 +1,4 @@
- <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
 	xmlns:content="http://purl.org/rss/1.0/modules/content/"
 	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -8,83 +8,275 @@
 	>
 
 <channel>
-	<title>Ruby &#8211; Red Panthers</title>
+	<title>Ruby &#8211; beta.redpanthers.co</title>
 	<atom:link href="/category/ruby/feed/" rel="self" type="application/rss+xml" />
 	<link>/</link>
-	<description>Experts in Ruby on Rails Development</description>
-	<lastBuildDate>Wed, 14 Feb 2018 13:01:15 +0000</lastBuildDate>
+	<description>Red Panthers - Experts in Ruby on Rails, System Design and Vue.js</description>
+	<lastBuildDate>Sun, 06 Sep 2020 06:59:15 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
 	<generator>https://wordpress.org/?v=5.2.7</generator>
-
-<image>
-	<url>/wp-content/uploads/2017/12/rp-logo.png</url>
-	<title>Ruby &#8211; Red Panthers</title>
-	<link>/</link>
-	<width>32</width>
-	<height>32</height>
-</image> 
 	<item>
-		<title>What&#8217;s new in Ruby 2.5</title>
+		<title>Configuring a GitLab CI pipeline for Rails, MongoDB, and Rspec</title>
+		<link>/configuring-a-gitlab-ci-pipeline-for-rails-mongodb-and-rspec/</link>
+				<pubDate>Mon, 29 Apr 2019 11:28:12 +0000</pubDate>
+		<dc:creator><![CDATA[tony]]></dc:creator>
+				<category><![CDATA[DevOps]]></category>
+		<category><![CDATA[git]]></category>
+		<category><![CDATA[Rails]]></category>
+		<category><![CDATA[Ruby]]></category>
+
+		<guid isPermaLink="false">http://redpanthers.co/?p=16200</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[<a href="https://about.gitlab.com/">Gitlab</a> has a free private git repository service and an integrated CI service that can be configured to suit our needs. To know more about setting up Gitlab CI, check out our [blog post](link here)
+
+
+<h3>Including MongoDB in CI build system</h3>
+
+
+Instead of installing and starting MongoDB manually, we can use the Gitlab mongo service. A Gitlab service is just another Docker image that runs during your job and is linked to the main image. The first step is to include the latest MongoDB image to the build system. Add this to your <code>.gitlab-ci.yml</code>
+
+
+<pre class="lang:yaml decode:true ">services:
+- mongo:latest</pre>
+
+
+
+
+<h3>Add the MONGODB_URI variable</h3>
+
+
+Add a <code>variables</code> section within <code>.gitlab-ci.yml</code> to set the <code>MONGODB_URI</code> variable.
+
+
+<pre class="lang:yaml decode:true">variables:
+MONGODB_URI: mongodb://mongo:27017/test_db</pre>
+
+
+
+
+<h3>Add config/mongoid.yml ile</h3>
+
+
+Add a file <code>config/mongoid.yml.gitlab</code> with the following contents
+
+
+<pre class="lang:yaml decode:true">test:
+  clients:
+    default:
+      uri: &lt;%= ENV['MONGODB_URI'] %&gt;
+</pre>
+
+
+
+
+<h3>Override config/mongoid.yml with config/mongoid.yml.gitlab</h3>
+
+
+We need to override the local test configuration with the above settings specific to CI. Add the following to the <code>before_script</code> section of <code>.gitlab-ci.yml</code>
+
+
+<pre class="lang:yaml decode:true">before_script:
+  - cp config/database.yml.gitlab config/database.yml</pre>
+
+
+That&#8217;s it fellas, you are all set
+
+
+<h3>Summary</h3>
+
+
+The complete <code>.gitlab-ci.yml</code>
+
+
+<pre class="lang:yaml decode:true">image: starefossen/ruby-node:latest
+services:
+  - mongo:latest
+variables:
+  MONGODB_URI: mongodb://mongo:27017/test_db
+before_script:
+  - RAILS_ENV=test bundle install --jobs $(nproc) "${FLAGS[@]}"
+  - cp config/mongoid.yml.gitlab config/mongoid.yml
+  - RAILS_ENV=test bundle exec rake db:create db:migrate
+test:
+  script:
+    - bundle exec rspec</pre>
+
+
+the contents of <code>config/mongoid.yml</code>
+
+
+<pre class="lang:default decode:true ">development:
+  clients:
+    default:
+      database: dev_db
+      hosts:
+        - localhost:27017
+      options:
+        read:
+          mode: :primary
+        max_pool_size: 10
+production:
+  clients:
+    default:
+      uri: &lt;%= ENV['MONGODB_URI'] %&gt;
+      pool_size: &lt;%= ENV['DB_POOL_SIZE'] %&gt;
+test:
+  clients:
+    default:
+      database: test_db
+      hosts:
+        - localhost:27017
+      options:
+        read:
+          mode: :primary
+        max_pool_size: 1</pre>
+
+
+and <code>config/mongoid.yml.gitlab</code>
+
+
+<pre class="lang:yaml decode:true ">test:
+  clients:
+    default:
+      uri: &lt;%= ENV['MONGODB_URI'] %&gt;</pre>
+
+
+May you have a green build! :-)]]&gt;		</p>
+]]></content:encoded>
+										</item>
+		<item>
+		<title>What&#039;s new in Ruby 2.5</title>
 		<link>/whats-new-ruby-2-5/</link>
-				<comments>/whats-new-ruby-2-5/#respond</comments>
 				<pubDate>Mon, 25 Dec 2017 08:08:56 +0000</pubDate>
 		<dc:creator><![CDATA[nimmy]]></dc:creator>
 				<category><![CDATA[Ruby]]></category>
 		<category><![CDATA[Ruby 2.5]]></category>
 
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=4219</guid>
-				<description><![CDATA[<p>The Ruby language has increasingly stabilized over the years. The upcoming release of Ruby 2.5 is not going to let us down too. It introduces lots of new features and improvements over the previous version. The first preview was released on 10th October 2017 and the final build will be released on this 25th. This&#8230;</p>
-<p>The post <a rel="nofollow" href="/whats-new-ruby-2-5/">What&#8217;s new in Ruby 2.5</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
-]]></description>
-								<content:encoded><![CDATA[<p>The Ruby language has increasingly stabilized over the years. The upcoming release of Ruby 2.5 is not going to let us down too. It introduces lots of new features and improvements over the previous version. The first preview was released on 10th October 2017 and the final build will be released on this 25th. This blog dissects into this latest and exciting release and goes through some of the most important changes, we will be writing another article on performance improvement once the 2.5 if officially released.</p>
+		<guid isPermaLink="false">https://redpanthers.co/?p=4219</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[The Ruby language has increasingly stabilized over the years. The upcoming release of Ruby 2.5 is not going to let us down too. It introduces lots of new features and improvements over the previous version. The first preview was released on 10th October 2017 and the final build will be released on this 25th. This blog dissects into this latest and exciting release and goes through some of the most important changes, we will be writing another article on performance improvement once the 2.5 if officially released.
+
+
 <ul>
+ 	
+
 <li>
-<h2>Added <code>Hash#transform_keys</code> method</h2>
+
+
+<h2>Added `Hash#transform_keys` method</h2>
+
+
 </li>
+
+
 </ul>
-<p>Ruby 2.4 added the <code>transform_values</code> method, 2.5 completes it by adding <code>transform_keys</code> thus make it a perfect pair.</p>
-<p>Hash#transform_keys can change keys according to the return value of a block:</p><pre class="crayon-plain-tag">hash = { a: 1, b: 2 }
+
+
+Ruby 2.4 added the <code>transform_values</code> method, 2.5 completes it by adding <code>transform_keys</code> thus make it a perfect pair.
+Hash#transform_keys can change keys according to the return value of a block:
+
+
+<pre class="lang:default decode:true ">hash = { a: 1, b: 2 }
 =&gt; {:a=&gt;1, :b=&gt;2}
 hash.transform_keys { |k| k.to_s }
 =&gt; {"a"=&gt;1, "b"=&gt;2}
 hash
-=&gt; {:a=&gt;1, :b=&gt;2}</pre><p><code>transform_keys!</code> is a destructive version:</p><pre class="crayon-plain-tag">hash = { a: 1, b: 2 }
+=&gt; {:a=&gt;1, :b=&gt;2}</pre>
+
+
+<code>transform_keys!</code> is a destructive version:
+
+
+<pre class="lang:default decode:true ">hash = { a: 1, b: 2 }
 =&gt; {:a=&gt;1, :b=&gt;2}
 hash.transform_keys! { |k| k.to_s } 
 =&gt; {"a"=&gt;1, "b"=&gt;2}
 hash
-=&gt; {"a"=&gt;1, "b"=&gt;2}</pre><p>We know how many times we had to manipulate the keys of a hash. <code>transform_keys</code> is gonna be a game changer and going to be very compelling to be used in your legacy app. The destructive version is a just silver lining to this.</p>
+=&gt; {"a"=&gt;1, "b"=&gt;2}</pre>
+
+
+We know how many times we had to manipulate the keys of a hash. <code>transform_keys</code> is gonna be a game changer and going to be very compelling to be used in your legacy app. The destructive version is a just silver lining to this.
+
+
 <ul>
+ 	
+
 <li>
+
+
 <h2>Array#prepend and Array#append</h2>
+
+
 </li>
+
+
 </ul>
-<p>Ruby 2.5 brings home two new aliases which are so much better than the two of the most used operations in the language. <code>Array#prepend</code> and <code>Array#append</code> are more programmer friendly than the conventional <code>Array#unshift</code> and <code>Array#push</code>. Ruby IS THE language which focuses on the programmers&#8217; happiness primarily after all.</p><pre class="crayon-plain-tag">&gt;&gt; a = ["hello"]
+
+
+Ruby 2.5 brings home two new aliases which are so much better than the two of the most used operations in the language. `Array#prepend` and `Array#append` are more programmer friendly than the conventional `Array#unshift` and `Array#push`. Ruby IS THE language which focuses on the programmers&#8217; happiness primarily after all.
+
+
+<pre class="lang:default decode:true">&gt;&gt; a = ["hello"]
 =&gt; ["hello"]
 &gt;&gt; a.append "world"
 =&gt; ["hello", "world"]
 &gt;&gt; a.prepend "Hi"
-=&gt; ["Hi", "hello", "world"]</pre><p></p>
-<ul>
-<li>
-<h2>Added yield_self method</h2>
-</li>
-</ul>
-<p>This method yields the receiver to the given block and returns the output of the last statement in the block which is somewhat similar to the tap method.The only difference is the value that is returned.<code class="highlighter-rouge">yield_self</code> method returns the output of the block but <code class="highlighter-rouge">tap</code> method returns the receiver itself.</p><pre class="crayon-plain-tag">"Hello".yield_self { |obj| obj + " World"}
-=&gt; "Hello World"
+=&gt; ["Hi", "hello", "world"]</pre>
 
-"Hello".tap { |obj| obj + " World" }
- =&gt; "Hello"</pre><p></p>
+
+
+
 <ul>
+ 	
+
 <li>
-<h2>rescue/else/ensure are allowed inside do/end blocks without begin/end</h2>
+
+
+<h2>Added yield_self method</h2>
+
+
 </li>
+
+
 </ul>
-<p>We could omit the begin/end and not need the extra wrapper for rescue/else/ensure clauses in Ruby 2.5</p><pre class="crayon-plain-tag">[1].each do |n|
+
+
+This method yields the receiver to the given block and returns the output of the last statement in the block which is somewhat similar to the tap method.The only difference is the value that is returned.<code class="highlighter-rouge">yield_self</code> method returns the output of the block but <code class="highlighter-rouge">tap</code> method returns the receiver itself.
+
+
+<pre class="lang:default decode:true ">"Hello".yield_self { |obj| obj + " World"}
+=&gt; "Hello World"
+"Hello".tap { |obj| obj + " World" }
+ =&gt; "Hello"</pre>
+
+
+
+
+<ul>
+ 	
+
+<li>
+
+
+<h2>rescue/else/ensure are allowed inside do/end blocks without begin/end</h2>
+
+
+</li>
+
+
+</ul>
+
+
+We could omit the begin/end and not need the extra wrapper for rescue/else/ensure clauses in Ruby 2.5
+
+
+<pre class="lang:default decode:true">[1].each do |n|
   n / 0
 rescue
   # rescue
@@ -92,99 +284,235 @@ else
   # else
 ensure
   # ensure
-end</pre><p></p>
+end</pre>
+
+
+
+
 <ul>
+ 	
+
 <li>
+
+
 <h2>String#delete_prefix/delete_suffix</h2>
+
+
 </li>
+
+
 </ul>
-<p>In Ruby 2.4 we used chomp method to remove the suffix &#8216;world&#8217; from &#8216;HelloWorld&#8217; and to remove prefix there is no corresponding method for chomp. The solution was to resort to a <a href="https://ruby-doc.org/core-2.4.2/String.html#sub-method">sub</a> which is using the regular expression for such a simple task.</p>
-<p>Ruby 2.5 added new methods to take care of such tasks. Now in order to delete prefix, we can use delete_prefix and to delete suffix we could use chomp. But the method names don&#8217;t seem good. So for symmetry delete_suffix was added.</p><pre class="crayon-plain-tag">'HelloWorld'.delete_prefix('Hello')
+
+
+In Ruby 2.4 we used chomp method to remove the suffix &#8216;world&#8217; from &#8216;HelloWorld&#8217; and to remove prefix there is no corresponding method for chomp. The solution was to resort to a <a href="https://ruby-doc.org/core-2.4.2/String.html#sub-method">sub</a> which is using the regular expression for such a simple task.
+Ruby 2.5 added new methods to take care of such tasks. Now in order to delete prefix, we can use delete_prefix and to delete suffix we could use chomp. But the method names don&#8217;t seem good. So for symmetry delete_suffix was added.
+
+
+<pre class="lang:default decode:true">'HelloWorld'.delete_prefix('Hello')
 =&gt; "World" 
 'HelloWorld'.delete_suffix('World')
-=&gt; "Hello"</pre><p></p>
+=&gt; "Hello"</pre>
+
+
+
+
 <ul>
+ 	
+
 <li>
+
+
 <h2>Ruby 2.5 has removed top-level constant lookup</h2>
+
+
 </li>
+
+
 </ul>
-<p>Consider the following code in Ruby 2.4.</p><pre class="crayon-plain-tag">class Book;
+
+
+Consider the following code in Ruby 2.4.
+
+
+<pre class="lang:default decode:true">class Book;
 end
 class Seller;
 end
  
-Book::Seller</pre><p>This code works with a warning. The top-level constants are defined under Object class, and Ruby tries to look up the superclass of Book class, and eventually finds Seller under the Object class which is a superclass of Book class.</p>
-<p>But in Ruby 2.5, Ruby won’t look up superclass. So the previous code fails with an error.</p><pre class="crayon-plain-tag">Book::Seller
+Book::Seller</pre>
+
+
+This code works with a warning. The top-level constants are defined under Object class, and Ruby tries to look up the superclass of Book class, and eventually finds Seller under the Object class which is a superclass of Book class.
+But in Ruby 2.5, Ruby won’t look up superclass. So the previous code fails with an error.
+
+
+<pre class="lang:default decode:true">Book::Seller
 #=&gt; NameError: uninitialized constant Book::Seller
-#   Did you mean?  Seller</pre><p>Ruby 2.5 throws an error if it is unable to find constant in the specified scope.</p>
+#   Did you mean?  Seller</pre>
+
+
+Ruby 2.5 throws an error if it is unable to find constant in the specified scope.
+
+
 <ul>
+ 	
+
 <li>
+
+
 <h2>New method to ERB to allow assigning the local variables from a hash</h2>
+
+
 </li>
+
+
 </ul>
-<p>In Ruby 2.4, we had to do hacks like following to assign local variables to ERB template.</p><pre class="crayon-plain-tag">require 'erb'
+
+
+In Ruby 2.4, we had to do hacks like following to assign local variables to ERB template.
+
+
+<pre class="lang:default decode:true">require 'erb'
 require 'ostruct'
  
 namespace = OpenStruct.new(a: 10, b: 3)
 template = 'Result: &lt;%= a * b %&gt;'
 ERB.new(template).result(namespace.instance_eval { binding })
-#=&gt; "Result: 30"</pre><p>ERB could allow a hash instead of a binding for processing the template in Ruby 2.5 such that we could avoid hacks as above.</p>
-<p>To allow assigning the local variables from a hash we can use <code>result_with_hash</code> method.</p><pre class="crayon-plain-tag">require 'erb'
+#=&gt; "Result: 30"</pre>
 
+
+ERB could allow a hash instead of a binding for processing the template in Ruby 2.5 such that we could avoid hacks as above.
+To allow assigning the local variables from a hash we can use <code>result_with_hash</code> method.
+
+
+<pre class="lang:default decode:true">require 'erb'
 result = 'Result: &lt;%= a * b %&gt;'
 ERB.new(result).result_with_hash(a: 10, b: 3)
-#=&gt; "Result: 30"</pre><p></p>
+#=&gt; "Result: 30"</pre>
+
+
+
+
 <ul>
+ 	
+
 <li>
+
+
 <h2>Dir.children and Dir.each_child</h2>
+
+
 </li>
+
+
 </ul>
-<p>ls -a command will list all files including hidden files (files with names beginning with a dot). Dir.entries  method present in Ruby 2.4 returns this output in an array.</p><pre class="crayon-plain-tag">Dir.entries("/home")
-=&gt; ["..", "user", "."]</pre><p>Another method Dir.foreach  iterates and yields each value from the output of ls -a command to the block.</p><pre class="crayon-plain-tag">Dir.foreach("/home") { |child| puts child }
+
+
+ls -a command will list all files including hidden files (files with names beginning with a dot). Dir.entries  method present in Ruby 2.4 returns this output in an array.
+
+
+<pre class="lang:default decode:true">Dir.entries("/home")
+=&gt; ["..", "user", "."]</pre>
+
+
+Another method Dir.foreach  iterates and yields each value from the output of ls -a command to the block.
+
+
+<pre class="lang:default decode:true">Dir.foreach("/home") { |child| puts child }
 ..
 user
-.</pre><p>The output includes the directives for the current directory and parent directory which are &#8220;.&#8221; and &#8220;..&#8221;.</p>
-<p>When we want to have access only to the children files and directories, we do not need the [&#8220;.&#8221;, &#8220;..&#8221;] subarray. To overcome such issues, Ruby 2.5 introduced Dir.children. It returns the output of ls -a command without the directives for current and parent directories.</p><pre class="crayon-plain-tag">Dir.children("/home")
-=&gt; ["user"]</pre><p>We can use Dir.each_child method to avoid yielding current and parent directory directives while iterating.</p><pre class="crayon-plain-tag">Dir.each_child("/home") { |child| puts child }
-user</pre><p></p>
+.</pre>
+
+
+The output includes the directives for the current directory and parent directory which are &#8220;.&#8221; and &#8220;..&#8221;.
+When we want to have access only to the children files and directories, we do not need the [&#8220;.&#8221;, &#8220;..&#8221;] subarray. To overcome such issues, Ruby 2.5 introduced Dir.children. It returns the output of ls -a command without the directives for current and parent directories.
+
+
+<pre class="lang:default decode:true">Dir.children("/home")
+=&gt; ["user"]</pre>
+
+
+We can use Dir.each_child method to avoid yielding current and parent directory directives while iterating.
+
+
+<pre class="lang:default decode:true">Dir.each_child("/home") { |child| puts child }
+user</pre>
+
+
+
+
 <ul>
+ 	
+
 <li>
+
+
 <h2>Imported features from ActiveSupport library</h2>
+
+
 </li>
+
+
 </ul>
-<p>Over the past few years, Ruby has been merging the best features from the ActiveSupport library, into the core language. In Ruby 2.5 version, <code>Hash#slice</code>, <code>Hash#slice!</code>, <code>Hash#except</code>, <code>Hash#except!</code> are such methods continuing the trend, imported from ActiveSupport.</p>
-<p>The ActiveSupport library comes bundled with the popular Ruby on Rails framework, but can also be used in isolation. It provides many extensions to Ruby&#8217;s core classes.</p><pre class="crayon-plain-tag">{a: 1, b: 2, c: 3}.slice(:a, :b)
-#=&gt; {:a=&gt;1, :b=&gt;2}</pre><p>&nbsp;</p>
-<p>One of the notable feature in 2.5 release was bundler packed with ruby core, but it is posponed due to some issues, See the <a href="https://github.com/ruby/ruby/commit/7825e8363d4b2ccad8e2d3f5eeba9e26f6656911">commit</a></p>
+
+
+Over the past few years, Ruby has been merging the best features from the ActiveSupport library, into the core language. In Ruby 2.5 version, <code>Hash#slice</code>, <code>Hash#slice!</code>, <code>Hash#except</code>, <code>Hash#except!</code> are such methods continuing the trend, imported from ActiveSupport.
+The ActiveSupport library comes bundled with the popular Ruby on Rails framework, but can also be used in isolation. It provides many extensions to Ruby&#8217;s core classes.
+
+
+<pre class="lang:default decode:true">{a: 1, b: 2, c: 3}.slice(:a, :b)
+#=&gt; {:a=&gt;1, :b=&gt;2}</pre>
+
+
+&nbsp;
+One of the notable feature in 2.5 release was bundler packed with ruby core, but it is posponed due to some issues, See the <a href="https://github.com/ruby/ruby/commit/7825e8363d4b2ccad8e2d3f5eeba9e26f6656911">commit</a>
+
+
 <h2>Further changes</h2>
-<p><a href="https://github.com/ruby/ruby/blob/v2_5_0/NEWS">NEWS for Ruby 2.5.0 </a> news page can be referred to find other news and changes on Ruby 2.5</p>
+
+
+<a href="https://github.com/ruby/ruby/blob/v2_5_0/NEWS">NEWS for Ruby 2.5.0 </a> news page can be referred to find other news and changes on Ruby 2.5
+
+
 <h2></h2>
+
+
+
+
 <h2>References</h2>
+
+
+
+
 <ul>
+ 	
+
 <li><a href="https://github.com/ruby/ruby/blob/v2_5_0/NEWS">https://github.com/ruby/ruby/blob/v2_5_0/NEWS</a></li>
+
+
+ 	
+
 <li><a href="https://www.ruby-lang.org/en/news/2017/12/25/ruby-2-5-0-released/">https://www.ruby-lang.org/en/news/2017/12/25/ruby-2-5-0-released/</a></li>
+
+
 </ul>
-<p>&nbsp;</p>
-<p>The post <a rel="nofollow" href="/whats-new-ruby-2-5/">What&#8217;s new in Ruby 2.5</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+
+
+&nbsp;]]&gt;		</p>
 ]]></content:encoded>
-							<wfw:commentRss>/whats-new-ruby-2-5/feed/</wfw:commentRss>
-		<slash:comments>0</slash:comments>
-							</item>
+										</item>
 		<item>
 		<title>Getting started with Faraday gem</title>
 		<link>/getting-started-faraday-gem/</link>
-				<comments>/getting-started-faraday-gem/#respond</comments>
 				<pubDate>Thu, 16 Nov 2017 17:54:51 +0000</pubDate>
 		<dc:creator><![CDATA[nimmy]]></dc:creator>
 				<category><![CDATA[Rails]]></category>
 		<category><![CDATA[Ruby]]></category>
 
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=4033</guid>
-				<description><![CDATA[<p>&#160; Client libraries help in reducing the amount of code for the application developer who is using the API, whether a REST API or any other. By adding a set of code to the application, it provides the basic things an application needs to do in order to interact with the API. This is what a&#8230;</p>
-<p>The post <a rel="nofollow" href="/getting-started-faraday-gem/">Getting started with Faraday gem</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
-]]></description>
-								<content:encoded><![CDATA[<p>&nbsp;</p>
-<p>Client libraries help in reducing the amount of code for the application developer who is using the API, whether a REST API or any other. By adding a set of code to the application, it provides the basic things an application needs to do in order to interact with the API. This is what a client library does. Also, it may handle user authentication and authorization.</p>
+		<guid isPermaLink="false">https://redpanthers.co/?p=4033</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>Client libraries help in reducing the amount of code for the application developer who is using the API, whether a REST API or any other. By adding a set of code to the application, it provides the basic things an application needs to do in order to interact with the API. This is what a client library does. Also, it may handle user authentication and authorization.</p>
 <p>Client libraries are developed by API developer or the community.</p>
 <p>There are several HTTP client libraries in Ruby such as:</p>
 <ul>
@@ -204,198 +532,336 @@ user</pre><p></p>
 <h4><a href="https://github.com/nahi/httpclient">HTTPClient</a></h4>
 </li>
 </ul>
-<p>Among them, the favorite of mine is Faraday gem. Faraday has adapters for popular libraries like Net::HTTP. It is simple, flexible and supports multiple backends and embraces the concept of Rack middleware when processing the request/response cycle. Also, it&#8217;s possible to customize its behavior with middleware.</p>
-<p>We will use a connection object to start with Faraday as it&#8217;s more flexible way than a simple <code>get</code>request.</p><pre class="crayon-plain-tag">conn = Faraday.new
-response = conn.get 'http://localhost:3000/tasks'</pre><p>Using this connection object, we make HTTP requests.</p><pre class="crayon-plain-tag">params = {:title =&gt; 'Faraday gem', :created_by =&gt; 'blog'}
-conn.post('http://localhost:3000/tasks',params)</pre><p>This will POST  title = &#8216;Faraday gem&#8217;  and created by = &#8216;blog&#8217; to http://localhost:3000/tasks.</p>
-<p>All HTTP verb methods can take an optional block that will yield a<code>Faraday::Request</code> object.</p><pre class="crayon-plain-tag"> conn.post do |req|
+<p>Among them, the favorite of mine is Faraday gem. Faraday has adapters for popular libraries like Net::HTTP. It is simple, flexible and supports multiple backends and embraces the concept of Rack middleware when processing the request/response cycle. Also, it&#8217;s possible to customize its behavior with middleware. We will use a connection object to start with Faraday as it&#8217;s more flexible way than a simple <code>get</code>request.</p>
+<pre class="lang:default decode:true">conn = Faraday.new
+response = conn.get 'http://localhost:3000/tasks'
+</pre>
+<p>Using this connection object, we make HTTP requests.</p>
+<pre class="lang:default decode:true">params = {:title =&gt; 'Faraday gem', :created_by =&gt; 'blog'}
+conn.post('http://localhost:3000/tasks',params)
+</pre>
+<p>This will POST  title = &#8216;Faraday gem&#8217;  and created by = &#8216;blog&#8217; to http://localhost:3000/tasks. All HTTP verb methods can take an optional block that will yield a<code>Faraday::Request</code> object.</p>
+<pre class="lang:default decode:true"> conn.post do |req|
    req.url '/tasks'
    req.headers['Content-Type'] = 'application/json'
    req.body = '{"some": "content"}'
- end</pre><p></p>
+ end</pre>
 <h2>Authentication</h2>
-<p>Basic and Token authentication are handled by <code>Faraday::Request::BasicAuthentication</code> and <code>Faraday::Request::TokenAuthentication</code> respectively. These can be added as middleware manually or through the helper methods.</p><pre class="crayon-plain-tag">conn.basic_auth('username', 'password')
-conn.token_auth('token')</pre><p></p>
+<p>Basic and Token authentication are handled by <code>Faraday::Request::BasicAuthentication</code> and <code>Faraday::Request::TokenAuthentication</code> respectively. These can be added as middleware manually or through the helper methods.</p>
+<pre class="lang:default decode:true">conn.basic_auth('username', 'password')
+conn.token_auth('token')</pre>
 <h2>Proxies</h2>
-<p>To specify an HTTP proxy:</p><pre class="crayon-plain-tag">Faraday.new(:proxy =&gt; 'http://proxy.example.com:80/')</pre><p></p>
+<p>To specify an HTTP proxy:</p>
+<pre class="lang:default decode:true">Faraday.new(:proxy =&gt; 'http://proxy.example.com:80/')</pre>
 <h2>Using a different HTTP Adapter</h2>
-<p>Faraday provides an interface between our code and adapter. Sometimes we may want to use features that are not covered in Faraday&#8217;s interface. In such cases, we can have access to features specific to any of the adapters supported by Faraday, by passing a block when specifying the adapter to customize it.</p>
-<p>For example, you can switch to the HTTPClient adapter as below</p><pre class="crayon-plain-tag"> conn = Faraday.new do |builder|
+<p>Faraday provides an interface between our code and adapter. Sometimes we may want to use features that are not covered in Faraday&#8217;s interface. In such cases, we can have access to features specific to any of the adapters supported by Faraday, by passing a block when specifying the adapter to customize it. For example, you can switch to the HTTPClient adapter as below</p>
+<pre class="lang:default decode:true"> conn = Faraday.new do |builder|
    builder.adapter :httpclient do |client| # yields HTTPClient
      client.keep_alive_timeout = 20
    end
- end</pre><p>Like this, we can switch to any of the supported adapters.</p>
-<p>The block parameters will change based on the adapters we are using.</p>
+ end</pre>
+<p>Like this, we can switch to any of the supported adapters. The block parameters will change based on the adapters we are using.</p>
 <h2><code>Faraday::Connection</code> object middlewares</h2>
-<p>A <code>Faraday::Connection</code> object has a list of middlewares, just like a Rack app. Faraday middlewares are passed as an <code>env</code> hash. It has request and response information.</p><pre class="crayon-plain-tag">conn = Faraday.new
+<p>A <code>Faraday::Connection</code> object has a list of middlewares, just like a Rack app. Faraday middlewares are passed as an <code>env</code> hash. It has request and response information.</p>
+<pre class="lang:default decode:true">conn = Faraday.new
 conn.builder
 =&gt; #&lt;Faraday::RackBuilder:0x0000000155d1f0 @handlers=[Faraday::Request::UrlEncoded,
-   #Faraday::Adapter::NetHttp]&gt;</pre><p><code>Faraday::Builder</code> is similar to <code>Rack::Builder</code>.</p>
-<p>A new <code>Faraday::Connection</code>object is initialized. It has middlewares <code> Faraday::Request::UrlEncoded</code> in front of an adapter <code>Faraday::Adapter::NetHttp</code>.  Like a Rack application, the adapter at the end of the builder chain is what actually executes the request.</p>
-<p>Middlewares are grouped into request middlewares, response middlewares, and adapters.</p><pre class="crayon-plain-tag">Faraday.new do |builder|
-
+   #Faraday::Adapter::NetHttp]&gt;</pre>
+<p><code>Faraday::Builder</code> is similar to <code>Rack::Builder</code>. A new <code>Faraday::Connection</code>object is initialized. It has middlewares <code> Faraday::Request::UrlEncoded</code> in front of an adapter <code>Faraday::Adapter::NetHttp</code>.  Like a Rack application, the adapter at the end of the builder chain is what actually executes the request. Middlewares are grouped into request middlewares, response middlewares, and adapters.</p>
+<pre class="lang:default decode:true ">Faraday.new do |builder|
   builder.request :retry
-
   builder.request :basic_authentication, 'login', 'pass'
-
   builder.response :logger
-
   builder.adapter :net_http
-
-end</pre><p></p>
+end</pre>
 <h2>Advanced Middleware Usage</h2>
-<p>The order in which middleware is stacked in Faraday is like in Rack. The first middleware on the list wraps all others, while the last middleware is the innermost one, so that’s usually the adapter.</p><pre class="crayon-plain-tag">conn = Faraday.new(:url =&gt; '/') do |builder|
-
+<p>The order in which middleware is stacked in Faraday is like in Rack. The first middleware on the list wraps all others, while the last middleware is the innermost one, so that’s usually the adapter.</p>
+<pre class="lang:default decode:true">conn = Faraday.new(:url =&gt; 'https://redpanthers.co/') do |builder|
   # POST/PUT params encoders:
-
   builder.request :multipart
-
   builder.request :url_encoded
-
   builder.adapter :net_http
-
-end</pre><p>Middlewares stack is manipulated by the <code>Faraday::Builder</code> instance. Each <code>Faraday::Connection</code> instance has a <code>Faraday::Builder</code> instance.</p><pre class="crayon-plain-tag">conn = Faraday.new
-
+end</pre>
+<p>Middlewares stack is manipulated by the <code>Faraday::Builder</code> instance. Each <code>Faraday::Connection</code> instance has a <code>Faraday::Builder</code> instance.</p>
+<pre class="lang:default decode:true">conn = Faraday.new
 conn.builder.swap(1, Faraday::Adapter::HTTPClient)
-
 # replace adapter
-
 conn.builder.insert(0, MyCustomMiddleware)
-
 # add middleware to beginning
-
-conn.builder.delete(MyCustomMiddleware)</pre><p></p>
+conn.builder.delete(MyCustomMiddleware)</pre>
 <h2>Writing middleware</h2>
-<p>Middlewares are classes that respond to call. When middleware is executing, it&#8217;s passed as an env hash that has request and response information. Middleware wrap the request/response cycle.</p>
-<p>The general interface for a middleware is:</p><pre class="crayon-plain-tag">class CustomizedMiddleware
-
+<p>Middlewares are classes that respond to call. When middleware is executing, it&#8217;s passed as an env hash that has request and response information. Middleware wrap the request/response cycle. The general interface for a middleware is:</p>
+<pre class="lang:default decode:true">class CustomizedMiddleware
   def call(env)
-
     # do something with the request
-
     @app.call(env).on_complete do |env|
-
     # do something with the response
-
     end
   end
-end</pre><p>All processing of the response should be done in the on-complete block. This enables middleware to work in parallel mode when many requests are occurring at the same time. After the on_complete block, env[:response] is filled in. Faraday::Response instance will be available <span class="hljs-keyword">only</span> <span class="hljs-keyword">after</span> <code><span class="hljs-string">on_complete</code>.</span></p>
-<p><a href="https://github.com/lostisland/faraday_middleware">faraday-middleware</a>  is a collection of various Faraday middlewares for Faraday-based API wrappers.</p>
-<p>For testing middleware, Faraday::Adapter::Test is an HTTP adapter middleware that lets you to fake responses.</p>
-<p>&nbsp;</p>
+end</pre>
+<p>All processing of the response should be done in the on-complete block. This enables middleware to work in parallel mode when many requests are occurring at the same time. After the on_complete block, env[:response] is filled in. Faraday::Response instance will be available <span class="hljs-keyword">only</span> <span class="hljs-keyword">after</span> `<span class="hljs-string">on_complete`.</span><br />
+<a href="https://github.com/lostisland/faraday_middleware">faraday-middleware</a>  is a collection of various Faraday middlewares for Faraday-based API wrappers.<br />
+For testing middleware, Faraday::Adapter::Test is an HTTP adapter middleware that lets you to fake responses.</p>
 <h2>References</h2>
 <ul>
 <li><a href="https://github.com/lostisland/faraday">https://github.com/lostisland/faraday</a></li>
 </ul>
-<p>&nbsp;</p>
-<p>The post <a rel="nofollow" href="/getting-started-faraday-gem/">Getting started with Faraday gem</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+<p>]]&gt;</p>
 ]]></content:encoded>
-							<wfw:commentRss>/getting-started-faraday-gem/feed/</wfw:commentRss>
-		<slash:comments>0</slash:comments>
-							</item>
+										</item>
 		<item>
 		<title>Observer Design Pattern in Ruby</title>
 		<link>/observer-design-pattern-ruby/</link>
-				<comments>/observer-design-pattern-ruby/#comments</comments>
 				<pubDate>Mon, 16 Oct 2017 10:24:44 +0000</pubDate>
 		<dc:creator><![CDATA[anjana]]></dc:creator>
 				<category><![CDATA[Beginners]]></category>
 		<category><![CDATA[Ruby]]></category>
 
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=1264</guid>
-				<description><![CDATA[<p>Observer design pattern (also known as Publish/Subscribe) is a software design pattern, used when we are building a system where the state of one object affects the state of other objects. It is a key part of model-view-controller architectural pattern. In a traditional MVC ( Model-View-Controller ) architecture, a model is a subject and a view is an observer.&#8230;</p>
-<p>The post <a rel="nofollow" href="/observer-design-pattern-ruby/">Observer Design Pattern in Ruby</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
-]]></description>
-								<content:encoded><![CDATA[<p>Observer design pattern (also known as Publish/Subscribe) is a software design pattern, used when we are building a system where the state of one object affects the state of other objects. It is a key part of <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">model-view-controller</a> architectural pattern.</p>
-<p>In a traditional MVC ( Model-View-Controller ) architecture, a model is a <em class="markup--em markup--p-em">subject</em> and a view is an <em class="markup--em markup--p-em">observer</em>. A view is notified when a model changes and responds accordingly. When the subject sends observers detailed information about what has changed, indiscriminately, this is known as the <em class="markup--em markup--p-em">push model </em>of the <strong class="markup--strong markup--p-strong">Observer </strong>pattern. When a subject sends only minimal information to its observers must ask for details explicitly, this is known as the <em class="markup--em markup--p-em">pull model</em> of the <strong class="markup--strong markup--p-strong">Observer</strong> pattern.</p>
-<p><a href="http://blog.redpanthers.co/wp-content/uploads/2017/01/observer-1.png"><img class="wp-image-1459 size-full aligncenter" src="http://blog.redpanthers.co/wp-content/uploads/2017/01/observer-1.png" alt="Observer Design Pattern" width="444" height="227" /></a></p>
-<p>Ruby provides a simple mechanism to implement this design pattern using the <code>Observable</code> module. In this mechanism, the Notifier class uses the <code>Observable</code> module, which provides the methods for managing the associated observer objects.</p>
-<p>The observable object must:</p>
-<ul>
-<li>assert that it has <code>#changed</code></li>
-<li>call <code>#notify_observers</code></li>
-</ul>
-<p>An observer subscribes to updates using <a href="https://ruby-doc.org/stdlib-2.3.2/libdoc/observer/rdoc/Observable.html#method-i-add_observer">#add_observer</a>, which also specifies the method called via <a href="https://ruby-doc.org/stdlib-2.3.2/libdoc/observer/rdoc/Observable.html#method-i-notify_observers">notify observers</a>. The default method for <a href="https://ruby-doc.org/stdlib-2.3.2/libdoc/observer/rdoc/Observable.html#method-i-notify_observers">notify observers</a> is update.</p>
-<h2 class="section-header">Public Instance Methods</h2>
-<p>Instance methods are methods that are called on an instance of a class. We can use the below methods while using Observer instances.</p>
-<ul>
-<li class="method-heading"><span class="method-name">add_observer</span><span class="method-args">(observer, func=:update)</span></li>
-</ul>
-<div>
-<p style="padding-left: 60px;">Adds <code>observer</code> as an observer on this object, so that it will receive notifications.</p>
-<ul>
-<li class="method-heading"><span class="method-name">changed</span><span class="method-args">(state=true)</span></li>
-</ul>
-<div>
-<p style="padding-left: 60px;">Set the changed state of this object. Notifications will be sent only if the changed <code>state</code> is <code>true</code>.</p>
-<ul>
-<li class="method-heading"><span class="method-name">changed?</span><span class="method-args">()</span></li>
-</ul>
-<div>
-<p style="padding-left: 60px;">Returns true if this object’s state has been changed since the last notify_observers call.</p>
-<ul>
-<li class="method-heading"><span class="method-name">count_observers</span><span class="method-args">()</span></li>
-</ul>
-<p style="padding-left: 60px;">Return the number of observers associated with this object.</p>
-<ul>
-<li class="method-heading"><span class="method-name">delete_observer</span><span class="method-args">(observer)</span></li>
-</ul>
-<p style="padding-left: 60px;">Remove <code>observer</code> as an observer on this object so that it will no longer receive notifications.</p>
-<ul>
-<li class="method-heading"><span class="method-args"><span class="method-name">delete_observers</span>()</span></li>
-</ul>
-<p style="padding-left: 60px;">Remove all observers associated with this object.</p>
-<ul>
-<li>notify_observers(*arg)</li>
-</ul>
-<div style="padding-left: 60px;">Notify observers of a change in state <strong>if</strong> this object’s changed state is <code>true.</code></div>
-</div>
-</div>
-</div>
-<h2>How it works</h2>
-<p>First, we have to create a basic structure of the Notifier class which will act as an Observer. The <em>update()</em> method is the callback that the <a href="http://ruby-doc.org/stdlib-1.9.3/libdoc/observer/rdoc/Observable.html">Observable</a> module will use when notifying changes to the observer, and the method name needs to be <em>update()</em>.</p>
-<p>Let’s take an example of an application which keeps track of the bike mileage and reminds us of when we need to take the vehicle in for a scheduled bike service.</p><pre class="crayon-plain-tag">require 'observer'
+		<guid isPermaLink="false">https://redpanthers.co/?p=1264</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[Observer design pattern (also known as Publish/Subscribe) is a software design pattern, used when we are building a system where the state of one object affects the state of other objects. It is a key part of <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">model-view-controller</a> architectural pattern.
+In a traditional MVC ( Model-View-Controller ) architecture, a model is a <em class="markup--em markup--p-em">subject</em> and a view is an <em class="markup--em markup--p-em">observer</em>. A view is notified when a model changes and responds accordingly. When the subject sends observers detailed information about what has changed, indiscriminately, this is known as the <em class="markup--em markup--p-em">push model </em>of the <strong class="markup--strong markup--p-strong">Observer </strong>pattern. When a subject sends only minimal information to its observers must ask for details explicitly, this is known as the <em class="markup--em markup--p-em">pull model</em> of the <strong class="markup--strong markup--p-strong">Observer</strong> pattern.
+<a href="https://redpanthers.co/wp-content/uploads/2017/01/observer-1.png"><img class="wp-image-1459 size-full aligncenter" src="https://redpanthers.co/wp-content/uploads/2017/01/observer-1.png" alt="Observer Design Pattern" width="444" height="227" /></a>
+Ruby provides a simple mechanism to implement this design pattern using the <code>Observable</code> module. In this mechanism, the Notifier class uses the <code>Observable</code> module, which provides the methods for managing the associated observer objects.
+The observable object must:
 
+
+<ul>
+ 	
+
+<li>assert that it has <code>#changed</code></li>
+
+
+ 	
+
+<li>call <code>#notify_observers</code></li>
+
+
+</ul>
+
+
+An observer subscribes to updates using <a href="https://ruby-doc.org/stdlib-2.3.2/libdoc/observer/rdoc/Observable.html#method-i-add_observer">#add_observer</a>, which also specifies the method called via <a href="https://ruby-doc.org/stdlib-2.3.2/libdoc/observer/rdoc/Observable.html#method-i-notify_observers">notify observers</a>. The default method for <a href="https://ruby-doc.org/stdlib-2.3.2/libdoc/observer/rdoc/Observable.html#method-i-notify_observers">notify observers</a> is update.
+
+
+<h2 class="section-header">Public Instance Methods</h2>
+
+
+Instance methods are methods that are called on an instance of a class. We can use the below methods while using Observer instances.
+
+
+<ul>
+ 	
+
+<li class="method-heading"><span class="method-name">add_observer</span><span class="method-args">(observer, func=:update)</span></li>
+
+
+</ul>
+
+
+
+
+<div>
+
+
+<p style="padding-left: 60px;">Adds <code>observer</code> as an observer on this object, so that it will receive notifications.</p>
+
+
+
+
+<ul>
+ 	
+
+<li class="method-heading"><span class="method-name">changed</span><span class="method-args">(state=true)</span></li>
+
+
+</ul>
+
+
+
+
+<div>
+
+
+<p style="padding-left: 60px;">Set the changed state of this object. Notifications will be sent only if the changed <code>state</code> is <code>true</code>.</p>
+
+
+
+
+<ul>
+ 	
+
+<li class="method-heading"><span class="method-name">changed?</span><span class="method-args">()</span></li>
+
+
+</ul>
+
+
+
+
+<div>
+
+
+<p style="padding-left: 60px;">Returns true if this object’s state has been changed since the last notify_observers call.</p>
+
+
+
+
+<ul>
+ 	
+
+<li class="method-heading"><span class="method-name">count_observers</span><span class="method-args">()</span></li>
+
+
+</ul>
+
+
+
+
+<p style="padding-left: 60px;">Return the number of observers associated with this object.</p>
+
+
+
+
+<ul>
+ 	
+
+<li class="method-heading"><span class="method-name">delete_observer</span><span class="method-args">(observer)</span></li>
+
+
+</ul>
+
+
+
+
+<p style="padding-left: 60px;">Remove <code>observer</code> as an observer on this object so that it will no longer receive notifications.</p>
+
+
+
+
+<ul>
+ 	
+
+<li class="method-heading"><span class="method-args"><span class="method-name">delete_observers</span>()</span></li>
+
+
+</ul>
+
+
+
+
+<p style="padding-left: 60px;">Remove all observers associated with this object.</p>
+
+
+
+
+<ul>
+ 	
+
+<li>notify_observers(*arg)</li>
+
+
+</ul>
+
+
+
+
+<div style="padding-left: 60px;">Notify observers of a change in state <strong>if</strong> this object’s changed state is <code>true.</code></div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+<h2>How it works</h2>
+
+
+First, we have to create a basic structure of the Notifier class which will act as an Observer. The <em>update()</em> method is the callback that the <a href="http://ruby-doc.org/stdlib-1.9.3/libdoc/observer/rdoc/Observable.html">Observable</a> module will use when notifying changes to the observer, and the method name needs to be <em>update()</em>.
+Let’s take an example of an application which keeps track of the bike mileage and reminds us of when we need to take the vehicle in for a scheduled bike service.
+
+
+<pre class="lang:ruby decode:true">require 'observer'
 class Bike
   include Observable
-
   attr_reader :mileage,:service
-
   def initialize(mileage =0, service = 3000)
     @mileage,@service = mileage, service
     add_observer(Notifier.new)
   end
-
   def log(miles)
     @mileage += miles
     notify_observers(self, miles)
   end
-end</pre><p>Next, write the update method in Notifier class</p><pre class="crayon-plain-tag">class Notifier
+end</pre>
+
+
+Next, write the update method in Notifier class
+
+
+<pre class="lang:ruby decode:true ">class Notifier
   def update(bike, miles)
     puts "The bike has logged #{miles} miles, totaling #{bike.mileage} miles traveled."
     puts "The bike needs to be taken in for a service!" if bike.service &lt;= bike.mileage
   end
-end</pre><p></p>
+end</pre>
+
+
+
+
 <p class=" language-ruby">By running the code we can see</p>
-<p></p><pre class="crayon-plain-tag">bike = Bike.new(2300, 3000)
+
+
+
+
+<pre class="lang:ruby decode:true">bike = Bike.new(2300, 3000)
 bike.log(100)
 =&gt; "The bike has logged 100 miles, totaling 2400 miles traveled."
 bike.log(600)
 =&gt; "The bike has logged 300 miles, totaling 3000 miles traveled."
-=&gt; "The bike needs to be taken in for service!"</pre><p></p>
+=&gt; "The bike needs to be taken in for service!"</pre>
+
+
+
+
 <p class=" language-ruby">First, we create an instance of the <i>Bike</i> class with 2300 miles, and we set that it needs to be taken for service when it reaches 3000 miles.</p>
+
+
+
+
 <p class=" language-ruby">I hope this example helps you understand ruby observer design pattern better.</p>
-<p>Let me know in comments if you have any doubts or any implementation issues you have been facing recently. Thanks for reading!</p>
+
+
+Let me know in comments if you have any doubts or any implementation issues you have been facing recently. Thanks for reading!
+
+
 <h2 class=" language-ruby">References</h2>
+
+
+
+
 <ul>
+ 	
+
 <li><a href="https://ruby-doc.org/stdlib-2.3.2/libdoc/observer/rdoc/Observable.html#module-Observable-label-Mechanism">https://ruby-doc.org/stdlib-2.3.2/libdoc/observer/rdoc/Observable.html#module-Observable-label-Mechanism</a></li>
+
+
+ 	
+
 <li><a href="https://cbabhusal.wordpress.com/2015/10/03/gang-of-four-observer-design-pattern-in-ruby/">https://cbabhusal.wordpress.com/2015/10/03/gang-of-four-observer-design-pattern-in-ruby/</a></li>
+
+
 </ul>
-<p>The post <a rel="nofollow" href="/observer-design-pattern-ruby/">Observer Design Pattern in Ruby</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+
+]]&gt;		</p>
 ]]></content:encoded>
-							<wfw:commentRss>/observer-design-pattern-ruby/feed/</wfw:commentRss>
-		<slash:comments>1</slash:comments>
-							</item>
+										</item>
 		<item>
 		<title>Cheat sheet for managing files from Ruby</title>
 		<link>/cheat-sheet-for-managing-files-from-ruby/</link>
@@ -405,100 +871,289 @@ bike.log(600)
 				<category><![CDATA[Rails]]></category>
 		<category><![CDATA[Ruby]]></category>
 
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=1596</guid>
-				<description><![CDATA[<p>In this Cheat sheet, you will learn managing files from Ruby. Files are used for storing the Data for a Long time Period. And the files can contain any type of information means they can Store the text, any Images or Pictures or any data in any Format. It is associated with class IO File&#8230;</p>
-<p>The post <a rel="nofollow" href="/cheat-sheet-for-managing-files-from-ruby/">Cheat sheet for managing files from Ruby</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
-]]></description>
-								<content:encoded><![CDATA[<p>In this Cheat sheet, you will learn managing files from Ruby.</p>
-<p>Files are used for storing the Data for a Long time Period. And the files can contain any type of information means they can Store the text, any Images or Pictures or any data in any Format. It is associated with class IO File includes.</p>
+		<guid isPermaLink="false">https://redpanthers.co/?p=1596</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[In this Cheat sheet, you will learn managing files from Ruby.
+Files are used for storing the Data for a Long time Period. And the files can contain any type of information means they can Store the text, any Images or Pictures or any data in any Format. It is associated with class IO File includes.
+
+
 <h2><span id="Creating_a_New_File_with_Ruby" class="mw-headline">Creating a New File</span></h2>
-<p>New files are created in Ruby using the <i>new</i> method of the <i>File</i> class. The <i>new</i> method accepts two arguments, the first being the name of the file to be created and the second being the mode in which the file is to open. Like,</p>
-<p>file = File.new(&#8220;filename&#8221;, &#8220;mode&#8221;)</p>
-<p>Eg:</p><pre class="crayon-plain-tag">file = File.new("file.txt", "w")</pre><p>Supported modes are:</p>
+
+
+New files are created in Ruby using the <i>new</i> method of the <i>File</i> class. The <i>new</i> method accepts two arguments, the first being the name of the file to be created and the second being the mode in which the file is to open. Like,
+file = File.new(&#8220;filename&#8221;, &#8220;mode&#8221;)
+Eg:
+
+
+<pre class="lang:ruby decode:true ">file = File.new("file.txt", "w")</pre>
+
+
+Supported modes are:
+
+
 <table style="height: 206px;" border="1" width="314" cellspacing="0">
+
+
 <tbody>
+
+
 <tr>
+
+
 <td>r</td>
+
+
+
+
 <td>Read only access.</td>
+
+
 </tr>
+
+
+
+
 <tr>
+
+
 <td>r+</td>
+
+
+
+
 <td>Read and write access.</td>
+
+
 </tr>
+
+
+
+
 <tr>
+
+
 <td>w</td>
+
+
+
+
 <td>Write only access.</td>
+
+
 </tr>
+
+
+
+
 <tr>
+
+
 <td>w+</td>
+
+
+
+
 <td>Read and write access.</td>
+
+
 </tr>
+
+
+
+
 <tr>
+
+
 <td>a</td>
+
+
+
+
 <td>Write only access.</td>
+
+
 </tr>
+
+
+
+
 <tr>
+
+
 <td>a+</td>
+
+
+
+
 <td>Read and write access.</td>
+
+
 </tr>
+
+
 </tbody>
+
+
 </table>
+
+
+
+
 <h2><span id="Opening_Existing_Files" class="mw-headline">Opening Existing Files</span></h2>
-<p>You can open the existing files using the open method.</p>
-<p>Eg:</p><pre class="crayon-plain-tag">file = File.open(&quot;temp.txt&quot;)</pre><p>If the file is already opened, we can close it by using the close method.</p>
-<p>Eg:</p><pre class="crayon-plain-tag">file.close</pre><p></p>
+
+
+You can open the existing files using the open method.
+Eg:
+
+
+<pre class="">file = File.open("temp.txt")</pre>
+
+
+If the file is already opened, we can close it by using the close method.
+Eg:
+
+
+<pre class="lang:ruby decode:true ">file.close</pre>
+
+
+
+
 <h2>Reading and Writing Files</h2>
-<p>Once we&#8217;ve opened an existing file or created a new file we need to be able to read from and write to that file. We can read/write using different methods.</p>
+
+
+Once we&#8217;ve opened an existing file or created a new file we need to be able to read from and write to that file. We can read/write using different methods.
+
+
 <h3>sysread Method:</h3>
-<p>You can use the method <i>sysread</i> to read the contents of a file.</p>
-<p>Eg:</p><pre class="crayon-plain-tag">file = File.new(&quot;input.txt&quot;, &quot;r&quot;)
+
+
+You can use the method <i>sysread</i> to read the contents of a file.
+Eg:
+
+
+<pre class="prettyprint notranslate prettyprinted">file = File.new("input.txt", "r")
 if file
    content = file.sysread(10)
    puts content
 else
-  puts &quot;cannot open the file&quot;
-end</pre><p>This statement will output the first 10 characters of the file.</p>
+  puts "cannot open the file"
+end
+</pre>
+
+
+This statement will output the first 10 characters of the file.
+
+
 <h3>syswrite Method:</h3>
-<p>You can use the method syswrite to write the contents into a file.</p>
-<p>Eg:</p><pre class="crayon-plain-tag">file = File.new(&quot;input.txt&quot;, &quot;r+&quot;)
+
+
+You can use the method syswrite to write the contents into a file.
+Eg:
+
+
+<pre class="prettyprint notranslate prettyprinted ">file = File.new("input.txt", "r+")
 if file
-   file.syswrite(&quot;Hello&quot;)
+   file.syswrite("Hello")
 else
-   puts &quot;Unable to open file!&quot;
-end</pre><p>It writes &#8216;Hello&#8217; into the file input.txt.</p>
+   puts "Unable to open file!"
+end
+</pre>
+
+
+It writes &#8216;Hello&#8217; into the file input.txt.
+
+
 <h3>each_byte Method:</h3>
-<p>This method belongs to the class <i>File</i>. The method <i>each_byte</i> is always associated with a block.</p>
-<p>Eg:</p><pre class="crayon-plain-tag">file = File.new(&quot;input.txt&quot;, &quot;r+&quot;)
+
+
+This method belongs to the class <i>File</i>. The method <i>each_byte</i> is always associated with a block.
+Eg:
+
+
+<pre class="prettyprint notranslate prettyprinted">file = File.new("input.txt", "r+")
 if file
-   file.syswrite(&quot;ABCDEF&quot;)
+   file.syswrite("ABCDEF")
    file.each_byte {|ch| putc ch }
 else
-   puts &quot;Unable to open file!&quot;
-end</pre><p>Characters are passed one by one to the variable ch and then displayed on the screen.</p>
-<h3>IO.readlines Method:</h3>
-<p>The class <i>File</i> is a subclass of the class IO. This method returns the contents of the file line by line.</p>
-<p>Eg:</p><pre class="crayon-plain-tag">arr = IO.readlines(&quot;input.txt&quot;)
-puts arr[0]
-puts arr[1]</pre><p>Each line of the file <i>input.txt</i> will be an element in the array arr. Therefore, arr[0] will contain the first line, whereas arr[1] will contain the second line of the file.</p>
-<h3>IO.foreach Method:</h3>
-<p>This method also returns output line by line. The difference between the method <i>foreach</i> and the method <i>readlines</i> is that the method <i>foreach</i> is associated with a block.</p>
-<p>Eg:</p><pre class="crayon-plain-tag">IO.foreach(&quot;input.txt&quot;){|block| puts block}</pre><p>This code will pass the contents of the file <i>test</i> line by line to the variable block, and then the output will be displayed on the screen.</p>
-<h2><span id="Renaming_and_Deleting_Files_in_Ruby" class="mw-headline">Renaming and Deleting Files</span></h2>
-<p>Files are renamed and deleted in Ruby using the <i>rename</i> and <i>delete</i> methods respectively. For example, we can create a new file, rename it and then delete it:</p><pre class="crayon-plain-tag">File.new("tempfile.txt", "w")
-=&gt; #&lt;File:tempfile.txt&gt;
+   puts "Unable to open file!"
+end
+</pre>
 
+
+Characters are passed one by one to the variable ch and then displayed on the screen.
+
+
+<h3>IO.readlines Method:</h3>
+
+
+The class <i>File</i> is a subclass of the class IO. This method returns the contents of the file line by line.
+Eg:
+
+
+<pre class="prettyprint notranslate prettyprinted">arr = IO.readlines("input.txt")
+puts arr[0]
+puts arr[1]
+</pre>
+
+
+Each line of the file <i>input.txt</i> will be an element in the array arr. Therefore, arr[0] will contain the first line, whereas arr[1] will contain the second line of the file.
+
+
+<h3>IO.foreach Method:</h3>
+
+
+This method also returns output line by line. The difference between the method <i>foreach</i> and the method <i>readlines</i> is that the method <i>foreach</i> is associated with a block.
+Eg:
+
+
+<pre class="prettyprint notranslate prettyprinted">IO.foreach("input.txt"){|block| puts block}
+</pre>
+
+
+This code will pass the contents of the file <i>test</i> line by line to the variable block, and then the output will be displayed on the screen.
+
+
+<h2><span id="Renaming_and_Deleting_Files_in_Ruby" class="mw-headline">Renaming and Deleting Files</span></h2>
+
+
+Files are renamed and deleted in Ruby using the <i>rename</i> and <i>delete</i> methods respectively. For example, we can create a new file, rename it and then delete it:
+
+
+<pre class="lang:ruby decode:true">File.new("tempfile.txt", "w")
+=&gt; #&lt;File:tempfile.txt&gt;
 File.rename("tempfile.txt", "newfile.txt")
 =&gt; 0
-
 File.delete("newfile.txt")
-=&gt; 1</pre><p></p>
+=&gt; 1</pre>
+
+
+
+
 <h2>References</h2>
+
+
+
+
 <ul>
+ 	
+
 <li><span style="color: #333399;"><a style="color: #333399;" href="https://www.tutorialspoint.com/ruby/ruby_input_output.html">https://www.tutorialspoint.com/ruby/ruby_input_output.html</a></span></li>
+
+
+ 	
+
 <li><span style="color: #333399;"><a style="color: #333399;" href="http://www.techotopia.com/index.php/Working_with_Files_in_Ruby">http://www.techotopia.com/index.php/Working_with_Files_in_Ruby</a></span></li>
+
+
+ 	
+
 <li><span style="color: #333399;"><a style="color: #333399;" href="https://ruby-doc.org/core-2.2.2/File.html">https://ruby-doc.org/core-2.2.2/File.html</a></span></li>
+
+
 </ul>
-<p>The post <a rel="nofollow" href="/cheat-sheet-for-managing-files-from-ruby/">Cheat sheet for managing files from Ruby</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+
+]]&gt;		</p>
 ]]></content:encoded>
 							<wfw:commentRss>/cheat-sheet-for-managing-files-from-ruby/feed/</wfw:commentRss>
 		<slash:comments>1</slash:comments>
@@ -506,123 +1161,296 @@ File.delete("newfile.txt")
 		<item>
 		<title>Get into Sentiment Analysis with Ruby</title>
 		<link>/get-into-sentiment-analysis-with-ruby/</link>
-				<comments>/get-into-sentiment-analysis-with-ruby/#respond</comments>
 				<pubDate>Thu, 21 Sep 2017 13:46:35 +0000</pubDate>
 		<dc:creator><![CDATA[nimmy]]></dc:creator>
 				<category><![CDATA[Ruby]]></category>
 
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3497</guid>
-				<description><![CDATA[<p>&#160; Sometimes we fail to understand other&#8217;s emotion. So how it will be when machines try to understand ours? When writing programs we care about the syntax and structures but these concerns are not there in communication between people. To process our language machines have to understand not only what we say, but what we&#8230;</p>
-<p>The post <a rel="nofollow" href="/get-into-sentiment-analysis-with-ruby/">Get into Sentiment Analysis with Ruby</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
-]]></description>
-								<content:encoded><![CDATA[<p>&nbsp;</p>
-<p>Sometimes we fail to understand other&#8217;s emotion. So how it will be when machines try to understand ours? When writing programs we care about the syntax and structures but these concerns are not there in communication between people. To process our language machines have to understand not only what we say, but what we mean. Natural language processing is a fascinating subject to explore. But what makes it complicated?</p>
-<p>Human communication isn&#8217;t just a group of words. It&#8217;s a mix of sentiments which needed to be analyzed to understand what we really mean.</p>
+		<guid isPermaLink="false">https://redpanthers.co/?p=3497</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[&nbsp;
+Sometimes we fail to understand other's emotion. So how it will be when machines try to understand ours? When writing programs we care about the syntax and structures but these concerns are not there in communication between people. To process our language machines have to understand not only what we say, but what we mean. Natural language processing is a fascinating subject to explore. But what makes it complicated?
+Human communication isn't just a group of words. It's a mix of sentiments which needed to be analyzed to understand what we really mean.
+
+
 <h2>Why should I care</h2>
-<p>The contemporary business world is a place where huge success and failure sit side by side. In traditional market research, business spends a huge amount to analyze customer&#8217;s opinions through continuous surveys and consultants. But nowadays social media empowers business a lot. Most the existing and potential customers are generating a treasure trove of data through Twitter, Facebook, LinkedIn and so on. Sentiment analysis is a powerful tool for mining the gold beneath the social media landslide.</p>
-<p><strong>The goal of sentiment analysis is to identify the opinions expressed in a text.</strong></p>
+
+
+The contemporary business world is a place where huge success and failure sit side by side. In traditional market research, business spends a huge amount to analyze customer&#8217;s opinions through continuous surveys and consultants. But nowadays social media empowers business a lot. Most the existing and potential customers are generating a treasure trove of data through Twitter, Facebook, LinkedIn and so on. Sentiment analysis is a powerful tool for mining the gold beneath the social media landslide.
+<strong>The goal of sentiment analysis is to identify the opinions expressed in a text.</strong>
+
+
 <h2>It seems easy, right?</h2>
+
+
+
+
 <ol>
+ 	
+
 <li>I&#8217;m <em>happy</em> to watch a new movie</li>
+
+
+ 	
+
 <li>I <em>hate</em> war</li>
+
+
 </ol>
-<p>Since happy is a positive word and hate is negative, we know the sentiments in each sentence. This is the most simple situation.</p>
-<p><em>But what if a text contains two opinion words and one sentiment?</em></p>
-<p>If we assign +1 to positive word and -1 to negative word,</p>
+
+
+Since happy is a positive word and hate is negative, we know the sentiments in each sentence. This is the most simple situation.
+<em>But what if a text contains two opinion words and one sentiment?</em>
+If we assign +1 to positive word and -1 to negative word,
+
+
 <ul>
+ 	
+
 <li>I&#8217;m <em>happy</em> and <em>excited</em> to be going to watch a new movie</li>
+
+
 </ul>
-<p>The above sentence is positive +2</p>
+
+
+The above sentence is positive +2
+
+
 <ul>
+ 	
+
 <li>I <em>hate</em> war and the <em>violence</em> it makes</li>
+
+
 </ul>
-<p>The text contains two negative words so it is negative -2</p>
-<p>Now, let&#8217;s consider a text with mixed polarity.</p>
-<p>That&#8217;s, <em>two opinion words and two sentiments</em></p>
-<p>What we learned is adding +1 and -1 equals 0 but here it doesn&#8217;t mean that the text is necessarily neutral.</p>
+
+
+The text contains two negative words so it is negative -2
+Now, let&#8217;s consider a text with mixed polarity.
+That&#8217;s, <em>two opinion words and two sentiments</em>
+What we learned is adding +1 and -1 equals 0 but here it doesn&#8217;t mean that the text is necessarily neutral.
+
+
 <ul>
+ 	
+
 <li>Ice cream shops are doing <em>great</em> even when the weather is <em>bad</em></li>
+
+
 </ul>
-<p>The statement is positive about ice cream shops but negative about weather condition. In general, we will say that this is a positive statement about ice cream shops. We wouldn&#8217;t say this is neutral.</p>
+
+
+The statement is positive about ice cream shops but negative about weather condition. In general, we will say that this is a positive statement about ice cream shops. We wouldn&#8217;t say this is neutral.
+
+
 <h2>When SA turns hard</h2>
-<p>Sometimes it&#8217;s not possible to identify the opinion by just analyzing the polarity of words. Language usage and sarcasm are some of the reasons why sentiment analysis turns hard. It&#8217;s tough to analyze <strong>mixed sentiments in a text.</strong></p>
-<p>Sometimes it&#8217;s difficult to classify <strong>sarcastic statements </strong>as positive or negative. As a human being, we can understand what sarcasm is and how it actually makes sense. If you put this into a neural network or any machine learning framework that come up with a simple classifier to just understand the sentiment, this would fail miserably.</p>
-<p>Another point to be considered is <strong>local dialects.</strong> If you train any neural network on data about local dialects, it would invariably not understand what is trying to say. Because some of the words in local dialects may not have any sense and its tough to train anything and everything. So if you have a pre-trained model doing some sort of test on these data and then, it would completely fail. This is one of the reasons why it&#8217;s important to understand the local culture and some companies are setting up local data centers, where local sentiment is captured.</p>
-<p>Natural language has a lot of ambiguity. From the above examples, it&#8217;s clear that words make sense contextually in natural language which humans can comprehend and distinguish easily, but machines can’t. This makes Natural Language Processing one of the most difficult and interesting tasks in AI.</p>
+
+
+Sometimes it&#8217;s not possible to identify the opinion by just analyzing the polarity of words. Language usage and sarcasm are some of the reasons why sentiment analysis turns hard. It&#8217;s tough to analyze <strong>mixed sentiments in a text.</strong>
+Sometimes it&#8217;s difficult to classify <strong>sarcastic statements </strong>as positive or negative. As a human being, we can understand what sarcasm is and how it actually makes sense. If you put this into a neural network or any machine learning framework that come up with a simple classifier to just understand the sentiment, this would fail miserably.
+Another point to be considered is <strong>local dialects.</strong> If you train any neural network on data about local dialects, it would invariably not understand what is trying to say. Because some of the words in local dialects may not have any sense and its tough to train anything and everything. So if you have a pre-trained model doing some sort of test on these data and then, it would completely fail. This is one of the reasons why it&#8217;s important to understand the local culture and some companies are setting up local data centers, where local sentiment is captured.
+Natural language has a lot of ambiguity. From the above examples, it&#8217;s clear that words make sense contextually in natural language which humans can comprehend and distinguish easily, but machines can’t. This makes Natural Language Processing one of the most difficult and interesting tasks in AI.
+
+
 <h2>Using Natural Language Processing</h2>
+
+
+
+
 <ul>
+ 	
+
 <li>Spell check and grammar check</li>
+
+
+ 	
+
 <li>Predictive text</li>
+
+
+ 	
+
 <li>Auto summarization</li>
+
+
+ 	
+
 <li>Machine translation</li>
+
+
+ 	
+
 <li>Sentiment analysis</li>
+
+
 </ul>
+
+
+
+
 <h3>Some common approaches to sentiment analysis</h3>
-<p>Various methods in Machine learning and Natural Language Processing for sentiment analysis. Some of the most effective approaches we have today rely on the human-in-the-loop-approach: learning from the user feedback. The combination of machine-driven classification enhanced by human-in-the-loop approach increases acceptable accuracy than pure Machine Learning based systems.</p>
+
+
+Various methods in Machine learning and Natural Language Processing for sentiment analysis. Some of the most effective approaches we have today rely on the human-in-the-loop-approach: learning from the user feedback. The combination of machine-driven classification enhanced by human-in-the-loop approach increases acceptable accuracy than pure Machine Learning based systems.
+
+
 <h3>Tools &amp; Libraries</h3>
-<p>Python&#8217;s scientific calculation libraries such as SciPy, NumPy have strong support from the academic world. It&#8217;s a very well established library that was chosen for its expressiveness, ease-of-use.</p>
+
+
+Python&#8217;s scientific calculation libraries such as SciPy, NumPy have strong support from the academic world. It&#8217;s a very well established library that was chosen for its expressiveness, ease-of-use.
+
+
 <h2>We too have tools&#8230;&#8230;</h2>
-<p>Much of the data that machine learning algorithms need for NLP tasks such as sentiment analysis, spam filtering all come from the web. Ruby has a web framework that is quite popular and generates massive amounts of data. While it doesn’t have the same vast academic network that Python or R has, it does have tools and has the added benefit of being easy to learn and comprehend.</p>
+
+
+Much of the data that machine learning algorithms need for NLP tasks such as sentiment analysis, spam filtering all come from the web. Ruby has a web framework that is quite popular and generates massive amounts of data. While it doesn’t have the same vast academic network that Python or R has, it does have tools and has the added benefit of being easy to learn and comprehend.
+
+
 <h2>Sentimental gem</h2>
-<p><a href="https://github.com/7compass/sentimental">https://github.com/7compass/sentimental</a></p>
-<p>Sentimental gem was introduced for simple sentiment analysis with Ruby. It implements a lexicon-based approach to extract sentiments, where the overall contextual sentiment orientation is the sum of sentiment orientation of each word(tokens). The overall sentiment of a sentence is output as positive, negative or neutral. It uses a dictionary consisting of pre-tagged lexicons. The input text is converted to tokens by the Tokenizer and is then matched for the pre-tagged lexicons in the dictionary.</p>
-<p>To classify sentiments we can set a threshold value. Values greater than the threshold is considered as positive and less than that is considered negative. The default threshold is 0.0. If a sentence has a score of 0, it is deemed &#8220;neutral&#8221;.</p><pre class="crayon-plain-tag">gem install sentimental</pre><p>Consider the following example</p><pre class="crayon-plain-tag">require "sentimental"
+
+
+<a href="https://github.com/7compass/sentimental">https://github.com/7compass/sentimental</a>
+Sentimental gem was introduced for simple sentiment analysis with Ruby. It implements a lexicon-based approach to extract sentiments, where the overall contextual sentiment orientation is the sum of sentiment orientation of each word(tokens). The overall sentiment of a sentence is output as positive, negative or neutral. It uses a dictionary consisting of pre-tagged lexicons. The input text is converted to tokens by the Tokenizer and is then matched for the pre-tagged lexicons in the dictionary.
+To classify sentiments we can set a threshold value. Values greater than the threshold is considered as positive and less than that is considered negative. The default threshold is 0.0. If a sentence has a score of 0, it is deemed &#8220;neutral&#8221;.
+
+
+<pre class="lang:default decode:true">gem install sentimental
+</pre>
+
+
+Consider the following example
+
+
+<pre class="lang:default decode:true"> require "sentimental"
  analyzer = Sentimental.new
  analyzer.load_defaults
  sentiment = analyzer.sentiment 'Be the reason someone smiles today'
  score = analyzer.score 'Be the reason someone smiles today'
- puts sentiment, score</pre><p>It outputs</p><pre class="crayon-plain-tag">positive
-0.225</pre><p>It works well for a simple sentence. Consider another example with mixed polarity.</p>
-<p>But, consider another example with mixed polarity.</p><pre class="crayon-plain-tag">require "sentimental"
+ puts sentiment, score</pre>
+
+
+It outputs
+
+
+<pre class="lang:default decode:true">positive
+0.225</pre>
+
+
+It works well for a simple sentence. Consider another example with mixed polarity.
+But, consider another example with mixed polarity.
+
+
+<pre class="lang:default decode:true"> require "sentimental"
  analyzer = Sentimental.new
  analyzer.load_defaults
  sentiment = analyzer.sentiment 'Icecream shops are doing good even at bad weather'
  score = analyzer.score 'Icecream shops are doing good even at bad weather'
- puts sentiment, score</pre><p>We get the output as</p><pre class="crayon-plain-tag">negative
--0.4194</pre><p>We expect a positive result here, but it failed.</p>
-<p>The overall score is determined by the sum of the scores of each opinion words. In its lexical dictionary, <em>good</em> is assigned a score 0.6394, <em>bad</em> is assigned -0.5588, and the token <em>weather</em> is assigned a score of -0.5. Hence the overall sentiment scores -0.4194.</p>
-<p>The gem was found to work well for simple sentences, but failed to give accurate results for sentences with mixed polarity.</p>
+ puts sentiment, score</pre>
+
+
+We get the output as
+
+
+<pre class="lang:default decode:true">negative
+-0.4194</pre>
+
+
+We expect a positive result here, but it failed.
+The overall score is determined by the sum of the scores of each opinion words. In its lexical dictionary, <em>good</em> is assigned a score 0.6394, <em>bad</em> is assigned -0.5588, and the token <em>weather</em> is assigned a score of -0.5. Hence the overall sentiment scores -0.4194.
+The gem was found to work well for simple sentences, but failed to give accurate results for sentences with mixed polarity.
+
+
 <h2>Sentimentalizer gem</h2>
-<p><a href="https://github.com/malavbhavsar/sentimentalizer">https://github.com/malavbhavsar/sentimentalizer</a></p>
-<p>Implements sentiment analysis in Ruby with machine learning. It&#8217;s basically training a model to use in the application. Machine learning based analysis gains more interest of researchers due to its adaptability and accuracy. It overcomes the limitation of the lexical approach of performance degradation and works well even when the dictionary size grows rapidly.</p><pre class="crayon-plain-tag">gem install sentimentalizer</pre><p>We need to train the engine in order to use it.</p><pre class="crayon-plain-tag">require "sentimentalizer"
 
+
+<a href="https://github.com/malavbhavsar/sentimentalizer">https://github.com/malavbhavsar/sentimentalizer</a>
+Implements sentiment analysis in Ruby with machine learning. It&#8217;s basically training a model to use in the application. Machine learning based analysis gains more interest of researchers due to its adaptability and accuracy. It overcomes the limitation of the lexical approach of performance degradation and works well even when the dictionary size grows rapidly.
+
+
+<pre class="lang:default decode:true"> gem install sentimentalizer
+</pre>
+
+
+We need to train the engine in order to use it.
+
+
+<pre class="lang:default decode:true"> require "sentimentalizer"
  Sentimentalizer.setup
-
  class Analyzer
    def initialize
      Sentimentalizer.setup
    end
-
    sentiment = Sentimentalizer.analyze('I love Ruby', true)
    puts sentiment
+ end</pre>
 
- end</pre><p>This outputs as</p><pre class="crayon-plain-tag">Training analyser with +ve sentiment
+
+This outputs as
+
+
+<pre class="lang:default decode:true"> Training analyser with +ve sentiment
  +ve sentiment training complete
  Training analyser with -ve sentiment
  -ve sentiment training complete
- {"text":"I love Ruby","probability":0.8568115588520226,"sentiment":":)"}</pre><p>Overall sentiment is positive which is indicated as <img src="https://s.w.org/images/core/emoji/12.0.0-1/72x72/1f642.png" alt="🙂" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
-<p>But this method faces challenges in designing classifier, availability of training data, the correct interpretation of a new phrase which is not in the training dataset.</p>
+ {"text":"I love Ruby","probability":0.8568115588520226,"sentiment":":)"}</pre>
+
+
+Overall sentiment is positive which is indicated as <img src="https://s.w.org/images/core/emoji/12.0.0-1/72x72/1f642.png" alt="🙂" class="wp-smiley" style="height: 1em; max-height: 1em;" />
+But this method faces challenges in designing classifier, availability of training data, the correct interpretation of a new phrase which is not in the training dataset.
+
+
 <h2>Classifying with Bayesian and SVM classifiers</h2>
-<p>Basically, sentiment analysis is the classification of text. <a href="https://github.com/bmuller/ankusa">Ankusa</a>, <a href="https://github.com/arrac/eluka">Eluka</a>, <a href="https://github.com/cardmagic/classifier">Classifier</a>, and<a href="https://github.com/rattle/hoatzin"> Hoatzin</a> are some Bayesian and SVM classifiers that can be used for sentiment analysis. Among them, Hoatzin, Classifier, and Eluka use LibSVM, a library for Support Vector Machine. Simple models work best for all. The gem Ankusa provides Naive Bayes classifier which provides more accuracy than Baseline but less than gem Eluka which implements SVM classifier.</p>
+
+
+Basically, sentiment analysis is the classification of text. <a href="https://github.com/bmuller/ankusa">Ankusa</a>, <a href="https://github.com/arrac/eluka">Eluka</a>, <a href="https://github.com/cardmagic/classifier">Classifier</a>, and<a href="https://github.com/rattle/hoatzin"> Hoatzin</a> are some Bayesian and SVM classifiers that can be used for sentiment analysis. Among them, Hoatzin, Classifier, and Eluka use LibSVM, a library for Support Vector Machine. Simple models work best for all. The gem Ankusa provides Naive Bayes classifier which provides more accuracy than Baseline but less than gem Eluka which implements SVM classifier.
+
+
 <h2>When we need more&#8230;</h2>
+
+
+
+
 <h2>JRuby</h2>
-<p>Ruby is a very expressive language with excellent string processing capabilities. Also, there are excellent Java libraries for NLP and JVM is a high-performance platform with true multi-threading capabilities. JRuby allows us to leverage well-established, mature Java libraries from within your Ruby code.</p>
+
+
+Ruby is a very expressive language with excellent string processing capabilities. Also, there are excellent Java libraries for NLP and JVM is a high-performance platform with true multi-threading capabilities. JRuby allows us to leverage well-established, mature Java libraries from within your Ruby code.
+
+
 <h2>Sentiment Analysis using Tensorflow Ruby API</h2>
-<p><a href="https://github.com/somaticio/tensorflow.rb">https://github.com/somaticio/tensorflow.rb</a></p>
-<p>TensorFlow is an extraordinary open source software library for numerical computation using data flow graphs developed by researchers working on the Google Brain Team within Google’s Machine Intelligence research organization for conducting machine learning and deep neural networks research. Even though Tensorflow seems to be an overkill for simpler tasks, certainly it would be an alternate and more efficient way to analyze tweets if you have rich and high volume data. It helps to create your own sentiment classifiers to understand the large amounts of natural language in the world.</p>
-<p>In this article, we discussed the various approaches towards sentiment analysis which is a part of Natural Language Processing. We have seen that sentiment extraction and analysis can be done using supervised or unsupervised learning, sentiment lexicon-based approach or a mix of these and any of these methods can be implemented in Ruby.</p>
-<p>&nbsp;</p>
+
+
+<a href="https://github.com/somaticio/tensorflow.rb">https://github.com/somaticio/tensorflow.rb</a>
+TensorFlow is an extraordinary open source software library for numerical computation using data flow graphs developed by researchers working on the Google Brain Team within Google’s Machine Intelligence research organization for conducting machine learning and deep neural networks research. Even though Tensorflow seems to be an overkill for simpler tasks, certainly it would be an alternate and more efficient way to analyze tweets if you have rich and high volume data. It helps to create your own sentiment classifiers to understand the large amounts of natural language in the world.
+In this article, we discussed the various approaches towards sentiment analysis which is a part of Natural Language Processing. We have seen that sentiment extraction and analysis can be done using supervised or unsupervised learning, sentiment lexicon-based approach or a mix of these and any of these methods can be implemented in Ruby.
+&nbsp;
+
+
 <h2>Reference</h2>
+
+
+
+
 <ul>
+ 	
+
 <li><a href="https://github.com/malavbhavsar/sentimentalizer">https://github.com/malavbhavsar/sentimentalizer</a></li>
+
+
+ 	
+
 <li><a href="https://github.com/7compass/sentimental">https://github.com/7compass/sentimental</a></li>
+
+
+ 	
+
 <li><a href="https://github.com/diasks2/ruby-nlp">https://github.com/diasks2/ruby-nlp</a></li>
+
+
 </ul>
-<p>The post <a rel="nofollow" href="/get-into-sentiment-analysis-with-ruby/">Get into Sentiment Analysis with Ruby</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+
+]]&gt;		</p>
 ]]></content:encoded>
-							<wfw:commentRss>/get-into-sentiment-analysis-with-ruby/feed/</wfw:commentRss>
-		<slash:comments>0</slash:comments>
-							</item>
+										</item>
 		<item>
 		<title>How we made our rspec test suite to run 2x faster</title>
 		<link>/made-rspec-test-suite-run-2x-faster/</link>
@@ -634,93 +1462,194 @@ File.delete("newfile.txt")
 		<category><![CDATA[Ruby]]></category>
 		<category><![CDATA[testing]]></category>
 
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3040</guid>
-				<description><![CDATA[<p>&#160; &#8220;Why on earth is my test suite taking so long to run?&#8221; If you are a developer, you might have asked this question at least once to yourself. So did we, our rails project&#8217;s test suite was taking a good 1 hour 30 minutes to run and we wanted to improve that time so&#8230;</p>
-<p>The post <a rel="nofollow" href="/made-rspec-test-suite-run-2x-faster/">How we made our rspec test suite to run 2x faster</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
-]]></description>
-								<content:encoded><![CDATA[<p>&nbsp;</p>
-<p>&#8220;<i>Why on earth is my test suite taking so long to run?</i>&#8221;</p>
-<p>If you are a developer, you might have asked this question at least once to yourself. So did we, our rails project&#8217;s test suite was taking a good 1 hour 30 minutes to run and we wanted to improve that time so badly that we eventually did exactly that, reducing nearly 1 and half hours to just minutes, and this is how we did it.</p>
+		<guid isPermaLink="false">https://redpanthers.co/?p=3040</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[&nbsp;
+"<i>Why on earth is my test suite taking so long to run?</i>&#8221;
+If you are a developer, you might have asked this question at least once to yourself. So did we, our rails project&#8217;s test suite was taking a good 1 hour 30 minutes to run and we wanted to improve that time so badly that we eventually did exactly that, reducing nearly 1 and half hours to just minutes, and this is how we did it.
+
+
 <h2>1. Database independent tests</h2>
-<p>DB operations are often time-consuming and most of the time we can do away with saving objects to the database to run our tests.</p>
-<p>Use test doubles, stubs and mocks instead of creating the real instance of a class and invoking methods on the created instance.</p>
+
+
+DB operations are often time-consuming and most of the time we can do away with saving objects to the database to run our tests.
+Use test doubles, stubs and mocks instead of creating the real instance of a class and invoking methods on the created instance.
+
+
 <div>
-<pre class="crayon-plain-tag">class Student &lt; ActiveRecord::Base
+
+
+<pre class="lang:default decode:true">class Student &lt; ActiveRecord::Base
   .
   .
   def name
     first_name +" "+ last_name
   end
-end</pre><br />
-Our test case</p>
+end</pre>
+
+
+Our test case
 </div>
+
+
+
+
 <div>
+
+
 <div>
-<pre class="crayon-plain-tag">describe Student do
+
+
+<pre class="lang:default decode:true">describe Student do
   let (:student) {create(:student, first_name: 'Red', last_name: 'Panther')}
   it 'should return name' do
     student.name.should == 'Red Panther'
   end
-end</pre><br />
-This test can be made faster by replacing</p>
+end</pre>
+
+
+This test can be made faster by replacing
 </div>
+
+
+
+
 <div>
-<pre class="crayon-plain-tag">let(:student) {create(:student, first_name: 'Red', last_name: 'panther')}</pre><br />
-with</p>
+
+
+<pre class="lang:default decode:true">let(:student) {create(:student, first_name: 'Red', last_name: 'panther')}</pre>
+
+
+with
+
+
 <div>
-<pre class="crayon-plain-tag">let(:student) {build_stubbed(:student, first_name: 'Red', last_name: 'Panther')</pre></p>
+
+
+<pre class="lang:default decode:true">let(:student) {build_stubbed(:student, first_name: 'Red', last_name: 'Panther')
+</pre>
+
+
+
+
 <h2>2) Use gem group</h2>
+
+
 </div>
-<p>Rails preload your gems before running tests. Using gem groups allow rails to load only the environment specific dependencies.</p>
+
+
+Rails preload your gems before running tests. Using gem groups allow rails to load only the environment specific dependencies.
+
+
 <div><b>#Gemfile</b></div>
+
+
+
+
 <div>
-<pre class="crayon-plain-tag">group: production do
+
+
+<pre class="lang:default decode:true">group: production do
   gem 'activemerchent'
 end
-
 group :test, : development do
   gem 'capybara'
   gem 'rspec-rails'
   gem 'byebug'
-end</pre></p>
+end</pre>
+
+
+
+
 <h2><b>3) Use <code>before(:each)</code> and <code>before(:all)</code> hooks carefully</b></h2>
+
+
 </div>
-<p>Since <code>before(:each)</code> runs for every test, be careful what we include inside <code>before(:each)</code> hook. If the code inside <code>before(:each)</code> is slow every single test in your file is going to be slow.</p>
-<p>A workaround would be to refactor the code to have fewer dependencies or move them to a <code>before(:all)</code> block which runs only once.</p>
-<p>Let&#8217;s say you have</p>
+
+
+Since <code>before(:each)</code> runs for every test, be careful what we include inside <code>before(:each)</code> hook. If the code inside <code>before(:each)</code> is slow every single test in your file is going to be slow.
+A workaround would be to refactor the code to have fewer dependencies or move them to a <code>before(:all)</code> block which runs only once.
+Let&#8217;s say you have
+
+
 <div>
-<pre class="crayon-plain-tag">before(:each) do
+
+
+<pre class="lang:default decode:true">before(:each) do
   @article = create(:article)
   @author = create(:author)
-end</pre><br />
-moving them to a <code>before(:all)</code> block</p>
+end</pre>
+
+
+moving them to a <code>before(:all)</code> block
 </div>
+
+
+
+
 <div>
-<pre class="crayon-plain-tag">before(:all) do
+
+
+<pre class="lang:default decode:true ">before(:all) do
   @article = create(:article)
   @author = create(:author)
-end</pre><br />
-Should save you some time but with some drawbacks of its own, for example, the objects <code>@article</code> and <code>@author</code> are not recreated for each test as they in <code>before(:all)</code> block which means any test case that changes the attributes of these objects might affect the result of other following tests.</p>
+end</pre>
+
+
+Should save you some time but with some drawbacks of its own, for example, the objects <code>@article</code> and <code>@author</code> are not recreated for each test as they in <code>before(:all)</code> block which means any test case that changes the attributes of these objects might affect the result of other following tests.
 </div>
+
+
+
+
 <h2>4. Use <code>build_stubbed</code> Instead of <code>build</code></h2>
-<p>FactoryGirl.build is not suitable when we want our instance to behave as though it is persisted. In this scenario instead of creating a real class instance, we can use <code>build_stubbed</code> which makes the instance to behave as it is persisted by assigning an id.</p><pre class="crayon-plain-tag">FactoryGirl.build_stubbed(:student)</pre><p>Also note that when we build instance using <code> .build</code> it calls .create on the associated models, where as .build_stubbed calls nothing but .build_stubbed also on associated models as well.</p>
+
+
+FactoryGirl.build is not suitable when we want our instance to behave as though it is persisted. In this scenario instead of creating a real class instance, we can use <code>build_stubbed</code> which makes the instance to behave as it is persisted by assigning an id.
+
+
+<pre class="lang:default decode:true">FactoryGirl.build_stubbed(:student)</pre>
+
+
+Also note that when we build instance using ` .build` it calls .create on the associated models, where as .build_stubbed calls nothing but .build_stubbed also on associated models as well.
+
+
 <h2>5. Running tests parallelly</h2>
-<p><a href="https://github.com/grosser/parallel_tests">parallel_tests</a> is a gem that allows us to run tests across multiple CPU cores. A very important thing to take into account when running tests in parallel is to make sure that the tests are independent of each other. Even though parallel_tests uses one database per thread, if there are any shared state between tests that live outside the DB such as Elastic search or Apache solar those dependencies should be taken into account when writing tests.</p>
+
+
+<a href="https://github.com/grosser/parallel_tests">parallel_tests</a> is a gem that allows us to run tests across multiple CPU cores. A very important thing to take into account when running tests in parallel is to make sure that the tests are independent of each other. Even though parallel_tests uses one database per thread, if there are any shared state between tests that live outside the DB such as Elastic search or Apache solar those dependencies should be taken into account when writing tests.
+
+
 <h2>6. Use continuous integration</h2>
-<p>As our test suite grew into 3k test cases, it was no longer viable to run the entire suite on our local machines. That&#8217;s when we felt the urgency to switch to a CI. We chose <a href="https://circleci.com/">Circle CI</a> which supports parallel builds. We split out tests into multiple virtual machines that run parallelly and it was a huge win for us in terms of test times. Our developers wrote the code and pushed to the repo and the CI took care of the rest. Few popular CI tools are</p>
-<p>1) <a href="https://travis-ci.org/">Trvis CI</a><br />
-2) <a href="https://jenkins.io/">Jenkins</a><br />
-3) <a href="https://circleci.com/">CircleCI</a><br />
-4) <a href="https://codeship.com/">Codeship</a></p>
-<p>Automated tests with continuous integration also enhance code quality.</p>
+
+
+As our test suite grew into 3k test cases, it was no longer viable to run the entire suite on our local machines. That&#8217;s when we felt the urgency to switch to a CI. We chose <a href="https://circleci.com/">Circle CI</a> which supports parallel builds. We split out tests into multiple virtual machines that run parallelly and it was a huge win for us in terms of test times. Our developers wrote the code and pushed to the repo and the CI took care of the rest. Few popular CI tools are
+1) <a href="https://travis-ci.org/">Trvis CI</a>
+2) <a href="https://jenkins.io/">Jenkins</a>
+3) <a href="https://circleci.com/">CircleCI</a>
+4) <a href="https://codeship.com/">Codeship</a>
+Automated tests with continuous integration also enhance code quality.
+
+
 <h2>7. Database cleaner</h2>
-<p>We observed an increase in speed after tweaking our database_cleaner strategies a little bit.</p>
-<p>To start with, include gem database_cleaner in gemfile.</p>
-<p>Inside a separate file <code>spec/support/database_cleaner.rb</code>,</p>
+
+
+We observed an increase in speed after tweaking our database_cleaner strategies a little bit.
+To start with, include gem database_cleaner in gemfile.
+Inside a separate file <code>spec/support/database_cleaner.rb</code>,
 </div>
+
+
+
+
 <div>
+
+
 <div id="crayon-597801c40a13b848772980-1" class="crayon-line">
-<pre class="crayon-plain-tag">RSpec.configure do |config|
+
+
+<pre class="lang:default decode:true">RSpec.configure do |config|
  
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
@@ -738,24 +1667,75 @@ Should save you some time but with some drawbacks of its own, for example, the o
     DatabaseCleaner.clean
   end
  
-end</pre></p>
+end</pre>
+
+
+
+
 <ul>
+ 	
+
 <li> This will clear the test database out completely before the entire test suite runs.</li>
+
+
+ 	
+
 <li> Sets the default database cleaning strategy to be transactions, which are very fast.</li>
+
+
+ 	
+
 <li> <code>DatabaseCleaner.start</code> and <code>DatabaseCleaner.clean</code> hook up database_cleaner when each test begins and ends.</li>
+
+
 </ul>
+
+
 </div>
+
+
 </div>
+
+
 </div>
+
+
+
+
 <h2>References</h2>
+
+
+
+
 <ul>
+ 	
+
 <li><a href="https://github.com/grosser/parallel_tests">https://github.com/grosser/parallel_tests</a></li>
+
+
+ 	
+
 <li><a href="https://github.com/thoughtbot/factory_girl">https://github.com/thoughtbot/factory_girl</a></li>
+
+
+ 	
+
 <li><a href="https://circleci.com/">https://circleci.com/</a></li>
+
+
+ 	
+
 <li><a href="https://github.com/DatabaseCleaner/database_cleaner">https://github.com/DatabaseCleaner/database_cleaner</a></li>
+
+
 </ul>
+
+
+
+
 <div></div>
-<p>The post <a rel="nofollow" href="/made-rspec-test-suite-run-2x-faster/">How we made our rspec test suite to run 2x faster</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+
+]]&gt;		</p>
 ]]></content:encoded>
 							<wfw:commentRss>/made-rspec-test-suite-run-2x-faster/feed/</wfw:commentRss>
 		<slash:comments>9</slash:comments>
@@ -763,7 +1743,6 @@ end</pre></p>
 		<item>
 		<title>Make unit tests great again &#8211; Integrate Jasmine into Rails</title>
 		<link>/write-beautiful-jasmine-tests-rails/</link>
-				<comments>/write-beautiful-jasmine-tests-rails/#comments</comments>
 				<pubDate>Tue, 22 Aug 2017 07:28:43 +0000</pubDate>
 		<dc:creator><![CDATA[alan]]></dc:creator>
 				<category><![CDATA[Jasmine]]></category>
@@ -778,142 +1757,429 @@ end</pre></p>
 		<category><![CDATA[rails]]></category>
 		<category><![CDATA[test]]></category>
 
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3149</guid>
-				<description><![CDATA[<p>Jasmine is a framework to write tests for the Javascript code in the Behaviour Driven Development (BDD) style. In this article, you will learn how to integrate Jasmine into your existing rails application and how to write clean and beautiful unit tests. Let us make tests great again! &#160; Install Jasmine To make Jasmine available&#8230;</p>
-<p>The post <a rel="nofollow" href="/write-beautiful-jasmine-tests-rails/">Make unit tests great again &#8211; Integrate Jasmine into Rails</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
-]]></description>
-								<content:encoded><![CDATA[<p>Jasmine is a framework to write tests for the Javascript code in the Behaviour Driven Development (BDD) style. In this article, you will learn how to integrate Jasmine into your existing rails application and how to write clean and beautiful unit tests. Let us make tests great again!</p>
-<p>&nbsp;</p>
+		<guid isPermaLink="false">https://redpanthers.co/?p=3149</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[Jasmine is a framework to write tests for the Javascript code in the Behaviour Driven Development (BDD) style. In this article, you will learn how to integrate Jasmine into your existing rails application and how to write clean and beautiful unit tests. Let us make tests great again!
+&nbsp;
+
+
 <h2>Install Jasmine</h2>
-<p>To make Jasmine available to your Rails app, you just have to place the jasmine-gem (<a href="https://github.com/jasmine/jasmine-gem">link</a>) in your Gemfile. That will do the magic. Just make sure you have it under Development and Test group in the Gemfile as follows:</p><pre class="crayon-plain-tag">group :development, :test do
+
+
+To make Jasmine available to your Rails app, you just have to place the jasmine-gem (<a href="https://github.com/jasmine/jasmine-gem">link</a>) in your Gemfile. That will do the magic. Just make sure you have it under Development and Test group in the Gemfile as follows:
+
+
+<pre class="theme:orange-code lang:ruby decode:true">group :development, :test do
   gem "jasmine"
-end</pre><p>Then run this to install the gem:</p><pre class="crayon-plain-tag">bundle install</pre><p>After all the gems are installed, run this code to generate necessary files for Jasmine to run:</p><pre class="crayon-plain-tag">rails generate jasmine:install</pre><p>This will create the jasmine helper file and the yml file where you configure how it should run the tests.</p>
+end</pre>
+
+
+Then run this to install the gem:
+
+
+<pre class="theme:orange-code lang:default decode:true">bundle install</pre>
+
+
+After all the gems are installed, run this code to generate necessary files for Jasmine to run:
+
+
+<pre class="theme:orange-code lang:sh decode:true">rails generate jasmine:install</pre>
+
+
+This will create the jasmine helper file and the yml file where you configure how it should run the tests.
+
+
 <h2>Run tests</h2>
-<p>You can use Jasmine right after it&#8217;s installed. It can be run in several ways, the most important ones being,</p>
+
+
+You can use Jasmine right after it&#8217;s installed. It can be run in several ways, the most important ones being,
+
+
 <ol>
+ 	
+
 <li>In your browser</li>
+
+
+ 	
+
 <li>Continuous Integration Mode (CI)</li>
+
+
 </ol>
-<p>The CI mode is usually used when you have to integrate it into your build system.</p>
+
+
+The CI mode is usually used when you have to integrate it into your build system.
+
+
 <h2>Browser Mode</h2>
-<p>You have to start the Jasmine server to run it in a browser. This server runs all the tests and serves the results to a webpage. Run this to start the Jasmine Server:</p><pre class="crayon-plain-tag">rake jasmine</pre><p>With the default settings, you can view the output in:</p><pre class="crayon-plain-tag">http://localhost:8888/</pre><p>But this page would be pretty empty since you don&#8217;t have any tests written for your Javascript code. There is a method provided to generate sample tests. Try running this:</p><pre class="crayon-plain-tag">rails generate jasmine:examples</pre><p>Now refresh the webpage and you can see something similar to this:</p>
-<p><a href="https://blog.redpanthers.co/wp-content/uploads/2017/08/Screen-Shot-2017-08-21-at-3.47.22-PM.png"><img class="aligncenter wp-image-3152" src="https://blog.redpanthers.co/wp-content/uploads/2017/08/Screen-Shot-2017-08-21-at-3.47.22-PM-300x91.png" alt="Jasmine test page" width="768" height="233" /></a></p>
+
+
+You have to start the Jasmine server to run it in a browser. This server runs all the tests and serves the results to a webpage. Run this to start the Jasmine Server:
+
+
+<pre class="theme:orange-code lang:default decode:true">rake jasmine</pre>
+
+
+With the default settings, you can view the output in:
+
+
+<pre class="theme:orange-code lang:default decode:true">http://localhost:8888/</pre>
+
+
+But this page would be pretty empty since you don&#8217;t have any tests written for your Javascript code. There is a method provided to generate sample tests. Try running this:
+
+
+<pre class="theme:orange-code lang:default decode:true">rails generate jasmine:examples</pre>
+
+
+Now refresh the webpage and you can see something similar to this:
+<a href="https://blog.redpanthers.co/wp-content/uploads/2017/08/Screen-Shot-2017-08-21-at-3.47.22-PM.png"><img class="aligncenter wp-image-3152" src="https://blog.redpanthers.co/wp-content/uploads/2017/08/Screen-Shot-2017-08-21-at-3.47.22-PM-300x91.png" alt="Jasmine test page" width="768" height="233" /></a>
+
+
 <h3>Configurable Settings</h3>
-<p>Clicking on the options button in the top right corner will display a list of options that change how Jasmine runs the tests. Let&#8217;s get into each one of them:</p>
+
+
+Clicking on the options button in the top right corner will display a list of options that change how Jasmine runs the tests. Let&#8217;s get into each one of them:
+
+
 <h4>Raise Exceptions</h4>
-<p>This option disables the error catching mechanism of Jasmine in the JavaScript source code and in the test file. The default setting is to wrap all the errors in a catch block.</p>
+
+
+This option disables the error catching mechanism of Jasmine in the JavaScript source code and in the test file. The default setting is to wrap all the errors in a catch block.
+
+
 <h4>Stop Spec on Expectation Failure</h4>
-<p>With this option turned on, Jasmine will stop the test at the first occurrence of an error. The default setting is to run the full test suit and then display all the tests which fail.</p>
+
+
+With this option turned on, Jasmine will stop the test at the first occurrence of an error. The default setting is to run the full test suit and then display all the tests which fail.
+
+
 <h4>Run Tests in Random Order</h4>
-<p>This option enables the test to be run in a random sequence every time the test runs. The benefit of enabling this option is to reveal dependencies between tests, therefore, you can reduce test dependencies and each test will have good isolation.</p>
+
+
+This option enables the test to be run in a random sequence every time the test runs. The benefit of enabling this option is to reveal dependencies between tests, therefore, you can reduce test dependencies and each test will have good isolation.
+
+
 <h2>Continous Integration Mode</h2>
-<p>A headless browser is used to integrate Jasmine into your continuous integration workflow. To make our lives easier, this gem that we are using supports integration with a headless browser out of the box. The default headless browser is <a href="http://phantomjs.org/">Phantom JS</a>. So it will download automatically if not installed when you try to run in CI mode. Run this code to run in CI mode:</p><pre class="crayon-plain-tag">rake jasmine:ci</pre><p>By default, Jasmine will attempt to find a random open port. To set a default port manually, just add this to the <strong>jasmine_helper.rb</strong></p><pre class="crayon-plain-tag">Jasmine.configure do |config|
+
+
+A headless browser is used to integrate Jasmine into your continuous integration workflow. To make our lives easier, this gem that we are using supports integration with a headless browser out of the box. The default headless browser is <a href="http://phantomjs.org/">Phantom JS</a>. So it will download automatically if not installed when you try to run in CI mode. Run this code to run in CI mode:
+
+
+<pre class="theme:orange-code lang:default decode:true ">rake jasmine:ci</pre>
+
+
+By default, Jasmine will attempt to find a random open port. To set a default port manually, just add this to the <strong>jasmine_helper.rb</strong>
+
+
+<pre class="theme:orange-code lang:default decode:true ">Jasmine.configure do |config|
    config.ci_port = 1234
-end</pre><p></p>
+end</pre>
+
+
+
+
 <h2>Configuration</h2>
-<p>The two files which you should be looking into, if you need to alter the behavior of tests are:</p>
+
+
+The two files which you should be looking into, if you need to alter the behavior of tests are:
+
+
 <ul>
+ 	
+
 <li>jasmine.yml</li>
+
+
+ 	
+
 <li>jasmine_helper.rb</li>
+
+
 </ul>
-<p>Jasmine reads the jasmine.yml first and then overrides it with the settings mentioned in jasmine_helper.rb</p>
+
+
+Jasmine reads the jasmine.yml first and then overrides it with the settings mentioned in jasmine_helper.rb
+
+
 <h4>Sample configuration:</h4>
-<p></p><pre class="crayon-plain-tag"># spec/javascripts/support/jasmine.yml
+
+
+
+
+<pre class="theme:orange-code lang:default decode:true "># spec/javascripts/support/jasmine.yml
 random: true
 show_console_log: false
-stop_spec_on_expectation_failure: true</pre><p></p><pre class="crayon-plain-tag"># spec/javascripts/support/jasmine_helper.rb
+stop_spec_on_expectation_failure: true</pre>
+
+
+
+
+<pre class="theme:orange-code lang:default decode:true "># spec/javascripts/support/jasmine_helper.rb
 Jasmine.configure do |config|
   config.random = false
   config.show_console_log = false
   config.stop_spec_on_expectation_failure: false
-
   config.show_full_stack_trace = false
   config.prevent_phantom_js_auto_install = false
-end</pre><p></p>
+end</pre>
+
+
+
+
 <h2>Testing</h2>
-<p>Writing tests for Javascript in a Rails app should be fairly straightforward as it uses same standards as Jasmine in general. But there are things that need to be considered specific to a Jasmine installation in Rails.</p>
+
+
+Writing tests for Javascript in a Rails app should be fairly straightforward as it uses same standards as Jasmine in general. But there are things that need to be considered specific to a Jasmine installation in Rails.
+
+
 <h3>Testing JavaScript</h3>
-<p>Test files for JavaScript in a rails application reside in the <strong>spec/javascripts</strong> folder. For each javascript file, you need to put the test file in the same path as the file. For example, if you have the following javascript file in your app:</p>
-<p><strong>app/assets/javascripts/jasmine_examples/Calculator.js</strong></p>
-<p>You place the spec file in the following path:</p>
-<p><strong>spec/javascripts/jasmine_examples/CalculatorSpec.js</strong></p>
-<p>Jasmine will include the test on the next test run. There is no configuration to have your test run.</p>
+
+
+Test files for JavaScript in a rails application reside in the <strong>spec/javascripts</strong> folder. For each javascript file, you need to put the test file in the same path as the file. For example, if you have the following javascript file in your app:
+<strong>app/assets/javascripts/jasmine_examples/Calculator.js</strong>
+You place the spec file in the following path:
+<strong>spec/javascripts/jasmine_examples/CalculatorSpec.js</strong>
+Jasmine will include the test on the next test run. There is no configuration to have your test run.
+
+
 <h2>Plugins worth considering</h2>
+
+
+
+
 <ul>
+ 	
+
 <li><strong>Jasmine-Jquery</strong> &#8211; this plugin provides a lot of jquery related matchers. Download it <a href="https://github.com/velesin/jasmine-jquery/releases">here</a></li>
+
+
+ 	
+
 <li><strong>Jasmine-Matchers</strong> &#8211; a tool to provide additional matchers. Download it <a href="https://github.com/JamieMason/Jasmine-Matchers/releases">here</a></li>
+
+
+ 	
+
 <li><strong>Jasmine-Fixture &#8211; </strong>a plugin that provides DOM creation using CSS selectors, therefore you can interact with the DOM much easier. Download it <a href="https://github.com/searls/jasmine-fixture/releases">here</a></li>
+
+
 </ul>
+
+
+
+
 <h1>Write Beautiful Unit tests</h1>
-<p>95% of the developers I know write unit tests in order to prevent defects from being deployed to production. But the essential ingredients to a great unit test is unknown to most of them. There have been countless times that I&#8217;ve seen a test fails, only to investigate and discover that I have no idea what feature the developer was trying to test, let alone how it went wrong or why it matters.</p>
+
+
+95% of the developers I know write unit tests in order to prevent defects from being deployed to production. But the essential ingredients to a great unit test is unknown to most of them. There have been countless times that I&#8217;ve seen a test fails, only to investigate and discover that I have no idea what feature the developer was trying to test, let alone how it went wrong or why it matters.
+
+
 <h2>Importance of Test Discipline</h2>
-<p>Your tests are the best set of weapons to defend your code from bugs. They are more important that linting and static analysis. A few reasons why tests are your secret weapon:</p>
+
+
+Your tests are the best set of weapons to defend your code from bugs. They are more important that linting and static analysis. A few reasons why tests are your secret weapon:
+
+
 <ul>
+ 	
+
 <li>Writing tests first gives you a clearer perspective on the ideal API design.</li>
+
+
+ 	
+
 <li>Does the developer understand the problem enough to articulate in code all critical component requirements?</li>
+
+
+ 	
+
 <li>Manual QA is error-prone. In my experience, it’s impossible for a developer to remember all features that need testing after making a change to refactor, add new features, or remove features.</li>
+
+
+ 	
+
 <li>Continous Integration prevents failed builds from getting deployed to production.</li>
+
+
 </ul>
+
+
+
+
 <h2>Bug Report vs plain Unit Test</h2>
-<p>The test fail report comes to save your life when a test fails. So you better make it loud and clear. I came up with a list of must-have info in your bug report.</p>
+
+
+The test fail report comes to save your life when a test fails. So you better make it loud and clear. I came up with a list of must-have info in your bug report.
+
+
 <ul>
+ 	
+
 <li>What are you trying to test?</li>
+
+
+ 	
+
 <li>What should it do?</li>
+
+
+ 	
+
 <li>What is the real-time output (actual behavior)?</li>
+
+
+ 	
+
 <li>What is the expected output (expected behavior)?</li>
+
+
 </ul>
-<p>Here is a sample test with all of these info:</p><pre class="crayon-plain-tag">describe("CalculatorAddMethod", function() {
 
+
+Here is a sample test with all of these info:
+
+
+<pre class="theme:orange-code lang:default decode:true">describe("CalculatorAddMethod", function() {
   var calculator = new Calculator();
-
   it("should return number", function() {
     const actual = typeof Calculator.add(5,10);
     const expected = 'number'
     expect(actual).toEqual(expected);
   });
+});
+</pre>
 
-});</pre><p>This test suit answers all the questions above. Let&#8217;s go through each one of them.</p>
+
+This test suit answers all the questions above. Let&#8217;s go through each one of them.
+
+
 <ul>
+ 	
+
 <li>What are you trying to test?
+
+
 <ul>
+ 	
+
 <li>-&gt; Go for the test description. It is testing for the return type of the add method of Calculator().</li>
+
+
 </ul>
+
+
 </li>
+
+
+ 	
+
 <li>What should it do?
+
+
 <ul>
+ 	
+
 <li>-&gt; Again, look at the test description. It clearly says that it is testing for the return type of add method.</li>
+
+
 </ul>
+
+
 </li>
+
+
+ 	
+
 <li>What is the actual output?
+
+
 <ul>
+ 	
+
 <li>-&gt; There is a dedicated variable which holds the actual result and how you got the actual result. TWO FOR ONE!</li>
+
+
 </ul>
+
+
 </li>
+
+
+ 	
+
 <li>What is the expected output?
+
+
 <ul>
+ 	
+
 <li>-&gt; Again, there is a dedicated variable which holds the actual result. Straight as a ruler!</li>
+
+
 </ul>
+
+
 </li>
+
+
 </ul>
+
+
+
+
 <h2>Make your tests even better</h2>
-<p>This is from my experiences and the knowledge I gained from good articles. This worked for me in the long run even if I find it a little difficult to implement when I started. <strong>Write every single test using toEqual()</strong>. Don&#8217;t worry about the quality impact on your test suit. It will get better with exercise.</p>
+
+
+This is from my experiences and the knowledge I gained from good articles. This worked for me in the long run even if I find it a little difficult to implement when I started. <strong>Write every single test using toEqual()</strong>. Don&#8217;t worry about the quality impact on your test suit. It will get better with exercise.
+
+
 <h2>Easter Egg</h2>
-<p>This method I suggested would answer one more question, which is by far the most important question I guess. <strong>How can you reproduce the test?</strong> The <strong>const actual </strong>holds the answer to this question. Please go take a look at the variable in my sample test suit above and get delighted.</p>
+
+
+This method I suggested would answer one more question, which is by far the most important question I guess. <strong>How can you reproduce the test?</strong> The <strong>const actual </strong>holds the answer to this question. Please go take a look at the variable in my sample test suit above and get delighted.
+
+
 <h1>Conclusion</h1>
-<p>Integrating Jasmine into your Rails app is done by the <strong>jasmine-gem. </strong>This gem gives you the ability to run tests in a browser or as Continous Integration mode. The usage of right plugins will improve your productivity and helps you write tests faster and better.</p>
-<p>Next time you write a test, remember to see if your test answers the following questions:</p>
+
+
+Integrating Jasmine into your Rails app is done by the <strong>jasmine-gem. </strong>This gem gives you the ability to run tests in a browser or as Continous Integration mode. The usage of right plugins will improve your productivity and helps you write tests faster and better.
+Next time you write a test, remember to see if your test answers the following questions:
+
+
 <ul>
+ 	
+
 <li>What are you trying to test?</li>
+
+
+ 	
+
 <li>What should it do?</li>
+
+
+ 	
+
 <li>What is the real-time output (actual behavior)?</li>
+
+
+ 	
+
 <li>What is the expected output (expected behavior)?</li>
+
+
+ 	
+
 <li>How can be the test reproduced?</li>
+
+
 </ul>
-<p>The post <a rel="nofollow" href="/write-beautiful-jasmine-tests-rails/">Make unit tests great again &#8211; Integrate Jasmine into Rails</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+
+]]&gt;		</p>
 ]]></content:encoded>
-							<wfw:commentRss>/write-beautiful-jasmine-tests-rails/feed/</wfw:commentRss>
-		<slash:comments>1</slash:comments>
-							</item>
+										</item>
 		<item>
 		<title>Readability of text using odyssey</title>
 		<link>/odyssey-in-rails/</link>
@@ -929,95 +2195,309 @@ end</pre><p></p>
 		<category><![CDATA[redability]]></category>
 		<category><![CDATA[smart]]></category>
 
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=2738</guid>
-				<description><![CDATA[<p>When you are writing something like article, text, document etc you are focusing on readability. If you are not then you should. As readability influence how a reader can read and understand the content, how you are presenting the content etc. It would also influence how much likely one is to share your article as&#8230;</p>
-<p>The post <a rel="nofollow" href="/odyssey-in-rails/">Readability of text using odyssey</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
-]]></description>
-								<content:encoded><![CDATA[<p>When you are writing something like article, text, document etc you are focusing on readability. If you are not then you should. As readability influence how a reader can read and understand the content, how you are presenting the content etc. It would also influence how much likely one is to share your article as well. To find the readability there are a lot of statistical tests. Few are listed below.</p>
+		<guid isPermaLink="false">https://redpanthers.co/?p=2738</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[When you are writing something like article, text, document etc you are focusing on readability. If you are not then you should. As readability influence how a reader can read and understand the content, how you are presenting the content etc. It would also influence how much likely one is to share your article as well. To find the readability there are a lot of statistical tests. Few are listed below.
+
+
 <ul>
+ 	
+
 <li>Flesch-Kincaid readability test</li>
+
+
+ 	
+
 <li>
+
+
 <p class="push-top">Flesch Kincaid Grade Level</p>
+
+
 </li>
+
+
+ 	
+
 <li>
+
+
 <p class="push-top">Gunning Fog Score</p>
+
+
 </li>
+
+
+ 	
+
 <li>
+
+
 <p class="push-top">SMOG</p>
+
+
 </li>
+
+
+ 	
+
 <li>
+
+
 <p class="push-top">Coleman Liau Index</p>
+
+
 </li>
+
+
+ 	
+
 <li>
+
+
 <p class="push-top">Automated Readability Index (ARI)</p>
+
+
 </li>
+
+
 </ul>
-<p>Recently in a project that we worked on we were asked to find the readability of various pages of a website. We decided to start with Flesch-Kincaid test, as we found this to be a popular one in our research.</p>
-<p><strong>Flesch-Kincaid readability test</strong> is designed to indicate how difficult a passage in English is to understand. In this test higher score indicates how easier to read and a lower score indicates how difficult it is to read.The formula to find Flesch-Kincaid reading-ease score is</p>
-<p>206.835 &#8211; 1.015 * (total words / total sentences) &#8211; 84.6 * (total syllables / total words)</p>
-<p>The scores can be interrupted as</p>
+
+
+Recently in a project that we worked on we were asked to find the readability of various pages of a website. We decided to start with Flesch-Kincaid test, as we found this to be a popular one in our research.
+<strong>Flesch-Kincaid readability test</strong> is designed to indicate how difficult a passage in English is to understand. In this test higher score indicates how easier to read and a lower score indicates how difficult it is to read.The formula to find Flesch-Kincaid reading-ease score is
+206.835 &#8211; 1.015 * (total words / total sentences) &#8211; 84.6 * (total syllables / total words)
+The scores can be interrupted as
+
+
 <table border="2px">
+
+
 <tbody>
+
+
 <tr>
+
+
 <th>Score</th>
+
+
+
+
 <th>School Level</th>
+
+
+
+
 <th>Notes</th>
+
+
 </tr>
+
+
+
+
 <tr>
+
+
 <th>100.00-90.00</th>
+
+
+
+
 <th>5th grade</th>
+
+
+
+
 <th>Very easy to read.</th>
+
+
 </tr>
+
+
+
+
 <tr>
+
+
 <th>90.00-80.00</th>
+
+
+
+
 <th>6th grade</th>
+
+
+
+
 <th>Easy to read.</th>
+
+
 </tr>
+
+
+
+
 <tr>
+
+
 <th>80.00-70.00</th>
+
+
+
+
 <th>7th grade</th>
+
+
+
+
 <th>Fairly easy to read.</th>
+
+
 </tr>
+
+
+
+
 <tr>
+
+
 <th>70.00-60.00</th>
+
+
+
+
 <th>8th &amp; 9th grade</th>
+
+
+
+
 <th>Plain English.</th>
+
+
 </tr>
+
+
+
+
 <tr>
+
+
 <th>60.00-50.00</th>
+
+
+
+
 <th>10th to 12th grade</th>
+
+
+
+
 <th>Fairly difficult to read.</th>
+
+
 </tr>
+
+
+
+
 <tr>
+
+
 <th>50.00-30.00</th>
+
+
+
+
 <th>College</th>
+
+
+
+
 <th>Difficult to read.</th>
+
+
 </tr>
+
+
+
+
 <tr>
+
+
 <th>30.00-0.00</th>
+
+
+
+
 <th>College Graduate</th>
+
+
+
+
 <th>Very difficult to read.</th>
+
+
 </tr>
+
+
 </tbody>
+
+
 </table>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>Since we were not experts we wanted the ability to tweak and play around with it. We found an already build gem called <strong>Odyssey </strong>which had all these various tests and also provided the ability to extend this feature as well. So here in this article, we will discuss how to use Odyssey gem to find readability of an article and a web page.</p>
-<p><code></code></p>
+
+
+&nbsp;
+&nbsp;
+Since we were not experts we wanted the ability to tweak and play around with it. We found an already build gem called <strong>Odyssey </strong>which had all these various tests and also provided the ability to extend this feature as well. So here in this article, we will discuss how to use Odyssey gem to find readability of an article and a web page.
+<code></code>
+
+
 <h2>Install Odyssey</h2>
-<p>Add in your Gemfile.</p><pre class="crayon-plain-tag">gem 'odyssey'</pre><p></p>
+
+
+Add in your Gemfile.
+
+
+<pre class="lang:ruby decode:true">gem 'odyssey'</pre>
+
+
+
+
 <h2>Usage</h2>
-<p></p><pre class="crayon-plain-tag">require 'odyssey'
 
-Odyssey.formula_name(text, all_stats)</pre><p>So if we want to use the Flesch-Kincaid test, we write the code as below.</p><pre class="crayon-plain-tag">require 'odyssey'
 
-Odyssey.flesch_kincaid_re(text, all_stats)</pre><p>To find the readability of a website we use Nokogiri and Odyssey together. Nokogiri to fetch the contents of the page and Odyssey to get the readability.</p>
-<p>Example of finding readability of our own website ()/</p><pre class="crayon-plain-tag">url = "/"
+
+
+<pre class="lang:ruby decode:true">require 'odyssey'
+Odyssey.formula_name(text, all_stats)</pre>
+
+
+So if we want to use the Flesch-Kincaid test, we write the code as below.
+
+
+<pre class="lang:ruby decode:true">require 'odyssey'
+Odyssey.flesch_kincaid_re(text, all_stats)</pre>
+
+
+To find the readability of a website we use Nokogiri and Odyssey together. Nokogiri to fetch the contents of the page and Odyssey to get the readability.
+Example of finding readability of our own website (https://redpanthers.co)/
+
+
+<pre class="lang:ruby decode:true">url = "https://redpanthers.co/"
 doc = Nokogiri::HTML(open(url))
 # Get all the contents
 paragraph = doc.css('p', 'article', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'a').map(&amp;:text)
 score = Odyssey.flesch_kincaid_re(para.join('. '), true)
-p score</pre><p>If <strong>all_stats</strong> is set to <strong>false</strong>, it returns score only. If it is true returns a hash like below</p><pre class="crayon-plain-tag">{
+p score</pre>
+
+
+If <strong>all_stats</strong> is set to <strong>false</strong>, it returns score only. If it is true returns a hash like below
+
+
+<pre class="lang:ruby decode:true">{
  "string_length"=&gt;3024,
  "letter_count"=&gt;2270,
  "syllable_count"=&gt;808,
@@ -1028,12 +2508,25 @@ p score</pre><p>If <strong>all_stats</strong> is set to <strong>false</strong>, 
  "name"=&gt;"Flesch-Kincaid Reading Ease",
  "formula"=&gt;#&lt;FleschKincaidRe:0x00000000c83548&gt;,
  "score"=&gt;64.6
-}</pre><p>We can perform multiple text analyses on the same text as shown below</p><pre class="crayon-plain-tag">url = "http://blog.redpanthers.co/"
+}</pre>
+
+
+We can perform multiple text analyses on the same text as shown below
+
+
+<pre class="lang:rust decode:true">url = "https://redpanthers.co/"
 doc = Nokogiri::HTML(open(url))
 para = doc.css('p', 'article', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'a').map(&amp;:text)
 score = Odyssey.analyze_multi(para.join('. ').gsub('\n', ' '),
           ['FleschKincaidRe', 'FleschKincaidGl', 'GunningFog', 'Smog','Ari','ColemanLiau'],
-          true)</pre><p>if all_stats is set to true it will return a hash like this</p><pre class="crayon-plain-tag">{
+          true)
+</pre>
+
+
+if all_stats is set to true it will return a hash like this
+
+
+<pre class="lang:ruby decode:true">{
 "string_length"=&gt;19892,
  "letter_count"=&gt;14932,
  "syllable_count"=&gt;5079,
@@ -1050,21 +2543,41 @@ score = Odyssey.analyze_multi(para.join('. ').gsub('\n', ' '),
    "Ari"=&gt;3.5,
    "ColemanLiau"=&gt;10.6
   }
-}</pre><p></p>
-<h2>Extending odyssey</h2>
-<p>To extending odyssey, you can create a class that inherit from formula</p><pre class="crayon-plain-tag">class NewFormula &lt; Formula
+}
+</pre>
 
+
+
+
+<h2>Extending odyssey</h2>
+
+
+To extending odyssey, you can create a class that inherit from formula
+
+
+<pre class="lang:ruby decode:true">class NewFormula &lt; Formula
   def score(passage, stats)
     p passage
     p stats
   end
-
   def sentence
     "Red Panthers is a Ruby on Rails development studio,
      based in the beautiful city of Cochin."
   end
-end</pre><p>To call your formula you just use</p><pre class="crayon-plain-tag">obj = NewFormula.new
-Odyssey.new_formula(obj.sentence, false)</pre><p>Resultant passage will be a Hash like this</p><pre class="crayon-plain-tag">{
+end</pre>
+
+
+To call your formula you just use
+
+
+<pre class="lang:ruby decode:true">obj = NewFormula.new
+Odyssey.new_formula(obj.sentence, false)</pre>
+
+
+Resultant passage will be a Hash like this
+
+
+<pre class="lang:ruby decode:true">{
  "raw"=&gt;"Red Panthers is a Ruby on Rails development studio,
         based in the beautiful city of Cochin.",
  "words"=&gt;["Red", "Panthers", "is", "a", "Ruby", "on", "Rails",
@@ -1073,7 +2586,14 @@ Odyssey.new_formula(obj.sentence, false)</pre><p>Resultant passage will be a Has
  "sentences"=&gt;["Red Panthers is a Ruby on Rails development studio,
                based in the beautiful city of Cochin."],
  "syllables"=&gt;[1, 2, 1, 1, 2, 1, 1, 4, 2, 1, 1, 1, 4, 2, 1, 2]
-}</pre><p>and resultant status will be a Hash like this</p><pre class="crayon-plain-tag">{
+}
+</pre>
+
+
+and resultant status will be a Hash like this
+
+
+<pre class="lang:ruby decode:true">{
  "string_length"=&gt;90,
  "letter_count"=&gt;73,
  "word_count"=&gt;16,
@@ -1081,14 +2601,33 @@ Odyssey.new_formula(obj.sentence, false)</pre><p>Resultant passage will be a Has
  "sentence_count"=&gt;1,
  "average_words_per_sentence"=&gt;16.0,
  "average_syllables_per_word"=&gt;1.6875
-}</pre><p>Because we have access to formula&#8217;s class that is  &#8216;status&#8217; flag set to true then we have access to other methods or class formula.</p>
-<p>Thanks to Odyssey we were able to implement the feature quite easily and right now the algorithm we are using have evolved to new forms. But that&#8217;s another article. But if you want to build a simple readability checker then it&#8217;s quite easy and simple in Rails.</p>
+}
+</pre>
+
+
+Because we have access to formula&#8217;s class that is  &#8216;status&#8217; flag set to true then we have access to other methods or class formula.
+Thanks to Odyssey we were able to implement the feature quite easily and right now the algorithm we are using have evolved to new forms. But that&#8217;s another article. But if you want to build a simple readability checker then it&#8217;s quite easy and simple in Rails.
+
+
 <h2>References</h2>
+
+
+
+
 <ul>
+ 	
+
 <li><a href="http://www.rubydoc.info/gems/odyssey/0.1.8">http://www.rubydoc.info/gems/odyssey/0.1.8</a></li>
+
+
+ 	
+
 <li><a href="https://github.com/cameronsutter/odyssey">https://github.com/cameronsutter/odyssey</a></li>
+
+
 </ul>
-<p>The post <a rel="nofollow" href="/odyssey-in-rails/">Readability of text using odyssey</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+
+]]&gt;		</p>
 ]]></content:encoded>
 							<wfw:commentRss>/odyssey-in-rails/feed/</wfw:commentRss>
 		<slash:comments>2</slash:comments>
@@ -1103,157 +2642,141 @@ Odyssey.new_formula(obj.sentence, false)</pre><p>Resultant passage will be a Has
 		<category><![CDATA[Rails]]></category>
 		<category><![CDATA[Ruby]]></category>
 
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=2694</guid>
-				<description><![CDATA[<p>Recently we have been working on Rails API. During that time, we were curious about the difference between as_json and to_json. In this article, we are sharing the difference we learned. to_json in Rails API Let&#8217;s discuss how we started out building our APIs using &#8216;to_json’. to_json will return JSON string representing the hash. Option&#8230;</p>
-<p>The post <a rel="nofollow" href="/to_json-vs-as_json-in-rails-api/">to_json vs as_json in Rails API</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
-]]></description>
-								<content:encoded><![CDATA[<p>Recently we have been working on Rails API. During that time, we were curious about the difference between as_json and to_json. In this article, we are sharing the difference we learned.</p>
+		<guid isPermaLink="false">https://redpanthers.co/?p=2694</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[Recently we have been working on Rails API. During that time, we were curious about the difference between as_json and to_json. In this article, we are sharing the difference we learned.
+
+
 <h2><strong>to_json in Rails API</strong></h2>
-<p>Let&#8217;s discuss how we started out building our APIs using &#8216;to_json’. to_json will return JSON string representing the hash. Option are passed to each element.</p>
-<p>In to_json without any <em>option,  </em>the returned JSON string will include all the model attributes</p><pre class="crayon-plain-tag">user = User.find(1)
-user.to_json</pre><p>to_json had some great options of ActiveRecord objects. We could just tell the method to only render certain attributes, or to include association or method calls. We had:</p>
+
+
+Let&#8217;s discuss how we started out building our APIs using &#8216;to_json’. to_json will return JSON string representing the hash. Option are passed to each element.
+In to_json without any <em>option,  </em>the returned JSON string will include all the model attributes
+
+
+<pre class="lang:ruby decode:true">user = User.find(1)
+user.to_json
+</pre>
+
+
+to_json had some great options of ActiveRecord objects. We could just tell the method to only render certain attributes, or to include association or method calls. We had:
+
+
 <ul>
-<li>only &#8211; Only show column names in the output as specified in the list<br />
-<pre class="crayon-plain-tag">user.to_json(:only =&gt; [ :id, :email ])</pre>
+ 	
+
+<li>only &#8211; Only show column names in the output as specified in the list
+
+
+<pre class="lang:ruby decode:true">user.to_json(:only =&gt; [ :id, :email ])
+</pre>
+
+
 </li>
-<li>except &#8211; Show all column names except the ones specified in the list<br />
-<pre class="crayon-plain-tag">user.to_json(:except =&gt; [:id, :username])</pre>
+
+
+ 	
+
+<li>except &#8211; Show all column names except the ones specified in the list
+
+
+<pre class="lang:ruby decode:true">user.to_json(:except =&gt; [:id, :username])
+</pre>
+
+
 </li>
+
+
 </ul>
-<p>to_json works fine and seamlessly ok, as long as the database schema is deeply coupled with the API output.When it takes the next level where we want to render a certain attribute in json it start to break.</p><pre class="crayon-plain-tag">render :json =&gt; { :sucess =&gt; true,
-  :user =&gt; @user.to_json(:only =&gt; [:name]) }</pre><p>This will start to generate a bit load to controllers. Such methods of generating json don&#8217;t feel quite right and begin to break down. This is because the to_json is interested in &#8216;serializing&#8217; a database object while most of the developers try to put relevant representation for their API.</p>
-<p>Anytime to_json is called on an object, as_json is invoked to create the data structure, and then that hash is encoded as a JSON string using ActiveSupport::json.encode. This happens for all types: Object, Numeric, Data, String etc.</p>
-<p>Now the creation of the json is separated from the rendering of the json.  as_json is used to create the structure of the json as a Hash, and the rendering of that hash into JSON string is left up-to ActiveSupport::json.encode.</p>
+
+
+to_json works fine and seamlessly ok, as long as the database schema is deeply coupled with the API output.When it takes the next level where we want to render a certain attribute in json it start to break.
+
+
+<pre class="lang:ruby decode:true ">render :json =&gt; { :sucess =&gt; true,
+  :user =&gt; @user.to_json(:only =&gt; [:name]) }</pre>
+
+
+This will start to generate a bit load to controllers. Such methods of generating json don&#8217;t feel quite right and begin to break down. This is because the to_json is interested in &#8216;serializing&#8217; a database object while most of the developers try to put relevant representation for their API.
+Anytime to_json is called on an object, as_json is invoked to create the data structure, and then that hash is encoded as a JSON string using ActiveSupport::json.encode. This happens for all types: Object, Numeric, Data, String etc.
+Now the creation of the json is separated from the rendering of the json.  as_json is used to create the structure of the json as a Hash, and the rendering of that hash into JSON string is left up-to ActiveSupport::json.encode.
+
+
 <h2><strong>as_json in Rails API</strong></h2>
-<p>as_json Returns a hash representing the model. Like in to_json, option are passed to each element in as_json. The option include_root_in_json controls the top-level behavior of as_json. If true, as_json will emit a single root node named after the object’s type. The default value for include_root_in_json option is false. This behavior can also be achieved by setting the :root  option to true.</p><pre class="crayon-plain-tag">user.as_json(root: true)</pre><p>In as_json without any option, the returned HASH will include all the model attributes</p><pre class="crayon-plain-tag">user = User.find(1)
-user.as_json</pre><p>The <em>:only</em> and <em>:except</em> options can be used to limit the attributes included, and work similar to the attributes method.</p><pre class="crayon-plain-tag">user.as_json(:only =&gt; [ :id, :email ])
-user.as_json(:except =&gt; [:id, :username])</pre><p>Default as_json will create a hash which includes all the model attributes. We normally override the as_json to create custom JSON structure.</p><pre class="crayon-plain-tag">def as_json(options={})
+
+
+as_json Returns a hash representing the model. Like in to_json, option are passed to each element in as_json. The option include_root_in_json controls the top-level behavior of as_json. If true, as_json will emit a single root node named after the object’s type. The default value for include_root_in_json option is false. This behavior can also be achieved by setting the :root  option to true.
+
+
+<pre class="lang:ruby decode:true">user.as_json(root: true)</pre>
+
+
+In as_json without any option, the returned HASH will include all the model attributes
+
+
+<pre class="lang:ruby decode:true">user = User.find(1)
+user.as_json
+</pre>
+
+
+The <em>:only</em> and <em>:except</em> options can be used to limit the attributes included, and work similar to the attributes method.
+
+
+<pre class="lang:ruby decode:true">user.as_json(:only =&gt; [ :id, :email ])
+user.as_json(:except =&gt; [:id, :username])
+</pre>
+
+
+Default as_json will create a hash which includes all the model attributes. We normally override the as_json to create custom JSON structure.
+
+
+<pre class="lang:ruby decode:true">def as_json(options={})
  { :email =&gt; self.email }
-end</pre><p><strong>As we were going through this we also came across a method called from_json. So we decided to write about it as well</strong></p>
+end</pre>
+
+
+<strong>As we were going through this we also came across a method called from_json. So we decided to write about it as well</strong>
+
+
 <h2>from_json in Rails API</h2>
-<p>from_json will sets the model attributes from a JSON string. The default value for include_root option is false. We can change it to &#8216;true&#8217; if the given JSON string includes a single root node.</p><pre class="crayon-plain-tag">json = { user: { email: 'adone@gmail.com', username: 'adone'} }.to_json
+
+
+from_json will sets the model attributes from a JSON string. The default value for include_root option is false. We can change it to &#8216;true&#8217; if the given JSON string includes a single root node.
+
+
+<pre class="lang:ruby decode:true">json = { user: { email: 'adone@gmail.com', username: 'adone'} }.to_json
 user = User.new
 user.from_json(json, true)
 user.email                 #=&gt; "adone@gmail.com"
-user.username              #=&gt; "adone"</pre><p><code></code></p>
-<p>Do not call to_json directly, and let the render take it, in controllers. Incase of custom structured or multi level JSON structure override as_json in the model or call as_json. Using as_json will help to worry one less.</p>
+user.username              #=&gt; "adone"</pre>
+
+
+<code></code>
+Do not call to_json directly, and let the render take it, in controllers. Incase of custom structured or multi level JSON structure override as_json in the model or call as_json. Using as_json will help to worry one less.
+
+
 <h2><strong>References</strong></h2>
+
+
+
+
 <ul>
+ 	
+
 <li><a href="https://github.com/rails/rails/blob/master/activesupport/lib/active_support/core_ext/object/json.rb">https://github.com/rails/rails/blob/master/activesupport/lib/active_support/core_ext/object/json.rb</a></li>
+
+
+ 	
+
 <li><a href="http://ruby-doc.org/stdlib-2.0.0/libdoc/json/rdoc/Regexp.html">http://ruby-doc.org/stdlib-2.0.0/libdoc/json/rdoc/Regexp.html</a></li>
+
+
 </ul>
-<p>The post <a rel="nofollow" href="/to_json-vs-as_json-in-rails-api/">to_json vs as_json in Rails API</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+
+]]&gt;		</p>
 ]]></content:encoded>
 							<wfw:commentRss>/to_json-vs-as_json-in-rails-api/feed/</wfw:commentRss>
-		<slash:comments>3</slash:comments>
-							</item>
-		<item>
-		<title>Difference between Date, Time and DateTime</title>
-		<link>/time-date-datetime/</link>
-				<comments>/time-date-datetime/#comments</comments>
-				<pubDate>Wed, 05 Apr 2017 10:23:42 +0000</pubDate>
-		<dc:creator><![CDATA[harikrishnan]]></dc:creator>
-				<category><![CDATA[Beginners]]></category>
-		<category><![CDATA[Database]]></category>
-		<category><![CDATA[Ruby]]></category>
-
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=1094</guid>
-				<description><![CDATA[<p>Date and time are one of the most important aspects which every coder has to deal with in Ruby. Well, let&#8217;s get to know how we keep it up alive and functional. There are 3 different classes in Ruby that handles date and time. They are Date, Time and DateTime. Date and DateTime classes are&#8230;</p>
-<p>The post <a rel="nofollow" href="/time-date-datetime/">Difference between Date, Time and DateTime</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
-]]></description>
-								<content:encoded><![CDATA[<p>Date and time are one of the most important aspects which every coder has to deal with in Ruby. Well, let&#8217;s get to know how we keep it up alive and functional.<br />
-There are 3 different classes in Ruby that handles date and time. They are Date, Time and DateTime. Date and DateTime classes are both from date library. And Time class from its own time library.</p>
-<p>In this article we’ll see how Date and Time works. Let&#8217;s have a look at each one of them.</p>
-<h2><strong>Date</strong></h2>
-<p>When you need a string format of year, month and day, you have to go through <strong>Date</strong> class.</p>
-<ul>
-<li>Has date attributes only (year, month, day)</li>
-<li>Based on integer whole-day intervals from an arbitrary &#8220;day zero&#8221;</li>
-<li>Can handle date arithmetic in units of whole days</li>
-<li>Date object is created with ::new, ::jd, ::ordinal, ::commercial, ::parse, ::strptime, ::today, Time#to_date etc.</li>
-<li>Takes <strong>4</strong> bytes to store.</li>
-</ul>
-<p>Eg:</p><pre class="crayon-plain-tag">$ require 'date'
-$ Date.new(2001,2,3)
-  Date: 2001-02-03
-$ Date.jd(2451944)
-  Date: 2001-02-03 ...
-$ Date.ordinal(2001,34)
-  Date: 2001-02-03 ...
-$ Date.commercial(2001,5,6)
-  Date: 2001-02-03 ...
-$ Date.parse('2001-02-03')
-  Date: 2001-02-03 ...
-$ Date.strptime('03-02-2001', '%d-%m-%Y')
-  Date: 2001-02-03 ...
-$ Time.new(2001,2,3).to_date
-  Date: 2001-02-03 ...
-$ Date.today
-  "Mon, 02 Jan 2017"</pre><p></p>
-<h2><strong>Time</strong></h2>
-<p>If you need both date and time values, we can make use of <strong>Time</strong> class.</p>
-<ul>
-<li>Has date and time attributes (year, month, day, hour, min, sec, subsec)</li>
-<li>Can handle negative times before unix time</li>
-<li>Can handle time arithmetic in units of seconds</li>
-</ul>
-<p>Eg:</p><pre class="crayon-plain-tag">$ require 'time'
-$ Time.now
-   2015-12-08 10:26:40 -0200
-
-$ time = Time.new
-  Components of a Time
-$ time.year    # =&gt; Year of the date
-$ time.month   # =&gt; Month of the date (1 to 12)
-$ time.day     # =&gt; Day of the date (1 to 31 )
-$ time.wday    # =&gt; 0: Day of week: 0 is Sunday
-$ time.yday    # =&gt; 365: Day of year
-$ time.hour    # =&gt; 23: 24-hour clock
-$ time.min     # =&gt; 59
-$ time.sec     # =&gt; 59
-$ time.usec    # =&gt; 999999: microseconds
-$ time.zone    # =&gt; "UTC": timezone name</pre><p>Also rails provide a really good time class called <strong>ActiveSupport::TimeWithZone</strong>. It contains all the features the <strong>Time</strong> class have, plus many improvements, such as the support for configurable time zones.</p>
-<h2><strong>DateTime</strong></h2>
-<ul>
-<li>Has date and time attributes (year, month, day, hour, min, sec)</li>
-<li>It  is formatted as YYYY-MM-DD HH:MM:SS</li>
-<li>Based on fractions of whole-day intervals from an arbitrary &#8220;day zero&#8221; (-4712-01-01)</li>
-<li>Can handle date arithmetic in units of whole days or fractions</li>
-<li>Takes 8 bytes to store, and has a precision of .001 seconds.
-<ul>
-<li>A four-byte integer packed as <code>YYYY</code>×10000 + <code>MM</code>×100 + <code>DD</code></li>
-<li>A four-byte integer packed as <code>HH</code>×10000 + <code>MM</code>×100 + <code>SS</code></li>
-</ul>
-</li>
-<li>Valid ranges go from the year 1000 to the year 9999</li>
-<li>It is created with ::new, ::jd, ::ordinal, ::commercial, ::parse, ::strptime, ::now, Time#to_datetime etc.</li>
-</ul>
-<p>Eg:</p><pre class="crayon-plain-tag">$ require 'date'
-
-$ DateTime.new(2001,2,3,4,5,6)
-  DateTime: 2001-02-03T04:05:06+00:00 ...</pre><p></p>
-<h2>Let&#8217;s see the Differences among all of them which makes them unique.</h2>
-<ul>
-<li>Date use rational and a &#8220;day zero&#8221; for storage. But Time doesn&#8217;t. So Time is faster.</li>
-<li>Date field is populated with a literal date and does not concern itself with time zones so this can cause trouble if it is not expressed in the user&#8217;s local time. A DateTime can always be converted to a user&#8217;s local time if required.</li>
-<li>Time used to track changes to records and update every time when the record is changed. DateTime used to store a specific and static value which is not affected by any changes in records.</li>
-<li>Time internally converted current time zone to UTC for storage, and during retrieval converted back to the current time zone. DateTime can not do this.</li>
-<li>Time affected by different TIME ZONE related setting. Datetime is constant.</li>
-<li>Ruby’s <code>Time</code> class implements a <a href="http://en.wikipedia.org/wiki/Proleptic_Gregorian_calendar">proleptic Gregorian calendar</a> and has no concept of calendar reform. This problem can be overcome using DateTime class.</li>
-</ul>
-<p>Now since we know so many facets of Date, Time and DateTime , we can use them in a much better manner in future at our time of needs.</p>
-<p>Happy Coding in Ruby!</p>
-<h2>References</h2>
-<ul>
-<li><a href="https://ruby-doc.org/stdlib-2.4.0/libdoc/date/rdoc/Date.html">https://ruby-doc.org/stdlib-2.4.0/libdoc/date/rdoc/Date.html</a></li>
-<li><a href="http://stackoverflow.com/questions/3928275/in-ruby-on-rails-whats-the-difference-between-datetime-timestamp-time-and-da">http://stackoverflow.com/questions/3928275/in-ruby-on-rails-whats-the-difference-between-datetime-timestamp-time-and-da</a></li>
-<li><a href="https://www.tutorialspoint.com/ruby/ruby_date_time.html">https://www.tutorialspoint.com/ruby/ruby_date_time.html</a></li>
-<li><a href="http://stevenyue.com/blogs/date-time-datetime-in-ruby-and-rails/">http://stevenyue.com/blogs/date-time-datetime-in-ruby-and-rails/</a></li>
-</ul>
-<p>&nbsp;</p>
-<p>The post <a rel="nofollow" href="/time-date-datetime/">Difference between Date, Time and DateTime</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
-]]></content:encoded>
-							<wfw:commentRss>/time-date-datetime/feed/</wfw:commentRss>
 		<slash:comments>3</slash:comments>
 							</item>
 	</channel>

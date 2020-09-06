@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>anonymous functions &#8211; beta.redpanthers.co</title>
+	<atom:link href="/tag/anonymous-functions/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description>Red Panthers - Experts in Ruby on Rails, System Design and Vue.js</description>
+	<lastBuildDate>Tue, 23 Aug 2016 09:45:09 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.7</generator>
+	<item>
+		<title>Lambda vs Proc Vs Blocks</title>
+		<link>/lambda-vs-proc-vs-blocks/</link>
+				<comments>/lambda-vs-proc-vs-blocks/#comments</comments>
+				<pubDate>Tue, 23 Aug 2016 09:45:09 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Beginners]]></category>
+		<category><![CDATA[Ruby]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[anonymous functions]]></category>
+		<category><![CDATA[arugments]]></category>
+		<category><![CDATA[basics]]></category>
+		<category><![CDATA[block]]></category>
+		<category><![CDATA[difference]]></category>
+		<category><![CDATA[function]]></category>
+		<category><![CDATA[lambda]]></category>
+		<category><![CDATA[lambda vs proc vs bloc]]></category>
+		<category><![CDATA[learning]]></category>
+		<category><![CDATA[proc]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=467</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[The difference between these three is one of the most baffling concepts to grasp while anyone starts to learn ruby. Since at Red Panthers we recruit and build our own team from freshers, we too will be blogging about it here to make it easy for the beginners.
+But before we state the difference between the three, let me explain what all these three does to make it easy for you.
+<strong>Blocks: </strong>They are called closures in other languages, it is a way of grouping code/statements. In ruby single line blocks are written in {} and multi-line blocks are represented using <strong>do..end</strong>
+An interesting fact about ruby is that all methods in ruby accept a block, even if you don&#8217;t declare a variable to accept it. So for example, take the method below
+
+
+<pre class="lang:default decode:true">def my_method
+  puts "Hello World"
+end</pre>
+
+
+It can accept a block as below
+
+
+<pre class="lang:default decode:true">my_method { puts 'Hello Reader' }</pre>
+
+
+The code is valid, but the output will have only <strong>puts &#8220;Hello World&#8221;</strong>.
+<strong>Why? </strong>because we passed in the block but it is not getting called. To run the block passed within your method you need to use the <em>yield </em>command.
+
+
+<pre class="lang:default decode:true">def my_method
+  puts 'Hello World'
+  yield
+end</pre>
+
+
+Now it will print
+
+
+<pre class="lang:default decode:true">Hello World.
+Hello Reader.</pre>
+
+
+But since we placed yield, it would now be expecting a block to be always passed in. So we need to write code to check if a block is given or not. The command to do that in ruby is <em>block_given?.</em>
+
+
+<pre class="lang:default decode:true">def my_method
+  puts 'Hello World'
+  yield if block_given?
+end</pre>
+
+
+<strong>Proc</strong>
+Is a block itself, but it&#8217;s bound to a variable. So proc lets us save a code block to a variable, and pass it around in our application.
+A good example from the <a href="https://ruby-doc.org/core-2.2.0/Proc.html">ruby docs</a> is shown below
+
+
+<pre class="lang:default decode:true">def gen_times(factor)
+  return Proc.new {|n| n*factor }
+end
+times3 = gen_times(3)
+times5 = gen_times(5)
+times3.call(12)               #=&gt; 36
+times5.call(5)                #=&gt; 25
+times3.call(times5.call(4))   #=&gt; 60</pre>
+
+
+<strong>Lambda</strong>
+If you felt proc&#8217;s to be a refined version of block, then you can say lambda&#8217;s to be a refined version of proc.
+Lambda is essentially a proc itself but, the argument management is rigid. If it doesn&#8217;t get an argument or if the argument count is more or less it would raise an error.
+Example:
+
+
+<pre class="lang:default decode:true">Proc.new {|a,b| [a,b] }.call(1,2,3)
+=&gt; [1,2]</pre>
+
+
+
+
+<pre class="lang:default decode:true">lambda {|a,b| [a,b] }.call(1,2,3)
+=&gt;
+ArgumentError: wrong number of arguments (3 for 2)
+	from (irb):7:in `block in irb_binding'
+	from (irb):7:in `call'
+	from (irb):7
+	from /home/dev1/.rvm/rubies/ruby-2.2.2/bin/irb:11:in `&lt;main&gt;'
+2.2.2 :008 &gt; Proc.new {|a,b| [a,b] }.call(1,2,3)</pre>
+
+
+Since it&#8217;s now clearer to you on what block, proc and lambda is, let&#8217;s start with the difference between the three.
+Lambda shortcut notation.
+
+
+<pre class="lang:default decode:true">code = -&gt; (x) { x*x }
+code.call 4
+=&gt; 16</pre>
+
+
+&nbsp;
+<strong>Lambda vs proc vs Blocks</strong>
+Proc and Blocks are the same, block is actually creating a single instance of proc which can&#8217;t be moved about in a variable. You can read about the similarity of Proc and Block <a href="https://www.reddit.com/r/ruby/comments/4z86sg/another_lambda_vs_proc_vs_blocks_article/d6vj4a6">here</a>.
+If we do return within a lambda, it would just return from lambda and the method will continue.
+
+
+<pre class="lang:default decode:true">def lambda_method
+  lambda { return puts 'lambda' }.call
+  return 'method'
+end
+lambda_method
+=&gt; method</pre>
+
+
+If we do return with a proc, it would exit the method and return that value from proc.
+
+
+<pre class="lang:default decode:true">def proc_method
+  Proc.new { return puts 'proc' }.call
+  puts 'method'
+end
+proc_method
+=&gt; proc</pre>
+
+
+Arguments:
+The second difference between the three is the way they manage arguments. Block and Proc deal with them more or less the same, but lambda is totally different.
+Proc and Bloc, doesn&#8217;t mind about the number of arguments passed. But if we access a variable that is not present then it would raise an error.
+
+
+<pre class="lang:default decode:true">def my_method
+  yield 1, 2, 3
+end
+my_method { |x, y| puts "#{x} &amp; #{y}" }
+=&gt; "1 &amp; 2"</pre>
+
+
+
+
+<pre class="lang:default decode:true">Proc.new { |x, y| puts "#{x} &amp; #{y}" }.call(4, 5, 6)
+=&gt; "4 &amp; 5"</pre>
+
+
+lambda will raise an error
+
+
+<pre class="lang:default decode:true">def my_method
+  yield
+end
+my_method { |x, y| puts "#{x} &amp; #{y}" }</pre>
+
+
+<b>Takeaways</b>
+Block, Proc &amp; Lambda are the three  different ways of grouping the code:
+<span style="font-weight: 400;"><strong>Block:</strong></span>
+
+
+<ul>
+ 	
+
+<li><span style="font-weight: 400;">Is in between the curly braces and in between do and end.</span></li>
+
+
+ 	
+
+<li>No issue with number of arguments.</li>
+
+
+ 	
+
+<li>Blocks are basically a proc without a name</li>
+
+
+</ul>
+
+
+<span style="font-weight: 400;"><strong>Proc:</strong></span>
+
+
+<ul>
+ 	
+
+<li><span style="font-weight: 400;">Similar behaviour as Block.</span></li>
+
+
+ 	
+
+<li>Can be stored in a variable and move around.</li>
+
+
+ 	
+
+<li>No issue with number of arguments.</li>
+
+
+ 	
+
+<li>Return within the proc would exit the method from where it is called.</li>
+
+
+</ul>
+
+
+<span style="font-weight: 400;"><strong>Lambda</strong></span>
+
+
+<ul>
+ 	
+
+<li><span style="font-weight: 400;">Same as Proc, but closer to a method.</span></li>
+
+
+ 	
+
+<li>Strict regarding the arguments it gets and it needs.</li>
+
+
+ 	
+
+<li>Return within a lambda would exit it from the lambda and the method would continue executing.</li>
+
+
+</ul>
+
+
+&nbsp;]]&gt;		</p>
+]]></content:encoded>
+							<wfw:commentRss>/lambda-vs-proc-vs-blocks/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+							</item>
+	</channel>
+</rss>

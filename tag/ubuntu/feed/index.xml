@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>ubuntu &#8211; beta.redpanthers.co</title>
+	<atom:link href="/tag/ubuntu/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description>Red Panthers - Experts in Ruby on Rails, System Design and Vue.js</description>
+	<lastBuildDate>Mon, 07 Nov 2016 13:56:02 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.7</generator>
+	<item>
+		<title>Deploying Sidekiq to Ubuntu 16.04</title>
+		<link>/deploying-sidekiq-ubuntu-16-04/</link>
+				<pubDate>Mon, 07 Nov 2016 13:56:02 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[DevOps]]></category>
+		<category><![CDATA[Rails]]></category>
+		<category><![CDATA[deployment]]></category>
+		<category><![CDATA[linux]]></category>
+		<category><![CDATA[RVM]]></category>
+		<category><![CDATA[ubuntu]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=605</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[Sidekiq is a popular background processing tool available in Ruby. It's fast, robust and reliable compared to other solutions out there. Sidekiq run as a process outside of rails (but including the rails environment), which means it doesn't start when you start your rails application. During development, we start sidekiq in another terminal (or tab) using the command
+
+
+<pre class="lang:ruby decode:true">bundle exec sidekiq</pre>
+
+
+to run it as a daemon we use the -d option
+
+
+<pre class="lang:ruby decode:true">bundle exec sidekiq -d</pre>
+
+
+To kill a sidekiq daemon, you need to do  the PID of the sidekiq process. When a sidekiq process starts it enters its pid to file which can be found at
+
+
+<pre class="lang:sh decode:true">/path/to/rails/app/tmp/pid/sidekiq.pid</pre>
+
+
+So the command to stop it would be
+
+
+<pre class="lang:sh decode:true">pkill -F /path/to/rails/app/tmp/pid/sidekiq.pid</pre>
+
+
+But making it a daemon is not a good idea, as there is no code from sidekiq to restart the process when it fails or exits on its own. So in ubuntu, which is our favorite OS for the production server, we make sidekiq a <strong>systemd</strong> process.
+Before we make it into a service and if you are using rvm you need to create a wrapper for systemd so that ruby with all the gems are available for it.
+
+
+<pre class="lang:sh decode:true code bash">rvm wrapper 2.3.1 systemd bundle</pre>
+
+
+Once that is done you need to create a <strong>sidekiq.service</strong> file under your &#8216;<strong>/etc/systemd/system/</strong>&#8216;. You can find the configuration file with default settings <a href="https://github.com/redpanthers/config-files/blob/master/sidekiq/sidekiq.service">here</a>.
+&nbsp;
+So that was a bit  from me on Sidekiq.Hope it helps you some way in further understanding sidekiq.]]&gt;		</p>
+]]></content:encoded>
+										</item>
+		<item>
+		<title>Mina: Faster deployment and remote server automation</title>
+		<link>/mina-faster-deployment-remote-server-automation/</link>
+				<pubDate>Tue, 13 Sep 2016 06:59:08 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Beginners]]></category>
+		<category><![CDATA[DevOps]]></category>
+		<category><![CDATA[Rails]]></category>
+		<category><![CDATA[aws]]></category>
+		<category><![CDATA[deployment]]></category>
+		<category><![CDATA[devops]]></category>
+		<category><![CDATA[digital ocean]]></category>
+		<category><![CDATA[linux]]></category>
+		<category><![CDATA[mina]]></category>
+		<category><![CDATA[rake]]></category>
+		<category><![CDATA[shell]]></category>
+		<category><![CDATA[ubuntu]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=495</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[Even though we use CodeShip/Circle CI/Jenkins for continuous integration, we still need to write scripts to automate our deployment. We also need to write small commands to clear cache, restart queues, etc. It's always a good practice to not have to enter the server directly but to have it done through scripts. There are many tools available for this purpose (in multiple languages) like Capistrano, Vlad, etc.
+<a href="http://nadarei.co/mina/">Mina</a> is a similar tool, but faster. The reason why it runs faster is because it generates a bash script, uploads it to the server and run there, rather than creating a new ssh session and run every command one by one. <strong>Mina is one of our default tools at Red Panthers</strong>.
+To use mina in your project, add mina to your Gemfile.
+
+
+<pre class="lang:ruby decode:true">gem 'mina'</pre>
+
+
+and to get started do
+
+
+<pre class="lang:ruby decode:true">mina init</pre>
+
+
+&nbsp;
+<a href="http://nadarei.co/mina/setting_up_a_project.html">http://nadarei.co/mina/setting_up_a_project.html</a>
+<a href="https://www.digitalocean.com/community/tutorials/how-to-deploy-with-mina-getting-started">https://www.digitalocean.com/community/tutorials/how-to-deploy-with-mina-getting-started</a>
+&nbsp;
+Having a one step deployment is an important requirement for any project so have one ready using mina or capistrano.
+&nbsp;
+Note:
+<strong>Assets pre-compile</strong>
+
+
+<pre class="prettyprint lang-rb has-caption"><span class="pln">invoke </span><span class="pun">:</span><span class="str">'rails:assets_precompile'</span></pre>
+
+
+&nbsp;
+<strong>Run another rake task</strong>
+
+
+<pre class="lang:ruby decode:true ">invoke 'production_backup' if RAILS_ENV == 'production'</pre>
+
+
+<strong>Run shell commands</strong>
+
+
+<pre class="lang:sh decode:true ">queue "sudo service myapp restart"</pre>
+
+
+The syntax queue is referring to the fact that, the commands are all made into a single shell script and then later executed together.
+&nbsp;]]&gt;		</p>
+]]></content:encoded>
+										</item>
+		<item>
+		<title>How to deploy a Rails app with Passenger and Apache in Ubuntu 14.04</title>
+		<link>/how-to-deploy-a-rails-app-with-passenger-and-apache-in-ubuntu-14-04/</link>
+				<comments>/how-to-deploy-a-rails-app-with-passenger-and-apache-in-ubuntu-14-04/#comments</comments>
+				<pubDate>Fri, 09 Oct 2015 09:43:24 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Rails]]></category>
+		<category><![CDATA[apache]]></category>
+		<category><![CDATA[passenger]]></category>
+		<category><![CDATA[rails]]></category>
+		<category><![CDATA[ubuntu]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=84</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[
+
+<p align="center"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><u><b>How to deploy a Rails app with Passenger and Apache in Ubuntu 14.04</b></u></span></span></p>
+
+
+
+
+<p align="justify"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;">Introduction</span></span></p>
+
+
+
+
+<p align="justify"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;">If you are a Ruby on Rails developer, you need a web server to host your web apps. This article shows you how to use Phusion Passenger as your Rails-friendly web server. Passenger is easy to install, configure, and maintain and it can be used with Apache. In this article, we will learn to install Passenger on Ubuntu 14.04.</span></span></p>
+
+
+
+
+<p align="justify"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;">Step 1 — Set Up Your Domain</span></span></p>
+
+
+
+
+<p align="justify"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;">In order to ensure that your site will be up and visible, you need to set up your DNS records to point your domain name towards your new server. Alternatively, you can always access your website via an IP address on your local server.</span></span></p>
+
+
+
+
+<p align="justify"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;">Step 2 — Install RVM</span></span></p>
+
+
+
+
+<p align="justify"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;">Before you start, an update of your Ubuntu operating system would ensure the upkeep of all the packages to be installed. You can do this with the following command:</span></span></p>
+
+
+
+
+<p align="justify"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><b>      sudo apt-get update</b></span></span></p>
+
+
+
+
+<p align="justify"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;">Next step would be to install some libraries and other dependencies. This will make further ruby installations as smooth as possible. Your command for this would be:</span></span></p>
+
+
+
+
+<p align="justify"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><b>     sudo apt-get install build-essential libssl-dev libyaml-dev libreadline-dev openssl curl git-core zlib1g-dev bison         libxml2-dev libxslt1-dev libcurl4-openssl-dev libsqlite3-dev sqlite3</b></span></span></p>
+
+
+
+
+<p align="justify"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;">The Ruby Version Manager, known more widely as RVM, allows you to easily install multiple, contained versions of Ruby and easily switch between them. To install RVM use the following command:</span></span></p>
+
+
+
+
+<p align="justify"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><b>     \curl -sSL https://get.rvm.io/ | bash</b></span></span></p>
+
+
+
+
+<p align="justify"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;">Alternatively, you can install RVM with a stable version of Ruby with the command:</span></span></p>
+
+
+
+
+<p align="justify"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><b>     \curl -sSL https://get.rvm.io/ | bash -s stable &#8211;ruby</b></span></span></p>
+
+
+
+
+<p align="justify"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;">The Ruby version installed along with the RVM in the above command can be identified through:</span></span></p>
+
+
+
+
+<p align="justify"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><b>      ruby -v</b></span></span></p>
+
+
+
+
+<p align="justify"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;">Once you&#8217;ve decided on the Ruby version you wish to install, you can issue the command:</span></span></p>
+
+
+
+
+<p align="justify"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><b>     rvm install ruby_version</b></span></span></p>
+
+
+
+
+<p align="justify"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;">Multiple Ruby versions installed on the RVM can be listed with:</span></span></p>
+
+
+
+
+<p align="justify"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><b>     rvm list</b></span></span></p>
+
+
+
+
+<p align="justify"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;">You can switch between Ruby versions using:</span></span></p>
+
+
+
+
+<p align="justify"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><b>     rvm use ruby_version</b></span></span></p>
+
+
+
+
+<p align="justify"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;">You will now have to install </span></span><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;">a recent version of Bundler, a package library, specifically, a RubyGe</span></span><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;">m. Use the following command for the same:</span></span></p>
+
+
+
+
+<p align="justify"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><b>     gem install bundler</b></span></span></p>
+
+
+
+
+<p align="justify"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;">Step 3 — Install Apache</span></span></p>
+
+
+
+
+<p align="justify"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><i>Apache is the most popular web server available. The Apache HTTP server is a program that runs in the background under an appropriate operating system, which supports multi-tasking, and provides services to other applications that connect to it, such as client web browsers.</i></span></span></p>
+
+
+
+
+<p align="justify"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;">To install Apache, key in this command:</span></span></p>
+
+
+
+
+<p align="justify"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><b>     sudo apt-get install apache2</b></span></span></p>
+
+
+
+
+<p align="justify"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;">Step 5 — Install Phusion Passenger</span></span></p>
+
+
+
+
+<p align="justify"><span style="color: #252525;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><i><b>Phusion Passenger </b></i></span></span></span><span style="color: #000000;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><i>is a </i></span></span></span><span style="color: #000000;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><i>free </i></span></span></span><span style="color: #000000;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><i>web and application server with support for </i></span></span></span><span style="color: #000000;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><i>Ruby</i></span></span></span><span style="color: #000000;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><i>, </i></span></span></span><span style="color: #000000;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><i>Python </i></span></span></span><span style="color: #000000;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><i>and </i></span></span></span><span style="color: #000000;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><i>Node.js</i></span></span></span><span style="color: #000000;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><i>. It is designed to integrate into the </i></span></span></span><span style="color: #000000;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><i>Apache HTTP Server </i></span></span></span><span style="color: #000000;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><i>or the </i></span></span></span><span style="color: #000000;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><i>nginx </i></span></span></span><span style="color: #000000;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><i>web server, but also has a mode for running standalone without an external web server. Phusion Passenger supports </i></span></span></span><span style="color: #000000;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><i>Unix-like </i></span></span></span><span style="color: #000000;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><i>operating systems, and is available as a </i></span></span></span><span style="color: #000000;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><i>gem package</i></span></span></span><span style="color: #000000;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><i>, as a tarball, or as native Linux packages. Passenger allows Apache (and also Nginx!) to serve Ruby apps, almost magically. Passenger&#8217;s goal is to make everything Just Work with as </i></span></span></span><span style="color: #222222;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><i>little hassle as possible.</i></span></span></span></p>
+
+
+
+
+<p align="justify"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;">The preferred method to install Passenger via Ruby Gems is:</span></span></p>
+
+
+
+
+<p align="justify"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><b>     sudo gem install passenger</b></span></span></p>
+
+
+
+
+<p align="justify"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><b>     sudo passenger-install-apache2-module</b></span></span></p>
+
+
+
+
+<p align="justify"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;">Once the Passenger has been installed, you need to Restart Apache using the command:</span></span></p>
+
+
+
+
+<p align="justify"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><b>     sudo service apache2 restart</b></span></span></p>
+
+
+
+
+<p align="justify"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;">Step 6 — Deploy your Rails Application</span></span></p>
+
+
+
+
+<p align="justify"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;">Now you can deploy your own Rails application if you have one ready. The steps for this are:</span></span></p>
+
+
+
+
+<p align="justify"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><span style="color: #000000;">Move to your user home directory </span><span style="color: #000000;">with the command</span><span style="color: #000000;">:</span></span></span></p>
+
+
+
+
+<p align="justify"><b><span style="color: #000000;">     cd~</span></b></p>
+
+
+
+
+<p align="justify"><span style="font-family: 'Liberation Serif', serif;">You now ready to install the Rails gem. You command for this would be</span><span style="font-family: 'Liberation Serif', serif;">:</span><strong><span style="color: #333333;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><code class="western">   </code></span></span></span></strong></p>
+
+
+
+
+<p align="justify"><code class="western"><span style="color: #333333;"><span style="font-family: FreeSerif, serif;"><span style="font-size: large;"><b>    </b></span></span></span></code><code class="western"><span style="color: #333333;"><span style="font-family: FreeSerif, serif;"><span style="font-size: medium;"><b>sudo gem install rails</b></span></span></span></code></p>
+
+
+<span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;">&#8211; OR &#8211;</span></span>
+<span style="color: #000000;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;">If you want to create a new rails app, the steps are as follows. We will use the name &#8216;demoapp&#8217; in our example.</span></span></span>
+<span style="color: #333333;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><b><code class="western">   </code></b></span></span></span><code class="western"><span style="color: #333333;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: large;"><b>rails new demoapp</b></span></span></span></code>
+<span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><span style="color: #000000;">The command to e</span><span style="color: #000000;">nter the directory </span><span style="color: #000000;">is</span><span style="color: #000000;">:\</span></span></span>
+<span style="color: #333333;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><b><code class="western">   </code></b></span></span></span><code class="western"><span style="color: #333333;"><span style="font-family: FreeSerif, serif;"><span style="font-size: medium;"><b>cd demoapp</b></span></span></span></code>
+<span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;">You can now install the Bundler using the command:</span></span>
+<span style="color: #333333;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><b><code class="western">   </code></b></span></span></span><code class="western"><span style="color: #333333;"><span style="font-family: FreeSerif, serif;"><span style="font-size: medium;"><b>bundle install</b></span></span></span></code>
+<span style="color: #000000;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;">We shall now create a virtual host file for our project. We will name the file as &#8216;demo.conf&#8217;. This can be done by copying the default Apache virtual host:</span></span></span>
+<span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><b>     sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/demo.conf</b></span></span>
+<span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;">Now open the config file with the command:</span></span>
+<span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><b>     sudo nano /etc/apache2/sites-available/demo.conf</b></span></span>
+<span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;">Insert the following text into the file to set the connections:</span></span>
+<span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><b>     &lt;VirtualHost *:80&gt;</b></span></span>
+<span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><b>           ServerAlias www.domain.com</b></span></span>
+<span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><b>           ServerAlias domain.com</b></span></span>
+<span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><b>           ServerAdmin webmaster@localhost</b></span></span>
+<span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><b>           DocumentRoot /path/to/raills/app/public</b></span></span>
+<span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><b>           RailsEnv production</b></span></span>
+<span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><b>           ErrorLog ${APACHE_LOG_DIR}/error.log</b></span></span>
+<span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><b>           CustomLog ${APACHE_LOG_DIR}/access.log combined</b></span></span>
+<span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><b>           &lt;Directory &#8220;/path/to/raills/app/public&#8221;&gt;</b></span></span>
+<span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><b>                Options FollowSymLinks</b></span></span>
+<span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><b>                Order allow,deny</b></span></span>
+<span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><b>                allow from all</b></span></span>
+<span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><b>          &lt;/Directory&gt;</b></span></span>
+<span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><b>     &lt;/VirtualHost&gt;</b></span></span>
+<span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><i>Basically, this file enables listening to our domain name on port 80, sets an alias for the www subdomain, sets the mail address of our server administrator, sets the root directory for the public directory of our new project, and allows access to our site. </i></span></span>
+<span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><i>To test our setup, we must connect to the Rails Welcome aboard page. However, this works only if the application is started in the development environment. Passenger starts the application in the production environment by default, so we need to change this with the RailsEnv option. If your app is ready for production you&#8217;ll want to leave this setting as it is.</i></span></span>
+<span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><i>If you don&#8217;t want to assign your domain to this app, you can skip the ServerName and ServerAlias lines in the above script, or use your IP address there.</i></span></span>
+
+
+<h4 class="western" align="justify"><span style="color: #000000;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><i><b>Access control</b></i></span></span></span></h4>
+
+
+<span style="color: #000000;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><i> In </i></span></span></span><span style="color: #000000;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><i>apache</i></span></span></span><span style="color: #000000;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><i>2.2, access control based on client hostname, IP address, and other characteristics of client requests was done using the directives </i></span></span></span><code class="western"><a href="http://httpd.apache.org/docs/2.4/mod/mod_access_compat.html#order"><span style="color: #000000;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><i>Order</i></span></span></span></a></code><span style="color: #000000;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><i>, </i></span></span></span><code class="western"><a href="http://httpd.apache.org/docs/2.4/mod/mod_access_compat.html#allow"><span style="color: #000000;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><i>Allow</i></span></span></span></a></code><span style="color: #000000;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><i>, </i></span></span></span><code class="western"><a href="http://httpd.apache.org/docs/2.4/mod/mod_access_compat.html#deny"><span style="color: #000000;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><i>Deny</i></span></span></span></a></code><span style="color: #000000;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><i>, and</i></span></span></span><code class="western"><a href="http://httpd.apache.org/docs/2.4/mod/mod_access_compat.html#satisfy"><span style="color: #000000;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><i>Satisfy</i></span></span></span></a></code><span style="color: #000000;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><i>.</i></span></span></span><span style="color: #222222;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><i>In </i></span></span></span><span style="color: #222222;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><i>apache</i></span></span></span><span style="color: #222222;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><i>2.4, such access control is done in the same way as other authorization checks, using the new module mod_authz_host.</i></span></span></span>
+
+
+<h5 class="western" align="justify"><span style="color: #000000;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><i><b>apache</b><b>2.2 configuration:</b><b> </b><b> </b><b>apache</b><b>2.4 configuration:</b></i></span></span></span></h5>
+
+
+
+
+<h5 class="western" align="justify"><span style="color: #000000;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><i><b>     Order</b> deny,allow <b>Require</b> all denied</i></span></span></span></h5>
+
+
+
+
+<h5 class="western" align="justify"><span style="color: #000000;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><i><b>     Deny</b> from all</i></span></span></span></h5>
+
+
+
+
+<p align="justify"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;">Now save the file with the keyboard shortcut CTRL+X</span></span></p>
+
+
+
+
+<p align="justify"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;">You are now ready to enable you new site and restart Apache. The commands are:</span></span></p>
+
+
+
+
+<p align="justify"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><b>     sudo a2ensite demo</b></span></span></p>
+
+
+
+
+<p align="justify"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><b>     sudo service apache2 restart</b></span></span></p>
+
+
+
+
+<p align="justify"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;">Your app&#8217;s website should be accessible now. Navigate to your Droplet&#8217;s domain or IP address:</span></span></p>
+
+
+
+
+<p align="justify"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;">     <strong>http://www.domain.com/ or IP address</strong></span></span></p>
+
+
+
+
+<h4 class="western" align="justify"></h4>
+
+]]&gt;		</p>
+]]></content:encoded>
+							<wfw:commentRss>/how-to-deploy-a-rails-app-with-passenger-and-apache-in-ubuntu-14-04/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+							</item>
+	</channel>
+</rss>

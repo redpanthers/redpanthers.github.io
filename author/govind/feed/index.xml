@@ -1,4 +1,4 @@
- <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
 	xmlns:content="http://purl.org/rss/1.0/modules/content/"
 	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -8,10 +8,10 @@
 	>
 
 <channel>
-	<title>govind &#8211; Red Panthers</title>
+	<title>govind &#8211; beta.redpanthers.co</title>
 	<atom:link href="/author/govind/feed/" rel="self" type="application/rss+xml" />
 	<link>/</link>
-	<description>Experts in Ruby on Rails Development</description>
+	<description>Red Panthers - Experts in Ruby on Rails, System Design and Vue.js</description>
 	<lastBuildDate>Wed, 18 Jan 2017 13:11:11 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
@@ -19,14 +19,6 @@
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
 	<generator>https://wordpress.org/?v=5.2.7</generator>
-
-<image>
-	<url>/wp-content/uploads/2017/12/rp-logo.png</url>
-	<title>govind &#8211; Red Panthers</title>
-	<link>/</link>
-	<width>32</width>
-	<height>32</height>
-</image> 
 	<item>
 		<title>Chartkick: data visualization made easy with Ruby</title>
 		<link>/chartkick-data-visualization-easy-ruby/</link>
@@ -40,45 +32,105 @@
 		<category><![CDATA[graphs]]></category>
 		<category><![CDATA[ruby on rails]]></category>
 
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=975</guid>
-				<description><![CDATA[<p>Recently, I&#8217;ve been using Highcharts, Google charts and Chart Js for visualizing dynamic data in my projects. But it was difficult to integrate it with the rails application. However, for every problem in Ruby, there is a gem out there to save your day and Chartkick, a Ruby gem exclusively available for data visualization is&#8230;</p>
-<p>The post <a rel="nofollow" href="/chartkick-data-visualization-easy-ruby/">Chartkick: data visualization made easy with Ruby</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
-]]></description>
-								<content:encoded><![CDATA[<p>Recently, I&#8217;ve been using Highcharts, Google charts and Chart Js for visualizing dynamic data in my projects. But it was difficult to integrate it with the rails application. However, for every problem in Ruby, there is a gem out there to save your day and Chartkick, a Ruby gem exclusively available for data visualization is truly a savior. Chartkick can work with Highcharts, Chart.js and Google charts to create dynamic and interactive charts that draw data from the Rails application. And the best part, you just need to write one single line of Ruby code. Isn&#8217;t that amazing and powerful!</p>
-<p>Let&#8217;s begin with Installation</p>
-<p>For installation, all you have to do is adding this line to your application&#8217;s Gemfile:</p><pre class="crayon-plain-tag">gem &quot;chartkick&quot;</pre><p>Then you have to choose your charting library.<br />
-In case, if more than one charting library is loaded, choose between them with the following code:</p><pre class="crayon-plain-tag">&lt;%= line_chart data, adapter: "google" %&gt; &lt;!-- or highcharts --&gt;</pre><p>P.S:- highcharts is the default adapter is nothing else is defined.</p>
-<p>Using Chartkick</p>
-<p>Once it&#8217;s installed, you can start playing around with chartkick. For example:</p><pre class="crayon-plain-tag">&lt;%= line_chart User.group_by_day(:created_at).count %&gt;</pre><p></p>
+		<guid isPermaLink="false">https://redpanthers.co/?p=975</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[Recently, I've been using Highcharts, Google charts and Chart Js for visualizing dynamic data in my projects. But it was difficult to integrate it with the rails application. However, for every problem in Ruby, there is a gem out there to save your day and Chartkick, a Ruby gem exclusively available for data visualization is truly a savior. Chartkick can work with Highcharts, Chart.js and Google charts to create dynamic and interactive charts that draw data from the Rails application. And the best part, you just need to write one single line of Ruby code. Isn't that amazing and powerful!
+Let's begin with Installation
+For installation, all you have to do is adding this line to your application's Gemfile:
+
+
+<pre class="">gem &#8220;chartkick&#8221;</pre>
+
+
+Then you have to choose your charting library.
+In case, if more than one charting library is loaded, choose between them with the following code:
+
+
+<pre class="lang:xhtml decode:true">&lt;%= line_chart data, adapter: "google" %&gt; &lt;!-- or highcharts --&gt;</pre>
+
+
+P.S:- highcharts is the default adapter is nothing else is defined.
+Using Chartkick
+Once it&#8217;s installed, you can start playing around with chartkick. For example:
+
+
+<pre class="lang:xhtml decode:true">&lt;%= line_chart User.group_by_day(:created_at).count %&gt;
+</pre>
+
+
+
+
 <p class="">In the above example, I have just shown you how we can make a line chart.Similarly, you can create Pie chart, Column chart, Bar chart, Area chart, Scatter chart, Geo charts, Timeline(Google Charts)etc. All you need is that one line of Ruby code. Cool, isn&#8217;t it!!</p>
-<p>Chartkick gives you a variety of options to make your charts interesting. You can also set a Global option for each chart by using initializers and even customize the HTML. Data can be passed as a Hash or as an Array. You can find more details about using Chartkick options, sending data in <a href="http://chartkick.com/">Chartkick documentation</a>.</p>
-<p>Now, let&#8217;s have some real fun by using Chartkick to create some interactive <strong>Graphs, </strong>using<strong> Dynamic data</strong>.</p>
-<p>To create a graph which drives data from the ajax request, you just need to define a method in the controller and pass the JSON data. For example</p>
-<p><em>app/controllers/views_controller.rb:</em></p><pre class="crayon-plain-tag">class ViewsController &lt; ApplicationController
+
+
+Chartkick gives you a variety of options to make your charts interesting. You can also set a Global option for each chart by using initializers and even customize the HTML. Data can be passed as a Hash or as an Array. You can find more details about using Chartkick options, sending data in <a href="http://chartkick.com/">Chartkick documentation</a>.
+Now, let&#8217;s have some real fun by using Chartkick to create some interactive <strong>Graphs, </strong>using<strong> Dynamic data</strong>.
+To create a graph which drives data from the ajax request, you just need to define a method in the controller and pass the JSON data. For example
+<em>app/controllers/views_controller.rb:</em>
+
+
+<pre class="lang:ruby decode:true">class ViewsController &lt; ApplicationController
   def show
     @view = View.all
   end
-
   def views_by_day
     render json: View.group_by_day(:viewed_at, format: "%B %d, %Y").count
   end
-end</pre><p>Next, add in the code listed below to your views/show view.<br />
-<em>app/views/views/show.html.erb:</em></p><pre class="crayon-plain-tag">&lt;div class="container"&gt;
+end</pre>
+
+
+Next, add in the code listed below to your views/show view.
+<em>app/views/views/show.html.erb:</em>
+
+
+<pre class="lang:xhtml decode:true">&lt;div class="container"&gt;
   &lt;h3&gt;Views By Day&lt;/h3&gt;
   &lt;%= line_chart views_by_day_view_path %&gt;
-&lt;/div&gt;</pre><p>We can also create graphs with Multiple Series with the below codes</p><pre class="crayon-plain-tag">&lt;%= line_chart @.map { |view|
+&lt;/div&gt;</pre>
+
+
+We can also create graphs with Multiple Series with the below codes
+
+
+<pre class="lang:xhtml decode:true">&lt;%= line_chart @.map { |view|
  {name: view.name, data: view.feats.group_by_week(:created_at).count}
-} %&gt;</pre><p>or</p><pre class="crayon-plain-tag">&lt;%= line_chart Feat.view(:view_id).group_by_week(:created_at).count %&gt;</pre><p>Voila! there you have it how you want.</p>
-<p>Here is an example charts I got for you<br />
-<a href="http://blog.redpanthers.co/wp-content/uploads/2017/01/Chartkick.js.png"><img class="alignleft wp-image-1498 size-full" src="http://blog.redpanthers.co/wp-content/uploads/2017/01/Chartkick.js.png" alt="Chartkick" width="541" height="746" /></a></p>
-<p>So, next time if you want to create charts and graphs easily in your web application, don&#8217;t forget to use <strong>Chartkick </strong>and let me know in the comment section if you know any such tool that made your coding a bliss!</p>
-<p>Happy Coding!</p>
+} %&gt;</pre>
+
+
+or
+
+
+<pre class="lang:xhtml decode:true">&lt;%= line_chart Feat.view(:view_id).group_by_week(:created_at).count %&gt;
+</pre>
+
+
+Voila! there you have it how you want.
+Here is an example charts I got for you
+<a href="https://redpanthers.co/wp-content/uploads/2017/01/Chartkick.js.png"><img class="alignleft wp-image-1498 size-full" src="https://redpanthers.co/wp-content/uploads/2017/01/Chartkick.js.png" alt="Chartkick" width="541" height="746" /></a>
+So, next time if you want to create charts and graphs easily in your web application, don&#8217;t forget to use <strong>Chartkick </strong>and let me know in the comment section if you know any such tool that made your coding a bliss!
+Happy Coding!
+
+
 <h2>References</h2>
+
+
+
+
 <ul>
+ 	
+
 <li><a href="http://chartkick.com/">http://chartkick.com/</a></li>
+
+
+ 	
+
 <li><a href="https://ankane.github.io/chartkick.js/examples/">https://ankane.github.io/chartkick.js/examples/</a></li>
+
+
 </ul>
-<p>The post <a rel="nofollow" href="/chartkick-data-visualization-easy-ruby/">Chartkick: data visualization made easy with Ruby</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+
+]]&gt;		</p>
 ]]></content:encoded>
 							<wfw:commentRss>/chartkick-data-visualization-easy-ruby/feed/</wfw:commentRss>
 		<slash:comments>3</slash:comments>

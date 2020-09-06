@@ -1,0 +1,728 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Javascript &#8211; beta.redpanthers.co</title>
+	<atom:link href="/tag/javascript/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description>Red Panthers - Experts in Ruby on Rails, System Design and Vue.js</description>
+	<lastBuildDate>Tue, 22 Aug 2017 07:28:43 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.7</generator>
+	<item>
+		<title>Make unit tests great again &#8211; Integrate Jasmine into Rails</title>
+		<link>/write-beautiful-jasmine-tests-rails/</link>
+				<pubDate>Tue, 22 Aug 2017 07:28:43 +0000</pubDate>
+		<dc:creator><![CDATA[alan]]></dc:creator>
+				<category><![CDATA[Jasmine]]></category>
+		<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[Rails]]></category>
+		<category><![CDATA[Rails 5]]></category>
+		<category><![CDATA[Ruby]]></category>
+		<category><![CDATA[Ruby 2.4]]></category>
+		<category><![CDATA[better tests]]></category>
+		<category><![CDATA[jasmine]]></category>
+		<category><![CDATA[karma]]></category>
+		<category><![CDATA[rails]]></category>
+		<category><![CDATA[test]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=3149</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[Jasmine is a framework to write tests for the Javascript code in the Behaviour Driven Development (BDD) style. In this article, you will learn how to integrate Jasmine into your existing rails application and how to write clean and beautiful unit tests. Let us make tests great again!
+&nbsp;
+
+
+<h2>Install Jasmine</h2>
+
+
+To make Jasmine available to your Rails app, you just have to place the jasmine-gem (<a href="https://github.com/jasmine/jasmine-gem">link</a>) in your Gemfile. That will do the magic. Just make sure you have it under Development and Test group in the Gemfile as follows:
+
+
+<pre class="theme:orange-code lang:ruby decode:true">group :development, :test do
+  gem "jasmine"
+end</pre>
+
+
+Then run this to install the gem:
+
+
+<pre class="theme:orange-code lang:default decode:true">bundle install</pre>
+
+
+After all the gems are installed, run this code to generate necessary files for Jasmine to run:
+
+
+<pre class="theme:orange-code lang:sh decode:true">rails generate jasmine:install</pre>
+
+
+This will create the jasmine helper file and the yml file where you configure how it should run the tests.
+
+
+<h2>Run tests</h2>
+
+
+You can use Jasmine right after it&#8217;s installed. It can be run in several ways, the most important ones being,
+
+
+<ol>
+ 	
+
+<li>In your browser</li>
+
+
+ 	
+
+<li>Continuous Integration Mode (CI)</li>
+
+
+</ol>
+
+
+The CI mode is usually used when you have to integrate it into your build system.
+
+
+<h2>Browser Mode</h2>
+
+
+You have to start the Jasmine server to run it in a browser. This server runs all the tests and serves the results to a webpage. Run this to start the Jasmine Server:
+
+
+<pre class="theme:orange-code lang:default decode:true">rake jasmine</pre>
+
+
+With the default settings, you can view the output in:
+
+
+<pre class="theme:orange-code lang:default decode:true">http://localhost:8888/</pre>
+
+
+But this page would be pretty empty since you don&#8217;t have any tests written for your Javascript code. There is a method provided to generate sample tests. Try running this:
+
+
+<pre class="theme:orange-code lang:default decode:true">rails generate jasmine:examples</pre>
+
+
+Now refresh the webpage and you can see something similar to this:
+<a href="https://blog.redpanthers.co/wp-content/uploads/2017/08/Screen-Shot-2017-08-21-at-3.47.22-PM.png"><img class="aligncenter wp-image-3152" src="https://blog.redpanthers.co/wp-content/uploads/2017/08/Screen-Shot-2017-08-21-at-3.47.22-PM-300x91.png" alt="Jasmine test page" width="768" height="233" /></a>
+
+
+<h3>Configurable Settings</h3>
+
+
+Clicking on the options button in the top right corner will display a list of options that change how Jasmine runs the tests. Let&#8217;s get into each one of them:
+
+
+<h4>Raise Exceptions</h4>
+
+
+This option disables the error catching mechanism of Jasmine in the JavaScript source code and in the test file. The default setting is to wrap all the errors in a catch block.
+
+
+<h4>Stop Spec on Expectation Failure</h4>
+
+
+With this option turned on, Jasmine will stop the test at the first occurrence of an error. The default setting is to run the full test suit and then display all the tests which fail.
+
+
+<h4>Run Tests in Random Order</h4>
+
+
+This option enables the test to be run in a random sequence every time the test runs. The benefit of enabling this option is to reveal dependencies between tests, therefore, you can reduce test dependencies and each test will have good isolation.
+
+
+<h2>Continous Integration Mode</h2>
+
+
+A headless browser is used to integrate Jasmine into your continuous integration workflow. To make our lives easier, this gem that we are using supports integration with a headless browser out of the box. The default headless browser is <a href="http://phantomjs.org/">Phantom JS</a>. So it will download automatically if not installed when you try to run in CI mode. Run this code to run in CI mode:
+
+
+<pre class="theme:orange-code lang:default decode:true ">rake jasmine:ci</pre>
+
+
+By default, Jasmine will attempt to find a random open port. To set a default port manually, just add this to the <strong>jasmine_helper.rb</strong>
+
+
+<pre class="theme:orange-code lang:default decode:true ">Jasmine.configure do |config|
+   config.ci_port = 1234
+end</pre>
+
+
+
+
+<h2>Configuration</h2>
+
+
+The two files which you should be looking into, if you need to alter the behavior of tests are:
+
+
+<ul>
+ 	
+
+<li>jasmine.yml</li>
+
+
+ 	
+
+<li>jasmine_helper.rb</li>
+
+
+</ul>
+
+
+Jasmine reads the jasmine.yml first and then overrides it with the settings mentioned in jasmine_helper.rb
+
+
+<h4>Sample configuration:</h4>
+
+
+
+
+<pre class="theme:orange-code lang:default decode:true "># spec/javascripts/support/jasmine.yml
+random: true
+show_console_log: false
+stop_spec_on_expectation_failure: true</pre>
+
+
+
+
+<pre class="theme:orange-code lang:default decode:true "># spec/javascripts/support/jasmine_helper.rb
+Jasmine.configure do |config|
+  config.random = false
+  config.show_console_log = false
+  config.stop_spec_on_expectation_failure: false
+  config.show_full_stack_trace = false
+  config.prevent_phantom_js_auto_install = false
+end</pre>
+
+
+
+
+<h2>Testing</h2>
+
+
+Writing tests for Javascript in a Rails app should be fairly straightforward as it uses same standards as Jasmine in general. But there are things that need to be considered specific to a Jasmine installation in Rails.
+
+
+<h3>Testing JavaScript</h3>
+
+
+Test files for JavaScript in a rails application reside in the <strong>spec/javascripts</strong> folder. For each javascript file, you need to put the test file in the same path as the file. For example, if you have the following javascript file in your app:
+<strong>app/assets/javascripts/jasmine_examples/Calculator.js</strong>
+You place the spec file in the following path:
+<strong>spec/javascripts/jasmine_examples/CalculatorSpec.js</strong>
+Jasmine will include the test on the next test run. There is no configuration to have your test run.
+
+
+<h2>Plugins worth considering</h2>
+
+
+
+
+<ul>
+ 	
+
+<li><strong>Jasmine-Jquery</strong> &#8211; this plugin provides a lot of jquery related matchers. Download it <a href="https://github.com/velesin/jasmine-jquery/releases">here</a></li>
+
+
+ 	
+
+<li><strong>Jasmine-Matchers</strong> &#8211; a tool to provide additional matchers. Download it <a href="https://github.com/JamieMason/Jasmine-Matchers/releases">here</a></li>
+
+
+ 	
+
+<li><strong>Jasmine-Fixture &#8211; </strong>a plugin that provides DOM creation using CSS selectors, therefore you can interact with the DOM much easier. Download it <a href="https://github.com/searls/jasmine-fixture/releases">here</a></li>
+
+
+</ul>
+
+
+
+
+<h1>Write Beautiful Unit tests</h1>
+
+
+95% of the developers I know write unit tests in order to prevent defects from being deployed to production. But the essential ingredients to a great unit test is unknown to most of them. There have been countless times that I&#8217;ve seen a test fails, only to investigate and discover that I have no idea what feature the developer was trying to test, let alone how it went wrong or why it matters.
+
+
+<h2>Importance of Test Discipline</h2>
+
+
+Your tests are the best set of weapons to defend your code from bugs. They are more important that linting and static analysis. A few reasons why tests are your secret weapon:
+
+
+<ul>
+ 	
+
+<li>Writing tests first gives you a clearer perspective on the ideal API design.</li>
+
+
+ 	
+
+<li>Does the developer understand the problem enough to articulate in code all critical component requirements?</li>
+
+
+ 	
+
+<li>Manual QA is error-prone. In my experience, it’s impossible for a developer to remember all features that need testing after making a change to refactor, add new features, or remove features.</li>
+
+
+ 	
+
+<li>Continous Integration prevents failed builds from getting deployed to production.</li>
+
+
+</ul>
+
+
+
+
+<h2>Bug Report vs plain Unit Test</h2>
+
+
+The test fail report comes to save your life when a test fails. So you better make it loud and clear. I came up with a list of must-have info in your bug report.
+
+
+<ul>
+ 	
+
+<li>What are you trying to test?</li>
+
+
+ 	
+
+<li>What should it do?</li>
+
+
+ 	
+
+<li>What is the real-time output (actual behavior)?</li>
+
+
+ 	
+
+<li>What is the expected output (expected behavior)?</li>
+
+
+</ul>
+
+
+Here is a sample test with all of these info:
+
+
+<pre class="theme:orange-code lang:default decode:true">describe("CalculatorAddMethod", function() {
+  var calculator = new Calculator();
+  it("should return number", function() {
+    const actual = typeof Calculator.add(5,10);
+    const expected = 'number'
+    expect(actual).toEqual(expected);
+  });
+});
+</pre>
+
+
+This test suit answers all the questions above. Let&#8217;s go through each one of them.
+
+
+<ul>
+ 	
+
+<li>What are you trying to test?
+
+
+<ul>
+ 	
+
+<li>-&gt; Go for the test description. It is testing for the return type of the add method of Calculator().</li>
+
+
+</ul>
+
+
+</li>
+
+
+ 	
+
+<li>What should it do?
+
+
+<ul>
+ 	
+
+<li>-&gt; Again, look at the test description. It clearly says that it is testing for the return type of add method.</li>
+
+
+</ul>
+
+
+</li>
+
+
+ 	
+
+<li>What is the actual output?
+
+
+<ul>
+ 	
+
+<li>-&gt; There is a dedicated variable which holds the actual result and how you got the actual result. TWO FOR ONE!</li>
+
+
+</ul>
+
+
+</li>
+
+
+ 	
+
+<li>What is the expected output?
+
+
+<ul>
+ 	
+
+<li>-&gt; Again, there is a dedicated variable which holds the actual result. Straight as a ruler!</li>
+
+
+</ul>
+
+
+</li>
+
+
+</ul>
+
+
+
+
+<h2>Make your tests even better</h2>
+
+
+This is from my experiences and the knowledge I gained from good articles. This worked for me in the long run even if I find it a little difficult to implement when I started. <strong>Write every single test using toEqual()</strong>. Don&#8217;t worry about the quality impact on your test suit. It will get better with exercise.
+
+
+<h2>Easter Egg</h2>
+
+
+This method I suggested would answer one more question, which is by far the most important question I guess. <strong>How can you reproduce the test?</strong> The <strong>const actual </strong>holds the answer to this question. Please go take a look at the variable in my sample test suit above and get delighted.
+
+
+<h1>Conclusion</h1>
+
+
+Integrating Jasmine into your Rails app is done by the <strong>jasmine-gem. </strong>This gem gives you the ability to run tests in a browser or as Continous Integration mode. The usage of right plugins will improve your productivity and helps you write tests faster and better.
+Next time you write a test, remember to see if your test answers the following questions:
+
+
+<ul>
+ 	
+
+<li>What are you trying to test?</li>
+
+
+ 	
+
+<li>What should it do?</li>
+
+
+ 	
+
+<li>What is the real-time output (actual behavior)?</li>
+
+
+ 	
+
+<li>What is the expected output (expected behavior)?</li>
+
+
+ 	
+
+<li>How can be the test reproduced?</li>
+
+
+</ul>
+
+]]&gt;		</p>
+]]></content:encoded>
+										</item>
+		<item>
+		<title>Skip unnecessary files while running Rails Generate</title>
+		<link>/customize-rails-auto-generation/</link>
+				<pubDate>Wed, 27 Jul 2016 04:27:04 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Rails]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[coffee]]></category>
+		<category><![CDATA[customize]]></category>
+		<category><![CDATA[generators]]></category>
+		<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[rails]]></category>
+		<category><![CDATA[ruby on rails]]></category>
+		<category><![CDATA[speed up development]]></category>
+		<category><![CDATA[Tip]]></category>
+		<category><![CDATA[tips]]></category>
+		<category><![CDATA[training]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=354</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[Rails Generate is one of the features provided by Rails that would speed up the application development. However, we won't be needing all the files generated by rails when running the generate command.
+For example:
+<code>rails generate controller Home Index new create</code>,  would create the following set of files:
+<a href="https://redpanthers.co/wp-content/uploads/2016/07/before_altering_the_generator.png"><img class="alignnone size-full wp-image-356" src="https://redpanthers.co/wp-content/uploads/2016/07/before_altering_the_generator.png" alt="before_altering_the_generator" width="488" height="312" /></a>
+As one knows from experience, the helper; javascript and stylesheet files are not always used. In fact, most of the time, we would have a single stye.scss, and main.coffee that would take care of 95% of the total behaviour of our application. So, if we do not delete those files after generation, we would just end up with a lot of files in our system which would have no code throughout the life cycle of the program.
+Fortunately, rails gives us the ability to customize its own generators so that we can disable these files from being generated. Once we place the below code in the <code> application.rb</code>, it will stop the generation of these extra files.
+
+
+<pre class="toolbar:2 show-plain:3 lang:ruby decode:true ">config.generators do |g|
+  g.helper false
+  g.stylesheets false
+  g.javascripts false
+  g.view_specs false
+end</pre>
+
+
+Now, when you run <code>rails generate controller Home Index new create</code>, you will get less files.
+<a href="https://redpanthers.co/wp-content/uploads/2016/07/after_altering_generators.png"><img class="alignnone size-full wp-image-355" src="https://redpanthers.co/wp-content/uploads/2016/07/after_altering_generators.png" alt="after_altering_generators" width="482" height="219" /></a>]]&gt;		</p>
+]]></content:encoded>
+										</item>
+		<item>
+		<title>Flux example Application with React JS</title>
+		<link>/react-with-flux/</link>
+				<comments>/react-with-flux/#comments</comments>
+				<pubDate>Mon, 29 Feb 2016 00:07:05 +0000</pubDate>
+		<dc:creator><![CDATA[sibin]]></dc:creator>
+				<category><![CDATA[Beginners]]></category>
+		<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[Flux]]></category>
+		<category><![CDATA[React JS]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=297</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[Flux is an application architecture used to build scalable and powerful JavaScript web application with React JS. React JS is a popular view library and we have already covered React JS. Flux is not a framework like Angular JS, Backbone etc., there are a lot of differences between these frameworks with Flux. Flux only supports unidirectional data flow, where Angular and Backbone supports bi-directional data flow. Unidirectional data flow prevents unexpected data flows, so it is more predictable.
+
+
+<h2>
+Flux has three main parts.</h2>
+
+
+
+
+<ol>
+	
+
+<li>Action</li>
+
+
+	
+
+<li>Dispatcher</li>
+
+
+	
+
+<li>Store</li>
+
+
+</ol>
+
+
+As their name indicates, <strong>Action</strong> is the result of some events, like JavaScript events, or callbacks for Ajax calls. <strong>Dispatcher</strong>, is a connector or link between Action and Store. The dispatcher is a central hub, from where everything passes through and we only need one dispatcher per application. Dispatcher handles all Actions and Stores.
+<strong>Store</strong> is very important in Flux architecture, we can write our business logics or Ajax calls to fetch data’s. I usually use it to store to get some initial data’s or to send or receive data via Ajax calls. The store uses event emitter similar to nodejs&#8217;s event emitter. We can define events in Store, and these events are connected to Store, whenever a change occurs in store, all components which listenes to this store will get an invoke and we can perform our logics.
+My example application will give you more idea, you can clone it from my GitHub account. In this application I have an input box where you can enter the number and a button to &#8216;Add Cart&#8217;, we can start from this button, this button has an on Click event, I have attached a Flux action on it, whenever a change occurs it passes input box data to an action.
+
+
+<h4>Component</h4>
+
+
+
+
+<pre class="lang:default decode:true " title="Components ">import React from 'react';
+import checkoutActions from "../actions/checkout-action";
+import checkoutStore from "../store/checkout-store";
+class CartElements extends React.Component{
+  constructor(){
+    super()
+    this.state = {
+      currentCart : checkoutStore.getCart()
+    }
+  }
+  componentDidMount(){
+    checkoutStore.addListener(this.updateCartNumber)
+  };
+  updateCartNumber = () =&gt; {
+    this.setState({
+      currentCart: checkoutStore.getCart()
+    })
+  };
+  updateCart = () =&gt; {
+    checkoutActions.addCart(parseInt(this.refs.cartNumber.value))
+  };
+  gotoCheckout = () =&gt; {
+    window.location.href +="?products=[1,2,3]"
+  };
+  render(){
+    var checkoutButton = "";
+    if(this.state.currentCart &gt; 0){
+      checkoutButton = &lt;a className="button" href="/welcome/checkout?products=[1,2,3,4]"&gt;CheckOut&lt;/a&gt;;
+    }
+    return(
+      &lt;div&gt;
+        &lt;div className="input-group"&gt;
+            &lt;input type="number" ref="cartNumber"/&gt;
+        &lt;/div&gt;
+        &lt;button className="button success" onClick={this.updateCart}&gt;Add to Cart&lt;/button&gt;
+        {checkoutButton}
+      &lt;/div&gt;
+    )
+  }
+}
+export default CartElements</pre>
+
+
+
+
+<h4>Action File</h4>
+
+
+
+
+<pre class="lang:js decode:true " title="Checkout Action">import dispatcher from "../dispatcher";
+import constants from "../const/store-const";
+var checkoutActions  = {
+  addCart: function(data){
+    dispatcher.dispatch({
+      actionType: constants.ADD_CART,
+      data: data
+    })
+  }
+}
+export default checkoutActions;</pre>
+
+
+&nbsp;
+In this Action, I have an <strong>addCart  </strong>method which dispatches item quantity along with a constant called &#8216;ADD_CART&#8217; which is used to distinguish it on Store.
+Dispatcher is a simple file which uses Facebook dispatcher
+Object Assign is a NPM module where you can combine two objects and return source object, For example
+var birds = {bird:&#8221;Pigeon&#8221;}
+var animals = {animal:&#8221;Dog&#8221;}
+assign(birds, animals) =&gt;
+{bird:&#8221;Pigeon&#8221;, animal:&#8221;Dog&#8221;}
+We have a Store called checkStore, for which we have 5 methods. First 2 of them are custom methods, addCart and getCart. When we call Addcart, it increases the quantity and getCart to retrieve the latest value. Besides we have 3 required methods
+
+
+<ol>
+	
+
+<li>emitChange</li>
+
+
+	
+
+<li>addListener</li>
+
+
+	
+
+<li>removeListener</li>
+
+
+</ol>
+
+
+
+
+<pre class="lang:default decode:true " title="Store ">import dispatcher from '../dispatcher.js';
+import EventEmitter from 'events';
+import assign from 'object-assign';
+var CHANGE_EVENT = 'change';
+var EventEmitterEvent  = EventEmitter.EventEmitter
+var _number  = 0;
+var checkoutStore = assign({}, EventEmitterEvent.prototype, {
+  addCart: function(number){
+    return _number = _number + number;
+  },
+  getCart: function(){
+    return _number;
+  },
+  emitChange: function(){
+    this.emit(CHANGE_EVENT)
+  },
+  addListener: function(callback){
+    this.on(CHANGE_EVENT, callback)
+  },
+  removeListner: function(callback){
+    this.removeListner(CHANGE_EVENT, callback)
+  }
+});
+dispatcher.register((action)=&gt;{
+  switch (action.actionType){
+    case 'ADD_CART':
+      console.log("hello")
+      checkoutStore.addCart(action.data)
+      checkoutStore.emitChange()
+      break;
+  }
+})
+export default checkoutStore;</pre>
+
+
+&nbsp;
+AddListener adds EventListner. We can use this to bind events to components. RemoveListener is used to remove listeners when we unmounts some components. EmitChange is used to update or invoke store after some actions.
+The store also has a dispatcher, where we register dispatcher, and in action, we dispatch data to stores. All data which passes from action is available in action argument, the switch uses check actionType, we already pass a constant from action to distinguish various types, like CREATE, EDIT, DELETE, and here we have ADD_CART, so only particular block works. In this case, we have only one condition inside switch block and condition with ADD_CART will work. Inside this condition we call add_cart store method and pass quantity after which we can emitchange. So, this store will invoke and all components which are connected will notify.
+Now we can move to a header component. There is a component called CartIconOnTopBar, in componentDidMount.I have attached a Store listener, &#8216;checkOutStore.addListener(callback)&#8217; with a callback function, in this callback function, I again called stores getCart function to get latest items quantity.
+
+
+<pre class="lang:default decode:true " title="Component">class CartIconOnTopBar extends React.Component{
+  constructor(){
+    super()
+    this.state = {
+      cartItemCount: checkoutStore.getCart()
+    }
+  }
+  componentDidMount(){
+   checkoutStore.addListener(this.updateCart)
+  };
+  updateCart = () =&gt; {
+    this.setState({
+      cartItemCount: checkoutStore.getCart()
+    })
+  };
+  openClassModal = () =&gt; {
+  };
+  render(){
+    return(
+        &lt;li&gt;
+          &lt;a href="#" onClick={this.openCartModal} className="cart-element"&gt;
+            &lt;i className="fi-shopping-cart"&gt;&lt;/i&gt;
+            &lt;span className="cart-count"&gt; {this.state.cartItemCount} &lt;/span&gt;
+          &lt;/a&gt;
+        &lt;/li&gt;
+    )
+  }
+}</pre>
+
+
+When we click on button, it passes data to action and through dispatcher it reaches store and it invokes store and all components which connected to this store will notify and it run callback functions and then we can update our data’s.
+In this application for a demonstration you can add as many actions and store. This is only a basics of flux, there are more in <a href="https://github.com/facebook/flux" target="_blank" rel="noopener noreferrer">flux</a>, also, flux has some alternatives like <a href="https://github.com/reactjs/redux" target="_blank" rel="noopener noreferrer">redux</a>.]]&gt;		</p>
+]]></content:encoded>
+							<wfw:commentRss>/react-with-flux/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+							</item>
+	</channel>
+</rss>

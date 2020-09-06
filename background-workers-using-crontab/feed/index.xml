@@ -1,4 +1,4 @@
- <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
 	xmlns:content="http://purl.org/rss/1.0/modules/content/"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
 	xmlns:atom="http://www.w3.org/2005/Atom"
@@ -10,7 +10,7 @@
 	Comments on: Background Workers using Crontab	</title>
 	<atom:link href="/background-workers-using-crontab/feed/" rel="self" type="application/rss+xml" />
 	<link>/background-workers-using-crontab/</link>
-	<description>Experts in Ruby on Rails Development</description>
+	<description>Red Panthers - Experts in Ruby on Rails, System Design and Vue.js</description>
 	<lastBuildDate>Mon, 09 Oct 2017 06:58:00 +0000</lastBuildDate>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -20,10 +20,10 @@
 			<item>
 				<title>
 				By: Harisankar P S				</title>
-				<link>/background-workers-using-crontab/#comment-67</link>
+				<link>/background-workers-using-crontab/#comment-86</link>
 		<dc:creator><![CDATA[Harisankar P S]]></dc:creator>
 		<pubDate>Mon, 09 Oct 2017 06:58:00 +0000</pubDate>
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3910#comment-67</guid>
+		<guid isPermaLink="false">https://redpanthers.co/?p=3910#comment-86</guid>
 					<description><![CDATA[We have mentioned that. Already]]></description>
 		<content:encoded><![CDATA[<p>We have mentioned that. Already</p>
 ]]></content:encoded>
@@ -31,10 +31,10 @@
 						<item>
 				<title>
 				By: Radosław Woźniak				</title>
-				<link>/background-workers-using-crontab/#comment-66</link>
+				<link>/background-workers-using-crontab/#comment-85</link>
 		<dc:creator><![CDATA[Radosław Woźniak]]></dc:creator>
 		<pubDate>Mon, 09 Oct 2017 06:42:00 +0000</pubDate>
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3910#comment-66</guid>
+		<guid isPermaLink="false">https://redpanthers.co/?p=3910#comment-85</guid>
 					<description><![CDATA[Or you can use something designed for background jobs like sidekiq. It’s run only one extra instance of application and also provide error handling.]]></description>
 		<content:encoded><![CDATA[<p>Or you can use something designed for background jobs like sidekiq. It’s run only one extra instance of application and also provide error handling.</p>
 ]]></content:encoded>
@@ -42,10 +42,10 @@
 						<item>
 				<title>
 				By: Aboobacker M K				</title>
-				<link>/background-workers-using-crontab/#comment-65</link>
+				<link>/background-workers-using-crontab/#comment-84</link>
 		<dc:creator><![CDATA[Aboobacker M K]]></dc:creator>
 		<pubDate>Thu, 28 Sep 2017 17:52:00 +0000</pubDate>
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3910#comment-65</guid>
+		<guid isPermaLink="false">https://redpanthers.co/?p=3910#comment-84</guid>
 					<description><![CDATA[Agree, but it also depends on the resource constraints and the number of tasks to run. In most of the cases this memory consumption won&#039;t make any impact.]]></description>
 		<content:encoded><![CDATA[<p>Agree, but it also depends on the resource constraints and the number of tasks to run. In most of the cases this memory consumption won&#8217;t make any impact.</p>
 ]]></content:encoded>
@@ -53,10 +53,10 @@
 						<item>
 				<title>
 				By: Bala Paranj				</title>
-				<link>/background-workers-using-crontab/#comment-64</link>
+				<link>/background-workers-using-crontab/#comment-83</link>
 		<dc:creator><![CDATA[Bala Paranj]]></dc:creator>
 		<pubDate>Thu, 28 Sep 2017 17:41:00 +0000</pubDate>
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3910#comment-64</guid>
+		<guid isPermaLink="false">https://redpanthers.co/?p=3910#comment-83</guid>
 					<description><![CDATA[I don&#039;t think RAM is an issue these days. For just $20/month I can get a 4 GB Linode instance.]]></description>
 		<content:encoded><![CDATA[<p>I don&#8217;t think RAM is an issue these days. For just $20/month I can get a 4 GB Linode instance.</p>
 ]]></content:encoded>

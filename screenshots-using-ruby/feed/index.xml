@@ -1,4 +1,4 @@
- <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
 	xmlns:content="http://purl.org/rss/1.0/modules/content/"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
 	xmlns:atom="http://www.w3.org/2005/Atom"
@@ -10,7 +10,7 @@
 	Comments on: Taking screenshots of webpages using Ruby	</title>
 	<atom:link href="/screenshots-using-ruby/feed/" rel="self" type="application/rss+xml" />
 	<link>/screenshots-using-ruby/</link>
-	<description>Experts in Ruby on Rails Development</description>
+	<description>Red Panthers - Experts in Ruby on Rails, System Design and Vue.js</description>
 	<lastBuildDate>Mon, 23 Oct 2017 07:13:00 +0000</lastBuildDate>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -20,10 +20,10 @@
 			<item>
 				<title>
 				By: jp				</title>
-				<link>/screenshots-using-ruby/#comment-35</link>
+				<link>/screenshots-using-ruby/#comment-47</link>
 		<dc:creator><![CDATA[jp]]></dc:creator>
 		<pubDate>Mon, 23 Oct 2017 07:13:00 +0000</pubDate>
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=2373#comment-35</guid>
+		<guid isPermaLink="false">https://redpanthers.co/?p=2373#comment-47</guid>
 					<description><![CDATA[having a problem to download phantonjs that are compatible on my macOSX and ubuntu server.]]></description>
 		<content:encoded><![CDATA[<p>having a problem to download phantonjs that are compatible on my macOSX and ubuntu server.</p>
 ]]></content:encoded>
@@ -31,10 +31,10 @@
 						<item>
 				<title>
 				By: marahin				</title>
-				<link>/screenshots-using-ruby/#comment-34</link>
+				<link>/screenshots-using-ruby/#comment-46</link>
 		<dc:creator><![CDATA[marahin]]></dc:creator>
 		<pubDate>Wed, 24 May 2017 14:46:00 +0000</pubDate>
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=2373#comment-34</guid>
+		<guid isPermaLink="false">https://redpanthers.co/?p=2373#comment-46</guid>
 					<description><![CDATA[So basiclly it&#039;s &quot;Screenshots using PhantomJS&quot;. Eh.]]></description>
 		<content:encoded><![CDATA[<p>So basiclly it&#8217;s &#8220;Screenshots using PhantomJS&#8221;. Eh.</p>
 ]]></content:encoded>

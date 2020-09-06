@@ -1,0 +1,428 @@
+ <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>PostgreSQL &#8211; Red Panthers</title>
+	<atom:link href="/category/postgresql/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description>Experts in Ruby on Rails Development</description>
+	<lastBuildDate>Fri, 15 Sep 2017 13:06:51 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.7</generator>
+
+<image>
+	<url>/wp-content/uploads/2017/12/rp-logo.png</url>
+	<title>PostgreSQL &#8211; Red Panthers</title>
+	<link>/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>PostgreSQL 9.6 new features</title>
+		<link>/postgresql-9-6-new-features/</link>
+				<comments>/postgresql-9-6-new-features/#respond</comments>
+				<pubDate>Fri, 15 Sep 2017 13:06:51 +0000</pubDate>
+		<dc:creator><![CDATA[anjana]]></dc:creator>
+				<category><![CDATA[Database]]></category>
+		<category><![CDATA[PostgreSQL]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=1775</guid>
+				<description><![CDATA[<p>POSTGRESQL is an open-source object-relational database system. It is not controlled by any corporation or other private entity. The source code is available free of charge. PostgreSQL supports transactions, subselects, triggers, views, foreign key referential integrity, and sophisticated locking. New features in Postgres are: Parallel execution of sequential scans, joins and aggregates. Avoid scanning pages unnecessarily during&#8230;</p>
+<p>The post <a rel="nofollow" href="/postgresql-9-6-new-features/">PostgreSQL 9.6 new features</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p><a href="http://blog.redpanthers.co/wp-content/uploads/2017/02/postgres.png"><img class="aligncenter size-full wp-image-1781" src="http://blog.redpanthers.co/wp-content/uploads/2017/02/postgres.png" alt="" width="372" height="136" /></a></p>
+<p><strong>POSTGRESQL</strong> is an open-source object-relational database system. It is not controlled by any corporation or other private entity. The source code is available free of charge. PostgreSQL supports <a href="http://searchcio.techtarget.com/definition/transaction">transaction</a>s, subselects, <a href="http://searchsqlserver.techtarget.com/definition/trigger">trigger</a>s, views, <a href="http://searchoracle.techtarget.com/definition/foreign-key">foreign key</a> referential integrity, and sophisticated locking.</p>
+<p>New features in Postgres are:</p>
+<ul>
+<li>Parallel execution of sequential scans, joins and aggregates.</li>
+<li>Avoid scanning pages unnecessarily during vacuum freeze operations.</li>
+<li>Synchronous replication now allows multiple standby servers for increased reliability.</li>
+<li>Full-text search can now search for phrases (multiple adjacent words).</li>
+<li><tt class="FILENAME">postgres_fdw</tt> now supports remote joins, sorts, <tt class="COMMAND">UPDATE</tt>s, and <tt class="COMMAND">DELETE</tt>s.</li>
+<li>Substantial performance improvements, especially in the area of scalability on multi-<acronym class="ACRONYM">CPU</acronym>-socket servers.</li>
+</ul>
+<h3>Parallel execution of sequential scans, joins and aggregates</h3>
+<p><span class="PRODUCTNAME">PostgreSQL can devise query plans which can leverage multiple CPUs in order to answer queries faster. </span>This feature is known as the parallel query. Mostly, queries that touch a large amount of data but return only a few rows to the user will get benefit by using Parallel Query. It can now execute a full table scan in multiple parallel processes, up to the limits set by the user.</p>
+<h3><strong>Avoid scanning pages unnecessarily during vacuum freeze operations</strong></h3>
+<p>Freezing of table is sometime necessary to guarantee safe transaction id wraparound. Previously it scanned all heap pages but now it will scan the pages modified only from the last seen. It is very helpful in cases of rarely written tables.</p>
+<h3>Synchronous replication now allows multiple standby servers for increased reliability</h3>
+<p>Two new options have been added to PostgreSQL&#8217;s synchronous replication feature allows it to be used to maintain consistent reads across database clusters. First, it now allows configuring groups of synchronous replicas. Second, The &#8220;remote-apply&#8221; mode creates a more consistent view of data across multiple nodes. These features support using built-in replication to maintain a set of &#8220;identical&#8221; nodes for load-balancing read workloads.</p>
+<p>These settings control the behavior of the built-in streaming replication feature. Servers will be either a Master or a Standby server. Masters can send data, while Standby(s) are always receivers of replicated data. When cascading replication is used, Standby server(s) can also be senders, optimized as well as receivers. parameters are mainly for sending and Standby servers, though some parameters have to mean only on the Master server. Settings may vary across the cluster without problems if that is required.</p>
+<h3>Full-text search can now search for phrases (multiple adjacent words)</h3>
+<p>Full Text Searching (or just <i class="FIRSTTERM">text search</i>) provides the capability to identify natural-language <i class="FIRSTTERM">documents</i> that satisfy a <i class="FIRSTTERM">query</i>, and optionally to sort them by relevance to the query. Improve <a href="https://www.postgresql.org/docs/9.6/static/textsearch.html">full-text search</a> to support searching for phrases, that is, lexemes appearing adjacent to each other in a specific order, or with a specified distance between them. A phrase-search query can be specified in <tt class="TYPE">tsquery</tt> input using the new operators <tt class="LITERAL">&lt;-&gt;</tt> and <tt class="LITERAL">&lt;<tt class="REPLACEABLE c2">N</tt>&gt;</tt>. The former means that the lexemes before and after it must appear adjacent to each other in that order. The latter means they must be exactly <tt class="REPLACEABLE c2">N</tt> lexemes apart.</p>
+<h3><tt class="FILENAME">postgres_fdw</tt> now supports remote joins, sorts, <tt class="COMMAND">UPDATE</tt>s, and <tt class="COMMAND">DELETE</tt>s</h3>
+<p>The PostgreSQL-to-PostgreSQL data federation river, postgres_fdw, has new capabilities to execute work on remote servers. By &#8220;pushing down&#8221; sorts, joins, and batch data updates, users can distribute workload across multiple PostgreSQL servers.</p>
+<p>To prepare for remote access using <tt class="FILENAME">postgres_fdw</tt>:</p>
+<ol>
+<li>Install the <tt class="FILENAME">postgres_fdw</tt> extension using <a href="https://www.postgresql.org/docs/9.3/static/sql-createextension.html">CREATE EXTENSION</a>.</li>
+<li>Create a foreign server object, using <a href="https://www.postgresql.org/docs/9.3/static/sql-createserver.html">CREATE SERVER</a>, to represent each remote database you want to connect to. Specify connection information, except <tt class="LITERAL">user</tt> and <tt class="LITERAL">password</tt>, as options of the server object.</li>
+<li>Create a user mapping, using <a href="https://www.postgresql.org/docs/9.3/static/sql-createusermapping.html">CREATE USER MAPPING</a>, for each database user you want to allow to access each foreign server. Specify the remote username and password to use as <tt class="LITERAL">user</tt> and <tt class="LITERAL">password</tt> options of the user mapping.</li>
+<li>Create a foreign table, using <a href="https://www.postgresql.org/docs/9.3/static/sql-createforeigntable.html">CREATE FOREIGN TABLE</a>, for each remote table you want to access. The columns of the foreign table must match the referenced remote table. You can, however, use table and/or column names different from the remote table&#8217;s, if you specify the correct remote names as options of the foreign table object.</li>
+</ol>
+<h3> psql</h3>
+<p>It is a terminal-based front-end to PostgreSQL. It enables you to type in queries interactively, issue them to PostgreSQL, and see the query results. Alternatively, input can be from a file.You can activate it by:</p><pre class="crayon-plain-tag">psql mydb</pre><p>where mydb is the database name.</p>
+<h2><strong>Backups</strong></h2>
+<p>Prior to PostgreSQL 9.6, the only way to perform concurrent physical backups was through pg_basebackup, via the streaming replication protocol. Low-level file system copy was only available in an exclusive mode, by calling pg_start_backup(), initiating the copy of data files, then finally calling pg_stop_backup().</p>
+<h2>References</h2>
+<ul>
+<li><a href="https://www.postgresql.org/docs/9.6/static/release-9-6.html">https://www.postgresql.org/docs/9.6/static/release-9-6.html</a></li>
+<li><a href="http://www.craigkerstiens.com/2015/12/29/my-postgres-top-10-for-2016/">http://www.craigkerstiens.com/2015/12/29/my-postgres-top-10-for-2016/</a></li>
+<li><a href="https://wiki.postgresql.org/wiki/NewIn96">https://wiki.postgresql.org/wiki/NewIn96</a></li>
+<li><a href="https://momjian.us/main/writings/pgsql/features.pdf">https://momjian.us/main/writings/pgsql/features.pdf</a></li>
+</ul>
+<p>The post <a rel="nofollow" href="/postgresql-9-6-new-features/">PostgreSQL 9.6 new features</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/postgresql-9-6-new-features/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+							</item>
+		<item>
+		<title>Materialized Views: Caching database query</title>
+		<link>/materialized-views-caching-database-query/</link>
+				<comments>/materialized-views-caching-database-query/#comments</comments>
+				<pubDate>Wed, 30 Nov 2016 09:22:46 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Database]]></category>
+		<category><![CDATA[PostgreSQL]]></category>
+		<category><![CDATA[database]]></category>
+		<category><![CDATA[Materialized]]></category>
+		<category><![CDATA[optimization]]></category>
+		<category><![CDATA[SQL]]></category>
+		<category><![CDATA[Views]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=728</guid>
+				<description><![CDATA[<p>As a part of our database optimization series, this article is related to creating materializing views in the database. Before starting with a materialized view, let&#8217;s talk about database views. What is a database view? A database view is a stored set of queries, which gets executed whenever a view is called or evoked. Unlike the&#8230;</p>
+<p>The post <a rel="nofollow" href="/materialized-views-caching-database-query/">Materialized Views: Caching database query</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p>As a part of our database optimization series, this article is related to creating materializing views in the database.</p>
+<div style="width: 1152px" class="wp-caption alignnone"><img class="size-full" src="https://i-msdn.sec.s-msft.com/dynimg/IC709528.png" alt="Materialzied View" width="1142" height="487" /><p class="wp-caption-text">Materialized View Purpose</p></div>
+<p>Before starting with a materialized view, let&#8217;s talk about database views.</p>
+<h2>What is a database view?</h2>
+<p>A database view is a stored set of queries, which gets executed whenever a view is called or evoked. Unlike the regular tables, the view doesn&#8217;t occupy any physical space in your hard disk but its schema and everything is stored in the system memory. It helps abstract away the underlying tables and makes it easier to work with.</p>
+<p>They can also be called as pseudo tables.</p>
+<p>Quoted from the PostgerSQL documentation.</p>
+<blockquote><p>Making liberal use of views is a key aspect of good SQL database design. Views allow you to encapsulate the details of the structure of your tables, which might change as your application evolves, behind consistent interfaces.</p>
+<p>&nbsp;</p></blockquote>
+<p></p><pre class="crayon-plain-tag">CREATE VIEW company_manager AS
+SELECT id, name, email
+FROM  companies
+WHERE role='manager';</pre><p>Now to access all the managers</p><pre class="crayon-plain-tag">SELECT * FROM company_managers;</pre><p>&nbsp;</p>
+<p>Making more use of views makes your DB design much cleaner, but here we are talking more about using Materializing views. As that would lead to the more direct performance boost.</p>
+<h2>So what is a Materialized view?</h2>
+<p>The materializing view was first introduced in oracle. But now you can find it in most database systems like PostgreSQL, MicrosoftSQL server, IBM DB2, Sybase. MySQL doesn&#8217;t have native support for it, but you can find extensions for it which would help achieve this</p>
+<p><strong>Materialized view </strong>is also called <strong>Matview. </strong>It is a form of database view that also has the result of the query as well. Which speeds up the results because now, you don&#8217;t have to run the query to get the results, as its already there, calculated. Of course, there are cases where we can&#8217;t have this, where we need more real-time information. But while generating reports you create a matview and then later refresh the matview to get the updated reports.</p>
+<p>Things to note about matview are:</p>
+<ol>
+<li>It&#8217;s read-only (pseudo-table) so you can&#8217;t update it.</li>
+<li>You need to refresh the table to get the latest data.</li>
+<li>While refreshing, it would block other connections to access the existing data from the material view, so you need to make the refresh run concurrently</li>
+</ol>
+<h2>So why use Materialized views in Rails?</h2>
+<ul>
+<li>Capture commonly used joins &amp; filters.</li>
+<li>Push data intensive processing from Ruby to Database.</li>
+<li>Allow fast and live filtering of complex associations or calculation fields.</li>
+</ul>
+<h2>How do you use it in Rails?</h2>
+<p>Well thanks to active record, it&#8217;s quite easy to use this in our code. But we need a bit of SQL as well.</p>
+<p>First, we add the migration to create the materialized views.</p><pre class="crayon-plain-tag">bundle exec rails g migration create_all_time_sales_mat_view</pre><p>In the migration file, we add the SQL</p><pre class="crayon-plain-tag">class CreateAllTimesSalesMatView &lt; ActiveRecord::Migration
+  def up
+    execute &lt;&lt;-SQL
+      CREATE MATERIALIZED VIEW all_time_sales_mat_view AS
+        SELECT sum(amount) as total_sale,
+        DATE_TRUNC('day', invoice_adte) as date_of_sale
+      FROM sales
+      GROUP BY DATE_TRUNC('day', invoice_adte)
+    SQL
+  end
+
+  def down
+    execute("DROP MATERIALIZED VIEW IF EXISTS all_time_sales_view")
+  end
+end</pre><p>Once the view is ready , we can create the model for this at <code>app/models/all_time_sales_mat_view.rb</code></p><pre class="crayon-plain-tag">class AllTimeSalesMatView &lt; ActiveRecord::Base
+  self.table_name = 'all_time_sales_mat_view'
+
+  def readonly?
+    true
+  end
+
+  def self.refresh
+    ActiveRecord::Base.connection.execute('REFRESH MATERIALIZED VIEW CONCURRENTLY all_time_sales_mat_view')
+  end
+end</pre><p>Now we select and query the model as usual.</p><pre class="crayon-plain-tag">AllTimeSalesMatView.select(:date_of_sale)
+AllTimeSalesMatView.sum(:total_sale)</pre><p>We can&#8217;t do any <code>create</code>, <code>save</code> or <code>update</code>. As its a read-only table.</p>
+<p>Creating a table with a total of million sales record for every date in the last year, gave us the following speed improvement.</p><pre class="crayon-plain-tag">Regular
+       user     system      total        real
+     (976.4ms)  0.020000   0.000000   0.020000 (  0.990258)
+MatiView
+     (2.3ms)    0.000000   0.010000   0.010000 (  0.012010)</pre><p>Over 10 times speed improvement, yay!!</p>
+<h2>Summarize</h2>
+<h3>Good Points</h3>
+<ul>
+<li>Faster to fetch data.</li>
+<li>Capture commonly used joins &amp; filters.</li>
+<li>Push data intensive processing from Ruby to Database.</li>
+<li>Allow fast and live filtering of complex associations or calculation .fields.</li>
+</ul>
+<h3>Pain Points</h3>
+<ul>
+<li>To alter table we need to write SQL</li>
+<li>We will be using more RAM and Storage</li>
+<li>Requires Postgres 9.3 for MatView</li>
+<li>Requires Postgres 9.4 to refresh concurrently</li>
+<li>Can&#8217;t have Live data
+<ul>
+<li>You can fix this by creating your own MatViewTable and updating it with the latest information</li>
+</ul>
+</li>
+</ul>
+<h2>References</h2>
+<ul>
+<li>https://www.postgresql.org/docs/9.3/static/rules-materializedviews.html</li>
+<li>http://en.wikipedia.org/wiki/Materialized_view</li>
+<li>http://dev.mysql.com/doc/refman/5.7/en/create-view.html</li>
+<li>https://blog.pivotal.io/labs/labs/database-views-performance-rails</li>
+<li>https://www.sitepoint.com/speed-up-with-materialized-views-on-postgresql-and-rails/</li>
+</ul>
+<p>The post <a rel="nofollow" href="/materialized-views-caching-database-query/">Materialized Views: Caching database query</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/materialized-views-caching-database-query/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+							</item>
+		<item>
+		<title>Introduction to generating JSON using PostgreSQL</title>
+		<link>/create-json-response-using-postgresql-instead-rails/</link>
+				<comments>/create-json-response-using-postgresql-instead-rails/#comments</comments>
+				<pubDate>Thu, 24 Nov 2016 04:38:33 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Database]]></category>
+		<category><![CDATA[PostgreSQL]]></category>
+		<category><![CDATA[API]]></category>
+		<category><![CDATA[array]]></category>
+		<category><![CDATA[benchmarking]]></category>
+		<category><![CDATA[database]]></category>
+		<category><![CDATA[Faster]]></category>
+		<category><![CDATA[generation]]></category>
+		<category><![CDATA[JSON]]></category>
+		<category><![CDATA[optimization]]></category>
+		<category><![CDATA[rails]]></category>
+		<category><![CDATA[Ruby]]></category>
+		<category><![CDATA[SQL]]></category>
+		<category><![CDATA[standards]]></category>
+		<category><![CDATA[web api]]></category>
+		<category><![CDATA[XML]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=663</guid>
+				<description><![CDATA[<p>Introduction One of the major requirements for any online business is to have a backend that either provides or can be extended to provide an API response. Building  websites with static HTML and simple jquery ajax is coming to an end. In this era, Javascript frameworks rules the market. Hence, it is a good decision for&#8230;</p>
+<p>The post <a rel="nofollow" href="/create-json-response-using-postgresql-instead-rails/">Introduction to generating JSON using PostgreSQL</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<h2>Introduction</h2>
+<p>One of the major requirements for any online business is to have a backend that either provides or can be extended to provide an API response. Building  websites with static HTML and simple jquery ajax is coming to an end. In this era, Javascript frameworks rules the market. Hence, it is a good decision for the database to support JSON, as JSON is becoming the glue that connects the frontend and backend.</p>
+<p>Rails have an inbuilt support for generating JSON, as it&#8217;s our swiss army knife of web development, and encourages the REST URL structure . And its a good choice for building API. It is good enough to a particular point of growth. Very soon you will reach bottlenecks, where you have more requests than you can handle and you have to either spawn up more servers or use some concurrent languages like elixir, go, etc. Before we go to that scale and burn down the existing codebase, we can use database to generate JSON responses for us, which is 10 times faster in generating JSON than Rails (though more verbose).</p>
+<p>Since PostgreSQL 9.2, the database has taken a major leap in supporting JSON. The support that PostgreSQL provides can be divided into two</p>
+<ul>
+<li>Storing data in JSON and JSONB format</li>
+<li>Generating JSON results from the query itself</li>
+</ul>
+<p>In this article, we will talk about generating JSON(an introduction) from the query itself.</p>
+<h2>Getting Started</h2>
+<p>One of the advantages of using a database to generate JSON is that I have found it fast while generating smaller JSON but much more faster in generating complex JSON. (Note: The speed is in comparison with rails not with respect to the database itself)</p>
+<h3><strong>How to generate JSON</strong></h3>
+<div></div>
+<div>Simplest way to do that is row_to_json()<br />
+For example: Query to return user with id 1 as JSON</div>
+<div>
+<pre class="crayon-plain-tag">select row_to_json(users) from users where id = 1;</pre><br />
+Result:<br />
+<pre class="crayon-plain-tag">{"id":1,"email":"hsps@redpanthers.co","encrypted_password":"iwillbecrazytodisplaythat",
+"reset_password_token":null,"reset_password_sent_at":null,
+"remember_created_at":"2016-11-06T08:39:47.983222",
+"sign_in_count":11,"current_sign_in_at":"2016-11-18T11:47:01.946542",
+"last_sign_in_at":"2016-11-16T20:46:31.110257",
+"current_sign_in_ip":"::1","last_sign_in_ip":"::1",
+"created_at":"2016-11-06T08:38:46.193417",
+"updated_at":"2016-11-18T11:47:01.956152",
+"first_name":"Super","last_name":"Admin","role":3}</pre><br />
+if you want to send only some specific fields</p>
+</div>
+<p></p><pre class="crayon-plain-tag">select row_to_json(results)
+from (
+  select id, email from users
+) as results</pre><p>Result</p><pre class="crayon-plain-tag">{"id":1,"email":"hsps@redpanthers.co"}</pre><p>Now let&#8217;s see how to generate more complex JSON with sub JSON, and arrays.</p><pre class="crayon-plain-tag">select row_to_json(result)
+from (
+  select id, email,
+    (
+      select array_to_json(array_agg(row_to_json(user_projects)))
+      from (
+        select id, name
+        from projects
+        where user_id=users.id
+        order by created_at asc
+      ) user_projects
+    ) as projects
+  from users
+  where id = 1
+) result</pre><p>This would return the JSON response</p><pre class="crayon-plain-tag">{"id":1,"email":"hsps@redpanthers.co", "project":["id": 3, "name": "CSnipp"]}</pre><p>The issue with the above code is that it is more verbose (has more text)  when compared to a ruby code. We need to make sure that while we do a bit of sacrifice there, is worthwhile. So while working with API&#8217;s  use it only where you see a delay in JSON generation.</p>
+<p>Similarly ,to the <strong>&#8216;array_agg&#8217;</strong> method that we used above to aggregate values to an array then to JSON, we aggregate them as JSON using <code>json_agg</code>.</p><pre class="crayon-plain-tag">array_to_json(array_agg(row_to_json(user_projects)))</pre><p>can be shortened to</p><pre class="crayon-plain-tag">json_agg(user_projects)</pre><p>&nbsp;</p>
+<p>Since the above method of array generation can be tedious, in PostgreSQL 9.4, they have introduced a new method called <code>json_build_object</code>. Simple usage of the function can be as below</p><pre class="crayon-plain-tag">json_build_object('foo',1,'bar',2)</pre><p>which will output</p><pre class="crayon-plain-tag">{"foo": 1, "bar": 2}</pre><p>Also, we can use it to build complex JSON tree by creating functions within the PostgreSQL database. Of course, as we do that, we are moving more and more logic of the code into the DB and we would need to run migrations every time when we want to update a function. So as I said before, we are sacrificing our convenience here .So we should only use this, as the complexity of our JSON generation increases.</p>
+<p>I will be covering how to write PostgreSQL functions to help generate more complex JSON structure easier in the second part of this particle.</p>
+<h2>References</h2>
+<p>https://www.postgresql.org/docs/current/static/functions-json.html<br />
+http://bytefish.de/blog/postgresql_json/</p>
+<p>The post <a rel="nofollow" href="/create-json-response-using-postgresql-instead-rails/">Introduction to generating JSON using PostgreSQL</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/create-json-response-using-postgresql-instead-rails/feed/</wfw:commentRss>
+		<slash:comments>11</slash:comments>
+							</item>
+		<item>
+		<title>Different types of Index in PostgreSQL</title>
+		<link>/different-types-index-postgresql/</link>
+				<comments>/different-types-index-postgresql/#respond</comments>
+				<pubDate>Mon, 19 Sep 2016 07:38:45 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Beginners]]></category>
+		<category><![CDATA[PostgreSQL]]></category>
+		<category><![CDATA[Algorithm]]></category>
+		<category><![CDATA[B Tree]]></category>
+		<category><![CDATA[BRIN]]></category>
+		<category><![CDATA[GiST]]></category>
+		<category><![CDATA[Hash]]></category>
+		<category><![CDATA[indexing]]></category>
+		<category><![CDATA[optimization]]></category>
+		<category><![CDATA[part two]]></category>
+		<category><![CDATA[series]]></category>
+		<category><![CDATA[SP-GiST]]></category>
+		<category><![CDATA[Speeing up database]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=549</guid>
+				<description><![CDATA[<p>This is part two of our PostgreSQL optimization series. You can read the first article where we discuss when to index here. PostgreSQL uses a different set of algorithm while indexing tables, each type of algorithm is good for a certain set of data. Here we will be discussing the various algorithms available and when&#8230;</p>
+<p>The post <a rel="nofollow" href="/different-types-index-postgresql/">Different types of Index in PostgreSQL</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p>This is part two of our PostgreSQL optimization series. You can read the first article where we discuss when to index <a href="http://blog.redpanthers.co/optimising-postgresql-database-query-using-indexes/">here</a>.</p>
+<p>PostgreSQL uses a different set of algorithm while indexing tables, each type of algorithm is good for a certain set of data. Here we will be discussing the various algorithms available and when we should be using them. (Note these are the algorithms found in PostgreSQL 9.5)</p>
+<h2>Algorithms</h2>
+<p><strong>B-Tree (Balance Tree),</strong> is the <strong>default</strong> algorithm used when we build indexes in Rails. It keeps a sorted copy of our column, which would be our index. So if we want to find the row of the word starting with <strong>a </strong>then as soon as the words starting with a are over. It will stop searching and return null, as the index has kept everything sorted. It is good in most cases, hence it is the default algorithm used.</p>
+<p><strong>Hash </strong>is one of the most popular indexing algorithms. But only the equate operator works on it, thus the query planner will only use an index with a hash algorithm if we do an equal operation searching for it. Another point to note is that Hash index is not WAL (Write Ahead Log) logged, so if the database crash we can&#8217;t rebuild the index and would need to REINDEX the entire column.</p>
+<p><strong>GIN</strong>, <strong>Generalized Inverted Indexing</strong> are great for indexing columns and expressions that contain an array, JSON, JSONB, etc. Internally, a <acronym class="ACRONYM">GIN</acronym> index contains a B-tree index constructed over keys, where each key is an element of one or more indexed items and where each tuple in a leaf page contains either a pointer to a B-tree of heap pointers.</p>
+<p><strong>GiST</strong>, <strong>Generalized Search Tree</strong> isn&#8217;t a single indexing scheme but rather an abstraction that makes it possible to implement indexing schemes for new data types by providing a balanced tree structure access method. In the past building and implementing custom indexing algorithm for custom data types include an understanding of the internals of the database. With the implementation of GiST, it provides an abstraction of the internal working which can be used to build your own indexing algorithm. It uses B-Tree internally, and thus we can use GiST to index IP address, Geo Location, etc.</p>
+<p><strong>SP-GiST</strong>, <strong>Space Partitioned  Generalized Search Tree</strong> &#8211; as the name suggest its GiST implementation itself but instead of balance tree structure we can use one of the non-balanced tree structure such as radix tree, quadtree, k-d tree.</p>
+<p><strong>BRIN, Block Range Indexes </strong>are designed to handle very large tables in which the rows’ natural sort order correlates to certain column values. For example, a table storing log entries might have a timestamp column for when each log entry was written. By using a BRIN index on this column, scanning large parts of the table can be avoided when querying rows by their timestamp value with very little overhead.</p>
+<p>&nbsp;</p>
+<p>The post <a rel="nofollow" href="/different-types-index-postgresql/">Different types of Index in PostgreSQL</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/different-types-index-postgresql/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+							</item>
+		<item>
+		<title>Optimising PostgreSQL database query using indexes</title>
+		<link>/optimising-postgresql-database-query-using-indexes/</link>
+				<comments>/optimising-postgresql-database-query-using-indexes/#comments</comments>
+				<pubDate>Thu, 11 Aug 2016 10:59:22 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Database]]></category>
+		<category><![CDATA[PostgreSQL]]></category>
+		<category><![CDATA[B Tree]]></category>
+		<category><![CDATA[database]]></category>
+		<category><![CDATA[GIN]]></category>
+		<category><![CDATA[Guide]]></category>
+		<category><![CDATA[Hash]]></category>
+		<category><![CDATA[index]]></category>
+		<category><![CDATA[learning]]></category>
+		<category><![CDATA[migration]]></category>
+		<category><![CDATA[multi column]]></category>
+		<category><![CDATA[partial migration]]></category>
+		<category><![CDATA[rails]]></category>
+		<category><![CDATA[Ruby]]></category>
+		<category><![CDATA[ruby on rails]]></category>
+		<category><![CDATA[single column]]></category>
+		<category><![CDATA[SQL]]></category>
+		<category><![CDATA[training]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=389</guid>
+				<description><![CDATA[<p>At Red Panthers PostgreSQL is our go to database we use it everywhere. So thinking about how to optimize our database performance is one of the most talked about topic at our office. The best way to speed up report generation and data retrieval within a rails application is to leave it to the database, as they have algorithms and&#8230;</p>
+<p>The post <a rel="nofollow" href="/optimising-postgresql-database-query-using-indexes/">Optimising PostgreSQL database query using indexes</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p>At Red Panthers PostgreSQL is our go to database we use it everywhere. So thinking about how to optimize our database performance is one of the most talked about topic at our office. The best way to speed up report generation and data retrieval within a rails application is to leave it to the database, as they have algorithms and optimizations build just for that. We always felt that most Ruby on Rails projects out there, do not use the full potential of a database and they usually just limit it to a data store. PostgreSQL or any database for that matter is much more than that.</p>
+<p>We would be blogging on how we use PostgreSQL in our projects to speed up our client&#8217;s applications. This particle is the first part of a series of article we would be writing on database optimization.</p>
+<p><img class="aligncenter" src="http://i.imgur.com/YSZE83d.jpg?1" width="231" height="172" /></p>
+<p><strong>Database Indexes:</strong></p>
+<p>Indexes are a special lookup table that the database search engine can use to speed up data retrieval. An Index is similar to a pointer to a particular row of a table. As a real world example, consider a Britannica Encyclopedia with 22 volumes of books, and an extra book listing  the index,with which you can find out the item you are searching for in those 22 books.</p>
+<p>PostgreSQL 9.5, provides several index algorithms like B-tree, Hash, GiST, SP-GiST and GIN. When you create an index using Ruby on Rails migration, by <strong>default it would be using the B-Tree</strong> migration. Whereas, as we move on to the indexing algorithms, we need to check into the general classification of an index and the data to be indexed.</p>
+<p><strong>Primary Keys</strong></p>
+<p>In rails, when we generate a model , by default an ID column would be added to the table. It would have integers values and they would be unique as well. By default, when you set a column as a primary key, the database would build a <em><strong>unique index </strong></em>on it. So we don&#8217;t need to add migration for it.</p>
+<p><strong>Foreign Keys</strong></p>
+<p>When you build a relationship between two tables you add a <code>foreign_key</code> in the child table to point to parent, eg: <code>user_id</code>, <code>group_id</code>. We need to query through this relationship a lot in rails, for example to load all the comments of post or all members of a group.<strong> So we need to index that for speed.</strong>.</p>
+<p>If you are using some non id value to reference a table, lets say in your application ,you give all your users a unique URL which has the username. (Eg: http://csnipp.com/coderhs), in that case we would be using the username to query the data, so we need to have it indexed. In fact you should index all the columns you might be using in your where queries. Like if you are searching for users of a particular age or income frequents in your reports, then you should create an index for them as well.</p>
+<p><strong>Note:</strong>  What we explained above are single column indexes and multi column indexes. So if you are indexing just a single column in a table, its single column indexes.</p><pre class="crayon-plain-tag">CREATE INDEX index_name
+ON prices (user_id);</pre><p>Rails code:</p><pre class="crayon-plain-tag">add_index :prices, :user_id</pre><p>When we index multiple columns, they are called multi column index.</p><pre class="crayon-plain-tag">CREATE INDEX index_name
+ON user_views (user_id, article_id);</pre><p>Rails code:</p><pre class="crayon-plain-tag">add_index :user_views, [:user_id, :article_id]</pre><p>If you are joining two tables, using a column (which is not the already indexed foreign key) then you should index that as well.</p>
+<p><strong>State column &amp; Boolean column</strong></p>
+<p>State and Boolean column are columns that should be indexed as there would be a lot of rows but only limited number of values in those columns. Boolean column would have only true or false (two values)and state columns will have more than two like eg: draft, published, pending. The speed of load would be faster for these columns as they are only limited keys that can be placed in the index, and on a single lookup we can load them.</p>
+<p><strong>Partial indexes</strong> can be used in the above case, as the name suggests it&#8217;s an index over a subset of your table. The index would be building if it satisfies certain conditions. They can be most useful <strong>while writing scopes in rails. </strong>Lets say that you have a scope that picks up all the articles which are marked as SPAM. In your model you will write a scope like below</p><pre class="crayon-plain-tag">scope :articles, where(:spam =&gt; 'true')</pre><p>So internally it&#8217;s a where query, one can add a partial index migration as follows:</p><pre class="crayon-plain-tag">CREATE INDEX index_name
+on articles (spam is true);</pre><p>Rails:</p><pre class="crayon-plain-tag">add_index :articles, :spam, name: "index_articles_on_spam", where: "(spam IS true)"</pre><p><strong>When not to use indexes</strong></p>
+<p>Using indexes speeds up the SELECT and WHERE command, but it does slows down the execution of INSERT.</p>
+<p><strong>So avoid indexing when we have table that has a lot of insert and update</strong></p>
+<p>So we should avoid using Indexes when we have a table that holds a huge number of raw data, where we do a lot of batch updates and insert. For example, in an IoT application we would pipe all the data from multiple devices to a single table , summarize  and insert it into its proper tables. And  by a lot of data, I am referring to at least 10+ MB of data per minute. In most cases, we would just truncate that table after processing, hence it would slow us down if we were to index it.</p>
+<p><strong>If the table is too small and you know it will always be small</strong></p>
+<p>If you have a setting table which just stores the application settings, that can be modified by an admin panel. Then it doesn&#8217;t seem to be worth having an index there.</p>
+<p><strong>When you are manipulating the values of a column a lot</strong></p>
+<p>Lets say the particular value of a column gets changes extremely a lot, like the website view count. Then indexing it is not highly recommended.</p>
+<p>Finally to complete this article. If you want to drop an index:</p>
+<p>SQL</p><pre class="crayon-plain-tag">DROP INDEX index_name;</pre><p>Rails</p><pre class="crayon-plain-tag">remove_index :books, :created_at</pre><p><strong>Summary</strong>:</p>
+<ul>
+<li>Index Primary key</li>
+<li>Index Foreign key</li>
+<li>Index all columns you would be passing into where clause</li>
+<li>Index the keys used to Join tables</li>
+<li>Index the date column (if you are going to call it frequent, like rankings of a particular date)</li>
+<li>Index the type column in an STI or polymorphism.</li>
+<li>Add partial index to scopes</li>
+<li>Do not index tables with a lot of read, write</li>
+<li>Do not index tables you know that will remain small, all through out its life time</li>
+<li>Do not index columns where you will be manipulating lot of its values.</li>
+</ul>
+<p>Keep visiting here to know more about the PostgreSQL indexing algorithms in part 2 of this article.</p>
+<p><strong>References:</strong></p>
+<p><a href="https://www.postgresql.org/docs/9.2/static/indexes-types.html">https://www.postgresql.org/docs/9.2/static/indexes-types.html</a><br />
+<a href="http://dev.mysql.com/doc/refman/5.7/en/mysql-indexes.html">http://dev.mysql.com/doc/refman/5.7/en/mysql-indexes.html</a><br />
+<a href="http://www.tutorialspoint.com/postgresql/postgresql_indexes.htm">http://www.tutorialspoint.com/postgresql/postgresql_indexes.htm</a></p>
+<p>The post <a rel="nofollow" href="/optimising-postgresql-database-query-using-indexes/">Optimising PostgreSQL database query using indexes</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/optimising-postgresql-database-query-using-indexes/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+							</item>
+		<item>
+		<title>Setup PostgreSQL and its libraries to work with rails</title>
+		<link>/setup-postgresql-and-its-libraries-to-work-with-rails/</link>
+				<comments>/setup-postgresql-and-its-libraries-to-work-with-rails/#respond</comments>
+				<pubDate>Tue, 27 Nov 2012 11:06:23 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[PostgreSQL]]></category>
+		<category><![CDATA[Rails]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=1325</guid>
+				<description><![CDATA[<p>Recently lot of poeple have been asking me why they are not able to install the pg ( postgresql) gem even after install PostgreSQL server in their system? Well the answer is simple, the pg gem, requires the PostgreSQL development libraries to build native extensions to communicate with the PostgreSQL server. Native extensions refer to&#8230;</p>
+<p>The post <a rel="nofollow" href="/setup-postgresql-and-its-libraries-to-work-with-rails/">Setup PostgreSQL and its libraries to work with rails</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p>Recently lot of poeple have been asking me why they are not able to install the pg ( postgresql) gem even after install PostgreSQL server in their system?</p>
+<p>Well the answer is simple, the pg gem, requires the PostgreSQL development libraries to build native extensions to communicate with the PostgreSQL server. Native extensions refer to building ruby extensions or wrappers for exisiting C or C++ library.</p>
+<p>One can install the development libraries of PostgreSQL by installing the libpg-dev package.</p>
+<p>The command below would install the last version of PostgreSQL available in the repository and its development libraries.</p>
+<p>Ubuntu:</p><pre class="crayon-plain-tag">sudo apt-get install postgresql  libpq-dev</pre><p>CentOS / RedHat</p><pre class="crayon-plain-tag">yum install postgresql libpg-dev</pre><p>Trying gem install pg, should install everything smootly..</p>
+<p>Happy Coding.. <img src="https://s.w.org/images/core/emoji/12.0.0-1/72x72/1f642.png" alt="🙂" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p>The post <a rel="nofollow" href="/setup-postgresql-and-its-libraries-to-work-with-rails/">Setup PostgreSQL and its libraries to work with rails</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/setup-postgresql-and-its-libraries-to-work-with-rails/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+							</item>
+	</channel>
+</rss>

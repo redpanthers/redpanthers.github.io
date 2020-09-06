@@ -1,4 +1,4 @@
- <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
 	xmlns:content="http://purl.org/rss/1.0/modules/content/"
 	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -8,10 +8,10 @@
 	>
 
 <channel>
-	<title>sibin &#8211; Red Panthers</title>
+	<title>sibin &#8211; beta.redpanthers.co</title>
 	<atom:link href="/author/sibin/feed/" rel="self" type="application/rss+xml" />
 	<link>/</link>
-	<description>Experts in Ruby on Rails Development</description>
+	<description>Red Panthers - Experts in Ruby on Rails, System Design and Vue.js</description>
 	<lastBuildDate>Mon, 29 Feb 2016 00:07:05 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
@@ -19,14 +19,6 @@
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
 	<generator>https://wordpress.org/?v=5.2.7</generator>
-
-<image>
-	<url>/wp-content/uploads/2017/12/rp-logo.png</url>
-	<title>sibin &#8211; Red Panthers</title>
-	<link>/</link>
-	<width>32</width>
-	<height>32</height>
-</image> 
 	<item>
 		<title>Flux example Application with React JS</title>
 		<link>/react-with-flux/</link>
@@ -38,23 +30,48 @@
 		<category><![CDATA[Flux]]></category>
 		<category><![CDATA[React JS]]></category>
 
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=297</guid>
-				<description><![CDATA[<p>Flux is an application architecture used to build scalable and powerful JavaScript web application with React JS. React JS is a popular view library and we have already covered React JS. Flux is not a framework like Angular JS, Backbone etc., there are a lot of differences between these frameworks with Flux. Flux only supports&#8230;</p>
-<p>The post <a rel="nofollow" href="/react-with-flux/">Flux example Application with React JS</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
-]]></description>
-								<content:encoded><![CDATA[<p>Flux is an application architecture used to build scalable and powerful JavaScript web application with React JS. React JS is a popular view library and we have already covered React JS. Flux is not a framework like Angular JS, Backbone etc., there are a lot of differences between these frameworks with Flux. Flux only supports unidirectional data flow, where Angular and Backbone supports bi-directional data flow. Unidirectional data flow prevents unexpected data flows, so it is more predictable.</p>
+		<guid isPermaLink="false">https://redpanthers.co/?p=297</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[Flux is an application architecture used to build scalable and powerful JavaScript web application with React JS. React JS is a popular view library and we have already covered React JS. Flux is not a framework like Angular JS, Backbone etc., there are a lot of differences between these frameworks with Flux. Flux only supports unidirectional data flow, where Angular and Backbone supports bi-directional data flow. Unidirectional data flow prevents unexpected data flows, so it is more predictable.
+
+
 <h2>
 Flux has three main parts.</h2>
+
+
+
+
 <ol>
+	
+
 <li>Action</li>
+
+
+	
+
 <li>Dispatcher</li>
+
+
+	
+
 <li>Store</li>
+
+
 </ol>
-<p>As their name indicates, <strong>Action</strong> is the result of some events, like JavaScript events, or callbacks for Ajax calls. <strong>Dispatcher</strong>, is a connector or link between Action and Store. The dispatcher is a central hub, from where everything passes through and we only need one dispatcher per application. Dispatcher handles all Actions and Stores.<br />
-<strong>Store</strong> is very important in Flux architecture, we can write our business logics or Ajax calls to fetch data’s. I usually use it to store to get some initial data’s or to send or receive data via Ajax calls. The store uses event emitter similar to nodejs&#8217;s event emitter. We can define events in Store, and these events are connected to Store, whenever a change occurs in store, all components which listenes to this store will get an invoke and we can perform our logics.</p>
-<p>My example application will give you more idea, you can clone it from my GitHub account. In this application I have an input box where you can enter the number and a button to &#8216;Add Cart&#8217;, we can start from this button, this button has an on Click event, I have attached a Flux action on it, whenever a change occurs it passes input box data to an action.</p>
+
+
+As their name indicates, <strong>Action</strong> is the result of some events, like JavaScript events, or callbacks for Ajax calls. <strong>Dispatcher</strong>, is a connector or link between Action and Store. The dispatcher is a central hub, from where everything passes through and we only need one dispatcher per application. Dispatcher handles all Actions and Stores.
+<strong>Store</strong> is very important in Flux architecture, we can write our business logics or Ajax calls to fetch data’s. I usually use it to store to get some initial data’s or to send or receive data via Ajax calls. The store uses event emitter similar to nodejs&#8217;s event emitter. We can define events in Store, and these events are connected to Store, whenever a change occurs in store, all components which listenes to this store will get an invoke and we can perform our logics.
+My example application will give you more idea, you can clone it from my GitHub account. In this application I have an input box where you can enter the number and a button to &#8216;Add Cart&#8217;, we can start from this button, this button has an on Click event, I have attached a Flux action on it, whenever a change occurs it passes input box data to an action.
+
+
 <h4>Component</h4>
-<p></p><pre class="crayon-plain-tag">import React from 'react';
+
+
+
+
+<pre class="lang:default decode:true " title="Components ">import React from 'react';
 import checkoutActions from "../actions/checkout-action";
 import checkoutStore from "../store/checkout-store";
 class CartElements extends React.Component{
@@ -73,7 +90,6 @@ class CartElements extends React.Component{
     })
   };
   updateCart = () =&gt; {
-
     checkoutActions.addCart(parseInt(this.refs.cartNumber.value))
   };
   gotoCheckout = () =&gt; {
@@ -95,10 +111,17 @@ class CartElements extends React.Component{
     )
   }
 }
+export default CartElements</pre>
 
-export default CartElements</pre><p></p>
+
+
+
 <h4>Action File</h4>
-<p></p><pre class="crayon-plain-tag">import dispatcher from "../dispatcher";
+
+
+
+
+<pre class="lang:js decode:true " title="Checkout Action">import dispatcher from "../dispatcher";
 import constants from "../const/store-const";
 var checkoutActions  = {
   addCart: function(data){
@@ -108,26 +131,46 @@ var checkoutActions  = {
     })
   }
 }
-export default checkoutActions;</pre><p>&nbsp;</p>
-<p>In this Action, I have an <strong>addCart  </strong>method which dispatches item quantity along with a constant called &#8216;ADD_CART&#8217; which is used to distinguish it on Store.<br />
-Dispatcher is a simple file which uses Facebook dispatcher<br />
-Object Assign is a NPM module where you can combine two objects and return source object, For example<br />
-var birds = {bird:&#8221;Pigeon&#8221;}<br />
-var animals = {animal:&#8221;Dog&#8221;}<br />
-assign(birds, animals) =&gt;<br />
-{bird:&#8221;Pigeon&#8221;, animal:&#8221;Dog&#8221;}<br />
-We have a Store called checkStore, for which we have 5 methods. First 2 of them are custom methods, addCart and getCart. When we call Addcart, it increases the quantity and getCart to retrieve the latest value. Besides we have 3 required methods</p>
+export default checkoutActions;</pre>
+
+
+&nbsp;
+In this Action, I have an <strong>addCart  </strong>method which dispatches item quantity along with a constant called &#8216;ADD_CART&#8217; which is used to distinguish it on Store.
+Dispatcher is a simple file which uses Facebook dispatcher
+Object Assign is a NPM module where you can combine two objects and return source object, For example
+var birds = {bird:&#8221;Pigeon&#8221;}
+var animals = {animal:&#8221;Dog&#8221;}
+assign(birds, animals) =&gt;
+{bird:&#8221;Pigeon&#8221;, animal:&#8221;Dog&#8221;}
+We have a Store called checkStore, for which we have 5 methods. First 2 of them are custom methods, addCart and getCart. When we call Addcart, it increases the quantity and getCart to retrieve the latest value. Besides we have 3 required methods
+
+
 <ol>
+	
+
 <li>emitChange</li>
+
+
+	
+
 <li>addListener</li>
+
+
+	
+
 <li>removeListener</li>
+
+
 </ol>
-<p></p><pre class="crayon-plain-tag">import dispatcher from '../dispatcher.js';
+
+
+
+
+<pre class="lang:default decode:true " title="Store ">import dispatcher from '../dispatcher.js';
 import EventEmitter from 'events';
 import assign from 'object-assign';
 var CHANGE_EVENT = 'change';
 var EventEmitterEvent  = EventEmitter.EventEmitter
-
 var _number  = 0;
 var checkoutStore = assign({}, EventEmitterEvent.prototype, {
   addCart: function(number){
@@ -146,7 +189,6 @@ var checkoutStore = assign({}, EventEmitterEvent.prototype, {
     this.removeListner(CHANGE_EVENT, callback)
   }
 });
-
 dispatcher.register((action)=&gt;{
   switch (action.actionType){
     case 'ADD_CART':
@@ -156,12 +198,16 @@ dispatcher.register((action)=&gt;{
       break;
   }
 })
+export default checkoutStore;</pre>
 
 
-export default checkoutStore;</pre><p>&nbsp;</p>
-<p>AddListener adds EventListner. We can use this to bind events to components. RemoveListener is used to remove listeners when we unmounts some components. EmitChange is used to update or invoke store after some actions.<br />
-The store also has a dispatcher, where we register dispatcher, and in action, we dispatch data to stores. All data which passes from action is available in action argument, the switch uses check actionType, we already pass a constant from action to distinguish various types, like CREATE, EDIT, DELETE, and here we have ADD_CART, so only particular block works. In this case, we have only one condition inside switch block and condition with ADD_CART will work. Inside this condition we call add_cart store method and pass quantity after which we can emitchange. So, this store will invoke and all components which are connected will notify.<br />
-Now we can move to a header component. There is a component called CartIconOnTopBar, in componentDidMount.I have attached a Store listener, &#8216;checkOutStore.addListener(callback)&#8217; with a callback function, in this callback function, I again called stores getCart function to get latest items quantity.</p><pre class="crayon-plain-tag">class CartIconOnTopBar extends React.Component{
+&nbsp;
+AddListener adds EventListner. We can use this to bind events to components. RemoveListener is used to remove listeners when we unmounts some components. EmitChange is used to update or invoke store after some actions.
+The store also has a dispatcher, where we register dispatcher, and in action, we dispatch data to stores. All data which passes from action is available in action argument, the switch uses check actionType, we already pass a constant from action to distinguish various types, like CREATE, EDIT, DELETE, and here we have ADD_CART, so only particular block works. In this case, we have only one condition inside switch block and condition with ADD_CART will work. Inside this condition we call add_cart store method and pass quantity after which we can emitchange. So, this store will invoke and all components which are connected will notify.
+Now we can move to a header component. There is a component called CartIconOnTopBar, in componentDidMount.I have attached a Store listener, &#8216;checkOutStore.addListener(callback)&#8217; with a callback function, in this callback function, I again called stores getCart function to get latest items quantity.
+
+
+<pre class="lang:default decode:true " title="Component">class CartIconOnTopBar extends React.Component{
   constructor(){
     super()
     this.state = {
@@ -177,7 +223,6 @@ Now we can move to a header component. There is a component called CartIconOnTop
     })
   };
   openClassModal = () =&gt; {
-
   };
   render(){
     return(
@@ -189,9 +234,11 @@ Now we can move to a header component. There is a component called CartIconOnTop
         &lt;/li&gt;
     )
   }
-}</pre><p>When we click on button, it passes data to action and through dispatcher it reaches store and it invokes store and all components which connected to this store will notify and it run callback functions and then we can update our data’s.<br />
-In this application for a demonstration you can add as many actions and store. This is only a basics of flux, there are more in <a href="https://github.com/facebook/flux" target="_blank">flux</a>, also, flux has some alternatives like <a href="https://github.com/reactjs/redux" target="_blank">redux</a>.</p>
-<p>The post <a rel="nofollow" href="/react-with-flux/">Flux example Application with React JS</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+}</pre>
+
+
+When we click on button, it passes data to action and through dispatcher it reaches store and it invokes store and all components which connected to this store will notify and it run callback functions and then we can update our data’s.
+In this application for a demonstration you can add as many actions and store. This is only a basics of flux, there are more in <a href="https://github.com/facebook/flux" target="_blank" rel="noopener noreferrer">flux</a>, also, flux has some alternatives like <a href="https://github.com/reactjs/redux" target="_blank" rel="noopener noreferrer">redux</a>.]]&gt;		</p>
 ]]></content:encoded>
 							<wfw:commentRss>/react-with-flux/feed/</wfw:commentRss>
 		<slash:comments>1</slash:comments>
@@ -199,22 +246,31 @@ In this application for a demonstration you can add as many actions and store. T
 		<item>
 		<title>React Example Application</title>
 		<link>/react-example-application/</link>
-				<comments>/react-example-application/#respond</comments>
 				<pubDate>Fri, 29 Jan 2016 05:20:03 +0000</pubDate>
 		<dc:creator><![CDATA[sibin]]></dc:creator>
 				<category><![CDATA[Javascript]]></category>
 		<category><![CDATA[React JS]]></category>
 
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=135</guid>
-				<description><![CDATA[<p>This article is continuation of my React series, On the first article we went through react basics and some react syntax, now i want to demonstrate a sample application with es6 syntax. ES6 is the future of javascript, so we use ES6 in our projects. Complete code is available on github, you can use below&#8230;</p>
-<p>The post <a rel="nofollow" href="/react-example-application/">React Example Application</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
-]]></description>
-								<content:encoded><![CDATA[<p>This article is continuation of my <strong>React</strong> series, On the first article we went through react basics and some react syntax, now i want to demonstrate a sample application with es6 syntax. ES6 is the future of javascript, so we use ES6 in our projects. Complete code is available on github, you can use below links.</p>
-<h3><a href="https://github.com/sibinx7/react-with-rails" target="_blank">Example Application</a></h3>
+		<guid isPermaLink="false">https://redpanthers.co/?p=135</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[This article is continuation of my <strong>React</strong> series, On the first article we went through react basics and some react syntax, now i want to demonstrate a sample application with es6 syntax. ES6 is the future of javascript, so we use ES6 in our projects. Complete code is available on github, you can use below links.
+
+
+<h3><a href="https://github.com/sibinx7/react-with-rails" target="_blank" rel="noopener noreferrer">Example Application</a></h3>
+
+
+
+
 <h2>React &#8211; Rails Store Example Application</h2>
-<p>&nbsp;</p>
-<div id="attachment_182" style="width: 810px" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-182" class="wp-image-182 size-full" title="React Rails Tutorial" src="http://blog.redpanthers.co/wp-content/uploads/2016/01/react-store-optimized.jpg" alt="React Rails Tutorial" width="800" height="496" /><p id="caption-attachment-182" class="wp-caption-text">React Rails Store Application</p></div>
-<p>Before we start, we must familiarize with <strong>gulp</strong> and some <strong>gulp tasks</strong>. <strong><a href="http://gulpjs.com/" target="_blank">Gulp</a></strong> is a frontend tool to automate our tasks like sass/scss to css, coffeescript to javascript, minimization etc.. In this project we use <strong>babelify</strong>, it help us to write code in ES6, In ES6 mode, we can use <em>import statement</em>, <em>classes</em> in javascript, and <em>double arrow functions</em>.</p><pre class="crayon-plain-tag">var gulp = require('gulp')
+
+
+&nbsp;
+[caption id="attachment_182" align="aligncenter" width="800"]<img class="wp-image-182 size-full" title="React Rails Tutorial" src="https://redpanthers.co/wp-content/uploads/2016/01/react-store-optimized.jpg" alt="React Rails Tutorial" width="800" height="496" /> React Rails Store Application[/caption]
+Before we start, we must familiarize with <strong>gulp</strong> and some <strong>gulp tasks</strong>. <strong><a href="http://gulpjs.com/" target="_blank" rel="noopener noreferrer">Gulp</a></strong> is a frontend tool to automate our tasks like sass/scss to css, coffeescript to javascript, minimization etc.. In this project we use <strong>babelify</strong>, it help us to write code in ES6, In ES6 mode, we can use <em>import statement</em>, <em>classes</em> in javascript, and <em>double arrow functions</em>.
+
+
+<pre class="lang:js decode:true" title="gulpfile.js">var gulp = require('gulp')
 var fs = require("fs")
 var browserify = require("browserify")
 var babelify = require("babelify")
@@ -232,31 +288,35 @@ gulp.task("react",function(){
   .pipe(gulp.dest("./app/assets/javascripts"))
   .pipe(livereload())
 })
-
 gulp.task("watch",["react"],function(){
   livereload.listen({basePath:'public'})
   gulp.watch("./app/assets/javascripts/react/*/*.js",["react"])
 })
-gulp.task("default",["watch"])</pre><p></p>
-<blockquote><p>We use ES6, so we can use <code>class</code>, <code>import</code> and <code>=&gt;</code></p></blockquote>
-<p>Now we can start our code, It is actually a ruby on rails project. Our files are inside javascript/react folder, we use main.js file where we import all other javascript modules, which again convert to <em>bundle.js</em> then we included it on application.js file.</p>
-<p>Our main file is <em>main.js</em> , You can find code  which use to inject our React components to actual DOM, ReactDOM.render method used to put react component ( first argument) to a DOM element ( Second argument, which is a selector)</p><pre class="crayon-plain-tag">import React from 'react';
-import ReactDom from "react-dom";
+gulp.task("default",["watch"])</pre>
 
+
+
+
+<blockquote>We use ES6, so we can use `class`, `import` and `=&gt;`</blockquote>
+
+
+Now we can start our code, It is actually a ruby on rails project. Our files are inside javascript/react folder, we use main.js file where we import all other javascript modules, which again convert to <em>bundle.js</em> then we included it on application.js file.
+Our main file is <em>main.js</em> , You can find code  which use to inject our React components to actual DOM, ReactDOM.render method used to put react component ( first argument) to a DOM element ( Second argument, which is a selector)
+
+
+<pre class="lang:js decode:true ">import React from 'react';
+import ReactDom from "react-dom";
 import Sidebar from "./components/sidebar";
 import TopSearch from "./components/top-header";
 import ProductGallery from "./components/product/product-gallery";
 import Pagination from "./components/pagination";
-
 ReactDom.render( &lt;Sidebar /&gt;, document.getElementById('sidebar-elements'))
 ReactDom.render(&lt;TopSearch /&gt;, document.getElementById('top-search-bar'))
-
 /**
  * Some section are specific to some pages, so first check that those section are
  * available to current page , equalent to jquery `element.length`
  *
  */
-
 var productSectionElement = document.querySelectorAll('#product-section');
 if(productSectionElement.length &gt; 0){
   ReactDom.render(&lt;ProductGallery/&gt;, document.getElementById('product-section'))
@@ -264,9 +324,25 @@ if(productSectionElement.length &gt; 0){
 var paginationElement = document.querySelectorAll('#pagination');
 if(paginationElement.length &gt; 0){
   ReactDom.render(&lt;Pagination/&gt;, document.getElementById('pagination'))
-}</pre><p></p>
-<blockquote><p>With ES6 we can import modules</p></blockquote>
-<p><strong>ReactDom.render</strong> function used to push components to inside DOM elements, In this , Sidebar component pushed to an element with id &#8216;sidebar-element&#8217;. You can refer sidebar.html.erb ( which is a partial called in layout.erb and reside inside common folder under view)</p><pre class="crayon-plain-tag">&lt;div id="sidebar-elements"&gt;&lt;/div&gt;</pre><p>This sidebar component defined in component folder under react ( &#8216;react-with-rails/app/assets/javascripts/react&#8217;)</p><pre class="crayon-plain-tag">import React from "react";
+}
+</pre>
+
+
+
+
+<blockquote>With ES6 we can import modules</blockquote>
+
+
+<strong>ReactDom.render</strong> function used to push components to inside DOM elements, In this , Sidebar component pushed to an element with id &#8216;sidebar-element&#8217;. You can refer sidebar.html.erb ( which is a partial called in layout.erb and reside inside common folder under view)
+
+
+<pre class="lang:default decode:true ">&lt;div id="sidebar-elements"&gt;&lt;/div&gt;</pre>
+
+
+This sidebar component defined in component folder under react ( &#8216;react-with-rails/app/assets/javascripts/react&#8217;)
+
+
+<pre class="lang:js decode:true">import React from "react";
 import ATag from './html_components'
 class Sidebar extends React.Component{
   constructor(){
@@ -301,11 +377,20 @@ class SidebarLinks extends React.Component{
     )
   }
 }
+export default Sidebar;</pre>
 
-export default Sidebar;</pre><p>Above code is used to make Sidebar component, We can see that one Component called another Component ( <em>&lt;SidebarLinks/&gt;</em>) which also called another one ( <em>&lt;ATag/&gt;</em>). This is Parent &#8211; Child components, One Parent can call as many child elements. This is one advantage, We can make re usable components.</p>
-<p><strong>State</strong> and <strong>Props</strong> are two properties used to control a component, State is its own property, and Props is a property coming from its Parent Component. You can see Sidebar and Sidebar Links, also ATags, This Sidebar is parent and SidebarLinks are children, SidebarLinks also call a ATag which is another child element. You can see &#8216;name&#8217; in Sidebar Component, and this name variable can access using in child child components.</p>
-<blockquote><p>this.props.<em>variable_name</em></p></blockquote>
-<p>In addition to this we have <strong>Refs</strong>, Lets talk about <strong>Refs</strong></p><pre class="crayon-plain-tag">import React from "react";
+
+Above code is used to make Sidebar component, We can see that one Component called another Component ( <em>&lt;SidebarLinks/&gt;</em>) which also called another one ( <em>&lt;ATag/&gt;</em>). This is Parent &#8211; Child components, One Parent can call as many child elements. This is one advantage, We can make re usable components.
+<strong>State</strong> and <strong>Props</strong> are two properties used to control a component, State is its own property, and Props is a property coming from its Parent Component. You can see Sidebar and Sidebar Links, also ATags, This Sidebar is parent and SidebarLinks are children, SidebarLinks also call a ATag which is another child element. You can see &#8216;name&#8217; in Sidebar Component, and this name variable can access using in child child components.
+
+
+<blockquote>this.props.<em>variable_name</em></blockquote>
+
+
+In addition to this we have <strong>Refs</strong>, Lets talk about <strong>Refs</strong>
+
+
+<pre class="lang:js decode:true">import React from "react";
 import ReactDom,{Server} from "react-dom";
 class TopSearch extends React.Component{
  constructor(){
@@ -317,7 +402,6 @@ class TopSearch extends React.Component{
  searchText: "Search"
  }
  }
-
  searchInputChange = (e) =&gt; {
  this.myKeyword = this.refs.keyword.value;
  };
@@ -335,11 +419,9 @@ class TopSearch extends React.Component{
  this.setState({disabled: false,searchText:"Search"})
  this.unMountIt()
  },5000)
-
  };
  unMountIt = () =&gt; {
  setTimeout(()=&gt;{
-
  ReactDom.unmountComponentAtNode(document.getElementById('top-search-bar'))
  },3000)
  };
@@ -363,7 +445,6 @@ class CartIconOnTopBar extends React.Component{
  }
  }
  openClassModal = () =&gt; {
-
  };
  render(){
  return(
@@ -376,19 +457,47 @@ class CartIconOnTopBar extends React.Component{
  )
  }
 }
-export default TopSearch;</pre><p>Lets assume if we  have a search input box, we want to access it&#8217;s value, <em>what should we do? </em> We can use <strong>refs</strong> to solve this problem.  Above code has a search field<br />
-<code><br />
-</code></p><pre class="crayon-plain-tag">&lt;ul&gt;
+export default TopSearch;</pre>
+
+
+Lets assume if we  have a search input box, we want to access it&#8217;s value, <em>what should we do? </em> We can use <strong>refs</strong> to solve this problem.  Above code has a search field
+<code>
+</code>
+
+
+<pre class="lang:default decode:true">&lt;ul&gt;
 &lt;li&gt;&lt;input type="search" placeholder="Search" ref="keyword"/&gt;&lt;/li&gt;
 &lt;li&gt;&lt;button disabled="disabled" type="button"&gt;
 Search
 &lt;/button&gt;&lt;/li&gt;
-&lt;/ul&gt;</pre><p>You can see<strong> ref</strong> attributes, also you can see <em>this.refs.keyword</em> in <strong>searchInputChang</strong>e function,</p>
-<blockquote><p>this.refs.keyword.value</p></blockquote>
-<p>can used to get values form form elements, input, textarea etc.</p>
-<p><strong>State</strong> are its own properties, all state properties are used inside component, we can pass state values to its child elements using props.</p>
-<p>State can be initially set on constructor function</p><pre class="crayon-plain-tag">this.state = {stateName: value, stateName2: value2}</pre><p>We can change state values using</p><pre class="crayon-plain-tag">this.setState({stateName: valueChanged})</pre><p>It can be called in all custom functions and most of the react component life cycle functions ( You can&#8217;t set states in <em>componentWillUpdate</em> method. For every changes react will re render component.</p>
-<p>Now we can moved to <strong>Life Cycle method</strong>, React have many life cycles</p><pre class="crayon-plain-tag">constructor(){
+&lt;/ul&gt;</pre>
+
+
+You can see<strong> ref</strong> attributes, also you can see <em>this.refs.keyword</em> in <strong>searchInputChang</strong>e function,
+
+
+<blockquote>this.refs.keyword.value</blockquote>
+
+
+can used to get values form form elements, input, textarea etc.
+<strong>State</strong> are its own properties, all state properties are used inside component, we can pass state values to its child elements using props.
+State can be initially set on constructor function
+
+
+<pre class="lang:default decode:true ">this.state = {stateName: value, stateName2: value2}</pre>
+
+
+We can change state values using
+
+
+<pre class="lang:default decode:true">this.setState({stateName: valueChanged})</pre>
+
+
+It can be called in all custom functions and most of the react component life cycle functions ( You can&#8217;t set states in <em>componentWillUpdate</em> method. For every changes react will re render component.
+Now we can moved to <strong>Life Cycle method</strong>, React have many life cycles
+
+
+<pre class="lang:default decode:true">constructor(){
 // First to load
 console.log("Initialization")
 }
@@ -418,51 +527,66 @@ console.log("Component Did Update")
 componentWillUnmount(){
 //Last state, it invoke after removal
 console.log("Component Will Unmount")
-}</pre><p><strong>constructor</strong> &#8211; Initial life cycle method, which invoke when an component called, we can set states in this method</p>
-<p><strong>componentWillMount</strong> : called before it render</p>
-<p><strong>componentDidMount</strong>: called just after react element put all elements to real DOM, we can use this function to set some states, which cause re render</p>
-<p><strong>componentWillRecieveProps</strong>: It can when props changed in parent components, it have an argumenet, nextProps</p>
-<p><strong>shouldComponentUpdate</strong>: We can use return true to update element or false to prevent re-render, this has two argument oldProps, and newProps, we can check both and decide whether we want re-render or not</p>
-<p><strong>componentWillUpdate</strong>, <strong>componentDidUpdate</strong> : Similar to WillMount and DidMount, but this won&#8217;t call during initial rendering, it call when state or props change.</p>
-<p><strong>componentWillUnmount</strong>: It can when we remove element</p>
-<blockquote><p><span class="pl-smi">ReactDom</span>.<span class="pl-en">unmountComponentAtNode</span>(<span class="pl-smi">document</span>.<span class="pl-c1">getElementById</span>(<span class="pl-s"><span class="pl-pds">&#8216;</span>top-search-bar<span class="pl-pds">&#8216;</span></span>))</p></blockquote>
-<p>We can use above code to remove any react elements from Virtual DOM.</p>
-<p>I hope this will give a brief introduction to React JS, We will add more features as soon as possible, In our Next tutorial we will feature <strong>Flux</strong> architecture</p>
-<p>The post <a rel="nofollow" href="/react-example-application/">React Example Application</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+}</pre>
+
+
+<strong>constructor</strong> &#8211; Initial life cycle method, which invoke when an component called, we can set states in this method
+<strong>componentWillMount</strong> : called before it render
+<strong>componentDidMount</strong>: called just after react element put all elements to real DOM, we can use this function to set some states, which cause re render
+<strong>componentWillRecieveProps</strong>: It can when props changed in parent components, it have an argumenet, nextProps
+<strong>shouldComponentUpdate</strong>: We can use return true to update element or false to prevent re-render, this has two argument oldProps, and newProps, we can check both and decide whether we want re-render or not
+<strong>componentWillUpdate</strong>, <strong>componentDidUpdate</strong> : Similar to WillMount and DidMount, but this won&#8217;t call during initial rendering, it call when state or props change.
+<strong>componentWillUnmount</strong>: It can when we remove element
+
+
+<blockquote><span class="pl-smi">ReactDom</span>.<span class="pl-en">unmountComponentAtNode</span>(<span class="pl-smi">document</span>.<span class="pl-c1">getElementById</span>(<span class="pl-s"><span class="pl-pds">&#8216;</span>top-search-bar<span class="pl-pds">&#8216;</span></span>))</blockquote>
+
+
+We can use above code to remove any react elements from Virtual DOM.
+I hope this will give a brief introduction to React JS, We will add more features as soon as possible, In our Next tutorial we will feature <strong>Flux</strong> architecture]]&gt;		</p>
 ]]></content:encoded>
-							<wfw:commentRss>/react-example-application/feed/</wfw:commentRss>
-		<slash:comments>0</slash:comments>
-							</item>
+										</item>
 		<item>
 		<title>3 Most useful Jquery Slider/Carousel plugins</title>
 		<link>/3-useful-jquery-slidercarousel-plugins/</link>
-				<comments>/3-useful-jquery-slidercarousel-plugins/#respond</comments>
 				<pubDate>Wed, 30 Dec 2015 00:22:32 +0000</pubDate>
 		<dc:creator><![CDATA[sibin]]></dc:creator>
 				<category><![CDATA[Javascript]]></category>
 		<category><![CDATA[Carousels]]></category>
 		<category><![CDATA[Sliders]]></category>
 
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=73</guid>
-				<description><![CDATA[<p>Why should we we use Javascript in our application?, HTML and CSS is enough to make websites. In this article i like to familiarize 3 jquery slider plugins. Why should i use Javascript, In my view Javascript is a beautiful client side language to manipulate DOM in different ways, which is merely impossible using our CSS.&#8230;</p>
-<p>The post <a rel="nofollow" href="/3-useful-jquery-slidercarousel-plugins/">3 Most useful Jquery Slider/Carousel plugins</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
-]]></description>
-								<content:encoded><![CDATA[<p>Why should we we use Javascript in our application?, HTML and CSS is enough to make websites. In this article i like to familiarize 3 jquery slider plugins. Why should i use Javascript, In my view Javascript is a beautiful client side language to manipulate DOM in different ways, which is merely impossible using our CSS. Lets assume i have 20 images in my website, I can either show this all 20 as thumbnails, but how can i show its in big resolution or i can show all images in its maximum resolution but this will increase page length. We can use jQuery sliders to solve this problem, We will have navigation buttons or thumbnails to see different images without consuming too much space.</p>
-<p>I have used many slider/carousel plugins, 3 of them are best for me, they are free and easy to use.</p>
-<p><strong>1) Slick Slider</strong></p>
-<p>Most popular and free  jQuery slider with lots of functions and callbacks. This will be the first choice for all frontend developers when they need some slider functions.</p>
-<div id="attachment_74" style="width: 650px" class="wp-caption aligncenter"><a href="http://blog.redpanthers.co/wp-content/uploads/2015/08/slick-carousel.png"><img aria-describedby="caption-attachment-74" class="wp-image-74" src="http://blog.redpanthers.co/wp-content/uploads/2015/08/slick-carousel-1024x510.png" alt="Slick Slider" width="640" height="319" /></a><p id="caption-attachment-74" class="wp-caption-text">Slick Carousel &#8211; most used jquery slider plugin</p></div>
-<p>There are many new features to make slick as first choice for developers, slick support both <strong>vertical</strong> and <strong>horizontal</strong> sliders, it is very useful for some image gallery websites.</p>
-<p>If you want a slider which add new images in some particular period, using  ajax or any other api calls, slick can handle it. I have work with a fashion website where new images are added from some live source. Slick have function to add new images, so it is a better option if you need some live updates.</p>
-<p>Slick has another feature called &#8216;<strong>filter</strong>&#8216;, we can filter out images based on some criteria, for example one of our client has a fashion website, after live show, they filter out there images to winners, runner up, best shots etc&#8230; so in each categories there will be many images, for example there will be more that one winner or there will more photos for winners, slick can filter our and show only images from this category, we can click other tabs/buttons to show other categories or we can show all images.<br />
-<strong>Responsiveness</strong> is very important for websites, Responsiveness it should be adapt all devises and work with mobile and tablets. Slick solve these issues because slick support responsiveness, it has some build in option for responsive layout, we an choose breakpoints, and how many slides should visible in each breakpoints/ resolution</p>
+		<guid isPermaLink="false">https://redpanthers.co/?p=73</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[Why should we we use Javascript in our application?, HTML and CSS is enough to make websites. In this article i like to familiarize 3 jquery slider plugins. Why should i use Javascript, In my view Javascript is a beautiful client side language to manipulate DOM in different ways, which is merely impossible using our CSS. Lets assume i have 20 images in my website, I can either show this all 20 as thumbnails, but how can i show its in big resolution or i can show all images in its maximum resolution but this will increase page length. We can use jQuery sliders to solve this problem, We will have navigation buttons or thumbnails to see different images without consuming too much space.
+I have used many slider/carousel plugins, 3 of them are best for me, they are free and easy to use.
+<strong>1) Slick Slider</strong>
+Most popular and free  jQuery slider with lots of functions and callbacks. This will be the first choice for all frontend developers when they need some slider functions.
+[caption id="attachment_74" align="aligncenter" width="640"]<a href="https://redpanthers.co/wp-content/uploads/2015/08/slick-carousel.png"><img class="wp-image-74" src="https://redpanthers.co/wp-content/uploads/2015/08/slick-carousel-1024x510.png" alt="Slick Slider" width="640" height="319" /></a> Slick Carousel &#8211; most used jquery slider plugin[/caption]
+There are many new features to make slick as first choice for developers, slick support both <strong>vertical</strong> and <strong>horizontal</strong> sliders, it is very useful for some image gallery websites.
+If you want a slider which add new images in some particular period, using  ajax or any other api calls, slick can handle it. I have work with a fashion website where new images are added from some live source. Slick have function to add new images, so it is a better option if you need some live updates.
+Slick has another feature called &#8216;<strong>filter</strong>&#8216;, we can filter out images based on some criteria, for example one of our client has a fashion website, after live show, they filter out there images to winners, runner up, best shots etc&#8230; so in each categories there will be many images, for example there will be more that one winner or there will more photos for winners, slick can filter our and show only images from this category, we can click other tabs/buttons to show other categories or we can show all images.
+<strong>Responsiveness</strong> is very important for websites, Responsiveness it should be adapt all devises and work with mobile and tablets. Slick solve these issues because slick support responsiveness, it has some build in option for responsive layout, we an choose breakpoints, and how many slides should visible in each breakpoints/ resolution
+
+
 <h4>How to use Slick in our website</h4>
-<p>Download slick minified version from <a href="http://kenwheeler.github.io/slick/" target="_blank">slick.com </a></p>
-<p>Include  plugin</p><pre class="crayon-plain-tag">//CSS
+
+
+Download slick minified version from <a href="http://kenwheeler.github.io/slick/" target="_blank" rel="noopener noreferrer">slick.com </a>
+Include  plugin
+
+
+<pre class="lang:default decode:true">//CSS
 &lt;link rel="stylesheet" href="css/slick.min.css"/&gt;
 &lt;link rel="stylesheet" href="css/slick-theme.min.css"/&gt;
 // Javascript
-&lt;script type="text/javascript" src = "js/slick-min.js"&gt;&lt;/script&gt;</pre><p>Create a list of images</p><pre class="crayon-plain-tag">&lt;div class="image-wrapper" id="my-image-slider"&gt;
+&lt;script type="text/javascript" src = "js/slick-min.js"&gt;&lt;/script&gt;</pre>
+
+
+Create a list of images
+
+
+<pre class="lang:default decode:true">&lt;div class="image-wrapper" id="my-image-slider"&gt;
 &lt;div class="each-image"&gt;
 &lt;img src="image/image-one.html alt="Image One"/&gt;
 &lt;/div&gt;
@@ -472,9 +596,24 @@ console.log("Component Will Unmount")
 &lt;div class="each-image"&gt;
 &lt;img src="image/image-one.html alt="Image One"/&gt;
 &lt;/div&gt;
-&lt;/div&gt;</pre><p>Initialize slick</p><pre class="crayon-plain-tag">&lt;script type="text/javascript"&gt; $(window).load(function(){ $('#my-image-slider').slick({ // options }) }) &lt;/script&gt;</pre><p>&nbsp;</p>
+&lt;/div&gt;</pre>
+
+
+Initialize slick
+
+
+<pre class="lang:default decode:true ">&lt;script type="text/javascript"&gt; $(window).load(function(){ $('#my-image-slider').slick({ // options }) }) &lt;/script&gt;</pre>
+
+
+&nbsp;
+
+
 <h4>Responsiveness in slick</h4>
-<p></p><pre class="crayon-plain-tag">$('#my-image-slide').slick({
+
+
+
+
+<pre class="lang:js decode:true ">$('#my-image-slide').slick({
   responsive: [
     { //
       breakpoint: 1024,
@@ -507,13 +646,20 @@ console.log("Component Will Unmount")
       }
     }
   ]
-});</pre><p>&nbsp;</p>
-<p><strong>2) Owl Carousel</strong><br />
-Owl carousel have 2 versions, v1 and v2,  v2 is in beta state but we can download it, they may add new features in final version or they may remove any features in final version. Try to update code when they release  final version .</p>
-<p>Owl Carousel second in my list, it has some unique features those are not in Slick carousel, We can easily create progress bars in owl carousel using their callback functions. We can show a bar loading from 0 to 100%, after than new image will display. This can achieve easily. Another feature is it support <a href="https://daneden.github.io/animate.css/">animation.css</a>,  we can use all animations, instead of slide and fade.</p>
-<div id="attachment_75" style="width: 650px" class="wp-caption aligncenter"><a href="http://blog.redpanthers.co/wp-content/uploads/2015/08/owl-carousel.png"><img aria-describedby="caption-attachment-75" class="wp-image-75" src="http://blog.redpanthers.co/wp-content/uploads/2015/08/owl-carousel-1024x510.png" alt="Owl Carousel " width="640" height="319" /></a><p id="caption-attachment-75" class="wp-caption-text">Owl Carousel</p></div>
-<p>Like slick, owl carousel also support responsiveness, we can use break points to specify different screen resolutions.Owl carousel has some unique features, one is url hash navigation, URLhashListener option is listening for url hash change and is looking for slide with the same data name. Some time it is very useful.<br />
-owl carousel website.</p><pre class="crayon-plain-tag">$('#my-image-slider').owlCarousel({
+});
+</pre>
+
+
+&nbsp;
+<strong>2) Owl Carousel</strong>
+Owl carousel have 2 versions, v1 and v2,  v2 is in beta state but we can download it, they may add new features in final version or they may remove any features in final version. Try to update code when they release  final version .
+Owl Carousel second in my list, it has some unique features those are not in Slick carousel, We can easily create progress bars in owl carousel using their callback functions. We can show a bar loading from 0 to 100%, after than new image will display. This can achieve easily. Another feature is it support <a href="https://daneden.github.io/animate.css/">animation.css</a>,  we can use all animations, instead of slide and fade.
+[caption id="attachment_75" align="aligncenter" width="640"]<a href="https://redpanthers.co/wp-content/uploads/2015/08/owl-carousel.png"><img class="wp-image-75" src="https://redpanthers.co/wp-content/uploads/2015/08/owl-carousel-1024x510.png" alt="Owl Carousel " width="640" height="319" /></a> Owl Carousel[/caption]
+Like slick, owl carousel also support responsiveness, we can use break points to specify different screen resolutions.Owl carousel has some unique features, one is url hash navigation, URLhashListener option is listening for url hash change and is looking for slide with the same data name. Some time it is very useful.
+owl carousel website.
+
+
+<pre class="lang:default decode:true ">$('#my-image-slider').owlCarousel({
  responsive : {
     // breakpoint from 0 up
     0 : {
@@ -534,61 +680,113 @@ owl carousel website.</p><pre class="crayon-plain-tag">$('#my-image-slider').owl
         ...
     }
   }
-})</pre><p><strong>3) bxSlider</strong><br />
-bxSlider is another slider we use offenly. It is a simple slider with less features compare to slick and owl carousel. We can create synscronize sliders with bxSlider functions and events. Same logic can also use in Owl carousel. bxSlider also support vertical slider but it has some issues when number of images is below some specific point under some condition. So ensure number of slides before we use bxSlider. For Examle, consider If we have only 2-3 images in some pages and more than 10 images in another pages. And we make a vertical container that can hold more than 5 images, We have 2-3 images on some pages and more images in another pages, so first case we will have free spaces and if we enabled looping it will show some unexpected behaviour, but if we have more images that our visible part, it won’t create any problem.</p>
-<p><strong>Features</strong></p>
+})</pre>
+
+
+<strong>3) bxSlider</strong>
+bxSlider is another slider we use offenly. It is a simple slider with less features compare to slick and owl carousel. We can create synscronize sliders with bxSlider functions and events. Same logic can also use in Owl carousel. bxSlider also support vertical slider but it has some issues when number of images is below some specific point under some condition. So ensure number of slides before we use bxSlider. For Examle, consider If we have only 2-3 images in some pages and more than 10 images in another pages. And we make a vertical container that can hold more than 5 images, We have 2-3 images on some pages and more images in another pages, so first case we will have free spaces and if we enabled looping it will show some unexpected behaviour, but if we have more images that our visible part, it won’t create any problem.
+<strong>Features</strong>
+
+
 <ul>
+	
+
 <li>Vertical and Horizontal thumbnails</li>
+
+
+	
+
 <li>Pager and navigation icons</li>
+
+
+	
+
 <li>Responsive</li>
+
+
+	
+
 <li>Adaptive height and Adpative height speed</li>
+
+
+	
+
 <li>Callback events and methods</li>
+
+
+	
+
 <li>Ticker</li>
+
+
+	
+
 <li>Captions can include along with images</li>
+
+
+	
+
 <li>CSS transitions</li>
+
+
+	
+
 <li>Many inbuilt transition effect for sliders</li>
+
+
 </ul>
-<p></p><pre class="crayon-plain-tag">$(document).ready(function(){
+
+
+
+
+<pre class="lang:default decode:true ">$(document).ready(function(){
   $('#my-image-slider').bxSlider({
    // options
   });
-});</pre><p>&nbsp;</p>
-<p>Website : <a href="http://bxslider.com/" target="_blank">bxSlider</a></p>
-<p>&nbsp;</p>
-<p>The post <a rel="nofollow" href="/3-useful-jquery-slidercarousel-plugins/">3 Most useful Jquery Slider/Carousel plugins</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+});</pre>
+
+
+&nbsp;
+Website : <a href="http://bxslider.com/" target="_blank" rel="noopener noreferrer">bxSlider</a>
+&nbsp;]]&gt;		</p>
 ]]></content:encoded>
-							<wfw:commentRss>/3-useful-jquery-slidercarousel-plugins/feed/</wfw:commentRss>
-		<slash:comments>0</slash:comments>
-							</item>
+										</item>
 		<item>
 		<title>React JS for modern web applications</title>
 		<link>/react-js-for-modern-web-applications/</link>
-				<comments>/react-js-for-modern-web-applications/#respond</comments>
 				<pubDate>Wed, 22 Jul 2015 04:20:03 +0000</pubDate>
 		<dc:creator><![CDATA[sibin]]></dc:creator>
 				<category><![CDATA[Javascript]]></category>
 		<category><![CDATA[ReactJS]]></category>
 
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=58</guid>
-				<description><![CDATA[<p>React JS is a JavaScript Framework which indent to make large, single page scalable applications. It is not like Angular or backbone or other JavaScript framework. React JS is only deals with view and not with model and controller. React JS is also compatible with backbone, so we can use backbone, React JS combination to&#8230;</p>
-<p>The post <a rel="nofollow" href="/react-js-for-modern-web-applications/">React JS for modern web applications</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
-]]></description>
-								<content:encoded><![CDATA[<p>React JS is a JavaScript Framework which indent to make large, single page scalable applications. It is not like Angular or backbone or other JavaScript framework. React JS is only deals with view and not with model and controller. React JS is also compatible with backbone, so we can use backbone, React JS combination to get full MVC framework. React is intended to help developers build large applications that use data that change over time. Its goal is to be simple, declarative and composable.</p>
-<p><strong>Why React JS</strong></p>
-<p>Before answering this question, I want to tell its history, this will give slight idea &#8216;Why React”, React JS is created by Facebook, it is an open source project maintained by Facebook and 100+ other contributors. React JS is used in Facebook and popular photo sharing website Instagram. React JS is a User Interface library.</p>
-<p>React use Virtual DOM instead of Real DOM, This help us to create more Fast and Scalable web applications. One of the main attractions is, React JS is reusable components, HTML elements are reusable components in React, and we can use same for other places. Another features are high speed Virtual DOM, Browser independent etc. Latest React JS is 0.014 beta which does not require separate JSX file, we can directly write JSX in scripts, but it will be good if we convert this to real JS in production environment (We can reduce browser load)</p>
-<p>React JS supports different states, we can easily bind our vanila JS events to React, like onClick, Hover, etc.</p>
-<p>We can download React JS file from Github, it is free and open source</p>
-<p>Download Link React : <a href="http://facebook.github.io/react/index.html">http://facebook.github.io/react/index.html</a></p>
-<p>Example React JS</p>
-<p>It is better to look on some examples</p>
-<p>React use render method to get input and it return what to display</p>
-<p>Example</p><pre class="crayon-plain-tag">var HelloWorld = React.createClass({
+		<guid isPermaLink="false">https://redpanthers.co/?p=58</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[React JS is a JavaScript Framework which indent to make large, single page scalable applications. It is not like Angular or backbone or other JavaScript framework. React JS is only deals with view and not with model and controller. React JS is also compatible with backbone, so we can use backbone, React JS combination to get full MVC framework. React is intended to help developers build large applications that use data that change over time. Its goal is to be simple, declarative and composable.
+<strong>Why React JS</strong>
+Before answering this question, I want to tell its history, this will give slight idea &#8216;Why React”, React JS is created by Facebook, it is an open source project maintained by Facebook and 100+ other contributors. React JS is used in Facebook and popular photo sharing website Instagram. React JS is a User Interface library.
+React use Virtual DOM instead of Real DOM, This help us to create more Fast and Scalable web applications. One of the main attractions is, React JS is reusable components, HTML elements are reusable components in React, and we can use same for other places. Another features are high speed Virtual DOM, Browser independent etc. Latest React JS is 0.014 beta which does not require separate JSX file, we can directly write JSX in scripts, but it will be good if we convert this to real JS in production environment (We can reduce browser load)
+React JS supports different states, we can easily bind our vanila JS events to React, like onClick, Hover, etc.
+We can download React JS file from Github, it is free and open source
+Download Link React : <a href="http://facebook.github.io/react/index.html">http://facebook.github.io/react/index.html</a>
+Example React JS
+It is better to look on some examples
+React use render method to get input and it return what to display
+Example
+
+
+<pre title="React Example" class="theme:neon lang:js decode:true">var HelloWorld = React.createClass({
 render : function(){
 return &lt;div&gt; Hello World &lt;/div&gt;
 }
-})</pre><p>&nbsp;</p>
-<p>This has one drawback, it only return one node, if we want to multiple item we need to wrap it by another element, for example</p><pre class="crayon-plain-tag">var HelloWorldReturnmany = React.createClass({
+})</pre>
+
+
+&nbsp;
+This has one drawback, it only return one node, if we want to multiple item we need to wrap it by another element, for example
+
+
+<pre class="theme:neon lang:default decode:true ">var HelloWorldReturnmany = React.createClass({
 render: function(){
 return &lt;div&gt;
 &lt;section&gt;&lt;/section&gt;
@@ -596,42 +794,53 @@ return &lt;div&gt;
 &lt;section&gt;&lt;/section&gt;
 &lt;/div&gt;
 }
-})</pre><p>&nbsp;</p>
-<p>In this example we return 3 sections which has an outer div element.</p>
-<p>We use React.render() method to display it on web page, which require two parameter( We can pass third parameter but it is optional), first one is react component which created by React.createClass, then where to display</p>
-<p>Example</p>
-<p>I have a HTML page</p><pre class="crayon-plain-tag">&lt;html&gt;
+})</pre>
+
+
+&nbsp;
+In this example we return 3 sections which has an outer div element.
+We use React.render() method to display it on web page, which require two parameter( We can pass third parameter but it is optional), first one is react component which created by React.createClass, then where to display
+Example
+I have a HTML page
+
+
+<pre class="theme:neon lang:default decode:true">&lt;html&gt;
 &lt;head&gt;
 &lt;title&gt; React JS : Example &lt;/title&gt;
 &lt;/head&gt;
 &lt;body&gt;
 &lt;div id=”home”&gt;&lt;/div&gt;
-
 &lt;/body&gt;
-&lt;/html&gt;</pre><p>&nbsp;</p>
-<p>I want to display my Hello world output inside div with id home</p>
-<p>React.render(&lt;HelloWorld/&gt;,document.getElementById(&#8216;home&#8217;)), if we want to display it on body, we need replace &#8216;document.getElementById(&#8216;home&#8217;)&#8217; by &#8216;document.body&#8217;.<br />
-React JS also support states, every instant have states. We can set state using setState method. so we can handle states changes and we can perform different actions, some of the default states are</p>
-<p>getInitialState = It is the first state when we load a website, we can see contents in this function when we load a page, like default values at the begining.</p>
-<p>getDefaultProps is another state. There are many states available in React.</p>
-<p>Mixins : Array of object used to extend functionality.<br />
-Life Cycle : Life cycle is another important and usable feature on react js. We can run specific javascript functions during these life cycles.</p>
-<p>componentWillMount: which invoke before component mount/ display on page<br />
-componentDidMount: which invoke just after it display/mount on page<br />
-componentWillUnmount: which invoke when we delete one component or similar actions.<br />
-ShouldComponentUpdate: return value determine whether component should update.</p>
-<p>You can refer this page for more stated and lifecycles</p>
-<p>http://facebook.github.io/react/docs/component-specs.html</p>
-<p>Props: It is one of the term we used to use in react applications. Simply it is use to deal with attributes.</p>
-<p>Let’s look on an example; here is my react js component &lt;HelloWorld&gt;<br />
-I have one attribute called name, year or anything, then it become<br />
-&lt;HelloWorld name=”hello” year=”2015”/&gt;, in jquery we can use<br />
-$(&#8216;elementSelector&#8217;).attr(&#8216;name&#8217;) same we use props in react js<br />
-We can use this.props.name to get name and this.props.year to get year, this will be very useful when we deals with real time applications.<br />
-Bottom line: React JS is a beautiful JavaScript framework which focus on User interface as reusable components, It can also use to make iOS, Android and Windows phone applications. It is not a full MVC framework like Angular or bootstrap. It just likes partials in PHP, Ruby on Rails etc.</p>
-<p>It is more close to UI/UX, Frontend development. 0.14 beta is the latest ReactJS version, It is not yet reach to version 1, It will add more features in future. It is a good to learn JavaScript language.</p>
-<p>Unidirectional Data flow</p>
-<p>React support unidirectional dataflow, it happening via state and props. We can use parent’s attributes in children’s also. We can pass values to child elements.</p><pre class="crayon-plain-tag">render: function(){
+&lt;/html&gt;</pre>
+
+
+&nbsp;
+I want to display my Hello world output inside div with id home
+React.render(&lt;HelloWorld/&gt;,document.getElementById(&#8216;home&#8217;)), if we want to display it on body, we need replace &#8216;document.getElementById(&#8216;home&#8217;)&#8217; by &#8216;document.body&#8217;.
+React JS also support states, every instant have states. We can set state using setState method. so we can handle states changes and we can perform different actions, some of the default states are
+getInitialState = It is the first state when we load a website, we can see contents in this function when we load a page, like default values at the begining.
+getDefaultProps is another state. There are many states available in React.
+Mixins : Array of object used to extend functionality.
+Life Cycle : Life cycle is another important and usable feature on react js. We can run specific javascript functions during these life cycles.
+componentWillMount: which invoke before component mount/ display on page
+componentDidMount: which invoke just after it display/mount on page
+componentWillUnmount: which invoke when we delete one component or similar actions.
+ShouldComponentUpdate: return value determine whether component should update.
+You can refer this page for more stated and lifecycles
+http://facebook.github.io/react/docs/component-specs.html
+Props: It is one of the term we used to use in react applications. Simply it is use to deal with attributes.
+Let’s look on an example; here is my react js component &lt;HelloWorld&gt;
+I have one attribute called name, year or anything, then it become
+&lt;HelloWorld name=”hello” year=”2015”/&gt;, in jquery we can use
+$(&#8216;elementSelector&#8217;).attr(&#8216;name&#8217;) same we use props in react js
+We can use this.props.name to get name and this.props.year to get year, this will be very useful when we deals with real time applications.
+Bottom line: React JS is a beautiful JavaScript framework which focus on User interface as reusable components, It can also use to make iOS, Android and Windows phone applications. It is not a full MVC framework like Angular or bootstrap. It just likes partials in PHP, Ruby on Rails etc.
+It is more close to UI/UX, Frontend development. 0.14 beta is the latest ReactJS version, It is not yet reach to version 1, It will add more features in future. It is a good to learn JavaScript language.
+Unidirectional Data flow
+React support unidirectional dataflow, it happening via state and props. We can use parent’s attributes in children’s also. We can pass values to child elements.
+
+
+<pre class="theme:neon lang:js decode:true">render: function(){
 return (
 &lt;div className="filter-list"&gt;
 &lt;select name=""&gt;
@@ -639,17 +848,17 @@ return (
 &lt;/select&gt;
 &lt;List items={this.state.items}/&gt;
 &lt;/div&gt;
-);</pre><p>List is a child element, and we pass items to child element, we can render it on child element also we can control child element state from parent.</p>
-<p>React&#8217;s site provides all the information you need to setup a project and begin coding.</p>
-<p>&nbsp;</p>
-<p><strong>Bottom line</strong> : React JS is a beautiful javascript framework which focus on User inteface as reusble components, It can also use to make iOS, Android and Windows phone applicatiions. It is not a full MVC framework like Angular or bootstrap. It just like partials in PHP, Ruby On Rails etc.We can use other popular javascript frameworks with React.</p>
-<p>It is more close to UI/UX, Frontend development. 0.14 beta is the latest ReactJS version, It is not yet reach to version 1, It will add more features in future. It is a good to learn Javascript Framework.</p>
-<p>&nbsp;</p>
-<p>We will update this post with more example.</p>
-<p>The post <a rel="nofollow" href="/react-js-for-modern-web-applications/">React JS for modern web applications</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+);</pre>
+
+
+List is a child element, and we pass items to child element, we can render it on child element also we can control child element state from parent.
+React&#8217;s site provides all the information you need to setup a project and begin coding.
+&nbsp;
+<strong>Bottom line</strong> : React JS is a beautiful javascript framework which focus on User inteface as reusble components, It can also use to make iOS, Android and Windows phone applicatiions. It is not a full MVC framework like Angular or bootstrap. It just like partials in PHP, Ruby On Rails etc.We can use other popular javascript frameworks with React.
+It is more close to UI/UX, Frontend development. 0.14 beta is the latest ReactJS version, It is not yet reach to version 1, It will add more features in future. It is a good to learn Javascript Framework.
+&nbsp;
+We will update this post with more example.]]&gt;		</p>
 ]]></content:encoded>
-							<wfw:commentRss>/react-js-for-modern-web-applications/feed/</wfw:commentRss>
-		<slash:comments>0</slash:comments>
-							</item>
+										</item>
 	</channel>
 </rss>

@@ -1,0 +1,842 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>gem &#8211; beta.redpanthers.co</title>
+	<atom:link href="/tag/gem/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description>Red Panthers - Experts in Ruby on Rails, System Design and Vue.js</description>
+	<lastBuildDate>Wed, 28 Jun 2017 12:07:19 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.7</generator>
+	<item>
+		<title>Readability of text using odyssey</title>
+		<link>/odyssey-in-rails/</link>
+				<comments>/odyssey-in-rails/#comments</comments>
+				<pubDate>Wed, 28 Jun 2017 12:07:19 +0000</pubDate>
+		<dc:creator><![CDATA[rajana]]></dc:creator>
+				<category><![CDATA[Ruby]]></category>
+		<category><![CDATA[Algorithm]]></category>
+		<category><![CDATA[analysis]]></category>
+		<category><![CDATA[gem]]></category>
+		<category><![CDATA[natural language]]></category>
+		<category><![CDATA[odyssey]]></category>
+		<category><![CDATA[redability]]></category>
+		<category><![CDATA[smart]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=2738</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[When you are writing something like article, text, document etc you are focusing on readability. If you are not then you should. As readability influence how a reader can read and understand the content, how you are presenting the content etc. It would also influence how much likely one is to share your article as well. To find the readability there are a lot of statistical tests. Few are listed below.
+
+
+<ul>
+ 	
+
+<li>Flesch-Kincaid readability test</li>
+
+
+ 	
+
+<li>
+
+
+<p class="push-top">Flesch Kincaid Grade Level</p>
+
+
+</li>
+
+
+ 	
+
+<li>
+
+
+<p class="push-top">Gunning Fog Score</p>
+
+
+</li>
+
+
+ 	
+
+<li>
+
+
+<p class="push-top">SMOG</p>
+
+
+</li>
+
+
+ 	
+
+<li>
+
+
+<p class="push-top">Coleman Liau Index</p>
+
+
+</li>
+
+
+ 	
+
+<li>
+
+
+<p class="push-top">Automated Readability Index (ARI)</p>
+
+
+</li>
+
+
+</ul>
+
+
+Recently in a project that we worked on we were asked to find the readability of various pages of a website. We decided to start with Flesch-Kincaid test, as we found this to be a popular one in our research.
+<strong>Flesch-Kincaid readability test</strong> is designed to indicate how difficult a passage in English is to understand. In this test higher score indicates how easier to read and a lower score indicates how difficult it is to read.The formula to find Flesch-Kincaid reading-ease score is
+206.835 &#8211; 1.015 * (total words / total sentences) &#8211; 84.6 * (total syllables / total words)
+The scores can be interrupted as
+
+
+<table border="2px">
+
+
+<tbody>
+
+
+<tr>
+
+
+<th>Score</th>
+
+
+
+
+<th>School Level</th>
+
+
+
+
+<th>Notes</th>
+
+
+</tr>
+
+
+
+
+<tr>
+
+
+<th>100.00-90.00</th>
+
+
+
+
+<th>5th grade</th>
+
+
+
+
+<th>Very easy to read.</th>
+
+
+</tr>
+
+
+
+
+<tr>
+
+
+<th>90.00-80.00</th>
+
+
+
+
+<th>6th grade</th>
+
+
+
+
+<th>Easy to read.</th>
+
+
+</tr>
+
+
+
+
+<tr>
+
+
+<th>80.00-70.00</th>
+
+
+
+
+<th>7th grade</th>
+
+
+
+
+<th>Fairly easy to read.</th>
+
+
+</tr>
+
+
+
+
+<tr>
+
+
+<th>70.00-60.00</th>
+
+
+
+
+<th>8th &amp; 9th grade</th>
+
+
+
+
+<th>Plain English.</th>
+
+
+</tr>
+
+
+
+
+<tr>
+
+
+<th>60.00-50.00</th>
+
+
+
+
+<th>10th to 12th grade</th>
+
+
+
+
+<th>Fairly difficult to read.</th>
+
+
+</tr>
+
+
+
+
+<tr>
+
+
+<th>50.00-30.00</th>
+
+
+
+
+<th>College</th>
+
+
+
+
+<th>Difficult to read.</th>
+
+
+</tr>
+
+
+
+
+<tr>
+
+
+<th>30.00-0.00</th>
+
+
+
+
+<th>College Graduate</th>
+
+
+
+
+<th>Very difficult to read.</th>
+
+
+</tr>
+
+
+</tbody>
+
+
+</table>
+
+
+&nbsp;
+&nbsp;
+Since we were not experts we wanted the ability to tweak and play around with it. We found an already build gem called <strong>Odyssey </strong>which had all these various tests and also provided the ability to extend this feature as well. So here in this article, we will discuss how to use Odyssey gem to find readability of an article and a web page.
+<code></code>
+
+
+<h2>Install Odyssey</h2>
+
+
+Add in your Gemfile.
+
+
+<pre class="lang:ruby decode:true">gem 'odyssey'</pre>
+
+
+
+
+<h2>Usage</h2>
+
+
+
+
+<pre class="lang:ruby decode:true">require 'odyssey'
+Odyssey.formula_name(text, all_stats)</pre>
+
+
+So if we want to use the Flesch-Kincaid test, we write the code as below.
+
+
+<pre class="lang:ruby decode:true">require 'odyssey'
+Odyssey.flesch_kincaid_re(text, all_stats)</pre>
+
+
+To find the readability of a website we use Nokogiri and Odyssey together. Nokogiri to fetch the contents of the page and Odyssey to get the readability.
+Example of finding readability of our own website (https://redpanthers.co)/
+
+
+<pre class="lang:ruby decode:true">url = "https://redpanthers.co/"
+doc = Nokogiri::HTML(open(url))
+# Get all the contents
+paragraph = doc.css('p', 'article', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'a').map(&amp;:text)
+score = Odyssey.flesch_kincaid_re(para.join('. '), true)
+p score</pre>
+
+
+If <strong>all_stats</strong> is set to <strong>false</strong>, it returns score only. If it is true returns a hash like below
+
+
+<pre class="lang:ruby decode:true">{
+ "string_length"=&gt;3024,
+ "letter_count"=&gt;2270,
+ "syllable_count"=&gt;808,
+ "word_count"=&gt;505,
+ "sentence_count"=&gt;75,
+ "average_words_per_sentence"=&gt;6.733333333333333,
+ "average_syllables_per_word"=&gt;1.6,
+ "name"=&gt;"Flesch-Kincaid Reading Ease",
+ "formula"=&gt;#&lt;FleschKincaidRe:0x00000000c83548&gt;,
+ "score"=&gt;64.6
+}</pre>
+
+
+We can perform multiple text analyses on the same text as shown below
+
+
+<pre class="lang:rust decode:true">url = "https://redpanthers.co/"
+doc = Nokogiri::HTML(open(url))
+para = doc.css('p', 'article', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'a').map(&amp;:text)
+score = Odyssey.analyze_multi(para.join('. ').gsub('\n', ' '),
+          ['FleschKincaidRe', 'FleschKincaidGl', 'GunningFog', 'Smog','Ari','ColemanLiau'],
+          true)
+</pre>
+
+
+if all_stats is set to true it will return a hash like this
+
+
+<pre class="lang:ruby decode:true">{
+"string_length"=&gt;19892,
+ "letter_count"=&gt;14932,
+ "syllable_count"=&gt;5079,
+ "word_count"=&gt;3325,
+ "sentence_count"=&gt;435,
+ "average_words_per_sentence"=&gt;7.64367816091954,
+ "average_syllables_per_word"=&gt;1.5275187969924813,
+ "scores"=&gt;
+  {
+   "FleschKincaidRe"=&gt;69.8,
+   "FleschKincaidGl"=&gt;5.4,
+   "GunningFog"=&gt;3.1,
+   "Smog"=&gt;8.7,
+   "Ari"=&gt;3.5,
+   "ColemanLiau"=&gt;10.6
+  }
+}
+</pre>
+
+
+
+
+<h2>Extending odyssey</h2>
+
+
+To extending odyssey, you can create a class that inherit from formula
+
+
+<pre class="lang:ruby decode:true">class NewFormula &lt; Formula
+  def score(passage, stats)
+    p passage
+    p stats
+  end
+  def sentence
+    "Red Panthers is a Ruby on Rails development studio,
+     based in the beautiful city of Cochin."
+  end
+end</pre>
+
+
+To call your formula you just use
+
+
+<pre class="lang:ruby decode:true">obj = NewFormula.new
+Odyssey.new_formula(obj.sentence, false)</pre>
+
+
+Resultant passage will be a Hash like this
+
+
+<pre class="lang:ruby decode:true">{
+ "raw"=&gt;"Red Panthers is a Ruby on Rails development studio,
+        based in the beautiful city of Cochin.",
+ "words"=&gt;["Red", "Panthers", "is", "a", "Ruby", "on", "Rails",
+           "development", "studio", "based", "in", "the",
+           "beautiful", "city", "of", "Cochin"],
+ "sentences"=&gt;["Red Panthers is a Ruby on Rails development studio,
+               based in the beautiful city of Cochin."],
+ "syllables"=&gt;[1, 2, 1, 1, 2, 1, 1, 4, 2, 1, 1, 1, 4, 2, 1, 2]
+}
+</pre>
+
+
+and resultant status will be a Hash like this
+
+
+<pre class="lang:ruby decode:true">{
+ "string_length"=&gt;90,
+ "letter_count"=&gt;73,
+ "word_count"=&gt;16,
+ "syllable_count"=&gt;27,
+ "sentence_count"=&gt;1,
+ "average_words_per_sentence"=&gt;16.0,
+ "average_syllables_per_word"=&gt;1.6875
+}
+</pre>
+
+
+Because we have access to formula&#8217;s class that is  &#8216;status&#8217; flag set to true then we have access to other methods or class formula.
+Thanks to Odyssey we were able to implement the feature quite easily and right now the algorithm we are using have evolved to new forms. But that&#8217;s another article. But if you want to build a simple readability checker then it&#8217;s quite easy and simple in Rails.
+
+
+<h2>References</h2>
+
+
+
+
+<ul>
+ 	
+
+<li><a href="http://www.rubydoc.info/gems/odyssey/0.1.8">http://www.rubydoc.info/gems/odyssey/0.1.8</a></li>
+
+
+ 	
+
+<li><a href="https://github.com/cameronsutter/odyssey">https://github.com/cameronsutter/odyssey</a></li>
+
+
+</ul>
+
+]]&gt;		</p>
+]]></content:encoded>
+							<wfw:commentRss>/odyssey-in-rails/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+							</item>
+		<item>
+		<title>Taking screenshots of webpages using Ruby</title>
+		<link>/screenshots-using-ruby/</link>
+				<comments>/screenshots-using-ruby/#comments</comments>
+				<pubDate>Mon, 01 May 2017 10:48:00 +0000</pubDate>
+		<dc:creator><![CDATA[nimmy]]></dc:creator>
+				<category><![CDATA[Beginners]]></category>
+		<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[gem]]></category>
+		<category><![CDATA[phtantom js]]></category>
+		<category><![CDATA[Ruby]]></category>
+		<category><![CDATA[screencap]]></category>
+		<category><![CDATA[screenshot]]></category>
+		<category><![CDATA[web page]]></category>
+		<category><![CDATA[webshot]]></category>
+		<category><![CDATA[website]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=2373</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[&nbsp;
+Recently we have been working on taking screenshots for web page while generating reports based on that website. During this endeavor, we came across some tools to achieve that. We are sharing the information we gathered here.
+The tools that we will discuss for screencapture, in  Ruby,  are:
+
+
+<ul>
+ 	
+
+<li>PhantomJS</li>
+
+
+ 	
+
+<li>Screencap gem</li>
+
+
+ 	
+
+<li>Webshot gem</li>
+
+
+</ul>
+
+
+Screencap and webshot are gems in Ruby that depends on a tool called PhantomJS. It is basically a web browser without a user interface, primarily used for testing websites. Such type of browsers are generally referred to as headless browsers,
+
+
+<h2>Screenshots with PhantomJS</h2>
+
+
+PhantomJS is quite easy to install and is multiplatform, available on major operating systems.
+
+
+<pre class="lang:ruby decode:true">gem install phantomjs</pre>
+
+
+To start, our script must require a reference to the webpage module then use it to create an instance:
+
+
+<pre class="lang:ruby decode:true">var instance = require('webpage').create();</pre>
+
+
+Use the instance.open() method and pass it the arguments, the url of the webpage that we want to capture screenshot.
+
+
+<pre class="lang:ruby decode:true">instance.open('http://redpanthers.co/', function() {
+instance.render('screenshot-phantom.png');
+phantom.exit();
+});</pre>
+
+
+instance.render() method captures the screenshot and saves it to the file specified in the argument.
+Run the script as,
+
+
+<pre class="lang:ruby decode:true">phantomjs filename.js
+</pre>
+
+
+Screenshot is saved in the  directory where we run the script.
+Now what we have above is all JavaScript, but to use the phantom JS in our rails application we have gems that provide us with an easy interface to acheive the same.
+
+
+<h2>Screencap gem</h2>
+
+
+The gem &#8216;screencap&#8217; is introduced in Ruby to make screenshot capture easy. However, the gem depends on  &#8216;PhantomJS&#8217;, so we need to have PhantomJS installed on machine to capture screenshots with screencap gem.
+But screencap does not work with PhantomJS 2.1.1, which is the latest version.
+So we need to install version 1.9.8
+
+
+<pre class="lang:ruby decode:true">gem install phantomjs -v 1.9.8</pre>
+
+
+check version
+
+
+<pre class="lang:default decode:true">phantomjs --version</pre>
+
+
+To install screencap gem in your application, add this line to gemfile
+
+
+<pre class="lang:ruby decode:true">gem 'screencap'</pre>
+
+
+Or install it as
+
+
+<pre class="lang:ruby decode:true">gem install screencap</pre>
+
+
+
+
+<h2>Usage</h2>
+
+
+To capture screenshot with screencap
+
+
+<pre class="lang:ruby decode:true">require 'screencap'
+screenshot = Screencap::Fetcher.new(&lt;url&gt;)
+image = screenshot.fetch</pre>
+
+
+
+
+<ul>
+ 	
+
+<li>Fetcher class accepts url of the website to take screenshot.</li>
+
+
+ 	
+
+<li>Screenshot is taken when fetch method is called.</li>
+
+
+ 	
+
+<li>Also, fetch method supports various optional parameters to specify the area to capture the screenshot.</li>
+
+
+ 	
+
+<li>We can specify where to store the screenshot captured, as shown below.</li>
+
+
+</ul>
+
+
+
+
+<pre class="lang:ruby decode:true">image = obj.fetch(
+ output: '~/folder/file-name.png',
+ # dimensions for taking screenshot of specific area
+  width: 1024,
+ height: 768
+ )</pre>
+
+
+
+
+<h2>Example</h2>
+
+
+
+
+<pre class="lang:ruby decode:true">require 'screencap'
+screenshot = Screencap::Fetcher.new('http://redpanthers.co/')
+image = screenshot.fetch(output: '~/screencap/screencap.png',
+                                   width: 300,
+                                  height: 500)</pre>
+
+
+Our screenshot is captured in screencap.png
+<a href="https://redpanthers.co/wp-content/uploads/2017/04/screencap.png"><img class="alignnone size-medium wp-image-2388" src="https://redpanthers.co/wp-content/uploads/2017/04/screencap-300x225.png" alt="" width="300" height="225" /></a>
+
+
+<h2></h2>
+
+
+
+
+<h2>Webshot gem</h2>
+
+
+Webshot is another gem introduced in ruby to capture screenshots, also depends on PhantomJS.
+For better experience, use latest version of PhantomJS. Webshot works with latest version of PhantomJS while screencap gem does not.
+Install PhantomJS latest version.
+To install webshot in your application,
+
+
+<pre class="lang:ruby decode:true">gem 'webshot'</pre>
+
+
+Or install as
+
+
+<pre class="lang:ruby decode:true">gem install webshot</pre>
+
+
+
+
+<h2>Usage</h2>
+
+
+
+
+<pre class="lang:ruby decode:true">require 'webshot'
+screenshot = Webshot::Screenshot.instance
+screenshot.capture "https://github.com/", "image.png", width: 1024, height: 800</pre>
+
+
+Provide url of the web page and file name where screenshot to be saved.
+Height and width can be given as optional parameters for taking screenshot with specified dimensions.
+Above code captures github&#8217;s home page in file image.png
+<a href="https://redpanthers.co/wp-content/uploads/2017/04/image-1.png"><img class="alignnone size-medium wp-image-2398" src="https://redpanthers.co/wp-content/uploads/2017/04/image-1-300x146.png" alt="" width="300" height="146" /></a>
+In all the above methods, we capture screenshots of a particular web page by passing its url.
+Also we can infer that screencap gem, even though efficiently takes screenshots, does not work for latest version of PhantomJS. This was an issue encountered while working with gem screencap as installing PhantomJS without specifying the version would install the latest version by default.
+So, choose gem webshot if you want to go ahead with the latest version of PhantomJS.
+
+
+<h2>References</h2>
+
+
+
+
+<ul>
+ 	
+
+<li><a href="https://github.com/ariya/phantomjs">PhantomJS</a></li>
+
+
+ 	
+
+<li><a href="https://github.com/maxwell/screencap">Screencap gem</a></li>
+
+
+ 	
+
+<li><a href="https://github.com/vitalie/webshot">Webshot gem</a></li>
+
+
+</ul>
+
+]]&gt;		</p>
+]]></content:encoded>
+							<wfw:commentRss>/screenshots-using-ruby/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+							</item>
+		<item>
+		<title>Chartkick: data visualization made easy with Ruby</title>
+		<link>/chartkick-data-visualization-easy-ruby/</link>
+				<comments>/chartkick-data-visualization-easy-ruby/#comments</comments>
+				<pubDate>Wed, 18 Jan 2017 13:11:11 +0000</pubDate>
+		<dc:creator><![CDATA[govind]]></dc:creator>
+				<category><![CDATA[Ruby]]></category>
+		<category><![CDATA[Chartkick]]></category>
+		<category><![CDATA[Dynamic]]></category>
+		<category><![CDATA[gem]]></category>
+		<category><![CDATA[graphs]]></category>
+		<category><![CDATA[ruby on rails]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=975</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[Recently, I've been using Highcharts, Google charts and Chart Js for visualizing dynamic data in my projects. But it was difficult to integrate it with the rails application. However, for every problem in Ruby, there is a gem out there to save your day and Chartkick, a Ruby gem exclusively available for data visualization is truly a savior. Chartkick can work with Highcharts, Chart.js and Google charts to create dynamic and interactive charts that draw data from the Rails application. And the best part, you just need to write one single line of Ruby code. Isn't that amazing and powerful!
+Let's begin with Installation
+For installation, all you have to do is adding this line to your application's Gemfile:
+
+
+<pre class="">gem &#8220;chartkick&#8221;</pre>
+
+
+Then you have to choose your charting library.
+In case, if more than one charting library is loaded, choose between them with the following code:
+
+
+<pre class="lang:xhtml decode:true">&lt;%= line_chart data, adapter: "google" %&gt; &lt;!-- or highcharts --&gt;</pre>
+
+
+P.S:- highcharts is the default adapter is nothing else is defined.
+Using Chartkick
+Once it&#8217;s installed, you can start playing around with chartkick. For example:
+
+
+<pre class="lang:xhtml decode:true">&lt;%= line_chart User.group_by_day(:created_at).count %&gt;
+</pre>
+
+
+
+
+<p class="">In the above example, I have just shown you how we can make a line chart.Similarly, you can create Pie chart, Column chart, Bar chart, Area chart, Scatter chart, Geo charts, Timeline(Google Charts)etc. All you need is that one line of Ruby code. Cool, isn&#8217;t it!!</p>
+
+
+Chartkick gives you a variety of options to make your charts interesting. You can also set a Global option for each chart by using initializers and even customize the HTML. Data can be passed as a Hash or as an Array. You can find more details about using Chartkick options, sending data in <a href="http://chartkick.com/">Chartkick documentation</a>.
+Now, let&#8217;s have some real fun by using Chartkick to create some interactive <strong>Graphs, </strong>using<strong> Dynamic data</strong>.
+To create a graph which drives data from the ajax request, you just need to define a method in the controller and pass the JSON data. For example
+<em>app/controllers/views_controller.rb:</em>
+
+
+<pre class="lang:ruby decode:true">class ViewsController &lt; ApplicationController
+  def show
+    @view = View.all
+  end
+  def views_by_day
+    render json: View.group_by_day(:viewed_at, format: "%B %d, %Y").count
+  end
+end</pre>
+
+
+Next, add in the code listed below to your views/show view.
+<em>app/views/views/show.html.erb:</em>
+
+
+<pre class="lang:xhtml decode:true">&lt;div class="container"&gt;
+  &lt;h3&gt;Views By Day&lt;/h3&gt;
+  &lt;%= line_chart views_by_day_view_path %&gt;
+&lt;/div&gt;</pre>
+
+
+We can also create graphs with Multiple Series with the below codes
+
+
+<pre class="lang:xhtml decode:true">&lt;%= line_chart @.map { |view|
+ {name: view.name, data: view.feats.group_by_week(:created_at).count}
+} %&gt;</pre>
+
+
+or
+
+
+<pre class="lang:xhtml decode:true">&lt;%= line_chart Feat.view(:view_id).group_by_week(:created_at).count %&gt;
+</pre>
+
+
+Voila! there you have it how you want.
+Here is an example charts I got for you
+<a href="https://redpanthers.co/wp-content/uploads/2017/01/Chartkick.js.png"><img class="alignleft wp-image-1498 size-full" src="https://redpanthers.co/wp-content/uploads/2017/01/Chartkick.js.png" alt="Chartkick" width="541" height="746" /></a>
+So, next time if you want to create charts and graphs easily in your web application, don&#8217;t forget to use <strong>Chartkick </strong>and let me know in the comment section if you know any such tool that made your coding a bliss!
+Happy Coding!
+
+
+<h2>References</h2>
+
+
+
+
+<ul>
+ 	
+
+<li><a href="http://chartkick.com/">http://chartkick.com/</a></li>
+
+
+ 	
+
+<li><a href="https://ankane.github.io/chartkick.js/examples/">https://ankane.github.io/chartkick.js/examples/</a></li>
+
+
+</ul>
+
+]]&gt;		</p>
+]]></content:encoded>
+							<wfw:commentRss>/chartkick-data-visualization-easy-ruby/feed/</wfw:commentRss>
+		<slash:comments>3</slash:comments>
+							</item>
+	</channel>
+</rss>

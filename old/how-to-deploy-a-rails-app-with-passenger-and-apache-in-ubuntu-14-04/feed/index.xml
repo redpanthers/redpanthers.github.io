@@ -1,0 +1,32 @@
+ <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>
+	Comments on: How to deploy a Rails app with Passenger and Apache in Ubuntu 14.04	</title>
+	<atom:link href="/how-to-deploy-a-rails-app-with-passenger-and-apache-in-ubuntu-14-04/feed/" rel="self" type="application/rss+xml" />
+	<link>/how-to-deploy-a-rails-app-with-passenger-and-apache-in-ubuntu-14-04/</link>
+	<description>Experts in Ruby on Rails Development</description>
+	<lastBuildDate>Fri, 08 Apr 2016 15:23:52 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.7</generator>
+			<item>
+				<title>
+				By: Jennifer Flynn				</title>
+				<link>/how-to-deploy-a-rails-app-with-passenger-and-apache-in-ubuntu-14-04/#comment-1</link>
+		<dc:creator><![CDATA[Jennifer Flynn]]></dc:creator>
+		<pubDate>Fri, 08 Apr 2016 15:23:52 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=84#comment-1</guid>
+					<description><![CDATA[I am having issues in getting ruby on rails welcome aboard page to appear in my browser. my dns nameserver is virtualmachine2.khufunet.com. I am creating this environment on vmware. when I use dns lookup it works fine but i am concerned that my settings in the virtualhost file for my test app is conflicting with my nameserver. it is virtualmachine2.khufunet.com not www.khufunet.com What settings should i have for the ServerName and ServerAlias. I tried ServerName www.khufunet.com and virtualmachine2.khufunet.com but neither seem to be working. I cannot figure out how to resolve this. Please bare in mind if i use the ip address of the dns server it shows the welcome page to apache. I am doing this project with 4 services on the one virtual machine, ssh server, cups server, dns server and ruby on rails server. any tips or suggestions would be much appreciated. I am a new linux user.]]></description>
+		<content:encoded><![CDATA[<p>I am having issues in getting ruby on rails welcome aboard page to appear in my browser. my dns nameserver is virtualmachine2.khufunet.com. I am creating this environment on vmware. when I use dns lookup it works fine but i am concerned that my settings in the virtualhost file for my test app is conflicting with my nameserver. it is virtualmachine2.khufunet.com not <a href="http://www.khufunet.com/" rel="nofollow">http://www.khufunet.com/</a> What settings should i have for the ServerName and ServerAlias. I tried ServerName <a href="http://www.khufunet.com/" rel="nofollow">http://www.khufunet.com/</a> and virtualmachine2.khufunet.com but neither seem to be working. I cannot figure out how to resolve this. Please bare in mind if i use the ip address of the dns server it shows the welcome page to apache. I am doing this project with 4 services on the one virtual machine, ssh server, cups server, dns server and ruby on rails server. any tips or suggestions would be much appreciated. I am a new linux user.</p>
+]]></content:encoded>
+						</item>
+			</channel>
+</rss>

@@ -1,4 +1,4 @@
- <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
 	xmlns:content="http://purl.org/rss/1.0/modules/content/"
 	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -8,10 +8,10 @@
 	>
 
 <channel>
-	<title>React.js &#8211; Red Panthers</title>
+	<title>React.js &#8211; beta.redpanthers.co</title>
 	<atom:link href="/category/react-js/feed/" rel="self" type="application/rss+xml" />
 	<link>/</link>
-	<description>Experts in Ruby on Rails Development</description>
+	<description>Red Panthers - Experts in Ruby on Rails, System Design and Vue.js</description>
 	<lastBuildDate>Mon, 27 Feb 2017 15:06:33 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
@@ -19,18 +19,9 @@
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
 	<generator>https://wordpress.org/?v=5.2.7</generator>
-
-<image>
-	<url>/wp-content/uploads/2017/12/rp-logo.png</url>
-	<title>React.js &#8211; Red Panthers</title>
-	<link>/</link>
-	<width>32</width>
-	<height>32</height>
-</image> 
 	<item>
 		<title>ReactJS for Beginners &#124; A Step by Step Approach</title>
 		<link>/reactjs-for-beginners-a-step-by-step-approach/</link>
-				<comments>/reactjs-for-beginners-a-step-by-step-approach/#respond</comments>
 				<pubDate>Mon, 27 Feb 2017 15:06:33 +0000</pubDate>
 		<dc:creator><![CDATA[reshma]]></dc:creator>
 				<category><![CDATA[Beginners]]></category>
@@ -43,27 +34,68 @@
 		<category><![CDATA[react]]></category>
 		<category><![CDATA[shadow dom]]></category>
 
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=1830</guid>
-				<description><![CDATA[<p>There are many problems while building large applications with data that changes over time. To solve this ,I suggest checking out ReactJS. React lets you express how your app should look at any given point, and can automatically manage all UI updates when your underlying data changes. React is one of the most popular JavaScript front end libraries&#8230;</p>
-<p>The post <a rel="nofollow" href="/reactjs-for-beginners-a-step-by-step-approach/">ReactJS for Beginners &#124; A Step by Step Approach</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
-]]></description>
-								<content:encoded><![CDATA[<p class="lang:ruby decode:true ">There are many problems while building large applications with data that changes over time. To solve this ,I suggest checking out <strong>ReactJS</strong>. React lets you express how your app should look at any given point, and can automatically manage all UI updates when your underlying data changes.</p>
+		<guid isPermaLink="false">https://redpanthers.co/?p=1830</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[
+
+<p class="lang:ruby decode:true ">There are many problems while building large applications with data that changes over time. To solve this ,I suggest checking out <strong>ReactJS</strong>. React lets you express how your app should look at any given point, and can automatically manage all UI updates when your underlying data changes.</p>
+
+
+
+
 <p class="lang:ruby decode:true "><b>React</b> is one of the most popular JavaScript front end libraries which is developed by Facebook. It&#8217;s used for handling view layer for web and mobile apps. The main feature of ReactJS is that it allows us to create reusable UI components.  The syntax used in React is JSX which allows you to mix HTML with JavaScript. This is not a requirement – you can still write in plain JavaScript. But this is suggested because this makes writing your components a breeze.</p>
+
+
+
+
 <h3 class="lang:ruby decode:true ">Installation</h3>
-<p>To install React with Yarn, run:</p><pre class="crayon-plain-tag">yarn init
-yarn add react react-dom</pre><p>To install React with npm, run:</p><pre class="crayon-plain-tag">npm init
-npm install --save react react-dom</pre><p>The bundlers like <a href="https://webpack.js.org/">webpack</a> or <a href="http://browserify.org/">Browserify</a> is recommended. So you can write modular code and bundle it together into small packages to optimize load time.</p>
-<p>Use React with <a href="http://babeljs.io/">Babel</a> to let you use ES6 and JSX in your JavaScript code. <a href="https://babeljs.io/blog/2015/06/07/react-on-es6-plus">ES6</a> is a set of modern JavaScript features that make development easier.  <a href="https://www.tutorialspoint.com/reactjs/reactjs_jsx.htm">JSX</a> is an extension to the JavaScript language that works nicely with ReactJS.</p>
+
+
+To install React with Yarn, run:
+
+
+<pre class="lang:default decode:true">yarn init
+yarn add react react-dom</pre>
+
+
+To install React with npm, run:
+
+
+<pre class="lang:default decode:true ">npm init
+npm install --save react react-dom</pre>
+
+
+The bundlers like <a href="https://webpack.js.org/">webpack</a> or <a href="http://browserify.org/">Browserify</a> is recommended. So you can write modular code and bundle it together into small packages to optimize load time.
+Use React with <a href="http://babeljs.io/">Babel</a> to let you use ES6 and JSX in your JavaScript code. <a href="https://babeljs.io/blog/2015/06/07/react-on-es6-plus">ES6</a> is a set of modern JavaScript features that make development easier.  <a href="https://www.tutorialspoint.com/reactjs/reactjs_jsx.htm">JSX</a> is an extension to the JavaScript language that works nicely with ReactJS.
+
+
 <h3>React is efficient</h3>
-<p>ReactJS creates its own virtual DOM where your components actually live. It calculates what changes need to be made in the DOM beforehand and updates the DOM tree accordingly. So it is flexible and gives amazing gains in performance. It can be used on client and server side. This way, React avoids costly DOM operations and makes updates in a very efficient manner.</p>
-<p>The smallest ReactJS example looks like this:</p><pre class="crayon-plain-tag">ReactDOM.render(
 
+
+ReactJS creates its own virtual DOM where your components actually live. It calculates what changes need to be made in the DOM beforehand and updates the DOM tree accordingly. So it is flexible and gives amazing gains in performance. It can be used on client and server side. This way, React avoids costly DOM operations and makes updates in a very efficient manner.
+The smallest ReactJS example looks like this:
+
+
+<pre class="lang:js decode:true ">ReactDOM.render(
 &lt;h1&gt;Hello, world!&lt;/h1&gt;,
+document.getElementById('root') );</pre>
 
-document.getElementById('root') );</pre><p>It renders a header saying &#8220;Hello, World!&#8221; on the page. You can see the <a href="http://jsfiddle.net/ot7re74f/3/">demo here</a>.</p>
+
+It renders a header saying &#8220;Hello, World!&#8221; on the page. You can see the <a href="http://jsfiddle.net/ot7re74f/3/">demo here</a>.
+
+
 <h3>React Features</h3>
+
+
+
+
 <p class="lang:ruby decode:true ">Components are the heart and soul of ReactJS. You need to think of everything as a component. This is why it is helpful to maintain the code when working on larger scale projects. The one way data flow in react makes it easy to reason about your app. &#8220;Flux&#8221; is a pattern that helps keeping your data unidirectional. Components accept arbitrary inputs called &#8220;props&#8221; and return React elements describing what should appear on the screen.</p>
-<p></p><pre class="crayon-plain-tag">// Create a component named MessageComponent
+
+
+
+
+<pre class="lang:js decode:true">// Create a component named MessageComponent
 class MessageComponent extends React.Component{
   render() {
     return (
@@ -71,23 +103,30 @@ class MessageComponent extends React.Component{
     );
   }
 }
-
 // Render an instance of MessageComponent into document.getElementById
 ReactDOM.render(
   &lt;MessageComponent message="Hello!"  /&gt;,
   document.getElementById('root')
-);</pre><p>Create a new component class using component class approach. Components have one requirement, they must implement render function that tells the component what to render. You can see the <a href="https://jsfiddle.net/d2yL18pk/">demo here</a>.</p>
+);</pre>
+
+
+Create a new component class using component class approach. Components have one requirement, they must implement render function that tells the component what to render. You can see the <a href="https://jsfiddle.net/d2yL18pk/">demo here</a>.
+
+
 <h4>States in React</h4>
-<p>State is the place where the data comes from. You should always try to make your state as simple as possible and minimize number of stateful components.</p><pre class="crayon-plain-tag">class App extends React.Component {
+
+
+State is the place where the data comes from. You should always try to make your state as simple as possible and minimize number of stateful components.
+
+
+<pre class="lang:js decode:true">class App extends React.Component {
    constructor(props) {
       super(props);
-
       this.state = {
          header: "Header from state...",
          "content": "Content from state..."
       }
    }
-
    render() {
       return (
          &lt;div&gt;
@@ -96,57 +135,139 @@ ReactDOM.render(
          &lt;/div&gt;
       );
    }
-}</pre><p>Now this will render the function. You can see the <a href="http://jsfiddle.net/q67r4wxx/">demo here</a>.</p>
-<p>The key difference between props and state is that state is internal and controlled by the component itself while props are external and controlled by whatever renders the component. To access a component&#8217;s state, use &#8220;this.state&#8221; , just like how we use &#8220;this.props&#8221; . To update a component&#8217;s state, call &#8220;this.setState&#8221; with an object map of keys to updated values<span style="font-family: monospace;">.</span></p>
+}
+</pre>
+
+
+Now this will render the function. You can see the <a href="http://jsfiddle.net/q67r4wxx/">demo here</a>.
+The key difference between props and state is that state is internal and controlled by the component itself while props are external and controlled by whatever renders the component. To access a component&#8217;s state, use &#8220;this.state&#8221; , just like how we use &#8220;this.props&#8221; . To update a component&#8217;s state, call &#8220;this.setState&#8221; with an object map of keys to updated values<span style="font-family: monospace;">.</span>
+
+
 <h3>Component lifecycle</h3>
-<p>Lifecycle methods are  special methods that automatically get called as our component goes about its business. Each component has several &#8220;lifecycle methods&#8221; that you can override to run code at particular times in the process.</p>
+
+
+Lifecycle methods are  special methods that automatically get called as our component goes about its business. Each component has several &#8220;lifecycle methods&#8221; that you can override to run code at particular times in the process.
+
+
 <h4><strong class="markup--strong markup--p-strong">getInitialState()</strong></h4>
-<p>This method is invoked once, right before the mounting phase.  The return value of this method will be used as initial value of <em class="markup--em markup--p-em">this.state</em> and should be an object.</p><pre class="crayon-plain-tag">getInitialState: function(){
+
+
+This method is invoked once, right before the mounting phase.  The return value of this method will be used as initial value of <em class="markup--em markup--p-em">this.state</em> and should be an object.
+
+
+<pre class="lang:js decode:true ">getInitialState: function(){
     return { /* something here */};
-}</pre><p></p>
+}</pre>
+
+
+
+
 <h4>getDefaultProps()</h4>
-<p>This can be used to define any default props which can be accessed via <em>this.props</em>.</p><pre class="crayon-plain-tag">getDefaultProps: function(){
+
+
+This can be used to define any default props which can be accessed via <em>this.props</em>.
+
+
+<pre class="lang:js decode:true ">getDefaultProps: function(){
     return { /* something here */};
-}</pre><p></p>
+}</pre>
+
+
+
+
 <h4>componentWillMount()</h4>
-<p>This is the last method that gets called before your component gets rendered to the DOM. If you were to call &#8220;<span class="inlineCode">setState&#8221;</span> inside this method, your component will not re-render.</p><pre class="crayon-plain-tag">getInitialState: function() {...},
+
+
+This is the last method that gets called before your component gets rendered to the DOM. If you were to call &#8220;<span class="inlineCode">setState&#8221;</span> inside this method, your component will not re-render.
+
+
+<pre class="lang:js decode:true ">getInitialState: function() {...},
 componentWillMount: function() {
     console.log('componentWillMount');
-}</pre><p></p>
+}</pre>
+
+
+
+
 <h4>componentDidMount()</h4>
-<p>This function is called as the render method has been executed. This method is the best place for initializing other Javascript libraries that need access to the DOM and for data fetching operations.</p><pre class="crayon-plain-tag">componentDidMount: function() {
-}</pre><p></p>
+
+
+This function is called as the render method has been executed. This method is the best place for initializing other Javascript libraries that need access to the DOM and for data fetching operations.
+
+
+<pre class="lang:js decode:true">componentDidMount: function() {
+}</pre>
+
+
+
+
 <h4><strong>shouldComponentUpdate() </strong></h4>
-<p>This method allows you to control the updating behavior. If you use this method and return a <strong>true</strong> value, the component will update. If this method returns a <strong>false</strong> value, this component will skip updating.</p><pre class="crayon-plain-tag">shouldComponentUpdate: function(nextProps, nextState){
+
+
+This method allows you to control the updating behavior. If you use this method and return a <strong>true</strong> value, the component will update. If this method returns a <strong>false</strong> value, this component will skip updating.
+
+
+<pre class="lang:js decode:true ">shouldComponentUpdate: function(nextProps, nextState){
     // return a boolean value
     return true;
-}</pre><p></p>
+}</pre>
+
+
+
+
 <h4>componentWillReceiveProps()</h4>
-<p>This<em> </em>is only called when the props have changed and we can use this method as an opportunity to react to a prop transition before the <em class="markup--em markup--p-em">render() </em>method is called.</p><pre class="crayon-plain-tag">componentWillReceiveProps: function(nextProps) {
+
+
+This<em> </em>is only called when the props have changed and we can use this method as an opportunity to react to a prop transition before the <em class="markup--em markup--p-em">render() </em>method is called.
+
+
+<pre class="lang:js decode:true ">componentWillReceiveProps: function(nextProps) {
   this.setState({
     // set something
   });
-}</pre><p></p>
+}</pre>
+
+
+
+
 <h4>componentWillUpdate()</h4>
-<p>This gets called  just before your component is about to update.</p><pre class="crayon-plain-tag">componentWillUpdate: function(nextProps, nextState) {
+
+
+This gets called  just before your component is about to update.
+
+
+<pre class="lang:js decode:true">componentWillUpdate: function(nextProps, nextState) {
     console.log('componentWillUpdate', nextProps, nextState);
-}</pre><p></p>
+}</pre>
+
+
+
+
 <h4>componentDidUpdate()</h4>
-<p>Finally this is called after the <em>render</em> method. This method can be used to perform DOM operations after the data has been updated.</p><pre class="crayon-plain-tag">componentDidUpdate: function(prevProps, prevState){
+
+
+Finally this is called after the <em>render</em> method. This method can be used to perform DOM operations after the data has been updated.
+
+
+<pre class="lang:js decode:true ">componentDidUpdate: function(prevProps, prevState){
     //
-}</pre><p>&nbsp;</p>
-<p>React is a Javascript library which allows developers to create fast user interfaces. React views are typically rendered using components that contain additional components specified as custom HTML tags. One of the unique features of ReactJS is not only it can perform on the client side, but it can also be rendered on the server side, and they can work together.</p>
-<p>It also uses the concept called Virtual DOM, creates an in-memory data structure cache, enumerates the resulting differences, and then updates the browser’s displayed DOM efficiently. That is the react libraries only renders the sub-components that have been modified. So this make it faster and efficient.</p>
+}</pre>
+
+
+&nbsp;
+React is a Javascript library which allows developers to create fast user interfaces. React views are typically rendered using components that contain additional components specified as custom HTML tags. One of the unique features of ReactJS is not only it can perform on the client side, but it can also be rendered on the server side, and they can work together.
+It also uses the concept called Virtual DOM, creates an in-memory data structure cache, enumerates the resulting differences, and then updates the browser’s displayed DOM efficiently. That is the react libraries only renders the sub-components that have been modified. So this make it faster and efficient.
+
+
 <h2>References</h2>
-<p><a href="https://facebook.github.io/react/">https://facebook.github.io/react/</a></p>
-<p><a href="https://www.tutorialspoint.com/reactjs/">https://www.tutorialspoint.com/reactjs/</a></p>
-<p><a href="http://buildwithreact.com/tutorial">http://buildwithreact.com/tutorial</a></p>
-<p>Let me know if you have any doubts.</p>
-<p>Happy coding!</p>
-<p>The post <a rel="nofollow" href="/reactjs-for-beginners-a-step-by-step-approach/">ReactJS for Beginners &#124; A Step by Step Approach</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+
+
+<a href="https://facebook.github.io/react/">https://facebook.github.io/react/</a>
+<a href="https://www.tutorialspoint.com/reactjs/">https://www.tutorialspoint.com/reactjs/</a>
+<a href="http://buildwithreact.com/tutorial">http://buildwithreact.com/tutorial</a>
+Let me know if you have any doubts.
+Happy coding!]]&gt;		</p>
 ]]></content:encoded>
-							<wfw:commentRss>/reactjs-for-beginners-a-step-by-step-approach/feed/</wfw:commentRss>
-		<slash:comments>0</slash:comments>
-							</item>
+										</item>
 	</channel>
 </rss>

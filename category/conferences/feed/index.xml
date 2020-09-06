@@ -1,4 +1,4 @@
- <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
 	xmlns:content="http://purl.org/rss/1.0/modules/content/"
 	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -8,10 +8,10 @@
 	>
 
 <channel>
-	<title>Conferences &#8211; Red Panthers</title>
+	<title>Conferences &#8211; beta.redpanthers.co</title>
 	<atom:link href="/category/conferences/feed/" rel="self" type="application/rss+xml" />
 	<link>/</link>
-	<description>Experts in Ruby on Rails Development</description>
+	<description>Red Panthers - Experts in Ruby on Rails, System Design and Vue.js</description>
 	<lastBuildDate>Mon, 25 Apr 2016 17:19:43 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
@@ -19,18 +19,9 @@
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
 	<generator>https://wordpress.org/?v=5.2.7</generator>
-
-<image>
-	<url>/wp-content/uploads/2017/12/rp-logo.png</url>
-	<title>Conferences &#8211; Red Panthers</title>
-	<link>/</link>
-	<width>32</width>
-	<height>32</height>
-</image> 
 	<item>
 		<title>Experience Attending RubyConf India for the first time</title>
 		<link>/experience-attending-rubyconf-india-first-time/</link>
-				<comments>/experience-attending-rubyconf-india-first-time/#respond</comments>
 				<pubDate>Mon, 25 Apr 2016 17:19:43 +0000</pubDate>
 		<dc:creator><![CDATA[coderhs]]></dc:creator>
 				<category><![CDATA[Beginners]]></category>
@@ -41,42 +32,37 @@
 		<category><![CDATA[Ruby Conf India]]></category>
 		<category><![CDATA[Scholorship]]></category>
 
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=316</guid>
-				<description><![CDATA[<p>We (the team) at Red Panthers were happy to sponsor a student, Neethu Sajeevan from Cochin University, to attend RubyConf India this year. We hope to support more students in the coming years. You can find the article she wrote about her experience re-blogged below. Re-Blogged from: I attended the RubyConf India Conference that took place from 19th March&#8230;</p>
-<p>The post <a rel="nofollow" href="/experience-attending-rubyconf-india-first-time/">Experience Attending RubyConf India for the first time</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
-]]></description>
-								<content:encoded><![CDATA[<p>We (the team) at Red Panthers were happy to sponsor a student, Neethu Sajeevan from Cochin University, to attend RubyConf India this year. We hope to support more students in the coming years. You can find the article she wrote about her experience re-blogged below.</p>
-<p>Re-Blogged from:</p>
-<blockquote><p>I attended the RubyConf India Conference that took place from 19th March to the 20th March 2016 at the Le Meridien Kochi in Kochi, India.I express my heart-felt-gratitude to Red Panthers /, the digital sponsor for RubyConf India2016 who sponsored my ticket. Attending the conference was a very valuable and engaging experience for me, to hear from passionate and creative people speak about their work.<br />
-The conference covered areas like Ruby Language, Framework and Tools and well known speakers from international Ruby community. We (Anila Anne George and me myself ) thank our sponsors for giving us this great opportunity. As students this was the first professional conference that we attended.</p></blockquote>
-<p>Read the full article at: <a href="https://medium.com/@neethusajeevan/rubyconf-india2016-experience-of-a-first-timer-cc8c95f34781#.sd744qmsb">https://medium.com/@neethusajeevan/rubyconf-india2016-experience-of-a-first-timer-cc8c95f34781#.sd744qmsb</a></p>
-<p>The post <a rel="nofollow" href="/experience-attending-rubyconf-india-first-time/">Experience Attending RubyConf India for the first time</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+		<guid isPermaLink="false">https://redpanthers.co/?p=316</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[We (the team) at Red Panthers were happy to sponsor a student, Neethu Sajeevan from Cochin University, to attend RubyConf India this year. We hope to support more students in the coming years. You can find the article she wrote about her experience re-blogged below.
+Re-Blogged from:
+
+
+<blockquote>I attended the RubyConf India Conference that took place from 19th March to the 20th March 2016 at the Le Meridien Kochi in Kochi, India.I express my heart-felt-gratitude to Red Panthers https://redpanthers.co/, the digital sponsor for RubyConf India2016 who sponsored my ticket. Attending the conference was a very valuable and engaging experience for me, to hear from passionate and creative people speak about their work.
+The conference covered areas like Ruby Language, Framework and Tools and well known speakers from international Ruby community. We (Anila Anne George and me myself ) thank our sponsors for giving us this great opportunity. As students this was the first professional conference that we attended.</blockquote>
+
+
+Read the full article at: <a href="https://medium.com/@neethusajeevan/rubyconf-india2016-experience-of-a-first-timer-cc8c95f34781#.sd744qmsb">https://medium.com/@neethusajeevan/rubyconf-india2016-experience-of-a-first-timer-cc8c95f34781#.sd744qmsb</a>]]&gt;		</p>
 ]]></content:encoded>
-							<wfw:commentRss>/experience-attending-rubyconf-india-first-time/feed/</wfw:commentRss>
-		<slash:comments>0</slash:comments>
-							</item>
+										</item>
 		<item>
 		<title>Deccan Ruby Conf 2015</title>
 		<link>/deccan-ruby-conf-2015/</link>
-				<comments>/deccan-ruby-conf-2015/#respond</comments>
 				<pubDate>Thu, 06 Aug 2015 07:56:39 +0000</pubDate>
 		<dc:creator><![CDATA[coderhs]]></dc:creator>
 				<category><![CDATA[Conferences]]></category>
 
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=65</guid>
-				<description><![CDATA[<p>Red Panthers is the official T-Shirt partner of Deccan Ruby Conf 2015 (http://www.deccanrubyconf.org/). We are proud to have been given this opportunity. To all those who are attending two members from our team Harisankar P S (http://twitter.com/coderhs) (myself) and Manu S Ajith (http://twitter.com/manusajith) would be attending it. &#160; Do say hi, if you see one&#8230;</p>
-<p>The post <a rel="nofollow" href="/deccan-ruby-conf-2015/">Deccan Ruby Conf 2015</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
-]]></description>
-								<content:encoded><![CDATA[<p>Red Panthers is the official T-Shirt partner of Deccan Ruby Conf 2015 (http://www.deccanrubyconf.org/). We are proud to have been given this opportunity. To all those who are attending two members from our team Harisankar P S (<a href="http://twitter.com/coderhs" target="_blank">http://twitter.com/coderhs</a>) (myself) and Manu S Ajith (<a href="http://twitter.com/manusajith" target="_blank">http://twitter.com/manusajith</a>) would be attending it.</p>
-<p>&nbsp;</p>
-<p>Do say hi, if you see one of us , we got some free Red Panthers stickers to give out.</p>
-<p>&nbsp;</p>
-<p>&#8212;</p>
-<p>Harisankar P S</p>
-<p>The post <a rel="nofollow" href="/deccan-ruby-conf-2015/">Deccan Ruby Conf 2015</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+		<guid isPermaLink="false">https://redpanthers.co/?p=65</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[Red Panthers is the official T-Shirt partner of Deccan Ruby Conf 2015 (http://www.deccanrubyconf.org/). We are proud to have been given this opportunity. To all those who are attending two members from our team Harisankar P S (<a href="http://twitter.com/coderhs" target="_blank" rel="noopener noreferrer">http://twitter.com/coderhs</a>) (myself) and Manu S Ajith (<a href="http://twitter.com/manusajith" target="_blank" rel="noopener noreferrer">http://twitter.com/manusajith</a>) would be attending it.
+&nbsp;
+Do say hi, if you see one of us , we got some free Red Panthers stickers to give out.
+&nbsp;
+&#8212;
+Harisankar P S]]&gt;		</p>
 ]]></content:encoded>
-							<wfw:commentRss>/deccan-ruby-conf-2015/feed/</wfw:commentRss>
-		<slash:comments>0</slash:comments>
-							</item>
+										</item>
 	</channel>
 </rss>

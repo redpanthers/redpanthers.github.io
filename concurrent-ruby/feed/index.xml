@@ -1,4 +1,4 @@
- <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
 	xmlns:content="http://purl.org/rss/1.0/modules/content/"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
 	xmlns:atom="http://www.w3.org/2005/Atom"
@@ -10,7 +10,7 @@
 	Comments on: Concurrent-Ruby	</title>
 	<atom:link href="/concurrent-ruby/feed/" rel="self" type="application/rss+xml" />
 	<link>/concurrent-ruby/</link>
-	<description>Experts in Ruby on Rails Development</description>
+	<description>Red Panthers - Experts in Ruby on Rails, System Design and Vue.js</description>
 	<lastBuildDate>Mon, 22 Jan 2018 03:02:00 +0000</lastBuildDate>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -20,10 +20,10 @@
 			<item>
 				<title>
 				By: Aboobacker M K				</title>
-				<link>/concurrent-ruby/#comment-41</link>
+				<link>/concurrent-ruby/#comment-64</link>
 		<dc:creator><![CDATA[Aboobacker M K]]></dc:creator>
 		<pubDate>Mon, 22 Jan 2018 03:02:00 +0000</pubDate>
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=1669#comment-41</guid>
+		<guid isPermaLink="false">https://redpanthers.co/?p=1669#comment-64</guid>
 					<description><![CDATA[Updates snippet to match current syntax, cocurrent-edge is an unstable api and can change at any time. Thanks for pointing out]]></description>
 		<content:encoded><![CDATA[<p>Updates snippet to match current syntax, cocurrent-edge is an unstable api and can change at any time. Thanks for pointing out</p>
 ]]></content:encoded>
@@ -31,10 +31,10 @@
 						<item>
 				<title>
 				By: Guido Tarsia				</title>
-				<link>/concurrent-ruby/#comment-40</link>
+				<link>/concurrent-ruby/#comment-63</link>
 		<dc:creator><![CDATA[Guido Tarsia]]></dc:creator>
 		<pubDate>Fri, 19 Jan 2018 19:09:00 +0000</pubDate>
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=1669#comment-40</guid>
+		<guid isPermaLink="false">https://redpanthers.co/?p=1669#comment-63</guid>
 					<description><![CDATA[I&#039;m afraid your code didn&#039;t work, I got:
 &lt;pre&gt;&lt;code&gt;undefined method `future&#039; for Concurrent:Module (NoMethodError)&lt;pre&gt;&lt;code&gt;]]></description>
 		<content:encoded><![CDATA[<p>I&#8217;m afraid your code didn&#8217;t work, I got:</p>

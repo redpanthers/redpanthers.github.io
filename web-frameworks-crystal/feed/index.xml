@@ -1,4 +1,4 @@
- <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
 	xmlns:content="http://purl.org/rss/1.0/modules/content/"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
 	xmlns:atom="http://www.w3.org/2005/Atom"
@@ -10,7 +10,7 @@
 	Comments on: Web Frameworks in Crystal	</title>
 	<atom:link href="/web-frameworks-crystal/feed/" rel="self" type="application/rss+xml" />
 	<link>/web-frameworks-crystal/</link>
-	<description>Experts in Ruby on Rails Development</description>
+	<description>Red Panthers - Experts in Ruby on Rails, System Design and Vue.js</description>
 	<lastBuildDate>Mon, 18 Sep 2017 05:34:00 +0000</lastBuildDate>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -20,59 +20,47 @@
 			<item>
 				<title>
 				By: NIMMY J VIPIN				</title>
-				<link>/web-frameworks-crystal/#comment-58</link>
+				<link>/web-frameworks-crystal/#comment-76</link>
 		<dc:creator><![CDATA[NIMMY J VIPIN]]></dc:creator>
 		<pubDate>Mon, 18 Sep 2017 05:34:00 +0000</pubDate>
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3199#comment-58</guid>
+		<guid isPermaLink="false">https://redpanthers.co/?p=3199#comment-76</guid>
 					<description><![CDATA[Hi Faustino,
-
 Thank you very much for the feedback and suggestions. Will modify the article.]]></description>
-		<content:encoded><![CDATA[<p>Hi Faustino,</p>
-<p>Thank you very much for the feedback and suggestions. Will modify the article.</p>
+		<content:encoded><![CDATA[<p>Hi Faustino,<br />
+Thank you very much for the feedback and suggestions. Will modify the article.</p>
 ]]></content:encoded>
 						</item>
 						<item>
 				<title>
 				By: Faustino Aguilar				</title>
-				<link>/web-frameworks-crystal/#comment-57</link>
+				<link>/web-frameworks-crystal/#comment-75</link>
 		<dc:creator><![CDATA[Faustino Aguilar]]></dc:creator>
 		<pubDate>Sat, 16 Sep 2017 05:15:00 +0000</pubDate>
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=3199#comment-57</guid>
+		<guid isPermaLink="false">https://redpanthers.co/?p=3199#comment-75</guid>
 					<description><![CDATA[Hi Nimmy, great post!
-
-
 Just a few suggestions:
-
 &#062; an experimental Bash environment running on Windows.
-
 WSL is not experimental (beta) anymore [*]. It&#039;s stable now. However Crystal is still experimental on WSL. [**]
-
 About frameworks:
-
 Currently the most active frameworks for Crystal are Kemal &#038; Amber.
-
 Kemalyst development have been stopped [0], his creator has joined efforts to Amber
-
 Amber-Crystal has been renamed to amberframework [1]
-
 Amber was based on Kemalyst, Kemalyst was based on Kemal, Kemal was based on Frank [2]
-
-
 [*] - https://blogs.msdn.microsoft.com/commandline/2017/07/28/windows-subsystem-for-linux-out-of-beta/
 [**] - https://crystal-lang.org/docs/installation/on_bash_on_ubuntu_on_windows.html
 [0] - https://github.com/kemalyst/kemalyst#moved-to-amber
 [1] - https://amberframework.org/
 [2] - https://github.com/manastech/frank]]></description>
-		<content:encoded><![CDATA[<p>Hi Nimmy, great post!</p>
-<p>Just a few suggestions:</p>
-<p>&gt; an experimental Bash environment running on Windows.</p>
-<p>WSL is not experimental (beta) anymore [*]. It&#8217;s stable now. However Crystal is still experimental on WSL. [**]</p>
-<p>About frameworks:</p>
-<p>Currently the most active frameworks for Crystal are Kemal &amp; Amber.</p>
-<p>Kemalyst development have been stopped [0], his creator has joined efforts to Amber</p>
-<p>Amber-Crystal has been renamed to amberframework [1]</p>
-<p>Amber was based on Kemalyst, Kemalyst was based on Kemal, Kemal was based on Frank [2]</p>
-<p>[*] &#8211; <a href="https://blogs.msdn.microsoft.com/commandline/2017/07/28/windows-subsystem-for-linux-out-of-beta/" rel="nofollow">https://blogs.msdn.microsoft.com/commandline/2017/07/28/windows-subsystem-for-linux-out-of-beta/</a><br />
+		<content:encoded><![CDATA[<p>Hi Nimmy, great post!<br />
+Just a few suggestions:<br />
+&gt; an experimental Bash environment running on Windows.<br />
+WSL is not experimental (beta) anymore [*]. It&#8217;s stable now. However Crystal is still experimental on WSL. [**]<br />
+About frameworks:<br />
+Currently the most active frameworks for Crystal are Kemal &amp; Amber.<br />
+Kemalyst development have been stopped [0], his creator has joined efforts to Amber<br />
+Amber-Crystal has been renamed to amberframework [1]<br />
+Amber was based on Kemalyst, Kemalyst was based on Kemal, Kemal was based on Frank [2]<br />
+[*] &#8211; <a href="https://blogs.msdn.microsoft.com/commandline/2017/07/28/windows-subsystem-for-linux-out-of-beta/" rel="nofollow">https://blogs.msdn.microsoft.com/commandline/2017/07/28/windows-subsystem-for-linux-out-of-beta/</a><br />
 [**] &#8211; <a href="https://crystal-lang.org/docs/installation/on_bash_on_ubuntu_on_windows.html" rel="nofollow">https://crystal-lang.org/docs/installation/on_bash_on_ubuntu_on_windows.html</a><br />
 [0] &#8211; <a href="https://github.com/kemalyst/kemalyst#moved-to-amber" rel="nofollow">https://github.com/kemalyst/kemalyst#moved-to-amber</a><br />
 [1] &#8211; <a href="https://amberframework.org/" rel="nofollow">https://amberframework.org/</a><br />

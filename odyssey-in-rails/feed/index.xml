@@ -1,4 +1,4 @@
- <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
 	xmlns:content="http://purl.org/rss/1.0/modules/content/"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
 	xmlns:atom="http://www.w3.org/2005/Atom"
@@ -10,7 +10,7 @@
 	Comments on: Readability of text using odyssey	</title>
 	<atom:link href="/odyssey-in-rails/feed/" rel="self" type="application/rss+xml" />
 	<link>/odyssey-in-rails/</link>
-	<description>Experts in Ruby on Rails Development</description>
+	<description>Red Panthers - Experts in Ruby on Rails, System Design and Vue.js</description>
 	<lastBuildDate>Thu, 29 Jun 2017 05:03:00 +0000</lastBuildDate>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -20,10 +20,10 @@
 			<item>
 				<title>
 				By: Alan Joseph				</title>
-				<link>/odyssey-in-rails/#comment-43</link>
+				<link>/odyssey-in-rails/#comment-58</link>
 		<dc:creator><![CDATA[Alan Joseph]]></dc:creator>
 		<pubDate>Thu, 29 Jun 2017 05:03:00 +0000</pubDate>
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=2738#comment-43</guid>
+		<guid isPermaLink="false">https://redpanthers.co/?p=2738#comment-58</guid>
 					<description><![CDATA[btw this bolg&#039;s Flesch-Kincaid readability easiness is 85. :)]]></description>
 		<content:encoded><![CDATA[<p>btw this bolg&#8217;s Flesch-Kincaid readability easiness is 85. 🙂</p>
 ]]></content:encoded>
@@ -31,15 +31,14 @@
 						<item>
 				<title>
 				By: SoCalMtnBiker				</title>
-				<link>/odyssey-in-rails/#comment-42</link>
+				<link>/odyssey-in-rails/#comment-57</link>
 		<dc:creator><![CDATA[SoCalMtnBiker]]></dc:creator>
 		<pubDate>Wed, 28 Jun 2017 16:49:00 +0000</pubDate>
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=2738#comment-42</guid>
+		<guid isPermaLink="false">https://redpanthers.co/?p=2738#comment-57</guid>
 					<description><![CDATA[Thank you for the article.
-
 redability -&#062; readability. Too bad it doesn&#039;t rate spelling errors. Spelling errors and homophone errors hurt readability too.]]></description>
-		<content:encoded><![CDATA[<p>Thank you for the article.</p>
-<p>redability -&gt; readability. Too bad it doesn&#8217;t rate spelling errors. Spelling errors and homophone errors hurt readability too.</p>
+		<content:encoded><![CDATA[<p>Thank you for the article.<br />
+redability -&gt; readability. Too bad it doesn&#8217;t rate spelling errors. Spelling errors and homophone errors hurt readability too.</p>
 ]]></content:encoded>
 						</item>
 			</channel>

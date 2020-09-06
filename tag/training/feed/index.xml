@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>training &#8211; beta.redpanthers.co</title>
+	<atom:link href="/tag/training/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description>Red Panthers - Experts in Ruby on Rails, System Design and Vue.js</description>
+	<lastBuildDate>Sat, 17 Sep 2016 05:54:03 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.7</generator>
+	<item>
+		<title>How to write maintainable routes in rails</title>
+		<link>/write-maintainable-routes-rails/</link>
+				<pubDate>Sat, 17 Sep 2016 05:54:03 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Beginners]]></category>
+		<category><![CDATA[Rails]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[auto generate routes]]></category>
+		<category><![CDATA[config]]></category>
+		<category><![CDATA[convention over configuration]]></category>
+		<category><![CDATA[default]]></category>
+		<category><![CDATA[everything about routes]]></category>
+		<category><![CDATA[harisankar P S]]></category>
+		<category><![CDATA[rails]]></category>
+		<category><![CDATA[resource]]></category>
+		<category><![CDATA[routes]]></category>
+		<category><![CDATA[routes.rb]]></category>
+		<category><![CDATA[training]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=489</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[<strong>config/routes.rb</strong> is the gateway to your ruby on rails application. All request send by your users are directed to the appropriate code by the routes.
+Example:
+
+
+<pre class="lang:ruby decode:true ">match 'profiles', to: 'users#index', via: 'get'</pre>
+
+
+When someone visits your-website.com/profiles then the request is taken to the Index action of the UsersController. Under that action you will get the index.html.erb. So using routes we have configured the UsersController to respond to the users request it is its responsibility to do it now.
+We can declare routes in various ways:
+
+
+<pre class="lang:ruby decode:true ">match 'profiles', to: 'users#index', via: 'get'
+get 'profiles', to: 'users#index', via: 'get'
+resources :users
+resource :users, path: 'profiles'</pre>
+
+
+Since there are multiple ways to declare routes (as all forms are right), its best to stick with a single method for the code to be more readable. routes.rb is going to be one of the most heavily edited file in your project as when ever you add a new page or create a new form, you need to add a route to access the page or an end-point to accept the request. So it is most likely that your routes.rb file will start to grow ugly:
+
+
+<pre class="lang:ruby decode:true ">  resources :saved_filters
+  match "/404" =&gt; "errors#error404", via: [ :get, :post, :patch, :delete ], as: 'error404'
+  devise_for :saas_admins
+  mount RailsAdmin::Engine =&gt; '/saas_admin', :as =&gt; 'rails_admin'
+  %w(about privacy benefits compliance onboarding payroll time_off terms contact aca-compliance).each do |page|
+    get page =&gt; "content##{page.underscore}"
+  end
+  get "/not_authorized", to: 'errors#not_authorized'
+  post '/broker_sign_in_path', to: 'application#broker_sign_in_domain', as: 'broker_sign_in_domain'
+  post '/employer_sign_in_path', to: 'application#employer_sign_in_domain', as: 'employer_sign_in_domain'
+  post '/messages/reply_from_external_user',to: 'messages#reply_from_external_user',as: '/messages/reply_from_external_user'
+  # Routes for the public site</pre>
+
+
+So here we will share some tips to write proper, maintainable routes:
+First important point to note is that, its best to write routes as resources
+eg:
+
+
+<pre class="lang:ruby decode:true ">resources :users</pre>
+
+
+&nbsp;
+declaring resources will create the following 7 routes.
+<a href="https://redpanthers.co/wp-content/uploads/2016/09/routes.png"><img class="alignnone wp-image-537" src="https://redpanthers.co/wp-content/uploads/2016/09/routes.png" alt="routes" width="599" height="325" /></a>
+if you don&#8217;t want some of these routes, then pass that as options while declaring
+
+
+<pre class="lang:ruby decode:true ">resource :users, only: [:create, :update, :show, :destroy]</pre>
+
+
+Use nested routes, if you find yourself referring to a child model from parent.
+
+
+<pre class="lang:ruby decode:true ">resources :posts do
+  resources :comments
+end</pre>
+
+
+If you want to declare custom routes, within the resources, the they should only be declared within the resource block.
+<span style="text-decoration: underline;">Note: Difference between Member and Collection</span>
+<strong>Member:</strong> is used when the routes is meant to work on a single object (eg:  DeActivate single user)
+<strong>Collection:</strong> is used when the route is meant as an action over a collection of object (eg: search for a user)
+
+
+<pre class="lang:ruby decode:true ">resources :users do
+  member do
+    match 'de_activate', to: 'user#de_activate', via: 'get'
+  end
+  collection do
+    match 'search', to: 'user#search', via: 'post'
+  end
+end</pre>
+
+
+Always write routes through match rather than defining as post/get, because in future you might have to add multiple HTTP verb for the same route and using match would eleminate multiple lines of the same route.]]&gt;		</p>
+]]></content:encoded>
+										</item>
+		<item>
+		<title>Optimising PostgreSQL database query using indexes</title>
+		<link>/optimising-postgresql-database-query-using-indexes/</link>
+				<comments>/optimising-postgresql-database-query-using-indexes/#comments</comments>
+				<pubDate>Thu, 11 Aug 2016 10:59:22 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Database]]></category>
+		<category><![CDATA[PostgreSQL]]></category>
+		<category><![CDATA[B Tree]]></category>
+		<category><![CDATA[database]]></category>
+		<category><![CDATA[GIN]]></category>
+		<category><![CDATA[Guide]]></category>
+		<category><![CDATA[Hash]]></category>
+		<category><![CDATA[index]]></category>
+		<category><![CDATA[learning]]></category>
+		<category><![CDATA[migration]]></category>
+		<category><![CDATA[multi column]]></category>
+		<category><![CDATA[partial migration]]></category>
+		<category><![CDATA[rails]]></category>
+		<category><![CDATA[Ruby]]></category>
+		<category><![CDATA[ruby on rails]]></category>
+		<category><![CDATA[single column]]></category>
+		<category><![CDATA[SQL]]></category>
+		<category><![CDATA[training]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=389</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[At Red Panthers PostgreSQL is our go to database we use it everywhere. So thinking about how to optimize our database performance is one of the most talked about topic at our office. The best way to speed up report generation and data retrieval within a rails application is to leave it to the database, as they have algorithms and optimizations build just for that. We always felt that most Ruby on Rails projects out there, do not use the full potential of a database and they usually just limit it to a data store. PostgreSQL or any database for that matter is much more than that.
+We would be blogging on how we use PostgreSQL in our projects to speed up our client's applications. This particle is the first part of a series of article we would be writing on database optimization.
+<img class="aligncenter" src="http://i.imgur.com/YSZE83d.jpg?1" width="231" height="172" />
+<strong>Database Indexes:</strong>
+Indexes are a special lookup table that the database search engine can use to speed up data retrieval. An Index is similar to a pointer to a particular row of a table. As a real world example, consider a Britannica Encyclopedia with 22 volumes of books, and an extra book listing  the index,with which you can find out the item you are searching for in those 22 books.
+PostgreSQL 9.5, provides several index algorithms like B-tree, Hash, GiST, SP-GiST and GIN. When you create an index using Ruby on Rails migration, by <strong>default it would be using the B-Tree</strong> migration. Whereas, as we move on to the indexing algorithms, we need to check into the general classification of an index and the data to be indexed.
+<strong>Primary Keys</strong>
+In rails, when we generate a model , by default an ID column would be added to the table. It would have integers values and they would be unique as well. By default, when you set a column as a primary key, the database would build a <em><strong>unique index </strong></em>on it. So we don&#8217;t need to add migration for it.
+<strong>Foreign Keys</strong>
+When you build a relationship between two tables you add a <code>foreign_key</code> in the child table to point to parent, eg: <code>user_id</code>, <code>group_id</code>. We need to query through this relationship a lot in rails, for example to load all the comments of post or all members of a group.<strong> So we need to index that for speed.</strong>.
+If you are using some non id value to reference a table, lets say in your application ,you give all your users a unique URL which has the username. (Eg: http://csnipp.com/coderhs), in that case we would be using the username to query the data, so we need to have it indexed. In fact you should index all the columns you might be using in your where queries. Like if you are searching for users of a particular age or income frequents in your reports, then you should create an index for them as well.
+<strong>Note:</strong>  What we explained above are single column indexes and multi column indexes. So if you are indexing just a single column in a table, its single column indexes.
+
+
+<pre class="lang:pgsql decode:true">CREATE INDEX index_name
+ON prices (user_id);</pre>
+
+
+Rails code:
+
+
+<pre class="lang:ruby decode:true">add_index :prices, :user_id</pre>
+
+
+When we index multiple columns, they are called multi column index.
+
+
+<pre class="lang:pgsql decode:true">CREATE INDEX index_name
+ON user_views (user_id, article_id);</pre>
+
+
+Rails code:
+
+
+<pre class="lang:ruby decode:true">add_index :user_views, [:user_id, :article_id]</pre>
+
+
+If you are joining two tables, using a column (which is not the already indexed foreign key) then you should index that as well.
+<strong>State column &amp; Boolean column</strong>
+State and Boolean column are columns that should be indexed as there would be a lot of rows but only limited number of values in those columns. Boolean column would have only true or false (two values)and state columns will have more than two like eg: draft, published, pending. The speed of load would be faster for these columns as they are only limited keys that can be placed in the index, and on a single lookup we can load them.
+<strong>Partial indexes</strong> can be used in the above case, as the name suggests it&#8217;s an index over a subset of your table. The index would be building if it satisfies certain conditions. They can be most useful <strong>while writing scopes in rails. </strong>Lets say that you have a scope that picks up all the articles which are marked as SPAM. In your model you will write a scope like below
+
+
+<pre class="lang:ruby decode:true">scope :articles, where(:spam =&gt; 'true')</pre>
+
+
+So internally it&#8217;s a where query, one can add a partial index migration as follows:
+
+
+<pre class="lang:pgsql decode:true">CREATE INDEX index_name
+on articles (spam is true);</pre>
+
+
+Rails:
+
+
+<pre class="lang:ruby decode:true">add_index :articles, :spam, name: "index_articles_on_spam", where: "(spam IS true)"</pre>
+
+
+<strong>When not to use indexes</strong>
+Using indexes speeds up the SELECT and WHERE command, but it does slows down the execution of INSERT.
+<strong>So avoid indexing when we have table that has a lot of insert and update</strong>
+So we should avoid using Indexes when we have a table that holds a huge number of raw data, where we do a lot of batch updates and insert. For example, in an IoT application we would pipe all the data from multiple devices to a single table , summarize  and insert it into its proper tables. And  by a lot of data, I am referring to at least 10+ MB of data per minute. In most cases, we would just truncate that table after processing, hence it would slow us down if we were to index it.
+<strong>If the table is too small and you know it will always be small</strong>
+If you have a setting table which just stores the application settings, that can be modified by an admin panel. Then it doesn&#8217;t seem to be worth having an index there.
+<strong>When you are manipulating the values of a column a lot</strong>
+Lets say the particular value of a column gets changes extremely a lot, like the website view count. Then indexing it is not highly recommended.
+Finally to complete this article. If you want to drop an index:
+SQL
+
+
+<pre class="lang:pgsql decode:true">DROP INDEX index_name;</pre>
+
+
+Rails
+
+
+<pre class="lang:ruby decode:true">remove_index :books, :created_at</pre>
+
+
+<strong>Summary</strong>:
+
+
+<ul>
+ 	
+
+<li>Index Primary key</li>
+
+
+ 	
+
+<li>Index Foreign key</li>
+
+
+ 	
+
+<li>Index all columns you would be passing into where clause</li>
+
+
+ 	
+
+<li>Index the keys used to Join tables</li>
+
+
+ 	
+
+<li>Index the date column (if you are going to call it frequent, like rankings of a particular date)</li>
+
+
+ 	
+
+<li>Index the type column in an STI or polymorphism.</li>
+
+
+ 	
+
+<li>Add partial index to scopes</li>
+
+
+ 	
+
+<li>Do not index tables with a lot of read, write</li>
+
+
+ 	
+
+<li>Do not index tables you know that will remain small, all through out its life time</li>
+
+
+ 	
+
+<li>Do not index columns where you will be manipulating lot of its values.</li>
+
+
+</ul>
+
+
+Keep visiting here to know more about the PostgreSQL indexing algorithms in part 2 of this article.
+<strong>References:</strong>
+<a href="https://www.postgresql.org/docs/9.2/static/indexes-types.html">https://www.postgresql.org/docs/9.2/static/indexes-types.html</a>
+<a href="http://dev.mysql.com/doc/refman/5.7/en/mysql-indexes.html">http://dev.mysql.com/doc/refman/5.7/en/mysql-indexes.html</a>
+<a href="http://www.tutorialspoint.com/postgresql/postgresql_indexes.htm">http://www.tutorialspoint.com/postgresql/postgresql_indexes.htm</a>]]&gt;		</p>
+]]></content:encoded>
+							<wfw:commentRss>/optimising-postgresql-database-query-using-indexes/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+							</item>
+		<item>
+		<title>Skip unnecessary files while running Rails Generate</title>
+		<link>/customize-rails-auto-generation/</link>
+				<pubDate>Wed, 27 Jul 2016 04:27:04 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Rails]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[coffee]]></category>
+		<category><![CDATA[customize]]></category>
+		<category><![CDATA[generators]]></category>
+		<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[rails]]></category>
+		<category><![CDATA[ruby on rails]]></category>
+		<category><![CDATA[speed up development]]></category>
+		<category><![CDATA[Tip]]></category>
+		<category><![CDATA[tips]]></category>
+		<category><![CDATA[training]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=354</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[Rails Generate is one of the features provided by Rails that would speed up the application development. However, we won't be needing all the files generated by rails when running the generate command.
+For example:
+<code>rails generate controller Home Index new create</code>,  would create the following set of files:
+<a href="https://redpanthers.co/wp-content/uploads/2016/07/before_altering_the_generator.png"><img class="alignnone size-full wp-image-356" src="https://redpanthers.co/wp-content/uploads/2016/07/before_altering_the_generator.png" alt="before_altering_the_generator" width="488" height="312" /></a>
+As one knows from experience, the helper; javascript and stylesheet files are not always used. In fact, most of the time, we would have a single stye.scss, and main.coffee that would take care of 95% of the total behaviour of our application. So, if we do not delete those files after generation, we would just end up with a lot of files in our system which would have no code throughout the life cycle of the program.
+Fortunately, rails gives us the ability to customize its own generators so that we can disable these files from being generated. Once we place the below code in the <code> application.rb</code>, it will stop the generation of these extra files.
+
+
+<pre class="toolbar:2 show-plain:3 lang:ruby decode:true ">config.generators do |g|
+  g.helper false
+  g.stylesheets false
+  g.javascripts false
+  g.view_specs false
+end</pre>
+
+
+Now, when you run <code>rails generate controller Home Index new create</code>, you will get less files.
+<a href="https://redpanthers.co/wp-content/uploads/2016/07/after_altering_generators.png"><img class="alignnone size-full wp-image-355" src="https://redpanthers.co/wp-content/uploads/2016/07/after_altering_generators.png" alt="after_altering_generators" width="482" height="219" /></a>]]&gt;		</p>
+]]></content:encoded>
+										</item>
+		<item>
+		<title>Counter Cache:  How to get started</title>
+		<link>/counter-cache-how-to-get-started/</link>
+				<pubDate>Tue, 26 Jul 2016 10:40:48 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Beginners]]></category>
+		<category><![CDATA[Rails]]></category>
+		<category><![CDATA[Ruby]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[cache]]></category>
+		<category><![CDATA[counter]]></category>
+		<category><![CDATA[database]]></category>
+		<category><![CDATA[improvement]]></category>
+		<category><![CDATA[mysql]]></category>
+		<category><![CDATA[oracale]]></category>
+		<category><![CDATA[performance]]></category>
+		<category><![CDATA[PostgreSQL]]></category>
+		<category><![CDATA[ruby on rails]]></category>
+		<category><![CDATA[SQL]]></category>
+		<category><![CDATA[tips]]></category>
+		<category><![CDATA[training]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=335</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[Displaying the <em>number of tasks under a projec</em>t or the <em>number of comments in a post</em> or the <em>number of users in an organization or anything </em>similar is a common requirement in most rails applications. The code for doing it is also simple- <strong>@project.tasks.count;</strong> but the problem with this code is that every time you run it, you are counting the number of tasks of that project one by one. So, the speed of execution decreases with more number of rows. This code will slow down your page load, if you are displaying the details of more than one project in your page as shown below.
+<a href="https://redpanthers.co/wp-content/uploads/2016/07/Screen-Shot-2016-07-26-at-2.10.14-PM.png"><img class="size-full wp-image-338" src="https://redpanthers.co/wp-content/uploads/2016/07/Screen-Shot-2016-07-26-at-2.10.14-PM.png" alt="project_list" width="198" height="123" /></a>
+To speed this up, rails gives you an in-build mechanism called &#8220;<a href="http://guides.rubyonrails.org/association_basics.html"><strong>Counter Cache</strong></a>&#8220;. As the name suggests, it literally means to cache the number of referenced rows it has (number of tasks a project has).
+<strong>Example code definition</strong>
+
+
+<pre class="toolbar:2 toolbar-overlay:false toolbar-hide:false toolbar-delay:false show-title:false show-lang:2 plain:false show-plain:3 plain-toggle:false popup:false lang:ruby decode:true">class Projects &lt; ActiveRecord::Base
+  has_many :tasks
+end
+class Task &lt; ActiveRecord::Base
+  belongs_to :project
+end</pre>
+
+
+To implement counter_cache, you need to pass in the <strong>counter_cache: true </strong>option along with the belongs_to relationship. You also need to add a migration to add an extra column called <strong>tasks_count</strong> to store the count. This needs to be added to the other model, which has the <strong>has_many</strong> reference.
+
+
+<pre class="toolbar:2 plain:false show-plain:3 plain-toggle:false popup:false lang:ruby decode:true ">class Task &lt; ActiveRecord::Base
+  belongs_to :project, counter_cache: true
+end</pre>
+
+
+<strong>Migration</strong>
+
+
+<pre class="toolbar:2 show-plain:3 lang:default decode:true">class AddTasksCounterCacheToProjects &lt; ActiveRecord::Migration[5.0]
+  def change
+    add_column :projects, :tasks_count, :integer
+  end
+end</pre>
+
+
+If you are adding counter cache to an existing system, you need to update your <strong>tasks_count </strong>with the existing counts. To do that, one can use the code given below. Either place the code along with the migration or run it in console in both production/development environments.
+
+
+<pre class="toolbar:2 show-plain:3 lang:ruby decode:true">Project.find_each { |project| Project.reset_counters(project.id, :tasks) }
+</pre>
+
+
+<span style="line-height: 1.5;">Also note that the tasks_count is just the default column name; if you wish to change it with another name, just pass that name along with the :counter_cache option as below.</span>
+
+
+<pre class="toolbar:2 show-plain:3 lang:ruby decode:true  ">class Task &lt; ActiveRecord::Base
+  belongs_to :project, counter_cache: :not_the_default_column_name
+end</pre>
+
+
+Now, to use the counter cache in your calculations, you should use the method &#8220;size&#8221; instead of &#8220;count&#8221;. The method &#8220;size&#8221; will use the counter_cache if its present, where as using &#8220;.count&#8221; itself would do the actual sql count.
+
+
+<pre class="toolbar:2 show-plain:3 lang:ruby decode:true">&lt;% Project.all.each do |project| %&gt;
+  &lt;%= project.name %&gt; (&lt;%= project.tasks.size %&gt;)
+&lt;% end %&gt;
+</pre>
+
+
+<span style="line-height: 1.5;"><strong>Points to Remember</strong></span>
+
+
+<ul>
+ 	
+
+<li><strong>:counter_cache</strong> is the optional attribute of a <strong>belongs_to</strong> relationship</li>
+
+
+ 	
+
+<li>It requires the creation of an extra column (tasks_count) in the table which has the <strong>has_many</strong> relationship</li>
+
+
+ 	
+
+<li>One can use another column name by passing the name along with :counter_cache option</li>
+
+
+ 	
+
+<li>To use the counter_cache, one must use the <strong>&#8220;.size&#8221;</strong> method</li>
+
+
+</ul>
+
+
+<strong>Speed Improvements</strong>
+<a href="https://redpanthers.co/wp-content/uploads/2016/07/speed_with_count.png"><img class="alignnone wp-image-339 size-full" src="https://redpanthers.co/wp-content/uploads/2016/07/speed_with_count.png" alt="Speed with just count" width="797" height="73" /></a>
+<a href="https://redpanthers.co/wp-content/uploads/2016/07/speed_with_counter_cache.png"><img class="alignnone wp-image-340 size-full" src="https://redpanthers.co/wp-content/uploads/2016/07/speed_with_counter_cache.png" alt="speed_with_counter_cache" width="776" height="53" /></a>
+&nbsp;]]&gt;		</p>
+]]></content:encoded>
+										</item>
+	</channel>
+</rss>

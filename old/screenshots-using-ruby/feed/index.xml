@@ -1,0 +1,43 @@
+ <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>
+	Comments on: Taking screenshots of webpages using Ruby	</title>
+	<atom:link href="/screenshots-using-ruby/feed/" rel="self" type="application/rss+xml" />
+	<link>/screenshots-using-ruby/</link>
+	<description>Experts in Ruby on Rails Development</description>
+	<lastBuildDate>Mon, 23 Oct 2017 07:13:00 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.7</generator>
+			<item>
+				<title>
+				By: jp				</title>
+				<link>/screenshots-using-ruby/#comment-35</link>
+		<dc:creator><![CDATA[jp]]></dc:creator>
+		<pubDate>Mon, 23 Oct 2017 07:13:00 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=2373#comment-35</guid>
+					<description><![CDATA[having a problem to download phantonjs that are compatible on my macOSX and ubuntu server.]]></description>
+		<content:encoded><![CDATA[<p>having a problem to download phantonjs that are compatible on my macOSX and ubuntu server.</p>
+]]></content:encoded>
+						</item>
+						<item>
+				<title>
+				By: marahin				</title>
+				<link>/screenshots-using-ruby/#comment-34</link>
+		<dc:creator><![CDATA[marahin]]></dc:creator>
+		<pubDate>Wed, 24 May 2017 14:46:00 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=2373#comment-34</guid>
+					<description><![CDATA[So basiclly it&#039;s &quot;Screenshots using PhantomJS&quot;. Eh.]]></description>
+		<content:encoded><![CDATA[<p>So basiclly it&#8217;s &#8220;Screenshots using PhantomJS&#8221;. Eh.</p>
+]]></content:encoded>
+						</item>
+			</channel>
+</rss>

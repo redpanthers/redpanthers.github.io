@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>transaction &#8211; beta.redpanthers.co</title>
+	<atom:link href="/tag/transaction/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description>Red Panthers - Experts in Ruby on Rails, System Design and Vue.js</description>
+	<lastBuildDate>Mon, 01 Aug 2016 11:38:48 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.7</generator>
+	<item>
+		<title>Database transaction in Rails</title>
+		<link>/database-transaction-rails/</link>
+				<pubDate>Mon, 01 Aug 2016 11:38:48 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Rails]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[database]]></category>
+		<category><![CDATA[DBA]]></category>
+		<category><![CDATA[expert]]></category>
+		<category><![CDATA[learning]]></category>
+		<category><![CDATA[nested transaction]]></category>
+		<category><![CDATA[ruby on rails]]></category>
+		<category><![CDATA[SQL]]></category>
+		<category><![CDATA[transaction]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=377</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[
+
+<blockquote>A transaction is a sequence of operations performed as a single logical unit of work. A logical unit of work must exhibit four properties called the <strong>atomicity</strong>, <strong>consistency</strong>, <strong>isolation</strong> and <strong>durability</strong> (<strong>ACID</strong>) properties, to qualify as a transaction.</blockquote>
+
+
+We use database transactions to make sure that all the instructions we send to database are successful, and would cause changes to the database only if they are successful. Let&#8217;s say that you are working on a banking application which would withdraw money from one account and deposit into another account. The code for it would look like below
+
+
+<pre class="lang:ruby decode:true">User.find(156).withdraw(1000)
+User.find(157).deposit(1000)</pre>
+
+
+But for some reason, the withdrawal was successful but the deposit was not, the amount was taken out but never deposited to the other user.To avoid these kind of issues, database has a functionality called transactions, in which you can  build up each sql query. But if for any reason, any of the sql statements fails or an exception rises in the block, all the transactions are rolled back to their original form.
+
+
+<pre class="lang:default decode:true">User.transaction do
+  User.find(156).withdraw(1000)
+  User.find(157).deposit(1000)
+end</pre>
+
+
+In rails, the transaction method is available as class method and instance method, but the functionality for both is same. There is no difference when you will use.
+
+
+<pre class="lang:default decode:true">@user.transaction do
+end</pre>
+
+
+and
+
+
+<pre class="lang:default decode:true">User.transaction do
+end</pre>
+
+
+The reason why rails provides this, is for better readability.
+One can also mix various model types in a transaction, as the transaction are bound to a database connection. So there is no issue in writing code like below.
+
+
+<pre class="lang:default decode:true">User.transaction do
+  Order.create order_attributes
+  Purchase.create purchase_attribute
+end</pre>
+
+
+&nbsp;
+<strong>Nested Transactions: </strong>It is possible to write nested transactions. But it is to be noted that,<strong> it would just make each child transaction a part of the parent transaction</strong>. Taking the example from the Rails documentation.
+The below code
+
+
+<pre class="lang:default decode:true">User.transaction do
+  User.create(username: 'Kotori')
+  User.transaction do
+    User.create(username: 'Nemu')
+    raise ActiveRecord::Rollback
+  end
+end</pre>
+
+
+Creates both “Kotori” and “Nemu”. Reason is the ActiveRecord::Rollback exception in the nested block does not issue a ROLLBACK. Since these exceptions are captured in transaction blocks, the parent block does not see it and the real transaction is committed.
+Reference:
+https://technet.microsoft.com/en-us/library/ms190612(v=sql.105).aspx]]&gt;		</p>
+]]></content:encoded>
+										</item>
+		<item>
+		<title>after_create vs after_save vs after_commit</title>
+		<link>/after_create-vs-after_save-vs-after_commit/</link>
+				<comments>/after_create-vs-after_save-vs-after_commit/#comments</comments>
+				<pubDate>Thu, 28 Jul 2016 06:46:38 +0000</pubDate>
+		<dc:creator><![CDATA[coderhs]]></dc:creator>
+				<category><![CDATA[Rails]]></category>
+		<category><![CDATA[Training]]></category>
+		<category><![CDATA[active_model]]></category>
+		<category><![CDATA[active_record]]></category>
+		<category><![CDATA[after_commit]]></category>
+		<category><![CDATA[after_create]]></category>
+		<category><![CDATA[after_save]]></category>
+		<category><![CDATA[callbacks]]></category>
+		<category><![CDATA[database]]></category>
+		<category><![CDATA[mysql]]></category>
+		<category><![CDATA[PostgreSQL]]></category>
+		<category><![CDATA[rails]]></category>
+		<category><![CDATA[Ruby]]></category>
+		<category><![CDATA[transaction]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=371</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[<code>after_save</code>, <code>after_create</code> and <code>after_commit</code> are called active record call backs in rails. They get executed when we work on the database, similarly we also have before_* callback and callbacks on destroy as well. In this article I will explain you about the difference between *_save, *_create and *_commit callbacks.
+The purpose of each as per rails docs:
+
+
+<blockquote>after_create
+Is called after <code>Base.save</code> on new objects that haven‘t been saved yet (no record exists)
+after_save
+Is called after <code>Base.save</code> (regardless of whether it‘s a create or update save)
+after_commit
+Is called after the database transaction is completed.</blockquote>
+
+
+Now to explain the real difference between the three, we must first explain about database transaction. They are a protective block around a group of sql statements, that are permanent only if all of them succeed in a single atomic statement.
+
+
+<pre class="lang:default decode:true">User.transaction do
+    # update company
+    # update hr_department
+    # update user_table
+end</pre>
+
+
+When rails execute a create, the <code>after_save</code> and <code>after_create</code> would be called within the transaction block of the create statement. So they will be executed before executing the sql statement to make permanent changes in the DB. If the query fails, then no change will happen to the DB, but we would have executed the instructions of the after_create and <code>after_save</code> block.
+Where as after_commit, is called after the execution of the final/outer transaction block. Thus the changes in the DB would be permanent.]]&gt;		</p>
+]]></content:encoded>
+							<wfw:commentRss>/after_create-vs-after_save-vs-after_commit/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+							</item>
+	</channel>
+</rss>

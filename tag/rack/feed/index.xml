@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Rack &#8211; beta.redpanthers.co</title>
+	<atom:link href="/tag/rack/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description>Red Panthers - Experts in Ruby on Rails, System Design and Vue.js</description>
+	<lastBuildDate>Mon, 27 Feb 2017 15:08:19 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.7</generator>
+	<item>
+		<title>Rack::Attack &#8211; secure you rails app for the real world</title>
+		<link>/rack-attack-secure-you-rails-app-for-the-real-world/</link>
+				<pubDate>Mon, 27 Feb 2017 15:08:19 +0000</pubDate>
+		<dc:creator><![CDATA[harikrishnan]]></dc:creator>
+				<category><![CDATA[Rails]]></category>
+		<category><![CDATA[Ruby]]></category>
+		<category><![CDATA[attack]]></category>
+		<category><![CDATA[hackers]]></category>
+		<category><![CDATA[Rack]]></category>
+		<category><![CDATA[safety]]></category>
+		<category><![CDATA[security]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=1465</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[<a href="https://redpanthers.co/wp-content/uploads/2017/01/rack-attack.png"><img class="wp-image-1491 aligncenter" src="https://redpanthers.co/wp-content/uploads/2017/01/rack-attack.png" alt="" width="359" height="202" /></a>
+Are you worried about the security issues in your Rails app? The <a href="https://github.com/kickstarter/rack-attack">rack-attack gem</a>, can help you. <strong>Rack::Attack</strong> is a rack middleware which provides security to our rails application. It allows us to <strong>safelist, blacklist, throttle</strong> and to <strong>track requests</strong>.
+
+
+<ul>
+ 	
+
+<li>If the request matches any <strong>safelist</strong>, it is allowed.</li>
+
+
+ 	
+
+<li>If the request matches any <strong>blocklist</strong>, it is blocked.</li>
+
+
+ 	
+
+<li>If the request matches any <strong>throttle</strong>, a counter is incremented in the Rack::Attack.cache. If any throttle&#8217;s limit is exceeded, the request is blocked.</li>
+
+
+ 	
+
+<li>Otherwise, all <strong>tracks</strong> are checked, and the request is allowed.</li>
+
+
+</ul>
+
+
+
+
+<h2>Implementation</h2>
+
+
+Install the rack-attack gem, or add it to you Gemfile as:
+
+
+<pre class="lang:ruby decode:true">gem 'rack-attack'</pre>
+
+
+Then tell your app to use the Rack::Attack middleware. For Rails 3+ apps:
+
+
+<pre class="lang:ruby decode:true"># In config/application.rb
+config.middleware.use Rack::Attack</pre>
+
+
+Or you can use it in Rackup file as
+
+
+<pre class="lang:ruby decode:true "># In config.ru
+use Rack::Attack</pre>
+
+
+By default, Rack Attack uses Rails cache. You can override that by setting the `Rack::Attack.cache.store` value. It <span class="n">is </span><span class="n">used</span> <span class="k">for</span> <span class="n">throttling. If you want to create use a custom adapter, for example, memory store,  </span>create a file called rack_attack.rb in config/initializers to configure Rack Attack and put the following code in the file:
+
+
+<pre class="lang:ruby decode:true">class Rack::Attack
+  Rack::Attack.cache.store = ActiveSupport::Cache::MemoryStore.new
+  ########
+end</pre>
+
+
+
+
+<h3>Throttle</h3>
+
+
+
+
+<pre class="lang:ruby decode:true">throttle('api/ip', limit: 3, period: 10) do |req|
+  req.ip
+end</pre>
+
+
+Here we are limiting the request per seconds from the same IP address. Here we are limiting only 3 requests in 10 sec.
+
+
+<h3>Safelist</h3>
+
+
+
+
+<pre class="">Rack::Attack.safelist('allow from localhost') do |req|
+  '127.0.0.1' == req.ip
+end
+</pre>
+
+
+Above example always allows the request from localhost. And the request is allowed if the value is true.
+
+
+<h3>Blacklist</h3>
+
+
+
+
+<pre class="lang:ruby decode:true">Rack::Attack.blacklist('block 2.2.2.2') do |req|
+  '2.2.2.2' == req.ip
+end</pre>
+
+
+Here, it blocks the request from &#8216;2.2.2.2&#8217;.
+
+
+<blockquote><strong>Fail2Ban</strong>: <code>Fail2Ban.filter</code> can be used within a blocklist to block all requests from misbehaving clients.
+<strong>Allow2Ban: </strong><code>Allow2Ban.filter</code> works the same way as the <code>Fail2Ban.filter</code> except that it allows requests from misbehaving clients until such time as they reach maximum retry.</blockquote>
+
+
+
+
+<h3>Block logins from a bad user agent</h3>
+
+
+
+
+<pre class="lang:ruby decode:true">Rack::Attack.blacklist('block bad UA logins') do |req|
+  req.path == '/login' &amp;&amp; req.post? &amp;&amp; req.user_agent == 'BadUA'
+end</pre>
+
+
+In the above example, if a bad user tries to login, the request is blocked.
+
+
+<h3 id="Tracks">Tracks</h3>
+
+
+
+
+<pre class="lang:ruby decode:true">Rack::Attack.track("special_agent") do |req|
+  req.user_agent == "SpecialAgent"
+end</pre>
+
+
+It tracks request from a special user.
+
+
+<h2>Security issues that Rack Attack addresses</h2>
+
+
+
+
+<ul>
+ 	
+
+<li class="entry-title">Rate limits against DDoS and abusive users</li>
+
+
+</ul>
+
+
+
+
+<p style="padding-left: 60px;"><em><strong>DDoS</strong> is short for <strong>D</strong>istributed <strong>D</strong>enial <strong>o</strong>f <strong>S</strong>ervice. </em>It uses multiple computers and Internet connections to flood the targeted resource.</p>
+
+
+When you need more security to your rails app, don&#8217;t forget to add Rack::Attack in it. It will protect your app from bad clients.
+
+
+<h2>Whitelist Search Engine spiders</h2>
+
+
+
+
+<p style="text-align: left;">        Though we blacklist IP&#8217;s that are misbehaving, we have to whitelist search engine spiders. But they have a huge range of IP&#8217;s. So we can check user agent. But it&#8217;s something anyone can fake. We can run a <a href="https://support.google.com/webmasters/answer/80553?hl=en">reverse DNS lookup</a> of the accessing IP and perform a forward DNS lookup on the domain (using <code>host</code> command). Verify that it is same as the original IP address from the logs.</p>
+
+
+
+
+<h2>References</h2>
+
+
+
+
+<ul>
+ 	
+
+<li><a href="https://www.diycode.cc/projects/kickstarter/rack-attack">https://www.diycode.cc/projects/kickstarter/rack-attack</a></li>
+
+
+ 	
+
+<li><a href="https://searchcode.com/file/86455896/README.md">https://searchcode.com/file/86455896/README.md</a></li>
+
+
+ 	
+
+<li><a href="http://sourcey.com/building-the-prefect-rails-5-api-only-app/">http://sourcey.com/building-the-prefect-rails-5-api-only-app/</a></li>
+
+
+</ul>
+
+]]&gt;		</p>
+]]></content:encoded>
+										</item>
+		<item>
+		<title>How to write your own Rack middleware</title>
+		<link>/rack-middleware/</link>
+				<comments>/rack-middleware/#comments</comments>
+				<pubDate>Mon, 09 Jan 2017 07:22:19 +0000</pubDate>
+		<dc:creator><![CDATA[anjana]]></dc:creator>
+				<category><![CDATA[Beginners]]></category>
+		<category><![CDATA[custom]]></category>
+		<category><![CDATA[design pattern]]></category>
+		<category><![CDATA[how to write]]></category>
+		<category><![CDATA[middleware]]></category>
+		<category><![CDATA[network]]></category>
+		<category><![CDATA[pipeline]]></category>
+		<category><![CDATA[Rack]]></category>
+		<category><![CDATA[rails]]></category>
+		<category><![CDATA[request]]></category>
+		<category><![CDATA[working]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=1138</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[<a href="https://redpanthers.co/wp-content/uploads/2017/01/rack-logo.png"><img class="alignnone wp-image-1212 size-full" title="How to write your own Rack middleware" src="https://redpanthers.co/wp-content/uploads/2017/01/rack-logo.png" alt="How to write your own Rack middleware" width="1000" height="500" /></a>
+<strong>Rack</strong> is a Ruby package which provides an interface for a web server to communicate with the application. It is very easy to add middleware components between the web server and the app to customize the way your request/response behaves. The middleware component sits between the client and the server, processing inbound requests and outbound responses. Rack Middleware is an implementation of the <a href="http://www.cise.ufl.edu/research/ParallelPatterns/PatternLanguage/AlgorithmStructure/Pipeline.htm">pipeline design pattern</a> for web servers using Rack.
+For example with Rack, we can have separate stages of the pipeline:
+
+
+<ul>
+ 	
+
+<li><strong>Authentication</strong>: Checks whether the login details are correct or not when the request arrives.</li>
+
+
+ 	
+
+<li><strong>Authorization</strong>:  It performs role-based security. i.e. checks whether the user is authorized to perform the particular task.</li>
+
+
+ 	
+
+<li><strong>Caching</strong>: Return a cached result if the request is already processed.</li>
+
+
+ 	
+
+<li><strong>Decoration</strong>: Enhance the request to make downstream processing better.</li>
+
+
+ 	
+
+<li><strong>Performance &amp; Usage Monitoring</strong>: Status get from the request and response.</li>
+
+
+ 	
+
+<li><strong>Execution</strong>: actually handle the request and provide a response.</li>
+
+
+</ul>
+
+
+Next, we will see how to build our own rack middleware.
+
+
+<h2 id="building-your-own-middleware-module">Building your own Rack middleware</h2>
+
+
+To add middleware to a Rack application, all you have to do is tell Rack to use it. You can use multiple middleware components, and they will change the request or response before passing it on to the next component. It uses the configuration file with extension <em>.ru</em>, that instructs Rack::Builder what middleware should it use and in which order.
+Now, let&#8217;s have a look at how to add our own rack middleware to a project. For that, add the following code in config.ru file.:
+Eg:
+
+
+<pre class="lang:ruby decode:true ">use Rack::Lint # gives more descriptive error messages when responses aren't valid
+class Example
+  def initialize(app)
+    @app = app
+  end
+  def call(env)
+    status, headers, body = @app.call(env)
+    body.map { |msg| p "Example: #{msg}" }
+    [status, headers, body]
+  end
+end
+use Example # Does nothing with uppercase'd response, just logs it to stdout
+run -&gt; env {[200, {"Content-Type" =&gt; "text/html"}, ["&lt;h1&gt;Hello Redpanthers&lt;/h1&gt;"]]}
+</pre>
+
+
+In our example, here the response from Example is then passed into the 3rd party Rack middleware Rack::Lint which will let us know if our final response is valid or not. And the first argument of the <code class="highlighter-rouge">initialize </code>method is the application or the request handler.Another rule that applies to a middleware class is the <code class="highlighter-rouge">call</code> method. The <code class="highlighter-rouge">call </code>method executes the application which returns the status, the headers and the body of the response.
+
+
+<p class="lang:default decode:true ">Finally, run the server with rackup. It will find config.ru and boot up on the specified port.</p>
+
+
+
+
+<pre class="lang:ruby decode:true">$ rackup -s Puma -p 9293
+Puma starting in single mode...
+Version 3.6.2 (ruby 2.3.1-p112), codename: Sleepy Sunday Serenity
+Min threads: 5, max threads: 5
+Environment: development
+Listening on tcp://localhost:9293
+Use Ctrl-C to stop
+"Example: &lt;h1&gt;Hello Redpanthers&lt;/h1&gt;"
+127.0.0.1 - - [05/Jan/2017:17:48:43 +0530] "GET / HTTP/1.1" 200 - 0.0035
+"Example: &lt;h1&gt;Hello Redpanthers&lt;/h1&gt;"
+127.0.0.1 - - [05/Jan/2017:17:48:43 +0530] "GET /favicon.ico HTTP/1.1" 200 - 0.0022
+</pre>
+
+
+
+
+<h3>Adding it to Rails</h3>
+
+
+We can add the middleware to our Rails app by placing middleware module to lib/&lt;file_name.rb&gt; and configure it by using <strong><em>config.middleware</em></strong><em> </em>in environments/&lt;environment&gt;.rb file. As per the above example, we can add the middleware <strong>Example</strong> in <em>lib/example.rb </em>configure it by using:
+
+
+<pre class="lang:ruby decode:true">config.middleware.use Example</pre>
+
+
+You can add your middleware using any of the following methods:
+
+
+<ul>
+ 	
+
+<li><strong>config.middleware.use(new_middleware, args)</strong> – Adds the new middleware at the bottom of the middleware stack.</li>
+
+
+</ul>
+
+
+
+
+<ul>
+ 	
+
+<li><strong>config.middleware.insert_before(existing_middleware, new_middleware, args)</strong> – Adds the new middleware before the specified existing middleware in the middleware stack.</li>
+
+
+</ul>
+
+
+
+
+<ul>
+ 	
+
+<li><strong>config.middleware.insert_after(existing_middleware, new_middleware, args)</strong> – Adds the new middleware after the specified existing middleware in the middleware stack.</li>
+
+
+</ul>
+
+
+Eg:
+
+
+<pre class="lang:ruby decode:true">config.middleware.insert_before Rails::Rack::Lint, Example
+config.middleware.insert_after Rails::Rack::Lint, Example</pre>
+
+
+So, by doing the above steps we can make our own rack middleware. Hope it helps you in some way to know about the basics of rack middleware and how to create our own middleware.
+
+
+<h2> References</h2>
+
+
+
+
+<ol>
+ 	
+
+<li><a href="https://www.amberbit.com/blog/2011/07/13/introduction-to-rack-middleware/">https://www.amberbit.com/blog/2011/07/13/introduction-to-rack-middleware/</a></li>
+
+
+ 	
+
+<li><a href="http://www.integralist.co.uk/posts/rack-middleware.html">http://www.integralist.co.uk/posts/rack-middleware.html</a></li>
+
+
+ 	
+
+<li><a href="http://ieftimov.com/writing-rack-middleware">http://ieftimov.com/writing-rack-middleware</a></li>
+
+
+ 	
+
+<li><a href="https://blog.engineyard.com/2015/understanding-rack-apps-and-middleware">https://blog.engineyard.com/2015/understanding-rack-apps-and-middleware</a></li>
+
+
+ 	
+
+<li><a href="http://www.cise.ufl.edu/research/ParallelPatterns/PatternLanguage/AlgorithmStructure/Pipeline.htm">http://www.cise.ufl.edu/research/ParallelPatterns/PatternLanguage/AlgorithmStructure/Pipeline.htm</a></li>
+
+
+</ol>
+
+]]&gt;		</p>
+]]></content:encoded>
+							<wfw:commentRss>/rack-middleware/feed/</wfw:commentRss>
+		<slash:comments>3</slash:comments>
+							</item>
+	</channel>
+</rss>

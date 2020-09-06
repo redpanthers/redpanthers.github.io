@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>React JS &#8211; beta.redpanthers.co</title>
+	<atom:link href="/tag/react-js/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description>Red Panthers - Experts in Ruby on Rails, System Design and Vue.js</description>
+	<lastBuildDate>Mon, 29 Feb 2016 00:07:05 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.7</generator>
+	<item>
+		<title>Flux example Application with React JS</title>
+		<link>/react-with-flux/</link>
+				<comments>/react-with-flux/#comments</comments>
+				<pubDate>Mon, 29 Feb 2016 00:07:05 +0000</pubDate>
+		<dc:creator><![CDATA[sibin]]></dc:creator>
+				<category><![CDATA[Beginners]]></category>
+		<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[Flux]]></category>
+		<category><![CDATA[React JS]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=297</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[Flux is an application architecture used to build scalable and powerful JavaScript web application with React JS. React JS is a popular view library and we have already covered React JS. Flux is not a framework like Angular JS, Backbone etc., there are a lot of differences between these frameworks with Flux. Flux only supports unidirectional data flow, where Angular and Backbone supports bi-directional data flow. Unidirectional data flow prevents unexpected data flows, so it is more predictable.
+
+
+<h2>
+Flux has three main parts.</h2>
+
+
+
+
+<ol>
+	
+
+<li>Action</li>
+
+
+	
+
+<li>Dispatcher</li>
+
+
+	
+
+<li>Store</li>
+
+
+</ol>
+
+
+As their name indicates, <strong>Action</strong> is the result of some events, like JavaScript events, or callbacks for Ajax calls. <strong>Dispatcher</strong>, is a connector or link between Action and Store. The dispatcher is a central hub, from where everything passes through and we only need one dispatcher per application. Dispatcher handles all Actions and Stores.
+<strong>Store</strong> is very important in Flux architecture, we can write our business logics or Ajax calls to fetch data’s. I usually use it to store to get some initial data’s or to send or receive data via Ajax calls. The store uses event emitter similar to nodejs&#8217;s event emitter. We can define events in Store, and these events are connected to Store, whenever a change occurs in store, all components which listenes to this store will get an invoke and we can perform our logics.
+My example application will give you more idea, you can clone it from my GitHub account. In this application I have an input box where you can enter the number and a button to &#8216;Add Cart&#8217;, we can start from this button, this button has an on Click event, I have attached a Flux action on it, whenever a change occurs it passes input box data to an action.
+
+
+<h4>Component</h4>
+
+
+
+
+<pre class="lang:default decode:true " title="Components ">import React from 'react';
+import checkoutActions from "../actions/checkout-action";
+import checkoutStore from "../store/checkout-store";
+class CartElements extends React.Component{
+  constructor(){
+    super()
+    this.state = {
+      currentCart : checkoutStore.getCart()
+    }
+  }
+  componentDidMount(){
+    checkoutStore.addListener(this.updateCartNumber)
+  };
+  updateCartNumber = () =&gt; {
+    this.setState({
+      currentCart: checkoutStore.getCart()
+    })
+  };
+  updateCart = () =&gt; {
+    checkoutActions.addCart(parseInt(this.refs.cartNumber.value))
+  };
+  gotoCheckout = () =&gt; {
+    window.location.href +="?products=[1,2,3]"
+  };
+  render(){
+    var checkoutButton = "";
+    if(this.state.currentCart &gt; 0){
+      checkoutButton = &lt;a className="button" href="/welcome/checkout?products=[1,2,3,4]"&gt;CheckOut&lt;/a&gt;;
+    }
+    return(
+      &lt;div&gt;
+        &lt;div className="input-group"&gt;
+            &lt;input type="number" ref="cartNumber"/&gt;
+        &lt;/div&gt;
+        &lt;button className="button success" onClick={this.updateCart}&gt;Add to Cart&lt;/button&gt;
+        {checkoutButton}
+      &lt;/div&gt;
+    )
+  }
+}
+export default CartElements</pre>
+
+
+
+
+<h4>Action File</h4>
+
+
+
+
+<pre class="lang:js decode:true " title="Checkout Action">import dispatcher from "../dispatcher";
+import constants from "../const/store-const";
+var checkoutActions  = {
+  addCart: function(data){
+    dispatcher.dispatch({
+      actionType: constants.ADD_CART,
+      data: data
+    })
+  }
+}
+export default checkoutActions;</pre>
+
+
+&nbsp;
+In this Action, I have an <strong>addCart  </strong>method which dispatches item quantity along with a constant called &#8216;ADD_CART&#8217; which is used to distinguish it on Store.
+Dispatcher is a simple file which uses Facebook dispatcher
+Object Assign is a NPM module where you can combine two objects and return source object, For example
+var birds = {bird:&#8221;Pigeon&#8221;}
+var animals = {animal:&#8221;Dog&#8221;}
+assign(birds, animals) =&gt;
+{bird:&#8221;Pigeon&#8221;, animal:&#8221;Dog&#8221;}
+We have a Store called checkStore, for which we have 5 methods. First 2 of them are custom methods, addCart and getCart. When we call Addcart, it increases the quantity and getCart to retrieve the latest value. Besides we have 3 required methods
+
+
+<ol>
+	
+
+<li>emitChange</li>
+
+
+	
+
+<li>addListener</li>
+
+
+	
+
+<li>removeListener</li>
+
+
+</ol>
+
+
+
+
+<pre class="lang:default decode:true " title="Store ">import dispatcher from '../dispatcher.js';
+import EventEmitter from 'events';
+import assign from 'object-assign';
+var CHANGE_EVENT = 'change';
+var EventEmitterEvent  = EventEmitter.EventEmitter
+var _number  = 0;
+var checkoutStore = assign({}, EventEmitterEvent.prototype, {
+  addCart: function(number){
+    return _number = _number + number;
+  },
+  getCart: function(){
+    return _number;
+  },
+  emitChange: function(){
+    this.emit(CHANGE_EVENT)
+  },
+  addListener: function(callback){
+    this.on(CHANGE_EVENT, callback)
+  },
+  removeListner: function(callback){
+    this.removeListner(CHANGE_EVENT, callback)
+  }
+});
+dispatcher.register((action)=&gt;{
+  switch (action.actionType){
+    case 'ADD_CART':
+      console.log("hello")
+      checkoutStore.addCart(action.data)
+      checkoutStore.emitChange()
+      break;
+  }
+})
+export default checkoutStore;</pre>
+
+
+&nbsp;
+AddListener adds EventListner. We can use this to bind events to components. RemoveListener is used to remove listeners when we unmounts some components. EmitChange is used to update or invoke store after some actions.
+The store also has a dispatcher, where we register dispatcher, and in action, we dispatch data to stores. All data which passes from action is available in action argument, the switch uses check actionType, we already pass a constant from action to distinguish various types, like CREATE, EDIT, DELETE, and here we have ADD_CART, so only particular block works. In this case, we have only one condition inside switch block and condition with ADD_CART will work. Inside this condition we call add_cart store method and pass quantity after which we can emitchange. So, this store will invoke and all components which are connected will notify.
+Now we can move to a header component. There is a component called CartIconOnTopBar, in componentDidMount.I have attached a Store listener, &#8216;checkOutStore.addListener(callback)&#8217; with a callback function, in this callback function, I again called stores getCart function to get latest items quantity.
+
+
+<pre class="lang:default decode:true " title="Component">class CartIconOnTopBar extends React.Component{
+  constructor(){
+    super()
+    this.state = {
+      cartItemCount: checkoutStore.getCart()
+    }
+  }
+  componentDidMount(){
+   checkoutStore.addListener(this.updateCart)
+  };
+  updateCart = () =&gt; {
+    this.setState({
+      cartItemCount: checkoutStore.getCart()
+    })
+  };
+  openClassModal = () =&gt; {
+  };
+  render(){
+    return(
+        &lt;li&gt;
+          &lt;a href="#" onClick={this.openCartModal} className="cart-element"&gt;
+            &lt;i className="fi-shopping-cart"&gt;&lt;/i&gt;
+            &lt;span className="cart-count"&gt; {this.state.cartItemCount} &lt;/span&gt;
+          &lt;/a&gt;
+        &lt;/li&gt;
+    )
+  }
+}</pre>
+
+
+When we click on button, it passes data to action and through dispatcher it reaches store and it invokes store and all components which connected to this store will notify and it run callback functions and then we can update our data’s.
+In this application for a demonstration you can add as many actions and store. This is only a basics of flux, there are more in <a href="https://github.com/facebook/flux" target="_blank" rel="noopener noreferrer">flux</a>, also, flux has some alternatives like <a href="https://github.com/reactjs/redux" target="_blank" rel="noopener noreferrer">redux</a>.]]&gt;		</p>
+]]></content:encoded>
+							<wfw:commentRss>/react-with-flux/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+							</item>
+		<item>
+		<title>React Example Application</title>
+		<link>/react-example-application/</link>
+				<pubDate>Fri, 29 Jan 2016 05:20:03 +0000</pubDate>
+		<dc:creator><![CDATA[sibin]]></dc:creator>
+				<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[React JS]]></category>
+
+		<guid isPermaLink="false">https://redpanthers.co/?p=135</guid>
+				<description><![CDATA[
+				<![CDATA[]]>		]]></description>
+								<content:encoded><![CDATA[<p>				<![CDATA[This article is continuation of my <strong>React</strong> series, On the first article we went through react basics and some react syntax, now i want to demonstrate a sample application with es6 syntax. ES6 is the future of javascript, so we use ES6 in our projects. Complete code is available on github, you can use below links.
+
+
+<h3><a href="https://github.com/sibinx7/react-with-rails" target="_blank" rel="noopener noreferrer">Example Application</a></h3>
+
+
+
+
+<h2>React &#8211; Rails Store Example Application</h2>
+
+
+&nbsp;
+[caption id="attachment_182" align="aligncenter" width="800"]<img class="wp-image-182 size-full" title="React Rails Tutorial" src="https://redpanthers.co/wp-content/uploads/2016/01/react-store-optimized.jpg" alt="React Rails Tutorial" width="800" height="496" /> React Rails Store Application[/caption]
+Before we start, we must familiarize with <strong>gulp</strong> and some <strong>gulp tasks</strong>. <strong><a href="http://gulpjs.com/" target="_blank" rel="noopener noreferrer">Gulp</a></strong> is a frontend tool to automate our tasks like sass/scss to css, coffeescript to javascript, minimization etc.. In this project we use <strong>babelify</strong>, it help us to write code in ES6, In ES6 mode, we can use <em>import statement</em>, <em>classes</em> in javascript, and <em>double arrow functions</em>.
+
+
+<pre class="lang:js decode:true" title="gulpfile.js">var gulp = require('gulp')
+var fs = require("fs")
+var browserify = require("browserify")
+var babelify = require("babelify")
+var gutil = require('gulp-util');
+var source = require('vinyl-source-stream');
+var livereload = require('gulp-livereload');
+gulp.task("react",function(){
+  return browserify({
+    entries:'./app/assets/javascripts/react/main.js',
+    debug: true
+  })
+  .transform("babelify",{presets:["react","es2015","stage-0"],plugins:["transform-es2015-arrow-functions"]})
+  .bundle()
+  .pipe(source("bundle.js"))
+  .pipe(gulp.dest("./app/assets/javascripts"))
+  .pipe(livereload())
+})
+gulp.task("watch",["react"],function(){
+  livereload.listen({basePath:'public'})
+  gulp.watch("./app/assets/javascripts/react/*/*.js",["react"])
+})
+gulp.task("default",["watch"])</pre>
+
+
+
+
+<blockquote>We use ES6, so we can use `class`, `import` and `=&gt;`</blockquote>
+
+
+Now we can start our code, It is actually a ruby on rails project. Our files are inside javascript/react folder, we use main.js file where we import all other javascript modules, which again convert to <em>bundle.js</em> then we included it on application.js file.
+Our main file is <em>main.js</em> , You can find code  which use to inject our React components to actual DOM, ReactDOM.render method used to put react component ( first argument) to a DOM element ( Second argument, which is a selector)
+
+
+<pre class="lang:js decode:true ">import React from 'react';
+import ReactDom from "react-dom";
+import Sidebar from "./components/sidebar";
+import TopSearch from "./components/top-header";
+import ProductGallery from "./components/product/product-gallery";
+import Pagination from "./components/pagination";
+ReactDom.render( &lt;Sidebar /&gt;, document.getElementById('sidebar-elements'))
+ReactDom.render(&lt;TopSearch /&gt;, document.getElementById('top-search-bar'))
+/**
+ * Some section are specific to some pages, so first check that those section are
+ * available to current page , equalent to jquery `element.length`
+ *
+ */
+var productSectionElement = document.querySelectorAll('#product-section');
+if(productSectionElement.length &gt; 0){
+  ReactDom.render(&lt;ProductGallery/&gt;, document.getElementById('product-section'))
+}
+var paginationElement = document.querySelectorAll('#pagination');
+if(paginationElement.length &gt; 0){
+  ReactDom.render(&lt;Pagination/&gt;, document.getElementById('pagination'))
+}
+</pre>
+
+
+
+
+<blockquote>With ES6 we can import modules</blockquote>
+
+
+<strong>ReactDom.render</strong> function used to push components to inside DOM elements, In this , Sidebar component pushed to an element with id &#8216;sidebar-element&#8217;. You can refer sidebar.html.erb ( which is a partial called in layout.erb and reside inside common folder under view)
+
+
+<pre class="lang:default decode:true ">&lt;div id="sidebar-elements"&gt;&lt;/div&gt;</pre>
+
+
+This sidebar component defined in component folder under react ( &#8216;react-with-rails/app/assets/javascripts/react&#8217;)
+
+
+<pre class="lang:js decode:true">import React from "react";
+import ATag from './html_components'
+class Sidebar extends React.Component{
+  constructor(){
+    super()
+    this.state = {
+      active: false
+    }
+  }
+  render(){
+    return(
+      &lt;div className="sidebar"&gt;
+        &lt;div className="vertical menu"&gt;
+          &lt;SidebarLinks href="#" name="Motorola"/&gt;
+          &lt;SidebarLinks href="#" name="Sony"/&gt;
+          &lt;SidebarLinks href="#" name="Lenovo"/&gt;
+          &lt;SidebarLinks href="#" name="Asus"/&gt;
+          &lt;SidebarLinks href="#" name="Dell"/&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    )
+  }
+}
+class SidebarLinks extends React.Component{
+  constructor(){
+    super()
+  }
+  render(){
+    return(
+      &lt;li&gt;
+        &lt;ATag href={this.props.href} name={this.props.name}/&gt;
+      &lt;/li&gt;
+    )
+  }
+}
+export default Sidebar;</pre>
+
+
+Above code is used to make Sidebar component, We can see that one Component called another Component ( <em>&lt;SidebarLinks/&gt;</em>) which also called another one ( <em>&lt;ATag/&gt;</em>). This is Parent &#8211; Child components, One Parent can call as many child elements. This is one advantage, We can make re usable components.
+<strong>State</strong> and <strong>Props</strong> are two properties used to control a component, State is its own property, and Props is a property coming from its Parent Component. You can see Sidebar and Sidebar Links, also ATags, This Sidebar is parent and SidebarLinks are children, SidebarLinks also call a ATag which is another child element. You can see &#8216;name&#8217; in Sidebar Component, and this name variable can access using in child child components.
+
+
+<blockquote>this.props.<em>variable_name</em></blockquote>
+
+
+In addition to this we have <strong>Refs</strong>, Lets talk about <strong>Refs</strong>
+
+
+<pre class="lang:js decode:true">import React from "react";
+import ReactDom,{Server} from "react-dom";
+class TopSearch extends React.Component{
+ constructor(){
+ console.log("Initial")
+ super()
+ let myKeyword;
+ this.state= {
+ disabled: false,
+ searchText: "Search"
+ }
+ }
+ searchInputChange = (e) =&gt; {
+ this.myKeyword = this.refs.keyword.value;
+ };
+ searchButtonClick = (e) =&gt; {
+ this.setState({disabled: true,searchText:"Searching..."})
+ this.startSearch(this.myKeyword)
+ };
+ enterKeyPress = (e) =&gt; {
+ if(e.which == 13){
+ this.startSearch(this.myKeyword)
+ }
+ };
+ startSearch =(value) =&gt; {
+ setTimeout(()=&gt;{
+ this.setState({disabled: false,searchText:"Search"})
+ this.unMountIt()
+ },5000)
+ };
+ unMountIt = () =&gt; {
+ setTimeout(()=&gt;{
+ ReactDom.unmountComponentAtNode(document.getElementById('top-search-bar'))
+ },3000)
+ };
+ render(){
+ return(
+ &lt;ul className="menu"&gt;
+ &lt;li&gt;&lt;input type="search" placeholder="Search" onChange={this.searchInputChange} ref="keyword" onKeyUp={this.enterKeyPress}/&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;button disabled={(this.state.disabled)?true: false} type="button" className="button" onClick={this.searchButtonClick}&gt;
+ {this.state.searchText}
+ &lt;/button&gt;&lt;/li&gt;
+ &lt;CartIconOnTopBar/&gt;
+ &lt;/ul&gt;
+ )
+ }
+}
+class CartIconOnTopBar extends React.Component{
+ constructor(){
+ super()
+ this.state = {
+ cartItemCount: 0
+ }
+ }
+ openClassModal = () =&gt; {
+ };
+ render(){
+ return(
+ &lt;li&gt;
+ &lt;a href="#" onClick={this.openCartModal} className="cart-element"&gt;
+ &lt;i className="fi-shopping-cart"&gt;&lt;/i&gt;
+ &lt;span className="cart-count"&gt; {this.state.cartItemCount} &lt;/span&gt;
+ &lt;/a&gt;
+ &lt;/li&gt;
+ )
+ }
+}
+export default TopSearch;</pre>
+
+
+Lets assume if we  have a search input box, we want to access it&#8217;s value, <em>what should we do? </em> We can use <strong>refs</strong> to solve this problem.  Above code has a search field
+<code>
+</code>
+
+
+<pre class="lang:default decode:true">&lt;ul&gt;
+&lt;li&gt;&lt;input type="search" placeholder="Search" ref="keyword"/&gt;&lt;/li&gt;
+&lt;li&gt;&lt;button disabled="disabled" type="button"&gt;
+Search
+&lt;/button&gt;&lt;/li&gt;
+&lt;/ul&gt;</pre>
+
+
+You can see<strong> ref</strong> attributes, also you can see <em>this.refs.keyword</em> in <strong>searchInputChang</strong>e function,
+
+
+<blockquote>this.refs.keyword.value</blockquote>
+
+
+can used to get values form form elements, input, textarea etc.
+<strong>State</strong> are its own properties, all state properties are used inside component, we can pass state values to its child elements using props.
+State can be initially set on constructor function
+
+
+<pre class="lang:default decode:true ">this.state = {stateName: value, stateName2: value2}</pre>
+
+
+We can change state values using
+
+
+<pre class="lang:default decode:true">this.setState({stateName: valueChanged})</pre>
+
+
+It can be called in all custom functions and most of the react component life cycle functions ( You can&#8217;t set states in <em>componentWillUpdate</em> method. For every changes react will re render component.
+Now we can moved to <strong>Life Cycle method</strong>, React have many life cycles
+
+
+<pre class="lang:default decode:true">constructor(){
+// First to load
+console.log("Initialization")
+}
+componentWillMount(){
+// Second to load
+console.log("Component Will Mount")
+}
+componentDidMount(){
+// Third to load
+console.log("Component Did Mount")
+}
+componentWillReceiveProps(){
+// When props change
+console.log("Component Will Receive Props")
+}
+shouldComponentUpdate(){
+ // After props change, return true to re render and false to no change
+}
+componentWillUpdate(){
+// When state or props change
+console.log("Component Will Updpate")
+}
+componentDidUpdate(){
+// After state and props change, and re render happen
+console.log("Component Did Update")
+}
+componentWillUnmount(){
+//Last state, it invoke after removal
+console.log("Component Will Unmount")
+}</pre>
+
+
+<strong>constructor</strong> &#8211; Initial life cycle method, which invoke when an component called, we can set states in this method
+<strong>componentWillMount</strong> : called before it render
+<strong>componentDidMount</strong>: called just after react element put all elements to real DOM, we can use this function to set some states, which cause re render
+<strong>componentWillRecieveProps</strong>: It can when props changed in parent components, it have an argumenet, nextProps
+<strong>shouldComponentUpdate</strong>: We can use return true to update element or false to prevent re-render, this has two argument oldProps, and newProps, we can check both and decide whether we want re-render or not
+<strong>componentWillUpdate</strong>, <strong>componentDidUpdate</strong> : Similar to WillMount and DidMount, but this won&#8217;t call during initial rendering, it call when state or props change.
+<strong>componentWillUnmount</strong>: It can when we remove element
+
+
+<blockquote><span class="pl-smi">ReactDom</span>.<span class="pl-en">unmountComponentAtNode</span>(<span class="pl-smi">document</span>.<span class="pl-c1">getElementById</span>(<span class="pl-s"><span class="pl-pds">&#8216;</span>top-search-bar<span class="pl-pds">&#8216;</span></span>))</blockquote>
+
+
+We can use above code to remove any react elements from Virtual DOM.
+I hope this will give a brief introduction to React JS, We will add more features as soon as possible, In our Next tutorial we will feature <strong>Flux</strong> architecture]]&gt;		</p>
+]]></content:encoded>
+										</item>
+	</channel>
+</rss>

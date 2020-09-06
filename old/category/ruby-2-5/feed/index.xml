@@ -1,0 +1,174 @@
+ <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Ruby 2.5 &#8211; Red Panthers</title>
+	<atom:link href="/category/ruby-2-5/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description>Experts in Ruby on Rails Development</description>
+	<lastBuildDate>Wed, 14 Feb 2018 13:01:15 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.7</generator>
+
+<image>
+	<url>/wp-content/uploads/2017/12/rp-logo.png</url>
+	<title>Ruby 2.5 &#8211; Red Panthers</title>
+	<link>/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>What&#8217;s new in Ruby 2.5</title>
+		<link>/whats-new-ruby-2-5/</link>
+				<comments>/whats-new-ruby-2-5/#respond</comments>
+				<pubDate>Mon, 25 Dec 2017 08:08:56 +0000</pubDate>
+		<dc:creator><![CDATA[nimmy]]></dc:creator>
+				<category><![CDATA[Ruby]]></category>
+		<category><![CDATA[Ruby 2.5]]></category>
+
+		<guid isPermaLink="false">http://blog.redpanthers.co/?p=4219</guid>
+				<description><![CDATA[<p>The Ruby language has increasingly stabilized over the years. The upcoming release of Ruby 2.5 is not going to let us down too. It introduces lots of new features and improvements over the previous version. The first preview was released on 10th October 2017 and the final build will be released on this 25th. This&#8230;</p>
+<p>The post <a rel="nofollow" href="/whats-new-ruby-2-5/">What&#8217;s new in Ruby 2.5</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></description>
+								<content:encoded><![CDATA[<p>The Ruby language has increasingly stabilized over the years. The upcoming release of Ruby 2.5 is not going to let us down too. It introduces lots of new features and improvements over the previous version. The first preview was released on 10th October 2017 and the final build will be released on this 25th. This blog dissects into this latest and exciting release and goes through some of the most important changes, we will be writing another article on performance improvement once the 2.5 if officially released.</p>
+<ul>
+<li>
+<h2>Added <code>Hash#transform_keys</code> method</h2>
+</li>
+</ul>
+<p>Ruby 2.4 added the <code>transform_values</code> method, 2.5 completes it by adding <code>transform_keys</code> thus make it a perfect pair.</p>
+<p>Hash#transform_keys can change keys according to the return value of a block:</p><pre class="crayon-plain-tag">hash = { a: 1, b: 2 }
+=&gt; {:a=&gt;1, :b=&gt;2}
+hash.transform_keys { |k| k.to_s }
+=&gt; {"a"=&gt;1, "b"=&gt;2}
+hash
+=&gt; {:a=&gt;1, :b=&gt;2}</pre><p><code>transform_keys!</code> is a destructive version:</p><pre class="crayon-plain-tag">hash = { a: 1, b: 2 }
+=&gt; {:a=&gt;1, :b=&gt;2}
+hash.transform_keys! { |k| k.to_s } 
+=&gt; {"a"=&gt;1, "b"=&gt;2}
+hash
+=&gt; {"a"=&gt;1, "b"=&gt;2}</pre><p>We know how many times we had to manipulate the keys of a hash. <code>transform_keys</code> is gonna be a game changer and going to be very compelling to be used in your legacy app. The destructive version is a just silver lining to this.</p>
+<ul>
+<li>
+<h2>Array#prepend and Array#append</h2>
+</li>
+</ul>
+<p>Ruby 2.5 brings home two new aliases which are so much better than the two of the most used operations in the language. <code>Array#prepend</code> and <code>Array#append</code> are more programmer friendly than the conventional <code>Array#unshift</code> and <code>Array#push</code>. Ruby IS THE language which focuses on the programmers&#8217; happiness primarily after all.</p><pre class="crayon-plain-tag">&gt;&gt; a = ["hello"]
+=&gt; ["hello"]
+&gt;&gt; a.append "world"
+=&gt; ["hello", "world"]
+&gt;&gt; a.prepend "Hi"
+=&gt; ["Hi", "hello", "world"]</pre><p></p>
+<ul>
+<li>
+<h2>Added yield_self method</h2>
+</li>
+</ul>
+<p>This method yields the receiver to the given block and returns the output of the last statement in the block which is somewhat similar to the tap method.The only difference is the value that is returned.<code class="highlighter-rouge">yield_self</code> method returns the output of the block but <code class="highlighter-rouge">tap</code> method returns the receiver itself.</p><pre class="crayon-plain-tag">"Hello".yield_self { |obj| obj + " World"}
+=&gt; "Hello World"
+
+"Hello".tap { |obj| obj + " World" }
+ =&gt; "Hello"</pre><p></p>
+<ul>
+<li>
+<h2>rescue/else/ensure are allowed inside do/end blocks without begin/end</h2>
+</li>
+</ul>
+<p>We could omit the begin/end and not need the extra wrapper for rescue/else/ensure clauses in Ruby 2.5</p><pre class="crayon-plain-tag">[1].each do |n|
+  n / 0
+rescue
+  # rescue
+else
+  # else
+ensure
+  # ensure
+end</pre><p></p>
+<ul>
+<li>
+<h2>String#delete_prefix/delete_suffix</h2>
+</li>
+</ul>
+<p>In Ruby 2.4 we used chomp method to remove the suffix &#8216;world&#8217; from &#8216;HelloWorld&#8217; and to remove prefix there is no corresponding method for chomp. The solution was to resort to a <a href="https://ruby-doc.org/core-2.4.2/String.html#sub-method">sub</a> which is using the regular expression for such a simple task.</p>
+<p>Ruby 2.5 added new methods to take care of such tasks. Now in order to delete prefix, we can use delete_prefix and to delete suffix we could use chomp. But the method names don&#8217;t seem good. So for symmetry delete_suffix was added.</p><pre class="crayon-plain-tag">'HelloWorld'.delete_prefix('Hello')
+=&gt; "World" 
+'HelloWorld'.delete_suffix('World')
+=&gt; "Hello"</pre><p></p>
+<ul>
+<li>
+<h2>Ruby 2.5 has removed top-level constant lookup</h2>
+</li>
+</ul>
+<p>Consider the following code in Ruby 2.4.</p><pre class="crayon-plain-tag">class Book;
+end
+class Seller;
+end
+ 
+Book::Seller</pre><p>This code works with a warning. The top-level constants are defined under Object class, and Ruby tries to look up the superclass of Book class, and eventually finds Seller under the Object class which is a superclass of Book class.</p>
+<p>But in Ruby 2.5, Ruby won’t look up superclass. So the previous code fails with an error.</p><pre class="crayon-plain-tag">Book::Seller
+#=&gt; NameError: uninitialized constant Book::Seller
+#   Did you mean?  Seller</pre><p>Ruby 2.5 throws an error if it is unable to find constant in the specified scope.</p>
+<ul>
+<li>
+<h2>New method to ERB to allow assigning the local variables from a hash</h2>
+</li>
+</ul>
+<p>In Ruby 2.4, we had to do hacks like following to assign local variables to ERB template.</p><pre class="crayon-plain-tag">require 'erb'
+require 'ostruct'
+ 
+namespace = OpenStruct.new(a: 10, b: 3)
+template = 'Result: &lt;%= a * b %&gt;'
+ERB.new(template).result(namespace.instance_eval { binding })
+#=&gt; "Result: 30"</pre><p>ERB could allow a hash instead of a binding for processing the template in Ruby 2.5 such that we could avoid hacks as above.</p>
+<p>To allow assigning the local variables from a hash we can use <code>result_with_hash</code> method.</p><pre class="crayon-plain-tag">require 'erb'
+
+result = 'Result: &lt;%= a * b %&gt;'
+ERB.new(result).result_with_hash(a: 10, b: 3)
+#=&gt; "Result: 30"</pre><p></p>
+<ul>
+<li>
+<h2>Dir.children and Dir.each_child</h2>
+</li>
+</ul>
+<p>ls -a command will list all files including hidden files (files with names beginning with a dot). Dir.entries  method present in Ruby 2.4 returns this output in an array.</p><pre class="crayon-plain-tag">Dir.entries("/home")
+=&gt; ["..", "user", "."]</pre><p>Another method Dir.foreach  iterates and yields each value from the output of ls -a command to the block.</p><pre class="crayon-plain-tag">Dir.foreach("/home") { |child| puts child }
+..
+user
+.</pre><p>The output includes the directives for the current directory and parent directory which are &#8220;.&#8221; and &#8220;..&#8221;.</p>
+<p>When we want to have access only to the children files and directories, we do not need the [&#8220;.&#8221;, &#8220;..&#8221;] subarray. To overcome such issues, Ruby 2.5 introduced Dir.children. It returns the output of ls -a command without the directives for current and parent directories.</p><pre class="crayon-plain-tag">Dir.children("/home")
+=&gt; ["user"]</pre><p>We can use Dir.each_child method to avoid yielding current and parent directory directives while iterating.</p><pre class="crayon-plain-tag">Dir.each_child("/home") { |child| puts child }
+user</pre><p></p>
+<ul>
+<li>
+<h2>Imported features from ActiveSupport library</h2>
+</li>
+</ul>
+<p>Over the past few years, Ruby has been merging the best features from the ActiveSupport library, into the core language. In Ruby 2.5 version, <code>Hash#slice</code>, <code>Hash#slice!</code>, <code>Hash#except</code>, <code>Hash#except!</code> are such methods continuing the trend, imported from ActiveSupport.</p>
+<p>The ActiveSupport library comes bundled with the popular Ruby on Rails framework, but can also be used in isolation. It provides many extensions to Ruby&#8217;s core classes.</p><pre class="crayon-plain-tag">{a: 1, b: 2, c: 3}.slice(:a, :b)
+#=&gt; {:a=&gt;1, :b=&gt;2}</pre><p>&nbsp;</p>
+<p>One of the notable feature in 2.5 release was bundler packed with ruby core, but it is posponed due to some issues, See the <a href="https://github.com/ruby/ruby/commit/7825e8363d4b2ccad8e2d3f5eeba9e26f6656911">commit</a></p>
+<h2>Further changes</h2>
+<p><a href="https://github.com/ruby/ruby/blob/v2_5_0/NEWS">NEWS for Ruby 2.5.0 </a> news page can be referred to find other news and changes on Ruby 2.5</p>
+<h2></h2>
+<h2>References</h2>
+<ul>
+<li><a href="https://github.com/ruby/ruby/blob/v2_5_0/NEWS">https://github.com/ruby/ruby/blob/v2_5_0/NEWS</a></li>
+<li><a href="https://www.ruby-lang.org/en/news/2017/12/25/ruby-2-5-0-released/">https://www.ruby-lang.org/en/news/2017/12/25/ruby-2-5-0-released/</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>The post <a rel="nofollow" href="/whats-new-ruby-2-5/">What&#8217;s new in Ruby 2.5</a> appeared first on <a rel="nofollow" href="/">Red Panthers</a>.</p>
+]]></content:encoded>
+							<wfw:commentRss>/whats-new-ruby-2-5/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+							</item>
+	</channel>
+</rss>

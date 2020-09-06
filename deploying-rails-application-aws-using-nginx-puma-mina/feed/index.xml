@@ -1,4 +1,4 @@
- <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
 	xmlns:content="http://purl.org/rss/1.0/modules/content/"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
 	xmlns:atom="http://www.w3.org/2005/Atom"
@@ -10,7 +10,7 @@
 	Comments on: Deploying Rails application on AWS, using Nginx, Puma and Mina	</title>
 	<atom:link href="/deploying-rails-application-aws-using-nginx-puma-mina/feed/" rel="self" type="application/rss+xml" />
 	<link>/deploying-rails-application-aws-using-nginx-puma-mina/</link>
-	<description>Experts in Ruby on Rails Development</description>
+	<description>Red Panthers - Experts in Ruby on Rails, System Design and Vue.js</description>
 	<lastBuildDate>Mon, 08 Jan 2018 16:51:00 +0000</lastBuildDate>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -20,10 +20,10 @@
 			<item>
 				<title>
 				By: Wellington Torrejais				</title>
-				<link>/deploying-rails-application-aws-using-nginx-puma-mina/#comment-33</link>
+				<link>/deploying-rails-application-aws-using-nginx-puma-mina/#comment-45</link>
 		<dc:creator><![CDATA[Wellington Torrejais]]></dc:creator>
 		<pubDate>Mon, 08 Jan 2018 16:51:00 +0000</pubDate>
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=2150#comment-33</guid>
+		<guid isPermaLink="false">https://redpanthers.co/?p=2150#comment-45</guid>
 					<description><![CDATA[Thanks!]]></description>
 		<content:encoded><![CDATA[<p>Thanks!</p>
 ]]></content:encoded>

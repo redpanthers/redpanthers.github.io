@@ -1,4 +1,4 @@
- <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
 	xmlns:content="http://purl.org/rss/1.0/modules/content/"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
 	xmlns:atom="http://www.w3.org/2005/Atom"
@@ -10,7 +10,7 @@
 	Comments on: Different ways to run Shell Commands in Ruby	</title>
 	<atom:link href="/different-ways-to-run-shell-commands-in-ruby/feed/" rel="self" type="application/rss+xml" />
 	<link>/different-ways-to-run-shell-commands-in-ruby/</link>
-	<description>Experts in Ruby on Rails Development</description>
+	<description>Red Panthers - Experts in Ruby on Rails, System Design and Vue.js</description>
 	<lastBuildDate>Tue, 22 Jan 2019 07:56:37 +0000</lastBuildDate>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -20,10 +20,10 @@
 			<item>
 				<title>
 				By: 外部コマンドを実行する方法 [Ruby] &#8211; Site-Builder.wiki				</title>
-				<link>/different-ways-to-run-shell-commands-in-ruby/#comment-86</link>
+				<link>/different-ways-to-run-shell-commands-in-ruby/#comment-16</link>
 		<dc:creator><![CDATA[外部コマンドを実行する方法 [Ruby] &#8211; Site-Builder.wiki]]></dc:creator>
 		<pubDate>Tue, 22 Jan 2019 07:56:37 +0000</pubDate>
-		<guid isPermaLink="false">http://blog.redpanthers.co/?p=651#comment-86</guid>
+		<guid isPermaLink="false">https://redpanthers.co/?p=651#comment-16</guid>
 					<description><![CDATA[[&#8230;] Different ways to run Shell Commands in Ruby &#124; Red Panthers [&#8230;]]]></description>
 		<content:encoded><![CDATA[<p>[&#8230;] Different ways to run Shell Commands in Ruby | Red Panthers [&#8230;]</p>
 ]]></content:encoded>
