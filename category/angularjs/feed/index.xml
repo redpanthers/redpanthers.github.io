@@ -32,7 +32,7 @@
 		<guid isPermaLink="false">https://redpanthers.co/?p=3253</guid>
 				<description><![CDATA[
 				<![CDATA[]]>		]]></description>
-								<content:encoded><![CDATA[<p>				<![CDATA[<a href="https://blog.redpanthers.co/wp-content/uploads/2017/08/angular4.jpg"><img class="alignnone wp-image-3306" src="https://blog.redpanthers.co/wp-content/uploads/2017/08/angular4-300x150.jpg" alt="" width="1210" height="605" /></a>
+								<content:encoded><![CDATA[<p>				<![CDATA[<a href="https://redpanthers.co/wp-content/uploads/2017/08/angular4.jpg"><img class="alignnone wp-image-3306" src="https://redpanthers.co/wp-content/uploads/2017/08/angular4-300x150.jpg" alt="" width="1210" height="605" /></a>
 Angular is a most popular platform for building applications with the web. Angular empowers developers to build applications that live on the web, mobile, or the desktop. The <a href="https://cli.angular.io/">AngularCLI</a> is a command line interface tool that can create a project, add files, and perform a variety of ongoing development tasks such as testing, bundling, and deployment.
 As compared to the older versions of Angular, there are many new things added to the list. Not only new features but also some twists are there that enhance old features. Forget Angular 3, Google jumps straight to Angular 4 after Angular 2. Angular4 applications are much faster and less space consuming.  Angular4 is compatible with TypeScript’s newer versions 2.1 and 2.2. Components are the basic building blocks of your application. Every component has an associated template, style sheet, and a class with logic.
 

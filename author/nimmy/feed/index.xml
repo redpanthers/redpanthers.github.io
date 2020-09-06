@@ -1532,7 +1532,7 @@ None of Crystal&#8217;s frameworks are mature enough to be a full-blown web fram
 Kemal is been extremely fast and responsive by using just 1/50 of the resource.
 Kemal&#8217;s superb performance for Websockets and easily extensible middlewares are appreciable.
 Also, deploying a Kemal app on Heroku is as simple as follows:
-<a href="https://blog.redpanthers.co/deploying-crystal-app-production-using-heroku/">https://blog.redpanthers.co/deploying-crystal-app-production-using-heroku</a>
+<a href="https://redpanthers.co/deploying-crystal-app-production-using-heroku/">https://redpanthers.co/deploying-crystal-app-production-using-heroku</a>
 
 
 <h2></h2>

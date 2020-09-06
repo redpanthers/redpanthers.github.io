@@ -163,7 +163,7 @@ On August 22, 2017, Spree released version 3.3 and is packed with the following 
 <h5>Ruby 2.4 support</h5>
 
 
-Spree now works with Ruby versions `2.2 (&gt;= 2.2.7)` , <code>2.2 (&gt;= 2.2.7)</code> , <code>2.2 (&gt;= 2.2.7)</code> ,  <code>2.3.x</code>  and the latest <code>2.4.x</code>. So <code>Ruby 2.4x</code> ?  Yay! that&#8217;s <a href="https://blog.redpanthers.co/behind-scenes-hash-table-performance-ruby-2-4/">Faster Hashes</a>, <a href="https://blog.heroku.com/ruby-2-4-features-hashes-integers-rounding">Unified Integers, and Better Rounding</a> for you right out of the box
+Spree now works with Ruby versions `2.2 (&gt;= 2.2.7)` , <code>2.2 (&gt;= 2.2.7)</code> , <code>2.2 (&gt;= 2.2.7)</code> ,  <code>2.3.x</code>  and the latest <code>2.4.x</code>. So <code>Ruby 2.4x</code> ?  Yay! that&#8217;s <a href="https://redpanthers.co/behind-scenes-hash-table-performance-ruby-2-4/">Faster Hashes</a>, <a href="https://blog.heroku.com/ruby-2-4-features-hashes-integers-rounding">Unified Integers, and Better Rounding</a> for you right out of the box
 
 
 <h5>Segment tracker integration</h5>
@@ -186,7 +186,7 @@ connect your store with over 200 analytics engines, CRMs, live chats, remarketin
 
 
 Spree development has been slowly gaining traction recently.
-<a href="https://blog.redpanthers.co/wp-content/uploads/2017/08/Screen-Shot-2017-08-26-at-21.53.16.png"><img class="aligncenter size-full wp-image-3344" src="https://blog.redpanthers.co/wp-content/uploads/2017/08/Screen-Shot-2017-08-26-at-21.53.16.png" alt="" width="979" height="180" /></a>
+<a href="https://redpanthers.co/wp-content/uploads/2017/08/Screen-Shot-2017-08-26-at-21.53.16.png"><img class="aligncenter size-full wp-image-3344" src="https://redpanthers.co/wp-content/uploads/2017/08/Screen-Shot-2017-08-26-at-21.53.16.png" alt="" width="979" height="180" /></a>
 The future roadmap for spree development can be found <a href="https://github.com/spree/spree/milestones?direction=asc&amp;sort=due_date&amp;state=open">here</a>. But still, it is fair to say that more focus and a unified effort is necessary for the long term survival of Spree. Let&#8217;s join the folks at Spark solutions and Vinsol and start contributing to Spree OSS project]]&gt;		</p>
 ]]></content:encoded>
 							<wfw:commentRss>/future-spree-oss-whats-new-spree-3-3/feed/</wfw:commentRss>
@@ -287,7 +287,7 @@ But this page would be pretty empty since you don&#8217;t have any tests written
 
 
 Now refresh the webpage and you can see something similar to this:
-<a href="https://blog.redpanthers.co/wp-content/uploads/2017/08/Screen-Shot-2017-08-21-at-3.47.22-PM.png"><img class="aligncenter wp-image-3152" src="https://blog.redpanthers.co/wp-content/uploads/2017/08/Screen-Shot-2017-08-21-at-3.47.22-PM-300x91.png" alt="Jasmine test page" width="768" height="233" /></a>
+<a href="https://redpanthers.co/wp-content/uploads/2017/08/Screen-Shot-2017-08-21-at-3.47.22-PM.png"><img class="aligncenter wp-image-3152" src="https://redpanthers.co/wp-content/uploads/2017/08/Screen-Shot-2017-08-21-at-3.47.22-PM-300x91.png" alt="Jasmine test page" width="768" height="233" /></a>
 
 
 <h3>Configurable Settings</h3>

@@ -301,7 +301,7 @@ Gulp is a task runner that uses Node.js as a platform. Gulp purely uses the Java
 		<guid isPermaLink="false">https://redpanthers.co/?p=3253</guid>
 				<description><![CDATA[
 				<![CDATA[]]>		]]></description>
-								<content:encoded><![CDATA[<p>				<![CDATA[<a href="https://blog.redpanthers.co/wp-content/uploads/2017/08/angular4.jpg"><img class="alignnone wp-image-3306" src="https://blog.redpanthers.co/wp-content/uploads/2017/08/angular4-300x150.jpg" alt="" width="1210" height="605" /></a>
+								<content:encoded><![CDATA[<p>				<![CDATA[<a href="https://redpanthers.co/wp-content/uploads/2017/08/angular4.jpg"><img class="alignnone wp-image-3306" src="https://redpanthers.co/wp-content/uploads/2017/08/angular4-300x150.jpg" alt="" width="1210" height="605" /></a>
 Angular is a most popular platform for building applications with the web. Angular empowers developers to build applications that live on the web, mobile, or the desktop. The <a href="https://cli.angular.io/">AngularCLI</a> is a command line interface tool that can create a project, add files, and perform a variety of ongoing development tasks such as testing, bundling, and deployment.
 As compared to the older versions of Angular, there are many new things added to the list. Not only new features but also some twists are there that enhance old features. Forget Angular 3, Google jumps straight to Angular 4 after Angular 2. Angular4 applications are much faster and less space consuming.  Angular4 is compatible with TypeScript’s newer versions 2.1 and 2.2. Components are the basic building blocks of your application. Every component has an associated template, style sheet, and a class with logic.
 
@@ -983,7 +983,7 @@ Elm having a solid architecture enables to build our projects with a guarantee t
 								<content:encoded><![CDATA[<p>				<![CDATA[&nbsp;
 
 
-<h2><a href="https://blog.redpanthers.co/wp-content/uploads/2017/02/vue-2.jpg"><img class="aligncenter wp-image-3224 size-large" src="https://blog.redpanthers.co/wp-content/uploads/2017/02/vue-2-1024x512.jpg" alt="Vue.js" width="1024" height="512" /></a></h2>
+<h2><a href="https://redpanthers.co/wp-content/uploads/2017/02/vue-2.jpg"><img class="aligncenter wp-image-3224 size-large" src="https://redpanthers.co/wp-content/uploads/2017/02/vue-2-1024x512.jpg" alt="Vue.js" width="1024" height="512" /></a></h2>
 
 
 
@@ -998,7 +998,7 @@ Vue.js gives you more freedom in designing your app, unlike Angular. So that you
 <h2>Overview</h2>
 
 
-<a href="https://blog.redpanthers.co/wp-content/uploads/2017/02/Screen-Shot-2017-08-28-at-1.10.07-pm.png"><img class="alignnone wp-image-3352" src="https://blog.redpanthers.co/wp-content/uploads/2017/02/Screen-Shot-2017-08-28-at-1.10.07-pm-300x219.png" alt="" width="456" height="333" /></a>
+<a href="https://redpanthers.co/wp-content/uploads/2017/02/Screen-Shot-2017-08-28-at-1.10.07-pm.png"><img class="alignnone wp-image-3352" src="https://redpanthers.co/wp-content/uploads/2017/02/Screen-Shot-2017-08-28-at-1.10.07-pm-300x219.png" alt="" width="456" height="333" /></a>
 This is the basic folder structure.
 
 
@@ -1405,7 +1405,7 @@ But this page would be pretty empty since you don&#8217;t have any tests written
 
 
 Now refresh the webpage and you can see something similar to this:
-<a href="https://blog.redpanthers.co/wp-content/uploads/2017/08/Screen-Shot-2017-08-21-at-3.47.22-PM.png"><img class="aligncenter wp-image-3152" src="https://blog.redpanthers.co/wp-content/uploads/2017/08/Screen-Shot-2017-08-21-at-3.47.22-PM-300x91.png" alt="Jasmine test page" width="768" height="233" /></a>
+<a href="https://redpanthers.co/wp-content/uploads/2017/08/Screen-Shot-2017-08-21-at-3.47.22-PM.png"><img class="aligncenter wp-image-3152" src="https://redpanthers.co/wp-content/uploads/2017/08/Screen-Shot-2017-08-21-at-3.47.22-PM-300x91.png" alt="Jasmine test page" width="768" height="233" /></a>
 
 
 <h3>Configurable Settings</h3>

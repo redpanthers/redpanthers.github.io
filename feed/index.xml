@@ -319,7 +319,7 @@ Now
 
 
 will give us the following pdf
-<img class="alignnone wp-image-4278" src="https://blog.redpanthers.co/wp-content/uploads/pdf-1-300x83.png" alt="" width="249" height="69" />
+<img class="alignnone wp-image-4278" src="https://redpanthers.co/wp-content/uploads/pdf-1-300x83.png" alt="" width="249" height="69" />
 Now let us write test which ensure pdf has right contents. We read the data using Pdfreader
 First get the pdf-reader
 

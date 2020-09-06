@@ -3,7 +3,7 @@
 The import files for: Demo One were successfully downloaded!
 Initial max execution time = 18000
 Files info:
-Site URL = https://beta.redpanthers.co
+Site URL = https://redpanthers.co
 Data file = /var/www/beta.redpanthers.co/wp-content/uploads/radiantthemes/demo-data/demo-1/content.xml
 Widget file = /var/www/beta.redpanthers.co/wp-content/uploads/radiantthemes/demo-data/demo-1/widgets.wie
 Customizer file = not defined!
